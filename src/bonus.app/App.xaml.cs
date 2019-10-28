@@ -1,8 +1,5 @@
-﻿using System;
+﻿using bonus.app.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using bonus.app.Services;
-using bonus.app.Views;
 
 namespace bonus.app
 {
@@ -13,13 +10,12 @@ namespace bonus.app
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+
         }
 
         protected override void OnSleep()
