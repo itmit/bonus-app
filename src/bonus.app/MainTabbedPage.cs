@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using bonus.app.PageModel;
 using FreshMvvm;
 using Xamarin.Forms;
 
@@ -14,7 +15,7 @@ namespace bonus.app
         /// <summary>
         /// Список страниц отображаемых в меню.
         /// </summary>
-        private readonly List<Page> _tabs = new List<Page>();
+        private readonly List<TabbedPage> _tabs = new List<TabbedPage>();
         #endregion
         #endregion
 
@@ -30,39 +31,6 @@ namespace bonus.app
         }
         #endregion
 
-        #region Overridable
-        /// <summary>
-        /// Добавляет страницу в меню.
-        /// </summary>
-        /// <typeparam name="T">Модель представления страницы.</typeparam>
-        /// <param name="title">Заголовок страницы.</param>
-        /// <param name="icon">Иконка страницы.</param>
-        /// <param name="data">Данные передаваемые в меню.</param>
-        /// <returns>Созданная страница.</returns>
-        public virtual Page AddTab<T>(string title, string icon, object data = null) where T : FreshBasePageModel
-        {
-            var page = FreshPageModelResolver.ResolvePageModel<T>(data);
-            page.GetModel()
-                .CurrentNavigationServiceName = NavigationServiceName;
-            _tabs.Add(page);
-            var navigationContainer = CreateContainerPageSafe(page);
-            navigationContainer.Title = title;
-            if (!string.IsNullOrWhiteSpace(icon))
-            {
-                navigationContainer.IconImageSource = icon;
-            }
-
-            Children.Add(navigationContainer);
-            return navigationContainer;
-        }
-
-        /// <summary>
-        /// Создает страницу навигации.
-        /// </summary>
-        /// <param name="page">Изначальная страница.</param>
-        /// <returns>Страница навигации.</returns>
-        protected virtual Page CreateContainerPage(Page page) => new NavigationPage(page);
-        #endregion
 
         #region IFreshNavigationService members
         /// <summary>
@@ -110,23 +78,6 @@ namespace bonus.app
         /// <returns>Возвращает операцию.</returns>
         public Task PopToRoot(bool animate = true) => CurrentPage.Navigation.PopToRootAsync(animate);
 
-        /// <summary>
-        /// Открывает страницу.
-        /// </summary>
-        /// <param name="page">Открываемая страница.</param>
-        /// <param name="model">Контекст привязки страницы.</param>
-        /// <param name="modal">Открыть ли страницу модально?</param>
-        /// <param name="animate">Открыть ли страницу с анимацией?</param>
-        /// <returns>Возвращает операцию.</returns>
-        public Task PushPage(Page page, FreshBasePageModel model, bool modal = false, bool animate = true)
-        {
-            if (modal)
-            {
-                return CurrentPage.Navigation.PushModalAsync(CreateContainerPageSafe(page));
-            }
-
-            return CurrentPage.Navigation.PushAsync(page);
-        }
 
         /// <summary>
         /// Переключает выбранную корневую модель страницы.
@@ -171,21 +122,6 @@ namespace bonus.app
 
         #region Private
         /// <summary>
-        /// Создает страницу навигации, с учетом типа страницы.
-        /// </summary>
-        /// <param name="page">Изначальная страница.</param>
-        /// <returns>Страница навигации.</returns>
-        private Page CreateContainerPageSafe(Page page)
-        {
-            if (page is NavigationPage || page is MasterDetailPage || page is TabbedPage)
-            {
-                return page;
-            }
-
-            return CreateContainerPage(page);
-        }
-
-        /// <summary>
         /// Регистрирует сервис навигации.
         /// </summary>
         private void RegisterNavigation()
@@ -197,6 +133,7 @@ namespace bonus.app
         {
             throw new NotImplementedException();
         }
+
         #endregion
     }
 }

@@ -12,27 +12,27 @@
             UnselectedTabColor="Gray"
             android:TabbedPage.IsSwipePagingEnabled="False"
             >
-    <NavigationPage Title="Профиль">
+    <NavigationPage Title="Профиль" IconImageSource="star">
         <x:Arguments>
             <Page:ProfilePage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Услуги">
+    <NavigationPage Title="Услуги" IconImageSource="star">
         <x:Arguments>
             <Page:ServicesPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Акции">
+    <NavigationPage Title="Акции" IconImageSource="star">
         <x:Arguments>
             <Page:StockPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Новости">
+    <NavigationPage Title="Новости" IconImageSource="star">
         <x:Arguments>
             <Page:NewsPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Начисления">
+    <NavigationPage Title="Начисления" IconImageSource="star">
         <x:Arguments>
             <Page:ChargesPage/>
         </x:Arguments>
