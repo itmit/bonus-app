@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Views.MyStockCell">
+    <ViewCell.View>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True">
+                    <Image Source="{Binding Imgsource}"/>
+                </Frame>
+                <Label Grid.Row="1" FontSize="16" Text="{Binding Company}" TextColor="#858585"/>
+                <Label Grid.Row="2" FontSize="16" Text="{Binding Name}" TextColor="#505050"/>
+                <Label Grid.Row="3" FontSize="16" Text="{Binding Text}" TextColor="#505050"/>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <FlexLayout Grid.Column="0" HorizontalOptions="Start">
+                        <Label FontSize="14" Text="Статус:" TextColor="#505050"/>
+                        <Label FontSize="14" Text="{Binding Status}" TextColor="#505050"/>
+                    </FlexLayout>
+                    <FlexLayout Grid.Column="1" HorizontalOptions="End">
+                        <Label FontSize="14" Text="до:" TextColor="#858585"/>
+                        <Label FontSize="14" Text="{Binding Date}" TextColor="#858585"/>
+                    </FlexLayout>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>
