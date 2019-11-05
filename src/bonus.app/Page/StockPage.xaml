@@ -6,13 +6,15 @@
              xmlns:Page="clr-namespace:bonus.app.Page"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
+             SelectedTabColor="Black"
+             UnselectedTabColor="Black"
              x:Class="bonus.app.Page.StockPage">
-    <NavigationPage Title="Мои акции">
+    <NavigationPage Title="Мои акции" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:MyStock/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Все акции">
+    <NavigationPage Title="Все акции"  BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:AllStock/>
         </x:Arguments>

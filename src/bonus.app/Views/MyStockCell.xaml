@@ -7,7 +7,7 @@
              x:Class="bonus.app.Views.MyStockCell">
     <ViewCell.View>
         <StackLayout>
-            <Grid>
+            <Grid Margin="25,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -15,7 +15,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True">
+                <Frame Grid.Row="0" Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent" Margin="0,0,0,20" BorderColor="Transparent">
                     <Image Source="{Binding Imgsource}"/>
                 </Frame>
                 <Label Grid.Row="1" FontSize="16" Text="{Binding Company}" TextColor="#858585"/>
@@ -23,17 +23,18 @@
                 <Label Grid.Row="3" FontSize="16" Text="{Binding Text}" TextColor="#505050"/>
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <FlexLayout Grid.Column="0" HorizontalOptions="Start">
-                        <Label FontSize="14" Text="Статус:" TextColor="#505050"/>
-                        <Label FontSize="14" Text="{Binding Status}" TextColor="#505050"/>
-                    </FlexLayout>
-                    <FlexLayout Grid.Column="1" HorizontalOptions="End">
-                        <Label FontSize="14" Text="до:" TextColor="#858585"/>
-                        <Label FontSize="14" Text="{Binding Date}" TextColor="#858585"/>
-                    </FlexLayout>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" FontSize="14" Text="Статус:" TextColor="#505050" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Grid.Column="1" FontSize="14" Text="{Binding Status}" TextColor="#505050" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Grid.Column="2" FontSize="14" Text="до:" TextColor="#858585" HorizontalTextAlignment="End"/>
+                    <Label Grid.Row="0" Grid.Column="3" FontSize="14" Text="{Binding Date}" TextColor="#858585" HorizontalTextAlignment="End"/>
                 </Grid>
             </Grid>
         </StackLayout>
