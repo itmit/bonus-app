@@ -3,13 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
+             Title="Новости"
              x:Class="bonus.app.Page.NewsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="25,5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent" Margin="0,0,0,20" BorderColor="Transparent">
+                    <Image Source="girl.png"/>
+                </Frame>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" FontSize="16" Text="Важная новость" TextColor="#505050"/>
+                    <Label Grid.Row="1" FontSize="16" Text="29.10.19" TextColor="#858585"/>
+                </Grid>
+            </Grid>
+            <Label Text="Акция на пакет XL, при покупке до конца недели" Margin="0,10,0,0"/>
+            <BoxView HeightRequest="1" BackgroundColor="#858585" Margin="0,10,0,0"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
