@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Application = Xamarin.Forms.Application;
 using TabbedPage = Xamarin.Forms.TabbedPage;
 using TabBar = Xamarin.Forms.PlatformConfiguration;
+using bonus.app.Page;
 
 namespace bonus.app
 {
@@ -13,7 +14,7 @@ namespace bonus.app
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new AuthorizationPage();
         }
        
         protected override void OnStart()

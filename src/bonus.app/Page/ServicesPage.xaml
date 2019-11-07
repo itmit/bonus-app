@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Page.ServicesPage">
     <ContentPage.Content>
+        <!-- Страница услуг -->
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 

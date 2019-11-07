@@ -9,6 +9,7 @@
              SelectedTabColor="Black"
              UnselectedTabColor="Black"
              x:Class="bonus.app.Page.StockPage">
+    <!-- Страница акции -->
     <NavigationPage Title="Мои акции" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:MyStock/>

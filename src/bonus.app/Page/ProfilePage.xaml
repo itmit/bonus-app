@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Page.ProfilePage">
     <ContentPage.Content>
+        <!-- Страница мой профиль -->
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 

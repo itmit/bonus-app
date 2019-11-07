@@ -8,6 +8,7 @@
              Title="Новости"
              x:Class="bonus.app.Page.NewsPage">
     <ContentPage.Content>
+        <!-- Страница мои новости -->
         <StackLayout Margin="25,5">
             <Grid>
                 <Grid.ColumnDefinitions>
