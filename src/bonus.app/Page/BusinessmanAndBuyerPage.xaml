@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#a09791"
+             x:Class="bonus.app.Page.BusinessmanAndBuyerPage">
+    <ContentPage.Content>
+        <StackLayout Margin="15,25">
+            <Image Source="bonus" HorizontalOptions="Center" Margin="0,25,0,25"/>
+            <Label Text="Добро пожаловать в &#10; Bonus &amp; Marketing" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" FontSize="22" TextColor="White"/>
+            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" FontSize="18" TextColor="White">
+                <Label.Text>
+                    Для продолжения пройдите &#10; простую процедуру регистрации
+                </Label.Text>
+            </Label>
+            <Button Text="Предприниматель" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="15" Margin="15"/>
+            <Button Text="Покупатель" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BackgroundColor="#bab3af"
+             BackgroundColor="#9c938d"
              x:Class="bonus.app.Page.AuthorizationPage">
     <ContentPage.Content>
         <!-- Страница авторизации -->
         <StackLayout Margin="35,25" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-            <Image Source="bingo" HorizontalOptions="Center" Margin="0,0,0,25"/>
-            <Label Text="Для входа введите телефон или E-mail и пароль" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15"/>
+            <Image Source="bonus" HorizontalOptions="Center" Margin="0,0,0,25"/>
+            <Label Text="Для входа введите телефон или E-mail и пароль" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" TextColor="White"/>
             <Entry Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
             <Entry Placeholder="Пароль" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
             <Grid>
