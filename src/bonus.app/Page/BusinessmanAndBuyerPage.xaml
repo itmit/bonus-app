@@ -5,8 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              BackgroundColor="#a09791"
+             NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Page.BusinessmanAndBuyerPage">
     <ContentPage.Content>
+        <!-- Страница 14.1 Регистрация -->
         <StackLayout Margin="15,25">
             <Image Source="bonus" HorizontalOptions="Center" Margin="0,25,0,25"/>
             <Label Text="Добро пожаловать в &#10; Bonus &amp; Marketing" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" FontSize="22" TextColor="White"/>

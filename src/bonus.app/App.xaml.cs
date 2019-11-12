@@ -14,7 +14,7 @@ namespace bonus.app
         {
             InitializeComponent();
 
-            MainPage = new BusinessmanAndBuyerPage();
+            MainPage = new NavigationPage(new AuthorizationPage());
         }
        
         protected override void OnStart()

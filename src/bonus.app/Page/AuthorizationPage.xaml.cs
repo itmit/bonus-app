@@ -26,5 +26,10 @@ namespace bonus.app.Page
         {
             Application.Current.MainPage = new MainPage();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BusinessmanAndBuyerPage());
+        }
     }
 }
