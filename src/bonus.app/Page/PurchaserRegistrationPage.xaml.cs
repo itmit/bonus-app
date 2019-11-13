@@ -15,6 +15,15 @@ namespace bonus.app.Page
         public PurchaserRegistrationPage()
         {
             InitializeComponent();
+
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.White;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Black;
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Вы успешно зарегистрировались", "Просим заполнить статистическую информацию, чтобы мы сделали сервис ориентированным на вас", "ОK");
+            Navigation.PushAsync(new FillinDetailsPage());
         }
     }
 }

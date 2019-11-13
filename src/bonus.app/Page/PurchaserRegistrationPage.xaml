@@ -5,12 +5,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Регистрация"
-             NavigationPage.TitleIconImageSource="star"
              x:Class="bonus.app.Page.PurchaserRegistrationPage">
     <ContentPage.Content>
-        <!-- Страница 14.2.1 Регистрация покупателя -->
-        <StackLayout>
-            <Label Text="TEST"/>
-        </StackLayout>
+        <!-- Страница 14.2.1 - 14.2.4 Регистрация покупателя -->
+        <ScrollView>
+            <StackLayout Margin="25,20">
+                <Entry Placeholder="Логин"/>
+                <Entry Placeholder="ФИО"/>
+                <Entry Placeholder="E-mail"/>
+                <Entry Placeholder="Пароль"/>
+                <Entry Placeholder="Повторите пароль"/>
+                <Entry Placeholder="Код из 4 цифр для быстрого входа"/>
+                <Image Source="ZnTRZG5o1xE1"/>
+                <Entry Placeholder="Введите код с картинки"/>
+                <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
+                <Label Text="или создать учетную запись с помощью" Margin="0,15,0,5"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Grid.Row="0" Text="Facebook" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent"/>
+                    <Button Grid.Column="1" Grid.Row="0" Text="Вконтакте" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
