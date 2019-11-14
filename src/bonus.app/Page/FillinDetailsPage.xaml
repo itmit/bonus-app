@@ -7,15 +7,17 @@
              Title="Заполните данные"
              x:Class="bonus.app.Page.FillinDetailsPage">
     <ContentPage.Content>
+        <!-- Страница 15.1 - 15.2 Изменение данных -->
         <ScrollView>
             <StackLayout Margin="25,20">
-                <Entry Placeholder="Страна"/>
+                <Entry Placeholder="Страна" Completed="Entry_Completed"/>
+                <Entry x:Name="City" Placeholder="Город" IsVisible="False"/>
                 <Entry Placeholder="Номер телефона"/>
                 <Entry Placeholder="Пол"/>
                 <Entry Placeholder="Дата рождения"/>
                 <Entry Placeholder="Марка автомобиля"/>
                 <Entry Placeholder="Установите фотографии профиля"/>
-                <Button Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15"/>
+                <Button Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

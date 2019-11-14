@@ -16,5 +16,15 @@ namespace bonus.app.Page
         {
             InitializeComponent();
         }
+
+        private void Entry_Completed(object sender, EventArgs e)
+        {
+            City.IsVisible = true;
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PublicOfferPage());
+        }
     }
 }
