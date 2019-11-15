@@ -25,12 +25,16 @@
                 <Label Grid.Column="2" Text="Забыли пароль ?" TextColor="#d5d1cf" HorizontalOptions="End"/>
             </Grid>
             <Button Text="Войти" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
-            <Label Text="Создать аккаунт" TextColor="White" Margin="0,35" FontSize="16" HorizontalTextAlignment="Center">
+            <StackLayout Margin="0,15">
+                <Label Text="Войти с помощью Facebook" FontSize="16" HorizontalTextAlignment="Center" TextColor="White" Margin="0,0,0,3"/>
+                <Label Text="Войти с помощью Vkontakte" FontSize="16" HorizontalTextAlignment="Center" TextColor="White"/>
+            </StackLayout>
+            <Label Text="Создать аккаунт" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="Справочный центр" TextColor="White" Margin="0,0,0,35" FontSize="16" HorizontalTextAlignment="Center"/>
+            <Label Text="Справочный центр" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
