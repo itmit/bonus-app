@@ -7,6 +7,7 @@
              Title="Публичная оферта"
              x:Class="bonus.app.Page.PublicOfferPage">
     <ContentPage.Content>
+        <!-- Страница 15.3 - 15.4 Публичная оферта -->
         <ScrollView>
             <StackLayout Margin="25,20">
                 <Label Margin="0,0,0,10" HorizontalTextAlignment="Start" 
@@ -15,11 +16,21 @@
                        Text="Покупатель согласен предоставить продавцу следующие персональные данные: &#10;-имя;&#10; -контактный номер телефона;&#10; -адрес электронной почты;&#10; -адрес доставки.&#10; При оплате с помощью банковской карты, клиент направляется на платежный сервис Яндекс.Касса, который отвечает за обработку и сохранность данных банковской карты клиента."
                        />
                 <Label Margin="0,0,0,10" Text="Данные клиента используются для оплаты заказа. Компания «Bonus System», вправе изменить оферту по своему усмотрению. Изменения вступают в силу с момента публикации на сайте."/>
-                <CheckBox/>
-                <Label Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с политикой конфиденциальности." />
-                <CheckBox/>
-                <Label Text="С условиями публичной оферты согласен" />
-                <Button Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="Ch1" Grid.Row="0" Grid.Column="0" CheckedChanged="CheckBox_CheckedChanged"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с политикой конфиденциальности." />
+                    <CheckBox x:Name="Ch2" Grid.Row="1" Grid.Column="0" CheckedChanged="CheckBox_CheckedChanged"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="С условиями публичной оферты согласен" />
+                </Grid>
+                <Button x:Name="ButSave" IsEnabled="False" Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
