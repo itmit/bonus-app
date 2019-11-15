@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class MainBuyerProfilePage : MasterDetailPage
     {
-        public ProfilePage()
+        public MainBuyerProfilePage()
         {
             InitializeComponent();
         }

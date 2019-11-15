@@ -14,7 +14,7 @@
             >
     <NavigationPage Title="Профиль" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:ProfilePage/>
+            <Page:MainBuyerProfilePage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White">

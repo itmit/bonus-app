@@ -4,13 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.ProfilePage">
+             BackgroundColor="#9c938d"
+             x:Class="bonus.app.Views.MenuBuyerPage">
     <ContentPage.Content>
-        <!-- Страница мой профиль -->
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Image Source="bonus"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
