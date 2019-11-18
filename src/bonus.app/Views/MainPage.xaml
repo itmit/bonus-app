@@ -8,31 +8,31 @@
             xmlns:Page="clr-namespace:bonus.app.Page"
             x:Class="bonus.app.Views.MainPage"
             BarBackgroundColor="White"
-            SelectedTabColor="LightPink"
-            UnselectedTabColor="Gray"
+            SelectedTabColor="#BB8D91"
+            UnselectedTabColor="#6C6C6C"
             android:TabbedPage.IsSwipePagingEnabled="False"
             >
-    <NavigationPage Title="Профиль" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:MainBuyerProfilePage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Услуги" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:ServicesPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Акции" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White"> 
+    <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White"> 
         <x:Arguments>
             <Page:StockPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Новости" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:NewsPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Начисления" IconImageSource="star" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:ChargesPage/>
         </x:Arguments>
