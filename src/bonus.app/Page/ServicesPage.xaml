@@ -4,13 +4,31 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Title="Услуги"
              x:Class="bonus.app.Page.ServicesPage">
     <ContentPage.Content>
-        <!-- Страница услуг -->
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <!-- Страница 17 - 17.1 услуг -->
+        <ScrollView>
+            <StackLayout>
+                <BoxView BackgroundColor="#000000e0" HeightRequest="1"/>
+                <StackLayout Margin="25,5">
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent" Margin="0,0,0,30" BorderColor="Transparent">
+                            <Image Source="girl.png"/>
+                        </Frame>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Массаж" FontSize="16" TextColor="#505050"/>
+                            <Label Text="Салон Бигуди" FontSize="14" TextColor="#505050"/>
+                        </StackLayout>
+                        <Label Grid.Column="2" Text="10%" FontSize="16" TextColor="#505050"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
