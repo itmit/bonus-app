@@ -6,6 +6,7 @@
                   xmlns:Page="clr-namespace:bonus.app.Page"
                   xmlns:views="clr-namespace:bonus.app.Views"
                   mc:Ignorable="d"
+                  NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Page.MainBuyerProfilePage">
     <!-- Страница 16.1.2 Меню покупателя -->
     <MasterDetailPage.Master>
@@ -13,9 +14,9 @@
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
-        <NavigationPage Title="Профиль">
+        <NavigationPage>
             <x:Arguments>
-                <Page:BuyerProfilePage/>
+                <Page:BuyerProfilePage Title="Профиль"/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
