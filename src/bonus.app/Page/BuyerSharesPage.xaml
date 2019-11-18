@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Акции"
+             x:Class="bonus.app.Page.BuyerSharesPage">
+    <ContentPage.Content>
+        <!-- Страница 18.1 Покупателя -->
+        <ScrollView>
+            <StackLayout Margin="0,5">
+                <Grid Padding="0,10" Margin="0,15" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" HeightRequest="120" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent">
+                        <Image Source="girl" Aspect="AspectFill"/>
+                    </Frame>
+                    <Grid Grid.Column="1" Margin="20,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="16" Text="Салон Бигуди" TextColor="#505050"/>
+                            <Image Grid.Column="1" Source="starShares" />
+                        </Grid>
+                        <Label Grid.Row="1" FontSize="16" Text="Всю неделю до 12.00 на загар в солярии предоставляем бонус 25% на загар море в солярии предоставляем бонус 25%" TextColor="#858585"/>
+                    </Grid>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -24,7 +24,7 @@
     </NavigationPage>
     <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White"> 
         <x:Arguments>
-            <Page:StockPage/>
+            <Page:BuyerSharesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
