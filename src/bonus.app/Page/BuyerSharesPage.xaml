@@ -7,7 +7,7 @@
              Title="Акции"
              x:Class="bonus.app.Page.BuyerSharesPage">
     <ContentPage.Content>
-        <!-- Страница 18.1 Покупателя -->
+        <!-- Страница 18.1 акции покупателя -->
         <ScrollView>
             <StackLayout Margin="0,5">
                 <Grid Padding="0,10" Margin="0,15" BackgroundColor="White">
