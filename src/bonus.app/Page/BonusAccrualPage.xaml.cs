@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Views
+namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuBuyerPage : ContentPage
+    public partial class BonusAccrualPage : ContentPage
     {
-        public MenuBuyerPage()
+        public BonusAccrualPage()
         {
             InitializeComponent();
-
-            BackgroundColor = Color.FromRgba(160, 150, 142, 235);
         }
     }
 }

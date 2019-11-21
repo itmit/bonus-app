@@ -34,14 +34,14 @@
                     </Picker>
                     <Grid Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Frame Grid.Column="0" HeightRequest="100" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent" Margin="0,0,0,30" BorderColor="Transparent">
+                        <Frame Grid.Column="0" CornerRadius="10" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent" Margin="0,0,0,30" BorderColor="Transparent">
                             <Image Source="girl.png"/>
                         </Frame>
-                        <StackLayout Grid.Column="1">
+                        <StackLayout Grid.Column="1" Padding="5,0,0,0">
                             <Label Text="Массаж" FontSize="16" TextColor="#505050"/>
                             <Label Text="Салон Бигуди" FontSize="14" TextColor="#505050"/>
                         </StackLayout>
