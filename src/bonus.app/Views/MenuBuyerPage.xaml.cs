@@ -15,6 +15,8 @@ namespace bonus.app.Views
         public MenuBuyerPage()
         {
             InitializeComponent();
+
+            BackgroundColor = Color.FromRgba(160, 150, 142, 235);
         }
     }
 }

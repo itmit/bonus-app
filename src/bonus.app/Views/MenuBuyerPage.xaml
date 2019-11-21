@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BackgroundColor="#9c938d"
              x:Class="bonus.app.Views.MenuBuyerPage">
     <ContentPage.Content>
         <!-- Страница 16.1.1 Меню -->
