@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#9C938D"
+             x:Class="bonus.app.Page.BonusAccrualPage">
+    <ContentPage.Content>
+        <!-- Страница 19.1 Начисление бонусов начальная -->
+        <ScrollView>
+            <StackLayout Margin="25,0">
+                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" FontSize="24" Margin="0,15,0,0" TextColor="White"/>
+                <Label Text="QR barcode" TextColor="White" HorizontalOptions="Center" FontSize="16" Margin="0,15,0,20"/>
+                    <Image Source="qrcodetwo" HorizontalOptions="Center"/>
+                    <Label Text="Покажите QR code продавцу, для начисления бонусов" TextColor="White" FontSize="16" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
+                <Button Text="Мои бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" Margin="30,10" WidthRequest="250" HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
