@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:Page="clr-namespace:bonus.app.Page"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            mc:Ignorable="d"
+            x:Class="bonus.app.Views.MainBusinessmanTabbedPage"
+            BarBackgroundColor="White"
+            SelectedTabColor="#BB8D91"
+            UnselectedTabColor="#6C6C6C"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            >
+    <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
+        <x:Arguments>
+            <Page:MainBuyerProfilePage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">
+        <x:Arguments>
+            <Page:ServicesPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White">
+        <x:Arguments>
+            <Page:BuyerSharesPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
+        <x:Arguments>
+            <Page:NewsPage/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">
+        <x:Arguments>
+            <Page:BonusAccrualPage/>
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

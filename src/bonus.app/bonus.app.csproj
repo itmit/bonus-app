@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Page\BuyerSharesDetailPage.xaml.cs">
+    <Compile Update="Views\BuyerSharesDetailPage.xaml.cs">
       <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <EmbeddedResource Update="Page\AuthorizationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\BuyerSharesDetailPage.xaml">
+    <EmbeddedResource Update="Views\BuyerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\BusinessmanAndBuyerPage.xaml">
@@ -72,6 +72,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\StockPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainBusinessmanTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MenuBuyerPage.xaml">
