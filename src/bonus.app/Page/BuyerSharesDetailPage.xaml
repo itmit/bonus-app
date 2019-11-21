@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Акции"
+             NavigationPage.HasBackButton="False"
+             x:Class="bonus.app.Page.BayerSharesDetailPage">
+    <ContentPage.Content>
+        <!--Детальная страница 18.2 акции покупателя-->
+        <StackLayout Margin="20,0" Padding="0,20">
+            <Frame CornerRadius="5" IsClippedToBounds="True" Padding="0" Margin="0">
+                <Image Source="slider_devuska1.png"></Image>
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Салон Бигуди" HorizontalOptions="StartAndExpand" FontFamily="Lato" FontSize="14" TextColor="#858585"></Label>
+                <Image Source="starShares.png" HorizontalOptions="EndAndExpand"></Image>
+            </StackLayout>
+            <Label Text="Супер загар" FontFamily="Lato" FontSize="16" TextColor="#505050"></Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Всю неделю до 12.00 на загар в солярии
+                                            предоставляем бонус 25% Метеорный дождь
+                                            меняет поперечник. Фаза, сублимируя кометы,
+                                            ничтожно иллюстрирует возмущающий фактор."
+                                      FontFamily="Lato" FontSize="14" TextColor="#505050"></Span>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

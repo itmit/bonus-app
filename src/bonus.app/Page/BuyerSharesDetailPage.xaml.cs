@@ -10,18 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BuyerSharesPage : ContentPage
+    public partial class BayerSharesDetailPage : ContentPage
     {
-        public BuyerSharesPage()
+        public BayerSharesDetailPage()
         {
             InitializeComponent();
-
-            BackgroundColor = Color.FromRgba(196, 196, 196, 0.2);
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new BayerSharesDetailPage());
         }
     }
 }
