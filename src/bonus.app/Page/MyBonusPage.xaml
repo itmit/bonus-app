@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasBackButton="False"
+             Title="Мои бонусы"
+             x:Class="bonus.app.Page.MyBonusPage">
+    <ContentPage.Resources>
+        <!--19.2.1 Начисления-->
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#505050"></Setter>
+                <Setter Property="FontSize" Value="14"></Setter>
+                <Setter Property="FontFamily" Value="Lato"></Setter>
+                <Setter Property="Margin" Value="0,21,0,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="20,0">
+        <TableView>
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Продавец" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
+                            <Label Text="Мои Бонусы" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Клюква, парихмахерская" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
+                            <Label Text="15" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="LOOk, шоурум" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
+                            <Label Text="300" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Рубин, автозаправка" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
+                            <Label Text="216" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="CТО100, автосервис" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
+                            <Label Text="500" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout HorizontalOptions="StartAndExpand" WidthRequest="225">
+                                <Label Text="Итого"  HorizontalOptions="End" FontAttributes="Bold" Style="{StaticResource labelStyle}"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" WidthRequest="95">
+                                <Label Text="1031"  HorizontalOptions="EndAndExpand" FontAttributes="Bold" Style="{StaticResource labelStyle}"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Button Text="Получить бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" Margin="30,20" WidthRequest="250" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Clicked="Button_Clicked"></Button>
+    </StackLayout>
+</ContentPage>

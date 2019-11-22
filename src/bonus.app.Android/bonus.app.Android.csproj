@@ -142,5 +142,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\slider_devuska1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Picture.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

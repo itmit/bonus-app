@@ -15,7 +15,7 @@
                 <Label Text="QR barcode" TextColor="White" HorizontalOptions="Center" FontSize="16" Margin="0,15,0,20"/>
                     <Image Source="qrcodetwo" HorizontalOptions="Center"/>
                     <Label Text="Покажите QR code продавцу, для начисления бонусов" TextColor="White" FontSize="16" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
-                <Button Text="Мои бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" Margin="30,10" WidthRequest="250" HorizontalOptions="Center"/>
+                <Button Text="Мои бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" Margin="30,10" WidthRequest="250" HorizontalOptions="Center" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
