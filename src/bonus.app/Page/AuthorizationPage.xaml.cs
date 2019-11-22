@@ -24,7 +24,20 @@ namespace bonus.app.Page
         /// <param name="e"></param>
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new MainPage();
+            if (Login.Text == "User")
+            {
+                if(Password.Text == "1")
+                {
+                    Application.Current.MainPage = new MainPage();
+                }
+            }
+            else if (Login.Text == "Manager")
+            {
+                if(Password.Text == "1")
+                {
+                    Application.Current.MainPage = new MainBusinessmanTabbedPage();
+                }
+            }
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
