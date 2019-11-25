@@ -6,10 +6,57 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Page.BusinessmanProfilePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <!--3. Профиль предпринимателя-->
+        <ScrollView>
+            <StackLayout>
+                <StackLayout BackgroundColor="#7B726C" HeightRequest="126" Orientation="Horizontal" Margin="0,0,0,20">
+                    <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="93" Margin="21,14,16,19">
+                        <Image Source="business_logos.png" Aspect="AspectFill"></Image>
+                    </Frame>
+                    <StackLayout>
+                        <Label Text="Салон красоты
+                                     PEONY workshop" TextColor="#FFFFFF" FontSize="16" FontFamily="Roboto" FontAttributes="Bold" Margin="5,0"></Label>
+                        <Label Text="Стрижки, Кератин, Ботокс,
+                                     Ламинирование, Нанопластика
+                                     Еще одна строка об услугах" TextColor="#FFFFFF" FontSize="14" FontFamily="Lato" Margin="5,0" WidthRequest="210"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Margin="20,5"> 
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Text="Сообщения" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="5,15"/>
+                        <Button Grid.Column="1" Text="Подписчики" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="5,15"/>
+                    </Grid>
+                    <Label Text="+7(922)783-33-11" TextColor="#505050" FontSize="14"/>
+                    <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
+                    <Label Text="Москва, ул.Петразоводская, 12" TextColor="#505050" FontSize="14"/>
+                    <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
+                    <Label Text="10:00 — 18:00" TextColor="#505050" FontSize="14"/>
+                    <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
+                    <Label Text="Василий Леонидович" TextColor="#505050" FontSize="14"/>
+                    <BoxView BackgroundColor="#bab3af" HeightRequest="1" Margin="0,0,0,136"/>
+                    <!--<ListView></ListView>-->
+                    <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" FontSize="14" FontFamily="Lato" TextDecorations="Underline" Margin="0,0,0,36"></Label>
+                    <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="16" FontFamily="Montserrat"></Label>
+                    <StackLayout Orientation="Horizontal" Spacing="5" Margin="0,10">
+                        <Image Source="vkred_business.png"></Image>
+                        <Image Source="instred_business.png"></Image>
+                        <Image Source="facebookred_business.png"></Image>
+                        <Image></Image>
+                    </StackLayout>
+                </StackLayout>
+                <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10">
+                    <StackLayout>
+                        <Label Text="Портфолио" TextColor="#000000" FontSize="16" FontFamily="Roboto"></Label>
+                        <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" Margin="0,10" HorizontalOptions="Start">
+                            <Image Source="longhair.png" Aspect="AspectFit"></Image>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

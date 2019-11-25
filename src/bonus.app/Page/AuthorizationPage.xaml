@@ -14,16 +14,15 @@
             <Label Text="Для входа введите телефон или E-mail и пароль" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" TextColor="White"/>
             <Entry x:Name="Login" Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
             <Entry x:Name="Password" Placeholder="Пароль" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" x:Name="remember"/>
-                <Label Grid.Column="1" Text="Запомнить" FontSize="16" TextColor="#d5d1cf" HorizontalOptions="Start"/>
-                <Label Grid.Column="2" Text="Забыли пароль ?" TextColor="#d5d1cf" HorizontalOptions="End"/>
-            </Grid>
+            <StackLayout Orientation = "Horizontal">
+                <CheckBox x:Name="remember" VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Text="Запомнить" FontSize="16" TextColor="#d5d1cf" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Label Text="Забыли пароль ?" TextColor="#d5d1cf" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
             <Button Text="Войти" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
             <StackLayout Margin="0,15">
                 <Label Text="Войти с помощью Facebook" FontSize="16" HorizontalTextAlignment="Center" TextColor="White" Margin="0,0,0,3"/>

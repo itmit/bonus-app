@@ -14,7 +14,7 @@
             >
     <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:MainBuyerProfilePage/>
+            <Page:MainBusinessmanTabbedPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">

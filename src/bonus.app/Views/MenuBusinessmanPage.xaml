@@ -5,11 +5,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="bonus.app.Views.MenuBusinessmanPage">
+    
+       
+        <ContentPage.Resources>
+        <!-- Страница 3 Меню -->
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FFFFFF"></Setter>
+                <Setter Property="FontSize" Value="14"></Setter>
+                <Setter Property="FontFamily" Value="Lato"></Setter>
+            </Style>
+            <Style x:Key="image" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit"></Setter>
+            </Style>
+        </ResourceDictionary>
+        </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView Margin="25,15">
+            <StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,25">
+                    <Image Source="bonus"/>
+                    <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="20,0">
+                    <StackLayout Spacing="36" Margin="0,0,16,0">
+                        <Image Source="menu_1.png" Style="{StaticResource image}"></Image>
+                        <Image Source="menu_2.png" Style="{StaticResource image}"></Image>
+                        <Image Source="tarif.png" Style="{StaticResource image}"></Image>
+                        <Image Source="support.png" Style="{StaticResource image}"></Image>
+                        <Image Source="statistic.png" Style="{StaticResource image}"></Image>
+                        <Image Source="statistic.png" Style="{StaticResource image}"></Image>
+                    </StackLayout>
+                    <StackLayout Spacing="36">
+                        <Label Text="Профиль" Style="{StaticResource labelStyle}"></Label>
+                        <Label Text="Оплата" Style="{StaticResource labelStyle}"></Label>
+                        <Label Text="Тарифы" Style="{StaticResource labelStyle}"></Label>
+                        <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}"></Label>
+                        <Label Text="Статистика" Style="{StaticResource labelStyle}"></Label>
+                        <Label Text="Выход" Style="{StaticResource labelStyle}"></Label>
+                    </StackLayout>
+                </StackLayout>
+                <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="20,10"></Label>
+                <Grid Margin="20,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="facebook_logo.png" Grid.Row="0" Grid.Column="0"></Image>
+                    <Image Source="twitter_logo.png" Grid.Row="0" Grid.Column="1"></Image>
+                    <Image Source="whatsapp_logo.png" Grid.Row="0" Grid.Column="2"></Image>
+                    <Image Source="instagram_logo.png" Grid.Row="0" Grid.Column="3"></Image>
+                    <Image Source="skype_logo.png" Grid.Row="1" Grid.Column="0"></Image>
+                    <Image Source="unknow_logo1.png" Grid.Row="1" Grid.Column="1"></Image>
+                    <Image Source="in_logo.png" Grid.Row="1" Grid.Column="2"></Image>
+                    <Image Source="be_logo.png" Grid.Row="1" Grid.Column="3"></Image>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

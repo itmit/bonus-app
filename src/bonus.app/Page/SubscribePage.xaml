@@ -11,7 +11,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20,25,0,0">
-                <ListView HasUnevenRows="True" SeparatorVisibility="None">
+                <ListView HasUnevenRows="True" SeparatorVisibility="None" SelectionMode="None">
                     <ListView.ItemsSource>
                         <x:String>0</x:String>
                     </ListView.ItemsSource>
