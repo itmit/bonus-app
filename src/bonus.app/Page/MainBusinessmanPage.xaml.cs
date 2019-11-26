@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainBusinessmanTabbedPage : MasterDetailPage
+    public partial class MainBusinessmanPage : MasterDetailPage
     {
-        public MainBusinessmanTabbedPage()
+        public MainBusinessmanPage()
         {
             InitializeComponent();
         }

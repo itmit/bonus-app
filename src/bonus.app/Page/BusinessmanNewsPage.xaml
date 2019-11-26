@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.BusinessmanNewsPage"
+             Title="Новости"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Content>
+        <!--6. Новости(предприниматель)-->
+        <ListView Margin="15,0" HasUnevenRows="True" SelectionMode="None" VerticalScrollBarVisibility="Never">
+            <ListView.ItemsSource>
+                <x:String>000000000</x:String>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="5,25,5,10">
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True">
+                                    <Image Source="girl.png" Aspect="AspectFill" HeightRequest="56" WidthRequest="58"></Image>
+                                </Frame>
+                                <StackLayout>
+                                    <Label Text="Важная новость" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
+                                    <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                            <Label Text="Акция на пакет XL, при покупке до конца
+                                         недели, (даже при действующем пакете услуг)
+                                         на последующием месяца, торопитесь" TextColor="#110000" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

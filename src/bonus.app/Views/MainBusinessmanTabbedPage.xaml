@@ -10,26 +10,26 @@
             BarBackgroundColor="White"
             SelectedTabColor="#BB8D91"
             UnselectedTabColor="#6C6C6C"
-            android:TabbedPage.IsSwipePagingEnabled="False"
-            >
+            android:TabbedPage.IsSwipePagingEnabled="False">
+    
     <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:MainBusinessmanTabbedPage/>
+            <Page:MainBusinessmanPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:ServicesPage/>
+            <Page:BusinessmanServicesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BuyerSharesPage/>
+            <Page:BusinessmanSharesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:NewsPage/>
+            <Page:BusinessmanNewsPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">

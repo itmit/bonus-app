@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.EditBusinessmanServicesPage"
+             Title="Редактор мои услуги"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Content>
+        <!--4.3 Редактор мои услуги(преприниматель)-->
+        <StackLayout Margin="15,0">
+            <Label Text="Выберите услугу" TextColor="#505050" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20"></Label>
+            <StackLayout Orientation="Horizontal" Margin="5,15">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="Label" TargetType="Label">
+                            <Setter Property="FontSize" Value="14"></Setter>
+                            <Setter Property="FontFamily" Value="Lato"></Setter>
+                            <Setter Property="TextColor" Value="#505050"></Setter>
+                        </Style> 
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label Text="Массаж" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
+                <Label Text="10 %" FontAttributes="Bold" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+            </StackLayout>
+            <BoxView BackgroundColor="#CCCCCC" HeightRequest="1"></BoxView>
+            <Button Text="РЕДАКТИРОВАТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

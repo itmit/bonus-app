@@ -6,17 +6,16 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Views.MenuBusinessmanPage">
     
-       
         <ContentPage.Resources>
         <!-- Страница 3 Меню -->
         <ResourceDictionary>
             <Style x:Key="labelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#FFFFFF"></Setter>
-                <Setter Property="FontSize" Value="14"></Setter>
-                <Setter Property="FontFamily" Value="Lato"></Setter>
+                <Setter Property="TextColor" Value="#FFFFFF"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Lato"/>
             </Style>
             <Style x:Key="image" TargetType="Image">
-                <Setter Property="Aspect" Value="AspectFit"></Setter>
+                <Setter Property="Aspect" Value="AspectFit"/>
             </Style>
         </ResourceDictionary>
         </ContentPage.Resources>
@@ -27,24 +26,32 @@
                     <Image Source="bonus"/>
                     <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" Margin="20,0">
-                    <StackLayout Spacing="36" Margin="0,0,16,0">
-                        <Image Source="menu_1.png" Style="{StaticResource image}"></Image>
-                        <Image Source="menu_2.png" Style="{StaticResource image}"></Image>
-                        <Image Source="tarif.png" Style="{StaticResource image}"></Image>
-                        <Image Source="support.png" Style="{StaticResource image}"></Image>
-                        <Image Source="statistic.png" Style="{StaticResource image}"></Image>
-                        <Image Source="statistic.png" Style="{StaticResource image}"></Image>
-                    </StackLayout>
-                    <StackLayout Spacing="36">
-                        <Label Text="Профиль" Style="{StaticResource labelStyle}"></Label>
-                        <Label Text="Оплата" Style="{StaticResource labelStyle}"></Label>
-                        <Label Text="Тарифы" Style="{StaticResource labelStyle}"></Label>
-                        <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}"></Label>
-                        <Label Text="Статистика" Style="{StaticResource labelStyle}"></Label>
-                        <Label Text="Выход" Style="{StaticResource labelStyle}"></Label>
-                    </StackLayout>
-                </StackLayout>
+                <Grid RowSpacing="35" ColumnSpacing="15" Margin="20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Image Source="menu_1.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="0"/>
+                    <Image Source="menu_2.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="1"/>
+                    <Image Source="tarif.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="2"/>
+                    <Image Source="support.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="3"/>
+                    <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="4"/>
+                    <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="5"/>
+                    <Label Text="Профиль" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="0"></Label>
+                    <Label Text="Оплата" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="1"></Label>
+                    <Label Text="Тарифы" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="2"></Label>
+                    <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="3"></Label>
+                    <Label Text="Статистика" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="4"></Label>
+                    <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"></Label>
+                </Grid>
                 <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="20,10"></Label>
                 <Grid Margin="20,5">
                     <Grid.RowDefinitions>
@@ -57,14 +64,14 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Image Source="facebook_logo.png" Grid.Row="0" Grid.Column="0"></Image>
-                    <Image Source="twitter_logo.png" Grid.Row="0" Grid.Column="1"></Image>
-                    <Image Source="whatsapp_logo.png" Grid.Row="0" Grid.Column="2"></Image>
-                    <Image Source="instagram_logo.png" Grid.Row="0" Grid.Column="3"></Image>
-                    <Image Source="skype_logo.png" Grid.Row="1" Grid.Column="0"></Image>
-                    <Image Source="unknow_logo1.png" Grid.Row="1" Grid.Column="1"></Image>
-                    <Image Source="in_logo.png" Grid.Row="1" Grid.Column="2"></Image>
-                    <Image Source="be_logo.png" Grid.Row="1" Grid.Column="3"></Image>
+                    <Image Source="facebook_logo.png" Grid.Row="0" Grid.Column="0"/>
+                    <Image Source="twitter_logo.png" Grid.Row="0" Grid.Column="1"/>
+                    <Image Source="whatsapp_logo.png" Grid.Row="0" Grid.Column="2"/>
+                    <Image Source="instagram_logo.png" Grid.Row="0" Grid.Column="3"/>
+                    <Image Source="skype_logo.png" Grid.Row="1" Grid.Column="0"/>
+                    <Image Source="unknow_logo1.png" Grid.Row="1" Grid.Column="1"/>
+                    <Image Source="in_logo.png" Grid.Row="1" Grid.Column="2"/>
+                    <Image Source="be_logo.png" Grid.Row="1" Grid.Column="3"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

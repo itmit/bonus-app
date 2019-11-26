@@ -4,31 +4,36 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.BusinessmanProfilePage">
+             x:Class="bonus.app.Page.BusinessmanProfilePage"
+             Title="Профиль">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <!--3. Профиль предпринимателя-->
-        <ScrollView>
+        <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
-                <StackLayout BackgroundColor="#7B726C" HeightRequest="126" Orientation="Horizontal" Margin="0,0,0,20">
-                    <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="93" Margin="21,14,16,19">
+                <StackLayout BackgroundColor="#7B726C" HeightRequest="126" Orientation="Horizontal" Padding="5,5">
+                    <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="93" Margin="15,15">
                         <Image Source="business_logos.png" Aspect="AspectFill"></Image>
                     </Frame>
-                    <StackLayout>
+                    <StackLayout Margin="0,10">
                         <Label Text="Салон красоты
-                                     PEONY workshop" TextColor="#FFFFFF" FontSize="16" FontFamily="Roboto" FontAttributes="Bold" Margin="5,0"></Label>
+                                     PEONY workshop" TextColor="#FFFFFF" FontSize="16" FontFamily="Roboto" FontAttributes="Bold"></Label>
                         <Label Text="Стрижки, Кератин, Ботокс,
                                      Ламинирование, Нанопластика
-                                     Еще одна строка об услугах" TextColor="#FFFFFF" FontSize="14" FontFamily="Lato" Margin="5,0" WidthRequest="210"></Label>
+                                     Еще одна строка об услугах" TextColor="#FFFFFF" FontSize="14" FontFamily="Lato" WidthRequest="210"></Label>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="20,5"> 
-                    <Grid>
+                <StackLayout Margin="20,0"> 
+                    <Grid Margin="0,25" RowSpacing="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Text="Сообщения" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="5,15"/>
-                        <Button Grid.Column="1" Text="Подписчики" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="5,15"/>
+                        <Button Grid.Column="0" Text="Сообщения" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30"/>
+                        <Button Grid.Column="1" Text="Подписчики" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30"/>
                     </Grid>
                     <Label Text="+7(922)783-33-11" TextColor="#505050" FontSize="14"/>
                     <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
@@ -45,12 +50,15 @@
                         <Image Source="vkred_business.png"></Image>
                         <Image Source="instred_business.png"></Image>
                         <Image Source="facebookred_business.png"></Image>
-                        <Image></Image>
+                        <Image Source="ok_logo.png"></Image>
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10">
                     <StackLayout>
-                        <Label Text="Портфолио" TextColor="#000000" FontSize="16" FontFamily="Roboto"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Портфолио" TextColor="#000000" FontSize="16" FontFamily="Roboto" HorizontalOptions="Start"></Label>
+                            <Image Source="More.png" HorizontalOptions="EndAndExpand"></Image>
+                        </StackLayout>
                         <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" Margin="0,10" HorizontalOptions="Start">
                             <Image Source="longhair.png" Aspect="AspectFit"></Image>
                         </Frame>

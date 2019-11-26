@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.BusinessmanServicesDetailPage"
+             Title="Мои акции"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <!--5.1 Мои акции(предприниматель)-->
+        <ToolbarItem Text="Создать новую акцию" Order="Secondary" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Margin="20,5">
+                <Frame Padding="0" IsClippedToBounds="True" CornerRadius="5" Margin="0,10">
+                    <Image Source="slider_devuska1.png" Aspect="AspectFill" WidthRequest="304"></Image>
+                </Frame>
+                <Label Text="Салон Бигуди" TextColor="#858585" FontSize="14" FontFamily="Lato" Margin="0,10"></Label>
+                <Label Text="Супер загар" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
+                <Label Text="Всю неделю до 12.00 на загар в солярии
+                         предоставляем бонус 25% Метеорный дождь
+                         меняет поперечник. Фаза, сублимируя кометы,
+                         ничтожно иллюстрирует возмущающий фактор" TextColor="#505050" FontSize="14" FontFamily="Lato" Margin="0,10" WidthRequest="320"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Статус: " TextColor="#505050" FontSize="12" FontFamily="Lato" HorizontalOptions="Start"></Label>
+                    <Label Text="Активна" TextColor="#505050" FontSize="12" FontFamily="Lato" HorizontalOptions="Start"></Label>
+                    <Label Text="до 10.04.2019" TextColor="#858585" FontSize="12" FontFamily="Lato" HorizontalOptions="EndAndExpand"></Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

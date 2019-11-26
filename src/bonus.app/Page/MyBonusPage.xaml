@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout Margin="20,0">
-        <TableView>
+        <TableView Intent="Data">
             <TableRoot>
                 <TableSection>
                     <ViewCell>

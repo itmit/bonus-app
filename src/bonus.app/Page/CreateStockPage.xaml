@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.CreateStockPage"
+             Title="Создать акцию"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Content>
+        <!--5.3 Создать акцию-->
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Margin="20,5">
+                <TableView Intent="Data" HasUnevenRows="True" Margin="0,5">
+                    <TableView.Resources>
+                        <ResourceDictionary>
+                            <Style x:Key="Label" TargetType="Label">
+                                <Setter Property="TextColor" Value="#505050"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontFamily" Value="Lato"/>
+                                <Setter Property="HorizontalOptions" Value="Start"/>
+                            </Style>
+                        </ResourceDictionary>
+                    </TableView.Resources>
+                    <TableRoot>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5,15">
+                                    <Label Text="Страна" Style="{StaticResource Label}"></Label>
+                                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5,15">
+                                    <Label Text="Вид услуги" Style="{StaticResource Label}"></Label>
+                                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Margin="5,15">
+                                    <Label Text="Название акции" Style="{StaticResource Label}"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Padding="0,15,0,0">
+                                    <Editor Placeholder="Описание акции" PlaceholderColor="#505050" FontSize="14" FontFamily="Lato"></Editor>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5,15">
+                                    <Label Text="Загрузите изображение акции" Style="{StaticResource Label}"></Label>
+                                    <Image Source="icon_photo.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5,15">
+                                    <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
+                                    <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                                    <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="End"></Image>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+                <Button Text="ПРОСМОТР" TextColor="#A0968E" BackgroundColor="White" BorderWidth="1" BorderColor="#A0968E" WidthRequest="320" CornerRadius="40" HeightRequest="45" Margin="0,5"></Button>
+                <Button Text="СОЗДАТЬ АКЦИЮ" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45" Margin="0,0,0,35"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

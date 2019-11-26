@@ -10,8 +10,8 @@
             BarBackgroundColor="White"
             SelectedTabColor="#BB8D91"
             UnselectedTabColor="#6C6C6C"
-            android:TabbedPage.IsSwipePagingEnabled="False"
-            >
+            android:TabbedPage.IsSwipePagingEnabled="False">
+    
     <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <Page:MainBuyerProfilePage/>

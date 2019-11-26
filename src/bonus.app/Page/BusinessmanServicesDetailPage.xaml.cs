@@ -10,16 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BusinessmanProfilePage : ContentPage
+    public partial class BusinessmanServicesDetailPage : ContentPage
     {
-        public BusinessmanProfilePage()
+        public BusinessmanServicesDetailPage()
         {
             InitializeComponent();
         }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EditProfileBusinessPage());
+            Navigation.PushAsync(new CreateStockPage());
         }
     }
 }
