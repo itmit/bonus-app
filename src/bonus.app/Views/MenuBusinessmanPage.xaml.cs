@@ -19,5 +19,15 @@ namespace bonus.app.Views
 
             BackgroundColor = Color.FromRgba(160, 150, 142, 235);
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BusinessmanProfilePage());
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PayTabbedPage());
+        }
     }
 }

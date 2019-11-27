@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BusinessmanSharesPage : ContentPage
+    public partial class BusinessmanSharesDetailPage : ContentPage
     {
-        public BusinessmanSharesPage()
+        public BusinessmanSharesDetailPage()
         {
             InitializeComponent();
 
@@ -30,11 +30,26 @@ namespace bonus.app.Page
                 Priority = 1
             };
 
+            var toolBar2 = new ToolbarItem
+            {
+                Text = "Редактировать акцию",
+                Order = ToolbarItemOrder.Secondary,
+                Priority = 2
+            };
+
             toolBar.Clicked += ToolBar_Clicked;
             toolBar1.Clicked += ToolBar1_Clicked;
+            toolBar2.Clicked += ToolBar2_Clicked;
 
             ToolbarItems.Add(toolBar);
             ToolbarItems.Add(toolBar1);
+            ToolbarItems.Add(toolBar2);
+
+        }
+
+        private void ToolBar2_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EditorStockPage());
         }
 
         private void ToolBar1_Clicked(object sender, EventArgs e)
@@ -45,11 +60,6 @@ namespace bonus.app.Page
         private void ToolBar_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CreateStockPage());
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new BusinessmanSharesDetailPage());
         }
     }
 }

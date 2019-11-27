@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.CreateStockPage"
-             Title="Создать акцию"
+             x:Class="bonus.app.Page.EditorStockPage"
+             Title="Редактор акции"
              NavigationPage.HasBackButton="False">
     <ContentPage.Content>
-        <!--5.3 Создать акцию-->
+        <!--5.4.1 Редактор акции-->
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="15,5" Spacing="10">
+            <StackLayout Margin="15,0" Spacing="10">
                 <TableView Intent="Data" HasUnevenRows="True">
                     <TableView.Resources>
                         <ResourceDictionary>
@@ -26,54 +26,60 @@
                         <TableSection>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Страна" Style="{StaticResource Label}"></Label>
-                                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                                    <Label Text="Россия" Style="{StaticResource Label}"></Label>
+                                    <Image Source="Shape.png" HorizontalOptions="EndAndExpand"></Image>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
                         <TableSection>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Вид услуги" Style="{StaticResource Label}"></Label>
-                                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                                    <Label Text="Нижневартовск" Style="{StaticResource Label}"></Label>
+                                    <Image Source="Shape.png" HorizontalOptions="EndAndExpand"></Image>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Margin="5,15">
+                                    <Label Text="Солярий" Style="{StaticResource Label}"></Label>
+                                    <Image Source="Shape.png" HorizontalOptions="EndAndExpand"></Image>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
                         <TableSection>
                             <ViewCell>
                                 <StackLayout Margin="5,15">
-                                    <Label Text="Название акции" Style="{StaticResource Label}"></Label>
+                                    <Label Text="Бархатный загар" Style="{StaticResource Label}"></Label>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
                         <TableSection>
                             <ViewCell>
-                                <StackLayout Padding="0,15,0,0">
-                                    <Editor Placeholder="Описание акции" PlaceholderColor="#505050" FontSize="14" FontFamily="Lato"></Editor>
+                                <StackLayout Margin="5,15">
+                                    <Label Text="В честь закрытия бархатного сезона приглашаем 
+                                           своих любимых клиентов закрепить свой загар 
+                                           и сохранить его на всю зиму" Style="{StaticResource Label}"></Label>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
                         <TableSection>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Загрузите изображение акции" Style="{StaticResource Label}"></Label>
-                                    <Image Source="icon_photo.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
-                                    <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
-                                    <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
+                                <StackLayout Margin="0,15">
+                                    <Frame Padding="0" Margin="0,15" CornerRadius="10" IsClippedToBounds="True">
+                                        <Image Source="chika.png" Aspect="AspectFill" WidthRequest="320" HeightRequest="270"></Image>
+                                    </Frame>
+                                    <StackLayout Orientation="Horizontal" Margin="5,0">
+                                        <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
+                                        <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                                        <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="End"></Image>
+                                    </StackLayout>
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
                     </TableRoot>
                 </TableView>
-                <Button Text="ПРОСМОТР" TextColor="#A0968E" BackgroundColor="White" BorderWidth="1" BorderColor="#A0968E" WidthRequest="320" CornerRadius="40" HeightRequest="45"></Button>
-                <Button Text="СОЗДАТЬ АКЦИЮ" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45"></Button>
+                <Button Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

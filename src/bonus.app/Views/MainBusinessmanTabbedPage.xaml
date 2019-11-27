@@ -34,7 +34,7 @@
     </NavigationPage>
     <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BonusAccrualPage/>
+            <Page:BusinessmanBonusAccrualPage/>
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

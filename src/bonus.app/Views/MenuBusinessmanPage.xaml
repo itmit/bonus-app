@@ -45,12 +45,20 @@
                     <Image Source="support.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="3"/>
                     <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="4"/>
                     <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="5"/>
-                    <Label Text="Профиль" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="0"></Label>
-                    <Label Text="Оплата" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="1"></Label>
-                    <Label Text="Тарифы" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="2"></Label>
-                    <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="3"></Label>
-                    <Label Text="Статистика" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="4"></Label>
-                    <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"></Label>
+                    <Label Text="Профиль" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Оплата" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Тарифы" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="2"/>
+                    <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="3"/>
+                    <Label Text="Статистика" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="4"/>
+                    <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"/>
                 </Grid>
                 <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="20,10"></Label>
                 <Grid Margin="20,5">
