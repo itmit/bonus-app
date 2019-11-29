@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.StatisticsPage"
+             Title="Статистика">
+    <ContentPage.Content>
+        <!--Страница 11 Статистика-->
+        <TableView Intent="Data" HasUnevenRows="True" Margin="15,5">
+            <TableView.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="Label" TargetType="Label">
+                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontFamily" Value="Lato"/>
+                        <Setter Property="HorizontalOptions" Value="Start"></Setter>
+                        <Setter Property="Margin" Value="5,20,5,15"></Setter>
+                    </Style>
+                </ResourceDictionary>
+            </TableView.Resources>
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <Label Text="Продажи по видам услуг" Style="{StaticResource Label}"></Label>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Label Text="Пол, возраст" Style="{StaticResource Label}"></Label>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Label Text="География" Style="{StaticResource Label}"></Label>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Label Text="Просмотры акций" Style="{StaticResource Label}"></Label>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Label Text="Просмотры профиля" Style="{StaticResource Label}"></Label>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <Label Text="Переходы в профиль" Style="{StaticResource Label}"></Label>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

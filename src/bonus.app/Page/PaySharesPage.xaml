@@ -4,13 +4,35 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.PaySharesPage">
+             x:Class="bonus.app.Page.PaySharesPage"
+             Title="Акции">
     <ContentPage.Content>
-        <!--Страница 8.1.2 Подписка(Подписка)-->
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <!--Страница 8.1.2 Оплата(Акции)-->
+        <TableView HasUnevenRows="True" Intent="Data" Margin="20,5,0,0">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="5,20">
+                            <StackLayout HorizontalOptions="Start">
+                                <Label Text="Бархатный загар" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
+                                <Label Text="Ожидание оплаты" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
+                            </StackLayout>
+                            <Button Text="Оплатить" BackgroundColor="#BB8D91" TextColor="White" FontSize="12" FontFamily="Montserrat" WidthRequest="90" HeightRequest="30" CornerRadius="30" Margin="0,0,30,0" HorizontalOptions="EndAndExpand"></Button>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="5,20">
+                            <StackLayout HorizontalOptions="Start">
+                                <Label Text="Подписка на 12 месяцев" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
+                                <Label Text="От 15.07.2019. Срок действия истек" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
+                            </StackLayout>
+                            <Button Text="Продлить" BackgroundColor="White" TextColor="#BB8D91" BorderColor="#BB8D91" BorderWidth="1" FontSize="12" FontFamily="Montserrat" Margin="0,0,30,0" CornerRadius="30" WidthRequest="90" HeightRequest="30" HorizontalOptions="EndAndExpand"></Button>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
     </ContentPage.Content>
 </ContentPage>

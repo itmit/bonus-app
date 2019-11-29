@@ -3,29 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:local="clr-namespace:bonus.app.Page;"
+            xmlns:android ="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.OffscreenPageLimit="2"
+            android:TabbedPage.IsSwipePagingEnabled="True"
+            xmlns:local="clr-namespace:bonus.app.Page"
              mc:Ignorable="d"
              x:Class="bonus.app.Views.PayTabbedPage"
-            Title="Оплата"
-            NavigationPage.HasBackButton="False">
+            BarTextColor="Black"
+            Title="Оплата">
     <!--Страница 8.1 Оплата-->
-    <NavigationPage>
-        <x:Arguments>
-            <local:PaySubscribePage>
-                <NavigationPage.HasNavigationBar>
-                    <x:Boolean>False</x:Boolean>
-                </NavigationPage.HasNavigationBar>
-            </local:PaySubscribePage>
-        </x:Arguments>
-    </NavigationPage>
-
-    <NavigationPage>
-        <x:Arguments>
-            <local:PaySharesPage>
-                <NavigationPage.HasNavigationBar>
-                    <x:Boolean>False</x:Boolean>
-                </NavigationPage.HasNavigationBar>
-            </local:PaySharesPage>
-        </x:Arguments>
-    </NavigationPage>
+    <local:PaySubscribePage/>
+    <local:PaySharesPage/>
 </TabbedPage>

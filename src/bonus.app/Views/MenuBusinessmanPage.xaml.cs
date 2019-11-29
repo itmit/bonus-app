@@ -29,5 +29,15 @@ namespace bonus.app.Views
         {
             Navigation.PushAsync(new PayTabbedPage());
         }
+
+        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TariffPage());
+        }
+
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new StatisticsPage());
+        }
     }
 }
