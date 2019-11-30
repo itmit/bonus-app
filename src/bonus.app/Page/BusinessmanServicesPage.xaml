@@ -8,7 +8,7 @@
              Title="Мои услуги">
     <ContentPage.Content>
         <!--4.2 Мои услуги(предпринимателя)-->
-        <StackLayout Margin="15,15" Spacing="10">
+        <StackLayout Margin="15,15" Spacing="0">
             <StackLayout.Resources>
                 <ResourceDictionary>
                     <Style x:Key="Label" TargetType="Label">
@@ -19,8 +19,8 @@
                 </ResourceDictionary>
             </StackLayout.Resources>
             <Label Text="Пока у вас нет услуг" Margin="5,0" Style="{StaticResource Label}"></Label>
-            <BoxView BackgroundColor="#CCCCCC" HeightRequest="1" Margin="0,5"></BoxView>
-            <Label Text="Добавить услугу" TextColor="#505050" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+            <BoxView BackgroundColor="#CCCCCC" HeightRequest="1" Margin="0,10"></BoxView>
+            <Label Text="Добавить услугу" TextColor="#505050" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,20"></Label>
             <TableView Intent="Data" HasUnevenRows="True">
                 <TableRoot>
                     <TableSection>

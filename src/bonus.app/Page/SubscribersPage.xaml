@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.SubscribersPage"
+             Title="Подписчики">
+    <ContentPage.Content>
+        <!--Страница 13 Подписчики-->
+        <StackLayout Margin="0,2,0,0">
+            <Frame Padding="0" HasShadow="True">
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="20,0">
+                    <!--<Entry Placeholder="Поиск" ></Entry>
+                    <Image Source="icon_search.png" HorizontalOptions="EndAndExpand"></Image>-->
+                    <SearchBar Placeholder="Поиск" TextColor="#505050" FontFamily="Montserrat" FontSize="14" WidthRequest="300"></SearchBar>
+                </StackLayout>
+            </Frame>
+            <ListView SeparatorVisibility="None" VerticalScrollBarVisibility="Never" Margin="20,0" SelectionMode="None">
+                <ListView.ItemsSource>
+                    <x:String>00000000000</x:String>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="215"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Frame IsClippedToBounds="True" Padding="0" CornerRadius="20" Grid.Column="0" Grid.Row="0">
+                                    <Image Source="subscriber.png" Aspect="AspectFill" WidthRequest="40" HeightRequest="40"></Image>
+                                </Frame>
+                                <Label Text="Андрей Макаров" TextColor="#DE000000" FontSize="14" FontFamily="Roboto" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"></Label>
+                                <Label Text="1000" TextColor="#DE000000" FontSize="14" FontFamily="Roboto" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Grid.Column="2" Grid.Row="0"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

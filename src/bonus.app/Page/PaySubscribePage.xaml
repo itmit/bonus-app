@@ -8,28 +8,42 @@
              Title="Подписка">
     <ContentPage.Content>
         <!--Страница 8.1.1 Оплата(Подписка)-->
-        <TableView HasUnevenRows="True" Intent="Data" Margin="20,5,0,0">
+        <TableView HasUnevenRows="True" Intent="Data" Margin="20,0,0,0">
             <TableRoot>
                 <TableSection>
                     <ViewCell>
-                        <FlexLayout Margin="5,20" JustifyContent="Start">
-                            <StackLayout HorizontalOptions="Start">
+                        <Grid Margin="5,25,0,20" ColumnSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="205"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout HorizontalOptions="Start" Spacing="0" Grid.Row="0" Grid.Column="0">
                                 <Label Text="Подписка на 12 месяцев" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
-                                <Label Text="Действует до 30.09.2019" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
+                                <Label Text="Действует до 30.09.2019" TextColor="#505050" Opacity="0.7" FontSize="12" FontFamily="Lato"></Label>
                             </StackLayout>
-                            <Button Text="Продлить" BackgroundColor="White" TextColor="#BB8D91" CornerRadius="30" BorderColor="#BB8D91" BorderWidth="1" FontSize="12" FontFamily="Montserrat" Margin="30,0,30,10" WidthRequest="90" HeightRequest="30" HorizontalOptions="EndAndExpand"></Button>
-                        </FlexLayout>
+                            <Button Text="Продлить" BackgroundColor="White" TextColor="#BB8D91" CornerRadius="30" BorderColor="#BB8D91" BorderWidth="1" FontSize="12" FontFamily="Montserrat" WidthRequest="90" HeightRequest="30" Grid.Row="0" Grid.Column="1"></Button>
+                        </Grid>
                     </ViewCell>
                 </TableSection>
                 <TableSection>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Margin="5,20">
-                            <StackLayout HorizontalOptions="Start">
+                        <Grid Margin="5,25,0,20" ColumnSpacing="15">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="205"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout HorizontalOptions="Start" Spacing="0" Grid.Row="0" Grid.Column="0">
                                 <Label Text="Подписка на 3 месяца" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
-                                <Label Text="от 15.07.2019. Срок действия истек" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
+                                <Label Text="от 15.07.2019. Срок действия истек" TextColor="#505050" Opacity="0.7" FontSize="12" FontFamily="Lato"></Label>
                             </StackLayout>
-                            <Button Text="Продлить" BackgroundColor="White" TextColor="#BB8D91" BorderColor="#BB8D91" BorderWidth="1" FontSize="12" FontFamily="Montserrat" Margin="0,0,30,0" WidthRequest="90" HeightRequest="30" HorizontalOptions="EndAndExpand"></Button>
-                        </StackLayout>
+                            <Button Text="Продлить" BackgroundColor="White" TextColor="#BB8D91" CornerRadius="30" BorderColor="#BB8D91" BorderWidth="1" FontSize="12" FontFamily="Montserrat" WidthRequest="90" HeightRequest="30" Grid.Row="0" Grid.Column="1"></Button>
+                        </Grid>
                     </ViewCell>
                 </TableSection>
             </TableRoot>

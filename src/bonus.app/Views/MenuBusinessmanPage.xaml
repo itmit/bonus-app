@@ -20,8 +20,8 @@
         </ResourceDictionary>
         </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView Margin="25,15">
-            <StackLayout>
+        <ScrollView>
+            <StackLayout Margin="25,15">
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,25">
                     <Image Source="bonus"/>
                     <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
@@ -60,16 +60,19 @@
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="3"/>
+                    <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="3">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <Label Text="Статистика" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="4">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-
                     <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"/>
                 </Grid>
-                <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="20,10"></Label>
+                <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="20,5"></Label>
                 <Grid Margin="20,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>

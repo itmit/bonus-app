@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.TransitionsProfilePage"
+             Title="Переходы в профиль">
+    <ContentPage.Content>
+        <!--Страница 11.6 Переходы в профиль-->
+        <StackLayout Margin="15,10" Spacing="0">
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="Label" TargetType="Label">
+                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontFamily" Value="Lato"/>
+                        <Setter Property="HorizontalOptions" Value="Start"/>
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>
+                    <Style x:Key="BoxView" TargetType="BoxView">
+                        <Setter Property="BackgroundColor" Value="#CCCCCC"/>
+                        <Setter Property="HeightRequest" Value="1"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+            <StackLayout Orientation="Horizontal" Margin="5,10">
+                <Label Text="Акции" Style="{StaticResource Label}"></Label>
+                <Image Source="coloor.png" HorizontalOptions="EndAndExpand"></Image>
+            </StackLayout>
+            <BoxView Style="{StaticResource BoxView}"></BoxView>
+            <StackLayout Orientation="Horizontal" Margin="5,10">
+                <Label Text="Услуги" Style="{StaticResource Label}"></Label>
+                <Image Source="coloor1.png" HorizontalOptions="EndAndExpand"></Image>
+            </StackLayout>
+            <BoxView Style="{StaticResource BoxView}"></BoxView>
+            <StackLayout Margin="5,0,5,10" Spacing="0">
+                <Label Text="За период" FontSize="12" Style="{StaticResource Label}" TextColor="#858585"></Label>
+                <Label Text="30.08.2019 - 30.09.2019" Style="{StaticResource Label}"></Label>
+            </StackLayout>
+            <BoxView Style="{StaticResource BoxView}"></BoxView>
+            <Button Text="Сформировать" Margin="0,10" WidthRequest="320" BackgroundColor="#FFFFFF" TextColor="#A0968E" BorderColor="#A0968E" BorderWidth="1" CornerRadius="40" FontFamily="Montserrat"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

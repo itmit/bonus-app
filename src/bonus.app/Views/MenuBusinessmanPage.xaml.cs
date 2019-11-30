@@ -20,24 +20,29 @@ namespace bonus.app.Views
             BackgroundColor = Color.FromRgba(160, 150, 142, 235);
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new BusinessmanProfilePage());
+            await Navigation.PushAsync(new BusinessmanProfilePage());
         }
 
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PayTabbedPage());
+            await Navigation.PushAsync(new PayTabbedPage());
         }
 
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new TariffPage());
+            await Navigation.PushAsync(new TariffPage());
         }
 
-        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new StatisticsPage());
+            await Navigation.PushAsync(new StatisticsPage());
+        }
+
+        private async void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SupportPage());
         }
     }
 }

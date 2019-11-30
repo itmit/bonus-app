@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Page.SupportPage"
+             Title="Техподдержка">
+    <ContentPage.Content>
+        <!--Страница 10 Техподдержка(предприниматель)-->
+        <StackLayout>
+            <StackLayout BackgroundColor="#4DA0968E">
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" BackgroundColor="White" VerticalOptions="EndAndExpand" HeightRequest="50">
+                <Entry Placeholder="Напишите сообщение" FontSize="14" FontFamily="Roboto" Margin="20,0"></Entry>
+                <Image Source="skrepka.png" HorizontalOptions="EndAndExpand"></Image>
+                <Image Source="plane.png" HorizontalOptions="End" Margin="20,0"></Image>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

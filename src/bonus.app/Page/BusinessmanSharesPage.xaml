@@ -26,7 +26,7 @@
                                 <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0" Grid.Column="0">
                                     <Image Source="girl.png" Aspect="AspectFill"  WidthRequest="84"></Image>
                                 </Frame>
-                                <StackLayout Grid.Column="1" Spacing="10" WidthRequest="300">
+                                <StackLayout Grid.Column="1" WidthRequest="300">
                                     <Label Text="Супер стрижка" TextColor="#505050" FontSize="14" FontFamily="Lato"></Label>
                                     <Label Text="Всю неделю до 12.00 на загар в солярии
                                                  предоставляем бонус 25% на загар море
