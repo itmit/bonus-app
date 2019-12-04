@@ -8,7 +8,7 @@
              Title="Создать акцию"
              NavigationPage.HasBackButton="False">
     <ContentPage.Content>
-        <!--5.3 Создать акцию-->
+        <!--Страница 5.3 Создать акцию-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="15,5" Spacing="10">
                 <TableView Intent="Data" HasUnevenRows="True">
@@ -72,8 +72,8 @@
                         </TableSection>
                     </TableRoot>
                 </TableView>
-                <Button Text="ПРОСМОТР" TextColor="#A0968E" BackgroundColor="White" BorderWidth="1" BorderColor="#A0968E" WidthRequest="320" CornerRadius="40" HeightRequest="45"></Button>
-                <Button Text="СОЗДАТЬ АКЦИЮ" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45"></Button>
+                <Button Text="Просмотр" TextColor="#A0968E" BackgroundColor="White" BorderWidth="1" BorderColor="#A0968E" WidthRequest="320" CornerRadius="40" HeightRequest="45" Clicked="Button_Clicked"></Button>
+                <Button Text="Создать акцию" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45" Clicked="Button_Clicked_1"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

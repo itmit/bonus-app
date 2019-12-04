@@ -11,7 +11,7 @@
         <ToolbarItem Text="Редактировать профиль" Order="Secondary" Clicked="ToolbarItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <!--3. Профиль предпринимателя-->
+        <!--Страница 3. Профиль предпринимателя-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
                 <StackLayout BackgroundColor="#7B726C" HeightRequest="126" Orientation="Horizontal" Padding="5,5">
@@ -42,8 +42,10 @@
                     <Label Text="10:00 — 18:00" TextColor="#505050" FontSize="14"/>
                     <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
                     <Label Text="Василий Леонидович" TextColor="#505050" FontSize="14"/>
-                    <BoxView BackgroundColor="#bab3af" HeightRequest="1" Margin="0,0,0,136"/>
-                    <!--<ListView></ListView>-->
+                    <BoxView BackgroundColor="#bab3af" HeightRequest="1" Margin="0,0,0,35"/>
+                    <Frame BackgroundColor="#FFFFFF" HeightRequest="23" WidthRequest="85" CornerRadius="40" IsClippedToBounds="True" Padding="0" BorderColor="#9A9A9A" Margin="0,0,0,65" HorizontalOptions="Start">
+                        <Label Text="Кератин" TextColor="#9A9A9A" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontFamily="Lato"></Label>
+                    </Frame>
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" FontSize="14" FontFamily="Lato" TextDecorations="Underline" Margin="0,0,0,36"></Label>
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="16" FontFamily="Montserrat"></Label>
                     <StackLayout Orientation="Horizontal" Spacing="5" Margin="0,10">

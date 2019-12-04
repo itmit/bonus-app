@@ -8,13 +8,12 @@
              Title="Все акции"
              x:Class="bonus.app.Page.MyStock">
     <ContentPage.Content>
-       <!-- Страница Все акции -->
+       <!-- Страница 18.1 Все акции -->
         <StackLayout>
             <ListView x:Name="StockList"
                       HasUnevenRows="True"
                       VerticalOptions="FillAndExpand"
-                      HorizontalOptions="FillAndExpand"
-                      >
+                      HorizontalOptions="FillAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <views:MyStockCell/>

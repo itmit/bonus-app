@@ -8,7 +8,7 @@
              Title="Мои бонусы"
              x:Class="bonus.app.Page.MyBonusPage">
     <ContentPage.Resources>
-        <!--19.2.1 Начисления-->
+        <!--Страница 19.2.1 Начисления-->
         <ResourceDictionary>
             <Style x:Key="labelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#505050"></Setter>

@@ -8,7 +8,7 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Page.ChargesPage">
     <ContentPage.Content>
-        <!-- Страница Начислений бонусов -->
+        <!-- Страница 19.1 Начислений бонусов -->
         <StackLayout VerticalOptions="CenterAndExpand">
             <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" FontSize="16" Margin="0,0,0,10"/>
             <Image Source="qrcode" HorizontalOptions="Center"/>

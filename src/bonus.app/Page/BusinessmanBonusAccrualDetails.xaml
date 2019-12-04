@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:bonus.app.Controls"
              mc:Ignorable="d"
              x:Class="bonus.app.Page.BusinessmanBonusAccrualDetails"
              NavigationPage.HasBackButton="False"
@@ -11,7 +12,7 @@
     <ContentPage.Content>
         <!-- Страница 7.2 Начисление бонусов детальная-->
         <ScrollView>
-            <StackLayout Margin="25,20" Spacing="15">
+            <StackLayout Margin="25,25,25,20">
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style x:Key="Entry" TargetType="Entry">
@@ -23,12 +24,12 @@
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
-                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" FontSize="20" TextColor="White" FontAttributes="Bold" FontFamily="Montserrat" Margin="0,15"/>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" FontSize="20" TextColor="White" FontAttributes="Bold" FontFamily="Montserrat"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Margin="0,5">
                     <Frame Padding="0" IsClippedToBounds="True" CornerRadius="34">
                         <Image Source="bitmap.png" WidthRequest="68"></Image>
                     </Frame>
-                    <StackLayout Spacing="10">
+                    <StackLayout>
                         <Label Text="Алена Дейли" TextColor="White" FontSize="16" FontFamily="Montserrat"></Label>
                         <Label TextColor="White" FontFamily="Montserrat">
                             <Label.FormattedText>
@@ -42,13 +43,13 @@
                         </Label>
                     </StackLayout>
                 </StackLayout>
-                <Entry Placeholder="Вид услуги" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Количество бонусов" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}"></Entry>
-                <Button Text="Начислить бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" WidthRequest="300" HorizontalOptions="Center" Clicked="Button_Clicked"/>
+                <ex:EntryAuthPage Placeholder="Вид услуги" Style="{StaticResource Entry}"></ex:EntryAuthPage>
+                <ex:EntryAuthPage Placeholder="Количество бонусов" Style="{StaticResource Entry}" Margin="0,10"></ex:EntryAuthPage>
+                <ex:EntryAuthPage Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}"></ex:EntryAuthPage>
+                <ex:EntryAuthPage Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Margin="0,10"></ex:EntryAuthPage>
+                <ex:EntryAuthPage Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}"></ex:EntryAuthPage>
+                <ex:EntryAuthPage Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Margin="0,10"></ex:EntryAuthPage>
+                <Button Text="Начислить бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" WidthRequest="300" HorizontalOptions="Center" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

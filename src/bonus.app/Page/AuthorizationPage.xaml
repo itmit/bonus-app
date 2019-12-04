@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ex="clr-namespace:bonus.app.Controls"
              mc:Ignorable="d"
              BackgroundColor="#9c938d"
              NavigationPage.HasNavigationBar="False"
@@ -12,8 +13,8 @@
         <StackLayout Margin="35,25" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
             <Image Source="bonus" HorizontalOptions="Center" Margin="0,0,0,25"/>
             <Label Text="Для входа введите телефон или E-mail и пароль" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" TextColor="White"/>
-            <Entry x:Name="Login" Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
-            <Entry x:Name="Password" Placeholder="Пароль" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
+            <ex:EntryAuthPage x:Name="Login" Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
+            <ex:EntryAuthPage x:Name="Password" Placeholder="Пароль" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
             <StackLayout Orientation = "Horizontal">
                 <CheckBox x:Name="remember" VerticalOptions="Center" HorizontalOptions="Start"/>
                 <Label Text="Запомнить" FontSize="16" TextColor="#d5d1cf" HorizontalOptions="Start" VerticalOptions="Center"/>
