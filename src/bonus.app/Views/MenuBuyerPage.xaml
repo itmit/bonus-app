@@ -3,17 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
              x:Class="bonus.app.Views.MenuBuyerPage">
     <ContentPage.Content>
-        <!-- Страница 16.1.1 Меню -->
-        <ScrollView Margin="25,15">
-            <StackLayout>
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,25">
+        <!--Страница 16.1.1 Меню -->
+        <ScrollView>
+            <StackLayout Spacing="0" Margin="25,15">
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30">
                     <Image Source="bonus"/>
                     <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
                 </StackLayout>
-                <Grid RowSpacing="30">
+                <Grid RowSpacing="35" Margin="0,0,0,160" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -24,11 +25,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="menu_1"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="20" TextColor="White"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="14" TextColor="White"/>
                     <Image Grid.Row="1" Grid.Column="0" Source="menu_2"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="20" TextColor="White"/>
-                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="20" TextColor="White"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="14" TextColor="White"/>
+                    <Image Grid.Row="2" Grid.Column="0" Source="support.png"></Image>
+                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="14" TextColor="White"/>
                 </Grid>
+                <local:IconView></local:IconView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

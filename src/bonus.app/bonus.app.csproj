@@ -29,6 +29,9 @@
     <Compile Update="Page\BuyerSharesDetailPage.xaml.cs">
       <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Page\EditProfileBauerPage.xaml.cs">
+      <DependentUpon>EditProfileBauerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Page\MainBusinessmanPage.xaml.cs">
       <DependentUpon>MainBusinessmanPage.xaml</DependentUpon>
     </Compile>
@@ -47,6 +50,9 @@
     <EmbeddedResource Update="Page\AuthorizationRecoveryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Page\AuthVKFC.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Page\BusinessmanBonusAccrualDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -60,6 +66,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\BusinessmanProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\BusinessmanRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\BusinessmanSharesDetailPage.xaml">
@@ -95,10 +104,16 @@
     <EmbeddedResource Update="Page\EditorStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Page\EditProfileBauerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Page\EditProfileBusinessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\FillinDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Page\FillingProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\GenderAgePage.xaml">
@@ -171,6 +186,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\ViewsStockPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IconView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MenuBusinessmanPage.xaml">

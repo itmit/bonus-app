@@ -10,68 +10,35 @@
     <ContentPage.Content>
         <!--Страница 5.3 Создать акцию-->
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="15,5" Spacing="10">
-                <TableView Intent="Data" HasUnevenRows="True">
-                    <TableView.Resources>
-                        <ResourceDictionary>
-                            <Style x:Key="Label" TargetType="Label">
-                                <Setter Property="TextColor" Value="#505050"/>
-                                <Setter Property="FontSize" Value="14"/>
-                                <Setter Property="FontFamily" Value="Lato"/>
-                                <Setter Property="HorizontalOptions" Value="Start"/>
-                            </Style>
-                        </ResourceDictionary>
-                    </TableView.Resources>
-                    <TableRoot>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Страна" Style="{StaticResource Label}"></Label>
-                                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Вид услуги" Style="{StaticResource Label}"></Label>
-                                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,15">
-                                    <Label Text="Название акции" Style="{StaticResource Label}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Padding="0,15,0,0">
-                                    <Editor Placeholder="Описание акции" PlaceholderColor="#505050" FontSize="14" FontFamily="Lato"></Editor>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Загрузите изображение акции" Style="{StaticResource Label}"></Label>
-                                    <Image Source="icon_photo.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,15">
-                                    <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
-                                    <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
-                                    <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                    </TableRoot>
-                </TableView>
+            <StackLayout Margin="20,5" Spacing="0">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="Entry" TargetType="Entry">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontFamily" Value="Lato"/>
+                            <Setter Property="PlaceholderColor" Value="#505050"/>
+                        </Style>
+                        <Style x:Key="Label" TargetType="Label">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontFamily" Value="Lato"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Entry Placeholder="Страна" Style="{StaticResource Entry}"></Entry>
+                <Entry Placeholder="Вид услуги" Style="{StaticResource Entry}"></Entry>
+                <Entry Placeholder="Название акции" Style="{StaticResource Entry}"></Entry>
+                <Editor Placeholder="Описание акции" PlaceholderColor="#505050" FontSize="14" FontFamily="Lato"></Editor>
+                <StackLayout Orientation="Horizontal" Margin="5,15">
+                    <Label Text="Загрузите изображение акции" Style="{StaticResource Label}"></Label>
+                    <Image Source="icon_photo.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="5,15">
+                    <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
+                    <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                    <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
+                </StackLayout>
                 <Button Text="Просмотр" TextColor="#A0968E" BackgroundColor="White" BorderWidth="1" BorderColor="#A0968E" WidthRequest="320" CornerRadius="40" HeightRequest="45" Clicked="Button_Clicked"></Button>
                 <Button Text="Создать акцию" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45" Clicked="Button_Clicked_1"></Button>
             </StackLayout>

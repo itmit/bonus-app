@@ -7,7 +7,6 @@
              x:Class="bonus.app.Page.EditProfileBusinessPage"
              Title="Редактор профиля"
              NavigationPage.HasBackButton="False">
-    
     <ContentPage.Content>
         <!--3.2 Страница редактирования профиля предпринимателя-->
         <ScrollView VerticalScrollBarVisibility="Never">
@@ -89,7 +88,6 @@
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
-                        <!--Еще ссылки-->
                         <TableSection>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" Margin="5,10">
@@ -109,10 +107,9 @@
                                 </StackLayout>
                             </ViewCell>
                         </TableSection>
-                        <!--Еще фото-->
                     </TableRoot>
                 </TableView>
-                <Button Text="СОХРАНИТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5"/>
+                <Button Text="СОХРАНИТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

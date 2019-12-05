@@ -17,10 +17,10 @@ namespace bonus.app.Page
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.DisplayAlert("Спасибо за посещение","Салон Бигуди\n\nСписано 200 бонусов,\nНачислено 200 бонусов","Перейти в профиль");
-            await Navigation.PushAsync(new SubscribePage());
+            App.Current.MainPage.DisplayAlert("Спасибо за посещение","Салон Бигуди\n\nСписано 200 бонусов,\nНачислено 200 бонусов","Перейти в профиль");
+            Navigation.PopAsync();
         }
     }
 }

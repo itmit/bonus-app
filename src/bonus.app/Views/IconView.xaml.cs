@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProfileBusinessPage : ContentPage
+    public partial class IconView : ContentView
     {
-        public EditProfileBusinessPage()
+        public IconView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PopAsync();
         }
     }
 }

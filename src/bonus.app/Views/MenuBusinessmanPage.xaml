@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
              x:Class="bonus.app.Views.MenuBusinessmanPage">
     
         <ContentPage.Resources>
-        <!-- Страница 3 Меню -->
+        <!-- Страница 3 Меню предпринимателя -->
         <ResourceDictionary>
             <Style x:Key="labelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#FFFFFF"/>
@@ -26,7 +27,7 @@
                     <Image Source="bonus"/>
                     <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
                 </StackLayout>
-                <Grid RowSpacing="35" ColumnSpacing="15" Margin="20,0">
+                <Grid RowSpacing="35" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -72,27 +73,7 @@
                     </Label>
                     <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"/>
                 </Grid>
-                <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="20,5"></Label>
-                <Grid Margin="20,5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="facebook_logo.png" Grid.Row="0" Grid.Column="0"/>
-                    <Image Source="twitter_logo.png" Grid.Row="0" Grid.Column="1"/>
-                    <Image Source="whatsapp_logo.png" Grid.Row="0" Grid.Column="2"/>
-                    <Image Source="instagram_logo.png" Grid.Row="0" Grid.Column="3"/>
-                    <Image Source="skype_logo.png" Grid.Row="1" Grid.Column="0"/>
-                    <Image Source="unknow_logo1.png" Grid.Row="1" Grid.Column="1"/>
-                    <Image Source="in_logo.png" Grid.Row="1" Grid.Column="2"/>
-                    <Image Source="be_logo.png" Grid.Row="1" Grid.Column="3"/>
-                </Grid>
+                <local:IconView></local:IconView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
