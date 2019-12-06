@@ -10,18 +10,13 @@
     <ContentPage.Content>
         <!--6.2 Детальная страница новостей(предприниматель)-->
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="20,5">
+            <StackLayout Margin="20,25,20,0" Spacing="0">
                 <Frame Padding="0" IsClippedToBounds="True" CornerRadius="5" Margin="0,10">
                     <Image Source="chika.png" Aspect="AspectFill" WidthRequest="304"></Image>
                 </Frame>
-                <Label Text="Важная новость" TextColor="#505050" FontSize="16" FontFamily="Lato" Margin="0,10"></Label>
-                <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato" Margin="0,15"></Label>
-                <Label Text="Акция на пакет XL, при покупке до конца 
-                       недели, (даже при действующем пакете услуг)
-                       на последующием месяца, торопитесь 
-                       Акция на пакет XL, при покупке до конца недели,
-                       (даже при действующем пакете услуг)
-                       на последующием месяца, торопитесь " TextColor="#110000" Opacity="0.7" FontSize="14" FontFamily="Lato" Margin="0,15" WidthRequest="310"></Label>
+                <Label Text="Важная новость" TextColor="#505050" FontSize="16" FontFamily="Lato" Margin="0,5"></Label>
+                <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato" Margin="0,10"></Label>
+                <Label Text="Акция на пакет XL, при покупке до конца &#10;недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь &#10;Акция на пакет XL, при покупке до конца недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь!" TextColor="#110000" Opacity="0.7" FontSize="14" FontFamily="Lato" Margin="0,15" WidthRequest="310"></Label>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -34,11 +34,13 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <StackLayout Orientation="Horizontal" Margin="5,10" Grid.Row="0">
-                    <Label Text="Вид услуги" HorizontalOptions="Start" Style="{StaticResource Label}"></Label>
-                    <Image Source="Shape.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                </StackLayout>
-                <BoxView Style="{StaticResource BoxView}" Grid.Row="1"></BoxView>
+                <Picker Title="Вид услуги" TitleColor="#505050" TextColor="#505050" FontFamily="Lato" FontSize="14">
+                    <Picker.Items>
+                        <x:String>Парикмахерские</x:String>
+                        <x:String>Перманентный макияж</x:String>
+                        <x:String>Массажные услуги</x:String>
+                    </Picker.Items>
+                </Picker>
                 <Grid Margin="5,10" RowSpacing="20" Grid.Row="2">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>

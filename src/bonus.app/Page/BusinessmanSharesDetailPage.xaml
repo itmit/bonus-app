@@ -16,10 +16,7 @@
                 </Frame>
                 <Label Text="Салон Бигуди" TextColor="#858585" FontSize="14" FontFamily="Lato"></Label>
                 <Label Text="Супер загар" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
-                <Label Text="Всю неделю до 12.00 на загар в солярии
-                         предоставляем бонус 25% Метеорный дождь
-                         меняет поперечник. Фаза, сублимируя кометы,
-                         ничтожно иллюстрирует возмущающий фактор" TextColor="#505050" FontSize="14" FontFamily="Lato" WidthRequest="320"></Label>
+                <Label Text="Всю неделю до 12.00 на загар в солярии &#10;предоставляем бонус 25% Метеорный дождь &#10;меняет поперечник. Фаза, сублимируя кометы, &#10;ничтожно иллюстрирует возмущающий фактор" TextColor="#505050" FontSize="14" FontFamily="Lato" WidthRequest="320"></Label>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Статус: " TextColor="#505050" FontSize="12" FontFamily="Lato" HorizontalOptions="Start"></Label>
                     <Label Text="Активна" TextColor="#505050" FontSize="12" FontFamily="Lato" HorizontalOptions="Start"></Label>

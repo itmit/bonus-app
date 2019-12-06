@@ -31,7 +31,11 @@
                 </Label.GestureRecognizers>
             </Label>
             <Label Text="Справочный центр" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center"/>
-            <Label Text="Авторизация" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center"/>
+            <Label Text="Авторизация" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

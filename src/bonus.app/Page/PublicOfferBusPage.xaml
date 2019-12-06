@@ -5,9 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Публичная оферта"
-             x:Class="bonus.app.Page.PublicOfferPage">
+             x:Class="bonus.app.Page.PublicOfferBusPage">
     <ContentPage.Content>
-        <!--Страница 15.3 - 15.4 Публичная оферта-->
+        <!-- Страница 15.3 - 15.4 Публичная оферта -->
         <ScrollView>
             <StackLayout Margin="25,20">
                 <Label Margin="0,0,0,10" HorizontalTextAlignment="Start" 

@@ -26,5 +26,10 @@ namespace bonus.app.Page
         {
             await Navigation.PushAsync(new BusinessmanAndBuyerPage());
         }
+
+        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AuthorizationPage());
+        }
     }
 }

@@ -25,11 +25,23 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="menu_1"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="14" TextColor="White"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="14" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <Image Grid.Row="1" Grid.Column="0" Source="menu_2"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="14" TextColor="White"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="14" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                     <Image Grid.Row="2" Grid.Column="0" Source="support.png"></Image>
-                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="14" TextColor="White"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="14" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
                 <local:IconView></local:IconView>
             </StackLayout>

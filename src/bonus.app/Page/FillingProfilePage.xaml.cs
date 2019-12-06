@@ -19,7 +19,7 @@ namespace bonus.app.Page
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PublicOfferPage());
+            Navigation.PushAsync(new PublicOfferBusPage());
         }
     }
 }

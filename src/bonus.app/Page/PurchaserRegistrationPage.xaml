@@ -28,8 +28,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Column="0" Grid.Row="0" Text="Facebook" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent"/>
-                    <Button Grid.Column="1" Grid.Row="0" Text="Вконтакте" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent"/>
+                    <Button Grid.Column="0" Grid.Row="0" Text="Facebook" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent" Clicked="Button_Clicked_1"/>
+                    <Button Grid.Column="1" Grid.Row="0" Text="Вконтакте" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent" Clicked="Button_Clicked_2"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

@@ -35,6 +35,9 @@
     <Compile Update="Page\MainBusinessmanPage.xaml.cs">
       <DependentUpon>MainBusinessmanPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Page\PublicOfferBusPage.xaml.cs">
+      <DependentUpon>PublicOfferBusPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

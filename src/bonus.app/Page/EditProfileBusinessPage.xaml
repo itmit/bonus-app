@@ -10,106 +10,57 @@
     <ContentPage.Content>
         <!--3.2 Страница редактирования профиля предпринимателя-->
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="20,5">
-                <TableView Intent="Data" HasUnevenRows="True">
-                    <TableView.Resources>
-                        <ResourceDictionary>
-                            <Style x:Key="Label" TargetType="Label">
-                                <Setter Property="TextColor" Value="#505050"/>
-                                <Setter Property="FontFamily" Value="Lato"/>
-                                <Setter Property="FontSize" Value="14"/>
-                            </Style>
-                        </ResourceDictionary>
-                    </TableView.Resources>
-                    <TableRoot>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,10">
-                                    <Label Text="Страна" Style="{StaticResource Label}"></Label>
-                                    <Image Source="Shape.png" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,10">
-                                    <Label Text="Адрес" Style="{StaticResource Label}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,10">
-                                    <Label Text="Режим работы" Style="{StaticResource Label}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,10">
-                                    <Label Text="Контактное лицо" Style="{StaticResource Label}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,10">
-                                    <Label Text="Номер телефона" Style="{StaticResource Label}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,10">
-                                    <Editor Placeholder="Описание (расскажите об услугах)" FontFamily="Lato" FontSize="14" TextColor="#505050" PlaceholderColor="#505050" HeightRequest="120"></Editor>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,10">
-                                    <Label Text="Установите логотип вашей компании" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
-                                    <Image Source="icon_photo.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,10">
-                                    <Label Text="Добавить услугу" Style="{StaticResource Label}"></Label>
-                                    <Image Source="plus.png" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Margin="5,10">
-                                    <Label Text="Ссылка на аккаунт в VKontakte" Style="{StaticResource Label}"></Label>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,10">
-                                    <Label Text="Портфолио" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
-                                    <Image Source="Frame.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                        <TableSection>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal" Margin="5,10">
-                                    <Frame Padding="0" IsClippedToBounds="True" HorizontalOptions="Start" CornerRadius="5" HeightRequest="27" WidthRequest="44">
-                                        <Image Source="girl.png" Aspect="AspectFill"></Image>
-                                    </Frame>
-                                    <Label Text="Фото 1" Style="{StaticResource Label}"></Label>
-                                    <Image Source="krest.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                                </StackLayout>
-                            </ViewCell>
-                        </TableSection>
-                    </TableRoot>
-                </TableView>
-                <Button Text="СОХРАНИТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5" Clicked="Button_Clicked"/>
+            <StackLayout Margin="20,5" Spacing="0">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="Entry" TargetType="Entry">
+                            <Setter Property="PlaceholderColor" Value="#505050"/>
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontFamily" Value="Lato"/>
+                            <Setter Property="FontSize" Value="14"/>
+                        </Style>
+                        <Style x:Key="Label" TargetType="Label">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontFamily" Value="Lato"/>
+                        </Style>
+                        <Style x:Key="BoxView" TargetType="BoxView">
+                            <Setter Property="BackgroundColor" Value="#CCCCCC"/>
+                            <Setter Property="HeightRequest" Value="1"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Picker Title="Страна" TitleColor="#505050" TextColor="#505050" FontFamily="Lato" FontSize="14">
+                    <Picker.Items>
+                        <x:String>Россия</x:String>
+                        <x:String>Украина</x:String>
+                        <x:String>Беларусь</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Entry Placeholder="Адрес" Style="{StaticResource Entry}"></Entry>
+                <Entry Placeholder="Режим работы" Style="{StaticResource Entry}"></Entry>
+                <Entry Placeholder="Контактное лицо" Style="{StaticResource Entry}"></Entry>
+                <Entry Placeholder="Номер телефона" Style="{StaticResource Entry}"></Entry>
+                <Editor Placeholder="Описание (расскажите об услугах)" FontFamily="Lato" FontSize="14" TextColor="#505050" PlaceholderColor="#505050" HeightRequest="120" AutoSize="TextChanges"></Editor>
+                <StackLayout Orientation="Horizontal" Margin="5,10">
+                    <Label Text="Установите логотип вашей компании" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
+                    <Image Source="icon_photo.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxView}"></BoxView>
+                <StackLayout Orientation="Horizontal" Margin="5,10">
+                    <Label Text="Портфолио" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
+                    <Image Source="Frame.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxView}"></BoxView>
+                <StackLayout Orientation="Horizontal" Margin="5,10">
+                    <Frame Padding="0" IsClippedToBounds="True" HorizontalOptions="Start" CornerRadius="5" HeightRequest="27" WidthRequest="44">
+                        <Image Source="girl.png" Aspect="AspectFill"></Image>
+                    </Frame>
+                    <Label Text="Фото 1" Style="{StaticResource Label}"></Label>
+                    <Image Source="krest.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+                </StackLayout>
+                <BoxView Style="{StaticResource BoxView}"></BoxView>
+                <Button Text="СОХРАНИТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,10" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

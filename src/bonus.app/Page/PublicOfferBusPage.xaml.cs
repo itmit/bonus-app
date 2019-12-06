@@ -11,17 +11,17 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PublicOfferPage : ContentPage
+    public partial class PublicOfferBusPage : ContentPage
     {
-        public PublicOfferPage()
+        public PublicOfferBusPage()
         {
             InitializeComponent();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-           DisplayAlert("Добро пожаловать в Bonus & Marketing", "Вы успешно зарегистрировались в приложении Bonus & Marketing и получили личный QR-CODE с помощью которого вы можете получать бонусы", "ОK");
-           Application.Current.MainPage = new MainPage();
+            DisplayAlert("Вы успешно зарегестрировались!", "Пользуйтесь приложением и находите новых клиентов", "ОK");
+            Application.Current.MainPage = new MainBusinessmanTabbedPage();
         }
 
         private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
