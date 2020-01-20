@@ -6,16 +6,17 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using bonus.app.Controls;
+using bonus.app.Core.Controls;
 using bonus.app.Droid.Renderers;
 using Xamarin.Forms;
+using Xamarin.Forms.Material.Android;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
 
-[assembly: ExportRenderer(typeof(EntryAuthPage), typeof(EntryLogPageRenderer))]
+[assembly: ExportRenderer(typeof(EntryAuthPage), typeof(EntryLogPageRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
 namespace bonus.app.Droid.Renderers
 {
-    public class EntryLogPageRenderer : EntryRenderer
+    public class EntryLogPageRenderer : MaterialEntryRenderer
     {
         #region .ctor
         public EntryLogPageRenderer(Context context)
@@ -34,7 +35,7 @@ namespace bonus.app.Droid.Renderers
                 return;
             }
 
-            Control.Background.SetColorFilter(Color.ParseColor("#bab3af"), PorterDuff.Mode.SrcAtop);
+			//Background.SetColorFilter(Color.Transparent, PorterDuff.Mode.SrcAtop);
         }
         #endregion
     }

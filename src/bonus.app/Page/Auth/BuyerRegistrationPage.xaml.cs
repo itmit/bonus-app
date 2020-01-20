@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using bonus.app.Core.ViewModels.Auth;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BusinessmanRegistrationPage : ContentPage
+    public partial class BuyerRegistrationPage : MvxContentPage<BuyerRegistrationViewModel>
     {
-        public BusinessmanRegistrationPage()
+        public BuyerRegistrationPage()
         {
             InitializeComponent();
         }

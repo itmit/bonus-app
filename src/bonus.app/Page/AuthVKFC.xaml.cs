@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using bonus.app.Core.Page.Auth;
+using bonus.app.Page;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AuthVKFC : ContentPage
@@ -19,12 +16,12 @@ namespace bonus.app.Page
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AuthorizationRecoveryPage());
+            await Navigation.PushAsync(new Auth.AuthorizationRecoveryPage());
         }
 
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BusinessmanAndBuyerPage());
+            await Navigation.PushAsync(new Auth.EntrepreneurAndBuyerPage());
         }
 
         private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)

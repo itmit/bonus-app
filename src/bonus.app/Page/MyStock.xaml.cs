@@ -1,10 +1,9 @@
-﻿using bonus.app.Models;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using bonus.app.Core.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyStock : ContentPage

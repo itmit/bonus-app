@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ex="clr-namespace:bonus.app.Controls"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.BusinessmanBonusAccrualDetails"
+             x:Class="bonus.app.Core.Page.BusinessmanBonusAccrualDetails"
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9C938D">
@@ -43,12 +43,12 @@
                         </Label>
                     </StackLayout>
                 </StackLayout>
-                <ex:EntryAuthPage Placeholder="Вид услуги" Style="{StaticResource Entry}"></ex:EntryAuthPage>
-                <ex:EntryAuthPage Placeholder="Количество бонусов" Style="{StaticResource Entry}" Margin="0,10"></ex:EntryAuthPage>
-                <ex:EntryAuthPage Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}"></ex:EntryAuthPage>
-                <ex:EntryAuthPage Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Margin="0,10"></ex:EntryAuthPage>
-                <ex:EntryAuthPage Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}"></ex:EntryAuthPage>
-                <ex:EntryAuthPage Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Margin="0,10"></ex:EntryAuthPage>
+                <controls:EntryAuthPage Placeholder="Вид услуги" Style="{StaticResource Entry}"></controls:EntryAuthPage>
+                <controls:EntryAuthPage Placeholder="Количество бонусов" Style="{StaticResource Entry}" Margin="0,10"></controls:EntryAuthPage>
+                <controls:EntryAuthPage Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}"></controls:EntryAuthPage>
+                <controls:EntryAuthPage Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Margin="0,10"></controls:EntryAuthPage>
+                <controls:EntryAuthPage Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}"></controls:EntryAuthPage>
+                <controls:EntryAuthPage Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Margin="0,10"></controls:EntryAuthPage>
                 <Button Text="Начислить бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" WidthRequest="300" HorizontalOptions="Center" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>

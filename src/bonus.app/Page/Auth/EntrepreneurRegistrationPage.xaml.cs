@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using bonus.app.Core.ViewModels.Auth;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PurchaserRegistrationPage : ContentPage
+    public partial class EntrepreneurRegistrationPage : MvxContentPage<EntrepreneurRegistrationViewModel>
     {
-        public PurchaserRegistrationPage()
+        public EntrepreneurRegistrationPage()
         {
             InitializeComponent();
 
@@ -28,12 +25,12 @@ namespace bonus.app.Page
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AuthVKFC());
+            Navigation.PushAsync(new Core.Page.AuthVKFC());
         }
 
         private void Button_Clicked_2(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AuthVKFC());
+            Navigation.PushAsync(new Core.Page.AuthVKFC());
         }
     }
 }

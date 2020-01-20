@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace bonus.app.Controls
+namespace bonus.app.Core.Controls
 {
     /// <summary>
     /// Представляет поле ввода, для авторизации

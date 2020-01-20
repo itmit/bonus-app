@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Page="clr-namespace:bonus.app.Page"
+             xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              SelectedTabColor="Black"
@@ -12,12 +13,12 @@
     <!-- Страница акции -->
     <NavigationPage Title="Мои акции" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:MyStock/>
+            <page:MyStock/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Все акции"  BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:AllStock/>
+            <page:AllStock/>
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

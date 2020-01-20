@@ -5,9 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:Page="clr-namespace:bonus.app.Page"
                   xmlns:views="clr-namespace:bonus.app.Views"
+                  xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
                   mc:Ignorable="d"
                   NavigationPage.HasNavigationBar="False"
-             x:Class="bonus.app.Page.MainBuyerProfilePage">
+             x:Class="bonus.app.Core.Page.MainBuyerProfilePage">
     <!-- Страница 16.1.2 Меню покупателя -->
     <MasterDetailPage.Master>
         <views:MenuBuyerPage Title="Меню"/>
@@ -16,7 +17,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <Page:BuyerProfilePage Title="Профиль"/>
+                <page:BuyerProfilePage Title="Профиль"/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

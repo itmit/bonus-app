@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BusinessmanProfilePage = bonus.app.Core.Page.BusinessmanProfilePage;
 
 namespace bonus.app.Views
 {

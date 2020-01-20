@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using bonus.app.Page;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BusinessmanSharesPage : ContentPage
@@ -39,7 +35,7 @@ namespace bonus.app.Page
 
         private void ToolBar1_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ArchiveStockPage());
+            Navigation.PushAsync(new Core.Page.ArchiveStockPage());
         }
 
         private void ToolBar_Clicked(object sender, EventArgs e)
@@ -49,7 +45,7 @@ namespace bonus.app.Page
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new BusinessmanSharesDetailPage());
+            Navigation.PushAsync(new Core.Page.BusinessmanSharesDetailPage());
         }
     }
 }

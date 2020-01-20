@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9C938D"
-             x:Class="bonus.app.Page.BonusAccrualPage">
+             x:Class="bonus.app.Core.Page.BonusAccrualPage">
     <ContentPage.Content>
         <!-- Страница 19.1 Начисление бонусов начальная -->
         <ScrollView>

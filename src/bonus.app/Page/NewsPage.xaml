@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
              Title="Новости"
-             x:Class="bonus.app.Page.NewsPage">
+             x:Class="bonus.app.Core.Page.NewsPage">
     <ContentPage.Content>
         <!-- Страница мои новости -->
         <StackLayout Margin="25,5">

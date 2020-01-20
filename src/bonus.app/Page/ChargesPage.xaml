@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              BackgroundColor="#9c938d"
              NavigationPage.HasNavigationBar="False"
-             x:Class="bonus.app.Page.ChargesPage">
+             x:Class="bonus.app.Core.Page.ChargesPage">
     <ContentPage.Content>
         <!-- Страница 19.1 Начислений бонусов -->
         <StackLayout VerticalOptions="CenterAndExpand">

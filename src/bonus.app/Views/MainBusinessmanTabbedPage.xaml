@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:Page="clr-namespace:bonus.app.Page"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
             mc:Ignorable="d"
             x:Class="bonus.app.Views.MainBusinessmanTabbedPage"
             BarBackgroundColor="White"
@@ -14,27 +15,27 @@
     
     <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:MainBusinessmanPage/>
+            <page:MainBusinessmanPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BusinessmanServicesPage/>
+            <page:BusinessmanServicesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BusinessmanSharesPage/>
+            <page:BusinessmanSharesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BusinessmanNewsPage/>
+            <page:BusinessmanNewsPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BusinessmanBonusAccrualPage/>
+            <page:BusinessmanBonusAccrualPage/>
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

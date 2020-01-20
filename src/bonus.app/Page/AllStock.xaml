@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Title="Мои акции"
-             x:Class="bonus.app.Page.AllStock">
+             x:Class="bonus.app.Core.Page.AllStock">
     <ContentPage.Content>
         <!-- Страница мои акции-->
         <StackLayout>

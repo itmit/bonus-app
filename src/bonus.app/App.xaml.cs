@@ -1,12 +1,8 @@
-﻿using bonus.app.Views;
-using Realms;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Application = Xamarin.Forms.Application;
-using TabbedPage = Xamarin.Forms.TabbedPage;
-using TabBar = Xamarin.Forms.PlatformConfiguration;
-using bonus.app.Page;
+using AuthorizationPage = bonus.app.Core.Page.Auth.AuthorizationPage;
 
-namespace bonus.app
+namespace bonus.app.Core
 {
     public partial class App : Application
     {

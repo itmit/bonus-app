@@ -6,6 +6,7 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             mc:Ignorable="d"
             xmlns:Page="clr-namespace:bonus.app.Page"
+            xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
             x:Class="bonus.app.Views.MainPage"
             BarBackgroundColor="White"
             SelectedTabColor="#BB8D91"
@@ -14,7 +15,7 @@
     
     <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:MainBuyerProfilePage/>
+            <page:MainBuyerProfilePage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">
@@ -24,17 +25,17 @@
     </NavigationPage>
     <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White"> 
         <x:Arguments>
-            <Page:BuyerSharesPage/>
+            <page:BuyerSharesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:NewsPage/>
+            <page:NewsPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <Page:BonusAccrualPage/>
+            <page:BonusAccrualPage/>
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

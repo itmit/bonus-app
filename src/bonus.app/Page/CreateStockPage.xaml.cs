@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific.AppCompat;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateStockPage : ContentPage

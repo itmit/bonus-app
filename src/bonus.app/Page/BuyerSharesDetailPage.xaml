@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              Title="Акции"
              NavigationPage.HasBackButton="False"
-             x:Class="bonus.app.Page.BayerSharesDetailPage">
+             x:Class="bonus.app.Core.Page.BayerSharesDetailPage">
     <ContentPage.Content>
         <!--Детальная страница 18.2 акции покупателя-->
         <StackLayout Margin="20,0" Padding="0,20">

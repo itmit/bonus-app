@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="auth:BuyerRegistrationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.BusinessmanRegistrationPage"
+             x:Class="bonus.app.Core.Page.Auth.BuyerRegistrationPage"
              Title="Регистрация">
     <ContentPage.Content>
         <!--Страница 1.1 Регистрация предпринимателя-->
@@ -22,4 +24,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

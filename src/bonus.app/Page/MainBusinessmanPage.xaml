@@ -5,9 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:Page="clr-namespace:bonus.app.Page"
                   xmlns:views="clr-namespace:bonus.app.Views"
-             mc:Ignorable="d"
+                  xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
+                  mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
-             x:Class="bonus.app.Page.MainBusinessmanPage">
+             x:Class="bonus.app.Core.Page.MainBusinessmanPage">
     <MasterDetailPage.Master>
         <views:MenuBusinessmanPage Title ="Меню"/>
     </MasterDetailPage.Master>
@@ -15,7 +16,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <Page:BusinessmanProfilePage Title="Профиль"/>
+                <page:BusinessmanProfilePage Title="Профиль"/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

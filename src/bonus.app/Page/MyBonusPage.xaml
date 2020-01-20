@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              NavigationPage.HasBackButton="False"
              Title="Мои бонусы"
-             x:Class="bonus.app.Page.MyBonusPage">
+             x:Class="bonus.app.Core.Page.MyBonusPage">
     <ContentPage.Resources>
         <!--Страница 19.2.1 Начисления-->
         <ResourceDictionary>

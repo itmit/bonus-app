@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ex="clr-namespace:bonus.app.Controls"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.AuthVKFC"
+             x:Class="bonus.app.Core.Page.AuthVKFC"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9c938d">
     <ContentPage.Content>
@@ -13,8 +13,8 @@
         <StackLayout Margin="35,25" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
             <Image Source="bonus" HorizontalOptions="Center" Margin="0,0,0,25"/>
             <Label Text="Войдите в свой аккаунт Vkontakte, чтобы связать его с Bonus &amp; Marketing" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" TextColor="White"/>
-            <ex:EntryAuthPage x:Name="Login" Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
-            <ex:EntryAuthPage x:Name="Password" Placeholder="Пароль" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
+            <controls:EntryAuthPage x:Name="Login" Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
+            <controls:EntryAuthPage x:Name="Password" Placeholder="Пароль" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
             <StackLayout Orientation = "Horizontal">
                 <CheckBox x:Name="remember" VerticalOptions="Center" HorizontalOptions="Start"/>
                 <Label Text="Запомнить" FontSize="16" TextColor="#d5d1cf" HorizontalOptions="Start" VerticalOptions="Center"/>

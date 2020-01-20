@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="auth:AuthorizationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+             mc:Ignorable="d"
+             BackgroundColor="#9c938d"
+             Visual="Material"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="bonus.app.Core.Page.Auth.AuthorizationPage">
+    <ContentPage.Content>
+        <!-- Страница авторизации -->
+        <StackLayout Margin="35,25" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+            <Image Source="bonus" HorizontalOptions="Center" Margin="0,0,0,25"/>
+            <Label Text="Для входа введите телефон или E-mail и пароль" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" TextColor="White"/>
+            <Frame CornerRadius="30" Margin="0,0,0,15" Padding="0" BackgroundColor="Transparent">
+                <controls:EntryAuthPage
+                    x:Name="Login"
+                    Margin="0"
+                    Text="{Binding Login}"
+                    Placeholder="Телефон или E-mail"
+                    PlaceholderColor="#d5d1cf"
+                    BackgroundColor="#bab3af"/>
+            </Frame>
+            <Grid Margin="0,0,0,15" >
+                <Frame CornerRadius="30" Padding="0" BackgroundColor="Transparent">
+                    <controls:EntryAuthPage
+                        x:Name="Password"
+                        Text="{Binding Password}"
+                        Placeholder="Пароль"
+                        IsPassword="True"
+                        PlaceholderColor="#d5d1cf"
+                        BackgroundColor="#bab3af"/>
+                </Frame>
+                <Image Source="eye" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <StackLayout Orientation = "Horizontal">
+                <CheckBox x:Name="IsRemember" VerticalOptions="Center" HorizontalOptions="Start"/>
+                <Label Text="Запомнить" FontSize="16" TextColor="#d5d1cf" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="Забыли пароль?" TextColor="#d5d1cf" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Button Text="Войти"
+                    BackgroundColor="#bab3af"
+                    TextColor="White"
+                    CornerRadius="30"
+                    Margin="15"
+                    Padding="0,10"
+                    Command="{Binding LoginCommand}"/>
+            <StackLayout Margin="0,15">
+                <Label Text="Войти с помощью Facebook" FontSize="16" HorizontalTextAlignment="Center" TextColor="White" Margin="0,0,0,3">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="Войти с помощью Vkontakte" FontSize="16" HorizontalTextAlignment="Center" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Label Text="Создать аккаунт" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateAccountCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Справочный центр" TextColor="White" Margin="0,5" FontSize="16" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

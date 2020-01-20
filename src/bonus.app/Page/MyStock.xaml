@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
              Title="Все акции"
-             x:Class="bonus.app.Page.MyStock">
+             x:Class="bonus.app.Core.Page.MyStock">
     <ContentPage.Content>
        <!-- Страница 18.1 Все акции -->
         <StackLayout>

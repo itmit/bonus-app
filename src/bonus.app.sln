@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app.Android", "bonus.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app.iOS", "bonus.app.iOS\bonus.app.iOS.csproj", "{A43CE2E6-20F0-4AA9-9C12-3E3B6701C344}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app", "bonus.app\bonus.app.csproj", "{82CA4EA5-B5DC-42D7-AB6F-CA9EEF6EE2B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bonus.app.Core", "bonus.app\bonus.app.Core.csproj", "{82CA4EA5-B5DC-42D7-AB6F-CA9EEF6EE2B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

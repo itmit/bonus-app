@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.GenderAgePage"
+             x:Class="bonus.app.Core.Page.GenderAgePage"
              Title="Пол и возраст">
     <ContentPage.Content>
         <!--Страница 11.2 Пол и возраст-->
