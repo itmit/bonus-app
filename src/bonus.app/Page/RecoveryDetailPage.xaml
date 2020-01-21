@@ -13,13 +13,13 @@
             <Image Style="{StaticResource ImageBonus}"/>
             <Label Text="Мы отправили код для восстановления&#10;пароля на указанный адрес" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,20" TextColor="White"/>
             <Frame Style="{StaticResource AuthAndRegFrame}">
-                <Entry Placeholder="Введите полученный код" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
+                <Entry Placeholder="Введите полученный код" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
             <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,15">
-                <Entry Placeholder="Введите новый пароль" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
+                <Entry Placeholder="Введите новый пароль" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
             <Frame Style="{StaticResource AuthAndRegFrame}"  Margin="0,0,0,20">
-                <Entry Placeholder="Повторите новый пароль" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
+                <Entry Placeholder="Повторите новый пароль" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
             <Button Text="Сменить пароль" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50"/>
             <Label Text="Я не получил код" TextColor="White" HorizontalTextAlignment="Center"/>

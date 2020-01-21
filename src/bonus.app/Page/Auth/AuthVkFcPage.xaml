@@ -16,11 +16,11 @@
             <Image Style="{StaticResource ImageBonus}"/>
             <Label Text="Войдите в свой аккаунт Vkontakte,&#10;чтобы связать его с Bonus &amp; Marketing" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White"/>
             <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,0,0,15">
-                <Entry x:Name="Login" Placeholder="Телефон или E-mail" PlaceholderColor="#d5d1cf" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
+                <Entry x:Name="Login" Placeholder="Телефон или E-mail" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
             <Grid>
                 <Frame Style="{StaticResource AuthAndRegFrame}">
-                    <Entry x:Name="Password" Placeholder="Пароль" PlaceholderColor="#d5d1cf" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
+                    <Entry x:Name="Password" Placeholder="Пароль" Style="{StaticResource AuthAndRegEntry}"/>
                 </Frame>
                 <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
                     <Image.GestureRecognizers>

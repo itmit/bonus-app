@@ -15,7 +15,7 @@
             <Image Style="{StaticResource ImageBonus}"/>
             <Label Text="Для восстановления пароля введите&#10;e-mail, указанный при регистрации" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White"/>
             <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,0,0,20">
-                <Entry Placeholder="E-mail" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
+                <Entry Placeholder="E-mail" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
             <Button Text="Отправить код" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,125" Clicked="Button_Clicked"/>
             <Label Text="Создать аккаунт" TextColor="White" Margin="0,0,0,30" HorizontalTextAlignment="Center">
