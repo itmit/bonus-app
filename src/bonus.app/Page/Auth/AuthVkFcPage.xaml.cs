@@ -27,5 +27,24 @@ namespace bonus.app.Core.Page.Auth
         {
             await Navigation.PushAsync(new AuthorizationPage());
         }
+
+        private void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        {
+            if (Password.IsPassword)
+            {
+                ( (Image)sender ).Source = new FileImageSource
+                {
+                    File = "ic_hide_eye.png"
+                };
+            }
+            else
+            {
+                ( (Image)sender ).Source = new FileImageSource
+                {
+                    File = "ic_eye.png"
+                };
+            }
+            Password.IsPassword = !Password.IsPassword;
+        }
     }
 }
