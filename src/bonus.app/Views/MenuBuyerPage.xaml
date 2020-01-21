@@ -9,10 +9,10 @@
     <ContentPage.Content>
         <!--Страница 16.1.1 Меню -->
         <ScrollView>
-            <StackLayout Spacing="0" Margin="25,15">
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,30">
-                    <Image Source="bonus"/>
-                    <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
+            <StackLayout Spacing="0" Margin="20,0">
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,65" Spacing="10">
+                    <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65"/>
+                    <Image Source="pic_mandb.png" WidthRequest="60" HeightRequest="20" HorizontalOptions="Center"/>
                 </StackLayout>
                 <Grid RowSpacing="35" Margin="0,0,0,160" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
@@ -24,26 +24,26 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Source="menu_1"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="14" TextColor="White">
+                    <Image Grid.Row="0" Grid.Column="0" Source="ic_profile_w.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="14" TextColor="White" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Image Grid.Row="1" Grid.Column="0" Source="menu_2"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="14" TextColor="White">
+                    <Image Grid.Row="1" Grid.Column="0" Source="ic_rub.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="14" TextColor="White" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Image Grid.Row="2" Grid.Column="0" Source="support.png"></Image>
-                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="14" TextColor="White">
+                    <Image Grid.Row="2" Grid.Column="0" Source="ic_support.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"></Image>
+                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="14" TextColor="White" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <local:IconView></local:IconView>
+                <local:IconView/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

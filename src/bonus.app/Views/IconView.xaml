@@ -8,8 +8,8 @@
   <ContentView.Content>
         <!--Представление с иконками внизу в меню пользователя и предпринимателя-->
         <StackLayout Spacing="0">
-            <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="0,5"></Label>
-            <Grid Margin="0,5">
+            <Label Text = "Поделись с друзьями:" FontSize="16" FontFamily="Lato" TextColor="#FFFFFF" Margin="0,0,0,15"></Label>
+            <Grid ColumnSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -20,14 +20,14 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Image Source="facebook_logo.png" Grid.Row="0" Grid.Column="0"/>
-                <Image Source="twitter_logo.png" Grid.Row="0" Grid.Column="1"/>
-                <Image Source="whatsapp_logo.png" Grid.Row="0" Grid.Column="2"/>
-                <Image Source="instagram_logo.png" Grid.Row="0" Grid.Column="3"/>
-                <Image Source="skype_logo.png" Grid.Row="1" Grid.Column="0"/>
-                <Image Source="unknow_logo1.png" Grid.Row="1" Grid.Column="1"/>
-                <Image Source="in_logo.png" Grid.Row="1" Grid.Column="2"/>
-                <Image Source="be_logo.png" Grid.Row="1" Grid.Column="3"/>
+                <Image Source="ic_fb_w.pngg" Grid.Row="0" Grid.Column="0" WidthRequest="24"/>
+                <Image Source="ic_tw_w.png" Grid.Row="0" Grid.Column="1" WidthRequest="24"/>
+                <Image Source="ic_wp_w.png" Grid.Row="0" Grid.Column="2" WidthRequest="24"/>
+                <Image Source="ic_inst_w.png" Grid.Row="0" Grid.Column="3" WidthRequest="24"/>
+                <Image Source="ic_skp_w.png" Grid.Row="1" Grid.Column="0" WidthRequest="24"/>
+                <Image Source="ic_crcl_w.png" Grid.Row="1" Grid.Column="1" WidthRequest="24"/>
+                <Image Source="ic_in_w.png" Grid.Row="1" Grid.Column="2" WidthRequest="24"/>
+                <Image Source="ic_be_w.png" Grid.Row="1" Grid.Column="3" WidthRequest="24"/>
             </Grid>
         </StackLayout>
     </ContentView.Content>
