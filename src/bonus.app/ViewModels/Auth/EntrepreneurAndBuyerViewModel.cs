@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using bonus.app.Core.Models;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -19,7 +20,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate<EntrepreneurRegistrationViewModel>();
+					_navigationService.Navigate(typeof(PublicOfferViewModel), UserRole.Entrepreneur);
 				});
 				return _openPurchaserRegistrationCommand;
 			}
@@ -31,7 +32,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate<EntrepreneurRegistrationViewModel>();
+					_navigationService.Navigate(typeof(PublicOfferViewModel), UserRole.Buyer);
 				});
 				return _openPurchaserRegistrationCommand;
 			}
