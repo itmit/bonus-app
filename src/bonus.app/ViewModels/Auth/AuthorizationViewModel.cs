@@ -41,6 +41,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		private string _password;
 		private ICommand _forgotPasswordCommand;
 		private MvxCommand _createAccountCommand;
+		private IMvxCommand _openAuthVkFcPage;
 		#endregion
 		#endregion
 
@@ -87,7 +88,25 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 		}
 
-		public ICommand CreateAccountCommand
+		/// <summary>
+		/// Возвращает команду для перехода на авторизацию через Vk или Facebook.
+		/// </summary>
+		public IMvxCommand OpenAuthVkFcPage
+		{
+			get
+			{
+				_openAuthVkFcPage = _openAuthVkFcPage ?? new MvxCommand(() =>
+				{
+					NavigationService.Navigate<AuthVkFcViewModel>();
+				});
+				return _openAuthVkFcPage;
+			}
+		}
+
+		/// <summary>
+		/// Возвращает команду для создания аккаунта.
+		/// </summary>
+		public IMvxCommand CreateAccountCommand
 		{
 			get
 			{
