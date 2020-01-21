@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="auth:PublicOfferViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
              Title="Публичная оферта"
-             x:Class="bonus.app.Page.PublicOfferPage">
+             x:Class="bonus.app.Core.Page.Auth.PublicOfferPage">
     <ContentPage.Content>
         <!--Страница 15.3 - 15.4 Публичная оферта-->
         <ScrollView>
@@ -25,13 +27,21 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="Ch1" Grid.Row="0" Grid.Column="0" CheckedChanged="CheckBox_CheckedChanged"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с политикой конфиденциальности." />
-                    <CheckBox x:Name="Ch2" Grid.Row="1" Grid.Column="0" CheckedChanged="CheckBox_CheckedChanged"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="С условиями публичной оферты согласен" />
+                    <CheckBox x:Name="Ch1" Grid.Row="0" Grid.Column="0" IsChecked="{Binding IsCheckedPrivatePolicy}"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с политикой конфиденциальности." >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <CheckBox x:Name="Ch2" Grid.Row="1" Grid.Column="0" IsChecked="{Binding IsCheckedPublicOffer}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="С условиями публичной оферты согласен" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
-                <Button x:Name="ButSave" IsEnabled="False" Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
+                <Button Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding OpenRegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

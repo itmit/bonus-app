@@ -1,4 +1,5 @@
 ﻿using System;
+using bonus.app.Core.Page.Auth;
 using bonus.app.Page;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -156,7 +156,7 @@
     <EmbeddedResource Update="Page\PaySubscribePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\PublicOfferPage.xaml">
+    <EmbeddedResource Update="Page\Auth\PublicOfferPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Auth\EntrepreneurRegistrationPage.xaml">
