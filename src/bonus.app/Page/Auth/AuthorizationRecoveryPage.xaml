@@ -5,23 +5,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              BackgroundColor="#9c938d"
              NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Core.Page.Auth.AuthorizationRecoveryPage">
     <ContentPage.Content>
         <!--1.4.1 Страница восстановления пароля-->
-        <StackLayout Margin="35,25" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-            <Image Source="bonus" HorizontalOptions="Center" Margin="0,0,0,25"/>
-            <Label Text="Для восстановления пароля введите e-mail, указанный при регистрации" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,15" TextColor="White"/>
-            <Entry Placeholder="E-mail" PlaceholderColor="#d5d1cf" Margin="0,0,0,15" BackgroundColor="#bab3af"/>
-            <Button Text="Отправить код" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="0,0,0,126" Clicked="Button_Clicked"/>
-            <Label Text="Создать аккаунт" TextColor="White" Margin="0,0,0,30" FontSize="16" HorizontalTextAlignment="Center">
+        <StackLayout Margin="30,0" Spacing="0">
+            <Image Style="{StaticResource ImageBonus}"/>
+            <Label Text="Для восстановления пароля введите&#10;e-mail, указанный при регистрации" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White"/>
+            <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,0,0,20">
+                <controls:EntryAuthPage Placeholder="E-mail" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af"/>
+            </Frame>
+            <Button Text="Отправить код" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,125" Clicked="Button_Clicked"/>
+            <Label Text="Создать аккаунт" TextColor="White" Margin="0,0,0,30" HorizontalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="Справочный центр" TextColor="White" Margin="0,0,0,41" FontSize="16" HorizontalTextAlignment="Center"/>
+            <Label Text="Справочный центр" TextColor="White" HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

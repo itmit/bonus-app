@@ -35,7 +35,7 @@ namespace bonus.app.Droid.Renderers
                 return;
             }
 
-			//Background.SetColorFilter(Color.Transparent, PorterDuff.Mode.SrcAtop);
+            //Control.SetBackgroundColor(Color.Transparent);
         }
         #endregion
     }

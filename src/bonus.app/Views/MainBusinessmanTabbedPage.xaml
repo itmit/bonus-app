@@ -12,28 +12,28 @@
             SelectedTabColor="#BB8D91"
             UnselectedTabColor="#6C6C6C"
             android:TabbedPage.IsSwipePagingEnabled="False">
-    
-    <NavigationPage Title="Профиль" IconImageSource="tab_one" BarTextColor="Black" BarBackgroundColor="White">
+    <!--Нижний таб в профиле предпринимателя-->
+    <NavigationPage Title="Профиль" IconImageSource="ic_profile.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <page:MainBusinessmanPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Услуги" IconImageSource="tab_two" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Услуги" IconImageSource="ic_star.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <page:BusinessmanServicesPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Акции" IconImageSource="tab_three" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Акции" IconImageSource="ic_stock.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <page:BusinessmanSharesPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Новости" IconImageSource="tab_four" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Новости" IconImageSource="ic_news.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <page:BusinessmanNewsPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="Начисления" IconImageSource="tab_five" BarTextColor="Black" BarBackgroundColor="White">
+    <NavigationPage Title="Начисления" IconImageSource="ic_charges.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
             <page:BusinessmanBonusAccrualPage/>
         </x:Arguments>

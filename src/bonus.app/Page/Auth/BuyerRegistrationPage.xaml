@@ -11,12 +11,12 @@
     <ContentPage.Content>
         <!-- Страница 14.2.1 - 14.2.4 Регистрация покупателя -->
         <ScrollView>
-            <StackLayout Margin="25,20">
-                <Entry Placeholder="Логин"/>
-                <Entry Placeholder="ФИО"/>
-                <Entry Placeholder="E-mail"/>
-                <Entry Placeholder="Пароль"/>
-                <Entry Placeholder="Повторите пароль"/>
+            <StackLayout Margin="15,20" Spacing="0">
+                <Entry Placeholder="Логин" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Placeholder="Торговое название или имя мастера" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Placeholder="E-mail" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Placeholder="Пароль" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Placeholder="Повторите пароль" PlaceholderColor="Black" TextColor="Black"/>
                 <Entry Placeholder="Код из 4 цифр для быстрого входа"/>
                 <Image Source="ZnTRZG5o1xE1"/>
                 <Entry Placeholder="Введите код с картинки"/>
