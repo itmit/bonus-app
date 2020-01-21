@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.App">
-
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
@@ -14,7 +13,32 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="Black" />
             </Style>
+            <Style x:Key="ImageBonus" TargetType="Image">
+                <Setter Property="Source" Value="pic_bonus.png"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,35,0,55"/>
+                <Setter Property="WidthRequest" Value="85"/>
+            </Style>
+            <Style x:Key="AuthAndRegFrame" TargetType="Frame">
+                <Setter Property="IsClippedToBounds" Value="True"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="40"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
+            <Style x:Key="AuthAndRegButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#bab3af"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="40"/>
+                <Setter Property="HeightRequest" Value="45"/>
+            </Style>
+            <Style x:Key="AppButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#bab3af"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="CornerRadius" Value="40"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="WidthRequest" Value="320"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
-    
 </Application>

@@ -26,14 +26,14 @@ namespace bonus.app.Core.Page.Auth
 			{
 				((Image) sender).Source = new FileImageSource
 				{
-					File = "hide_eye"
+					File = "ic_hide_eye.png"
 				};
             }
 			else
 			{
 				((Image)sender).Source = new FileImageSource
 				{
-					File = "eye"
+					File = "ic_eye.png"
 				};
             }
 			Password.IsPassword = !Password.IsPassword;
