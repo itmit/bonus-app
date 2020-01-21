@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              BackgroundColor="#9c938d"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
@@ -14,13 +13,13 @@
             <Image Style="{StaticResource ImageBonus}"/>
             <Label Text="Мы отправили код для восстановления&#10;пароля на указанный адрес" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,20" TextColor="White"/>
             <Frame Style="{StaticResource AuthAndRegFrame}">
-                <controls:EntryAuthPage Placeholder="Введите полученный код" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af"/>
+                <Entry Placeholder="Введите полученный код" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
             </Frame>
             <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,15">
-                <controls:EntryAuthPage Placeholder="Введите новый пароль" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af"/>
+                <Entry Placeholder="Введите новый пароль" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
             </Frame>
             <Frame Style="{StaticResource AuthAndRegFrame}"  Margin="0,0,0,20">
-                <controls:EntryAuthPage Placeholder="Повторите новый пароль" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af"/>
+                <Entry Placeholder="Повторите новый пароль" PlaceholderColor="#d5d1cf" TextColor="White" FontSize="14" BackgroundColor="#bab3af" HeightRequest="45"/>
             </Frame>
             <Button Text="Сменить пароль" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50"/>
             <Label Text="Я не получил код" TextColor="White" HorizontalTextAlignment="Center"/>
