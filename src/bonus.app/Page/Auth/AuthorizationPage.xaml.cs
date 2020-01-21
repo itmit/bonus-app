@@ -17,7 +17,7 @@ namespace bonus.app.Core.Page.Auth
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new AuthVKFC());
+            Navigation.PushAsync(new AuthVkFcPage());
         }
 
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)

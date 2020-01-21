@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Page\Auth\AuthVkFcPage.xaml.cs">
+      <DependentUpon>AuthVkFcPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Page\Auth\EntrepreneurAndBuyerPage.xaml.cs">
       <DependentUpon>EntrepreneurAndBuyerPage.xaml</DependentUpon>
     </Compile>
@@ -60,7 +63,7 @@
     <EmbeddedResource Update="Page\Auth\AuthorizationRecoveryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\AuthVKFC.xaml">
+    <EmbeddedResource Update="Page\Auth\AuthVkFcPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\BusinessmanBonusAccrualDetails.xaml">
