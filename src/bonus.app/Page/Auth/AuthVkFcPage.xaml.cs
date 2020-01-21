@@ -1,6 +1,7 @@
 ﻿using System;
 using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Page.Auth
