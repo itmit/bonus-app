@@ -6,18 +6,20 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
+             Visual="Material"
              Title="Регистрация"
              x:Class="bonus.app.Core.Page.Auth.EntrepreneurRegistrationPage">
     <ContentPage.Content>
         <!--Страница 1.1 Регистрация предпринимателя-->
         <ScrollView>
-            <StackLayout Margin="15,20" Spacing="0">
+            <StackLayout Margin="15,0" Spacing="0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style TargetType="Entry">
                             <Setter Property="PlaceholderColor" Value="#505050"/>
                             <Setter Property="TextColor" Value="#505050"/>
                             <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="BackgroundColor" Value="Transparent"/>
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
