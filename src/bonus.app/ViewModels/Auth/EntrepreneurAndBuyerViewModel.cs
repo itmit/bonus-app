@@ -3,6 +3,7 @@ using bonus.app.Core.Models;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using User = Realms.Sync.User;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
@@ -20,7 +21,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate(typeof(PublicOfferViewModel), UserRole.Entrepreneur);
+					_navigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Entrepreneur);
 				});
 				return _openPurchaserRegistrationCommand;
 			}
@@ -32,7 +33,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate(typeof(PublicOfferViewModel), UserRole.Buyer);
+					_navigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Buyer);
 				});
 				return _openPurchaserRegistrationCommand;
 			}

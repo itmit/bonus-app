@@ -4,13 +4,14 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
-	public class BuyerRegistrationViewModel : MvxViewModel
+	public class BuyerRegistrationViewModel : BaseRegistrationViewModel
 	{
 		private IMvxNavigationService _navigationService;
 		private IMvxCommand _openAuthVkOrFc;
 
 		public BuyerRegistrationViewModel(IMvxNavigationService navigationService)
 			=> _navigationService = navigationService;
+
 
 		public IMvxCommand OpenAuthVkOrFc
 		{
@@ -22,6 +23,11 @@ namespace bonus.app.Core.ViewModels.Auth
 				});
 				return _openAuthVkOrFc;
 			}
+		}
+
+		protected override void RegistrationCommandExecute()
+		{
+			
 		}
 	}
 }

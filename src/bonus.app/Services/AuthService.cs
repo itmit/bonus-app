@@ -21,11 +21,11 @@ namespace bonus.app.Core.Services
 
 		public async Task<User> Login(AuthDto authData)
 		{
-			if (authData.Email == "Buyer")
+			if (authData.Login == "buy")
 			{
 				return await Task.FromResult(new User
 				{
-					Login = authData.Email,
+					Login = authData.Login,
 					AccessToken = new AccessToken
 					{
 						Body = "-",
@@ -36,11 +36,11 @@ namespace bonus.app.Core.Services
 				});
 			}
 
-			if (authData.Email == "Entrepreneur")
+			if (authData.Login == "ent")
 			{
 				return await Task.FromResult(new User
 				{
-					Login = authData.Email,
+					Login = authData.Login,
 					AccessToken = new AccessToken
 					{
 						Body = "-",

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Xamarin.Essentials;
+using Xamarin.Forms;
 using Application = Xamarin.Forms.Application;
 using AuthorizationPage = bonus.app.Core.Page.Auth.AuthorizationPage;
 
@@ -10,12 +11,12 @@ namespace bonus.app.Core
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new AuthorizationPage());
+			
+			MainPage = new NavigationPage(new AuthorizationPage());
         }
        
         protected override void OnStart()
         {
-
         }
 
         protected override void OnSleep()

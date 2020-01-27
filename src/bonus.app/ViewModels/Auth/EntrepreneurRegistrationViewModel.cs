@@ -3,13 +3,16 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
-	public class EntrepreneurRegistrationViewModel : MvxViewModel
+	public class EntrepreneurRegistrationViewModel : BaseRegistrationViewModel
 	{
 		private IMvxNavigationService _navigationService;
 
 		public EntrepreneurRegistrationViewModel(IMvxNavigationService navigationService)
 			=> _navigationService = navigationService;
 
-
+		protected override void RegistrationCommandExecute()
+		{
+			
+		}
 	}
 }

@@ -145,39 +145,15 @@ namespace bonus.app.Core.ViewModels.Auth
 
 		#region Private
 		/// <summary>
-		/// Проверяет валидность почты.
-		/// </summary>
-		/// <param name="email">Адрес электронной почты.</param>
-		/// <returns>Возвращает <c>true</c> если адрес является валидным.</returns>
-		private bool IsValidEmail(string email)
-		{
-			try
-			{
-				var address = new MailAddress(email);
-				return address.Address == email;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-
-		/// <summary>
 		/// Выполняет вход в систему.
 		/// </summary>
 		private async void LoginExecute()
 		{
-			var email = Login?.Trim();
+			var login = Login?.Trim();
 			var password = Password?.Trim();
-			if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+			if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
 			{
 				await Application.Current.MainPage.DisplayAlert("Внимание", "E-mail и пароль должны быть заполнены", "Ок");
-				return;
-			}
-
-			if (!IsValidEmail(email))
-			{
-				await Application.Current.MainPage.DisplayAlert("Внимание", "E-mail некорректен", "Ок");
 				return;
 			}
 
@@ -187,7 +163,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				user = await authService.Login(new AuthDto
 				{
-					Email = email,
+					Login = login,
 					Password = password
 				});
 			}

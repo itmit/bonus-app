@@ -4,8 +4,8 @@ namespace bonus.app.Core.Dto
 {
 	public class AuthDto
 	{
-		[JsonProperty("email")]
-		public string Email
+		[JsonProperty("login")]
+		public string Login
 		{
 			get;
 			set;

@@ -12,15 +12,13 @@
         <!-- Страница 14.2.1 - 14.2.4 Регистрация покупателя -->
         <ScrollView>
             <StackLayout Margin="15,20" Spacing="0">
-                <Entry Placeholder="Логин" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Placeholder="Торговое название или имя мастера" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Placeholder="E-mail" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Placeholder="Пароль" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Placeholder="Повторите пароль" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Placeholder="Код из 4 цифр для быстрого входа"/>
-                <Image Source="ZnTRZG5o1xE1"/>
-                <Entry Placeholder="Введите код с картинки"/>
-                <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Clicked="Button_Clicked"/>
+                <Entry Margin="0,10" Text="{Binding Login}" Placeholder="Логин" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Margin="0,10" Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Margin="0,10" Text="{Binding Email}" Placeholder="E-mail" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Margin="0,10" Text="{Binding Password}" IsPassword="False" Placeholder="Пароль" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Margin="0,10" Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry Margin="0,10" Text="{Binding PinCode}" Placeholder="Код из 4 цифр для быстрого входа"/>
+                <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding RegistrationCommand}"/>
                 <Label Text="или создать учетную запись с помощью" Margin="0,15,0,5"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
