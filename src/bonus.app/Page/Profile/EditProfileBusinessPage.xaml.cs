@@ -1,13 +1,15 @@
 ﻿using System;
+using bonus.app.Core.ViewModels.Profile;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Page.Profile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProfileBauerPage : ContentPage
+    public partial class EditProfileBusinessPage : MvxContentPage<EditProfileEntrepreneurViewModel>
     {
-        public EditProfileBauerPage()
+        public EditProfileBusinessPage()
         {
             InitializeComponent();
         }

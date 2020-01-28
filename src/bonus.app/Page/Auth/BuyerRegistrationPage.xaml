@@ -12,12 +12,27 @@
         <!-- Страница 14.2.1 - 14.2.4 Регистрация покупателя -->
         <ScrollView>
             <StackLayout Margin="15,20" Spacing="0">
-                <Entry Margin="0,10" Text="{Binding Login}" Placeholder="Логин" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Margin="0,10" Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Margin="0,10" Text="{Binding Email}" Placeholder="E-mail" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Margin="0,10" Text="{Binding Password}" IsPassword="False" Placeholder="Пароль" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Margin="0,10" Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль" PlaceholderColor="Black" TextColor="Black"/>
-                <Entry Margin="0,10" Text="{Binding PinCode}" Placeholder="Код из 4 цифр для быстрого входа"/>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Entry">
+                            <Setter Property="PlaceholderColor" Value="#505050"/>
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                            <Setter Property="Margin" Value="0,10"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Entry Text="{Binding Login}" Placeholder="Логин"/>
+                <Label Text="{Binding Errors.Login}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера"/>
+                <Label Text="{Binding Errors.MasterName}" IsVisible="{Binding Errors.MasterName, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding Email}" Placeholder="E-mail"/>
+                <Label Text="{Binding Errors.Email}" IsVisible="{Binding Errors.Email, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding Password}" IsPassword="False" Placeholder="Пароль"/>
+                <Label Text="{Binding Errors.Password}" IsVisible="{Binding Errors.Password, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль"/>
+                <Entry Text="{Binding PinCode}" Placeholder="Код из 4 цифр для быстрого входа"/>
                 <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding RegistrationCommand}"/>
                 <Label Text="или создать учетную запись с помощью" Margin="0,15,0,5"/>
                 <Grid>

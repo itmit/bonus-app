@@ -1,12 +1,10 @@
 ﻿using System;
-using PropertyChanged;
 
 namespace bonus.app.Core.Models
 {
 	/// <summary>
 	/// Представляет пользователя.
 	/// </summary>
-	[AddINotifyPropertyChangedInterface]
 	public class User
 	{
 		/// <summary>
@@ -40,6 +38,24 @@ namespace bonus.app.Core.Models
 		/// Возвращает или устанавливает token доступа пользователя.
 		/// </summary>
 		public AccessToken AccessToken
+		{
+			get;
+			set;
+		}
+
+		public string Email
+		{
+			get;
+			set;
+		}
+
+		public string MasterName
+		{
+			get;
+			set;
+		}
+
+		public int PinCode
 		{
 			get;
 			set;

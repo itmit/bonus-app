@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.App">
     <Application.Resources>
@@ -46,6 +47,7 @@
                 <Setter Property="HeightRequest" Value="45"/>
                 <Setter Property="FontSize" Value="14"/>
             </Style>
+            <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

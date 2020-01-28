@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using bonus.app.Core.Dto;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Auth
@@ -11,15 +12,86 @@ namespace bonus.app.Core.ViewModels.Auth
 		private string _masterName;
 		private string _confirmPassword;
 		private int _pinCode;
-
+		private RegisterErrorDto _errors = new RegisterErrorDto();
 		private IMvxCommand _registrationCommand;
 
+		public RegisterErrorDto Errors
+		{
+			get => _errors;
+			set => SetProperty(ref _errors, value);
+		}
 		public IMvxCommand RegistrationCommand
 		{
 			get
 			{
-				_registrationCommand = _registrationCommand ?? new MvxCommand(RegistrationCommandExecute);
+				_registrationCommand = _registrationCommand ?? new MvxCommand(() =>
+				{
+					CheckValidFields();
+					RegistrationCommandExecute();
+				});
 				return _registrationCommand;
+			}
+		}
+
+		protected void CheckValidFields()
+		{
+			var needRaiseErrorsPropertyChanged = false;
+			var login = Login?.Trim();
+			if (string.IsNullOrEmpty(login))
+			{
+				Errors.Login = "Поле логин не может быть пустым.";
+				needRaiseErrorsPropertyChanged = true;
+			}
+
+			var masterName = MasterName?.Trim();
+			if (string.IsNullOrEmpty(masterName))
+			{
+				Errors.MasterName = "Поле торговое название или имя мастера не может быть пустым.";
+				needRaiseErrorsPropertyChanged = true;
+			}
+
+			var email = Email?.Trim();
+			if (string.IsNullOrEmpty(email))
+			{
+				Errors.Email = "Поле email не может быть пустым.";
+				needRaiseErrorsPropertyChanged = true;
+			}
+			if (IsValidEmail(email))
+			{
+				Errors.Email = "Не правильный Email.";
+				needRaiseErrorsPropertyChanged = true;
+			}
+
+			var password = Password?.Trim();
+			if (string.IsNullOrEmpty(password))
+			{
+				Errors.Password = "Поле пароль не может быть пустым.";
+				needRaiseErrorsPropertyChanged = true;
+			}
+
+			var confirmPassword = ConfirmPassword?.Trim();
+			if (string.IsNullOrEmpty(confirmPassword))
+			{
+				Errors.Password = "Поле пароль не может быть пустым.";
+				needRaiseErrorsPropertyChanged = true;
+			}
+
+			if (needRaiseErrorsPropertyChanged)
+			{
+				RaisePropertyChanged(nameof(Errors));
+			}
+		}
+
+		private bool IsValidEmail(string email)
+		{
+			try
+			{
+				var address = new System.Net.Mail.MailAddress(email);
+				return address.Address == email;
+			}
+			catch
+			{
+				return false;
 			}
 		}
 

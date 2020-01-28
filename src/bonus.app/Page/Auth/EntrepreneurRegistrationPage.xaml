@@ -20,20 +20,22 @@
                             <Setter Property="TextColor" Value="#505050"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="BackgroundColor" Value="Transparent"/>
+                            <Setter Property="Margin" Value="0,10"/>
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
-                <Entry Placeholder="Логин"/>
-                <Entry Placeholder="Торговое название или имя мастера"/>
-                <Entry Placeholder="E-mail"/>
-                <Entry Placeholder="Пароль" IsPassword="True"/>
-                <Entry Placeholder="Повторите пароль" IsPassword="True"/>
-                <Entry Placeholder="Код из 4 цифр для быстрого входа" MaxLength="4" Keyboard="Numeric"/>
-                <Grid Margin="0,0,0,75">
-                    <Image Source="ZnTRZG5o1xE1" HorizontalOptions="End" HeightRequest="40" WidthRequest="155"/>
-                    <Entry Placeholder="Введите код с картинки" MaxLength="5"/>
-                </Grid>
-                <Button Text="Зарегистрироваться" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
+                <Entry Text="{Binding Login}" Placeholder="Логин"/>
+                <Label Text="{Binding Errors.Login}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера"/>
+                <Label Text="{Binding Errors.MasterName}" IsVisible="{Binding Errors.MasterName, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding Email}" Placeholder="E-mail"/>
+                <Label Text="{Binding Errors.Email}" IsVisible="{Binding Errors.Email, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True"/>
+                <Label Text="{Binding Errors.Password}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
+                <Entry Text="{Binding ConfirmPassword}" Placeholder="Повторите пароль" IsPassword="True"/>
+                <Entry Text="{Binding PinCode}" Placeholder="Код из 4 цифр для быстрого входа" MaxLength="4" Keyboard="Numeric"/>
+                <Label Text="{Binding Errors.PinCode, Converter={StaticResource NullToBoolConverter}}"/>
+                <Button Command="{Binding RegistrationCommand}" Text="Зарегистрироваться" Style="{StaticResource AppButton}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

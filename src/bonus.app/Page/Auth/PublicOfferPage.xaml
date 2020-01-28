@@ -31,12 +31,12 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="Я даю добровольное согласие на обработку своих&#10;персональных данных и соглашаюсь с " TextColor="#505050"/>
-                                    <Span Text="политикой конфиденциальности." TextDecorations="Underline" TextColor="#BB8D91">
+                                    <Span Text="Я даю добровольное согласие на обработку своих&#10;персональных данных и соглашаюсь с " TextColor="#505050">
                                         <Span.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                                         </Span.GestureRecognizers>
                                     </Span>
+                                    <Span Text="политикой конфиденциальности." TextDecorations="Underline" TextColor="#BB8D91"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
