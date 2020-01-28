@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
              x:Class="bonus.app.Views.MenuBusinessmanPage">
-    
-        <ContentPage.Resources>
+    <ContentPage.Resources>
         <!-- Страница 3 Меню предпринимателя -->
         <ResourceDictionary>
             <Style x:Key="labelStyle" TargetType="Label">
@@ -16,34 +15,36 @@
                 <Setter Property="FontFamily" Value="Lato"/>
             </Style>
             <Style x:Key="image" TargetType="Image">
-                <Setter Property="Aspect" Value="AspectFit"/>
+                <Setter Property="WidthRequest" Value="24"/>
+                <Setter Property="HeightRequest" Value="24"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
         </ResourceDictionary>
         </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="25,15">
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,25">
-                    <Image Source="bonus"/>
-                    <Label Text="B&amp;M" TextColor="White" FontSize="24" HorizontalTextAlignment="Center"/>
+            <StackLayout Margin="20,0" Spacing="0">
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,65" Spacing="10">
+                    <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65"/>
+                    <Image Source="pic_mandb.png" WidthRequest="60" HeightRequest="20" HorizontalOptions="Center"/>
                 </StackLayout>
-                <Grid RowSpacing="35" ColumnSpacing="15">
+                <Grid RowSpacing="35" Margin="0,0,0,160" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Source="menu_1.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="0"/>
-                    <Image Source="menu_2.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="1"/>
+                    <Image Source="ic_profile_w.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="0"/>
+                    <Image Source="ic_rub.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="1"/>
                     <Image Source="tarif.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="2"/>
-                    <Image Source="support.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="3"/>
+                    <Image Source="ic_support.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="3"/>
                     <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="4"/>
                     <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="5"/>
                     <Label Text="Профиль" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="0">
@@ -73,7 +74,7 @@
                     </Label>
                     <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"/>
                 </Grid>
-                <local:IconView></local:IconView>
+                <local:IconView/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

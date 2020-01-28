@@ -11,14 +11,13 @@
     <ContentPage.Content>
         <!--Страница 15.3 - 15.4 Публичная оферта-->
         <ScrollView>
-            <StackLayout Margin="25,20">
-                <Label Margin="0,0,0,10" HorizontalTextAlignment="Start" 
-                       Text="Магазин «Bonus System» предлагает физическим лицам заключить договор на условиях оферты. Предмет договора: продажа товаров через сайт www.bonussystem.ru. Описание услуг, тарифы и способы оплаты доступны в соответствующих разделах «Услуги», «Тарифы», «Способы оплаты», Договор считается заключенным с момента оплаты услуги покупателем."/>
-                <Label Margin="0,0,0,10" 
-                       Text="Покупатель согласен предоставить продавцу следующие персональные данные: &#10;-имя;&#10; -контактный номер телефона;&#10; -адрес электронной почты;&#10; -адрес доставки.&#10; При оплате с помощью банковской карты, клиент направляется на платежный сервис Яндекс.Касса, который отвечает за обработку и сохранность данных банковской карты клиента."
-                       />
-                <Label Margin="0,0,0,10" Text="Данные клиента используются для оплаты заказа. Компания «Bonus System», вправе изменить оферту по своему усмотрению. Изменения вступают в силу с момента публикации на сайте."/>
-                <Grid>
+            <StackLayout Margin="20,20" Spacing="0">
+                <Label Margin="0,0,0,15" FontSize="12" TextColor="#505050"
+                       Text="Магазин «Bonus System» предлагает физическим лицам&#10;заключить договор на условиях оферты.&#10;Предмет договора: продажа товаров через&#10;сайт www.bonussystem.ru. Описание услуг, тарифы&#10;и способы оплаты доступны в&#10;соответствующих разделах «Услуги», «Тарифы»,&#10;«Способы оплаты», Договор считается заключенным с&#10;момента оплаты услуги покупателем."/>
+                <Label Margin="0,0,0,15" FontSize="12" TextColor="#505050"
+                       Text="Покупатель согласен предоставить&#10;продавцу следующие персональные данные: &#10;-имя;&#10; -контактный номер телефона;&#10; -адрес электронной почты;&#10; -адрес доставки.&#10; При оплате с помощью банковской карты, клиент&#10;направляется на платежный сервис Яндекс.Касса,&#10;который отвечает за обработку и сохранность данных&#10;банковской карты клиента."/>
+                <Label Margin="0,0,0,25" FontSize="12" TextColor="#505050" Text="Данные клиента используются для оплаты заказа.&#10;Компания «Bonus System»,&#10;вправе изменить оферту по&#10;своему усмотрению. Изменения вступают в силу с&#10;момента публикации на сайте."/>
+                <Grid RowSpacing="10" Margin="0,0,0,15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -27,20 +26,29 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <CheckBox x:Name="Ch1" Grid.Row="0" Grid.Column="0" IsChecked="{Binding IsCheckedPrivatePolicy}"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Я даю добровольное согласие на обработку своих персональных данных и соглашаюсь с политикой конфиденциальности." >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </Label.GestureRecognizers>
+                    <CheckBox x:Name="Ch1" Grid.Row="0" Grid.Column="0" Color="#BB8D91" IsChecked="{Binding IsCheckedPrivatePolicy}" VerticalOptions="Start"/>
+                    <Label Grid.Row="0" Grid.Column="1" FontSize="10" VerticalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Я даю добровольное согласие на обработку своих&#10;персональных данных и соглашаюсь с " TextColor="#505050"/>
+                                    <Span Text="политикой конфиденциальности." TextDecorations="Underline" TextColor="#BB8D91">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
                     </Label>
-                    <CheckBox x:Name="Ch2" Grid.Row="1" Grid.Column="0" IsChecked="{Binding IsCheckedPublicOffer}"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="С условиями публичной оферты согласен" >
+                    <CheckBox x:Name="Ch2" Grid.Row="1" Grid.Column="0" Color="#BB8D91" IsChecked="{Binding IsCheckedPublicOffer}" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="С условиями публичной оферты согласен" FontSize="10" TextColor="#505050" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <Button Text="Сохранить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding OpenRegistrationCommand}"/>
+                <Button Text="Сохранить" Style="{StaticResource AppButton}" Command="{Binding OpenRegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

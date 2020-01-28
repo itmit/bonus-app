@@ -39,6 +39,13 @@
                 <Setter Property="WidthRequest" Value="320"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
+            <Style x:Key="AuthAndRegEntry" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#d5d1cf"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#bab3af"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

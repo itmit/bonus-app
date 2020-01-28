@@ -19,27 +19,18 @@
                 <Frame  Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
                     <Entry
                     x:Name="Login"
-                    Margin="0"
+                    Style="{StaticResource AuthAndRegEntry}"
                     Text="{Binding Login}"
-                    TextColor="White"
-                    FontSize="14"
-                    HeightRequest="45"
-                    Placeholder="Телефон или E-mail"
-                    PlaceholderColor="#d5d1cf"
-                    BackgroundColor="#bab3af"/>
+                    Placeholder="Телефон или E-mail"/>
                 </Frame>
                 <Grid>
                     <Frame Style="{StaticResource AuthAndRegFrame}">
                         <Entry
                         x:Name="Password"
                         Text="{Binding Password}"
-                        TextColor="White"
-                        FontSize="14"
-                        HeightRequest="45"
+                        Style="{StaticResource AuthAndRegEntry}"
                         Placeholder="Пароль"
-                        IsPassword="True"
-                        PlaceholderColor="#d5d1cf"
-                        BackgroundColor="#bab3af"/>
+                        IsPassword="True"/>
                     </Frame>
                     <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
                         <Image.GestureRecognizers>
