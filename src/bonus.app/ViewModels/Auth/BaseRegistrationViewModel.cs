@@ -11,7 +11,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		private string _email;
 		private string _masterName;
 		private string _confirmPassword;
-		private int _pinCode;
+		private string _pinCode;
 		private RegisterErrorDto _errors = new RegisterErrorDto();
 		private IMvxCommand _registrationCommand;
 
@@ -127,7 +127,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			set => SetProperty(ref _confirmPassword, value);
 		}
 
-		public int PinCode
+		public string PinCode
 		{
 			get => _pinCode;
 			set => SetProperty(ref _pinCode, value);

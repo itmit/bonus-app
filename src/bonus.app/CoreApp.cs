@@ -37,7 +37,7 @@ namespace bonus.app.Core
 
 			var userRepository = Mvx.IoCProvider.Resolve<IUserRepository>();
 
-			User user = userRepository.GetUsers().SingleOrDefault();
+			User user = userRepository.GetAll().SingleOrDefault();
 			
 			if (user?.AccessToken == null)
 			{

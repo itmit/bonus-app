@@ -14,6 +14,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		private IMvxNavigationService _navigationService;
 		private bool _isCheckedPrivatePolicy;
 		private bool _isCheckedPublicOffer;
+		private bool _canRegister;
 
 		public PublicOfferViewModel(IMvxNavigationService navigationService)
 		{
@@ -26,8 +27,14 @@ namespace bonus.app.Core.ViewModels.Auth
 			set
 			{
 				SetProperty(ref _isCheckedPrivatePolicy, value);
-				OpenRegistrationCommand.RaiseCanExecuteChanged();
+				CanRegister = value && IsCheckedPrivatePolicy;
 			}
+		}
+
+		public bool CanRegister
+		{
+			get => _canRegister;
+			private set => SetProperty(ref _canRegister, value);
 		}
 
 		public bool IsCheckedPublicOffer
@@ -36,7 +43,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			set
 			{
 				SetProperty(ref _isCheckedPublicOffer, value);
-				OpenRegistrationCommand.RaiseCanExecuteChanged();
+				CanRegister = value && IsCheckedPrivatePolicy;
 			}
 		}
 
@@ -55,9 +62,14 @@ namespace bonus.app.Core.ViewModels.Auth
 							_navigationService.Navigate<EntrepreneurRegistrationViewModel>();
 							break;
 					}
-				}, () => _isCheckedPrivatePolicy && _isCheckedPublicOffer);
+				}, CanExecuteOpenRegistrationCommand);
 				return _openRegistrationCommand;
 			}
+		}
+
+		private bool CanExecuteOpenRegistrationCommand()
+		{
+			return IsCheckedPrivatePolicy && IsCheckedPublicOffer;
 		}
 
 		public override void Prepare(UserRole parameter)

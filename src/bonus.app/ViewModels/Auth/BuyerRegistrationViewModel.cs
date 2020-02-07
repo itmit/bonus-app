@@ -12,11 +12,9 @@ namespace bonus.app.Core.ViewModels.Auth
 	{
 		private readonly IMvxNavigationService _navigationService;
 		private IMvxCommand _openAuthVkOrFc;
-		private readonly IUserRepository _userRepository;
 
-		public BuyerRegistrationViewModel(IMvxNavigationService navigationService, IUserRepository userRepository)
+		public BuyerRegistrationViewModel(IMvxNavigationService navigationService)
 		{
-			_userRepository = userRepository;
 			_navigationService = navigationService;
 		}
 
@@ -35,17 +33,6 @@ namespace bonus.app.Core.ViewModels.Auth
 
 		protected override void RegistrationCommandExecute()
 		{
-			_userRepository.Add(new User
-			{
-				AccessToken = new AccessToken(),
-				Guid = Guid.Empty,
-				Login = Login,
-				Role = UserRole.Buyer,
-				Email = Email,
-				MasterName = MasterName,
-				PinCode = PinCode
-			});
-
 			_navigationService.Navigate<EditProfileBauerViewModel>();
 		}
 	}

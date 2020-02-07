@@ -50,7 +50,7 @@ namespace bonus.app.Core.Repositories
 			}
 		}
 
-		public IEnumerable<User> GetUsers()
+		public IEnumerable<User> GetAll()
 		{
 			using (var realm = Realm.GetInstance())
 			{

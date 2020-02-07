@@ -48,7 +48,10 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <Button Text="Сохранить" Style="{StaticResource AppButton}" Command="{Binding OpenRegistrationCommand}"/>
+                <Button Text="Сохранить" 
+                        IsEnabled="{Binding CanRegister}"
+                        Style="{StaticResource AppButton}" 
+                        Command="{Binding OpenRegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

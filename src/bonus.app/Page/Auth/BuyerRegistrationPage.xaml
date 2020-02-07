@@ -29,10 +29,10 @@
                 <Label Text="{Binding Errors.MasterName}" IsVisible="{Binding Errors.MasterName, Converter={StaticResource NullToBoolConverter}}"/>
                 <Entry Text="{Binding Email}" Placeholder="E-mail"/>
                 <Label Text="{Binding Errors.Email}" IsVisible="{Binding Errors.Email, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding Password}" IsPassword="False" Placeholder="Пароль"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Пароль"/>
                 <Label Text="{Binding Errors.Password}" IsVisible="{Binding Errors.Password, Converter={StaticResource NullToBoolConverter}}"/>
                 <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль"/>
-                <Entry Text="{Binding PinCode}" Placeholder="Код из 4 цифр для быстрого входа"/>
+                <Entry Text="{Binding PinCode}" Keyboard="Numeric" IsPassword="True" Placeholder="Код из 4 цифр для быстрого входа"/>
                 <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding RegistrationCommand}"/>
                 <Label Text="или создать учетную запись с помощью" Margin="0,15,0,5"/>
                 <Grid>

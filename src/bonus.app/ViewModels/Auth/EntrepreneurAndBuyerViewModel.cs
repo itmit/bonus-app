@@ -1,19 +1,18 @@
 ﻿using System.Windows.Input;
 using bonus.app.Core.Models;
 using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using User = Realms.Sync.User;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
-	public class EntrepreneurAndBuyerViewModel : MvxViewModel
+	public class EntrepreneurAndBuyerViewModel : MvxNavigationViewModel
 	{
-		private IMvxNavigationService _navigationService;
 		private MvxCommand _openPurchaserRegistrationCommand;
+		private MvxCommand _openBuyerRegistrationCommand;
 
-		public EntrepreneurAndBuyerViewModel(IMvxNavigationService navigationService) 
-			=> _navigationService = navigationService;
 
 		public ICommand OpenEntrepreneurRegistrationCommand
 		{
@@ -21,7 +20,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Entrepreneur);
+					NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Entrepreneur);
 				});
 				return _openPurchaserRegistrationCommand;
 			}
@@ -31,12 +30,17 @@ namespace bonus.app.Core.ViewModels.Auth
 		{
 			get
 			{
-				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
+				_openBuyerRegistrationCommand = _openBuyerRegistrationCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Buyer);
+					NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Buyer);
 				});
-				return _openPurchaserRegistrationCommand;
+				return _openBuyerRegistrationCommand;
 			}
+		}
+
+		public EntrepreneurAndBuyerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+			: base(logProvider, navigationService)
+		{
 		}
 	}
 }

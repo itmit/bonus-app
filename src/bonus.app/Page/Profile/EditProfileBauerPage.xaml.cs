@@ -13,9 +13,18 @@ namespace bonus.app.Core.Page.Profile
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PopAsync();
-        }
-    }
+		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
+		/// <returns>To be added.</returns>
+		/// <remarks>To be added.</remarks>
+		protected override bool OnBackButtonPressed()
+		{
+			if (ViewModel.IsAuthorization)
+			{
+				return base.OnBackButtonPressed();
+			}
+
+			ViewModel.OpenAuthorization();
+			return true;
+		}
+	}
 }
