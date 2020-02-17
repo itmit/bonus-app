@@ -20,7 +20,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		protected override Task<bool> RegistrationCommandExecute()
 		{
 			return Task.FromResult(true);
-			_navigationService.Navigate<EditProfileBusinessmanViewModel>();
+			// _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, password));
 		}
 	}
 }

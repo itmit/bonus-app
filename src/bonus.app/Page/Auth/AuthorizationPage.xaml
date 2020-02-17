@@ -16,7 +16,7 @@
             <StackLayout Margin="30,0" Spacing="0">
                 <Image Style="{StaticResource ImageBonus}"/>
                 <Label Text="Для входа введите телефон или&#10;E-mail и пароль" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,20" TextColor="White"/>
-                <Frame  Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
+                <Frame Padding="0,-3" Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
                     <Entry
                     x:Name="Login"
                     Style="{StaticResource AuthAndRegEntry}"
@@ -24,7 +24,7 @@
                     Placeholder="Телефон или E-mail"/>
                 </Frame>
                 <Grid>
-                    <Frame Style="{StaticResource AuthAndRegFrame}">
+                    <Frame Padding="0,-3" Style="{StaticResource AuthAndRegFrame}">
                         <Entry
                         x:Name="Password"
                         Text="{Binding Password}"

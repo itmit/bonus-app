@@ -12,7 +12,7 @@ using Realms;
 
 namespace bonus.app.Core.ViewModels.Profile
 {
-	public abstract class BaseEditProfileViewModel : MvxViewModel
+	public abstract class BaseEditProfileViewModel : MvxViewModel<EditProfileViewModelArguments>
 	{
 		#region Data
 		#region Fields
@@ -29,6 +29,8 @@ namespace bonus.app.Core.ViewModels.Profile
 		private User _user;
 
 		private readonly IUserRepository _userRepository;
+		private string _phoneNumber;
+		private string _address;
 		#endregion
 		#endregion
 
@@ -75,6 +77,12 @@ namespace bonus.app.Core.ViewModels.Profile
 			}
 		}
 
+		public string Address
+		{
+			get => _address;
+			set => SetProperty(ref _address, value);
+		}
+
 		public City SelectedCity
 		{
 			get => _selectedCity;
@@ -90,6 +98,12 @@ namespace bonus.app.Core.ViewModels.Profile
 				_cities = new MvxObservableCollection<City>();
 				LoadCities(value, 1);
 			}
+		}
+
+		public string PhoneNumber
+		{
+			get => _phoneNumber;
+			set => SetProperty(ref _phoneNumber, value);
 		}
 
 		public User User
@@ -169,5 +183,25 @@ namespace bonus.app.Core.ViewModels.Profile
 			IsBusy = false;
 		}
 		#endregion
+	}
+
+
+	public class EditProfileViewModelArguments
+	{
+		public EditProfileViewModelArguments(Guid guid, string password)
+		{
+			Guid = guid;
+			Password = password;
+		}
+
+		public Guid Guid
+		{
+			get;
+		}
+
+		public string Password
+		{
+			get;
+		}
 	}
 }
