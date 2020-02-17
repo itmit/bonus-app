@@ -68,7 +68,7 @@
 			set;
 		}
 
-		public LocalizedCountryName LocalizedNames
+		public LocalizedName LocalizedNames
 		{
 			get;
 			set;

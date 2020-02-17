@@ -11,7 +11,7 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Profile
 {
-	public class EditProfileBauerViewModel : BaseEditProfileViewModel
+	public class EditProfileCustomerViewModel : BaseEditProfileViewModel
 	{
 		private readonly IMvxNavigationService _navigationService;
 
@@ -20,7 +20,7 @@ namespace bonus.app.Core.ViewModels.Profile
 			_navigationService.Navigate<AuthorizationViewModel>();
 		}
 
-		public EditProfileBauerViewModel(IUserRepository userRepository, IMvxNavigationService navigationService, IGeoHelperService geoHelperService)
+		public EditProfileCustomerViewModel(IUserRepository userRepository, IMvxNavigationService navigationService, IGeoHelperService geoHelperService)
 			: base(userRepository, navigationService, geoHelperService)
 		{
 			_navigationService = navigationService;

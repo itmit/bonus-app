@@ -31,7 +31,7 @@ namespace bonus.app.Core
 			if (firstRun.Equals("true"))
 			{
 				Preferences.Set("FirstRun", "false");
-				RegisterAppStart<EntrepreneurAndBuyerViewModel>();
+				RegisterAppStart<BusinessmanAndCustomerViewModel>();
 				return;
 			}
 

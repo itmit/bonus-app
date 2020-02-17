@@ -16,7 +16,7 @@ namespace bonus.app.Core.Page
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EditProfileBauerPage());
+            Navigation.PushAsync(new EditProfileCustomerPage());
         }
 
         private void Button_Clicked(object sender, EventArgs e)

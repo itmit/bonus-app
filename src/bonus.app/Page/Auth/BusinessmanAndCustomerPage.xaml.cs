@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.ViewModels.Auth;
+using bonus.app.Page;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,16 +8,11 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BuyerRegistrationPage : MvxContentPage<BuyerRegistrationViewModel>
+    public partial class BusinessmanAndCustomerPage : MvxContentPage<BusinessmanAndCustomerViewModel>
     {
-        public BuyerRegistrationPage()
+        public BusinessmanAndCustomerPage()
         {
             InitializeComponent();
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new FillingProfilePage());
-        }
-    }
+	}
 }

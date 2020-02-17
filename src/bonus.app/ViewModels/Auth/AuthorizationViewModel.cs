@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 using System.Windows.Input;
 using bonus.app.Core.Dto;
+using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Page.Profile;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
+using bonus.app.Core.ViewModels.Profile;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -23,7 +28,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <summary>
 		/// Ошибки авторизации.
 		/// </summary>
-		private AuthErrorDto _errors = new AuthErrorDto();
+		private Dictionary<string, string> _errors;
 		
 		/// <summary>
 		/// Логин пользователя.
@@ -42,6 +47,8 @@ namespace bonus.app.Core.ViewModels.Auth
 		private ICommand _forgotPasswordCommand;
 		private MvxCommand _createAccountCommand;
 		private IMvxCommand _openAuthVkFcPage;
+		private readonly IUserRepository _repository;
+		private readonly IAuthService _authService;
 		#endregion
 		#endregion
 
@@ -51,9 +58,11 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// </summary>
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository repository, IAuthService authService)
 			: base(logProvider, navigationService)
 		{
+			_repository = repository;
+			_authService = authService;
 		}
 		#endregion
 
@@ -61,7 +70,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <summary>
 		/// Возвращает ошибки авторизации.
 		/// </summary>
-		public AuthErrorDto Errors
+		public Dictionary<string, string> Errors
 		{
 			get => _errors;
 			private set => SetProperty(ref _errors, value);
@@ -112,7 +121,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_createAccountCommand = _createAccountCommand ?? new MvxCommand(() =>
 				{
-					NavigationService.Navigate<EntrepreneurAndBuyerViewModel>();
+					NavigationService.Navigate<BusinessmanAndCustomerViewModel>();
 				});
 				return _createAccountCommand;
 			}
@@ -157,11 +166,10 @@ namespace bonus.app.Core.ViewModels.Auth
 				return;
 			}
 
-			var authService = new AuthService();
 			User user = null;
 			try
 			{
-				user = await authService.Login(new AuthDto
+				user = await _authService.Login(new AuthDto
 				{
 					Login = login,
 					Password = password
@@ -174,33 +182,38 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (user == null)
 			{
-				if (authService.ServerAuthorizationError == null)
+				if (_authService.ErrorDetails == null)
 				{
 					await Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
 					return;
 				}
 
-				Errors = authService.ServerAuthorizationError.Errors;
-
-				if (!string.IsNullOrEmpty(authService.ServerAuthorizationError.Message))
+				var dictionary = new Dictionary<string, string>();
+				foreach (var detail in _authService.ErrorDetails)
 				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", authService.ServerAuthorizationError.Message, "Ок");
+					dictionary[detail.Key] = string.Join("&#10;", detail.Value);
+				}
+				Errors = dictionary;
+
+				if (!string.IsNullOrEmpty(_authService.Error))
+				{
+					await Application.Current.MainPage.DisplayAlert("Внимание", _authService.Error, "Ок");
 				}
 
 				return;
 			}
 
-			var repository = new UserRepository();
-			repository.Add(user);
-
-			if (user.Role == UserRole.Buyer)
+			if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Guid != Guid.Empty)
 			{
-				//Application.Current.MainPage = new MainPage();
-			}
+				if (user.Role == UserRole.Businessman)
+				{
+					await NavigationService.Navigate<EditProfileBusinessmanViewModel>();
+				}
+				else if (user.Role == UserRole.Customer)
+				{
+					await NavigationService.Navigate<EditProfileCustomerViewModel>();
+				}
 
-			if (user.Role == UserRole.Entrepreneur)
-			{
-				//Application.Current.MainPage = new MainBusinessmanTabbedPage();
 			}
 		}
 		#endregion

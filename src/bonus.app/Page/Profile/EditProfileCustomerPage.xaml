@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentPage x:TypeArguments="profile:EditProfileCustomerViewModel" xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Profile;assembly=bonus.app.Core"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+             xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
+             mc:Ignorable="d"
+             Visual="Material"
+             x:Class="bonus.app.Core.Page.Profile.EditProfileCustomerPage"
+             Title="Редактор профиля"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.Content>
+        <!--16.2 Страница редактирования профиля пользователя-->
+        <StackLayout>
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="Label" TargetType="Label">
+                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontFamily" Value="Lato"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Margin" Value="10,0"/>
+                        <Setter Property="VerticalOptions" Value="Center"/>
+                        <Setter Property="VerticalTextAlignment" Value="Center"/>
+                    </Style>
+                    <Style x:Key="Entry" TargetType="Entry">
+                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontFamily" Value="Lato"/>
+                        <Setter Property="Keyboard" Value="Chat"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Margin="10,0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cell_OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" 
+                               Style="{StaticResource Label}"/>
+                        <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />
+                </StackLayout>
+
+                <views:MvxListView
+                        Grid.Row="1"
+                        IsVisible="False"
+                        IsEnabled="False"
+                        x:Name="Countries"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding Countries}"
+                        SelectedItem="{Binding SelectedCountry}"
+                        ItemSelected="Countries_OnItemSelected"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                    <views:MvxListView.ItemTemplate>
+                        <DataTemplate>
+                            <viewCells:CountryCityViewCell/>
+                        </DataTemplate>
+                    </views:MvxListView.ItemTemplate>
+                </views:MvxListView>
+
+                <Grid Grid.Row="1" x:Name="Grid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout x:Name="City" IsVisible="False" Margin="10,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                            <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" Style="{StaticResource Label}"/>
+                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
+                    </StackLayout>
+
+                    <views:MvxListView
+                        Grid.Row="1"
+                        IsVisible="False"
+                        IsEnabled="False"
+                        x:Name="Cities"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding Cities}"
+                        SelectedItem="{Binding SelectedCity}"
+                        ItemAppearing="Cities_OnItemAppearing"
+                        ItemSelected="OnSelectCity"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                        <views:MvxListView.ItemTemplate>
+                            <DataTemplate>
+                                <viewCells:CountryCityViewCell/>
+                            </DataTemplate>
+                        </views:MvxListView.ItemTemplate>
+                    </views:MvxListView>
+
+                    <StackLayout Grid.Row="1" x:Name="Layout" Margin="10,0">
+                        <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес" BackgroundColor="Transparent"/>
+                        <Label Text="{Binding Errors[address]}" IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+
+                        <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}" Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
+                            <Entry.Behaviors>
+                                <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="{Binding Errors[phoneNumber]}" IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+
+                        <StackLayout>
+                            <Label Text="Пол" FontSize="12" Margin="15,0" Style="{StaticResource Label}"/>
+                            <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                <CheckBox x:Name="IsFemale" Color="#BB8D91" WidthRequest="25" IsChecked="{Binding IsFemale}"/>
+                                <Label Margin="0" Style="{StaticResource Label}" Text="Женский">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <CheckBox x:Name="IsMale" WidthRequest="25" Color="#BB8D91" IsChecked="{Binding IsMale}"/>
+                                <Label Margin="0" Style="{StaticResource Label}" Text="Мужской">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
+                        </StackLayout>
+
+                        <DatePicker Format="dd.MM.yyyy"
+                                    TextColor="#505050"
+                                    BackgroundColor="Transparent"/>
+
+                        <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" BackgroundColor="Transparent"/>
+
+                        <StackLayout>
+                            <Label Text="Установите фотографию профиля" FontSize="12" Margin="15,0" Style="{StaticResource Label}"/>
+                            <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                <Image Source="icon_photo.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
+                        </StackLayout>
+
+                        <Button Text="СОХРАНИТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

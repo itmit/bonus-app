@@ -1,4 +1,5 @@
-﻿using bonus.app.Core.Dto;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 
@@ -9,77 +10,95 @@ namespace bonus.app.Core.ViewModels.Auth
 		private string _login;
 		private string _password;
 		private string _email;
-		private string _masterName;
+		private string _name;
 		private string _confirmPassword;
 		private string _pinCode;
-		private RegisterErrorDto _errors = new RegisterErrorDto();
+		private Dictionary<string, string> _errors = new Dictionary<string, string>();
 		private IMvxCommand _registrationCommand;
 
-		public RegisterErrorDto Errors
+		/// <summary>
+		/// Представляет метод при успешной регистрации.
+		/// </summary>
+		public delegate void AfterRegisterEventHandler();
+
+		/// <summary>
+		/// Происходит после успешной регистрации.
+		/// </summary>
+		public event AfterRegisterEventHandler AfterRegister;
+
+		public Dictionary<string, string> Errors
 		{
 			get => _errors;
 			set => SetProperty(ref _errors, value);
 		}
+
 		public IMvxCommand RegistrationCommand
 		{
 			get
 			{
-				_registrationCommand = _registrationCommand ?? new MvxCommand(() =>
-				{
-					CheckValidFields();
-					RegistrationCommandExecute();
-				});
+				_registrationCommand = _registrationCommand ?? new MvxCommand(Execute);
 				return _registrationCommand;
 			}
 		}
 
-		protected void CheckValidFields()
+		private async void Execute()
+		{
+			if (CheckValidFields() && await RegistrationCommandExecute())
+			{
+				AfterRegister?.Invoke();
+			}
+		}
+
+		protected bool CheckValidFields()
 		{
 			var needRaiseErrorsPropertyChanged = false;
 			var login = Login?.Trim();
 			if (string.IsNullOrEmpty(login))
 			{
-				Errors.Login = "Поле логин не может быть пустым.";
+				Errors[nameof(Login).ToLower()] = "Поле логин не может быть пустым.";
 				needRaiseErrorsPropertyChanged = true;
 			}
 
-			var masterName = MasterName?.Trim();
-			if (string.IsNullOrEmpty(masterName))
+			var name = Name?.Trim();
+			if (string.IsNullOrEmpty(name))
 			{
-				Errors.MasterName = "Поле торговое название или имя мастера не может быть пустым.";
+				Errors[nameof(Name).ToLower()] = "Поле торговое название или имя мастера не может быть пустым.";
 				needRaiseErrorsPropertyChanged = true;
 			}
 
 			var email = Email?.Trim();
 			if (string.IsNullOrEmpty(email))
 			{
-				Errors.Email = "Поле email не может быть пустым.";
+				Errors[nameof(Email).ToLower()] = "Поле email не может быть пустым.";
 				needRaiseErrorsPropertyChanged = true;
 			}
-			if (IsValidEmail(email))
+			if (!IsValidEmail(email))
 			{
-				Errors.Email = "Не правильный Email.";
+				Errors[nameof(Email).ToLower()] = "Поле email не может быть пустым.";
 				needRaiseErrorsPropertyChanged = true;
 			}
 
 			var password = Password?.Trim();
 			if (string.IsNullOrEmpty(password))
 			{
-				Errors.Password = "Поле пароль не может быть пустым.";
+				Errors[nameof(Password).ToLower()] = "Поле пароль не может быть пустым.";
 				needRaiseErrorsPropertyChanged = true;
 			}
 
 			var confirmPassword = ConfirmPassword?.Trim();
 			if (string.IsNullOrEmpty(confirmPassword))
 			{
-				Errors.Password = "Поле пароль не может быть пустым.";
+				Errors[nameof(Password).ToLower()] = "Поле пароль не может быть пустым.";
 				needRaiseErrorsPropertyChanged = true;
 			}
 
 			if (needRaiseErrorsPropertyChanged)
 			{
 				RaisePropertyChanged(nameof(Errors));
+				return false;
 			}
+
+			return true;
 		}
 
 		private bool IsValidEmail(string email)
@@ -95,7 +114,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 		}
 
-		protected abstract void RegistrationCommandExecute();
+		protected abstract Task<bool> RegistrationCommandExecute();
 
 		public string Login
 		{
@@ -115,10 +134,10 @@ namespace bonus.app.Core.ViewModels.Auth
 			set => SetProperty(ref _email, value);
 		}
 
-		public string MasterName
+		public string Name
 		{
-			get => _masterName;
-			set => SetProperty(ref _masterName, value);
+			get => _name;
+			set => SetProperty(ref _name, value);
 		}
 
 		public string ConfirmPassword

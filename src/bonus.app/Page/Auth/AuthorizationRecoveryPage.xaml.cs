@@ -17,7 +17,7 @@ namespace bonus.app.Core.Page.Auth
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EntrepreneurAndBuyerPage());
+            Navigation.PushAsync(new BusinessmanAndCustomerPage());
         }
 
         private void Button_Clicked(object sender, EventArgs e)

@@ -28,12 +28,20 @@
                 <Label Text="{Binding Errors.Login}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
                 <Entry Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера"/>
                 <Label Text="{Binding Errors.MasterName}" IsVisible="{Binding Errors.MasterName, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding Email}" Placeholder="E-mail"/>
+                <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail"/>
                 <Label Text="{Binding Errors.Email}" IsVisible="{Binding Errors.Email, Converter={StaticResource NullToBoolConverter}}"/>
                 <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True"/>
                 <Label Text="{Binding Errors.Password}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
                 <Entry Text="{Binding ConfirmPassword}" Placeholder="Повторите пароль" IsPassword="True"/>
-                <Entry Text="{Binding PinCode}" Placeholder="Код из 4 цифр для быстрого входа" MaxLength="4" Keyboard="Numeric"/>
+                <Grid>
+                    <Entry Text="{Binding PinCode}" x:Name="PinCode" IsPassword="True"  Placeholder="Код из 4 цифр для быстрого входа" MaxLength="4" Keyboard="Numeric"/>
+
+                    <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
                 <Label Text="{Binding Errors.PinCode, Converter={StaticResource NullToBoolConverter}}"/>
                 <Button Command="{Binding RegistrationCommand}" Text="Зарегистрироваться" Style="{StaticResource AppButton}"/>
             </StackLayout>

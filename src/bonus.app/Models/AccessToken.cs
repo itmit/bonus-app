@@ -25,15 +25,6 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		/// <summary>
-		/// Возвращает или устанавливает строковое представление даты, до которой действует токен.
-		/// </summary>
-		public DateTime ExpiresAt
-		{
-			get;
-			set;
-		}
-
 		/// <summary>Returns a string that represents the current object.</summary>
 		/// <returns>A string that represents the current object.</returns>
 		public override string ToString() => $"{Type} {Body}";

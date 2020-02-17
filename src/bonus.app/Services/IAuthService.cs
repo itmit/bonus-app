@@ -1,5 +1,6 @@
-﻿using System.Threading.Tasks;
-using bonus.app.Core.Dto;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 
 namespace bonus.app.Core.Services
@@ -8,7 +9,14 @@ namespace bonus.app.Core.Services
 	{
 		Task<User> Login(AuthDto authData);
 
-		ErrorsDto<AuthErrorDto> ServerAuthorizationError
+		Dictionary<string, string[]> ErrorDetails
+		{
+			get;
+		}
+
+		Task<User> Register(User user, string password, string confirmPassword);
+
+		string Error
 		{
 			get;
 		}

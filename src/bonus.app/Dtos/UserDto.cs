@@ -1,10 +1,12 @@
 ﻿using System;
+using bonus.app.Core.Models;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Dto
 {
 	public class UserDto
 	{
+		[JsonProperty("uuid")]
 		public Guid Guid
 		{
 			get;
@@ -29,11 +31,18 @@ namespace bonus.app.Core.Dto
 			set;
 		}
 
+		[JsonProperty("type")]
+		public UserRole Role
+		{
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Возвращает или устанавливает токен для авторизации.
 		/// </summary>
 		[JsonProperty("access_token")]
-		public string Token
+		public string Body
 		{
 			get;
 			set;
@@ -53,7 +62,7 @@ namespace bonus.app.Core.Dto
 		/// Возвращает или устанавливает тип токена.
 		/// </summary>
 		[JsonProperty("token_type")]
-		public string TokenType
+		public string Type
 		{
 			get;
 			set;

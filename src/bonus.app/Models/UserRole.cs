@@ -8,11 +8,11 @@
 		/// <summary>
 		/// Предприниматель.
 		/// </summary>
-		Entrepreneur,
+		Businessman,
 
 		/// <summary>
 		/// Покупатель.
 		/// </summary>
-		Buyer
+		Customer
 	}
 }

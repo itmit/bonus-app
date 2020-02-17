@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bonus.app.Core.Dto
+namespace bonus.app.Core.Dtos
 {
 	public class AuthDto
 	{

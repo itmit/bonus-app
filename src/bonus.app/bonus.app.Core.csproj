@@ -17,21 +17,22 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MvvmCross.Forms" Version="6.4.2" />
-    <PackageReference Include="Realm" Version="4.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991477" />  
+    <PackageReference Include="Realm" Version="4.3.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />  
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.4.0.991477" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.4.0.991640" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Page\Auth\AuthVkFcPage.xaml.cs">
       <DependentUpon>AuthVkFcPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\EntrepreneurAndBuyerPage.xaml.cs">
-      <DependentUpon>EntrepreneurAndBuyerPage.xaml</DependentUpon>
+    <Compile Update="Page\Auth\BusinessmanAndCustomerPage.xaml.cs">
+      <DependentUpon>BusinessmanAndCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\BuyerRegistrationPage.xaml.cs">
-      <DependentUpon>BuyerRegistrationPage.xaml</DependentUpon>
+    <Compile Update="Page\Auth\CustomerRegistrationPage.xaml.cs">
+      <DependentUpon>CustomerRegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Page\Auth\EntrepreneurRegistrationPage.xaml.cs">
       <DependentUpon>EntrepreneurRegistrationPage.xaml</DependentUpon>
@@ -42,14 +43,17 @@
     <Compile Update="Page\BuyerSharesDetailPage.xaml.cs">
       <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Profile\EditProfileBauerPage.xaml.cs">
-      <DependentUpon>EditProfileBauerPage.xaml</DependentUpon>
+    <Compile Update="Page\Profile\EditProfileCustomerPage.xaml.cs">
+      <DependentUpon>EditProfileCustomerPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Page\MainBusinessmanPage.xaml.cs">
       <DependentUpon>MainBusinessmanPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Page\PublicOfferBusPage.xaml.cs">
       <DependentUpon>PublicOfferBusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Popups\SuccessRegisterPopupPage.xaml.cs">
+      <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -84,7 +88,7 @@
     <EmbeddedResource Update="Page\BusinessmanProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\BuyerRegistrationPage.xaml">
+    <EmbeddedResource Update="Page\Auth\CustomerRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\BusinessmanSharesDetailPage.xaml">
@@ -99,7 +103,7 @@
     <EmbeddedResource Update="Page\BuyerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\EntrepreneurAndBuyerPage.xaml">
+    <EmbeddedResource Update="Page\Auth\BusinessmanAndCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\BuyerProfilePage.xaml">
@@ -120,7 +124,7 @@
     <EmbeddedResource Update="Page\EditorStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Profile\EditProfileBauerPage.xaml">
+    <EmbeddedResource Update="Page\Profile\EditProfileCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Profile\EditProfileBusinessPage.xaml">
@@ -222,5 +226,15 @@
     <EmbeddedResource Update="Views\PayTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\SuccessRegisterPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\CountryCityViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
 </Project>

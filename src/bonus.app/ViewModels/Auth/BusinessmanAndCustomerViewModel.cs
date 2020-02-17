@@ -8,7 +8,7 @@ using User = Realms.Sync.User;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
-	public class EntrepreneurAndBuyerViewModel : MvxNavigationViewModel
+	public class BusinessmanAndCustomerViewModel : MvxNavigationViewModel
 	{
 		private MvxCommand _openPurchaserRegistrationCommand;
 		private MvxCommand _openBuyerRegistrationCommand;
@@ -20,7 +20,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ?? new MvxCommand(() =>
 				{
-					NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Entrepreneur);
+					NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Businessman);
 				});
 				return _openPurchaserRegistrationCommand;
 			}
@@ -32,13 +32,13 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openBuyerRegistrationCommand = _openBuyerRegistrationCommand ?? new MvxCommand(() =>
 				{
-					NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Buyer);
+					NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Customer);
 				});
 				return _openBuyerRegistrationCommand;
 			}
 		}
 
-		public EntrepreneurAndBuyerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+		public BusinessmanAndCustomerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}

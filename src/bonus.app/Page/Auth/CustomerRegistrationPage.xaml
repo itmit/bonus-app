@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="auth:BuyerRegistrationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="auth:CustomerRegistrationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Auth.BuyerRegistrationPage"
+             x:Class="bonus.app.Core.Page.Auth.CustomerRegistrationPage"
              Title="Регистрация">
     <ContentPage.Content>
         <!-- Страница 14.2.1 - 14.2.4 Регистрация покупателя -->
@@ -16,6 +16,7 @@
                     <ResourceDictionary>
                         <Style TargetType="Entry">
                             <Setter Property="PlaceholderColor" Value="#505050"/>
+                            <Setter Property="Visual" Value="Material"/>
                             <Setter Property="TextColor" Value="#505050"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="BackgroundColor" Value="Transparent"/>
@@ -24,17 +25,27 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
                 <Entry Text="{Binding Login}" Placeholder="Логин"/>
-                <Label Text="{Binding Errors.Login}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера"/>
-                <Label Text="{Binding Errors.MasterName}" IsVisible="{Binding Errors.MasterName, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding Email}" Placeholder="E-mail"/>
-                <Label Text="{Binding Errors.Email}" IsVisible="{Binding Errors.Email, Converter={StaticResource NullToBoolConverter}}"/>
+                <Label Text="{Binding Errors[login]}" IsVisible="{Binding Errors[login], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                <Entry Text="{Binding Name}" Placeholder="Ф.И.О."/>
+                <Label Text="{Binding Errors[name]}" IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail"/>
+                <Label Text="{Binding Errors[email]}" IsVisible="{Binding Errors[email], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Пароль"/>
-                <Label Text="{Binding Errors.Password}" IsVisible="{Binding Errors.Password, Converter={StaticResource NullToBoolConverter}}"/>
+                <Label Text="{Binding Errors[password]}" IsVisible="{Binding Errors[password], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                 <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль"/>
-                <Entry Text="{Binding PinCode}" Keyboard="Numeric" IsPassword="True" Placeholder="Код из 4 цифр для быстрого входа"/>
+
+                <Grid>
+                    <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True" Placeholder="Код из 4 цифр для быстрого входа"/>
+
+                    <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                
                 <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding RegistrationCommand}"/>
-                <Label Text="или создать учетную запись с помощью" Margin="0,15,0,5"/>
+                <Label HorizontalTextAlignment="Center" Text="или создать учетную запись с помощью:" Margin="0,15,0,5"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -43,7 +54,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Column="0" Grid.Row="0" Text="Facebook" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent" Command="{Binding OpenAuthVkOrFc}"/>
+                    <Button Grid.Column="0"
+                            Grid.Row="0"
+                            Text="Facebook"
+                            BorderColor="#bab3af"
+                            BorderWidth="1"
+                            TextColor="#bab3af"
+                            CornerRadius="30"
+                            Margin="15"
+                            BackgroundColor="Transparent"
+                            Command="{Binding OpenAuthVkOrFc}"/>
                     <Button Grid.Column="1" Grid.Row="0" Text="Вконтакте" BorderColor="#bab3af" BorderWidth="1" TextColor="#bab3af" CornerRadius="30" Margin="15" BackgroundColor="Transparent" Command="{Binding OpenAuthVkOrFc}"/>
                 </Grid>
             </StackLayout>

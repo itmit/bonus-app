@@ -2,7 +2,7 @@
 
 namespace bonus.app.Core.ViewModels.Profile
 {
-	public class EditProfileEntrepreneurViewModel : MvxViewModel
+	public class EditProfileBusinessmanViewModel : MvxViewModel
 	{
 		
 	}

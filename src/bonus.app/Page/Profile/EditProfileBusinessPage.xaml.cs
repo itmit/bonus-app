@@ -7,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page.Profile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProfileBusinessPage : MvxContentPage<EditProfileEntrepreneurViewModel>
+    public partial class EditProfileBusinessPage : MvxContentPage<EditProfileBusinessmanViewModel>
     {
         public EditProfileBusinessPage()
         {

@@ -1,6 +1,6 @@
 ﻿namespace bonus.app.Core.Models
 {
-	public class LocalizedCountryName
+	public class LocalizedName
 	{
 		public string En
 		{

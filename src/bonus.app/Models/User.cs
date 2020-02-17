@@ -49,13 +49,13 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public string MasterName
+		public int PinCode
 		{
 			get;
 			set;
 		}
 
-		public int PinCode
+		public string Name
 		{
 			get;
 			set;
