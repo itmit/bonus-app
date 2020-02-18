@@ -207,11 +207,11 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				if (user.Role == UserRole.Businessman)
 				{
-					await NavigationService.Navigate<EditProfileBusinessmanViewModel>();
+					await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, password));
 				}
 				else if (user.Role == UserRole.Customer)
 				{
-					await NavigationService.Navigate<EditProfileCustomerViewModel>();
+					await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, password));
 				}
 
 			}

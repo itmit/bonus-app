@@ -116,7 +116,6 @@ namespace bonus.app.Core.Page.Profile
 		private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
 		{
 			IsFemale.IsChecked = !IsFemale.IsChecked;
-			IsMale.IsChecked = !IsMale.IsChecked;
 		}
 	}
 }
