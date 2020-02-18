@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using bonus.app.Core.Models;
+using bonus.app.Core.Page;
 using bonus.app.Core.Page.Auth;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.ViewModels;
@@ -27,6 +28,8 @@ namespace bonus.app.Core
 				.AsInterfaces()
 				.RegisterAsDynamic();
 
+			RegisterAppStart<MainBusinessmanViewModel>();
+			/*
 			var firstRun = Preferences.Get("FirstRun", "true");
 			if (firstRun.Equals("true"))
 			{
@@ -45,7 +48,8 @@ namespace bonus.app.Core
 				return;
 			}
 
-			RegisterAppStart<MainViewModel>();
+			RegisterAppStart<MainBusinessmanViewModel>();
+			*/
 		}
 	}
 }

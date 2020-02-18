@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ViewCells.ServicesViewCell">
+  <ViewCell.View>
+        <StackLayout Margin="25,0,0,15" Spacing="0">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer/>
+            </StackLayout.GestureRecognizers>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
+                <Label Text="Парикмахерские"/>
+                <Image Source="Shape.png"
+                     WidthRequest="15"
+                     x:Name="Shape"
+                     VerticalOptions="Center"
+                     HorizontalOptions="EndAndExpand"
+                     Rotation="0"/>
+            </StackLayout>
+            <BoxView/>
+
+            <!--<views:MvxListView
+              IsVisible="False"
+              IsEnabled="False"
+              x:Name="ViewServices"
+              HasUnevenRows="True"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+
+                <views:MvxListView.ItemsSource>
+                    <x:String>000000</x:String>
+                </views:MvxListView.ItemsSource>
+
+                <views:MvxListView.ItemTemplate>
+                    <DataTemplate>
+                    </DataTemplate>
+                </views:MvxListView.ItemTemplate>
+            </views:MvxListView>-->
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

@@ -1,12 +1,14 @@
 ﻿using System;
+using bonus.app.Core.ViewModels;
 using bonus.app.Page;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BusinessmanServicesPage : ContentPage
+    public partial class BusinessmanServicesPage : MvxContentPage<BusinessmanServicesViewModel>
     {
         public BusinessmanServicesPage()
         {
@@ -42,5 +44,12 @@ namespace bonus.app.Core.Page
         {
             return;
         }
-    }
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			Shape.Rotation = 180;
+			ViewServices.IsVisible = true;
+			ViewServices.IsEnabled = true;
+		}
+	}
 }

@@ -18,13 +18,7 @@
                         <Style x:Key="Entry" TargetType="Entry">
                             <Setter Property="PlaceholderColor" Value="#505050"/>
                             <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="FontFamily" Value="Lato"/>
                             <Setter Property="FontSize" Value="14"/>
-                        </Style>
-                        <Style x:Key="Label" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="FontFamily" Value="Lato"/>
                         </Style>
                         <Style x:Key="BoxView" TargetType="BoxView">
                             <Setter Property="BackgroundColor" Value="#CCCCCC"/>
@@ -45,12 +39,12 @@
                 <Entry Placeholder="Номер телефона" Style="{StaticResource Entry}"></Entry>
                 <Editor Placeholder="Описание (расскажите об услугах)" FontFamily="Lato" FontSize="14" TextColor="#505050" PlaceholderColor="#505050" HeightRequest="120" AutoSize="TextChanges"></Editor>
                 <StackLayout Orientation="Horizontal" Margin="5,10">
-                    <Label Text="Установите логотип вашей компании" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
+                    <Label Text="Установите логотип вашей компании" HorizontalOptions="Start"></Label>
                     <Image Source="icon_photo.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
                 </StackLayout>
                 <BoxView Style="{StaticResource BoxView}"></BoxView>
                 <StackLayout Orientation="Horizontal" Margin="5,10">
-                    <Label Text="Портфолио" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
+                    <Label Text="Портфолио" HorizontalOptions="Start"></Label>
                     <Image Source="Frame.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
                 </StackLayout>
                 <BoxView Style="{StaticResource BoxView}"></BoxView>
@@ -58,7 +52,7 @@
                     <Frame Padding="0" IsClippedToBounds="True" HorizontalOptions="Start" CornerRadius="5" HeightRequest="27" WidthRequest="44">
                         <Image Source="girl.png" Aspect="AspectFill"></Image>
                     </Frame>
-                    <Label Text="Фото 1" Style="{StaticResource Label}"></Label>
+                    <Label Text="Фото 1"></Label>
                     <Image Source="krest.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
                 </StackLayout>
                 <BoxView Style="{StaticResource BoxView}"></BoxView>

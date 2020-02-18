@@ -4,9 +4,9 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels
 {
-	public class MainViewModel : MvxNavigationViewModel
+	public class BusinessmanNewsViewModel : MvxNavigationViewModel
 	{
-		public MainViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+		public BusinessmanNewsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}

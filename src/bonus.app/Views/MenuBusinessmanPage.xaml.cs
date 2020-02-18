@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using bonus.app.Core.ViewModels;
+using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using BusinessmanProfilePage = bonus.app.Core.Page.BusinessmanProfilePage;
@@ -12,7 +14,8 @@ using BusinessmanProfilePage = bonus.app.Core.Page.BusinessmanProfilePage;
 namespace bonus.app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuBusinessmanPage : ContentPage
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Master)]
+    public partial class MenuBusinessmanPage : MvxContentPage<MenuBusinessmanViewModel>
     {
         public MenuBusinessmanPage()
         {

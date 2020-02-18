@@ -46,6 +46,14 @@
                 <Setter Property="BackgroundColor" Value="#bab3af"/>
                 <Setter Property="FontSize" Value="14"/>
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                <Setter Property="TextColor" Value="#505050"/>
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="#CCCCCC"/>
+                <Setter Property="HeightRequest" Value="1"/>
+            </Style>
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>

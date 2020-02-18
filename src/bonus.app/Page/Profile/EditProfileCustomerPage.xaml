@@ -18,9 +18,7 @@
             <StackLayout.Resources>
                 <ResourceDictionary>
                     <Style x:Key="Label" TargetType="Label">
-                        <Setter Property="TextColor" Value="#505050"/>
-                        <Setter Property="FontFamily" Value="Lato"/>
-                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontSize" Value="Body"/>
                         <Setter Property="Margin" Value="10,0"/>
                         <Setter Property="VerticalOptions" Value="Center"/>
                         <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -45,8 +43,7 @@
                         <TapGestureRecognizer Tapped="Cell_OnTapped"/>
                     </StackLayout.GestureRecognizers>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" 
-                               Style="{StaticResource Label}"/>
+                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
                         <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />

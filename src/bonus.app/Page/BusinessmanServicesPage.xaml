@@ -1,70 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:BusinessmanServicesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+             xmlns:viewCell="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanServicesPage"
-             Title="Мои услуги">
-    <ContentPage.Content>
+             Title="Мои услуги"
+             IconImageSource="ic_star.png">
+    <ContentPage.Content> 
         <!--Страница 4.2 Мои услуги(предпринимателя)-->
-        <StackLayout Margin="15,20" Spacing="0">
-            <StackLayout.Resources>
-                <ResourceDictionary>
-                    <Style x:Key="Label" TargetType="Label">
-                        <Setter Property="TextColor" Value="#505050"/>
-                        <Setter Property="FontFamily" Value="Lato"/>
-                        <Setter Property="FontSize" Value="14"/>
-                    </Style>
-                    <Style x:Key="BoxView" TargetType="BoxView">
-                        <Setter Property="BackgroundColor" Value="#CCCCCC"/>
-                        <Setter Property="HeightRequest" Value="1"/>
-                    </Style>
-                </ResourceDictionary>
-            </StackLayout.Resources>
-            <Label Text="Пока у вас нет услуг" Margin="5,0" Style="{StaticResource Label}"></Label>
-            <BoxView BackgroundColor="#CCCCCC" HeightRequest="1" Margin="0,15"></BoxView>
-            <Label Text="Добавить услугу" TextColor="#505050" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,5"></Label>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Picker Title="Вид услуги" TitleColor="#505050" TextColor="#505050" FontFamily="Lato" FontSize="14">
-                    <Picker.Items>
-                        <x:String>Парикмахерские</x:String>
-                        <x:String>Перманентный макияж</x:String>
-                        <x:String>Массажные услуги</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Grid Margin="5,10" RowSpacing="20" Grid.Row="2">
+        <ScrollView>
+            <StackLayout Margin="15,20" Spacing="0">
+
+                <Grid Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Начисление бонусов" HorizontalOptions="Start" TextColor="#858585" Grid.Row="0" Style="{StaticResource Label}"></Label>
-                    <Label Text="Количество бонусов" HorizontalOptions="Start" Grid.Row="1" Style="{StaticResource Label}"></Label>
-                    <Label Text="или" HorizontalOptions="Center" Grid.Row="1" Style="{StaticResource Label}"></Label>
-                    <Label Text="Процент бонусов" HorizontalOptions="End" Grid.Row="1" Style="{StaticResource Label}"></Label>
+                    <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Start" Text="Пока у вас нет услуг"/>
+                    <Label Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="End" IsVisible="False">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="10"/>
+                                    <Span Text="%"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </Grid>
-                <BoxView Style="{StaticResource BoxView}" Grid.Row="3"></BoxView>
-                <Grid Margin="5,10" RowSpacing="20" Grid.Row="4">
+
+                <BoxView Margin="0,0,0,20"/>
+
+                <Label Text="Добавить услугу" Margin="0,0,0,35" FontSize="Body" HorizontalOptions="Center" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+
+                <StackLayout Margin="0,0,0,15" Spacing="0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
+                        <Label Text="Вид услуги"/>
+                        <Image Source="Shape.png"
+                               WidthRequest="15"
+                               x:Name="Shape"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               Rotation="0"/>
+                    </StackLayout>
+                    <BoxView/>
+                </StackLayout>
+
+                <views:MvxListView
+                    IsVisible="False"
+                    IsEnabled="False"
+                    x:Name="ViewServices"
+                    HasUnevenRows="True"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+
+                    <views:MvxListView.ItemsSource>
+                        <x:String>000000</x:String>
+                    </views:MvxListView.ItemsSource>
+
+                    <views:MvxListView.ItemTemplate>
+                        <DataTemplate>
+                            <viewCell:ServicesViewCell/>
+                        </DataTemplate>
+                    </views:MvxListView.ItemTemplate>
+                </views:MvxListView>
+
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Text="Списание бонусов" HorizontalOptions="Start" TextColor="#858585" Grid.Row="0" Style="{StaticResource Label}"></Label>
-                    <Label Text="Количество бонусов" HorizontalOptions="Start" Grid.Row="1" Style="{StaticResource Label}"></Label>
-                    <Label Text="или" HorizontalOptions="Center" Grid.Row="1" Style="{StaticResource Label}"></Label>
-                    <Label Text="Процент бонусов" HorizontalOptions="End" Grid.Row="1" Style="{StaticResource Label}"></Label>
+                    <Grid Margin="5,10" RowSpacing="20" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Начисление бонусов" HorizontalOptions="Start" TextColor="#858585" Grid.Row="0"/>
+                        <Label Text="Количество бонусов" HorizontalOptions="Start" Grid.Row="1"/>
+                        <Label Text="или" HorizontalOptions="Center" Grid.Row="1"/>
+                        <Label Text="Процент бонусов" HorizontalOptions="End" Grid.Row="1"/>
+                    </Grid>
+                    <BoxView Grid.Row="3"/>
+                    <Grid Margin="5,10" RowSpacing="20" Grid.Row="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Списание бонусов" HorizontalOptions="Start" TextColor="#858585" Grid.Row="0"/>
+                        <Label Text="Количество бонусов" HorizontalOptions="Start" Grid.Row="1"/>
+                        <Label Text="или" HorizontalOptions="Center" Grid.Row="1"/>
+                        <Label Text="Процент бонусов" HorizontalOptions="End" Grid.Row="1"/>
+                    </Grid>
+                    <BoxView Grid.Row="5"/>
                 </Grid>
-                <BoxView Style="{StaticResource BoxView}" Grid.Row="5"></BoxView>
-            </Grid>
-            <Button Text="ДОБАВИТЬ УСЛУГУ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="0,20"/>
-        </StackLayout>
+                <Button Text="ДОБАВИТЬ УСЛУГУ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="0,20"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
-</ContentPage>  
+</views:MvxContentPage>  

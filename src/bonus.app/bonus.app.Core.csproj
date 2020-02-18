@@ -46,9 +46,6 @@
     <Compile Update="Page\Profile\EditProfileCustomerPage.xaml.cs">
       <DependentUpon>EditProfileCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\MainBusinessmanPage.xaml.cs">
-      <DependentUpon>MainBusinessmanPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Page\PublicOfferBusPage.xaml.cs">
       <DependentUpon>PublicOfferBusPage.xaml</DependentUpon>
     </Compile>
@@ -100,6 +97,9 @@
     <EmbeddedResource Update="Page\BusinessmanSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Page\BusinessmanTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Page\BuyerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -124,6 +124,9 @@
     <EmbeddedResource Update="Page\EditorStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Page\MainBusinessmanPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Page\Profile\EditProfileCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -140,9 +143,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\GeographyPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Page\MainBusinessmanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\MainBuyerProfilePage.xaml">
@@ -230,6 +230,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\CountryCityViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\ServicesViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -10,9 +10,6 @@ namespace bonus.app.Core
         public App()
         {
             InitializeComponent();
-
-			
-			MainPage = new NavigationPage(new AuthorizationPage());
         }
        
         protected override void OnStart()
