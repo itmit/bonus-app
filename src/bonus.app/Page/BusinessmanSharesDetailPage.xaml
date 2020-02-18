@@ -12,15 +12,24 @@
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,5">
                 <Frame Padding="0" IsClippedToBounds="True" CornerRadius="5" Margin="0,15">
-                    <Image Source="slider_devuska1.png" Aspect="AspectFill" WidthRequest="320"></Image>
+                    <Image Source="slider_devuska1.png" Aspect="AspectFill" WidthRequest="320"/>
                 </Frame>
-                <Label Text="Салон Бигуди" TextColor="#858585" FontSize="14" FontFamily="Lato"></Label>
-                <Label Text="Супер загар" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
-                <Label Text="Всю неделю до 12.00 на загар в солярии &#10;предоставляем бонус 25% Метеорный дождь &#10;меняет поперечник. Фаза, сублимируя кометы, &#10;ничтожно иллюстрирует возмущающий фактор" TextColor="#505050" FontSize="14" FontFamily="Lato" WidthRequest="320"></Label>
+                <Label Text="Салон Бигуди" TextColor="#858585"/>
+                <Label Text="Супер загар" TextColor="#505050" FontSize="Body"/>
+                <Label Text="Всю неделю до 12.00 на загар в солярии &#10;предоставляем бонус 25% Метеорный дождь &#10;меняет поперечник. Фаза, сублимируя кометы, &#10;ничтожно иллюстрирует возмущающий фактор" TextColor="#505050"/>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Статус: " TextColor="#505050" FontSize="12" FontFamily="Lato" HorizontalOptions="Start"></Label>
-                    <Label Text="Активна" TextColor="#505050" FontSize="12" FontFamily="Lato" HorizontalOptions="Start"></Label>
-                    <Label Text="до 10.04.2019" TextColor="#858585" FontSize="12" FontFamily="Lato" HorizontalOptions="EndAndExpand"></Label>
+                    <Label Text="Статус: " TextColor="#505050" FontSize="Caption" HorizontalOptions="Start"/>
+                    <Label Text="Активна" TextColor="#505050" FontSize="Caption" HorizontalOptions="Start"/>
+                    <Label TextColor="#858585" FontSize="Caption" HorizontalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="до "/>
+                                    <Span Text="10.04.2019"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -39,7 +39,7 @@
       </NavigationPage>
     <NavigationPage>
         <x:Arguments>
-            <page:BonusAccrualPage/>
+            <page:BusinessmanBonusAccrualPage/>
         </x:Arguments>
     </NavigationPage>
 </views:MvxTabbedPage>

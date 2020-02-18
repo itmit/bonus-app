@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ViewCells.SharesViewCell">
+  <ViewCell.View>
+      <!--Ячейка для списка мои акции у предпринимателя-->
+      <Frame Padding="10" Margin="0,5">
+          <Grid>
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0" Grid.Column="0">
+                  <Image Source="girl.png" Aspect="AspectFill"  WidthRequest="85"/>
+              </Frame>
+              <StackLayout Grid.Column="1">
+                  <Label Text="Супер стрижка" TextColor="#505050" MaxLines="1"/>
+                  <Label Text="Всю неделю до 12.00 на загар в солярии&#10;предоставляем бонус 25% на загар море&#10;в солярии предоставляем бонус 25%" MaxLines="3" FontSize="Caption" TextColor="Gray"/>
+              </StackLayout>
+          </Grid>
+          <Frame.GestureRecognizers>
+              <TapGestureRecognizer/>
+          </Frame.GestureRecognizers>
+      </Frame>
+    </ViewCell.View>
+</ViewCell>

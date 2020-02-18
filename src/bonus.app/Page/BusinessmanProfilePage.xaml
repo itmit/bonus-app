@@ -16,55 +16,73 @@
         <!--Страница 3. Профиль предпринимателя-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
-                <StackLayout BackgroundColor="#7B726C" HeightRequest="126" Orientation="Horizontal" Padding="5,5">
-                    <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="93" Margin="15,15">
-                        <Image Source="business_logos.png" Aspect="AspectFill"></Image>
-                    </Frame>
-                    <StackLayout Margin="0,10">
-                        <Label Text="Салон красоты
-                                     PEONY workshop" TextColor="#FFFFFF" FontSize="16" FontFamily="Roboto" FontAttributes="Bold"></Label>
-                        <Label Text="Стрижки, Кератин, Ботокс,
-                                     Ламинирование, Нанопластика
-                                     Еще одна строка об услугах" TextColor="#FFFFFF" FontSize="14" FontFamily="Lato" WidthRequest="210"></Label>
+                <Grid>
+                    <Image Source="pic_rectangle_4x.png" WidthRequest="125"/>
+                    <StackLayout Orientation="Horizontal" Padding="5,5">
+                        <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" Margin="15,15">
+                            <Image Source="business_logos.png" Aspect="AspectFill"/>
+                        </Frame>
+                        <StackLayout Margin="0,10">
+                            <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body" FontFamily="Roboto" FontAttributes="Bold"/>
+                            <Label Text="Стрижки, Кератин, Ботокс,&#10;Ламинирование, Нанопластика&#10;Еще одна строка об услугах" TextColor="#FFFFFF" MaxLines="3"/>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
-                <StackLayout Margin="20,0"> 
+                </Grid>
+                <StackLayout Margin="20,0" Spacing="0"> 
                     <Grid Margin="0,25" RowSpacing="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Text="Сообщения" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30"/>
-                        <Button Grid.Column="1" Text="Подписчики" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30"/>
+                        <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="Сообщения" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </Frame>
+                        <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="Подписаться" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </Frame>
                     </Grid>
-                    <Label Text="+7(922)783-33-11" TextColor="#505050" FontSize="14"/>
-                    <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
-                    <Label Text="Москва, ул.Петразоводская, 12" TextColor="#505050" FontSize="14"/>
-                    <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
-                    <Label Text="10:00 — 18:00" TextColor="#505050" FontSize="14"/>
-                    <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
-                    <Label Text="Василий Леонидович" TextColor="#505050" FontSize="14"/>
-                    <BoxView BackgroundColor="#bab3af" HeightRequest="1" Margin="0,0,0,35"/>
-                    <Frame BackgroundColor="#FFFFFF" HeightRequest="23" WidthRequest="85" CornerRadius="40" IsClippedToBounds="True" Padding="0" BorderColor="#9A9A9A" Margin="0,0,0,65" HorizontalOptions="Start">
-                        <Label Text="Кератин" TextColor="#9A9A9A" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontFamily="Lato"></Label>
+                    <Label Text="+7(922)783-33-11" TextColor="#505050" Margin="10,0"/>
+                    <BoxView/>
+                    <Label Text="Москва, ул.Петразоводская, 12" TextColor="#505050" Margin="10,0"/>
+                    <BoxView/>
+                    <Label Text="10:00 — 18:00" TextColor="#505050" Margin="10,0"/>
+                    <BoxView/>
+                    <Label Text="Василий Леонидович" TextColor="#505050" Margin="10,0"/>
+                    <BoxView Margin="0,0,0,40"/>
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A" Margin="0,0,0,65" HorizontalOptions="Start">
+                        <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                     </Frame>
-                    <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" FontSize="14" FontFamily="Lato" TextDecorations="Underline" Margin="0,0,0,36"></Label>
-                    <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="16" FontFamily="Montserrat"></Label>
-                    <StackLayout Orientation="Horizontal" Spacing="5" Margin="0,10">
-                        <Image Source="vkred_business.png"></Image>
-                        <Image Source="instred_business.png"></Image>
-                        <Image Source="facebookred_business.png"></Image>
-                        <Image Source="ok_logo.png"></Image>
+                    <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" TextDecorations="Underline" Margin="0,0,0,35"/>
+                    <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,10"/>
+                    <StackLayout Orientation="Horizontal" Spacing="20" Margin="0,0,0,15">
+                        <Image Source="ic_vk_red_4x.png" WidthRequest="30"/>
+                        <Image Source="ic_inst_red_4x.png" WidthRequest="30"/>
+                        <Image Source="ic_face_red_4x.png" WidthRequest="30"/>
+                        <Image Source="ic_odn_red_4x.png" WidthRequest="30"/>
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Портфолио" TextColor="#000000" FontSize="16" FontFamily="Roboto" HorizontalOptions="Start"></Label>
-                            <Image Source="More.png" HorizontalOptions="EndAndExpand"></Image>
+                            <Label Text="Портфолио" TextColor="#000000" FontSize="Body" FontFamily="Roboto" HorizontalOptions="Start"/>
+                            <Image Source="More.png" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" Margin="0,10" HorizontalOptions="Start">
-                            <Image Source="longhair.png" Aspect="AspectFit"></Image>
+                            <Image Source="longhair.png" Aspect="AspectFit"/>
                         </Frame>
                     </StackLayout>
                 </Frame>

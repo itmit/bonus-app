@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ViewCells.NewsViewCell">
+  <ViewCell.View>
+      <!--Ячейка для списка мои новости у предпринимателя-->
+      <StackLayout Margin="5,25,5,10">
+          <StackLayout Orientation="Horizontal" Spacing="20">
+              <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True">
+                  <Image Source="girl.png" Aspect="AspectFill" HeightRequest="55" WidthRequest="60"/>
+              </Frame>
+              <StackLayout>
+                  <Label Text="Важная новость" TextColor="#505050" FontSize="Body" MaxLines="1"/>
+                  <Label Text="27.09.2019" TextColor="Gray"/>
+              </StackLayout>
+          </StackLayout>
+          <Label Text="Акция на пакет XL, при покупке до конца&#10;недели, (даже при действующем пакете услуг)&#10;на последующием месяца, торопитесь" TextColor="#110000" Opacity="0.7" MaxLines="3"/>
+          <StackLayout.GestureRecognizers>
+              <TapGestureRecognizer/>
+          </StackLayout.GestureRecognizers>
+      </StackLayout>
+    </ViewCell.View>
+</ViewCell>

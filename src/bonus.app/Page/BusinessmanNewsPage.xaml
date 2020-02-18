@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanNewsPage"
              Title="Новости"
@@ -17,25 +18,7 @@
             </ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Margin="5,25,5,10">
-                            <StackLayout Orientation="Horizontal" Spacing="20">
-                                <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True">
-                                    <Image Source="girl.png" Aspect="AspectFill" HeightRequest="56" WidthRequest="58"></Image>
-                                </Frame>
-                                <StackLayout>
-                                    <Label Text="Важная новость" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
-                                    <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
-                                </StackLayout>
-                            </StackLayout>
-                            <Label Text="Акция на пакет XL, при покупке до конца
-                                         недели, (даже при действующем пакете услуг)
-                                         на последующием месяца, торопитесь" TextColor="#110000" Opacity="0.7" FontSize="14" FontFamily="Lato"></Label>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </ViewCell>
+                    <viewCells:NewsViewCell/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

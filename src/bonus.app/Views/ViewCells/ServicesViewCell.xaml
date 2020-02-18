@@ -4,41 +4,45 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.ServicesViewCell">
   <ViewCell.View>
-        <StackLayout Margin="25,0,0,15" Spacing="0">
+        <StackLayout Margin="0,0,0,15" Spacing="0">
             <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer/>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
             </StackLayout.GestureRecognizers>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                <Label Text="Парикмахерские"/>
-                <Image Source="Shape.png"
+                <Label Text="Парикмахерские" Margin="20,0,0,0"/>
+                <Image x:Name="Shape"
+                    Source="Shape.png"
                      WidthRequest="15"
-                     x:Name="Shape"
                      VerticalOptions="Center"
                      HorizontalOptions="EndAndExpand"
                      Rotation="0"/>
             </StackLayout>
             <BoxView/>
 
-            <!--<views:MvxListView
-              IsVisible="False"
-              IsEnabled="False"
-              x:Name="ViewServices"
-              HasUnevenRows="True"
-              VerticalOptions="FillAndExpand"
-              HorizontalOptions="FillAndExpand">
-
-                <views:MvxListView.ItemsSource>
-                    <x:String>000000</x:String>
-                </views:MvxListView.ItemsSource>
-
-                <views:MvxListView.ItemTemplate>
+            <controls:RepeaterView
+                IsVisible="False"
+                IsEnabled="False"
+                x:Name="ViewServices"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <controls:RepeaterView.ItemTemplate>
                     <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="Парикмахерские" Margin="50,20,5,15" HorizontalOptions="FillAndExpand"/>
+                                <BoxView Margin="35,0,0,0"/>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
-                </views:MvxListView.ItemTemplate>
-            </views:MvxListView>-->
+                </controls:RepeaterView.ItemTemplate>
+            </controls:RepeaterView>
         </StackLayout>
     </ViewCell.View>
 </ViewCell>

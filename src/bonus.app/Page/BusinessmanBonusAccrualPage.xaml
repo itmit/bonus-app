@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:BusinessmanBonusAccrualViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanBonusAccrualPage"
              BackgroundColor="#9C938D"
@@ -11,13 +13,15 @@
     <ContentPage.Content>
         <!-- Страница 7.1 Начисление бонусов начальная -->
         <ScrollView>
-            <StackLayout Margin="25,0">
-                <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="24" Margin="0,15,0,0" TextColor="White" FontAttributes="Bold" FontFamily="Montserrat"/>
-                <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" FontSize="16"/>
-                <Image Source="qrcode.png" HorizontalOptions="Center" Margin="0,15"/>
-                <Entry WidthRequest="300" BackgroundColor="#bab3af" Margin="0,15"></Entry>
-                <Button Text="Далее" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" WidthRequest="300" HorizontalOptions="Center" Clicked="Button_Clicked"/>
+            <StackLayout Margin="30,0" Spacing="0">
+                <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large" Margin="0,35,0,10" TextColor="White" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+                <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
+                <Image Source="qrcode.png" HorizontalOptions="Center" Margin="0,0,0,25"/>
+                <Frame Margin="0,0,0,20" CornerRadius="40" IsClippedToBounds="True" Padding="0">
+                    <Entry WidthRequest="300" BackgroundColor="#bab3af"/>
+                </Frame>
+                <Button Text="Далее" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" WidthRequest="300" HorizontalOptions="Center" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

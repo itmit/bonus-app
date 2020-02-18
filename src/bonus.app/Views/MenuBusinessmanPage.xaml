@@ -12,14 +12,9 @@
     <ContentPage.Resources>
         <!-- Страница 3 Меню предпринимателя -->
         <ResourceDictionary>
-            <Style x:Key="labelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#FFFFFF"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontFamily" Value="Lato"/>
-            </Style>
             <Style x:Key="image" TargetType="Image">
-                <Setter Property="WidthRequest" Value="24"/>
-                <Setter Property="HeightRequest" Value="24"/>
+                <Setter Property="WidthRequest" Value="18"/>
+                <Setter Property="HeightRequest" Value="18"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
         </ResourceDictionary>
@@ -27,14 +22,14 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20,0" Spacing="0">
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,65" Spacing="10">
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,45,0,65">
                     <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65"/>
-                    <Image Source="pic_mandb.png" WidthRequest="60" HeightRequest="20" HorizontalOptions="Center"/>
+                    <Label Text="B&amp;M" FontSize="Title" TextColor="White"/>
                 </StackLayout>
-                <Grid RowSpacing="35" Margin="0,0,0,160" ColumnSpacing="15">
+                <Grid RowSpacing="35" Margin="0,0,0,10" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -46,36 +41,36 @@
                     </Grid.RowDefinitions>
                     <Image Source="ic_profile_w.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="0"/>
                     <Image Source="ic_rub.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="1"/>
-                    <Image Source="tarif.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="2"/>
+                    <Image Source="ic_tarif_4x.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="2"/>
                     <Image Source="ic_support.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="3"/>
-                    <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="4"/>
-                    <Image Source="statistic.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="5"/>
-                    <Label Text="Профиль" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="0">
+                    <Image Source="ic_statistic_4x.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="4"/>
+                    <Image Source="ic_input.png" Style="{StaticResource image}" Grid.Column="0" Grid.Row="5"/>
+                    <Label Text="Профиль" TextColor="White" Grid.Column="1" Grid.Row="0">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Оплата" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="1">
+                    <Label Text="Оплата" TextColor="White" Grid.Column="1" Grid.Row="1">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Тарифы" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="2">
+                    <Label Text="Тарифы" TextColor="White" Grid.Column="1" Grid.Row="2">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Тех. поддержка" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="3">
+                    <Label Text="Тех. поддержка" TextColor="White" Grid.Column="1" Grid.Row="3">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Статистика" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="4">
+                    <Label Text="Статистика" TextColor="White" Grid.Column="1" Grid.Row="4">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Выход" Style="{StaticResource labelStyle}" Grid.Column="1" Grid.Row="5"/>
+                    <Label Text="Выход" TextColor="White" Grid.Column="1" Grid.Row="5"/>
                 </Grid>
                 <local:IconView/>
             </StackLayout>
