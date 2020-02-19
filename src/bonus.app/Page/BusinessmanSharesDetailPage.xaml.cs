@@ -1,12 +1,14 @@
 ﻿using System;
+using bonus.app.Core.ViewModels;
 using bonus.app.Page;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BusinessmanSharesDetailPage : ContentPage
+    public partial class BusinessmanSharesDetailPage : MvxContentPage<BusinessmanSharesDetailViewModel>
     {
         public BusinessmanSharesDetailPage()
         {
@@ -41,7 +43,9 @@ namespace bonus.app.Core.Page
             ToolbarItems.Add(toolBar1);
             ToolbarItems.Add(toolBar2);
 
-        }
+			TextSpan.Text = "Отклонена";
+            ChangeBackground(TextSpan.Text);
+		}
 
         private void ToolBar2_Clicked(object sender, EventArgs e)
         {
@@ -56,6 +60,22 @@ namespace bonus.app.Core.Page
         private void ToolBar_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CreateStockPage());
+        }
+
+        /// <summary>
+        /// Меняет цвет у страницы в зависимости от статуса акции
+        /// </summary>
+        /// <param name="status">статус акции</param>
+        private void ChangeBackground(string status)
+        {
+			if (status.Equals("Завершена"))
+			{
+				ContentPageBackground.BackgroundColor = Color.FromHex("#807D746D");
+			}
+            else if (status.Equals("Отклонена"))
+			{
+				ContentPageBackground.BackgroundColor = Color.FromHex("#80BB8D91");
+			}
         }
     }
 }

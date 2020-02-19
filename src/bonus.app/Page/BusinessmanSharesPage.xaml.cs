@@ -45,9 +45,9 @@ namespace bonus.app.Core.Page
             Navigation.PushAsync(new CreateStockPage());
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Core.Page.BusinessmanSharesDetailPage());
-        }
-    }
+		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+		{
+			Navigation.PushAsync(new BusinessmanSharesDetailPage());
+		}
+	}
 }

@@ -33,9 +33,6 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Spacing="0">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </StackLayout.GestureRecognizers>
                                 <Label Text="Парикмахерские" Margin="50,20,5,15" HorizontalOptions="FillAndExpand"/>
                                 <BoxView Margin="35,0,0,0"/>
                             </StackLayout>

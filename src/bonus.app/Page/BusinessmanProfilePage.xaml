@@ -6,18 +6,22 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.BusinessmanProfilePage"
-             Title="Профиль">
+             x:Class="bonus.app.Core.Page.BusinessmanProfilePage">
     
     <views:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Редактировать профиль" Order="Secondary"/>
     </views:MvxContentPage.ToolbarItems>
+
+    <NavigationPage.TitleView>
+        <Label Text="Профиль" FontSize="Large" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--Страница 3. Профиль предпринимателя-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout>
-                <Grid>
-                    <Image Source="pic_rectangle_4x.png" WidthRequest="125"/>
+                <Grid HorizontalOptions="Center">
+                    <Image Source="pic_rectangle_4x.png" HeightRequest="125"/>
                     <StackLayout Orientation="Horizontal" Padding="5,5">
                         <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" Margin="15,15">
                             <Image Source="business_logos.png" Aspect="AspectFill"/>
@@ -79,7 +83,7 @@
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Портфолио" TextColor="#000000" FontSize="Body" FontFamily="Roboto" HorizontalOptions="Start"/>
-                            <Image Source="More.png" HorizontalOptions="EndAndExpand"/>
+                            <ImageButton Source="ic_more_4x.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="12"/>
                         </StackLayout>
                         <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" Margin="0,10" HorizontalOptions="Start">
                             <Image Source="longhair.png" Aspect="AspectFit"/>

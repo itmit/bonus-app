@@ -18,9 +18,6 @@
               </StackLayout>
           </StackLayout>
           <Label Text="Акция на пакет XL, при покупке до конца&#10;недели, (даже при действующем пакете услуг)&#10;на последующием месяца, торопитесь" TextColor="#110000" Opacity="0.7" MaxLines="3"/>
-          <StackLayout.GestureRecognizers>
-              <TapGestureRecognizer/>
-          </StackLayout.GestureRecognizers>
       </StackLayout>
     </ViewCell.View>
 </ViewCell>

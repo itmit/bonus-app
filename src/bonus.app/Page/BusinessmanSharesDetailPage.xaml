@@ -1,26 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:BusinessmanSharesDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanSharesDetailPage"
-             Title="Мои акции"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             x:Name="ContentPageBackground">
+    <NavigationPage.TitleView>
+        <Label Text="Мои акции" TextColor="#505050" FontSize="Large" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--5.1 Мои акции(предприниматель)-->
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="20,5">
-                <Frame Padding="0" IsClippedToBounds="True" CornerRadius="5" Margin="0,15">
+            <StackLayout Margin="20,0" Spacing="0">
+                <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="0,20">
                     <Image Source="slider_devuska1.png" Aspect="AspectFill" WidthRequest="320"/>
                 </Frame>
                 <Label Text="Салон Бигуди" TextColor="#858585"/>
-                <Label Text="Супер загар" TextColor="#505050" FontSize="Body"/>
-                <Label Text="Всю неделю до 12.00 на загар в солярии &#10;предоставляем бонус 25% Метеорный дождь &#10;меняет поперечник. Фаза, сублимируя кометы, &#10;ничтожно иллюстрирует возмущающий фактор" TextColor="#505050"/>
+                <Label Text="Супер загар" TextColor="#505050" FontSize="Body" Margin="0,5"/>
+                <Label Text="Всю неделю до 12.00 на загар в солярии &#10;предоставляем бонус 25% Метеорный дождь &#10;меняет поперечник. Фаза, сублимируя кометы, &#10;ничтожно иллюстрирует возмущающий фактор" TextColor="#505050" Margin="0,0,0,10"/>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Статус: " TextColor="#505050" FontSize="Caption" HorizontalOptions="Start"/>
-                    <Label Text="Активна" TextColor="#505050" FontSize="Caption" HorizontalOptions="Start"/>
-                    <Label TextColor="#858585" FontSize="Caption" HorizontalOptions="EndAndExpand">
+                    <Label TextColor="#505050" FontSize="Caption" HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Статус: "/>
+                                    <Span x:Name="TextSpan"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label TextColor="#505050" FontSize="Caption" HorizontalOptions="EndAndExpand">
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
@@ -34,4 +48,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

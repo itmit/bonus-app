@@ -8,11 +8,14 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanNewsPage"
-             Title="Новости"
              NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <Label Text="Новости" TextColor="#505050" FontSize="Large" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--6. Новости(предприниматель)-->
-        <ListView Margin="15,0" HasUnevenRows="True" SelectionMode="None" VerticalScrollBarVisibility="Never">
+        <ListView Margin="15,0" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemTapped="ListView_OnItemTapped">
             <ListView.ItemsSource>
                 <x:String>000000000</x:String>
             </ListView.ItemsSource>

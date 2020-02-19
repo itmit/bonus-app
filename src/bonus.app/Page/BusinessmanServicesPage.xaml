@@ -8,9 +8,11 @@
              xmlns:viewCell="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.BusinessmanServicesPage"
-             Title="Мои услуги"
-             IconImageSource="ic_star.png">
+             x:Class="bonus.app.Core.Page.BusinessmanServicesPage">
+    <NavigationPage.TitleView>
+        <Label Text="Мои услуги" FontSize="Large" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content> 
         <!--Страница 4.2 Мои услуги(предпринимателя)-->
         <ScrollView>
@@ -86,28 +88,56 @@
                 </StackLayout>
 
                 <Label Text="Начисление бонусов" TextColor="#858585" Margin="5,0,0,0"/>
-                <StackLayout Orientation="Horizontal" Margin="5,0,5,0" Spacing="83">
-                    <Label x:Name="QuantityLabel" Text="Количество бонусов" FontSize="Micro" TextColor="Transparent"/>
-                    <Label x:Name="PercentageLabel" Text="Процент бонуса" FontSize="Micro" TextColor="Transparent"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Entry Placeholder="Количество бонусов" FontSize="14" PlaceholderColor="#505050" VerticalOptions="Center" BackgroundColor="Transparent" Keyboard="Numeric" TextColor="#505050" Focused="VisualElement_OnFocused" Unfocused="VisualElement_OnUnfocused"/>
-                    <Label Text="или" VerticalOptions="Center"/>
-                    <Entry Placeholder="Процент бонусов" FontSize="14" PlaceholderColor="#505050" VerticalOptions="Center" BackgroundColor="Transparent" Keyboard="Numeric" TextColor="#505050" Focused="VisualElement_OnFocused1" Unfocused="VisualElement_OnUnfocused1"/>
-                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry Grid.Column="0" Placeholder="Количество бонусов"
+                           FontSize="14"
+                           PlaceholderColor="#505050"
+                           VerticalOptions="Center"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           TextColor="#505050"
+                           Visual="Material"/>
+                    <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
+                    <Entry Grid.Column="2" Placeholder="Процент бонусов"
+                           FontSize="14"
+                           PlaceholderColor="#505050"
+                           VerticalOptions="Center"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           TextColor="#505050"
+                           Visual="Material"/>
+                </Grid>
 
                 <BoxView Margin="0,0,0,15"/>
 
                 <Label Text="Списание бонусов" TextColor="#858585" Margin="5,0,0,0"/>
-                <StackLayout Orientation="Horizontal" Margin="5,0,5,0" Spacing="83">
-                    <Label x:Name="DecommissioningQuantityLabel" Text="Количество бонусов" FontSize="Micro" TextColor="Transparent"/>
-                    <Label x:Name="DecommissioningPercentageLabel" Text="Процент бонуса" FontSize="Micro" TextColor="Transparent"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Entry Placeholder="Количество бонусов" FontSize="14" VerticalOptions="Center" PlaceholderColor="#505050" Keyboard="Numeric" Focused="DecommissioningQuantityLabel_OnFocused" Unfocused="DecommissioningQuantityLabel_OnUnfocused"/>
-                    <Label Text="или" VerticalOptions="Center"/>
-                    <Entry Placeholder="Процент бонусов" FontSize="14" VerticalOptions="Center" PlaceholderColor="#505050" Keyboard="Numeric" Focused="DecommissioningPercentageLabel_OnFocused" Unfocused="DecommissioningPercentageLabel_OnUnfocused"/>
-                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Entry Grid.Column="0" Placeholder="Количество бонусов"
+                           FontSize="14"
+                           VerticalOptions="Center"
+                           PlaceholderColor="#505050"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           Visual="Material"/>
+                    <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
+                    <Entry Grid.Column="2" Placeholder="Процент бонусов"
+                           FontSize="14"
+                           VerticalOptions="Center"
+                           PlaceholderColor="#505050"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           Visual="Material"/>
+                </Grid>
 
                 <BoxView/>
 

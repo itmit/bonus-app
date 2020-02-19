@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:BusinessmanBonusAccrualDetailsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanBonusAccrualDetails"
              NavigationPage.HasBackButton="False"
@@ -11,7 +13,7 @@
              BackgroundColor="#9C938D">
     <ContentPage.Content>
         <!-- Страница 7.2 Начисление бонусов детальная-->
-        <ScrollView>
+        <ScrollView Margin="0,0,0,5">
             <StackLayout Margin="30,0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
@@ -22,11 +24,14 @@
                             <Setter Property="CursorPosition" Value="0"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                            <Setter Property="Keyboard" Value="Numeric"/>
                         </Style>
                         <Style x:Key="Frame" TargetType="Frame">
                             <Setter Property="Padding" Value="0"/>
                             <Setter Property="IsClippedToBounds" Value="True"/>
                             <Setter Property="CornerRadius" Value="40"/>
+                            <Setter Property="Padding" Value="0,-5"/>
+                            <Setter Property="HasShadow" Value="False"/>
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
@@ -49,26 +54,45 @@
                         </Label>
                     </StackLayout>
                 </StackLayout>
+                <Grid>
+                    <Frame Style="{StaticResource Frame}">
+                        <Picker Title="Вид услуги" BackgroundColor="#bab3af" TitleColor="White" TextColor="White" FontFamily="Lato-Regular.ttf#Lato-Regular" Visual="Material">
+                            <Picker.Items>
+                                <x:String>Стрижка</x:String>
+                                <x:String>Массаж</x:String>
+                                <x:String>Маникюр</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Frame>
+                    <Image Source="ic_shape_4x.png" WidthRequest="10" HeightRequest="5" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,20,0"/>
+                </Grid>
+                
+                <Frame Style="{StaticResource Frame}" Margin="0,10">
+                    <Grid BackgroundColor="#bab3af" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Entry Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="или" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Body"/>
+                        <Entry Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
                 <Frame Style="{StaticResource Frame}">
-                    <controls:EntryAuthPage Placeholder="Вид услуги" Style="{StaticResource Entry}"/>
+                    <Entry Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <controls:EntryAuthPage Placeholder="Количество бонусов" Style="{StaticResource Entry}"/>
+                    <Entry Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}">
-                    <controls:EntryAuthPage Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}"/>
+                    <Entry Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <controls:EntryAuthPage Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}"/>
+                    <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
-                <Frame Style="{StaticResource Frame}">
-                    <controls:EntryAuthPage Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}"/>
-                </Frame>
-                <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <controls:EntryAuthPage Placeholder="Начислить бонусов" Style="{StaticResource Entry}"/>
-                </Frame>
-                <Button Text="Начислить бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" WidthRequest="300" HorizontalOptions="Center" Clicked="Button_Clicked"/>
+                <Button Text="Начислить бонусы" BackgroundColor="#bab3af" TextColor="White" FontFamily="Lato-Regular.ttf#Lato-Regular" CornerRadius="40" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

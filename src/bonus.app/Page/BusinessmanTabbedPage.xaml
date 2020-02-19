@@ -16,28 +16,31 @@
     <views:MvxTabbedPage.SelectedTabColor>
         <Color>#BB8D91</Color>
     </views:MvxTabbedPage.SelectedTabColor>
+    <views:MvxTabbedPage.UnselectedTabColor>
+        <Color>#6C6C6C</Color>
+    </views:MvxTabbedPage.UnselectedTabColor>
 
-    <NavigationPage>
+    <NavigationPage Title="Профиль" IconImageSource="ic_profile.png">
         <x:Arguments>
             <page:BusinessmanProfilePage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage>
+    <NavigationPage Title="Услуги" IconImageSource="ic_star.png">
         <x:Arguments>
             <page:BusinessmanServicesPage/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage>
+    <NavigationPage Title="Акции" IconImageSource="ic_stock.png">
       <x:Arguments>
             <page:BusinessmanSharesPage/>
       </x:Arguments>
       </NavigationPage>
-      <NavigationPage>
+    <NavigationPage Title="Новости" IconImageSource="ic_news.png">
           <x:Arguments>
             <page:BusinessmanNewsPage/>
           </x:Arguments>
       </NavigationPage>
-    <NavigationPage>
+    <NavigationPage Title="Начисления" IconImageSource="ic_charges.png">
         <x:Arguments>
             <page:BusinessmanBonusAccrualPage/>
         </x:Arguments>
