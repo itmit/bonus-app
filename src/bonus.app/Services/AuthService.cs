@@ -27,6 +27,9 @@ namespace bonus.app.Core.Services
 				cfg.CreateMap<UserDto, User>()
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
+				cfg.CreateMap<UserInfoDto, User>()
+				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
+				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 		}
 
@@ -116,6 +119,14 @@ namespace bonus.app.Core.Services
 
 				if (response.IsSuccessStatusCode)
 				{
+					if (data.Success)
+					{
+						var userInfo = _mapper.Map<User>(data.Data.Client);
+						var user = _mapper.Map<User>(data.Data);
+						userInfo.AccessToken = user.AccessToken;
+						return userInfo;
+					}
+
 					return _mapper.Map<User>(data.Data);
 				}
 

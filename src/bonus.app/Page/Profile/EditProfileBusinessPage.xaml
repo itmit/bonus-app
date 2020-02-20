@@ -5,59 +5,144 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Profile;assembly=bonus.app.Core"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+             xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="bonus.app.Core.Page.Profile.EditProfileBusinessPage"
              Title="Редактор профиля"
              NavigationPage.HasBackButton="False">
     <ContentPage.Content>
         <!--3.2 Страница редактирования профиля предпринимателя-->
-        <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="20,5" Spacing="0">
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="Entry" TargetType="Entry">
-                            <Setter Property="PlaceholderColor" Value="#505050"/>
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="FontSize" Value="14"/>
-                        </Style>
-                        <Style x:Key="BoxView" TargetType="BoxView">
-                            <Setter Property="BackgroundColor" Value="#CCCCCC"/>
-                            <Setter Property="HeightRequest" Value="1"/>
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
-                <Picker Title="Страна" TitleColor="#505050" TextColor="#505050" FontFamily="Lato" FontSize="14">
-                    <Picker.Items>
-                        <x:String>Россия</x:String>
-                        <x:String>Украина</x:String>
-                        <x:String>Беларусь</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Entry Placeholder="Адрес" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Режим работы" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Контактное лицо" Style="{StaticResource Entry}"></Entry>
-                <Entry Placeholder="Номер телефона" Style="{StaticResource Entry}"></Entry>
-                <Editor Placeholder="Описание (расскажите об услугах)" FontFamily="Lato" FontSize="14" TextColor="#505050" PlaceholderColor="#505050" HeightRequest="120" AutoSize="TextChanges"></Editor>
-                <StackLayout Orientation="Horizontal" Margin="5,10">
-                    <Label Text="Установите логотип вашей компании" HorizontalOptions="Start"></Label>
-                    <Image Source="icon_photo.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
+        <StackLayout>
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="Label" TargetType="Label">
+                        <Setter Property="FontSize" Value="Body"/>
+                        <Setter Property="Margin" Value="10,0"/>
+                        <Setter Property="VerticalOptions" Value="Center"/>
+                        <Setter Property="VerticalTextAlignment" Value="Center"/>
+                    </Style>
+                    <Style x:Key="Entry" TargetType="Entry">
+                        <Setter Property="TextColor" Value="#505050"/>
+                        <Setter Property="FontFamily" Value="Lato"/>
+                        <Setter Property="Keyboard" Value="Chat"/>
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Margin="10,0">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cell_OnTapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
+                        <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />
                 </StackLayout>
-                <BoxView Style="{StaticResource BoxView}"></BoxView>
-                <StackLayout Orientation="Horizontal" Margin="5,10">
-                    <Label Text="Портфолио" HorizontalOptions="Start"></Label>
-                    <Image Source="Frame.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                </StackLayout>
-                <BoxView Style="{StaticResource BoxView}"></BoxView>
-                <StackLayout Orientation="Horizontal" Margin="5,10">
-                    <Frame Padding="0" IsClippedToBounds="True" HorizontalOptions="Start" CornerRadius="5" HeightRequest="27" WidthRequest="44">
-                        <Image Source="girl.png" Aspect="AspectFill"></Image>
-                    </Frame>
-                    <Label Text="Фото 1"></Label>
-                    <Image Source="krest.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"></Image>
-                </StackLayout>
-                <BoxView Style="{StaticResource BoxView}"></BoxView>
-                <Button Text="СОХРАНИТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,10" Clicked="Button_Clicked"/>
-            </StackLayout>
-        </ScrollView>
+
+                <views:MvxListView
+                        Grid.Row="1"
+                        IsVisible="False"
+                        IsEnabled="False"
+                        x:Name="Countries"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding Countries}"
+                        SelectedItem="{Binding SelectedCountry}"
+                        ItemSelected="Countries_OnItemSelected"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                    <views:MvxListView.ItemTemplate>
+                        <DataTemplate>
+                            <viewCells:CountryCityViewCell/>
+                        </DataTemplate>
+                    </views:MvxListView.ItemTemplate>
+                </views:MvxListView>
+
+                <Grid Grid.Row="1" x:Name="Grid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout x:Name="City" IsVisible="False" Margin="10,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                            <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" Style="{StaticResource Label}"/>
+                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
+                    </StackLayout>
+
+                    <views:MvxListView
+                        Grid.Row="1"
+                        IsVisible="False"
+                        IsEnabled="False"
+                        x:Name="Cities"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding Cities}"
+                        SelectedItem="{Binding SelectedCity}"
+                        ItemAppearing="Cities_OnItemAppearing"
+                        ItemSelected="OnSelectCity"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                        <views:MvxListView.ItemTemplate>
+                            <DataTemplate>
+                                <viewCells:CountryCityViewCell/>
+                            </DataTemplate>
+                        </views:MvxListView.ItemTemplate>
+                    </views:MvxListView>
+
+                    <StackLayout Grid.Row="1" x:Name="Layout" Margin="10,0">
+                        <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес" BackgroundColor="Transparent"/>
+                        <Label Text="{Binding Errors[address]}" IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+
+                        <Entry Text="{Binding WorkingMode}"
+                               Style="{StaticResource Entry}"
+                               Placeholder="Режим работы"
+                               Keyboard="Numeric"
+                               BackgroundColor="Transparent">
+                            <Entry.Behaviors>
+                                <behaviors:MaskedBehavior Mask="XX.XX-XX.XX"/>
+                            </Entry.Behaviors>
+                        </Entry>
+
+                        <Entry Style="{StaticResource Entry}"
+                               Placeholder="Контактное лицо"
+                               Text="{Binding ContactPerson}"
+                               BackgroundColor="Transparent"/>
+
+                        <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}" Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
+                            <Entry.Behaviors>
+                                <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="{Binding Errors[phoneNumber]}" IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+
+                        <StackLayout>
+                            <Label Text="Установите фотографию профиля" FontSize="12" Margin="15,0" Style="{StaticResource Label}"/>
+                            <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                <Image Source="icon_photo.png" Aspect="AspectFit" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
+                        </StackLayout>
+
+                        <Button Text="СОХРАНИТЬ" Command="{Binding EditCommand}" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5"/>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

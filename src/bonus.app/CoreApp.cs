@@ -28,8 +28,6 @@ namespace bonus.app.Core
 				.AsInterfaces()
 				.RegisterAsDynamic();
 
-			RegisterAppStart<MainBusinessmanViewModel>();
-			/*
 			var firstRun = Preferences.Get("FirstRun", "true");
 			if (firstRun.Equals("true"))
 			{
@@ -47,9 +45,14 @@ namespace bonus.app.Core
 				RegisterAppStart<AuthorizationViewModel>();
 				return;
 			}
-
-			RegisterAppStart<MainBusinessmanViewModel>();
-			*/
+			if (user.Role == UserRole.Businessman)
+			{
+				RegisterAppStart<MainBusinessmanViewModel>();
+			}
+			if (user.Role == UserRole.Customer)
+			{
+				RegisterAppStart<MainCustomerViewModel>();
+			}
 		}
 	}
 }

@@ -35,7 +35,6 @@ namespace bonus.app.Core.Page.Auth
 			Navigation.PushPopupAsync(new SuccessRegisterPopupPage(ViewModel));
 		}
 
-
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
 			if (PinCode.IsPassword)

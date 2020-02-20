@@ -2,12 +2,18 @@
 using bonus.app.Core.Models;
 using Newtonsoft.Json;
 
-namespace bonus.app.Core.Dto
+namespace bonus.app.Core.Dtos
 {
 	public class UserDto
 	{
 		[JsonProperty("uuid")]
 		public Guid Guid
+		{
+			get;
+			set;
+		}
+
+		public UserInfoDto Client
 		{
 			get;
 			set;

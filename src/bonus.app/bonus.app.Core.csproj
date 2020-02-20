@@ -34,8 +34,8 @@
     <Compile Update="Page\Auth\CustomerRegistrationPage.xaml.cs">
       <DependentUpon>CustomerRegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\EntrepreneurRegistrationPage.xaml.cs">
-      <DependentUpon>EntrepreneurRegistrationPage.xaml</DependentUpon>
+    <Compile Update="Page\Auth\BusinessmanRegistrationPage.xaml.cs">
+      <DependentUpon>BusinessmanRegistrationPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Page\BusinessmanSharesDetailPage.xaml.cs">
       <DependentUpon>BusinessmanSharesDetailPage.xaml</DependentUpon>
@@ -169,7 +169,7 @@
     <EmbeddedResource Update="Page\Auth\PublicOfferPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\EntrepreneurRegistrationPage.xaml">
+    <EmbeddedResource Update="Page\Auth\BusinessmanRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\RecoveryDetailPage.xaml">

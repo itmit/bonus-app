@@ -59,7 +59,7 @@ namespace bonus.app.Core.ViewModels.Auth
 							_navigationService.Navigate<CustomerRegistrationViewModel>();
 							break;
 						case UserRole.Businessman:
-							_navigationService.Navigate<EntrepreneurRegistrationViewModel>();
+							_navigationService.Navigate<BusinessmanRegistrationViewModel>();
 							break;
 					}
 				}, () => CanRegister);

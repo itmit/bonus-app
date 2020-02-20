@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="auth:EntrepreneurRegistrationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="auth:BusinessmanRegistrationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,15 +8,16 @@
              mc:Ignorable="d"
              Visual="Material"
              Title="Регистрация"
-             x:Class="bonus.app.Core.Page.Auth.EntrepreneurRegistrationPage">
+             x:Class="bonus.app.Core.Page.Auth.BusinessmanRegistrationPage">
     <ContentPage.Content>
         <!--Страница 1.1 Регистрация предпринимателя-->
         <ScrollView>
-            <StackLayout Margin="15,0" Spacing="0">
+            <StackLayout Margin="15,20" Spacing="0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style TargetType="Entry">
                             <Setter Property="PlaceholderColor" Value="#505050"/>
+                            <Setter Property="Visual" Value="Material"/>
                             <Setter Property="TextColor" Value="#505050"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="BackgroundColor" Value="Transparent"/>
@@ -25,16 +26,17 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
                 <Entry Text="{Binding Login}" Placeholder="Логин"/>
-                <Label Text="{Binding Errors.Login}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding MasterName}" Placeholder="Торговое название или имя мастера"/>
-                <Label Text="{Binding Errors.MasterName}" IsVisible="{Binding Errors.MasterName, Converter={StaticResource NullToBoolConverter}}"/>
+                <Label Text="{Binding Errors[login]}" IsVisible="{Binding Errors[login], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                <Entry Text="{Binding Name}" Placeholder="Торговое название или имя мастера"/>
+                <Label Text="{Binding Errors[name]}" IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                 <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail"/>
-                <Label Text="{Binding Errors.Email}" IsVisible="{Binding Errors.Email, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding Password}" Placeholder="Пароль" IsPassword="True"/>
-                <Label Text="{Binding Errors.Password}" IsVisible="{Binding Errors.Login, Converter={StaticResource NullToBoolConverter}}"/>
-                <Entry Text="{Binding ConfirmPassword}" Placeholder="Повторите пароль" IsPassword="True"/>
+                <Label Text="{Binding Errors[email]}" IsVisible="{Binding Errors[email], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Пароль"/>
+                <Label Text="{Binding Errors[password]}" IsVisible="{Binding Errors[password], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль"/>
+
                 <Grid>
-                    <Entry Text="{Binding PinCode}" x:Name="PinCode" IsPassword="True"  Placeholder="Код из 4 цифр для быстрого входа" MaxLength="4" Keyboard="Numeric"/>
+                    <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True" Placeholder="Код из 4 цифр для быстрого входа"/>
 
                     <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
                         <Image.GestureRecognizers>
@@ -42,8 +44,8 @@
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
-                <Label Text="{Binding Errors.PinCode, Converter={StaticResource NullToBoolConverter}}"/>
-                <Button Command="{Binding RegistrationCommand}" Text="Зарегистрироваться" Style="{StaticResource AppButton}"/>
+
+                <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding RegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

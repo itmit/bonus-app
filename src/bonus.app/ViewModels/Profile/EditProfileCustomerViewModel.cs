@@ -27,6 +27,7 @@ namespace bonus.app.Core.ViewModels.Profile
 		public EditProfileCustomerViewModel(IUserRepository userRepository, IMvxNavigationService navigationService, IGeoHelperService geoHelperService, IProfileService customerProfileService)
 			: base(userRepository, navigationService, geoHelperService)
 		{
+			_userRepository = userRepository;
 			_navigationService = navigationService;
 			_customerProfileService = customerProfileService;
 			IsFemale = true;
@@ -39,6 +40,7 @@ namespace bonus.app.Core.ViewModels.Profile
 		private string _car = "";
 		private EditProfileViewModelArguments _parameter;
 		private readonly IUserRepository _userRepository;
+
 		public MvxCommand EditCommand
 		{
 			get
@@ -105,14 +107,20 @@ namespace bonus.app.Core.ViewModels.Profile
 				arg.Sex = "male";
 			}
 
+			User user = null;
 			try
 			{
-				var user = await _customerProfileService.Edit(arg, null);
+				user = await _customerProfileService.Edit(arg, null);
 				_userRepository.Add(user);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
+			}
+
+			if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
+			{
+				await _navigationService.Navigate<MainCustomerViewModel>();
 			}
 		}
 

@@ -9,31 +9,12 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EntrepreneurRegistrationPage : MvxContentPage<EntrepreneurRegistrationViewModel>
+    public partial class BusinessmanRegistrationPage : MvxContentPage<BusinessmanRegistrationViewModel>
     {
-		private bool _isFirstAppearing = true;
-
-		public EntrepreneurRegistrationPage()
+		public BusinessmanRegistrationPage()
         {
             InitializeComponent();
         }
-
-		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
-		/// <remarks>To be added.</remarks>
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-			if (_isFirstAppearing)
-			{
-				ViewModel.AfterRegister += ViewModelOnAfterRegister;
-				_isFirstAppearing = false;
-			}
-		}
-
-		private void ViewModelOnAfterRegister()
-		{
-			Navigation.PushPopupAsync(new SuccessRegisterPopupPage(ViewModel));
-		}
 
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
