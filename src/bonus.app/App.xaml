@@ -54,6 +54,12 @@
                 <Setter Property="BackgroundColor" Value="#CCCCCC"/>
                 <Setter Property="HeightRequest" Value="1"/>
             </Style>
+            <!--Стиль для NavigationPage-->
+            <Style x:Key="TitleLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#505050"/>
+                <Setter Property="FontFamily" Value="Montserrat-Bold.ttf#Montserrat-Bold"/>
+                <Setter Property="FontSize" Value="Large"/>
+            </Style>
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>

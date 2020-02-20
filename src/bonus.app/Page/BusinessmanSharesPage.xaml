@@ -11,12 +11,12 @@
              NavigationPage.HasBackButton="False"
              BackgroundColor="#C4C4C4">
     <NavigationPage.TitleView>
-        <Label Text="Мои акции" TextColor="#505050" FontSize="Large" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+        <Label Text="Мои акции" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <!--5. Мои акции(предприниматель)-->
-        <ListView VerticalScrollBarVisibility="Never" SeparatorVisibility="None" SelectionMode="None" HasUnevenRows="True" Margin="0,5" ItemTapped="ListView_OnItemTapped">
+        <ListView VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True" Margin="0,5" ItemTapped="ListView_OnItemTapped">
             <ListView.ItemsSource>
                 <x:String>0000000000000000</x:String>
             </ListView.ItemsSource>

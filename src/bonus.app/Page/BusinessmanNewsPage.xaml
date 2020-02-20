@@ -10,7 +10,7 @@
              x:Class="bonus.app.Core.Page.BusinessmanNewsPage"
              NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
-        <Label Text="Новости" TextColor="#505050" FontSize="Large" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+        <Label Text="Новости" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

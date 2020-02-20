@@ -13,7 +13,7 @@
     </views:MvxContentPage.ToolbarItems>
 
     <NavigationPage.TitleView>
-        <Label Text="Профиль" FontSize="Large" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+        <Label Text="Профиль" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

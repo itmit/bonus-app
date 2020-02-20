@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanServicesPage">
     <NavigationPage.TitleView>
-        <Label Text="Мои услуги" FontSize="Large" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+        <Label Text="Мои услуги" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content> 
