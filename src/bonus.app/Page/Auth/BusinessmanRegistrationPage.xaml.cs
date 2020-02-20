@@ -15,25 +15,5 @@ namespace bonus.app.Core.Page.Auth
         {
             InitializeComponent();
         }
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			if (PinCode.IsPassword)
-			{
-				((Image)sender).Source = new FileImageSource
-				{
-					File = "ic_hide_eye.png"
-				};
-			}
-			else
-			{
-				((Image)sender).Source = new FileImageSource
-				{
-					File = "ic_eye.png"
-				};
-			}
-
-			PinCode.IsPassword = !PinCode.IsPassword;
-		}
 	}
 }

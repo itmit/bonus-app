@@ -7,7 +7,6 @@
              xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
              BackgroundColor="#9c938d"
-             Visual="Material"
              NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Core.Page.Auth.AuthorizationPage">
     <ContentPage.Content>
@@ -21,7 +20,7 @@
                     x:Name="Login"
                     Style="{StaticResource AuthAndRegEntry}"
                     Text="{Binding Login}"
-                    Placeholder="Телефон или E-mail"/>
+                    Placeholder="Телефон или E-mail" Visual="Material"/>
                 </Frame>
                 <Grid>
                     <Frame Padding="0,-3" Style="{StaticResource AuthAndRegFrame}">
@@ -30,7 +29,7 @@
                         Text="{Binding Password}"
                         Style="{StaticResource AuthAndRegEntry}"
                         Placeholder="Пароль"
-                        IsPassword="True"/>
+                        IsPassword="True" Visual="Material"/>
                     </Frame>
                     <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
                         <Image.GestureRecognizers>
@@ -40,12 +39,12 @@
                 </Grid>
                 <StackLayout Orientation = "Horizontal" Spacing="0" Margin="0,0,0,20">
                     <CheckBox x:Name="IsRemember" VerticalOptions="Center" HorizontalOptions="Start" Color="#DADADA"/>
-                    <Label Text="Запомнить" FontSize="12" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0">
+                    <Label Text="Запомнить" FontSize="Caption" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Забыли пароль?" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="12">
+                    <Label Text="Забыли пароль?" TextColor="White" HorizontalOptions="EndAndExpand" VerticalOptions="Center" FontSize="Caption">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
