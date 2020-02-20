@@ -1,18 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:TariffViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Page.TariffPage"
-             Title="Тариф">
+             x:Class="bonus.app.Page.TariffPage">
+    <NavigationPage.TitleView>
+        <Label Text="Тариф" FontSize="Large" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Resources>
         <!--Страница 9 Тариф-->
         <ResourceDictionary>
             <Style x:Key="Label" TargetType="Label">
                 <Setter Property="TextColor" Value="#505050"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="FontFamily" Value="Lato"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
         </ResourceDictionary>
@@ -20,85 +23,95 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="15,0" Spacing="0">
-                <Label Text="Тариф на 3 месяца" FontSize="16" FontAttributes="Bold" TextColor="#505050" FontFamily="Montserrat" HorizontalOptions="Center" Margin="0,20"></Label>
+                <Label Text="Тариф на 3 месяца" FontSize="Body" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" HorizontalOptions="Center" Margin="0,20"/>
                 <Grid RowSpacing="0">
-                    <Grid.Resources>
-                        <ResourceDictionary>
-                            <Style x:Key="BoxView" TargetType="BoxView">
-                                <Setter Property="BackgroundColor" Value="#CCCCCC"/>
-                                <Setter Property="HeightRequest" Value="1"></Setter>
-                            </Style>
-                        </ResourceDictionary>
-                    </Grid.Resources>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <StackLayout Orientation="Horizontal" Margin="5,10" Grid.Row="0">
-                        <Label Text="Стоимость подписки" Style="{StaticResource Label}"></Label>
-                        <Label Text="3000 руб." Style="{StaticResource Label}" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand"></Label>
+                        <Label Text="Стоимость подписки" Style="{StaticResource Label}"/>
+                        <Label Text="3000 руб." Style="{StaticResource Label}" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Body" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                    <BoxView Style="{StaticResource BoxView}" Grid.Row="1"></BoxView>
+                    <BoxView Grid.Row="1"/>
                     <StackLayout Orientation="Horizontal" Margin="5,15,5,10" Grid.Row="2">
-                        <Label Text="Акции (доступно)" Style="{StaticResource Label}"></Label>
-                        <Label Text="3" Style="{StaticResource Label}" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand"></Label>
+                        <Label Text="Акции (доступно)" Style="{StaticResource Label}"/>
+                        <Label Text="3" Style="{StaticResource Label}" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Body" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                    <BoxView Style="{StaticResource BoxView}" Grid.Row="3"></BoxView>
+                    <BoxView Grid.Row="3"/>
                     <StackLayout Orientation="Horizontal" Margin="5,15,5,10" Grid.Row="4">
-                        <Label Text="Акции (создано)" Style="{StaticResource Label}"></Label>
-                        <Label Text="2" Style="{StaticResource Label}" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand"></Label>
+                        <Label Text="Акции (создано)" Style="{StaticResource Label}"/>
+                        <Label Text="2" Style="{StaticResource Label}" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Body" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                    <BoxView Style="{StaticResource BoxView}" Grid.Row="5"></BoxView>
+                    <BoxView Grid.Row="5"/>
                     <StackLayout Orientation="Horizontal" Margin="5,15,5,10" Grid.Row="6">
-                        <Label Text="Подписка активна до" Style="{StaticResource Label}"></Label>
-                        <Label Text="03.11.2019" Style="{StaticResource Label}" FontAttributes="Bold" FontSize="16" HorizontalOptions="EndAndExpand"></Label>
-                        <Image Source="calendar.png" HorizontalOptions="End"></Image>
+                        <Label Text="Подписка активна до" Style="{StaticResource Label}"/>
+                        <Label Text="03.11.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"/>
+                        <Image Source="ic_calendar_4x.png" WidthRequest="18" HorizontalOptions="End"/>
                     </StackLayout>
-                    <BoxView Style="{StaticResource BoxView}" Grid.Row="7"></BoxView>
+                    <BoxView Grid.Row="7"/>
                 </Grid>
-                <Button Text="Продлить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,15"/>
-                <Label Text="Доступные тарифы" FontSize="16" FontAttributes="Bold" TextColor="#505050" FontFamily="Montserrat" HorizontalOptions="Center" Margin="0,15"></Label>
+                <Button Text="Продлить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" Margin="20,15" FontFamily="Lato-Regular.ttf#Lato-Regular"/>
+                <Label Text="Доступные тарифы" FontSize="Body" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" HorizontalOptions="Center" Margin="0,15"/>
                 <Frame CornerRadius="10" BackgroundColor="#1AA0968E" BorderColor="#A0968E" Margin="0,10" Padding="20" WidthRequest="320">
                     <StackLayout Spacing="5">
-                        <Label Text="Тариф на 6 месяцев" TextColor="#505050" FontSize="16" FontFamily="Montserrat" HorizontalOptions="Center"></Label>
+                        <Label Text="Тариф на 6 месяцев" TextColor="#505050" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" HorizontalOptions="Center"/>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Стоимость подписки" Style="{StaticResource Label}"></Label>
-                            <Label Text="6000 руб." Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Стоимость подписки" Style="{StaticResource Label}"/>
+                            <Label Style="{StaticResource Label}" HorizontalOptions="EndAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="6000"/>
+                                            <Span Text=" руб."/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Размещение акций" Style="{StaticResource Label}"></Label>
-                            <Label Text="6" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Размещение акций" Style="{StaticResource Label}"/>
+                            <Label Text="6" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Дополнительные опции" Style="{StaticResource Label}"></Label>
-                            <Label Text="5" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Дополнительные опции" Style="{StaticResource Label}"/>
+                            <Label Text="5" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
-                <Frame CornerRadius="10" BackgroundColor="#1AA0968E" BorderColor="#A0968E" Margin="0,10,0,20" Padding="20" WidthRequest="320">
+                <Frame CornerRadius="10" BackgroundColor="#1AA0968E" BorderColor="#A0968E" Margin="0,10" Padding="20" WidthRequest="320">
                     <StackLayout Spacing="5">
-                        <Label Text="Тариф на 12 месяцев" TextColor="#505050" FontSize="16" FontFamily="Montserrat" HorizontalOptions="Center"></Label>
+                        <Label Text="Тариф на 12 месяцев" TextColor="#505050" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" HorizontalOptions="Center"/>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Стоимость подписки" Style="{StaticResource Label}"></Label>
-                            <Label Text="10000 руб." Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Стоимость подписки" Style="{StaticResource Label}"/>
+                            <Label Style="{StaticResource Label}" HorizontalOptions="EndAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="10000"/>
+                                            <Span Text=" руб."/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Размещение акций" Style="{StaticResource Label}"></Label>
-                            <Label Text="12" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Размещение акций" Style="{StaticResource Label}"/>
+                            <Label Text="12" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Дополнительные опции" Style="{StaticResource Label}"></Label>
-                            <Label Text="5" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+                            <Label Text="Дополнительные опции" Style="{StaticResource Label}"/>
+                            <Label Text="5" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

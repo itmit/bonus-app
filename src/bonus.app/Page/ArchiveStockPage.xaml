@@ -1,35 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:ArchiveStockViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.ArchiveStockPage"
-             Title="Архив акций"
              NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <Label Text="Архив акций" TextColor="#505050" FontSize="Large" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--5.5 Архив акций-->
-        <ListView Margin="10,0,0,0" SelectionMode="None" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True">
+        <ListView Margin="10,0,0,0" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemsSource>
                 <x:String>000000000000</x:String>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" Margin="0,25,0,0">
-                            <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0">
-                                <Image Source="girl.png" Aspect="AspectFill" WidthRequest="58" HeightRequest="48"></Image>
-                            </Frame>
-                            <StackLayout>
-                                <Label Text="Салон Бигуди" TextColor="#505050" FontSize="16" FontFamily="Lato"></Label>
-                                <Label Text="Всю неделю до 12.00 на загар в
-                                       солярии предоставляем бонус 25%" TextColor="#505050" Opacity="0.7" FontSize="14" FontFamily="Lato" Margin="0,5"></Label>
-                                <BoxView BackgroundColor="#CCCCCC" HeightRequest="1" Margin="0,5"></BoxView>
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
+                    <viewCells:ArchiveStockViewCell/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>
