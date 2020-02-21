@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BuyerProfilePage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <!-- Страница 16.1.1 - 16.1.2 Профиль покупателя -->

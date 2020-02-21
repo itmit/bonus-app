@@ -18,7 +18,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <page:BuyerProfilePage Title="Профиль"/>
+                <views:MainPage/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
