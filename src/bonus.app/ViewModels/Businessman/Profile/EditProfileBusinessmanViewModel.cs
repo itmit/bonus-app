@@ -10,25 +10,36 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
 	public class EditProfileBusinessmanViewModel : BaseEditProfileViewModel
 	{
+		#region Data
+		#region Fields
+		private string _contactPerson;
 		private MvxCommand _editCommand;
+		private readonly IMvxNavigationService _navigationService;
 		private EditProfileViewModelArguments _parameter;
 		private readonly IProfileService _profileService;
-		private readonly IMvxNavigationService _navigationService;
 		private readonly IUserRepository _userRepository;
 		private string _workingMode;
-		private string _contactPerson;
+		#endregion
+		#endregion
 
-		public EditProfileBusinessmanViewModel(IUserRepository userRepository, IMvxNavigationService navigationService, IGeoHelperService geoHelperService, IProfileService profileService)
+		#region .ctor
+		public EditProfileBusinessmanViewModel(IUserRepository userRepository,
+											   IMvxNavigationService navigationService,
+											   IGeoHelperService geoHelperService,
+											   IProfileService profileService)
 			: base(userRepository, navigationService, geoHelperService)
 		{
 			_userRepository = userRepository;
 			_navigationService = navigationService;
 			_profileService = profileService;
 		}
+		#endregion
 
-		public override void Prepare(EditProfileViewModelArguments parameter)
+		#region Properties
+		public string ContactPerson
 		{
-			_parameter = parameter;
+			get => _contactPerson;
+			set => SetProperty(ref _contactPerson, value);
 		}
 
 		public MvxCommand EditCommand
@@ -45,13 +56,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			get => _workingMode;
 			set => SetProperty(ref _workingMode, value);
 		}
+		#endregion
 
-		public string ContactPerson
+		#region Overrided
+		public override void Prepare(EditProfileViewModelArguments parameter)
 		{
-			get => _contactPerson;
-			set => SetProperty(ref _contactPerson, value);
+			_parameter = parameter;
 		}
+		#endregion
 
+		#region Private
 		private async void EditCommandExecute()
 		{
 			var arg = new EditBusinessmanDto
@@ -82,5 +96,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				await _navigationService.Navigate<MainBusinessmanViewModel>();
 			}
 		}
+		#endregion
 	}
 }

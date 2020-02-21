@@ -8,7 +8,7 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Profile.EditProfileCustomerPage"
+             x:Class="bonus.app.Core.Page.Customer.Profile.EditProfileCustomerPage"
              NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
         <Label Text="Редактор профиля" Style="{StaticResource TitleLabel}"/>
