@@ -5,17 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Page;
-using bonus.app.Core.ViewModels;
-using MvvmCross.Forms.Presenters.Attributes;
-using MvvmCross.Forms.Views;
+using bonus.app.Core.Page.Customer.Profile;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxMasterDetailPagePresentation(MasterDetailPosition.Master, NoHistory = true)]
-    public partial class MenuBuyerPage : MvxContentPage<MenuBuyerViewModel>
+    public partial class MenuBuyerPage : ContentPage
     {
         public MenuBuyerPage()
         {
@@ -26,7 +23,7 @@ namespace bonus.app.Views
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new BuyerProfilePage());
+            Navigation.PushAsync(new CustomerProfilePage());
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)

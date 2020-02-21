@@ -1,15 +1,13 @@
 ﻿using System.Linq;
 using bonus.app.Core.Models;
-using bonus.app.Core.Page;
-using bonus.app.Core.Page.Auth;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Auth;
+using bonus.app.Core.ViewModels.Businessman;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace bonus.app.Core
 {

@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
+            xmlns:businessman="clr-namespace:bonus.app.Core.Page.Businessman;assembly=bonus.app.Core"
             mc:Ignorable="d"
             x:Class="bonus.app.Views.MainBusinessmanTabbedPage"
             BarBackgroundColor="White"
@@ -14,7 +15,7 @@
     <!--Нижний таб в профиле предпринимателя-->
     <NavigationPage Title="Профиль" IconImageSource="ic_profile.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <page:MainBusinessmanPage/>
+            <businessman:MainBusinessmanPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="ic_star.png" BarTextColor="Black" BarBackgroundColor="White">

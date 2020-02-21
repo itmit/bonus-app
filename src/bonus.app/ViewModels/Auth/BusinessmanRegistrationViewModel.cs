@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
+using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Profile;
 using MvvmCross.Navigation;
 using Xamarin.Forms;

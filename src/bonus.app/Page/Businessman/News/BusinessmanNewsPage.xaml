@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="news:BusinessmanNewsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+             xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Businessman.News;assembly=bonus.app.Core"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Page.BusinessmanNewsPage"
+             NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <Label Text="Новости" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!--6. Новости(предприниматель)-->
+        <ListView Margin="15,0" HasUnevenRows="True" VerticalScrollBarVisibility="Never" ItemTapped="ListView_OnItemTapped">
+            <ListView.ItemsSource>
+                <x:String>000000000</x:String>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <viewCells:NewsViewCell/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</views:MvxContentPage>
