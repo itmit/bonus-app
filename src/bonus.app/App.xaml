@@ -17,7 +17,6 @@
             <Style x:Key="ImageBonus" TargetType="Image">
                 <Setter Property="Source" Value="pic_bonus.png"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="Margin" Value="0,35,0,55"/>
                 <Setter Property="WidthRequest" Value="85"/>
             </Style>
             <Style x:Key="AuthAndRegFrame" TargetType="Frame">

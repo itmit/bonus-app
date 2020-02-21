@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="profile:CustomerProfileViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Profile;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Customer.Profile.CustomerProfilePage">
+    <NavigationPage.TitleView>
+        <Label Text="Профиль" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Редактировать профиль" Order="Secondary" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -12,34 +18,54 @@
         <!-- Страница 16.1.1 - 16.1.2 Профиль покупателя -->
         <ScrollView>
             <StackLayout Margin="25,5">
-                <Grid>
+                <Grid ColumnSpacing="15" Margin="0,0,0,25">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="bitmap"/>
-                    <StackLayout Grid.Column="1">
-                        <Label Text="@Alena_Daily" TextColor="Black" FontSize="16"/>
-                        <Label Text="Алена Дейли" TextColor="Black" FontSize="16"/>
+                    <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" CornerRadius="50" VerticalOptions="Start">
+                        <Image Source="bitmap" WidthRequest="100" HeightRequest="100"/>
+                    </Frame>
+                    <StackLayout Grid.Column="1" VerticalOptions="Start">
+                        <Label Text="@Alena_Daily" Style="{StaticResource TitleLabel}" FontSize="Body"/>
+                        <Label Text="Алена Дейли" Style="{StaticResource TitleLabel}" FontSize="Body"/>
                     </StackLayout>
                 </Grid>
-                <Grid>
+                <Grid Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Text="Сообщения" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="5,15" Clicked="Button_Clicked_1"/>
-                    <Button Grid.Column="1" Text="Подписки" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="5,15" Clicked="Button_Clicked"/>
+                    <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Сообщения" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Подписаться" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
                 </Grid>
-                <Label Text="+7(900)539-25-66" TextColor="#505050" FontSize="14"/>
-                <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
-                <Label Text="Город Москва" TextColor="#505050" FontSize="14"/>
-                <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
-                <Label Text="12.11.1989" TextColor="#505050" FontSize="14"/>
-                <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
-                <Label Text="Honda CR-V" TextColor="#505050" FontSize="14"/>
-                <BoxView BackgroundColor="#bab3af" HeightRequest="1"/>
+                <Label Text="+7(900)539-25-66" TextColor="#505050" Margin="10,0"/>
+                <BoxView/>
+                <Label Text="Город Москва" TextColor="#505050" Margin="10,0"/>
+                <BoxView/>
+                <Label Text="12.11.1989" TextColor="#505050" Margin="10,0"/>
+                <BoxView/>
+                <Label Text="Honda CR-V" TextColor="#505050" Margin="10,0"/>
+                <BoxView/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>
