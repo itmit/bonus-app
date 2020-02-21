@@ -7,8 +7,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.EditBusinessmanServicesPage"
-             NavigationPage.HasBackButton="False">
+             x:Class="bonus.app.Core.Page.EditBusinessmanServicesPage">
     <NavigationPage.TitleView>
         <Label Text="Редактор мои услуги" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
@@ -36,11 +35,14 @@
                                     </Label>
                                 </StackLayout>
                                 <BoxView/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </DataTemplate>
                     </controls:RepeaterView.ItemTemplate>
                 </controls:RepeaterView>
-                <Button Text="РЕДАКТИРОВАТЬ" Style="{StaticResource AppButton}" Margin="0,20,0,5"/>
+                <Button Text="РЕДАКТИРОВАТЬ" Style="{StaticResource AppButton}" Margin="0,20,0,5" Clicked="Button_OnClicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

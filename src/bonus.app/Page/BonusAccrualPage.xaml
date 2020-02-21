@@ -12,12 +12,12 @@
     <ContentPage.Content>
         <!-- Страница 19.1 Начисление бонусов начальная -->
         <ScrollView>
-            <StackLayout Margin="25,0">
-                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" FontSize="24" Margin="0,15,0,0" TextColor="White"/>
-                <Label Text="QR barcode" TextColor="White" HorizontalOptions="Center" FontSize="16" Margin="0,15,0,20"/>
-                    <Image Source="qrcodetwo" HorizontalOptions="Center"/>
-                    <Label Text="Покажите QR code продавцу, для начисления бонусов" TextColor="White" FontSize="16" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
-                <Button Text="Мои бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" Margin="30,10" WidthRequest="250" HorizontalOptions="Center" Clicked="Button_Clicked"/>
+            <StackLayout Margin="30,0" Spacing="0">
+                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" Style="{StaticResource TitleLabel}" Margin="0,35,0,5" TextColor="White"/>
+                <Label Text="QR barcode" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"/>
+                <Image Source="pic_qr_512w.png" HorizontalOptions="Center" WidthRequest="225" Margin="0,0,0,40"/>
+                <Label Text="Покажите QR code продавцу,&#10;для начисления бонусов" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,40" HorizontalTextAlignment="Center"/>
+                <Button Text="Мои бонусы" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

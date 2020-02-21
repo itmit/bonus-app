@@ -1,16 +1,25 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using bonus.app.Core.ViewModels;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyBonusPage : ContentPage
+    public partial class MyBonusPage : MvxContentPage<MyBonusViewModel>
     {
         public MyBonusPage()
         {
             InitializeComponent();
-        }
+
+			var collection = new ObservableCollection<string>();
+            collection.Add("0");
+            collection.Add("0");
+            collection.Add("0");
+			RepeaterView.ItemsSource = collection;
+		}
 
         private void Button_Clicked(object sender, EventArgs e)
         {

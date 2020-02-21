@@ -10,6 +10,7 @@
              xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
              SelectedTabColor="#BB8D91"
+             BarBackgroundColor="White"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Core.Page.Customer.CustomerTabbedPage">

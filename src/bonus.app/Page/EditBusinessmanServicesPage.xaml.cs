@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using bonus.app.Core.ViewModels;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -19,5 +20,15 @@ namespace bonus.app.Core.Page
             source.Add("0");
 			RepeaterView.ItemsSource = source;
 		}
-    }
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void Button_OnClicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new EditBusinessmanServicesDetailsPage());
+		}
+	}
 }

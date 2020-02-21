@@ -6,6 +6,9 @@
              xmlns:views="clr-namespace:bonus.app.Views"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.NewsPage">
+    <NavigationPage.TitleView>
+        <Label Text="Новости" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <!-- Страница мои новости -->

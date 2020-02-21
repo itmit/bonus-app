@@ -1,80 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:MyBonusViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             NavigationPage.HasBackButton="False"
-             Title="Мои бонусы"
              x:Class="bonus.app.Core.Page.MyBonusPage">
-    <ContentPage.Resources>
-        <!--Страница 19.2.1 Начисления-->
-        <ResourceDictionary>
-            <Style x:Key="labelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#505050"></Setter>
-                <Setter Property="FontSize" Value="14"></Setter>
-                <Setter Property="FontFamily" Value="Lato"></Setter>
-                <Setter Property="Margin" Value="0,21,0,0"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <StackLayout Margin="20,0">
-        <TableView Intent="Data">
-            <TableRoot>
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Продавец" FontAttributes="Bold" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
-                            <Label Text="Мои Бонусы" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Клюква, парихмахерская" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
-                            <Label Text="15" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="LOOk, шоурум" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
-                            <Label Text="300" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Рубин, автозаправка" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
-                            <Label Text="216" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="CТО100, автосервис" HorizontalOptions="StartAndExpand" Style="{StaticResource labelStyle}"></Label>
-                            <Label Text="500" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Style="{StaticResource labelStyle}"></Label>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout HorizontalOptions="StartAndExpand" WidthRequest="225">
-                                <Label Text="Итого"  HorizontalOptions="End" FontAttributes="Bold" Style="{StaticResource labelStyle}"></Label>
+    <NavigationPage.TitleView>
+        <Label Text="Мои бонусы" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+    <!--Страница 19.2.1 Начисления-->
+    <ContentPage.Content>
+        <StackLayout Margin="15,0" Spacing="0">
+            <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
+                <Label Text="Продавец" HorizontalOptions="StartAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
+                <Label Text="Мои Бонусы" HorizontalOptions="EndAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
+            </StackLayout>
+            <BoxView Margin="0,0,0,20"/>
+            <controls:RepeaterView x:Name="RepeaterView">
+                <controls:RepeaterView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="0">
+                            <StackLayout Orientation="Horizontal" Margin="5,0,5,15">
+                                <Label Text="Клюква, парикмахерская" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="15" HorizontalOptions="EndAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" WidthRequest="95">
-                                <Label Text="1031"  HorizontalOptions="EndAndExpand" FontAttributes="Bold" Style="{StaticResource labelStyle}"></Label>
-                            </StackLayout>
+                            <BoxView Margin="0,0,0,20"/>
                         </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
-        <Button Text="Получить бонусы" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10" Margin="30,20" WidthRequest="250" HorizontalOptions="Center" VerticalOptions="EndAndExpand" Clicked="Button_Clicked"></Button>
-    </StackLayout>
-</ContentPage>
+                    </DataTemplate>
+                </controls:RepeaterView.ItemTemplate>
+            </controls:RepeaterView>
+            <StackLayout Orientation="Horizontal" Margin="5,0,5,15">
+                <Label Text="Итого" HorizontalOptions="StartAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
+                <Label Text="45" HorizontalOptions="EndAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
+            </StackLayout>
+            <BoxView/>
+            <!--<Button Text="Получить бонусы" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>-->
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

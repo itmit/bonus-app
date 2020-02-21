@@ -11,12 +11,13 @@
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#ffffff</Color>
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}"/>
                 <Setter Property="BarTextColor" Value="Black" />
             </Style>
             <Style x:Key="ImageBonus" TargetType="Image">
                 <Setter Property="Source" Value="pic_bonus.png"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,35,0,55"/>
                 <Setter Property="WidthRequest" Value="85"/>
             </Style>
             <Style x:Key="AuthAndRegFrame" TargetType="Frame">
@@ -25,6 +26,7 @@
                 <Setter Property="CornerRadius" Value="40"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
+            <!--Стиль для кнопок в авторизации-->
             <Style x:Key="AuthAndRegButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#bab3af"/>
                 <Setter Property="TextColor" Value="White"/>
@@ -32,6 +34,7 @@
                 <Setter Property="HeightRequest" Value="45"/>
                 <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
             </Style>
+            <!--Стиль для кнопок в приложении-->
             <Style x:Key="AppButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#bab3af"/>
                 <Setter Property="CornerRadius" Value="40"/>

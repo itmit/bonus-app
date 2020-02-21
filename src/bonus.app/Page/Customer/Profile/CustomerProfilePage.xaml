@@ -17,8 +17,8 @@
     <ContentPage.Content>
         <!-- Страница 16.1.1 - 16.1.2 Профиль покупателя -->
         <ScrollView>
-            <StackLayout Margin="25,5">
-                <Grid ColumnSpacing="15" Margin="0,0,0,25">
+            <StackLayout Margin="25,0">
+                <Grid ColumnSpacing="15" Margin="0,15,0,25">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
@@ -31,7 +31,7 @@
                         <Label Text="Алена Дейли" Style="{StaticResource TitleLabel}" FontSize="Body"/>
                     </StackLayout>
                 </Grid>
-                <Grid Margin="0,0,0,20">
+                <Grid ColumnSpacing="10" Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
