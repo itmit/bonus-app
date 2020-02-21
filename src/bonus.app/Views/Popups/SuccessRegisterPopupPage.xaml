@@ -31,23 +31,14 @@
             <Label Text="Вы успешно&#10;зарегистрировались!"
                        HorizontalTextAlignment="Center"
                        TextColor="#505050"
-                       FontSize="18"
-                       FontFamily="Lato"/>
+                       FontSize="Medium"/>
 
             <Label Text="Просим заполнить статистическую&#10;&#10;информацию, чтобы мы сделали сервис&#10;&#10;ориентированным на Вас"
                    HorizontalTextAlignment="Center"
-                   Margin="0,15,0,0"
-                   TextColor="#505050"
-                   FontSize="14"
-                   FontFamily="Lato"/>
+                   Margin="0,15"
+                   TextColor="#505050"/>
 
-                <Button TextColor="#FFF" 
-                        Text="Ок"
-                        Clicked="Button_OnClicked"
-                        Command="{Binding OpenEditPageCommand}"
-                        BackgroundColor="#9D948E" 
-                        Margin="0,15" 
-                        CornerRadius="40"/>
+                <Button Text="Ок" Clicked="Button_OnClicked" Style="{StaticResource AppButton}"  Command="{Binding OpenEditPageCommand}"/>
         </StackLayout>
     </Frame>
 </pages:PopupPage>

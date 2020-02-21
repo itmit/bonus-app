@@ -31,14 +31,14 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="CornerRadius" Value="40"/>
                 <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
             </Style>
             <Style x:Key="AppButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#bab3af"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="CornerRadius" Value="40"/>
                 <Setter Property="HeightRequest" Value="45"/>
-                <Setter Property="WidthRequest" Value="320"/>
                 <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
             </Style>
             <Style x:Key="AuthAndRegEntry" TargetType="Entry">
                 <Setter Property="PlaceholderColor" Value="#d5d1cf"/>

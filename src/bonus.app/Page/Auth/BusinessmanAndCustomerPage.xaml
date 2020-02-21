@@ -15,7 +15,7 @@
         <StackLayout Margin="30,0" Spacing="0">
             <Image Source="pic_dragon.png" WidthRequest="85" HorizontalOptions="Center" Margin="0,65,0,10"/>
             <Image Source="pic_bonusandmarketing.png" HorizontalOptions="Center" Margin="0,0,0,55" HeightRequest="20" WidthRequest="180"/>
-            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White">
+            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
                 <Label.Text>
                     Для продолжения пройдите &#10; простую процедуру регистрации
                 </Label.Text>

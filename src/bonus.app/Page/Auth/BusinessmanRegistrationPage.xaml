@@ -6,22 +6,25 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             Visual="Material"
-             Title="Регистрация"
              x:Class="bonus.app.Core.Page.Auth.BusinessmanRegistrationPage">
+    <NavigationPage.TitleView>
+        <Label Text="Регистрация" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--Страница 1.1 Регистрация предпринимателя-->
-        <ScrollView>
-            <StackLayout Margin="15,20" Spacing="0">
+        <ScrollView Margin="0,0,0,5">
+            <StackLayout Margin="15,0" Spacing="0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style TargetType="Entry">
                             <Setter Property="PlaceholderColor" Value="#505050"/>
-                            <Setter Property="Visual" Value="Material"/>
                             <Setter Property="TextColor" Value="#505050"/>
                             <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
                             <Setter Property="BackgroundColor" Value="Transparent"/>
                             <Setter Property="Margin" Value="0,10"/>
+                            <Setter Property="Visual" Value="Material"/>
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
@@ -34,18 +37,8 @@
                 <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Пароль"/>
                 <Label Text="{Binding Errors[password]}" IsVisible="{Binding Errors[password], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                 <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль"/>
-
-                <Grid>
-                    <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True" Placeholder="Код из 4 цифр для быстрого входа"/>
-
-                    <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" WidthRequest="24">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </Grid>
-
-                <Button Text="Зарегистрироваться" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Margin="15" Command="{Binding RegistrationCommand}"/>
+                <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True" Placeholder="Код из 4 цифр для быстрого входа"/>
+                <Button Text="Зарегистрироваться" Style="{StaticResource AppButton}" Command="{Binding RegistrationCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
