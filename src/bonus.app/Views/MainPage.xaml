@@ -7,6 +7,8 @@
             mc:Ignorable="d"
             xmlns:Page="clr-namespace:bonus.app.Page"
             xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
+            xmlns:profile="clr-namespace:bonus.app.Core.Page.Customer.Profile;assembly=bonus.app.Core"
+            xmlns:customer="clr-namespace:bonus.app.Core.Page.Customer;assembly=bonus.app.Core"
             x:Class="bonus.app.Views.MainPage"
             BarBackgroundColor="White"
             SelectedTabColor="#BB8D91"
@@ -15,7 +17,7 @@
 <!--Нижний таб в профиле покупателя-->
     <NavigationPage Title="Профиль" IconImageSource="ic_profile.png" BarTextColor="Black" BarBackgroundColor="White">
         <x:Arguments>
-            <page:MainBuyerProfilePage/>
+            <customer:MainCustomerPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="ic_star.png" BarTextColor="Black" BarBackgroundColor="White">
