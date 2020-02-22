@@ -1,6 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Models;
-using bonus.app.Core.ViewModels.Profile;
+using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

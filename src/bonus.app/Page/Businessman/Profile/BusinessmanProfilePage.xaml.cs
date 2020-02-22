@@ -7,7 +7,10 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page.Businessman.Profile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [MvxContentPagePresentation(WrapInNavigationPage = false, Title = "Профиль")]
+    [MvxTabbedPagePresentation(Position = TabbedPosition.Tab, 
+		Icon = "ic_profile", 
+		WrapInNavigationPage = false, 
+		Title = "Профиль")]
     public partial class BusinessmanProfilePage : MvxContentPage<BusinessmanProfileViewModel>
     {
         public BusinessmanProfilePage()

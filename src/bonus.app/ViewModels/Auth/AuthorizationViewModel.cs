@@ -9,7 +9,7 @@ using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Businessman.Profile;
-using bonus.app.Core.ViewModels.Profile;
+using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -50,6 +50,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		private IMvxCommand _openAuthVkFcPage;
 		private readonly IUserRepository _repository;
 		private readonly IAuthService _authService;
+		private readonly IUserRepository _userRepository;
 		#endregion
 		#endregion
 
@@ -59,11 +60,12 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// </summary>
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository repository, IAuthService authService)
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository repository, IAuthService authService, IUserRepository userRepository)
 			: base(logProvider, navigationService)
 		{
 			_repository = repository;
 			_authService = authService;
+			_userRepository = userRepository;
 		}
 		#endregion
 
@@ -216,6 +218,8 @@ namespace bonus.app.Core.ViewModels.Auth
 				}
 				return;
 			}
+
+			_userRepository.Add(user);
 
 			if (user.Role == UserRole.Businessman)
 			{

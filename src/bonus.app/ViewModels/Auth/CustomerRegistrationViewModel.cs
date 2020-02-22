@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
-using bonus.app.Core.ViewModels.Profile;
+using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -18,6 +18,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		private IMvxCommand _openAuthVkOrFc;
 		private readonly IAuthService _authService;
 		private MvxCommand _openEditPageCommand;
+		private User _user;
 
 		public CustomerRegistrationViewModel(IMvxNavigationService navigationService, IAuthService authService)
 		{
@@ -44,7 +45,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_openEditPageCommand = _openEditPageCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate<EditProfileCustomerViewModel>();
+					_navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(_user.Guid, Password));
 				});
 				return _openEditPageCommand;
 			}
@@ -54,7 +55,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		{
 			try
 			{
-				var user = await _authService.Register(new User
+				_user = await _authService.Register(new User
 				{
 					Email = Email,
 					Login = Login,
@@ -62,7 +63,7 @@ namespace bonus.app.Core.ViewModels.Auth
 					Role = UserRole.Customer
 				}, Password, ConfirmPassword);
 
-				if (user == null)
+				if (_user == null)
 				{
 					var dictionary = new Dictionary<string, string>();
 					foreach (var detail in _authService.ErrorDetails)
