@@ -7,8 +7,7 @@
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Businessman.News;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.BusinessmanNewsDetailsPage"
-             NavigationPage.HasBackButton="False">
+             x:Class="bonus.app.Core.Page.BusinessmanNewsDetailsPage">
     <NavigationPage.TitleView>
         <Label Text="Новости" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>

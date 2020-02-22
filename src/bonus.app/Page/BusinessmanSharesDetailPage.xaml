@@ -7,7 +7,6 @@
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanSharesDetailPage"
-             NavigationPage.HasBackButton="False"
              x:Name="ContentPageBackground">
     <NavigationPage.TitleView>
         <Label Text="Мои акции" Style="{StaticResource TitleLabel}"/>

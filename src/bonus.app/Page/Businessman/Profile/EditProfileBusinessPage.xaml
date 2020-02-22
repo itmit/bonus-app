@@ -16,37 +16,38 @@
 
     <ContentPage.Content>
         <!--3.2 Страница редактирования профиля предпринимателя-->
-        <StackLayout Spacing="0">
-            <StackLayout.Resources>
-                <ResourceDictionary>
-                    <Style x:Key="Entry" TargetType="Entry">
-                        <Setter Property="TextColor" Value="#505050"/>
-                        <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
-                        <Setter Property="Keyboard" Value="Chat"/>
-                        <Setter Property="FontSize" Value="14"/>
-                        <Setter Property="Visual" Value="Material"/>
-                    </Style>
-                </ResourceDictionary>
-            </StackLayout.Resources>
+        <ScrollView Margin="0,0,0,5">
+            <StackLayout Spacing="0">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style x:Key="Entry" TargetType="Entry">
+                            <Setter Property="TextColor" Value="#505050"/>
+                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                            <Setter Property="Keyboard" Value="Chat"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Visual" Value="Material"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <StackLayout Margin="10,0">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Cell_OnTapped"/>
-                    </StackLayout.GestureRecognizers>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}"/>
-                        <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                    <StackLayout Margin="10,0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Cell_OnTapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}"/>
+                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />
                     </StackLayout>
-                    <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />
-                </StackLayout>
 
-                <views:MvxListView
+                    <views:MvxListView
                         Grid.Row="1"
                         IsVisible="False"
                         IsEnabled="False"
@@ -58,31 +59,31 @@
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="FillAndExpand">
 
-                    <views:MvxListView.ItemTemplate>
-                        <DataTemplate>
-                            <viewCells:CountryCityViewCell/>
-                        </DataTemplate>
-                    </views:MvxListView.ItemTemplate>
-                </views:MvxListView>
+                        <views:MvxListView.ItemTemplate>
+                            <DataTemplate>
+                                <viewCells:CountryCityViewCell/>
+                            </DataTemplate>
+                        </views:MvxListView.ItemTemplate>
+                    </views:MvxListView>
 
-                <Grid Grid.Row="1" x:Name="Grid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" x:Name="Grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <StackLayout x:Name="City" IsVisible="False" Margin="10,0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </StackLayout.GestureRecognizers>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                            <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}"/>
-                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                        <StackLayout x:Name="City" IsVisible="False" Margin="10,0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}"/>
+                                <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
                         </StackLayout>
-                        <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
-                    </StackLayout>
 
-                    <views:MvxListView
+                        <views:MvxListView
                         Grid.Row="1"
                         IsVisible="False"
                         IsEnabled="False"
@@ -95,51 +96,52 @@
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="FillAndExpand">
 
-                        <views:MvxListView.ItemTemplate>
-                            <DataTemplate>
-                                <viewCells:CountryCityViewCell/>
-                            </DataTemplate>
-                        </views:MvxListView.ItemTemplate>
-                    </views:MvxListView>
+                            <views:MvxListView.ItemTemplate>
+                                <DataTemplate>
+                                    <viewCells:CountryCityViewCell/>
+                                </DataTemplate>
+                            </views:MvxListView.ItemTemplate>
+                        </views:MvxListView>
 
-                    <StackLayout Grid.Row="1" x:Name="Layout" Margin="10,0">
-                        <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес" BackgroundColor="Transparent"/>
-                        <Label Text="{Binding Errors[address]}" IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                        <StackLayout Grid.Row="1" x:Name="Layout" Margin="10,0">
+                            <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес" BackgroundColor="Transparent"/>
+                            <Label Text="{Binding Errors[address]}" IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
 
-                        <Entry Text="{Binding WorkingMode}"
+                            <Entry Text="{Binding WorkingMode}"
                                Style="{StaticResource Entry}"
                                Placeholder="Режим работы"
                                Keyboard="Numeric"
                                BackgroundColor="Transparent">
-                            <Entry.Behaviors>
-                                <behaviors:MaskedBehavior Mask="XX.XX-XX.XX"/>
-                            </Entry.Behaviors>
-                        </Entry>
+                                <Entry.Behaviors>
+                                    <behaviors:MaskedBehavior Mask="XX.XX-XX.XX"/>
+                                </Entry.Behaviors>
+                            </Entry>
 
-                        <Entry Style="{StaticResource Entry}"
+                            <Entry Style="{StaticResource Entry}"
                                Placeholder="Контактное лицо"
                                Text="{Binding ContactPerson}"
                                BackgroundColor="Transparent"/>
 
-                        <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}" Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
-                            <Entry.Behaviors>
-                                <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
-                            </Entry.Behaviors>
-                        </Entry>
-                        <Label Text="{Binding Errors[phoneNumber]}" IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                            <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}" Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
+                                <Entry.Behaviors>
+                                    <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label Text="{Binding Errors[phoneNumber]}" IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
 
-                        <StackLayout Margin="0,0,0,25">
-                            <Label Text="Установите фотографию профиля" Margin="15,0"/>
-                            <StackLayout Orientation="Horizontal" HeightRequest="30">
-                                <Image Source="icon_photo.png" WidthRequest="70" HeightRequest="40" HorizontalOptions="EndAndExpand"/>
+                            <StackLayout Margin="0,0,0,25">
+                                <Label Text="Установите фотографию профиля" Margin="15,0"/>
+                                <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                    <Image Source="icon_photo.png" WidthRequest="70" HeightRequest="40" HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                                <BoxView/>
                             </StackLayout>
-                            <BoxView/>
-                        </StackLayout>
 
-                        <Button Text="СОХРАНИТЬ" Command="{Binding EditCommand}" Style="{StaticResource AppButton}"/>
-                    </StackLayout>
+                            <Button Text="СОХРАНИТЬ" Command="{Binding EditCommand}" Style="{StaticResource AppButton}"/>
+                        </StackLayout>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>

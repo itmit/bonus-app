@@ -6,13 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Page;
 using bonus.app.Core.Page.Customer.Profile;
+using bonus.app.Core.ViewModels;
+using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuBuyerPage : ContentPage
+    public partial class MenuBuyerPage : MvxContentPage<MenuBuyerViewModel>
     {
         public MenuBuyerPage()
         {
@@ -23,7 +25,7 @@ namespace bonus.app.Views
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new CustomerProfilePage());
+            
         }
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)

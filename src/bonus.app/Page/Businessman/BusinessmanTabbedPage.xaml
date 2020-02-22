@@ -9,16 +9,10 @@
              xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
              xmlns:news="clr-namespace:bonus.app.Core.Page.Businessman.News;assembly=bonus.app.Core"
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
+             BarBackgroundColor="White"
+             SelectedTabColor ="#BB8D91"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.BusinessmanTabbedPage"
              BackgroundColor="White">
-  <!--Нижний таб-->
-    <views:MvxTabbedPage.SelectedTabColor>
-        <Color>#BB8D91</Color>
-    </views:MvxTabbedPage.SelectedTabColor>
-    <views:MvxTabbedPage.UnselectedTabColor>
-        <Color>#6C6C6C</Color>
-    </views:MvxTabbedPage.UnselectedTabColor>
-
 </views:MvxTabbedPage>

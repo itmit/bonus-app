@@ -1,18 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:MenuBuyerViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:bonus.app.Views"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Views.MenuBuyerPage">
+
     <ContentPage.Content>
         <!--Страница 16.1.1 Меню -->
         <ScrollView>
             <StackLayout Spacing="0" Margin="20,0">
-                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,0,0,65" Spacing="10">
+                <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,45,0,65">
                     <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65"/>
-                    <Image Source="pic_mandb.png" WidthRequest="60" HeightRequest="20" HorizontalOptions="Center"/>
+                    <Label Text="B&amp;M" FontSize="Title" TextColor="White"/>
                 </StackLayout>
                 <Grid RowSpacing="35" Margin="0,0,0,160" ColumnSpacing="15">
                     <Grid.ColumnDefinitions>
@@ -24,20 +27,20 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Source="ic_profile_w.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" FontSize="14" TextColor="White" VerticalOptions="Center">
+                    <Image Grid.Row="0" Grid.Column="0" Source="ic_profile_w.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Профиль" TextColor="White" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Image Grid.Row="1" Grid.Column="0" Source="ic_rub.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" FontSize="14" TextColor="White" VerticalOptions="Center">
+                    <Image Grid.Row="1" Grid.Column="0" Source="ic_rub.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Начислить бонусы" TextColor="White" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
                     </Label>
-                    <Image Grid.Row="2" Grid.Column="0" Source="ic_support.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"></Image>
-                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" FontSize="14" TextColor="White" VerticalOptions="Center">
+                    <Image Grid.Row="2" Grid.Column="0" Source="ic_support.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center"></Image>
+                    <Label Grid.Row="2" Grid.Column="1" Text="Техническая поддержка" TextColor="White" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
                         </Label.GestureRecognizers>
@@ -47,4 +50,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

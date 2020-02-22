@@ -1,40 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:EditBusinessmanServicesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.EditBusinessmanServicesPage"
-             NavigationPage.HasBackButton="False">
+             x:Class="bonus.app.Core.Page.EditBusinessmanServicesPage">
     <NavigationPage.TitleView>
         <Label Text="Редактор мои услуги" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <!--Страница 4.3 Редактор мои услуги(преприниматель)-->
-        <StackLayout Margin="15,0" Spacing="0">
-            <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body" HorizontalOptions="Center" Margin="0,20,0,35"/>
-            <controls:RepeaterView>
-                
-            </controls:RepeaterView>
-
-
-            <StackLayout Orientation="Horizontal" Margin="5,15">
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="Label" TargetType="Label">
-                            <Setter Property="FontSize" Value="14"></Setter>
-                            <Setter Property="FontFamily" Value="Lato"></Setter>
-                            <Setter Property="TextColor" Value="#505050"></Setter>
-                        </Style> 
-                    </ResourceDictionary>
-                </StackLayout.Resources>
-                <Label Text="Массаж" Style="{StaticResource Label}" HorizontalOptions="Start"></Label>
-                <Label Text="10 %" FontAttributes="Bold" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
+        <ScrollView>
+            <StackLayout Margin="15,0" Spacing="0">
+                <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body" HorizontalOptions="Center" Margin="0,20,0,15"/>
+                <controls:RepeaterView x:Name="RepeaterView">
+                    <controls:RepeaterView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="0">
+                                <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
+                                    <Label Text="Массаж" HorizontalOptions="Start"/>
+                                    <Label HorizontalOptions="EndAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="10"/>
+                                                    <Span Text=" %"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <BoxView/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </controls:RepeaterView.ItemTemplate>
+                </controls:RepeaterView>
+                <Button Text="РЕДАКТИРОВАТЬ" Style="{StaticResource AppButton}" Margin="0,20,0,5" Clicked="Button_OnClicked"/>
             </StackLayout>
-            <BoxView BackgroundColor="#CCCCCC" HeightRequest="1"></BoxView>
-            <Button Text="РЕДАКТИРОВАТЬ" BackgroundColor="#bab3af" TextColor="White" CornerRadius="40" HeightRequest="45" WidthRequest="320" Margin="20,5"/>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

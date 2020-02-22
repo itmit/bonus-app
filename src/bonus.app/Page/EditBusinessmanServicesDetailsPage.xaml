@@ -1,51 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="services:BusinessmanServicesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:EditBusinessmanServicesDetailsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-             xmlns:viewCell="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
-             xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Businessman.Services.BusinessmanServicesPage">
+             x:Class="bonus.app.Core.Page.EditBusinessmanServicesDetailsPage">
     <NavigationPage.TitleView>
-        <Label Text="Мои услуги" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Редактор мои услуги" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
-    <ContentPage.Content> 
-        <!--Страница 4.2 Мои услуги(предпринимателя)-->
+    <ContentPage.Content>
+        <!--Страница 4.3.2 редактор мои услуги у предпринимателя-->
         <ScrollView>
-            <StackLayout Margin="15,20" Spacing="0">
-
-                <Grid Margin="5,0,5,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="ServicesName" Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Start"/>
-                    <Label x:Name="Percentage" Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="End" IsVisible="False">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="10"/>
-                                    <Span Text="%"/>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </Grid>
-
-                <BoxView Margin="0,0,0,20"/>
-
-                <Label Text="Добавить услугу" Margin="0,0,0,35" FontSize="Body" HorizontalOptions="Center" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
-
-                <StackLayout Margin="0,0,0,15" Spacing="0">
+            <StackLayout Spacing="0" Margin="15,0">
+                <StackLayout Margin="0,20,0,15" Spacing="0">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                     </StackLayout.GestureRecognizers>
@@ -69,24 +41,10 @@
                     HorizontalOptions="FillAndExpand">
                     <controls:RepeaterView.ItemTemplate>
                         <DataTemplate>
-                            <viewCell:ServicesViewCell/>
+                            <viewCells:ServicesViewCell/>
                         </DataTemplate>
                     </controls:RepeaterView.ItemTemplate>
                 </controls:RepeaterView>
-
-                <StackLayout x:Name="PlusServices" Margin="0,0,0,15" Spacing="0" IsVisible="False">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer/>
-                    </StackLayout.GestureRecognizers>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                        <Label Text="Добавить свою услугу" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
-                        <Image Source="ic_plus_add_4x.png"
-                               WidthRequest="24"
-                               VerticalOptions="Center"
-                               HorizontalOptions="EndAndExpand"/>
-                    </StackLayout>
-                    <BoxView/>
-                </StackLayout>
 
                 <Label Text="Начисление бонусов" TextColor="#858585" Margin="5,0,0,0"/>
                 <Grid>
@@ -142,8 +100,8 @@
 
                 <BoxView Margin="0,0,0,20"/>
 
-                <Button Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource AppButton}" Clicked="Button_OnClicked"/>
+                <Button Text="Сохранить изменения" Style="{StaticResource AppButton}" Clicked="Button_OnClicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</views:MvxContentPage>  
+</views:MvxContentPage>
