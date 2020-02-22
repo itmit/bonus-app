@@ -88,6 +88,24 @@ namespace bonus.app.Core.Services
 			}
 		}
 
+		private const string LogOutUri = "http://bonus.itmit-studio.ru/api/logout";
+
+		public async Task<bool> LogOut(User user)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
+
+				var response = await client.PostAsync(LogOutUri, null);
+
+				var json = await response.Content.ReadAsStringAsync();
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+				return data.Success;
+			}
+		}
+
 		public string Error
 		{
 			get;

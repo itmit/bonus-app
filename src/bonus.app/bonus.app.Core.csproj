@@ -52,9 +52,6 @@
     <Compile Update="Page\Customer\MainCustomerPage.xaml.cs">
       <DependentUpon>MainCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\PublicOfferBusPage.xaml.cs">
-      <DependentUpon>PublicOfferBusPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Popups\SuccessRegisterPopupPage.xaml.cs">
       <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
@@ -148,9 +145,6 @@
     <EmbeddedResource Update="Page\FillinDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\FillingProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Page\GenderAgePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -223,7 +217,7 @@
     <EmbeddedResource Update="Views\IconView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuBusinessmanPage.xaml">
+    <EmbeddedResource Update="Page\Businessman\MenuBusinessmanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MenuBuyerPage.xaml">

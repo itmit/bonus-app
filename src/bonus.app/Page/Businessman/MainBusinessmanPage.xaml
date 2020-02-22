@@ -1,23 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxMasterDetailPage x:TypeArguments="viewModels1:MainBusinessmanViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxMasterDetailPage x:TypeArguments="viewModels:MainBusinessmanViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.MainBusinessmanPage"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-             xmlns:businessman="clr-namespace:bonus.app.Core.Page.Businessman;assembly=bonus.app.Core"
-             xmlns:views1="clr-namespace:bonus.app.Core.Views;assembly=bonus.app.Core"
-             xmlns:viewModels1="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core">
-  <MasterDetailPage.Master>
-    <views1:MenuBusinessmanPage Title="master"/>
-  </MasterDetailPage.Master>
-  <MasterDetailPage.Detail>
-    <NavigationPage>
-      <x:Arguments>
-        <businessman:BusinessmanTabbedPage/>
-      </x:Arguments>
-    </NavigationPage>
-  </MasterDetailPage.Detail>
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core">
+
 </views:MvxMasterDetailPage>

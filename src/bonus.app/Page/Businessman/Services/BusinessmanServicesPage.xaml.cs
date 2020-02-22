@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using bonus.app.Core.ViewModels;
-using bonus.app.Page;
+using bonus.app.Core.ViewModels.Businessman.Services;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Page.Businessman.Services
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
+		Icon = "ic_star",
+		WrapInNavigationPage = false,
+		Title = "Услуги")]
     public partial class BusinessmanServicesPage : MvxContentPage<BusinessmanServicesViewModel>
     {
         public BusinessmanServicesPage()

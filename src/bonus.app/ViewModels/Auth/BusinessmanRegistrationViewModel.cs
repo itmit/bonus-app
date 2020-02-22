@@ -5,7 +5,6 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Profile;
-using bonus.app.Core.ViewModels.Profile;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
 
@@ -53,7 +52,7 @@ namespace bonus.app.Core.ViewModels.Auth
 
 					return false;
 				}
-				await _navigationService.Navigate<EditProfileBusinessmanViewModel>();
+				await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, Password));
 				return true;
 			}
 			catch (Exception e)

@@ -8,7 +8,10 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxContentPagePresentation(WrapInNavigationPage = false)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
+		Icon = "ic_charges",
+		WrapInNavigationPage = false,
+		Title = "Начисления")]
 	public partial class BusinessmanBonusAccrualPage : MvxContentPage<BusinessmanBonusAccrualViewModel>
     {
         public BusinessmanBonusAccrualPage()

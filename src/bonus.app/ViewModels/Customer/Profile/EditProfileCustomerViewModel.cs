@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using bonus.app.Core.Dto.GeoHelper;
-using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
@@ -10,9 +6,8 @@ using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels.Profile
+namespace bonus.app.Core.ViewModels.Customer.Profile
 {
 	public class EditProfileCustomerViewModel : BaseEditProfileViewModel
 	{

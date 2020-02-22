@@ -6,39 +6,13 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
              xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:profile="clr-namespace:bonus.app.Core.Page.Businessman.Profile;assembly=bonus.app.Core"
              xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
+             xmlns:news="clr-namespace:bonus.app.Core.Page.Businessman.News;assembly=bonus.app.Core"
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
              BarBackgroundColor="White"
              SelectedTabColor ="#BB8D91"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Businessman.BusinessmanTabbedPage">
-
-    <!--Нижний таб-->
-    <NavigationPage Title="Профиль" IconImageSource="ic_profile.png">
-        <x:Arguments>
-            <profile:BusinessmanProfilePage/>
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="Услуги" IconImageSource="ic_star.png">
-        <x:Arguments>
-            <page:BusinessmanServicesPage/>
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="Акции" IconImageSource="ic_stock.png">
-      <x:Arguments>
-            <page:BusinessmanSharesPage/>
-      </x:Arguments>
-      </NavigationPage>
-    <NavigationPage Title="Новости" IconImageSource="ic_news.png">
-          <x:Arguments>
-            <page:BusinessmanNewsPage/>
-          </x:Arguments>
-      </NavigationPage>
-    <NavigationPage Title="Начисления" IconImageSource="ic_charges.png">
-        <x:Arguments>
-            <page:BusinessmanBonusAccrualPage/>
-        </x:Arguments>
-    </NavigationPage>
+             x:Class="bonus.app.Core.Page.Businessman.BusinessmanTabbedPage"
+             BackgroundColor="White">
 </views:MvxTabbedPage>

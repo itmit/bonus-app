@@ -1,4 +1,8 @@
-﻿using MvvmCross.Logging;
+﻿using bonus.app.Core.Page.Businessman.Profile;
+using bonus.app.Core.ViewModels.Businessman.News;
+using bonus.app.Core.ViewModels.Businessman.Profile;
+using bonus.app.Core.ViewModels.Businessman.Services;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
@@ -12,5 +16,16 @@ namespace bonus.app.Core.ViewModels.Businessman
 		{
 		}
 		#endregion
+
+		public override async void ViewAppearing()
+		{
+			base.ViewAppearing();
+
+			await NavigationService.Navigate<BusinessmanProfileViewModel>();
+			await NavigationService.Navigate<BusinessmanServicesViewModel>();
+			await NavigationService.Navigate<BusinessmanSharesViewModel>();
+			await NavigationService.Navigate<BusinessmanNewsViewModel>();
+			await NavigationService.Navigate<BusinessmanBonusAccrualViewModel>();
+		}
 	}
 }
