@@ -11,8 +11,8 @@
 
     <ContentPage.Content>
         <!--Страница 5.3 Создать акцию-->
-        <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="20,5" Spacing="0">
+        <ScrollView VerticalScrollBarVisibility="Never" Margin="0,0,0,5">
+            <StackLayout Margin="15,0" Spacing="0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style x:Key="Picker" TargetType="Picker">
@@ -20,15 +20,6 @@
                             <Setter Property="TitleColor" Value="#505050"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="FontFamily" Value="Lato"/>
-                        </Style>
-                        <Style x:Key="Label" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="FontFamily" Value="Lato"/>
-                        </Style>
-                        <Style x:Key="BoxView" TargetType="BoxView">
-                            <Setter Property="HeightRequest" Value="1"/>
-                            <Setter Property="BackgroundColor" Value="#CCCCCC"/>
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
@@ -46,21 +37,26 @@
                         <x:String>Череповец</x:String>
                     </Picker.Items>
                 </Picker>
-                <Entry Placeholder="Название акции" PlaceholderColor="#505050" TextColor="#505050" FontFamily="Lato" FontSize="14"></Entry>
-                <Editor Placeholder="Описание акции" PlaceholderColor="#505050" FontSize="14" FontFamily="Lato" AutoSize="TextChanges"></Editor>
-                <StackLayout Orientation="Horizontal" Margin="5,15">
-                    <Label Text="Загрузите изображение акции" Style="{StaticResource Label}"></Label>
-                    <Image Source="icon_photo.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
+                <Entry Placeholder="Название акции" PlaceholderColor="#505050" TextColor="#505050" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="14" Visual="Material"/>
+                <Editor Placeholder="Описание акции" PlaceholderColor="#505050" TextColor="#505050" FontSize="14" FontFamily="Lato-Regular.ttf#Lato-Regular" AutoSize="TextChanges"/>
+                <StackLayout Orientation="Horizontal" Margin="5,0">
+                    <Label Text="Загрузите изображение акции"/>
+                    <Image Source="icon_photo.png" WidthRequest="70" HeightRequest="40" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
-                <BoxView Style="{StaticResource BoxView}"></BoxView>
-                <StackLayout Orientation="Horizontal" Margin="5,15">
-                    <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
-                    <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
-                    <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="EndAndExpand"></Image>
+                <BoxView Margin="0,0,0,20"/>
+                <StackLayout Orientation="Horizontal" Margin="5,0">
+                    <Label Text="Срок размещения, до"/>
+                    <DatePicker HorizontalOptions="EndAndExpand" FontFamily="Lato-Regular.ttf#Lato-Regular"/>
+                    <Image Source="ic_calendar_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="18"/>
                 </StackLayout>
-                <BoxView Style="{StaticResource BoxView}"></BoxView>
-                <Button Text="Просмотр" TextColor="#A0968E" BackgroundColor="White" BorderWidth="1" BorderColor="#A0968E" WidthRequest="320" CornerRadius="40" HeightRequest="45" Clicked="Button_Clicked" Margin="0,10"></Button>
-                <Button Text="Создать акцию" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45" Clicked="Button_Clicked_1"></Button>
+                <BoxView Margin="0,0,0,20"/>
+                <StackLayout Orientation="Horizontal" Margin="5,0">
+                    <Label Text="Только для подписчиков, до"/>
+                    <Switch HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Margin="0,0,0,20"/>
+                <Button Text="Просмотр" TextColor="#A0968E" BackgroundColor="Transparent" BorderWidth="1" BorderColor="#A0968E" CornerRadius="40" HeightRequest="45" FontFamily="Lato-Regular.ttf#Lato-Regular" Clicked="Button_Clicked" Margin="0,10"/>
+                <Button Text="Создать акцию" Style="{StaticResource AppButton}" Clicked="Button_Clicked_1"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
