@@ -5,15 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+             xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.ViewCells.ServicesViewCell">
+             x:Class="bonus.app.Core.Views.ViewCells.Services.ServiceTypeViewCell">
   <ViewCell.View>
         <StackLayout Margin="0,0,0,15" Spacing="0">
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
             </StackLayout.GestureRecognizers>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                <Label Text="Парикмахерские" Margin="20,0,0,0"/>
+                <Label Text="{Binding Name}" Margin="20,0,0,0"/>
                 <Image x:Name="Shape"
                     Source="Shape.png"
                      WidthRequest="15"
@@ -27,16 +28,12 @@
                 IsVisible="False"
                 IsEnabled="False"
                 x:Name="ViewServices"
+                ItemsSource="{Binding Services}"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
                 <controls:RepeaterView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Spacing="0">
-                                <Label Text="Парикмахерские" Margin="50,20,5,15" HorizontalOptions="FillAndExpand"/>
-                                <BoxView Margin="35,0,0,0"/>
-                            </StackLayout>
-                        </ViewCell>
+                        <services:ServiceViewCell/>
                     </DataTemplate>
                 </controls:RepeaterView.ItemTemplate>
             </controls:RepeaterView>

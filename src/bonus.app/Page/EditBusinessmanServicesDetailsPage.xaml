@@ -7,6 +7,7 @@
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+             xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.EditBusinessmanServicesDetailsPage">
     <NavigationPage.TitleView>
@@ -41,7 +42,7 @@
                     HorizontalOptions="FillAndExpand">
                     <controls:RepeaterView.ItemTemplate>
                         <DataTemplate>
-                            <viewCells:ServicesViewCell/>
+                            <services:ServiceTypeViewCell/>
                         </DataTemplate>
                     </controls:RepeaterView.ItemTemplate>
                 </controls:RepeaterView>
