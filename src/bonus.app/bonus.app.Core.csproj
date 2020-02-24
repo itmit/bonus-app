@@ -40,7 +40,7 @@
     <Compile Update="Page\BusinessmanSharesDetailPage.xaml.cs">
       <DependentUpon>BusinessmanSharesDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\BuyerSharesDetailPage.xaml.cs">
+    <Compile Update="Page\Customer\Shares\BuyerSharesDetailPage.xaml.cs">
       <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Page\Customer\Profile\CustomerProfilePage.xaml.cs">
@@ -106,7 +106,7 @@
     <EmbeddedResource Update="Page\Businessman\BusinessmanTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\BuyerSharesDetailPage.xaml">
+    <EmbeddedResource Update="Page\Customer\Shares\BuyerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Auth\BusinessmanAndCustomerPage.xaml">
@@ -118,7 +118,7 @@
     <EmbeddedResource Update="Page\Customer\Profile\CustomerProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\BuyerSharesPage.xaml">
+    <EmbeddedResource Update="Page\Customer\Shares\BuyerSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\ChargesPage.xaml">
@@ -187,7 +187,7 @@
     <EmbeddedResource Update="Page\SalesTypesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\ServicesPage.xaml">
+    <EmbeddedResource Update="Page\Customer\Services\ServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\StatisticsPage.xaml">
@@ -250,6 +250,9 @@
     <EmbeddedResource Update="Views\ViewCells\NewsViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\Services\CustomerServicesViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -257,6 +260,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\SharesViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\Shares\BuyerSharesViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\Shares\CarouselContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

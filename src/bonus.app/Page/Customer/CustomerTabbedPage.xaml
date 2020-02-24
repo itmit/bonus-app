@@ -8,6 +8,8 @@
              xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
              xmlns:profile="clr-namespace:bonus.app.Core.Page.Customer.Profile;assembly=bonus.app.Core"
              xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:services="clr-namespace:bonus.app.Core.Services;assembly=bonus.app.Core"
+             xmlns:shares="clr-namespace:bonus.app.Core.Shares;assembly=bonus.app.Core"
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
              SelectedTabColor="#BB8D91"
              BarBackgroundColor="White"
@@ -22,12 +24,12 @@
     </NavigationPage>
     <NavigationPage Title="Услуги" IconImageSource="ic_star.png">
         <x:Arguments>
-            <page:ServicesPage/>
+            <services:ServicesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Акции" IconImageSource="ic_stock.png">
         <x:Arguments>
-            <page:BuyerSharesPage/>
+            <shares:BuyerSharesPage/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Новости" IconImageSource="ic_news.png">
