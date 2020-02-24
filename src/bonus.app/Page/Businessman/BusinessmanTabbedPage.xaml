@@ -9,6 +9,7 @@
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
              BarBackgroundColor="White"
              SelectedTabColor ="#BB8D91"
+             NavigationPage.HasNavigationBar="True"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.BusinessmanTabbedPage">
 </views:MvxTabbedPage>

@@ -39,12 +39,6 @@ namespace bonus.app.Core.Page.Businessman.Services
             ToolbarItems.Add(toolBar);
             ToolbarItems.Add(toolBar1);
 
-			var collection = new ObservableCollection<string>();
-            collection.Add("0");
-            collection.Add("1");
-
-			ViewServices.ItemsSource = collection;
-
 			ServicesName.Text = "Пока у вас нет услуг";
 		}
 

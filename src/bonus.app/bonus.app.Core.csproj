@@ -55,6 +55,9 @@
     <Compile Update="Views\Popups\SuccessRegisterPopupPage.xaml.cs">
       <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml.cs">
+      <DependentUpon>ServiceTypeViewCell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -247,7 +250,10 @@
     <EmbeddedResource Update="Views\ViewCells\NewsViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\ServicesViewCell.xaml">
+    <EmbeddedResource Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\Services\ServiceViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\SharesViewCell.xaml">

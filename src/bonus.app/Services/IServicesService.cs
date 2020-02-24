@@ -4,8 +4,8 @@ using bonus.app.Core.Models;
 
 namespace bonus.app.Core.Services
 {
-	public interface IServiceService
+	public interface IServicesService
 	{
-		Task<IEnumerable<Service>> GetAll();
+		Task<IEnumerable<ServiceType>> GetAll();
 	}
 }

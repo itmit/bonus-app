@@ -4,24 +4,35 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using AutoMapper;
 using bonus.app.Core.Dtos;
+using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
-	public class ServiceService : IServiceService
+	public class ServicesService : IServicesService
 	{
 		private readonly AccessToken _token;
+		private readonly Mapper _mapper;
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/service";
 
-		public ServiceService(IUserRepository repository)
+		public ServicesService(IUserRepository repository)
 		{
 			_token = repository.GetAll().Single().AccessToken;
+			_mapper = new Mapper(new MapperConfiguration(cfg =>
+			{
+				cfg.CreateMap<ServicesDto, ServiceType>()
+				   .ForPath(model => model.Id, m => m.MapFrom(dto => dto.Type.Id))
+				   .ForPath(model => model.Name, m => m.MapFrom(dto => dto.Type.Name))
+				   .ForPath(model => model.Uuid, m => m.MapFrom(dto => dto.Type.Uuid))
+				   .ForPath(model => model.Services, m => m.MapFrom(dto => dto.Items));
+			}));
 		}
 
-		public async Task<IEnumerable<Service>> GetAll()
+		public async Task<IEnumerable<ServiceType>> GetAll()
 		{
 			using (var client = new HttpClient())
 			{
@@ -38,10 +49,10 @@ namespace bonus.app.Core.Services
 					return null;
 				}
 
-				var data = JsonConvert.DeserializeObject<ResponseDto<Service[]>>(json);
+				var data = JsonConvert.DeserializeObject<ResponseDto<ServicesDto[]>>(json);
 				if (data.Success)
 				{
-					return data.Data;
+					return _mapper.Map<ServiceType[]>(data.Data);
 				}
 
 				return null;
