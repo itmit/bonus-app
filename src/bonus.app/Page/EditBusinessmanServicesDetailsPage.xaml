@@ -41,7 +41,10 @@
                     HorizontalOptions="FillAndExpand">
                     <controls:RepeaterView.ItemTemplate>
                         <DataTemplate>
-                            <viewCells:ServicesViewCell/>
+                            <StackLayout Spacing="0">
+                                <Label Text="Парикмахерские" Margin="10,20,5,15" HorizontalOptions="FillAndExpand"/>
+                                <BoxView Margin="35,0,0,0"/>
+                            </StackLayout>
                         </DataTemplate>
                     </controls:RepeaterView.ItemTemplate>
                 </controls:RepeaterView>
