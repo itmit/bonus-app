@@ -12,12 +12,12 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <Frame Grid.Column="0" Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0" VerticalOptions="Start">
-              <Image Source="girl.png" Aspect="AspectFill" WidthRequest="60" HeightRequest="50"/>
+          <Frame Grid.Column="0" Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0" VerticalOptions="Start" HasShadow="False">
+              <Image Source="chika.png" Aspect="AspectFill" WidthRequest="60" HeightRequest="50"/>
           </Frame>
           <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Start">
-              <Label Text="Салон Бигуди" TextColor="#505050" FontSize="Body"/>
-              <Label Text="Всю неделю до 12.00 на загар в&#10;солярии предоставляем бонус 25%" TextColor="#505050" Opacity="0.7" Margin="0,0,0,15" MaxLines="2"/>
+              <Label Text="Салон Бигуди" FontSize="Body"/>
+              <Label Text="Всю неделю до 12.00 на загар в&#10;солярии предоставляем бонус 25%" Opacity="0.7" Margin="0,0,0,15" MaxLines="2"/>
               <BoxView/>
           </StackLayout>
       </Grid>

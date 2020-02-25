@@ -16,13 +16,8 @@
         </StackLayout>
     </NavigationPage.TitleView>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Secondary"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <!-- Страница 18.1 акции покупателя -->
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -47,7 +42,8 @@
 
             <views:MvxListView Grid.Row="1"
                                HasUnevenRows="True"
-                               SeparatorVisibility="None">
+                               SeparatorVisibility="None"
+                               ItemTapped="TapGestureRecognizer_Tapped">
                 <views:MvxListView.ItemsSource>
                     <x:String>000000000000000</x:String>
                 </views:MvxListView.ItemsSource>

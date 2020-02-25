@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="viewModels:ArchiveStockViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:SubscribesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,22 +7,22 @@
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.ArchiveStockPage">
+             x:Class="bonus.app.Page.SubscribesPage">
     <NavigationPage.TitleView>
-        <Label Text="Архив акций" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Подписки" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
+    <!--Страница 20. Подписки-->
     <ContentPage.Content>
-        <!--5.5 Архив акций-->
-        <ListView Margin="10,0,0,0" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True">
-            <ListView.ItemsSource>
-                <x:String>000000000000</x:String>
-            </ListView.ItemsSource>
-            <ListView.ItemTemplate>
+        <views:MvxListView HasUnevenRows="True" SeparatorVisibility="None" Margin="20,0,0,0">
+            <views:MvxListView.ItemsSource>
+                <x:String>000000</x:String>
+            </views:MvxListView.ItemsSource>
+            <views:MvxListView.ItemTemplate>
                 <DataTemplate>
-                    <viewCells:ArchiveStockViewCell/>
+                    <viewCells:SubscribesViewCell/>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </views:MvxListView.ItemTemplate>
+        </views:MvxListView>
     </ContentPage.Content>
 </views:MvxContentPage>

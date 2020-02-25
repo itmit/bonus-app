@@ -22,7 +22,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="Супер стрижка" TextColor="#505050" MaxLines="1" VerticalOptions="Center"/>
+                        <Label Grid.Column="0" Text="Супер стрижка" MaxLines="1" VerticalOptions="Center"/>
                         <Image Grid.Column="1" Source="ic_startwocolor_4x.png" WidthRequest="17" HeightRequest="17" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
                     </Grid>
                     <Label Text="Всю неделю до 12.00 на загар в солярии&#10;предоставляем бонус 25% на загар море&#10;в солярии предоставляем бонус 25%" MaxLines="3" FontSize="Caption" TextColor="Gray"/>
