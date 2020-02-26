@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Views
+namespace bonus.app.Core.Views.ViewCells
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PayTabbedPage : TabbedPage
+    public partial class PayViewCell : ViewCell
     {
-        public PayTabbedPage()
+        public PayViewCell()
         {
             InitializeComponent();
         }
