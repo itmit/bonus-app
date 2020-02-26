@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
+using Plugin.Permissions;
 
 namespace bonus.app.Droid
 {
@@ -13,6 +14,7 @@ namespace bonus.app.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+			Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 			Rg.Plugins.Popup.Popup.Init(this, bundle);
 			Xamarin.Forms.Forms.Init(this, bundle);
@@ -21,6 +23,7 @@ namespace bonus.app.Droid
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 		}
+
 		public override void OnBackPressed()
 		{
 			if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
@@ -35,7 +38,9 @@ namespace bonus.app.Droid
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
+			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 			global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
 	}
 }
