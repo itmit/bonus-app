@@ -19,46 +19,28 @@
         <ScrollView>
             <StackLayout Margin="15,20" Spacing="0">
 
-
-                <controls:RepeaterView
-                    IsVisible="False"
-                    IsEnabled="False"
-                    ItemsSource="{Binding MyServices}"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
-                    <controls:RepeaterView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Label Text="{Binding Name}" HorizontalTextAlignment="Start"/>
-                            </ViewCell>
-                        </DataTemplate>
-                    </controls:RepeaterView.ItemTemplate>
-                </controls:RepeaterView>
-
                 <Grid Margin="5,0,5,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="ServicesName" Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Start"/>
-                    <Label x:Name="Percentage"
-                           Grid.Column="1"
+                    <controls:RepeaterView
+                        IsVisible="{Binding HasServices}"
+                        IsEnabled="{Binding HasServices}"
+                        ItemsSource="{Binding MyServices}"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <controls:RepeaterView.ItemTemplate>
+                            <DataTemplate>
+                                <services1:MyServiceViewCell/>
+                            </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>
+                    </controls:RepeaterView>
+
+                
+
+                    <Label Text="Пока у вас нет услуг"
+                           Grid.Column="0"
                            Grid.Row="0"
-                           HorizontalTextAlignment="End"
-                           IsVisible="False">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="10"/>
-                                    <Span Text="%"/>
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                           IsVisible="{Binding NoHasServices}"
+                           IsEnabled="{Binding NoHasServices}"
+                           HorizontalTextAlignment="Start"/>
                 </Grid>
 
                 <BoxView Margin="0,0,0,20"/>

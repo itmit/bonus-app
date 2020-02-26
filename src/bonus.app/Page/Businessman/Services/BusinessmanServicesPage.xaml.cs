@@ -39,8 +39,6 @@ namespace bonus.app.Core.Page.Businessman.Services
 
             ToolbarItems.Add(toolBar);
             ToolbarItems.Add(toolBar1);
-
-			ServicesName.Text = "Пока у вас нет услуг";
 		}
 
         private void ToolBar1_Clicked(object sender, EventArgs e)

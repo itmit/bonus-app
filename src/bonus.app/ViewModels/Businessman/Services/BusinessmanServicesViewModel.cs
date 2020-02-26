@@ -48,14 +48,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			try
 			{
 				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(await _servicesServices.GetAll());
-
 				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
+				MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
+				await RaisePropertyChanged(() => HasServices);
+				await RaisePropertyChanged(() => NoHasServices);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
 		}
+
+		public bool HasServices => MyServices != null && MyServices.Count > 0;
+
+		public bool NoHasServices => !HasServices;
 
 		public ServiceViewModel SelectedService
 		{
@@ -116,7 +122,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 		}
 
-		private void AddServiceCommandExecute()
+		private async void AddServiceCommandExecute()
 		{
 			try
 			{
@@ -161,7 +167,25 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 					});
 					return;
 				}
-				_servicesServices.CreateService(service);
+				var result = await _servicesServices.CreateService(service);
+
+				if (result)
+				{
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Внимание", "Услуга создана!", "Ок");
+					});
+
+					try
+					{
+						MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
+						await RaisePropertyChanged(() => HasServices);
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+				}
 			}
 			catch (Exception e)
 			{

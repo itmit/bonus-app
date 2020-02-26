@@ -60,7 +60,8 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
-		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+
+		private const string ServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
 		public async Task<bool> CreateService(CreateServiceDto createServiceDto)
 		{
 			using (var client = new HttpClient())
@@ -70,7 +71,7 @@ namespace bonus.app.Core.Services
 
 				var request = JsonConvert.SerializeObject(createServiceDto);
 
-				var response = await client.PostAsync(CreateServiceUri, new StringContent(request, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(ServiceUri, new StringContent(request, Encoding.UTF8, "application/json"));
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -83,6 +84,33 @@ namespace bonus.app.Core.Services
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
 
 				return data.Success;
+			}
+		}
+
+		public async Task<IEnumerable<Service>> GetBusinessmenService()
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var response = await client.GetAsync(ServiceUri);
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<Service[]>>(json);
+				if (data.Success)
+				{
+					return _mapper.Map<Service[]>(data.Data);
+				}
+
+				return null;
 			}
 		}
 	}
