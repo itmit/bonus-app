@@ -9,6 +9,7 @@ using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Businessman.Profile;
+using bonus.app.Core.ViewModels.Customer;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Commands;

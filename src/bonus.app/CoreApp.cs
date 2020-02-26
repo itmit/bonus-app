@@ -4,6 +4,7 @@ using bonus.app.Core.Repositories;
 using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman;
+using bonus.app.Core.ViewModels.Customer;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;

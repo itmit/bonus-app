@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
@@ -56,6 +58,31 @@ namespace bonus.app.Core.Services
 				}
 
 				return null;
+			}
+		}
+		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+		public async Task<bool> CreateService(CreateServiceDto createServiceDto)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+
+				var request = JsonConvert.SerializeObject(createServiceDto);
+
+				var response = await client.PostAsync(CreateServiceUri, new StringContent(request, Encoding.UTF8, "application/json"));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return false;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+				return data.Success;
 			}
 		}
 	}

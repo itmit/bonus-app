@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using bonus.app.Core.ViewModels.Businessman.Services;
+using bonus.app.Core.Views.ViewCells.Services;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -49,7 +50,7 @@ namespace bonus.app.Core.Page.Businessman.Services
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            return;
+			return;
         }
 
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
@@ -70,10 +71,9 @@ namespace bonus.app.Core.Page.Businessman.Services
 			}
         }
 
-		private void Button_OnClicked(object sender, EventArgs e)
+		private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
 		{
-			Percentage.IsVisible = true;
-			ServicesName.Text = "Массаж";
+
 		}
 	}
 }

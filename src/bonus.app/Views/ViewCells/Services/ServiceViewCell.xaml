@@ -6,7 +6,10 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.Services.ServiceViewCell">
     <ViewCell.View>
-        <StackLayout Spacing="0">
+        <StackLayout BackgroundColor="{Binding Color}" Spacing="0">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SelectServiceCommand}"/>
+            </StackLayout.GestureRecognizers>
             <Label Text="{Binding Name}" Margin="50,20,5,15" HorizontalOptions="FillAndExpand"/>
             <BoxView Margin="35,0,0,0"/>
         </StackLayout>

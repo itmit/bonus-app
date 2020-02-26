@@ -1,7 +1,6 @@
-﻿using Xamarin.Essentials;
-using Xamarin.Forms;
+﻿using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Application = Xamarin.Forms.Application;
-using AuthorizationPage = bonus.app.Core.Page.Auth.AuthorizationPage;
 
 namespace bonus.app.Core
 {
@@ -10,6 +9,7 @@ namespace bonus.app.Core
         public App()
         {
             InitializeComponent();
+			On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
         }
        
         protected override void OnStart()

@@ -1,22 +1,19 @@
-﻿using bonus.app.Page;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bonus.app.Core.Page;
-using bonus.app.Core.Page.Customer.Profile;
+﻿using System;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Customer;
+using bonus.app.Page;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Views
+namespace bonus.app.Core.Page.Customer
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuBuyerPage : MvxContentPage<MenuBuyerViewModel>
+	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Master, WrapInNavigationPage = false, Title = "Меню")]
+	public partial class MenuCustomerPage : MvxContentPage<MenuCustomerViewModel>
     {
-        public MenuBuyerPage()
+        public MenuCustomerPage()
         {
             InitializeComponent();
 

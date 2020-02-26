@@ -43,6 +43,9 @@
     <Compile Update="Page\BuyerSharesDetailPage.xaml.cs">
       <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Page\Customer\MenuCustomerPage.xaml.cs">
+      <DependentUpon>MenuCustomerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Page\Customer\Profile\CustomerProfilePage.xaml.cs">
       <DependentUpon>CustomerProfilePage.xaml</DependentUpon>
     </Compile>
@@ -223,7 +226,7 @@
     <EmbeddedResource Update="Page\Businessman\MenuBusinessmanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuBuyerPage.xaml">
+    <EmbeddedResource Update="Page\Customer\MenuCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MyStockCell.xaml">

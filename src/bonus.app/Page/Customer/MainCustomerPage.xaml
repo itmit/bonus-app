@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxMasterDetailPage x:TypeArguments="viewModels:MainCustomerViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxMasterDetailPage x:TypeArguments="customer:MainCustomerViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,19 +7,9 @@
               xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
               xmlns:tab="clr-namespace:bonus.app.Core.Page.Customer;assembly=bonus.app.Core"
               xmlns:views1="clr-namespace:bonus.app.Views;assembly=bonus.app.Core"
+              xmlns:customer="clr-namespace:bonus.app.Core.ViewModels.Customer;assembly=bonus.app.Core"
               mc:Ignorable="d"
               NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Core.Page.Customer.MainCustomerPage">
     <!-- Страница 16.1.2 Меню покупателя -->
-    <MasterDetailPage.Master>
-        <views1:MenuBuyerPage Title="Меню"/>
-    </MasterDetailPage.Master>
-
-    <MasterDetailPage.Detail>
-        <NavigationPage>
-            <x:Arguments>
-                <tab:CustomerTabbedPage/>
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
 </views:MvxMasterDetailPage>
