@@ -29,7 +29,7 @@
                         <Image Source="ic_profile_w.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center"/>
                         <Label Text="Профиль" TextColor="White" VerticalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Command="{Binding OpenProfileCommand}" NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
@@ -38,7 +38,7 @@
                         <Image Source="ic_rub.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center"/>
                         <Label Text="Начислить бонусы" TextColor="White" VerticalOptions="Center">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                <TapGestureRecognizer Command="{Binding OpenProfileCommand}" NumberOfTapsRequired="1"/>
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>

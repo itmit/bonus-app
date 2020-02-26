@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="shares:BuyerSharesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="shares1:CustomerSharesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,8 +7,9 @@
              xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Shares;assembly=bonus.app.Core"
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
              xmlns:contentView="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
+             xmlns:shares1="clr-namespace:bonus.app.Core.ViewModels.Customer.Shares;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Shares.BuyerSharesPage">
+             x:Class="bonus.app.Core.Page.Customer.Shares.CustomerSharesPage">
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Акции" Style="{StaticResource TitleLabel}"/>

@@ -1,17 +1,22 @@
 ﻿using System;
-using bonus.app.Core.Page;
-using bonus.app.Core.Page.Customer.Shares;
+using bonus.app.Core.Shares;
+using bonus.app.Core.ViewModels.Customer.Shares;
 using bonus.app.Core.ViewModels.Shares;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Shares
+namespace bonus.app.Core.Page.Customer.Shares
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BuyerSharesPage : MvxContentPage<BuyerSharesViewModel>
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
+		Icon = "ic_stock",
+		WrapInNavigationPage = false,
+		Title = "Акции")]
+	public partial class CustomerSharesPage : MvxContentPage<CustomerSharesViewModel>
     {
-        public BuyerSharesPage()
+        public CustomerSharesPage()
         {
             InitializeComponent();
 

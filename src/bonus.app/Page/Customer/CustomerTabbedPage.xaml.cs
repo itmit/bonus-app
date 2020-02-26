@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Customer;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;

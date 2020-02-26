@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bonus.app.Core.Models;
 using bonus.app.Core.ViewModels.Services;
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Services
+namespace bonus.app.Core.Page.Customer.Services
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ServicesPage : MvxContentPage<CustomerServicesViewModel>
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
+		Icon = "ic_star",
+		WrapInNavigationPage = false,
+		Title = "Услуги")]
+	public partial class CustomerServicesPage : MvxContentPage<CustomerServicesViewModel>
     {
-        public ServicesPage()
+        public CustomerServicesPage()
         {
             InitializeComponent();
         }

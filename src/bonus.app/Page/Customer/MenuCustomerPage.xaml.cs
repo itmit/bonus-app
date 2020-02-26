@@ -20,16 +20,6 @@ namespace bonus.app.Core.Page.Customer
             BackgroundColor = Color.FromRgba(160, 150, 142, 235);
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-            
-        }
-
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SupportPage());
