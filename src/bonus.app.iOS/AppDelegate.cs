@@ -23,7 +23,8 @@ namespace bonus.app.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-			Rg.Plugins.Popup.Popup.Init();
+			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+            Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
             return base.FinishedLaunching(app, options);
         }

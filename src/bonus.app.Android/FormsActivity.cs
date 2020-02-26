@@ -13,6 +13,7 @@ namespace bonus.app.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 			Rg.Plugins.Popup.Popup.Init(this, bundle);
 			Xamarin.Forms.Forms.Init(this, bundle);
 			Xamarin.Forms.FormsMaterial.Init(this, bundle);
@@ -30,6 +31,11 @@ namespace bonus.app.Droid
 			{
 				// Do something if there are not any pages in the `PopupStack`
 			}
+		}
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
 	}
 }

@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="viewModels:BonusAccrualViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="bonusAccrual:BonusAccrualViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+             xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Customer.BonusAccrual;assembly=bonus.app.Core"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9C938D"
@@ -15,7 +16,14 @@
             <StackLayout Margin="30,0" Spacing="0">
                 <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" Style="{StaticResource TitleLabel}" Margin="0,35,0,5" TextColor="White"/>
                 <Label Text="QR barcode" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"/>
-                <Image Source="pic_qr_512w.png" HorizontalOptions="Center" WidthRequest="225" Margin="0,0,0,40"/>
+
+                <forms:ZXingBarcodeImageView HorizontalOptions="Center"
+                                             BarcodeFormat="QR_CODE"
+                                             BarcodeValue="{Binding UserUuid}"
+                                             HeightRequest="225"
+                                             WidthRequest="225"
+                                             Margin="0,0,0,40"/>
+
                 <Label Text="Покажите QR code продавцу,&#10;для начисления бонусов" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,40" HorizontalTextAlignment="Center"/>
                 <Button Text="Мои бонусы" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
             </StackLayout>
