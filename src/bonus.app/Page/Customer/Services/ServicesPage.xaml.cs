@@ -1,29 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using bonus.app.Core.Models;
-using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Services;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Services
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreateStockPage : MvxContentPage<CreateStockViewModel>
+    public partial class ServicesPage : MvxContentPage<CustomerServicesViewModel>
     {
-        public CreateStockPage()
+        public ServicesPage()
         {
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-
-        }
+		private void MenuItem_OnClicked(object sender, EventArgs e)
+		{
+			
+		}
 
 		private void Cell_OnTapped(object sender, EventArgs e)
 		{
@@ -73,14 +72,12 @@ namespace bonus.app.Core.Page
 				Cities.IsEnabled = false;
 				Cities.IsVisible = false;
 				Shape1.Rotation = 0;
-				Layout.IsVisible = true;
 			}
 			else
 			{
 				Shape1.Rotation = 180;
 				Cities.IsEnabled = true;
 				Cities.IsVisible = true;
-				Layout.IsVisible = false;
 			}
 		}
 
@@ -103,8 +100,37 @@ namespace bonus.app.Core.Page
 			{
 				Cities.IsEnabled = false;
 				Cities.IsVisible = false;
-				Layout.IsVisible = true;
 				Shape1.Rotation = 0;
+			}
+		}
+
+		private void ImageButton_OnClicked(object sender, EventArgs e)
+		{
+			if (GridHeader.IsEnabled)
+			{
+				GridHeader.IsEnabled = false;
+				GridHeader.IsVisible = false;
+			}
+			else
+			{
+				GridHeader.IsEnabled = true;
+				GridHeader.IsVisible = true;
+			}
+		}
+
+		private void TapServices_OnTapped(object sender, EventArgs e)
+		{
+			if (ViewServices.IsEnabled)
+			{
+				ViewServices.IsEnabled = false;
+				ViewServices.IsVisible = false;
+				Shape2.Rotation = 0;
+			}
+			else
+			{
+				Shape2.Rotation = 180;
+				ViewServices.IsEnabled = true;
+				ViewServices.IsVisible = true;
 			}
 		}
 	}

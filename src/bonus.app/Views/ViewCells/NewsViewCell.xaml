@@ -9,8 +9,8 @@
       <!--Ячейка для списка мои новости у предпринимателя-->
       <StackLayout Margin="5,25,5,10">
           <StackLayout Orientation="Horizontal" Spacing="20">
-              <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True">
-                  <Image Source="girl.png" Aspect="AspectFill" HeightRequest="55" WidthRequest="60"/>
+              <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" HasShadow="False">
+                    <Image Source="chika.png" Aspect="AspectFill" HeightRequest="55" WidthRequest="60"/>
               </Frame>
               <StackLayout>
                   <Label Text="Важная новость" TextColor="#505050" FontSize="Body" MaxLines="1"/>

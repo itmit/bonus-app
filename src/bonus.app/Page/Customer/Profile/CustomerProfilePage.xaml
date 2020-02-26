@@ -53,8 +53,11 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10" VerticalOptions="Center"/>
-                            <Label Grid.Column="1" Text="Подписаться" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                            <Label Grid.Column="1" Text="Подписки" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
                         </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Frame.GestureRecognizers>
                     </Frame>
                 </Grid>
                 <Label Text="+7(900)539-25-66" TextColor="#505050" Margin="10,0"/>

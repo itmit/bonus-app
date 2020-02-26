@@ -7,7 +7,6 @@
              xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
              mc:Ignorable="d"
              BackgroundColor="#9c938d"
-             Visual="Material"
              NavigationPage.HasNavigationBar="False"
              x:Class="bonus.app.Core.Page.Auth.BusinessmanAndCustomerPage">
     <ContentPage.Content>

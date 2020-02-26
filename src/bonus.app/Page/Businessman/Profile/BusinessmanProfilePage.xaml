@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.Profile.BusinessmanProfilePage">
     
@@ -18,16 +19,16 @@
 
     <ContentPage.Content>
         <!--Страница 3. Профиль предпринимателя-->
-        <ScrollView VerticalScrollBarVisibility="Never">
+        <ScrollView>
             <StackLayout>
                 <Grid HorizontalOptions="Center">
                     <Image Source="pic_rectangle_4x.png" HeightRequest="125"/>
-                    <StackLayout Orientation="Horizontal" Padding="5,5">
-                        <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" Margin="15,15" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image Source="business_logos.png" Aspect="AspectFill"/>
+                    <StackLayout Orientation="Horizontal" Padding="20,20">
+                        <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Image Source="business_logos.png" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
                         </Frame>
-                        <StackLayout Margin="0,10">
-                            <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body" FontFamily="Roboto" FontAttributes="Bold"/>
+                        <StackLayout>
+                            <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
                             <Label Text="Стрижки, Кератин, Ботокс,&#10;Ламинирование, Нанопластика&#10;Еще одна строка об услугах" TextColor="#FFFFFF" MaxLines="3"/>
                         </StackLayout>
                     </StackLayout>
@@ -67,18 +68,18 @@
                     <BoxView/>
                     <Label Text="Василий Леонидович" TextColor="#505050" Margin="10,0"/>
                     <BoxView Margin="0,0,0,40"/>
-                    <Frame BackgroundColor="#FFFFFF" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A" Margin="0,0,0,65" HorizontalOptions="Start">
-                        <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    <Frame BackgroundColor="Transparent" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A" HorizontalOptions="Start" VerticalOptions="Center">
+                        <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
                     </Frame>
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" TextDecorations="Underline" Margin="0,0,0,35"/>
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,10"/>
                     <StackLayout Orientation="Horizontal" Spacing="20" Margin="0,0,0,15">
-                        <Image Source="ic_vk_red_4x.png" WidthRequest="30"/>
-                        <Image Source="ic_inst_red_4x.png" WidthRequest="30"/>
-                        <Image Source="ic_face_red_4x.png" WidthRequest="30"/>
-                        <Image Source="ic_odn_red_4x.png" WidthRequest="30"/>
+                            <Image Source="ic_vk_red_4x.png" WidthRequest="30"/>
+                            <Image Source="ic_inst_red_4x.png" WidthRequest="30"/>
+                            <Image Source="ic_face_red_4x.png" WidthRequest="30"/>
+                            <Image Source="ic_odn_red_4x.png" WidthRequest="30"/>
                     </StackLayout>
-                </StackLayout>
+                    </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="shares:BuyerSharesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Shares;assembly=bonus.app.Core"
+             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
+             xmlns:contentView="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Shares.BuyerSharesPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Акции" Style="{StaticResource TitleLabel}"/>
+            <ImageButton Source="ic_pref_4x.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!-- Страница 18.1 акции покупателя -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Padding="20,10,0,0" IsVisible="False" x:Name="StackLayout" BackgroundColor="White">
+                <Label Text="Популярные акции" FontSize="Caption"/>
+                <CarouselView HeightRequest="75">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="280" SnapPointsAlignment="Start" SnapPointsType="Mandatory"/>
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemsSource>
+                        <x:String>00000000000000</x:String>
+                    </CarouselView.ItemsSource>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <contentView:CarouselContentView/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </StackLayout>
+
+            <views:MvxListView Grid.Row="1"
+                               HasUnevenRows="True"
+                               SeparatorVisibility="None"
+                               ItemTapped="TapGestureRecognizer_Tapped">
+                <views:MvxListView.ItemsSource>
+                    <x:String>000000000000000</x:String>
+                </views:MvxListView.ItemsSource>
+                <views:MvxListView.ItemTemplate>
+                    <DataTemplate>
+                        <viewCells:BuyerSharesViewCell/>
+                    </DataTemplate>
+                </views:MvxListView.ItemTemplate>
+            </views:MvxListView>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>

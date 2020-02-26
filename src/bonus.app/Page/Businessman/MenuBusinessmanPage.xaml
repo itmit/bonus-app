@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Margin="0,0,0,5">
             <StackLayout Margin="20,0" Spacing="0">
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,45,0,65">
                     <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65"/>

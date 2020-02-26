@@ -38,6 +38,8 @@ namespace bonus.app.Core.Page
 
             ToolbarItems.Add(toolBar);
             ToolbarItems.Add(toolBar1);
+
+			BackgroundColor = Color.FromRgba(196, 196, 196, 0.2);
         }
 
         private void ToolBar1_Clicked(object sender, EventArgs e)

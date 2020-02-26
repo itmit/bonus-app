@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Views.ViewCells.Shares
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ServicesPage : ContentPage
+    public partial class BuyerSharesViewCell : ViewCell
     {
-        public ServicesPage()
+        public BuyerSharesViewCell()
         {
             InitializeComponent();
         }
