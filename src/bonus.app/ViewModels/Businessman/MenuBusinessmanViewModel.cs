@@ -2,6 +2,7 @@
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
+using bonus.app.Core.ViewModels.Businessman.Pay;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -57,7 +58,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 			{
 				_openPayCommand = _openPayCommand ?? new MvxCommand(() =>
 				{
-					//_navigationService.Navigate();
+					_navigationService.Navigate<PaySubscribesViewModel>();
 				});
 				return _openPayCommand;
 			}
@@ -69,7 +70,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 			{
 				_openTariffCommand = _openTariffCommand ?? new MvxCommand(() =>
 				{
-					//_navigationService.Navigate();
+					_navigationService.Navigate<TariffViewModel>();
 				});
 				return _openTariffCommand;
 			}

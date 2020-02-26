@@ -16,7 +16,7 @@
 
     <ContentPage.Content> 
         <!--Страница 4.2 Мои услуги(предпринимателя)-->
-        <ScrollView>
+        <ScrollView Margin="0,0,0,5">
             <StackLayout Margin="15,20" Spacing="0">
 
 

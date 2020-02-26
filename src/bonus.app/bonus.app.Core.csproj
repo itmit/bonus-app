@@ -40,6 +40,9 @@
     <Compile Update="Page\BusinessmanSharesDetailPage.xaml.cs">
       <DependentUpon>BusinessmanSharesDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Page\Businessman\Pay\PaySubscribesPage.xaml.cs">
+      <DependentUpon>PaySubscribesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Page\Customer\News\CustomerNewsDetailsPage.xaml.cs">
       <DependentUpon>CustomerNewsDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -184,10 +187,7 @@
     <EmbeddedResource Update="Page\MyStock.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\PaySharesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Page\PaySubscribePage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Pay\PaySubscribesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Auth\PublicOfferPage.xaml">
@@ -247,9 +247,6 @@
     <EmbeddedResource Update="Views\NewsCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PayTabbedPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\SuccessAccrualPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -263,6 +260,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\NewsViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ViewCells\PayViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Services\CustomerServicesViewCell.xaml">

@@ -1,6 +1,6 @@
 ﻿using System;
 using bonus.app.Core.ViewModels;
-using bonus.app.Page;
+using bonus.app.Core.Page;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -44,7 +44,7 @@ namespace bonus.app.Core.Page
 
         private void ToolBar1_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Core.Page.ArchiveStockPage());
+            Navigation.PushAsync(new ArchiveStockPage());
         }
 
         private void ToolBar_Clicked(object sender, EventArgs e)
