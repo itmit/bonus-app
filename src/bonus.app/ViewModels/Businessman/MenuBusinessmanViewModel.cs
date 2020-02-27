@@ -3,6 +3,7 @@ using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman.Pay;
+using bonus.app.Core.ViewModels.Businessman.Statistics;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -94,7 +95,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 			{
 				_openStatisticsCommand = _openStatisticsCommand ?? new MvxCommand(() =>
 				{
-					//_navigationService.Navigate();
+					_navigationService.Navigate<StatisticsViewModel>();
 				});
 				return _openStatisticsCommand;
 			}
