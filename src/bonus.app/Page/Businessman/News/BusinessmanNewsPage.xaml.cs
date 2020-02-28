@@ -20,7 +20,7 @@ namespace bonus.app.Core.Page.Businessman.News
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			Navigation.PushAsync(new BusinessmanNewsDetailsPage());
+			ViewModel.OpenDetail();
 		}
 	}
 }

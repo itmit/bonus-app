@@ -59,14 +59,13 @@
                         </Label>
                     </StackLayout>
 
-                    <StackLayout Grid.Row="2" Orientation="Horizontal">
+                    <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Fill">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenTariffCommand}" NumberOfTapsRequired="1"/>
+                        </StackLayout.GestureRecognizers>
                         <Image Source="ic_tarif_4x.png" Style="{StaticResource image}"/>
 
-                        <Label Text="Тарифы" TextColor="White">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenTariffCommand}" NumberOfTapsRequired="1"/>
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <Label Text="Тарифы" TextColor="White"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="3" Orientation="Horizontal">

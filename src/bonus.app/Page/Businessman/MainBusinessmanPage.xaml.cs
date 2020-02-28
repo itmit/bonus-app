@@ -2,6 +2,7 @@
 using bonus.app.Core.ViewModels.Businessman;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Page.Businessman

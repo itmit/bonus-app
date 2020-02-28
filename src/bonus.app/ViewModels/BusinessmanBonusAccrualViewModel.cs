@@ -6,6 +6,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using ZXing;
 
 namespace bonus.app.Core.ViewModels
 {
@@ -45,7 +46,7 @@ namespace bonus.app.Core.ViewModels
 				_furetherCommand = _furetherCommand ??
 								   new MvxCommand(() =>
 								   {
-									   NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel>();
+									   // NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel>();
 								   });
 				return _furetherCommand;
 			}
@@ -80,5 +81,14 @@ namespace bonus.app.Core.ViewModels
 			return await Task.FromResult(status == PermissionStatus.Granted);
 		}
 		#endregion
+
+		public void ScanResult(Result result)
+		{
+			Guid guid;
+			if (Guid.TryParse(result.Text, out guid))
+			{
+				NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(guid);
+			}
+		}
 	}
 }

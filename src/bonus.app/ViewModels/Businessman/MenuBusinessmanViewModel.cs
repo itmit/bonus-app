@@ -104,13 +104,9 @@ namespace bonus.app.Core.ViewModels.Businessman
 		{
 			var user = _userRepository.GetAll()
 									   .Single();
-			/*
-			if (await _authService.LogOut(user))
-			{
-			*/
-				_userRepository.Remove(user);
-				await _navigationService.Navigate<AuthorizationViewModel>();
-			//}
+			
+			_userRepository.Remove(user);
+			await _navigationService.Navigate<AuthorizationViewModel>();
 		}
 	}
 }

@@ -25,7 +25,11 @@
                     <Image Source="pic_rectangle_4x.png" HeightRequest="125"/>
                     <StackLayout Orientation="Horizontal" Padding="20,20">
                         <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image Source="business_logos.png" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Image Source="business_logos.png" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
                         </Frame>
                         <StackLayout>
                             <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>

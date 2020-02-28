@@ -12,5 +12,10 @@ namespace bonus.app.Core.ViewModels.Businessman.News
 		{
 		}
 		#endregion
+
+		public void OpenDetail()
+		{
+			NavigationService.Navigate<BusinessmanNewsDetailsViewModel>();
+		}
 	}
 }

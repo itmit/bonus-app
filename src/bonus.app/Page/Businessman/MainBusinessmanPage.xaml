@@ -6,7 +6,5 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.MainBusinessmanPage"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
-             >
-
+             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core">
 </views:MvxMasterDetailPage>

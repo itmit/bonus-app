@@ -18,13 +18,12 @@
             <StackLayout Margin="30,0" Spacing="0">
                 <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large" Margin="0,35,0,10" TextColor="White" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
                 <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
-                
-                
-                <forms:ZXingScannerView Margin="0,0,0,25"
-                                        HeightRequest="225"
-                                        WidthRequest="225"
-                                        />
 
+                <Image Source="qrcode.png" HorizontalOptions="Center" Margin="0,0,0,25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
 
                 <Frame Margin="0,0,0,20" CornerRadius="40" IsClippedToBounds="True" Padding="0,-2" HasShadow="False" HeightRequest="50">
                     <SearchBar Placeholder="Поиск" PlaceholderColor="White" TextColor="White" WidthRequest="300" BackgroundColor="#bab3af" FontFamily="Lato-Regular.ttf#Lato-Regular" CancelButtonColor="#D5D1CF" />
