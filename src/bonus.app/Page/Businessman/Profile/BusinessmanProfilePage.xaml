@@ -24,12 +24,14 @@
                 <Grid HorizontalOptions="Center">
                     <Image Source="pic_rectangle_4x.png" HeightRequest="125"/>
                     <StackLayout Orientation="Horizontal" Padding="20,20">
-                        <Frame Padding="0" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Center">
-                            <Image Source="business_logos.png" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                                </Image.GestureRecognizers>
-                            </Image>
+                        <Frame Padding="0" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" HeightRequest="100" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="False">
+                            <Frame Padding="0" HasShadow="False" IsClippedToBounds="True" WidthRequest="96" HeightRequest="96" CornerRadius="48" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Image Source="pic_avatar_512w.png" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
                         </Frame>
                         <StackLayout>
                             <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
@@ -40,8 +42,8 @@
                 <StackLayout Margin="20,0" Spacing="0"> 
                     <Grid Margin="0,25" RowSpacing="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
@@ -64,18 +66,27 @@
                             </Grid>
                         </Frame>
                     </Grid>
-                    <Label Text="+7(922)783-33-11" TextColor="#505050" Margin="10,0"/>
+                    <Label Text="+7(922)783-33-11" Margin="10,0"/>
                     <BoxView/>
-                    <Label Text="Москва, ул.Петразоводская, 12" TextColor="#505050" Margin="10,0"/>
+                    <Label Text="Москва, ул.Петразоводская, 12" Margin="10,0"/>
                     <BoxView/>
-                    <Label Text="10:00 — 18:00" TextColor="#505050" Margin="10,0"/>
+                    <Label Text="10:00 — 18:00" Margin="10,0"/>
                     <BoxView/>
-                    <Label Text="Василий Леонидович" TextColor="#505050" Margin="10,0"/>
+                    <Label Text="Василий Леонидович" Margin="10,0"/>
                     <BoxView Margin="0,0,0,40"/>
-                    <Frame BackgroundColor="Transparent" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A" HorizontalOptions="Start" VerticalOptions="Center">
-                        <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    </Frame>
-                    <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" TextDecorations="Underline" Margin="0,0,0,35"/>
+                    <StackLayout Orientation="Horizontal">
+                        <BindableLayout.ItemsSource>
+                            <x:String>000</x:String>
+                        </BindableLayout.ItemsSource>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="Transparent" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A" HorizontalOptions="Start" VerticalOptions="Center">
+                                    <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" TextDecorations="Underline" Margin="0,40,0,35"/>
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,10"/>
                     <StackLayout Orientation="Horizontal" Spacing="20" Margin="0,0,0,15">
                             <Image Source="ic_vk_red_4x.png" WidthRequest="30"/>
@@ -83,14 +94,14 @@
                             <Image Source="ic_face_red_4x.png" WidthRequest="30"/>
                             <Image Source="ic_odn_red_4x.png" WidthRequest="30"/>
                     </StackLayout>
-                    </StackLayout>
-                <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10">
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal">
+                </StackLayout>
+                <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25">
+                    <StackLayout Spacing="0">
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
                             <Label Text="Портфолио" TextColor="#000000" FontSize="Body" FontFamily="Roboto" HorizontalOptions="Start"/>
                             <ImageButton Source="ic_more_4x.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="12"/>
                         </StackLayout>
-                        <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" Margin="0,10" HorizontalOptions="Start">
+                        <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" WidthRequest="100" HeightRequest="60" HasShadow="False">
                             <Image Source="longhair.png" Aspect="AspectFit"/>
                         </Frame>
                     </StackLayout>

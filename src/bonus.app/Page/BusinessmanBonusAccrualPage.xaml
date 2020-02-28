@@ -10,7 +10,6 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.BusinessmanBonusAccrualPage"
              BackgroundColor="#9C938D"
-             NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!-- Страница 7.1 Начисление бонусов начальная -->
@@ -19,7 +18,7 @@
                 <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large" Margin="0,35,0,10" TextColor="White" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold"/>
                 <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
 
-                <Image Source="qrcode.png" HorizontalOptions="Center" Margin="0,0,0,25">
+                <Image Source="qrcode.png" WidthRequest="225" HorizontalOptions="Center" Margin="0,0,0,25">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                     </Image.GestureRecognizers>
@@ -28,7 +27,7 @@
                 <Frame Margin="0,0,0,20" CornerRadius="40" IsClippedToBounds="True" Padding="0,-2" HasShadow="False" HeightRequest="50">
                     <SearchBar Placeholder="Поиск" PlaceholderColor="White" TextColor="White" WidthRequest="300" BackgroundColor="#bab3af" FontFamily="Lato-Regular.ttf#Lato-Regular" CancelButtonColor="#D5D1CF" />
                 </Frame>
-                <Button Text="Далее" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Command="{Binding FurtherCommand}" Clicked="Button_OnClicked" FontFamily="Lato-Regular.ttf#Lato-Regular"/>
+                <Button Text="Далее" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" Clicked="Button_OnClicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
@@ -16,6 +17,7 @@ namespace bonus.app.Core.Page.Businessman.Profile
         public BusinessmanProfilePage()
         {
             InitializeComponent();
+			
 		}
 
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)

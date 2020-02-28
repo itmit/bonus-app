@@ -22,7 +22,7 @@
                                 <Span Text="Тариф на "/>
                                 <Span Text="6"/>
                                 <Span Text=" месяц"/>
-                                <Span Text="а"/>
+                                <Span Text="ев"/>
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
@@ -83,7 +83,7 @@
                                         <Span Text="Тариф на "/>
                                         <Span Text="3"/>
                                         <Span Text=" месяц"/>
-                                        <Span Text="ев"/>
+                                        <Span Text="а"/>
                                     </FormattedString.Spans>
                                 </FormattedString>
                             </Label.FormattedText>

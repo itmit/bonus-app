@@ -9,7 +9,6 @@ using ZXing.Net.Mobile.Forms;
 
 namespace bonus.app.Core.Page
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
 		Icon = "ic_charges",
 		WrapInNavigationPage = false,
