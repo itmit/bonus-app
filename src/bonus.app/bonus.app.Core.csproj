@@ -177,10 +177,10 @@
     <EmbeddedResource Update="Page\FillinDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\GenderAgePage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\GenderAgePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\GeographyPage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\GeographyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Customer\MainCustomerPage.xaml">
@@ -207,13 +207,13 @@
     <EmbeddedResource Update="Page\RecoveryDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\SalesTypesPage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\SalesTypesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Customer\Services\CustomerServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\StatisticsPage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\StatisticsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\StockPage.xaml">
@@ -231,13 +231,13 @@
     <EmbeddedResource Update="Page\TariffPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\TransitionsProfilePage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\TransitionsProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\ViewsProfilePage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\ViewsProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\ViewsStockPage.xaml">
+    <EmbeddedResource Update="Page\Businessman\Statistics\ViewsStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IconView.xaml">
