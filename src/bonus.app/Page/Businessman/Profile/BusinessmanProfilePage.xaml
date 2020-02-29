@@ -54,6 +54,9 @@
                                 <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center"/>
                                 <Label Grid.Column="1" Text="Сообщения" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
                             </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
+                            </Frame.GestureRecognizers>
                         </Frame>
                         <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">

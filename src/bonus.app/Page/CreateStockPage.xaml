@@ -108,7 +108,7 @@
                                 <Switch HorizontalOptions="EndAndExpand"/>
                             </StackLayout>
                             <BoxView Margin="0,0,0,20"/>
-                            <Button Text="Просмотр" TextColor="#A0968E" BackgroundColor="Transparent" BorderWidth="1" BorderColor="#A0968E" CornerRadius="40" HeightRequest="45" FontFamily="Lato-Regular.ttf#Lato-Regular" Clicked="Button_Clicked" Margin="0,10"/>
+                            <Button Text="Просмотр" Style="{StaticResource StatisticsButton}" Clicked="Button_Clicked" Margin="0,10"/>
                             <Button Text="Создать акцию" Style="{StaticResource AppButton}" Clicked="Button_Clicked_1"/>
                         </StackLayout>
                     </Grid>
