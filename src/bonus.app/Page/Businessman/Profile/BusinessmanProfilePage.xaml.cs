@@ -31,5 +31,33 @@ namespace bonus.app.Core.Page.Businessman.Profile
 		{
 
 		}
+
+		private void ImageButton_OnClicked(object sender, EventArgs e)
+		{
+			if (Frame.IsEnabled)
+			{
+				Frame.IsVisible = false;
+				Frame.IsEnabled = false;
+			}
+			else
+			{
+				Frame.IsVisible = true;
+				Frame.IsEnabled = true;
+			}
+		}
+
+		private void Subscribe_OnTapped(object sender, EventArgs e)
+		{
+			if (Label.Text.Equals("Подписаться"))
+			{
+				SubscribeButton.BackgroundColor = Color.FromRgba(160, 150, 142, 0.7);
+				Label.Text = "Отписаться";
+			}
+			else
+			{
+				SubscribeButton.BackgroundColor = Color.FromHex("#bab3af");
+				Label.Text = "Подписаться";
+			}
+		}
 	}
 }

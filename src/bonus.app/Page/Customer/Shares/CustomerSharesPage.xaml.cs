@@ -1,7 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Shares;
 using bonus.app.Core.ViewModels.Customer.Shares;
-using bonus.app.Core.ViewModels.Shares;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;

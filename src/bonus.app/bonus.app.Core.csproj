@@ -39,9 +39,6 @@
     <Compile Update="Page\Auth\BusinessmanRegistrationPage.xaml.cs">
       <DependentUpon>BusinessmanRegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\BusinessmanSharesDetailPage.xaml.cs">
-      <DependentUpon>BusinessmanSharesDetailPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Page\Businessman\Pay\PaySubscribesPage.xaml.cs">
       <DependentUpon>PaySubscribesPage.xaml</DependentUpon>
     </Compile>
@@ -53,9 +50,6 @@
     </Compile>
     <Compile Update="Page\Customer\Services\CustomerServicesPage.xaml.cs">
       <DependentUpon>CustomerServicesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Page\Customer\Shares\BuyerSharesDetailPage.xaml.cs">
-      <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Page\Customer\MenuCustomerPage.xaml.cs">
       <DependentUpon>MenuCustomerPage.xaml</DependentUpon>
@@ -117,19 +111,13 @@
     <EmbeddedResource Update="Page\Auth\CustomerRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\BusinessmanSharesDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Page\Businessman\Services\BusinessmanServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\BusinessmanSharesPage.xaml">
+    <EmbeddedResource Update="Page\Customer\Shares\CustomerSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Businessman\BusinessmanTabbedPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\BuyerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\Auth\BusinessmanAndCustomerPage.xaml">
@@ -141,19 +129,10 @@
     <EmbeddedResource Update="Page\Customer\Profile\CustomerProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\CustomerSharesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Page\ChargesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\CreateStockPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\SelectedSharesDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\SelectedSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\EditBusinessmanServicesDetailsPage.xaml">
@@ -262,6 +241,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\SuccessRegisterBusinessmanPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\SuccessRegisterCustomerPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\SuccessRegisterPopupPage.xaml">

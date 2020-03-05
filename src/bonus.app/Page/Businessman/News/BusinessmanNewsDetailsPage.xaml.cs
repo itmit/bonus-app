@@ -17,7 +17,7 @@ namespace bonus.app.Core.Page
         {
             InitializeComponent();
 			FrameImage.IsVisible = true;
-			CarouselViewImages.IsVisible = false;
+			CarouselViewImages.IsVisible = true;
 			ControlVisible(FrameImage.IsVisible, CarouselViewImages.IsVisible);
 		}
 

@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
-             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.Profile.BusinessmanProfilePage">
     
@@ -45,6 +44,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
+                        <!--Кнопка "сообщения"-->
                         <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
@@ -58,15 +59,20 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+
+                        <!--Кнопка "подписаться"-->
+                        <Frame x:Name="SubscribeButton" Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10" VerticalOptions="Center"/>
-                                <Label Grid.Column="1" Text="Подписаться" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                                <Label x:Name="Label" Text="Подписаться" Grid.Column="1" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
                             </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Subscribe_OnTapped"/>
+                            </Frame.GestureRecognizers>
                         </Frame>
                     </Grid>
                     <Label Text="+7(922)783-33-11" Margin="10,0"/>
@@ -77,18 +83,18 @@
                     <BoxView/>
                     <Label Text="Василий Леонидович" Margin="10,0"/>
                     <BoxView Margin="0,0,0,40"/>
-                    <StackLayout Orientation="Horizontal">
+                    <FlexLayout Wrap="Wrap">
                         <BindableLayout.ItemsSource>
-                            <x:String>000</x:String>
+                            <x:String>0000000000</x:String>
                         </BindableLayout.ItemsSource>
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Frame BackgroundColor="Transparent" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A" HorizontalOptions="Start" VerticalOptions="Center">
+                                <Frame Margin="0,0,5,0" BackgroundColor="Transparent" HeightRequest="25" CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A">
                                     <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center"/>
                                 </Frame>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
-                    </StackLayout>
+                    </FlexLayout>
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91" TextDecorations="Underline" Margin="0,40,0,35"/>
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,10"/>
                     <StackLayout Orientation="Horizontal" Spacing="20" Margin="0,0,0,15">
@@ -99,15 +105,32 @@
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25">
-                    <StackLayout Spacing="0">
-                        <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
-                            <Label Text="Портфолио" TextColor="#000000" FontSize="Body" FontFamily="Roboto" HorizontalOptions="Start"/>
-                            <ImageButton Source="ic_more_4x.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="12"/>
+                    <Grid>
+                        <StackLayout Spacing="0">
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
+                                <Label Text="Портфолио" TextColor="#000000" FontSize="Body" FontFamily="Roboto" HorizontalOptions="Start"/>
+                                <ImageButton Source="ic_more_4x.png" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" WidthRequest="12" Clicked="ImageButton_OnClicked"/>
+                            </StackLayout>
+                            <FlexLayout Wrap="Wrap">
+                                <BindableLayout.ItemsSource>
+                                    <x:String>00000000</x:String>
+                                </BindableLayout.ItemsSource>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame Margin="0,0,5,5" Padding="0" CornerRadius="10" IsClippedToBounds="True" WidthRequest="100" HeightRequest="60" HasShadow="False">
+                                            <Image Source="longhair.png" Aspect="AspectFit"/>
+                                        </Frame>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>
                         </StackLayout>
-                        <Frame Padding="0" CornerRadius="10" IsClippedToBounds="True" WidthRequest="100" HeightRequest="60" HasShadow="False">
-                            <Image Source="longhair.png" Aspect="AspectFit"/>
+                        <Frame x:Name="Frame" Padding="10,5" IsClippedToBounds="True" CornerRadius="10" IsVisible="False" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" Margin="0,10,15,0">
+                            <Label Text="Добавить изображение" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Frame.GestureRecognizers>
                         </Frame>
-                    </StackLayout>
+                    </Grid>
                 </Frame>
             </StackLayout>
         </ScrollView>
