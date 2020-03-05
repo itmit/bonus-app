@@ -83,7 +83,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 			{
 				_openSupportCommand = _openSupportCommand ?? new MvxCommand(() =>
 				{
-					//_navigationService.Navigate();
+					_navigationService.Navigate<SupportViewModel>();
 				});
 				return _openSupportCommand;
 			}

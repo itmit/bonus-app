@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.Views.Popups;
+using bonus.app.Page;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Rg.Plugins.Popup.Extensions;
@@ -46,18 +47,9 @@ namespace bonus.app.Core.Page.Businessman.Profile
 			}
 		}
 
-		private void Subscribe_OnTapped(object sender, EventArgs e)
+		private void Subscribers_OnTapped(object sender, EventArgs e)
 		{
-			if (Label.Text.Equals("Подписаться"))
-			{
-				SubscribeButton.BackgroundColor = Color.FromRgba(160, 150, 142, 0.7);
-				Label.Text = "Отписаться";
-			}
-			else
-			{
-				SubscribeButton.BackgroundColor = Color.FromHex("#bab3af");
-				Label.Text = "Подписаться";
-			}
+			Navigation.PushAsync(new SubscribersPage());
 		}
 	}
 }

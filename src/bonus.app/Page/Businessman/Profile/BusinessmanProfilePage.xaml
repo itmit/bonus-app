@@ -60,18 +60,18 @@
                             </Frame.GestureRecognizers>
                         </Frame>
 
-                        <!--Кнопка "подписаться"-->
-                        <Frame x:Name="SubscribeButton" Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <!--Кнопка "подписчики"-->
+                        <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10" VerticalOptions="Center"/>
-                                <Label x:Name="Label" Text="Подписаться" Grid.Column="1" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
+                                <Label Text="Подписчики" Grid.Column="1" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Subscribe_OnTapped"/>
+                                <TapGestureRecognizer Tapped="Subscribers_OnTapped"/>
                             </Frame.GestureRecognizers>
                         </Frame>
                     </Grid>
