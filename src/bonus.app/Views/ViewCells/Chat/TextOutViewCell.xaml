@@ -16,7 +16,7 @@
                  Margin="10"
                  CornerRadius="20">
               <StackLayout>
-                    <Label Text="{Binding Text}" d:Text="Здравствуйте как-то возможно исправить название акции которая уже размещена?" TextColor="Black" FontFamily="Roboto"/>
+                    <Label Text="{Binding Text}" TextColor="Black" FontFamily="Roboto"/>
               </StackLayout>
           </Frame>
       </StackLayout>

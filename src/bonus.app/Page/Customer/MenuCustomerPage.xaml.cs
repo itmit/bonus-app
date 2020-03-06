@@ -22,7 +22,7 @@ namespace bonus.app.Core.Page.Customer
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SupportPage());
+            Navigation.PushAsync(new ChatPage());
         }
     }
 }

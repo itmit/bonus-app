@@ -16,7 +16,7 @@
                  Margin="10"
                  CornerRadius="20">
               <StackLayout>
-                    <Label Text="{Binding Text}" d:Text="Да это возможно, для этого вам необходимо перейти к акциям" TextColor="Black" FontFamily="Roboto"/>
+                    <Label Text="{Binding Text}" TextColor="Black" FontFamily="Roboto"/>
               </StackLayout>
           </Frame>
       </StackLayout>

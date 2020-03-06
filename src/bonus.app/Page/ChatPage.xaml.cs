@@ -11,9 +11,9 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SupportPage : MvxContentPage<SupportViewModel>
+    public partial class ChatPage : MvxContentPage<ChatViewModel>
     {
-        public SupportPage()
+        public ChatPage()
         {
             InitializeComponent();
 

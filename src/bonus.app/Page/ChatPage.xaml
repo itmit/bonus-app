@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="viewModels:SupportViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="viewModels:ChatViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,7 +9,7 @@
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              NavigationPage.BackButtonTitle="False"
-             x:Class="bonus.app.Core.Page.SupportPage">
+             x:Class="bonus.app.Core.Page.ChatPage">
     <NavigationPage.TitleView>
         <Label Text="Техподдержка" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
@@ -42,12 +42,16 @@
                                            ItemAppearingCommand="{Binding MessageAppearingCommand}"
                                            ItemDisappearingCommand="{Binding MessageDisappearingCommand}">
             </controls:ExtendedListView>
-            <Label Grid.Row="0" Text="Здесь вы можете задать любой интересующий вас вопрос, наши специалисты обязательно ответят вам."
-                       TextColor="Black"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       IsVisible="{Binding VisibleText}"
-                       HorizontalTextAlignment="Center" Margin="20"/>
+            <Label Grid.Row="1" Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="True">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="У вас пока нет сообщений&#10;&#10;" TextColor="Black"/>
+                            <Span Text="Для того чтобы написать сообщение&#10;необходимо перейти в профиль" TextColor="#858585" FontSize="Caption"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
                                            x:Name="ChatInput" Padding="0,0,10,0"/>
         </Grid>

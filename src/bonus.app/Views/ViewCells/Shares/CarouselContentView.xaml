@@ -7,12 +7,12 @@
              x:Class="bonus.app.Core.Views.ViewCells.Shares.CarouselContentView">
     <ContentView.Content>
         <StackLayout Spacing="0">
-            <Frame IsClippedToBounds="True" Padding="2" BackgroundColor="#AEA59F" CornerRadius="22" HasShadow="False" HorizontalOptions="Start" VerticalOptions="Start">
+            <Frame IsClippedToBounds="True" Padding="2" BackgroundColor="#AEA59F" CornerRadius="22" HasShadow="False" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,0,20,0">
                 <Frame IsClippedToBounds="True" Padding="0" CornerRadius="20" HasShadow="False">
                     <Image Source="business_logos.png" Aspect="AspectFill" WidthRequest="40" HeightRequest="40"/>
                 </Frame>
             </Frame>
-            <Label Text="Торговое&#10;название" FontSize="7" MaxLines="2" HorizontalOptions="Start" HorizontalTextAlignment="Center" Margin="5,0,0,0"/>
+            <Label Text="Торговое&#10;название" WidthRequest="40" FontSize="7" HorizontalOptions="Start" HorizontalTextAlignment="Center" Margin="2.5,0,0,0"/>
         </StackLayout>
     </ContentView.Content>
 </ContentView>
