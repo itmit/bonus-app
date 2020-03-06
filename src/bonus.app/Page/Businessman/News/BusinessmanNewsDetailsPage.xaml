@@ -19,23 +19,22 @@
                 <Frame x:Name="FrameImage" Padding="0" IsClippedToBounds="True" CornerRadius="5">
                     <Image Source="chika.png" Aspect="AspectFill" WidthRequest="300"/>
                 </Frame>
-                <CarouselView x:Name="CarouselViewImages" Margin="0,0,0,20" HeightRequest="60" WidthRequest="70">
-                    <CarouselView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="240" SnapPointsAlignment="Start" SnapPointsType="Mandatory"/>
-                    </CarouselView.ItemsLayout>
-                    <CarouselView.ItemsSource>
-                        <x:String>000000000</x:String>
-                    </CarouselView.ItemsSource>
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Frame IsClippedToBounds="True" Padding="0" CornerRadius="10" HorizontalOptions="Start">
+                <!--Горизонтальный список с картинками-->
+                <ScrollView Orientation="Horizontal" Margin="0,0,0,20">
+                    <StackLayout x:Name="CarouselViewImages" Orientation="Horizontal">
+                        <BindableLayout.ItemsSource>
+                            <x:String>0000000</x:String>
+                        </BindableLayout.ItemsSource>
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame IsClippedToBounds="True" Padding="0" CornerRadius="10" HorizontalOptions="Start" Margin="0,0,7,0">
                                     <Image Source="chika.png" WidthRequest="70"/>
                                 </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+
                 <Label x:Name="LabelNew" Text="Важная новость" TextColor="#505050" FontSize="Body" Margin="0,0,0,5"/>
                 <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" Margin="0,0,0,10"/>
                 <Label Text="Акция на пакет XL, при покупке до конца &#10;недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь &#10;Акция на пакет XL, при покупке до конца недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь!" TextColor="#110000" Opacity="0.7"/>

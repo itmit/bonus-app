@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using bonus.app.Core.ViewModels;
-using MvvmCross.Forms.Views;
+using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SubscribersPage : MvxContentPage<SubscribersViewModel>
+    public partial class SuccessRegisterBusinessmanPopupPage : PopupPage
     {
-        public SubscribersPage()
+        public SuccessRegisterBusinessmanPopupPage()
         {
             InitializeComponent();
         }

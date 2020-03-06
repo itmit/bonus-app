@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Views.ViewCells
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SupportPage : ContentPage
+    public partial class MessageViewCell : ViewCell
     {
-        public SupportPage()
+        public MessageViewCell()
         {
             InitializeComponent();
         }

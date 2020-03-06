@@ -16,7 +16,7 @@ namespace bonus.app.Core.Page.Businessman.News
         {
             InitializeComponent();
 			FrameImage.IsVisible = true;
-			CarouselViewImages.IsVisible = false;
+			CarouselViewImages.IsVisible = true;
 			ControlVisible(FrameImage.IsVisible, CarouselViewImages.IsVisible);
 		}
 

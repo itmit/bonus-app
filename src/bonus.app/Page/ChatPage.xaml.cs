@@ -8,14 +8,21 @@ using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Page
+namespace bonus.app.Core.Page
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SubscribersPage : MvxContentPage<SubscribersViewModel>
+    public partial class ChatPage : MvxContentPage<ChatViewModel>
     {
-        public SubscribersPage()
+        public ChatPage()
         {
             InitializeComponent();
-        }
-    }
+
+			BackgroundColor = Color.FromRgba(160,150,142,0.3);
+		}
+
+		public void OnListTapped(object sender, ItemTappedEventArgs e)
+		{
+			ChatInput.UnFocusEntry();
+		}
+	}
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using bonus.app.Core.Models;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.Views.Popups;
 using MvvmCross.Forms.Views;
+using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,9 +18,10 @@ namespace bonus.app.Core.Page
         }
 
         private void Button_Clicked(object sender, EventArgs e)
-        {
-            
-        }
+		{
+			var popup = new ViewSharesPopupPage();
+			Navigation.PushPopupAsync(popup);
+		}
 
         private void Button_Clicked_1(object sender, EventArgs e)
         {

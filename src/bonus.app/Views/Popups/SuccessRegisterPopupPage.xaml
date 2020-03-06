@@ -6,6 +6,7 @@
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
     x:Class="bonus.app.Core.Views.Popups.SuccessRegisterPopupPage">
     <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <!--Popup при успешной регистрации в профиле покупателя-->
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
             PositionIn="Center"
@@ -30,15 +31,13 @@
                 HeightRequest="270">
             <Label Text="Вы успешно&#10;зарегистрировались!"
                        HorizontalTextAlignment="Center"
-                       TextColor="#505050"
                        FontSize="Medium"/>
 
             <Label Text="Просим заполнить статистическую&#10;&#10;информацию, чтобы мы сделали сервис&#10;&#10;ориентированным на Вас"
                    HorizontalTextAlignment="Center"
-                   Margin="0,15"
-                   TextColor="#505050"/>
+                   Margin="0,15"/>
 
-                <Button Text="Ок" Clicked="Button_OnClicked" Style="{StaticResource AppButton}"  Command="{Binding OpenEditPageCommand}"/>
+                <Button Text="Ок" Clicked="Button_OnClicked" Style="{StaticResource AppButton}" Command="{Binding OpenEditPageCommand}"/>
         </StackLayout>
     </Frame>
 </pages:PopupPage>
