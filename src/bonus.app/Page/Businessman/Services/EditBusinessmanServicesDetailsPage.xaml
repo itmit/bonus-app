@@ -9,7 +9,7 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.EditBusinessmanServicesDetailsPage">
+             x:Class="bonus.app.Core.Page.Businessman.Services.EditBusinessmanServicesDetailsPage">
     <NavigationPage.TitleView>
         <Label Text="Редактор мои услуги" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>

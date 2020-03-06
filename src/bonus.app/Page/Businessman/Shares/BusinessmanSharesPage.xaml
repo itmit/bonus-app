@@ -7,7 +7,7 @@
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.BusinessmanSharesPage"
+             x:Class="bonus.app.Core.Page.Businessman.Shares.BusinessmanSharesPage"
              NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
         <Label Text="Мои акции" Style="{StaticResource TitleLabel}"/>

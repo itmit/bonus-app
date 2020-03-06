@@ -180,6 +180,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 					{
 						MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
 						await RaisePropertyChanged(() => HasServices);
+						await RaisePropertyChanged(() => NoHasServices);
 					}
 					catch (Exception e)
 					{

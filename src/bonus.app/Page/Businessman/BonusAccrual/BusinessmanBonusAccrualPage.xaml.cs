@@ -2,12 +2,10 @@
 using bonus.app.Core.ViewModels;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ZXing;
 using ZXing.Net.Mobile.Forms;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Page.Businessman.BonusAccrual
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,

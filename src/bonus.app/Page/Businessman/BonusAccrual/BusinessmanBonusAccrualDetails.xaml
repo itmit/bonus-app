@@ -7,7 +7,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.BusinessmanBonusAccrualDetails"
+             x:Class="bonus.app.Core.Page.Businessman.BonusAccrual.BusinessmanBonusAccrualDetails"
              NavigationPage.HasBackButton="False"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9C938D">

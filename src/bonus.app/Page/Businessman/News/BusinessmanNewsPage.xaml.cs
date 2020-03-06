@@ -9,7 +9,6 @@ namespace bonus.app.Core.Page.Businessman.News
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
 		Icon = "ic_news",
-		WrapInNavigationPage = false,
 		Title = "Новости")]
 	public partial class BusinessmanNewsPage : MvxContentPage<BusinessmanNewsViewModel>
     {

@@ -11,8 +11,8 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Page.Businessman
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = true)]
-	[MvxTabbedPagePresentation(TabbedPosition.Root, WrapInNavigationPage = true)]
+	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = false)]
+	[MvxTabbedPagePresentation(TabbedPosition.Root)]
 	public partial class BusinessmanTabbedPage : MvxTabbedPage<MainTabbedBusinessmanViewModel>
     {
         public BusinessmanTabbedPage()

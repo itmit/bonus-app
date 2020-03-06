@@ -12,7 +12,6 @@ namespace bonus.app.Core.Page.Businessman.Services
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
 		Icon = "ic_star",
-		WrapInNavigationPage = false,
 		Title = "Услуги")]
     public partial class BusinessmanServicesPage : MvxContentPage<BusinessmanServicesViewModel>
     {
