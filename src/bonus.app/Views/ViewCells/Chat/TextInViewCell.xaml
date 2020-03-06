@@ -7,7 +7,7 @@
              x:Class="bonus.app.Core.Views.ViewCells.Chat.TextInViewCell">
   <ViewCell.View>
       <StackLayout HorizontalOptions="End">
-          <Label Text="{Binding DateTime}" d:Text="Вторник · 12:56" HorizontalOptions="Center"/>
+          <Label Text="{Binding DateTime}" HorizontalOptions="Center"/>
           <Frame BackgroundColor="White"
                  Rotation="180"
                  FlowDirection="LeftToRight"

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Businessman.Services;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms.Xaml;
 

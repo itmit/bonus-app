@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bonus.app.Core.Dto.GeoHelper
+namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class LocaleDto
 	{

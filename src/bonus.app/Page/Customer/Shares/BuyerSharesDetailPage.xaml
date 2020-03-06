@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="shares:BayerSharesDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="shares1:BayerSharesDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Shares;assembly=bonus.app.Core"
+             xmlns:shares1="clr-namespace:bonus.app.Core.ViewModels.Customer.Shares;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Shares.BayerSharesDetailPage">
+             x:Class="bonus.app.Core.Page.Customer.Shares.BayerSharesDetailPage">
     <NavigationPage.TitleView>
         <Label Text="Акции" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using bonus.app.Core.Dto.GeoHelper;
+using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
 using Newtonsoft.Json;

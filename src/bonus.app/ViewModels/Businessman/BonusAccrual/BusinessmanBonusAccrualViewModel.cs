@@ -8,7 +8,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using ZXing;
 
-namespace bonus.app.Core.ViewModels
+namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
 	public class BusinessmanBonusAccrualViewModel : MvxNavigationViewModel
 	{
@@ -84,8 +84,7 @@ namespace bonus.app.Core.ViewModels
 
 		public void ScanResult(Result result)
 		{
-			Guid guid;
-			if (Guid.TryParse(result.Text, out guid))
+			if (Guid.TryParse(result.Text, out var guid))
 			{
 				NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(guid);
 			}

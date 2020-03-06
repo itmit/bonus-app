@@ -2,7 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels.Shares
+namespace bonus.app.Core.ViewModels.Customer.Shares
 {
 	public class SelectedSharesViewModel : MvxNavigationViewModel
 	{

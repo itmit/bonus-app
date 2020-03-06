@@ -7,7 +7,6 @@
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
              xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:shares="clr-namespace:bonus.app.Core.Shares;assembly=bonus.app.Core"
              xmlns:news="clr-namespace:bonus.app.Core.Customer.News;assembly=bonus.app.Core"
              xmlns:shares1="clr-namespace:bonus.app.Core.Page.Customer.Shares;assembly=bonus.app.Core"
              xmlns:customer="clr-namespace:bonus.app.Core.ViewModels.Customer;assembly=bonus.app.Core"

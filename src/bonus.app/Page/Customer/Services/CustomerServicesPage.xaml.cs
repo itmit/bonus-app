@@ -1,5 +1,5 @@
 ﻿using System;
-using bonus.app.Core.ViewModels.Services;
+using bonus.app.Core.ViewModels.Customer.Services;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;

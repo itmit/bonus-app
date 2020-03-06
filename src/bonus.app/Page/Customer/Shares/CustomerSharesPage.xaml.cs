@@ -1,5 +1,4 @@
 ﻿using System;
-using bonus.app.Core.Shares;
 using bonus.app.Core.ViewModels.Customer.Shares;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
