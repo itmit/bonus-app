@@ -1,9 +1,9 @@
 ﻿using bonus.app.Core.Page.Customer.Shares;
 using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using bonus.app.Core.ViewModels.Customer.News;
+using bonus.app.Core.ViewModels.Customer.Profile;
+using bonus.app.Core.ViewModels.Customer.Services;
 using bonus.app.Core.ViewModels.Customer.Shares;
-using bonus.app.Core.ViewModels.Profile;
-using bonus.app.Core.ViewModels.Services;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;

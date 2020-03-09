@@ -1,6 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Page.Businessman.Profile;
-using bonus.app.Core.ViewModels.Profile;
+using bonus.app.Core.ViewModels.Customer.Profile;
 using bonus.app.Page;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;

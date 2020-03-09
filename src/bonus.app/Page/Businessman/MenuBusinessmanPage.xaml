@@ -8,6 +8,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
+             xmlns:views1="clr-namespace:bonus.app.Core.Views;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.MenuBusinessmanPage">
     <ContentPage.Resources>
@@ -97,7 +98,7 @@
                         <Label Text="Выход" TextColor="White"/>
                     </StackLayout>
                 </Grid>
-                <local:IconView/>
+                <views1:IconView/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

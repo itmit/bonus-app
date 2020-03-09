@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Businessman.BonusAccrual;
 using bonus.app.Core.Views.Popups;
 using MvvmCross.Forms.Views;
 using Rg.Plugins.Popup.Extensions;

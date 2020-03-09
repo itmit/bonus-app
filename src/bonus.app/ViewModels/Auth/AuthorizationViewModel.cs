@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Windows.Input;
-using bonus.app.Core.Dto;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;

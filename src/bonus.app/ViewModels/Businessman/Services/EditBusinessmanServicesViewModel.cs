@@ -2,7 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels
+namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class EditBusinessmanServicesViewModel : MvxNavigationViewModel
 	{

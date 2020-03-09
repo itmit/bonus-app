@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
-using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels
+namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
 	public class BusinessmanBonusAccrualDetailsViewModel : MvxNavigationViewModel<Guid>
 	{

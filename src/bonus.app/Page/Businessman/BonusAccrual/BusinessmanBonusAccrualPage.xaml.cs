@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Businessman.BonusAccrual;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms.Xaml;
