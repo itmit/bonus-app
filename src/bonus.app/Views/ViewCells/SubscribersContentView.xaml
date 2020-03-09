@@ -12,10 +12,12 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-            <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" HasShadow="False" CornerRadius="20" VerticalOptions="Center" HorizontalOptions="Center" BorderColor="#505050">
-                <Image Source="pic_avatar_512w.png" WidthRequest="40" Aspect="AspectFill"/>
-          </Frame>
-          <Label Grid.Column="1" Text="Андрей Макаров" MaxLines="1" VerticalOptions="Center" FontFamily="Roboto"/>
+            <Frame Grid.Column="0" BackgroundColor="#7B726C" CornerRadius="20" Padding="1" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="False">
+                <Frame IsClippedToBounds="True" Padding="0" HasShadow="False" CornerRadius="20" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="pic_avatar_512w.png" WidthRequest="40" Aspect="AspectFill"/>
+                </Frame>
+            </Frame>
+            <Label Grid.Column="1" Text="Андрей Макаров" MaxLines="1" VerticalOptions="Center" FontFamily="Roboto"/>
           <Label Grid.Column="2" Text="2000" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontFamily="Roboto"/>
       </Grid>
     </ContentView.Content>

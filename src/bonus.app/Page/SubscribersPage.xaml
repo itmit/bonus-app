@@ -19,16 +19,18 @@
             <BoxView/>
             <SearchBar Placeholder="Поиск" PlaceholderColor="#505050" TextColor="#505050" CancelButtonColor="#505050" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
             <BoxView/>
-            <StackLayout>
-                <BindableLayout.ItemsSource>
-                    <x:String>000000</x:String>
-                </BindableLayout.ItemsSource>
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <viewCells:SubscribersContentView/>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <BindableLayout.ItemsSource>
+                        <x:String>000000</x:String>
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <viewCells:SubscribersContentView/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>
