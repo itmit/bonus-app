@@ -7,22 +7,25 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.Services.MyServiceViewCell">
     <ViewCell.View>
-        <StackLayout>
-            <StackLayout.Resources>
-                <converters:BonusValueTypeConverter x:Key="BonusValueTypeConverter" />
-            </StackLayout.Resources>
-            <Label Text="{Binding Name}" HorizontalTextAlignment="Start"/>
+        <StackLayout Spacing="0">
+            <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
+                <StackLayout.Resources>
+                    <converters:BonusValueTypeConverter x:Key="BonusValueTypeConverter" />
+                </StackLayout.Resources>
+                <Label Text="{Binding Name}" HorizontalTextAlignment="Start"/>
 
-            <Label HorizontalTextAlignment="End">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="{Binding AccrualValueString}"/>
-                            <Span Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}"/>
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                <Label HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="{Binding AccrualValueString}"/>
+                                <Span Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <BoxView/>
         </StackLayout>
     </ViewCell.View>
 </ViewCell>

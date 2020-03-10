@@ -12,17 +12,27 @@
         <Label Text="Архив акций" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="MenuItem_OnClicked"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <!--5.5 Архив акций-->
-        <ListView Margin="10,0,0,0" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True">
-            <ListView.ItemsSource>
-                <x:String>000000000000</x:String>
-            </ListView.ItemsSource>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <viewCells:ArchiveStockViewCell/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid>
+            <ListView Margin="10,0,0,0" VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True">
+                <ListView.ItemsSource>
+                    <x:String>000000000000</x:String>
+                </ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <viewCells:ArchiveStockViewCell/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--Затемнение заднего фона-->
+            <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False"/>
+            <!--Появляющийся фильтр-->
+            <viewCells:FilterContentView x:Name="Filter" TranslationY="-480"/>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

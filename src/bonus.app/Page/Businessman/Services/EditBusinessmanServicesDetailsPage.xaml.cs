@@ -13,35 +13,11 @@ namespace bonus.app.Core.Page.Businessman.Services
         public EditBusinessmanServicesDetailsPage()
         {
             InitializeComponent();
-
-			var collection = new ObservableCollection<string>
-			{
-				"0",
-				"0",
-				"0"
-			};
-			ViewServices.ItemsSource = collection;
 		}
 
 		private void Button_OnClicked(object sender, EventArgs e)
 		{
 			Navigation.PopToRootAsync();
-		}
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			if (ViewServices.IsEnabled)
-			{
-				ViewServices.IsEnabled = false;
-				ViewServices.IsVisible = false;
-				Shape.Rotation = 0;
-			}
-			else
-			{
-				Shape.Rotation = 180;
-				ViewServices.IsEnabled = true;
-				ViewServices.IsVisible = true;
-			}
 		}
 	}
 }

@@ -50,24 +50,6 @@ namespace bonus.app.Core.Page.Businessman.Services
 			return;
         }
 
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			if (ViewServices.IsEnabled)
-			{
-				PlusServices.IsVisible = false;
-				ViewServices.IsEnabled = false;
-				ViewServices.IsVisible = false;
-				Shape.Rotation = 0;
-			}
-			else
-			{
-				Shape.Rotation = 180;
-				PlusServices.IsVisible = true;
-				ViewServices.IsEnabled = true;
-				ViewServices.IsVisible = true;
-			}
-        }
-
 		private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
 		{
 

@@ -4,9 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
-             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
              xmlns:viewModels1="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
@@ -18,90 +15,8 @@
     <ContentPage.Content>
         <!--Страница 4.3.2 редактор мои услуги у предпринимателя-->
         <ScrollView>
-            <StackLayout Spacing="0" Margin="15,0">
-                <StackLayout Margin="0,20,0,15" Spacing="0">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                    </StackLayout.GestureRecognizers>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                        <Label Text="Вид услуги"/>
-                        <Image Source="Shape.png"
-                               WidthRequest="15"
-                               x:Name="Shape"
-                               VerticalOptions="Center"
-                               HorizontalOptions="EndAndExpand"
-                               Rotation="0"/>
-                    </StackLayout>
-                    <BoxView/>
-                </StackLayout>
-
-                <controls:RepeaterView
-                    IsVisible="False"
-                    IsEnabled="False"
-                    x:Name="ViewServices"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
-                    <controls:RepeaterView.ItemTemplate>
-                        <DataTemplate>
-                            <services:ServiceTypeViewCell/>
-                        </DataTemplate>
-                    </controls:RepeaterView.ItemTemplate>
-                </controls:RepeaterView>
-
-                <Label Text="Начисление бонусов" TextColor="#858585" Margin="5,0,0,0"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Entry Grid.Column="0" Placeholder="Количество бонусов"
-                           FontSize="14"
-                           PlaceholderColor="#505050"
-                           VerticalOptions="Center"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           TextColor="#505050"
-                           Visual="Material"/>
-                    <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
-                    <Entry Grid.Column="2" Placeholder="Процент бонусов"
-                           FontSize="14"
-                           PlaceholderColor="#505050"
-                           VerticalOptions="Center"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           TextColor="#505050"
-                           Visual="Material"/>
-                </Grid>
-
-                <BoxView Margin="0,0,0,15"/>
-
-                <Label Text="Списание бонусов" TextColor="#858585" Margin="5,0,0,0"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Entry Grid.Column="0" Placeholder="Количество бонусов"
-                           FontSize="14"
-                           VerticalOptions="Center"
-                           PlaceholderColor="#505050"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           Visual="Material"/>
-                    <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
-                    <Entry Grid.Column="2" Placeholder="Процент бонусов"
-                           FontSize="14"
-                           VerticalOptions="Center"
-                           PlaceholderColor="#505050"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           Visual="Material"/>
-                </Grid>
-
-                <BoxView Margin="0,0,0,20"/>
-
+            <StackLayout Spacing="0" Margin="15,20">
+                <services:MyServicesContentView/>
                 <Button Text="Сохранить изменения" Style="{StaticResource AppButton}" Clicked="Button_OnClicked"/>
             </StackLayout>
         </ScrollView>
