@@ -41,8 +41,8 @@
                 <StackLayout Margin="20,0" Spacing="0"> 
                     <Grid Margin="0,25" RowSpacing="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <!--Кнопка "сообщения"-->

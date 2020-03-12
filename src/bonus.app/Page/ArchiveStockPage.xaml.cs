@@ -15,22 +15,37 @@ namespace bonus.app.Core.Page
             InitializeComponent();
         }
 
-		private void MenuItem_OnClicked(object sender, EventArgs e)
+		/// <summary>
+		/// Управляет выплывающим фильтром
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void MenuItem_OnClicked(object sender, EventArgs e)
 		{
 			if (Filter.IsEnabled)
 			{
+				BlackBackground.FadeTo(0, 500).GetAwaiter();
+				Filter.TranslateTo(0, -480, 500).GetAwaiter();
+				BlackBackground.IsVisible = await GetEndVisible();
 				Filter.IsEnabled = false;
-				Filter.TranslateTo(0, -480, 500);
-				BlackBackground.FadeTo(0, 500);
-				BlackBackground.IsVisible = false;
 			}
 			else
 			{
-				Filter.IsEnabled = true;
-				Filter.TranslateTo(0, 0, 500);
+				BlackBackground.FadeTo(0.7, 500).GetAwaiter();
+				Filter.TranslateTo(0, 0, 500).GetAwaiter();
 				BlackBackground.IsVisible = true;
-				BlackBackground.FadeTo(0.7, 500);
+				Filter.IsEnabled = true;
 			}
+		}
+
+		/// <summary>
+		/// Задерживает видимость черного фона
+		/// </summary>
+		/// <returns></returns>
+		private async Task<bool> GetEndVisible()
+		{
+			await Task.Delay(500);
+			return false;
 		}
 	}
 }

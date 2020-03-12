@@ -5,86 +5,88 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.FilterContentView">
-  <ContentView.Content>
+    <ContentView.Content>
         <Grid HeightRequest="240">
-            <StackLayout Spacing="0">
-                <Grid BackgroundColor="White">
-                    <!--Tab-->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Frame HasShadow="False" Grid.Column="0" HorizontalOptions="FillAndExpand">
-                        <StackLayout Spacing="0">
-                            <Label x:Name="MyStockLabel" Text="Мои акции" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,15" HorizontalOptions="Center"/>
-                            <BoxView x:Name="LeftBoxView" WidthRequest="2" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"/>
-                        </StackLayout>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </Frame.GestureRecognizers>
-                    </Frame>
-                    <Frame HasShadow="False" Grid.Column="1" HorizontalOptions="FillAndExpand">
-                        <StackLayout Spacing="0">
-                            <Label x:Name="AllStockLabel" Text="Все акции" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,15" HorizontalOptions="Center" Scale="1.1"/>
-                            <BoxView x:Name="RightBoxView" WidthRequest="2" BackgroundColor="#BB8D91" HorizontalOptions="FillAndExpand"/>
-                        </StackLayout>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
-                        </Frame.GestureRecognizers>
-                    </Frame>
-                </Grid>
+                <StackLayout Spacing="0">
+                    <Grid BackgroundColor="White">
+                        <!--Tab-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame HasShadow="False" Grid.Column="0" HorizontalOptions="FillAndExpand">
+                            <StackLayout Spacing="0">
+                                <Label x:Name="MyStockLabel" Text="Мои акции" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,15" HorizontalOptions="Center"/>
+                                <BoxView x:Name="LeftBoxView" WidthRequest="2" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame HasShadow="False" Grid.Column="1" HorizontalOptions="FillAndExpand">
+                            <StackLayout Spacing="0">
+                                <Label x:Name="AllStockLabel" Text="Все акции" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,15" HorizontalOptions="Center" Scale="1.1"/>
+                                <BoxView x:Name="RightBoxView" WidthRequest="2" BackgroundColor="#BB8D91" HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
 
-                <StackLayout Orientation="Horizontal" Padding="20,0,20,20" BackgroundColor="White">
-                    <Label Text="Фильтр" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" VerticalOptions="Center"/>
-                    <ImageButton Source="ic_pref_4x.png" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" WidthRequest="15" VerticalOptions="Center" Clicked="ImageButton_OnClicked"/>
-                </StackLayout>
-
-                <StackLayout x:Name="StackLayout" IsVisible="False" IsEnabled="False" BackgroundColor="White">
-                    <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
-                        <Label Text="Город" />
-                        <Image x:Name="Shape" Source="Shape.png" WidthRequest="10" HeightRequest="5" HorizontalOptions="EndAndExpand"/>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="VisibleCity_OnTapped"/>
-                        </StackLayout.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal" Padding="20,0,20,20" BackgroundColor="White">
+                        <Label Text="Фильтр" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" VerticalOptions="Center"/>
+                        <ImageButton Source="ic_pref_4x.png" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" WidthRequest="15" VerticalOptions="Center" Clicked="ImageButton_OnClicked"/>
                     </StackLayout>
-                    <!--Список с городами-->
-                    <ScrollView HeightRequest="140" x:Name="CityList" IsVisible="False" IsEnabled="False">
-                        <StackLayout>
-                            <BindableLayout.ItemsSource>
-                                <x:String>00000</x:String>
-                            </BindableLayout.ItemsSource>
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Label Text="Нижневартовск" Padding="30,0,20,20"/>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
-                    </ScrollView>
-                    
 
-                    <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
-                        <Label Text="Вид услуги" />
-                        <Image x:Name="Shape1" Source="Shape.png" WidthRequest="10" HeightRequest="5" HorizontalOptions="EndAndExpand"/>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="VisibleServices_OnTapped"/>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                    <!--Список с видами услуг-->
-                    <ScrollView HeightRequest="140" x:Name="ServicesList" IsVisible="False" IsEnabled="False">
-                        <StackLayout>
-                            <BindableLayout.ItemsSource>
-                                <x:String>00000</x:String>
-                            </BindableLayout.ItemsSource>
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Label Text="Стрижка" Padding="30,0,20,20"/>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
+
+                    <StackLayout x:Name="StackLayout" IsVisible="False" IsEnabled="False" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
+                            <Label Text="Город" />
+                            <Image x:Name="Shape" Source="Shape.png" WidthRequest="10" HeightRequest="5" HorizontalOptions="EndAndExpand"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="VisibleCity_OnTapped"/>
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
-                    </ScrollView>
+                        <!--Список с городами-->
+                        <ScrollView HeightRequest="140" x:Name="CityList" IsVisible="False" IsEnabled="False">
+                            <StackLayout>
+                                <BindableLayout.ItemsSource>
+                                    <x:String>00000</x:String>
+                                </BindableLayout.ItemsSource>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="Нижневартовск" Padding="30,0,20,20"/>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </ScrollView>
+
+
+                        <StackLayout Orientation="Horizontal" Padding="20,0,20,20">
+                            <Label Text="Вид услуги" />
+                            <Image x:Name="Shape1" Source="Shape.png" WidthRequest="10" HeightRequest="5" HorizontalOptions="EndAndExpand"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="VisibleServices_OnTapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <!--Список с видами услуг-->
+                        <ScrollView HeightRequest="140" x:Name="ServicesList" IsVisible="False" IsEnabled="False">
+                            <StackLayout>
+                                <BindableLayout.ItemsSource>
+                                    <x:String>00000</x:String>
+                                </BindableLayout.ItemsSource>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="Стрижка" Padding="30,0,20,20"/>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+
+                    <Button Text="Применить" Style="{StaticResource AppButton}" Margin="0" CornerRadius="0"/>
                 </StackLayout>
-                <Button Text="Применить" Style="{StaticResource AppButton}" Margin="0" CornerRadius="0"/>
-            </StackLayout>
-        </Grid>
-  </ContentView.Content>
+            </Grid>
+    </ContentView.Content>
 </ContentView>

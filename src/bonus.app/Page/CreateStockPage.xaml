@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.CreateStockPage">
     <NavigationPage.TitleView>
@@ -90,8 +91,8 @@
                         </views:MvxListView>
 
                         <StackLayout Spacing="0" Grid.Row="1" x:Name="Layout">
-                            <Entry Placeholder="Название акции" PlaceholderColor="#505050" TextColor="#505050" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="14" Visual="Material" Margin="0,0,0,20" BackgroundColor="Transparent"/>
-                            <Editor Placeholder="Описание акции&#10;&#10;" PlaceholderColor="#505050" TextColor="#505050" FontSize="14" FontFamily="Lato-Regular.ttf#Lato-Regular" AutoSize="TextChanges" Margin="0,0,0,20" BackgroundColor="Transparent"/>
+                            <controls:EntryAuthPage Placeholder="Название акции" PlaceholderColor="#505050" TextColor="#505050" Visual="Material" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="14" Margin="0,0,0,20" BackgroundColor="Transparent"/>
+                                <Editor Placeholder="Описание акции&#10;&#10;" PlaceholderColor="#505050" TextColor="#505050" FontSize="14" FontFamily="Lato-Regular.ttf#Lato-Regular" AutoSize="TextChanges" Margin="0,0,0,20" BackgroundColor="Transparent"/>
                             <StackLayout Orientation="Horizontal" Margin="5,0">
                                 <Label Text="Загрузите изображение акции"/>
                                 <Image Source="icon_photo.png" WidthRequest="70" HeightRequest="40" HorizontalOptions="EndAndExpand"/>
