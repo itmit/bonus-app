@@ -42,7 +42,7 @@
                                            ItemAppearingCommand="{Binding MessageAppearingCommand}"
                                            ItemDisappearingCommand="{Binding MessageDisappearingCommand}">
             </controls:ExtendedListView>
-            <Label Grid.Row="1" Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="True">
+            <Label Grid.Row="0" Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="True">
                 <Label.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>

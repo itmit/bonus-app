@@ -13,7 +13,7 @@
     </NavigationPage.TitleView>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="MenuItem_OnClicked"/>
+        <ToolbarItem Text="Фильтр" Order="Secondary" Clicked="MenuItem_OnClicked"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

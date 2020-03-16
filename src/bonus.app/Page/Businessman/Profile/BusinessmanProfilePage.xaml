@@ -20,9 +20,8 @@
         <!--Страница 3. Профиль предпринимателя-->
         <ScrollView>
             <StackLayout>
-                <Grid HorizontalOptions="Center">
-                    <Image Source="pic_rectangle_4x.png" HeightRequest="125"/>
-                    <StackLayout Orientation="Horizontal" Padding="20,20">
+                <Grid BackgroundColor="#ADA49E">
+                    <StackLayout Orientation="Horizontal" Padding="20,20" HorizontalOptions="Center">
                         <Frame Padding="0" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True" WidthRequest="100" HeightRequest="100" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="False">
                             <Frame Padding="0" HasShadow="False" IsClippedToBounds="True" WidthRequest="96" HeightRequest="96" CornerRadius="48" VerticalOptions="Center" HorizontalOptions="Center">
                                 <Image Source="pic_avatar_512w.png" HorizontalOptions="Center" VerticalOptions="Center">
@@ -124,8 +123,8 @@
                                 </BindableLayout.ItemTemplate>
                             </FlexLayout>
                         </StackLayout>
-                        <Frame x:Name="Frame" Padding="10,5" IsClippedToBounds="True" CornerRadius="10" IsVisible="False" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" Margin="0,10,15,0">
-                            <Label Text="Добавить изображение" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        <Frame x:Name="Frame" Padding="15,10" IsClippedToBounds="True" CornerRadius="5" IsVisible="False" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25" Margin="0,10,15,0">
+                            <Label Text="Добавить изображение" TextColor="Black" FontFamily="Roboto" FontSize="Body" VerticalOptions="Center" HorizontalOptions="Center"/>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer/>
                             </Frame.GestureRecognizers>

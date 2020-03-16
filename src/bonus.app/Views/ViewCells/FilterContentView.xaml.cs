@@ -15,6 +15,7 @@ namespace bonus.app.Core.Views.ViewCells
 		public FilterContentView()
 		{
 			InitializeComponent();
+			MyStockLabel.TextColor = Color.Gray;
 		}
 		/// <summary>
 		/// Событие при нажатии на левый таб
@@ -25,8 +26,10 @@ namespace bonus.app.Core.Views.ViewCells
 		{
 			RightBoxView.BackgroundColor = Color.Transparent;
 			MyStockLabel.Scale = 1.1;
+			MyStockLabel.TextColor = Color.FromHex("#505050");
 			LeftBoxView.BackgroundColor = Color.FromHex("#BB8D91");
 			AllStockLabel.Scale = 1;
+			AllStockLabel.TextColor = Color.Gray;
 			StackLayout.IsVisible = false;
 		}
 
@@ -39,8 +42,10 @@ namespace bonus.app.Core.Views.ViewCells
 		{
 			RightBoxView.BackgroundColor = Color.FromHex("#BB8D91");
 			MyStockLabel.Scale = 1;
+			MyStockLabel.TextColor = Color.Gray;
 			LeftBoxView.BackgroundColor = Color.Transparent;
 			AllStockLabel.Scale = 1.1;
+			AllStockLabel.TextColor = Color.FromHex("#505050");
 			StackLayout.IsVisible = false;
 		}
 
