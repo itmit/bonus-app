@@ -7,11 +7,11 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.Chat.ChatInputBarView">
   <ContentView.Content>
-        <Grid ColumnSpacing="20" Margin="20,0">
+        <Grid ColumnSpacing="20" Padding="20,0">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="*" />
-              <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
           <controls:ExtendedEditorControl x:Name="ChatTextInput" 
                                           Text="{Binding TextToSend}" 
@@ -25,8 +25,8 @@
                                           Grid.Row="0" 
                                           Grid.Column="0"/>
 
-            <ImageButton Grid.Column="1" Source="ic_attach_4x.png" WidthRequest="24" BackgroundColor="Transparent"/>
-            <ImageButton Grid.Column="2" Source="ic_send_4x.png" WidthRequest="24" Command="{Binding SendCommand}" BackgroundColor="Transparent"/>
+            <ImageButton Grid.Column="1" Source="ic_attach_4x.png" WidthRequest="24" BackgroundColor="Transparent" VerticalOptions="Center"/>
+            <ImageButton Grid.Column="2" Source="ic_send_4x.png" WidthRequest="24" Command="{Binding SendCommand}" BackgroundColor="Transparent" VerticalOptions="Center"/>
       </Grid>
     </ContentView.Content>
 </ContentView>
