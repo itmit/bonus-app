@@ -25,8 +25,23 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+		
 		[JsonProperty("phone")]
 		public string Phone
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("name")]
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("photo")]
+		public string Photo
 		{
 			get;
 			set;

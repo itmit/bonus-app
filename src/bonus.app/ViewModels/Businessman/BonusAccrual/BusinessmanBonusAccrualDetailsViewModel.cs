@@ -11,7 +11,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 	public class BusinessmanBonusAccrualDetailsViewModel : MvxNavigationViewModel<Guid>
 	{
 		private Guid _guid;
-		private ICustomerService _customerService;
+		private readonly ICustomerService _customerService;
 
 		public BusinessmanBonusAccrualDetailsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ICustomerService customerService)
 			: base(logProvider, navigationService)
@@ -23,7 +23,14 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		{
 			await base.Initialize();
 
-			User = await _customerService.GetCustomerByUuid(_guid);
+			try
+			{
+				User = await _customerService.GetCustomerByUuid(_guid);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 		}
 
 		public User User

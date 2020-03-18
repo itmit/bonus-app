@@ -60,5 +60,11 @@ namespace bonus.app.Core.Models
 			get;
 			set;
 		}
+
+		public int Balance
+		{
+			get;
+			set;
+		}
 	}
 }

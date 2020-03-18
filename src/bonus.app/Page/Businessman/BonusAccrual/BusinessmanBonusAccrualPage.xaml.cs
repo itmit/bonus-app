@@ -17,24 +17,6 @@ namespace bonus.app.Core.Page.Businessman.BonusAccrual
         public BusinessmanBonusAccrualPage()
         {
             InitializeComponent();
-			/*
-			var zxing = new ZXingScannerView
-			{
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.FillAndExpand,
-				AutomationId = "zxingScannerView",
-			};
-			zxing.OnScanResult += (result) =>
-				Device.BeginInvokeOnMainThread(async () => {
-
-					// Stop analysis until we navigate away so we don't keep reading barcodes
-					zxing.IsAnalyzing = false;
-
-					// Show an alert
-					await DisplayAlert("Scanned Barcode", result.Text, "OK");
-				});
-
-			Frame.Content = zxing;*/
 		}
 
 		private void Button_OnClicked(object sender, EventArgs e)
@@ -45,10 +27,9 @@ namespace bonus.app.Core.Page.Businessman.BonusAccrual
 		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
 			var page = new ZXingScannerPage();
-			page.OnScanResult += (result) =>
+			page.OnScanResult += async result =>
 			{
-				Navigation.PopAsync();
-
+				await Navigation.PopModalAsync();
 				ViewModel.ScanResult(result);
 			};
 

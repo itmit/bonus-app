@@ -73,5 +73,12 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+
+		[JsonProperty("balance")]
+		public int Balance
+		{
+			get;
+			set;
+		}
 	}
 }

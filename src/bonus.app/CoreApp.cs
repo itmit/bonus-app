@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
+using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman;
@@ -35,10 +36,8 @@ namespace bonus.app.Core
 				return;
 			}
 
-			var userRepository = Mvx.IoCProvider.Resolve<IUserRepository>();
+			User user = Mvx.IoCProvider.Resolve<IAuthService>().User;
 
-			User user = userRepository.GetAll().SingleOrDefault();
-			
 			if (user?.AccessToken == null)
 			{
 				RegisterAppStart<AuthorizationViewModel>();

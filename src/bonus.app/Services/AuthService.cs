@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -8,7 +9,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Repositories;
 using bonus.app.Views;
+using MvvmCross;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
@@ -30,6 +33,10 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
+
+			User = Mvx.IoCProvider.Resolve<IUserRepository>()
+					  .GetAll()
+					  .SingleOrDefault();
 		}
 
 		public Dictionary<string, string[]> ErrorDetails
@@ -87,6 +94,14 @@ namespace bonus.app.Core.Services
 			}
 		}
 
+		public User User
+		{
+			get;
+			private set;
+		}
+
+		public AccessToken Token => User?.AccessToken;
+
 		private const string LogOutUri = "http://bonus.itmit-studio.ru/api/logout";
 
 		public async Task<bool> LogOut(User user)
@@ -101,6 +116,11 @@ namespace bonus.app.Core.Services
 				var json = await response.Content.ReadAsStringAsync();
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+				if (data.Success)
+				{
+					User = null;
+				}
+
 				return data.Success;
 			}
 		}
@@ -138,10 +158,9 @@ namespace bonus.app.Core.Services
 				{
 					if (data.Success)
 					{
-						var userInfo = _mapper.Map<User>(data.Data.Client);
-						var user = _mapper.Map<User>(data.Data);
-						userInfo.AccessToken = user.AccessToken;
-						return userInfo;
+						User = _mapper.Map<User>(data.Data.Client);
+						User.AccessToken = _mapper.Map<User>(data.Data).AccessToken;
+						return User;
 					}
 
 					return _mapper.Map<User>(data.Data);

@@ -84,6 +84,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 
 		public void ScanResult(Result result)
 		{
+			NavigationService.Close(null);
 			if (Guid.TryParse(result.Text, out var guid))
 			{
 				NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(guid);

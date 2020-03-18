@@ -28,7 +28,6 @@
                             <Setter Property="Keyboard" Value="Numeric"/>
                         </Style>
                         <Style x:Key="Frame" TargetType="Frame">
-                            <Setter Property="Padding" Value="0"/>
                             <Setter Property="IsClippedToBounds" Value="True"/>
                             <Setter Property="CornerRadius" Value="40"/>
                             <Setter Property="Padding" Value="0,-5"/>

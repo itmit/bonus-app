@@ -40,6 +40,8 @@ namespace bonus.app.Core
 			return base.GetPageOfType<TPage>(rootPage);
 		}
 
+		public override Task<bool> CloseNavigationPage(IMvxViewModel viewModel, MvxNavigationPagePresentationAttribute attribute) => base.CloseNavigationPage(viewModel, attribute);
+
 		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute) 
 		{
 			if ((FormsApplication.MainPage as TabbedPage)?.CurrentPage is NavigationPage root)

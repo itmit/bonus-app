@@ -16,6 +16,16 @@ namespace bonus.app.Core.Services
 
 		Task<User> Register(User user, string password, string confirmPassword);
 
+		User User
+		{
+			get;
+		}
+
+		AccessToken Token
+		{
+			get;
+		}
+
 		Task<bool> LogOut(User user);
 
 		string Error
