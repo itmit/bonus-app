@@ -41,13 +41,13 @@
                         <Image Source="bitmap.png" WidthRequest="60"/>
                     </Frame>
                     <StackLayout>
-                        <Label Text="Алена Дейли" TextColor="White" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
+                        <Label Text="{Binding User.Name}" TextColor="White" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
                         <Label TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <FormattedString.Spans>
-                                        <Span Text="1200 " FontSize="Title"/>
-                                        <Span Text="бонусов" FontSize="Body"/>
+                                        <Span Text="{Binding User.Balance}" FontSize="Title"/>
+                                        <Span Text=" бонусов" FontSize="Body"/>
                                     </FormattedString.Spans>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -56,13 +56,16 @@
                 </StackLayout>
                 <Grid>
                     <Frame Style="{StaticResource Frame}">
-                        <Picker Title="Вид услуги" BackgroundColor="#bab3af" TitleColor="White" TextColor="White" FontFamily="Lato-Regular.ttf#Lato-Regular" Visual="Material">
-                            <Picker.Items>
-                                <x:String>Стрижка</x:String>
-                                <x:String>Массаж</x:String>
-                                <x:String>Маникюр</x:String>
-                            </Picker.Items>
-                        </Picker>
+                        <Picker
+                            ItemsSource="{Binding Services}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Title="Вид услуги"
+                            SelectedItem="{Binding SelectedService}"
+                            BackgroundColor="#bab3af"
+                            TitleColor="White"
+                            TextColor="White"
+                            FontFamily="Lato-Regular.ttf#Lato-Regular"
+                            Visual="Material"/>
                     </Frame>
                     <Image Source="ic_shape_4x.png" WidthRequest="10" HeightRequest="5" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,20,0"/>
                 </Grid>
@@ -74,19 +77,31 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Entry Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusAmount}" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                         <Label Grid.Column="1" Text="или" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Body"/>
-                        <Entry Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusPercentage}" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource Frame}" Margin="0,10">
+                    <Grid BackgroundColor="#bab3af" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Entry Text="{Binding BonusWhiteOffAmount}" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="или" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Body"/>
+                        <Entry Text="{Binding BonusWhiteOffPercentage}" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                     </Grid>
                 </Frame>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}" Visual="Material"/>
+                    <Entry Text="{Binding ServicePrice}" Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <Entry Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Visual="Material"/>
+                    <Entry Text="{Binding BonusesForWriteOff}"  Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}" Visual="Material"/>
+                    <Entry Text="{Binding BonusesForAccrual}" Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
                     <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Visual="Material"/>

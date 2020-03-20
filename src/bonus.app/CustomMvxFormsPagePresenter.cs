@@ -85,7 +85,7 @@ namespace bonus.app.Core
 					await PushOrReplacePage(FormsApplication.MainPage, tabHost, attribute);
 				}
 
-				if (tabHost.Children.Any(p => (p as NavigationPage)?.RootPage.GetType() == page.GetType()))
+				if (tabHost.Children.Any(p => p.GetType() == page.GetType() || (p as NavigationPage)?.RootPage.GetType() == page.GetType()))
 				{
 					return true;
 				}

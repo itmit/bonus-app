@@ -61,7 +61,10 @@ namespace bonus.app.Core.Services
 
 				if (response.IsSuccessStatusCode)
 				{
-					return _mapper.Map<User>(data.Data);
+					var user = _mapper.Map<User>(data.Data);
+					var userInfo = _mapper.Map<User>(data.Data.Client);
+					userInfo.Balance = user.Balance;
+					return userInfo;
 				}
 
 				return null;

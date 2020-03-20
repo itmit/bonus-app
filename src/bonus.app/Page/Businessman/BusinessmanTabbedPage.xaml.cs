@@ -4,6 +4,7 @@ using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Businessman;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
@@ -20,13 +21,6 @@ namespace bonus.app.Core.Page.Businessman
             InitializeComponent();
 			On<Android>()
 				.SetToolbarPlacement(ToolbarPlacement.Bottom);
-
-			CurrentPageChanged += OnCurrentPageChanged;
-		}
-
-		private void OnCurrentPageChanged(object sender, EventArgs e)
-		{
-			Title = CurrentPage.Title;
 		}
 	} 
 }

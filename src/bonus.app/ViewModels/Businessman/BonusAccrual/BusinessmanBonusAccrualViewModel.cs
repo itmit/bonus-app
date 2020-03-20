@@ -6,6 +6,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Xamarin.Forms;
 using ZXing;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
@@ -16,6 +17,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		#region Fields
 		private IMvxCommand _furetherCommand;
 		private bool _isEnabledScan;
+		private MvxCommand _openScannerCommand;
 		#endregion
 		#endregion
 
@@ -82,12 +84,16 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		}
 		#endregion
 
-		public void ScanResult(Result result)
+		public MvxCommand OpenScannerCommand
 		{
-			NavigationService.Close(null);
-			if (Guid.TryParse(result.Text, out var guid))
+			get
 			{
-				NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(guid);
+				_openScannerCommand = _openScannerCommand ?? new MvxCommand(async () =>
+				{
+					Guid result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
+					await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(result);
+				});
+				return _openScannerCommand;
 			}
 		}
 	}

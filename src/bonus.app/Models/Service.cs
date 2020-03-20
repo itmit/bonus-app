@@ -31,6 +31,32 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		public float AccrualFloatValue
+		{
+			get => AccrualMethod == BonusValueType.Points ? AccrualValue / 100 : AccrualValue;
+			set => AccrualValue = (int)(AccrualMethod == BonusValueType.Points ? value * 100 : value);
+		}
+
+		public float WhiteOffFloatValue
+		{
+			get => WhiteOffMethod == BonusValueType.Points ? WhiteOffValue / 100 : WhiteOffValue;
+			set => WhiteOffValue = (int)(WhiteOffMethod == BonusValueType.Points ? value * 100 : value);
+		}
+
+		[JsonProperty("writeoff_method")]
+		public BonusValueType WhiteOffMethod
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("writeoff_value")]
+		public int WhiteOffValue
+		{
+			get;
+			set;
+		}
+
 		public string AccrualValueString
 		{
 			get

@@ -10,6 +10,7 @@
              BarBackgroundColor="White"
              SelectedTabColor ="#BB8D91"
              NavigationPage.HasNavigationBar="True"
+             UnselectedTabColor="#505050"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.BusinessmanTabbedPage">
 </views:MvxTabbedPage>
