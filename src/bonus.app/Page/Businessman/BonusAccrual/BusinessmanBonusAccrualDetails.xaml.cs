@@ -1,9 +1,10 @@
 ﻿using System;
-using bonus.app.Core.ViewModels;
+using System.Threading.Tasks;
 using bonus.app.Core.ViewModels.Businessman.BonusAccrual;
 using bonus.app.Core.Views.Popups;
 using MvvmCross.Forms.Views;
 using Rg.Plugins.Popup.Extensions;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Page.Businessman.BonusAccrual
@@ -22,5 +23,17 @@ namespace bonus.app.Core.Page.Businessman.BonusAccrual
 			Navigation.PushPopupAsync(popupPage);
 			Navigation.PopAsync();
 		}
-    }
+
+		private void VisualElement_OnUnfocused(object sender, FocusEventArgs e)
+		{
+			if (!e.IsFocused
+				&& ViewModel.ServicePrice != null)
+			{
+				Task.Run(() =>
+				{
+					ViewModel.UpdateBonuses(ViewModel.SelectedService, ViewModel.ServicePrice.Value);
+				});
+			}
+		}
+	}
 }

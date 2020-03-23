@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -19,16 +21,19 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private double? _servicePrice;
 		private double _bonusesForAccrual;
 		private double _bonusesForWriteOff;
+		private IBonusService _bonusService;
 		private double? _bonusAmount;
-		private int? _bonusPercentage;
-		private int? _bonusWhiteOffPercentage;
+		private double? _bonusPercentage;
+		private double? _bonusWhiteOffPercentage;
 		private double? _bonusWhiteOffAmount;
+		private MvxCommand _accrueAndWriteOffBonusesCommand;
 
-		public BusinessmanBonusAccrualDetailsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ICustomerService customerService, IServicesService servicesServices)
+		public BusinessmanBonusAccrualDetailsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ICustomerService customerService, IServicesService servicesServices, IBonusService bonusService)
 			: base(logProvider, navigationService)
 		{
 			_customerService = customerService;
 			_servicesServices = servicesServices;
+			_bonusService = bonusService;
 		}
 
 		public override async Task Initialize()
@@ -94,40 +99,49 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 		}
 
-		private void UpdateBonuses(Service selectedService, double price)
+		public void UpdateBonuses(Service selectedService, double price)
 		{
-			if (selectedService == null || price < 1)
+			var whiteOffPercentage = BonusWhiteOffPercentage ?? 0;
+			var whiteOffPoints = BonusWhiteOffAmount ?? 0;
+			if (selectedService == null
+				|| price < 1
+				|| whiteOffPercentage < 1)
 			{
 				BonusesForWriteOff = 0;
 				BonusesForAccrual = 0;
 				return;
 			}
 
-			switch (SelectedService.WhiteOffMethod)
+			double whiteOff;
+			switch (selectedService.WhiteOffMethod)
 			{
 				case BonusValueType.Percent:
-					BonusesForWriteOff = Math.Round(price / 100 * selectedService.WhiteOffValue, 2);
+					whiteOff = Math.Round(price / 100 * whiteOffPercentage, 2);
 					break;
 				case BonusValueType.Points:
-					BonusesForWriteOff = selectedService.WhiteOffFloatValue > price ? price : selectedService.WhiteOffFloatValue;
+					whiteOff = whiteOffPoints > price ? price : whiteOffPoints;
 					break;
 				default: throw new ArgumentOutOfRangeException(nameof(selectedService.WhiteOffMethod), "Метод начисления/списания бонусов должен быть либо в процентном соотношении, либо в абсолютном.");
 			}
 
+			BonusesForWriteOff = whiteOff > User.Balance ? User.Balance : whiteOff;
 			var sub = price - BonusesForWriteOff;
+
+			var bonusPercentage = BonusPercentage ?? 0;
+			var bonusPoints = BonusAmount ?? 0;
 			if (sub < 0)
 			{
 				BonusesForAccrual = 0;
 				return;
 			}
-			switch (SelectedService.AccrualMethod)
+			switch (selectedService.AccrualMethod)
 			{
 				case BonusValueType.Percent:
-					var maxBonuses = Math.Round(price / 100 * selectedService.AccrualValue, 2);
+					var maxBonuses = Math.Round(price / 100 * bonusPercentage, 2);
 					BonusesForAccrual = sub > maxBonuses ? maxBonuses : sub;
 					break;
 				case BonusValueType.Points:
-					BonusesForAccrual = sub > selectedService.AccrualFloatValue ? selectedService.AccrualFloatValue : sub;
+					BonusesForAccrual = sub > bonusPoints ? bonusPoints : sub;
 					break;
 				default: throw new ArgumentOutOfRangeException(nameof(selectedService.AccrualMethod), "Метод начисления/списания бонусов должен быть либо в процентном соотношении, либо в абсолютном.");
 			}
@@ -154,27 +168,16 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public double? ServicePrice
 		{
 			get => _servicePrice;
-			set
-			{
-				SetProperty(ref _servicePrice, value);
-
-				if (value != null)
-				{
-					Task.Run(() =>
-					{
-						UpdateBonuses(SelectedService, value.Value);
-					});
-				}
-			}
+			set => SetProperty(ref _servicePrice, value);
 		}
 
-		public int? BonusPercentage
+		public double? BonusPercentage
 		{
 			get => _bonusPercentage;
 			set => SetProperty(ref _bonusPercentage, value);
 		}
 
-		public int? BonusWhiteOffPercentage
+		public double? BonusWhiteOffPercentage
 		{
 			get => _bonusWhiteOffPercentage;
 			set => SetProperty(ref _bonusWhiteOffPercentage, value);
@@ -201,6 +204,33 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public override void Prepare(Guid parameter)
 		{
 			_guid = parameter;
+		}
+
+		public MvxCommand AccrueAndWriteOffBonusesCommand
+		{
+			get
+			{
+				_accrueAndWriteOffBonusesCommand = _accrueAndWriteOffBonusesCommand ?? new MvxCommand(async () =>
+				{
+					if (ServicePrice == null)
+					{
+						return;
+					}
+
+					var res = await _bonusService.AccrueAndWriteOffBonuses(new AccrueAndWriteOffBonusesDto
+					{
+						AccrualMethod = SelectedService.AccrualMethod,
+						AccrualValue = BonusesForAccrual,
+						ClientUuid = _guid,
+						Price = ServicePrice.Value,
+						ServiceUuid = SelectedService.Uuid,
+						WriteOffMethod = SelectedService.WhiteOffMethod,
+						WriteOffValue = BonusesForWriteOff
+					});
+
+				});
+				return _accrueAndWriteOffBonusesCommand;
+			}
 		}
 	}
 }

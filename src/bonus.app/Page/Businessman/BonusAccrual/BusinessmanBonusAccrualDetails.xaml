@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.BonusAccrual.BusinessmanBonusAccrualDetails"
@@ -77,9 +75,9 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Entry Text="{Binding BonusAmount}" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusAmount}" Unfocused="VisualElement_OnUnfocused" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                         <Label Grid.Column="1" Text="или" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Body"/>
-                        <Entry Text="{Binding BonusPercentage}" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusPercentage}" Unfocused="VisualElement_OnUnfocused" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                     </Grid>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
@@ -89,13 +87,13 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Entry Text="{Binding BonusWhiteOffAmount}" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusWhiteOffAmount}" Unfocused="VisualElement_OnUnfocused" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                         <Label Grid.Column="1" Text="или" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Body"/>
-                        <Entry Text="{Binding BonusWhiteOffPercentage}" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusWhiteOffPercentage}" Unfocused="VisualElement_OnUnfocused" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                     </Grid>
                 </Frame>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Text="{Binding ServicePrice}" Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}" Visual="Material"/>
+                    <Entry Text="{Binding ServicePrice}" Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}" Visual="Material" Unfocused="VisualElement_OnUnfocused"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
                     <Entry Text="{Binding BonusesForWriteOff}"  Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Visual="Material"/>
@@ -106,7 +104,7 @@
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
                     <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Visual="Material"/>
                 </Frame>
-                <Button Text="Начислить бонусы" BackgroundColor="#bab3af" TextColor="White" FontFamily="Lato-Regular.ttf#Lato-Regular" CornerRadius="40" Clicked="Button_Clicked"/>
+                <Button Text="Начислить бонусы" Command="{Binding AccrueAndWriteOffBonusesCommand}" BackgroundColor="#bab3af" TextColor="White" FontFamily="Lato-Regular.ttf#Lato-Regular" CornerRadius="40"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
