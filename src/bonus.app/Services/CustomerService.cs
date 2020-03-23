@@ -63,7 +63,7 @@ namespace bonus.app.Core.Services
 				{
 					var user = _mapper.Map<User>(data.Data);
 					var userInfo = _mapper.Map<User>(data.Data.Client);
-					userInfo.Balance = user.Balance;
+					userInfo.Balance = user.Balance / 100;
 					return userInfo;
 				}
 

@@ -10,10 +10,11 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
-	public class BusinessmanBonusAccrualDetailsViewModel : MvxNavigationViewModel<Guid>
+	public class BusinessmanBonusAccrualDetailsViewModel : MvxViewModel<Guid>
 	{
 		private Guid _guid;
-		private readonly ICustomerService _customerService;
+        private readonly IMvxNavigationService _navigationService;
+        private readonly ICustomerService _customerService;
 		private readonly IServicesService _servicesServices;
 		private User _user;
 		private MvxObservableCollection<Service> _services;
@@ -28,10 +29,10 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private double? _bonusWhiteOffAmount;
 		private MvxCommand _accrueAndWriteOffBonusesCommand;
 
-		public BusinessmanBonusAccrualDetailsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, ICustomerService customerService, IServicesService servicesServices, IBonusService bonusService)
-			: base(logProvider, navigationService)
+		public BusinessmanBonusAccrualDetailsViewModel(IMvxNavigationService navigationService, ICustomerService customerService, IServicesService servicesServices, IBonusService bonusService)
 		{
-			_customerService = customerService;
+            _navigationService = navigationService;
+            _customerService = customerService;
 			_servicesServices = servicesServices;
 			_bonusService = bonusService;
 		}
@@ -57,14 +58,6 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			set
 			{
 				SetProperty(ref _selectedService, value);
-
-				if (ServicePrice != null)
-				{
-					Task.Run(() =>
-					{
-						UpdateBonuses(value, ServicePrice.Value);
-					});
-				}
 
 				BonusAmount = null;
 				BonusPercentage = null;
@@ -95,6 +88,14 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					default:
 						throw new ArgumentOutOfRangeException(nameof(value.WhiteOffMethod),
 															  "Метод начисления/списания бонусов должен быть либо в процентном соотношении, либо в абсолютном.");
+				}
+
+				if (ServicePrice != null)
+				{
+					Task.Run(() =>
+					{
+						UpdateBonuses(value, ServicePrice.Value);
+					});
 				}
 			}
 		}
@@ -189,7 +190,9 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			set => SetProperty(ref _bonusesForWriteOff, value);
 		}
 
-		public User User
+        public EventHandler AccrueAndWriteOffBonusesEventHandler;
+
+        public User User
 		{
 			get => _user;
 			private set => SetProperty(ref _user, value);
@@ -216,17 +219,24 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					{
 						return;
 					}
+                    var res = await _bonusService.AccrueAndWriteOffBonuses(new AccrueAndWriteOffBonusesDto
+                    {
+                        AccrualMethod = SelectedService.AccrualMethod,
+                        AccrualValue = BonusesForAccrual,
+                        ClientUuid = _guid,
+                        Price = ServicePrice.Value,
+                        ServiceUuid = SelectedService.Uuid,
+                        WriteOffMethod = SelectedService.WhiteOffMethod,
+                        WriteOffValue = BonusesForWriteOff
+                    });
 
-					var res = await _bonusService.AccrueAndWriteOffBonuses(new AccrueAndWriteOffBonusesDto
-					{
-						AccrualMethod = SelectedService.AccrualMethod,
-						AccrualValue = BonusesForAccrual,
-						ClientUuid = _guid,
-						Price = ServicePrice.Value,
-						ServiceUuid = SelectedService.Uuid,
-						WriteOffMethod = SelectedService.WhiteOffMethod,
-						WriteOffValue = BonusesForWriteOff
-					});
+                    if (res)
+                    {
+                        if (await _navigationService.Close(this))
+                        {
+                            AccrueAndWriteOffBonusesEventHandler?.Invoke(this, EventArgs.Empty);
+                        }
+                    }
 
 				});
 				return _accrueAndWriteOffBonusesCommand;

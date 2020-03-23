@@ -33,13 +33,13 @@
                             <Span Text="200"/>
                             <Span Text=" бонусов,&#10;"/>
                             <Span Text="Начисленно "/>
-                            <Span Text="200"/>
+                            <Span Text="200" x:Name="Span"/>
                             <Span Text=" бонусов"/>
                         </FormattedString.Spans>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button Text="Перейти в профиль" Style="{StaticResource AppButton}"/>
+            <Button Text="Перейти в профиль" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
         </StackLayout>
     </Frame>
 </pages:PopupPage>

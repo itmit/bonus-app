@@ -17,12 +17,16 @@ namespace bonus.app.Core.Page.Businessman.BonusAccrual
             InitializeComponent();
         }
 
-		private void Button_Clicked(object sender, EventArgs e)
-		{
-			var popupPage = new SuccessAccrualPopupPage();
-			Navigation.PushPopupAsync(popupPage);
-			Navigation.PopAsync();
-		}
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ViewModel.AccrueAndWriteOffBonusesEventHandler += OnAccrueAndWriteOffBonuses;
+        }
+
+        private void OnAccrueAndWriteOffBonuses(object sender, EventArgs e)
+        {
+            Navigation.PushPopupAsync(new SuccessAccrualPopupPage(ViewModel.BonusesForAccrual));
+        }
 
 		private void VisualElement_OnUnfocused(object sender, FocusEventArgs e)
 		{
