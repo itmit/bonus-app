@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
+             xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.BonusAccrual.BusinessmanBonusAccrualDetails"
              NavigationPage.HasBackButton="False"
@@ -75,7 +76,13 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Entry Text="{Binding BonusAmount}" Unfocused="VisualElement_OnUnfocused" Grid.Column="0" Placeholder="Количество бонусов" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
+                        <Entry Text="{Binding BonusAmount}"
+                               Unfocused="VisualElement_OnUnfocused"
+                               Grid.Column="0"
+                               Placeholder="Количество бонусов"
+                               Style="{StaticResource Entry}"
+                               Visual="Material"
+                               VerticalOptions="Center"/>
                         <Label Grid.Column="1" Text="или" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Body"/>
                         <Entry Text="{Binding BonusPercentage}" Unfocused="VisualElement_OnUnfocused" Grid.Column="2" Placeholder="Процент бонуса" Style="{StaticResource Entry}" Visual="Material" VerticalOptions="Center"/>
                     </Grid>
@@ -96,10 +103,18 @@
                     <Entry Text="{Binding ServicePrice}" Placeholder="Стоимость оказанной услуги" Style="{StaticResource Entry}" Visual="Material" Unfocused="VisualElement_OnUnfocused"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <Entry Text="{Binding BonusesForWriteOff}"  Placeholder="Сколько списать бонусов" Style="{StaticResource Entry}" Visual="Material"/>
+                    <Entry Text="{Binding BonusesForWriteOff, Mode=OneWayToSource}"
+                           x:Name="BonusesForWriteOff"
+                           Placeholder="Сколько списать бонусов"
+                           Style="{StaticResource Entry}"
+                           Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Text="{Binding BonusesForAccrual}" Placeholder="Сумма для начисления бонусов" Style="{StaticResource Entry}" Visual="Material"/>
+                    <Entry Text="{Binding BonusesForAccrual, Mode=OneWayToSource}"
+                           x:Name="BonusesForAccrual"
+                           Placeholder="Сумма для начисления бонусов"
+                           Style="{StaticResource Entry}"
+                           Visual="Material"/>
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
                     <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Visual="Material"/>

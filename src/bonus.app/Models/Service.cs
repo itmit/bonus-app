@@ -31,7 +31,7 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public float AccrualFloatValue
+		public double AccrualFloatValue
 		{
 			get => AccrualMethod == BonusValueType.Points ? AccrualValue / 100 : AccrualValue;
 			set => AccrualValue = (int)(AccrualMethod == BonusValueType.Points ? value * 100 : value);

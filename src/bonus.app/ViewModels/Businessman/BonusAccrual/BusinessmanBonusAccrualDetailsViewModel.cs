@@ -146,7 +146,11 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					break;
 				default: throw new ArgumentOutOfRangeException(nameof(selectedService.AccrualMethod), "Метод начисления/списания бонусов должен быть либо в процентном соотношении, либо в абсолютном.");
 			}
+
+			BonusUpdated?.Invoke(this, EventArgs.Empty);
 		}
+
+		public EventHandler BonusUpdated;
 
 		public double? BonusAmount
 		{

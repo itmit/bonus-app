@@ -32,6 +32,7 @@ namespace bonus.app.Core.Page
 			ViewModel?.ViewAppearing();
 			ViewModel?.ViewAppeared();
 
+			NavigationPage.SetHasNavigationBar(this, false);
 			if (ViewModel != null)
 			{
 				OnScanResult += ViewModel.OnScanResult;

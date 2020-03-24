@@ -9,7 +9,7 @@
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
              BarBackgroundColor="White"
              SelectedTabColor ="#BB8D91"
-             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasNavigationBar="False"
              UnselectedTabColor="#505050"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.BusinessmanTabbedPage">

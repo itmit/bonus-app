@@ -21,9 +21,19 @@ namespace bonus.app.Core.Page.Businessman.BonusAccrual
         {
             base.OnAppearing();
             ViewModel.AccrueAndWriteOffBonusesEventHandler += OnAccrueAndWriteOffBonuses;
+            ViewModel.BonusUpdated += OnBonusUpdated;
         }
 
-        private void OnAccrueAndWriteOffBonuses(object sender, EventArgs e)
+		private void OnBonusUpdated(object sender, EventArgs e)
+		{
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				BonusesForWriteOff.Text = ViewModel.BonusesForWriteOff.ToString("N");
+				BonusesForAccrual.Text = ViewModel.BonusesForAccrual.ToString("N");
+			});
+		}
+
+		private void OnAccrueAndWriteOffBonuses(object sender, EventArgs e)
         {
             Navigation.PushPopupAsync(new SuccessAccrualPopupPage(ViewModel.BonusesForAccrual));
         }
