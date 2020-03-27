@@ -20,12 +20,17 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			set;
 		}
 
-		[JsonProperty("price")]
+		[JsonIgnore]
 		public double Price
 		{
 			get;
 			set;
 		}
+
+
+		[JsonProperty("price")]
+		public int PriceInt
+			=> (int)(Price * 100);
 
 		[JsonIgnore]
 		public BonusValueType AccrualMethod
@@ -51,18 +56,26 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			WriteOffMethod.ToString()
 						  .ToLower();
 
-		[JsonProperty("accrual_value")]
+		[JsonIgnore]
 		public double AccrualValue
 		{
 			get;
 			set;
 		}
 
-		[JsonProperty("writeoff_value")]
+		[JsonIgnore]
 		public double WriteOffValue
 		{
 			get;
 			set;
 		}
+
+		[JsonProperty("accrual_value")]
+		public double AccrualIntValue
+			=> (int)(AccrualValue * 100);
+
+		[JsonProperty("writeoff_value")]
+		public double WriteOffIntValue
+			=> (int)(WriteOffValue * 100);
 	}
 }

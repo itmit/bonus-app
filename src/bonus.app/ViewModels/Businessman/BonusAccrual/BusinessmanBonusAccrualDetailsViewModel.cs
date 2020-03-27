@@ -174,7 +174,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusAmount = val;
-					SetProperty(ref _bonusAmountString, value);
+					SetProperty(ref _bonusAmountString, Math.Round(val, 2).ToString());
 					return;
 				}
 
@@ -198,7 +198,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusesForAccrual = val;
-					SetProperty(ref _bonusesForAccrualString, value);
+					SetProperty(ref _bonusesForAccrualString, Math.Round(val, 2).ToString());
 					return;
 				}
 
@@ -221,7 +221,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusesForWriteOff = val;
-					SetProperty(ref _bonusesForWriteOffString, value);
+					SetProperty(ref _bonusesForWriteOffString, Math.Round(val, 2).ToString());
 					return;
 				}
 
@@ -244,7 +244,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusPercentage = val;
-					SetProperty(ref _bonusPercentageString, value);
+					SetProperty(ref _bonusPercentageString, Math.Round(val, 2).ToString());
 					return;
 				}
 
@@ -267,7 +267,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusWhiteOffAmount = val;
-					SetProperty(ref _bonusWhiteOffAmountString, value);
+					SetProperty(ref _bonusWhiteOffAmountString, Math.Round(val, 2).ToString());
 					return;
 				}
 
@@ -290,7 +290,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusWhiteOffPercentage = val;
-					SetProperty(ref _bonusWhiteOffPercentageString, value);
+					SetProperty(ref _bonusWhiteOffPercentageString, Math.Round(val, 2).ToString());
 					return;
 				}
 
@@ -371,7 +371,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_servicePrice = val;
-					SetProperty(ref _servicePriceString, value);
+					SetProperty(ref _servicePriceString, Math.Round(val, 2).ToString());
 					return;
 				}
 
