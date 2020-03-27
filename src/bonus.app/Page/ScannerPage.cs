@@ -9,7 +9,7 @@ using ZXing.Net.Mobile.Forms;
 
 namespace bonus.app.Core.Page
 {
-	[MvxModalPresentation(Animated = true)]
+	[MvxModalPresentation(Animated = true, WrapInNavigationPage = false)]
 	public class ScannerPage : ZXingScannerPage, IMvxPage<ScannerViewModel>
 	{
 		private IMvxBindingContext _bindingContext;

@@ -1,6 +1,7 @@
 ﻿using System;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 using ZXing;
 
 namespace bonus.app.Core.ViewModels

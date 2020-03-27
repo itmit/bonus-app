@@ -18,15 +18,15 @@ namespace bonus.app.Core.ViewModels.Businessman
 		}
 		#endregion
 
-		public override async void ViewAppearing()
+		public override void ViewAppearing()
 		{
 			base.ViewAppearing();
 
-			await NavigationService.Navigate<BusinessmanProfileViewModel>();
-			await NavigationService.Navigate<BusinessmanServicesViewModel>();
-			await NavigationService.Navigate<BusinessmanSharesViewModel>();
-			await NavigationService.Navigate<BusinessmanNewsViewModel>();
-			await NavigationService.Navigate<BusinessmanBonusAccrualViewModel>();
+			NavigationService.Navigate<BusinessmanProfileViewModel>();
+			NavigationService.Navigate<BusinessmanServicesViewModel>();
+			NavigationService.Navigate<BusinessmanSharesViewModel>();
+			NavigationService.Navigate<BusinessmanNewsViewModel>();
+			NavigationService.Navigate<BusinessmanBonusAccrualViewModel>();
 		}
 	}
 }

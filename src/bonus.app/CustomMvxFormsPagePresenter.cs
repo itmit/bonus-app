@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
@@ -40,8 +41,6 @@ namespace bonus.app.Core
 			return base.GetPageOfType<TPage>(rootPage);
 		}
 
-		public override Task<bool> CloseNavigationPage(IMvxViewModel viewModel, MvxNavigationPagePresentationAttribute attribute) => base.CloseNavigationPage(viewModel, attribute);
-
 		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute) 
 		{
 			if ((FormsApplication.MainPage as TabbedPage)?.CurrentPage is NavigationPage root)
@@ -71,11 +70,6 @@ namespace bonus.app.Core
 			}
 
 			return base.TopNavigationPage(rootPage);
-		}
-
-		public override Task<bool> ShowContentPage(Type view, MvxContentPagePresentationAttribute attribute, MvxViewModelRequest request)
-		{
-			return base.ShowContentPage(view, attribute, request);
 		}
 
 		public override async Task<bool> ShowTabbedPage(Type view, MvxTabbedPagePresentationAttribute attribute, MvxViewModelRequest request)
