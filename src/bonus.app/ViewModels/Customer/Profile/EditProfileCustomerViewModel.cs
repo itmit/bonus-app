@@ -11,30 +11,47 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 {
 	public class EditProfileCustomerViewModel : BaseEditProfileViewModel
 	{
-		private readonly IMvxNavigationService _navigationService;
-		private readonly IProfileService _customerProfileService;
-
-		public void OpenAuthorization()
-		{
-			_navigationService.Navigate<AuthorizationViewModel>();
-		}
-
-		public EditProfileCustomerViewModel(IUserRepository userRepository, IMvxNavigationService navigationService, IGeoHelperService geoHelperService, IProfileService customerProfileService)
-			: base(userRepository, navigationService, geoHelperService)
-		{
-			_userRepository = userRepository;
-			_navigationService = navigationService;
-			_customerProfileService = customerProfileService;
-			IsFemale = true;
-		}
-
-		private MvxCommand _editCommand;
-		private bool _isMale;
-		private bool _isFemale;
+		#region Data
+		#region Fields
 		private DateTime _birthday;
 		private string _car = "";
-		private EditProfileViewModelArguments _parameter;
+		private readonly IProfileService _customerProfileService;
+
+		private MvxCommand _editCommand;
+		private bool _isFemale;
+		private bool _isMale;
+		private readonly IMvxNavigationService _navigationService;
 		private readonly IUserRepository _userRepository;
+		#endregion
+		#endregion
+
+		#region .ctor
+		public EditProfileCustomerViewModel(IAuthService authService,
+											IMvxNavigationService navigationService,
+											IGeoHelperService geoHelperService,
+											IProfileService customerProfileService,
+											IUserRepository userRepository)
+			: base(authService, navigationService, geoHelperService)
+		{
+			_navigationService = navigationService;
+			_customerProfileService = customerProfileService;
+			_userRepository = userRepository;
+			IsFemale = true;
+		}
+		#endregion
+
+		#region Properties
+		public DateTime Birthday
+		{
+			get => _birthday;
+			set => SetProperty(ref _birthday, value);
+		}
+
+		public string Car
+		{
+			get => _car;
+			set => SetProperty(ref _car, value);
+		}
 
 		public MvxCommand EditCommand
 		{
@@ -43,18 +60,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				_editCommand = _editCommand ?? new MvxCommand(EditCommandExecute);
 				return _editCommand;
 			}
-		}
-
-		public bool IsMale
-		{
-			get => _isMale;
-			set
-			{
-				_isFemale = !value;
-				RaisePropertyChanged(() => IsFemale);
-				SetProperty(ref _isMale, value);
-			}
-			
 		}
 
 		public bool IsFemale
@@ -68,30 +73,38 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			}
 		}
 
-		public DateTime Birthday
+		public bool IsMale
 		{
-			get => _birthday;
-			set => SetProperty(ref _birthday, value);
+			get => _isMale;
+			set
+			{
+				_isFemale = !value;
+				RaisePropertyChanged(() => IsFemale);
+				SetProperty(ref _isMale, value);
+			}
 		}
+		#endregion
 
-		public string Car
+		#region Public
+		public void OpenAuthorization()
 		{
-			get => _car;
-			set => SetProperty(ref _car, value);
+			_navigationService.Navigate<AuthorizationViewModel>();
 		}
+		#endregion
 
+		#region Private
 		private async void EditCommandExecute()
 		{
 			var arg = new EditCustomerDto
 			{
-				Uuid = _parameter.Guid,
+				Uuid = Parameter.Guid,
 				Country = SelectedCountry.LocalizedNames.Ru,
 				City = SelectedCity.LocalizedNames.Ru,
 				Phone = PhoneNumber,
 				Birthday = Birthday.ToString("yyyy-MM-dd"),
 				Car = Car,
 				Address = Address,
-				Password = _parameter.Password
+				Password = Parameter.Password
 			};
 			if (IsFemale)
 			{
@@ -118,10 +131,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				await _navigationService.Navigate<MainCustomerViewModel>();
 			}
 		}
-
-		public override void Prepare(EditProfileViewModelArguments parameter)
-		{
-			_parameter = parameter;
-		}
+		#endregion
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Mail;
 using System.Windows.Input;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
@@ -10,7 +9,6 @@ using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Customer;
 using bonus.app.Core.ViewModels.Customer.Profile;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -26,11 +24,14 @@ namespace bonus.app.Core.ViewModels.Auth
 	{
 		#region Data
 		#region Fields
+		private readonly IAuthService _authService;
+		private MvxCommand _createAccountCommand;
 		/// <summary>
 		/// Ошибки авторизации.
 		/// </summary>
 		private Dictionary<string, string> _errors;
-		
+		private ICommand _forgotPasswordCommand;
+
 		/// <summary>
 		/// Логин пользователя.
 		/// </summary>
@@ -40,16 +41,13 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Команда для авторизации.
 		/// </summary>
 		private ICommand _loginCommand;
-		
+		private IMvxCommand _openAuthVkFcPage;
+
 		/// <summary>
 		/// Пароль пользователя.
 		/// </summary>
 		private string _password;
-		private ICommand _forgotPasswordCommand;
-		private MvxCommand _createAccountCommand;
-		private IMvxCommand _openAuthVkFcPage;
 		private readonly IUserRepository _repository;
-		private readonly IAuthService _authService;
 		private readonly IUserRepository _userRepository;
 		#endregion
 		#endregion
@@ -60,7 +58,11 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// </summary>
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IUserRepository repository, IAuthService authService, IUserRepository userRepository)
+		public AuthorizationViewModel(IMvxLogProvider logProvider,
+									  IMvxNavigationService navigationService,
+									  IUserRepository repository,
+									  IAuthService authService,
+									  IUserRepository userRepository)
 			: base(logProvider, navigationService)
 		{
 			_repository = repository;
@@ -71,12 +73,44 @@ namespace bonus.app.Core.ViewModels.Auth
 
 		#region Properties
 		/// <summary>
+		/// Возвращает команду для создания аккаунта.
+		/// </summary>
+		public IMvxCommand CreateAccountCommand
+		{
+			get
+			{
+				_createAccountCommand = _createAccountCommand ??
+										new MvxCommand(() =>
+										{
+											NavigationService.Navigate<BusinessmanAndCustomerViewModel>();
+										});
+				return _createAccountCommand;
+			}
+		}
+
+		/// <summary>
 		/// Возвращает ошибки авторизации.
 		/// </summary>
 		public Dictionary<string, string> Errors
 		{
 			get => _errors;
 			private set => SetProperty(ref _errors, value);
+		}
+
+		/// <summary>
+		/// Возвращает команду для перехода на восстановление пароля.
+		/// </summary>
+		public ICommand ForgotPasswordCommand
+		{
+			get
+			{
+				_forgotPasswordCommand = _forgotPasswordCommand ??
+										 new MvxCommand(() =>
+										 {
+											 NavigationService.Navigate<AuthorizationRecoveryViewModel>();
+										 });
+				return _forgotPasswordCommand;
+			}
 		}
 
 		/// <summary>
@@ -107,41 +141,12 @@ namespace bonus.app.Core.ViewModels.Auth
 		{
 			get
 			{
-				_openAuthVkFcPage = _openAuthVkFcPage ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<AuthVkFcViewModel>();
-				});
+				_openAuthVkFcPage = _openAuthVkFcPage ??
+									new MvxCommand(() =>
+									{
+										NavigationService.Navigate<AuthVkFcViewModel>();
+									});
 				return _openAuthVkFcPage;
-			}
-		}
-
-		/// <summary>
-		/// Возвращает команду для создания аккаунта.
-		/// </summary>
-		public IMvxCommand CreateAccountCommand
-		{
-			get
-			{
-				_createAccountCommand = _createAccountCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<BusinessmanAndCustomerViewModel>();
-				});
-				return _createAccountCommand;
-			}
-		}
-
-		/// <summary>
-		/// Возвращает команду для перехода на восстановление пароля.
-		/// </summary>
-		public ICommand ForgotPasswordCommand
-		{
-			get
-			{
-				_forgotPasswordCommand = _forgotPasswordCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<AuthorizationRecoveryViewModel>();
-				});
-				return _forgotPasswordCommand;
 			}
 		}
 
@@ -196,6 +201,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				{
 					dictionary[detail.Key] = string.Join("&#10;", detail.Value);
 				}
+
 				Errors = dictionary;
 
 				if (!string.IsNullOrEmpty(_authService.Error))
@@ -210,12 +216,13 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				if (user.Role == UserRole.Businessman)
 				{
-					await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, password));
+					await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, false, password));
 				}
 				else if (user.Role == UserRole.Customer)
 				{
-					await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, password));
+					await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, false, password));
 				}
+
 				return;
 			}
 

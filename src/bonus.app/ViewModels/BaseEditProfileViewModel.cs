@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.GeoHelper;
@@ -28,16 +29,17 @@ namespace bonus.app.Core.ViewModels
 		private Country _selectedCountry;
 		private User _user;
 
-		private readonly IUserRepository _userRepository;
+		private readonly IAuthService _authService;
 		private string _phoneNumber;
 		private string _address;
+		private Dictionary<string, string> _errors;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BaseEditProfileViewModel(IUserRepository userRepository, IMvxNavigationService navigationService, IGeoHelperService geoHelperService)
+		public BaseEditProfileViewModel(IAuthService authService, IMvxNavigationService navigationService, IGeoHelperService geoHelperService)
 		{
-			_userRepository = userRepository;
+			_authService = authService;
 			_navigationService = navigationService;
 			_geoHelperService = geoHelperService;
 		}
@@ -48,6 +50,12 @@ namespace bonus.app.Core.ViewModels
 		{
 			get => _cities;
 			private set => SetProperty(ref _cities, value);
+		}
+
+		public Dictionary<string, string> Errors
+		{
+			get => _errors;
+			protected set => SetProperty(ref _errors, value);
 		}
 
 		public MvxObservableCollection<Country> Countries
@@ -118,8 +126,7 @@ namespace bonus.app.Core.ViewModels
 		{
 			await base.Initialize();
 
-			User = _userRepository.GetAll()
-								  .SingleOrDefault();
+			User = _authService.User;
 			IsAuthorization = User != null;
 
 			try
@@ -140,6 +147,22 @@ namespace bonus.app.Core.ViewModels
 			{
 				Console.WriteLine(e);
 			}
+
+			if (Parameter.IsActiveUser)
+			{
+				SelectedCountry = Countries.Single(c => c.LocalizedNames.Ru.Equals(User.Country));
+			}
+		}
+
+		public override void Prepare(EditProfileViewModelArguments parameter)
+		{
+			Parameter = parameter;
+		}
+
+		public EditProfileViewModelArguments Parameter
+		{
+			get;
+			private set;
 		}
 		#endregion
 
@@ -181,6 +204,11 @@ namespace bonus.app.Core.ViewModels
 				Console.WriteLine(e);
 			}
 			IsBusy = false;
+
+			if (Parameter.IsActiveUser && SelectedCountry != null && SelectedCountry.LocalizedNames.Ru.Equals(User.Country))
+			{
+				SelectedCity = Cities.Single(c => c.LocalizedNames.Ru.Equals(User.City));
+			}
 		}
 		#endregion
 	}
@@ -188,10 +216,16 @@ namespace bonus.app.Core.ViewModels
 
 	public class EditProfileViewModelArguments
 	{
-		public EditProfileViewModelArguments(Guid guid, string password)
+		public EditProfileViewModelArguments(Guid guid, bool isActiveUser, string password = null)
 		{
 			Guid = guid;
 			Password = password;
+			IsActiveUser = isActiveUser;
+		}
+
+		public bool IsActiveUser
+		{
+			get;
 		}
 
 		public Guid Guid

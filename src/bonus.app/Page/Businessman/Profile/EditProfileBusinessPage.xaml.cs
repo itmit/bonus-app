@@ -63,14 +63,14 @@ namespace bonus.app.Core.Page.Businessman.Profile
 				Cities.IsEnabled = false;
 				Cities.IsVisible = false;
 				Shape1.Rotation = 0;
-				Layout.IsVisible = true;
+				FieldsLayout.IsVisible = true;
 			}
 			else
 			{
 				Shape1.Rotation = 180;
 				Cities.IsEnabled = true;
 				Cities.IsVisible = true;
-				Layout.IsVisible = false;
+				FieldsLayout.IsVisible = false;
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace bonus.app.Core.Page.Businessman.Profile
 			{
 				Cities.IsEnabled = false;
 				Cities.IsVisible = false;
-				Layout.IsVisible = true;
+				FieldsLayout.IsVisible = true;
 				Shape1.Rotation = 0;
 			}
 		}

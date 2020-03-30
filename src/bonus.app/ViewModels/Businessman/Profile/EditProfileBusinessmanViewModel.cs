@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
@@ -15,7 +17,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private string _contactPerson;
 		private MvxCommand _editCommand;
 		private readonly IMvxNavigationService _navigationService;
-		private EditProfileViewModelArguments _parameter;
 		private readonly IProfileService _profileService;
 		private readonly IUserRepository _userRepository;
 		private string _workingMode;
@@ -23,15 +24,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region .ctor
-		public EditProfileBusinessmanViewModel(IUserRepository userRepository,
+		public EditProfileBusinessmanViewModel(IAuthService authService,
 											   IMvxNavigationService navigationService,
 											   IGeoHelperService geoHelperService,
-											   IProfileService profileService)
-			: base(userRepository, navigationService, geoHelperService)
+											   IProfileService profileService,
+											   IUserRepository userRepository)
+			: base(authService, navigationService, geoHelperService)
 		{
-			_userRepository = userRepository;
 			_navigationService = navigationService;
 			_profileService = profileService;
+			_userRepository = userRepository;
 		}
 		#endregion
 
@@ -58,19 +60,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 		#endregion
 
-		#region Overrided
-		public override void Prepare(EditProfileViewModelArguments parameter)
-		{
-			_parameter = parameter;
-		}
-		#endregion
-
 		#region Private
 		private async void EditCommandExecute()
 		{
 			var arg = new EditBusinessmanDto
 			{
-				Uuid = _parameter.Guid,
+				Uuid = Parameter.Guid,
 				Country = SelectedCountry.LocalizedNames.Ru,
 				City = SelectedCity.LocalizedNames.Ru,
 				Address = Address,
@@ -78,7 +73,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Contact = ContactPerson,
 				Phone = PhoneNumber,
 				Description = "-",
-				Password = _parameter.Password
+				Password = Parameter.Password
 			};
 			User user = null;
 			try
@@ -94,6 +89,22 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 			{
 				await _navigationService.Navigate<MainBusinessmanViewModel>();
+				return;
+			}
+
+			var dictionary = new Dictionary<string, string>();
+			foreach (var detail in _profileService.ErrorDetails)
+			{
+				dictionary[detail.Key] = string.Join("&#10;", detail.Value);
+			}
+
+			Errors = dictionary;
+			if (!string.IsNullOrEmpty(_profileService.Error))
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Ошибка", _profileService.Error, "Ок");
+				});
 			}
 		}
 		#endregion

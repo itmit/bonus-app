@@ -103,7 +103,7 @@
                             </views:MvxListView.ItemTemplate>
                         </views:MvxListView>
 
-                        <StackLayout Grid.Row="1" x:Name="Layout" Margin="10,0">
+                        <StackLayout Grid.Row="1" x:Name="FieldsLayout" Margin="10,0">
                             <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес" BackgroundColor="Transparent"/>
                             <Label Text="{Binding Errors[address]}" IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
 

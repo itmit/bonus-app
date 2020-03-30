@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -43,6 +44,18 @@ namespace bonus.app.Core.Services
 			return Edit(JsonConvert.SerializeObject(arguments), photo);
 		}
 
+		public string Error
+		{
+			get;
+			private set;
+		}
+
+		public Dictionary<string, string[]> ErrorDetails
+		{
+			get;
+			private set;
+		}
+
 		private async Task<User> Edit(string requestBody, byte[] photo)
 		{
 			using (var client = new HttpClient())
@@ -58,7 +71,20 @@ namespace bonus.app.Core.Services
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(json);
 
-				return _mapper.Map<User>(data.Data);
+				if (data.Success)
+				{
+					return _mapper.Map<User>(data.Data);
+				}
+
+
+				if (data.ErrorDetails != null)
+				{
+					ErrorDetails = data.ErrorDetails;
+				}
+
+				Error = data.Error;
+
+				return null;
 			}
 		}
 	}

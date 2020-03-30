@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using MvvmCross.Navigation;
@@ -12,27 +11,35 @@ namespace bonus.app.Core.ViewModels.Auth
 {
 	public class BusinessmanRegistrationViewModel : BaseRegistrationViewModel
 	{
-		private readonly IMvxNavigationService _navigationService;
-
+		#region Data
+		#region Fields
 		private readonly IAuthService _authService;
+		private readonly IMvxNavigationService _navigationService;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public BusinessmanRegistrationViewModel(IMvxNavigationService navigationService, IAuthService authService)
 		{
 			_navigationService = navigationService;
 			_authService = authService;
 		}
+		#endregion
 
+		#region Overrided
 		protected override async Task<bool> RegistrationCommandExecute()
 		{
 			try
 			{
 				var user = await _authService.Register(new User
-				{
-					Email = Email,
-					Login = Login,
-					Name = Name,
-					Role = UserRole.Businessman
-				}, Password, ConfirmPassword);
+													   {
+														   Email = Email,
+														   Login = Login,
+														   Name = Name,
+														   Role = UserRole.Businessman
+													   },
+													   Password,
+													   ConfirmPassword);
 
 				if (user == null)
 				{
@@ -41,6 +48,7 @@ namespace bonus.app.Core.ViewModels.Auth
 					{
 						dictionary[detail.Key] = string.Join("&#10;", detail.Value);
 					}
+
 					Errors = dictionary;
 					if (!string.IsNullOrEmpty(_authService.Error))
 					{
@@ -52,7 +60,8 @@ namespace bonus.app.Core.ViewModels.Auth
 
 					return false;
 				}
-				await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, Password));
+
+				await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, false, Password));
 				return true;
 			}
 			catch (Exception e)
@@ -62,5 +71,6 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			return false;
 		}
+		#endregion
 	}
 }

@@ -9,7 +9,7 @@
              x:Class="bonus.app.Core.Page.Businessman.Profile.BusinessmanProfilePage">
     
     <views:MvxContentPage.ToolbarItems>
-        <ToolbarItem Text="Редактировать профиль" Order="Secondary"/>
+        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Command="{Binding OpenEditProfilePageCommand}"/>
     </views:MvxContentPage.ToolbarItems>
 
     <NavigationPage.TitleView>

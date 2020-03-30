@@ -24,6 +24,12 @@
                     Command="{Binding OpenEntrepreneurRegistrationCommand}"/>
             <Button Text="Покупатель" Style="{StaticResource AuthAndRegButton}"
                     Command="{Binding OpenBuyerRegistrationCommand}"/>
+
+            <Label Text="перейти к авторизации" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,40,0,30" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenAuthorizationPageCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

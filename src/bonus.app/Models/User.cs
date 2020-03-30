@@ -34,6 +34,18 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		public string City
+		{
+			get;
+			set;
+		}
+
+		public string Country
+		{
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Возвращает или устанавливает token доступа пользователя.
 		/// </summary>

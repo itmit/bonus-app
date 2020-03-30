@@ -2,39 +2,44 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
 	public class CustomerRegistrationViewModel : BaseRegistrationViewModel
 	{
+		#region Data
+		#region Fields
+		private readonly IAuthService _authService;
 		private readonly IMvxNavigationService _navigationService;
 		private IMvxCommand _openAuthVkOrFc;
-		private readonly IAuthService _authService;
 		private MvxCommand _openEditPageCommand;
 		private User _user;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public CustomerRegistrationViewModel(IMvxNavigationService navigationService, IAuthService authService)
 		{
 			_authService = authService;
 			_navigationService = navigationService;
 		}
+		#endregion
 
-
+		#region Properties
 		public IMvxCommand OpenAuthVkOrFc
 		{
 			get
 			{
-				_openAuthVkOrFc = _openAuthVkOrFc ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<AuthVkFcViewModel>();
-				});
+				_openAuthVkOrFc = _openAuthVkOrFc ??
+								  new MvxCommand(() =>
+								  {
+									  _navigationService.Navigate<AuthVkFcViewModel>();
+								  });
 				return _openAuthVkOrFc;
 			}
 		}
@@ -43,25 +48,31 @@ namespace bonus.app.Core.ViewModels.Auth
 		{
 			get
 			{
-				_openEditPageCommand = _openEditPageCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(_user.Guid, Password));
-				});
+				_openEditPageCommand = _openEditPageCommand ??
+									   new MvxCommand(() =>
+									   {
+										   _navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
+											   new EditProfileViewModelArguments(_user.Guid, false, Password));
+									   });
 				return _openEditPageCommand;
 			}
 		}
+		#endregion
 
+		#region Overrided
 		protected override async Task<bool> RegistrationCommandExecute()
 		{
 			try
 			{
 				_user = await _authService.Register(new User
-				{
-					Email = Email,
-					Login = Login,
-					Name = Name,
-					Role = UserRole.Customer
-				}, Password, ConfirmPassword);
+													{
+														Email = Email,
+														Login = Login,
+														Name = Name,
+														Role = UserRole.Customer
+													},
+													Password,
+													ConfirmPassword);
 
 				if (_user == null)
 				{
@@ -70,6 +81,7 @@ namespace bonus.app.Core.ViewModels.Auth
 					{
 						dictionary[detail.Key] = string.Join("&#10;", detail.Value);
 					}
+
 					Errors = dictionary;
 					if (!string.IsNullOrEmpty(_authService.Error))
 					{
@@ -88,8 +100,9 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				Console.WriteLine(e);
 			}
-			
+
 			return false;
 		}
+		#endregion
 	}
 }
