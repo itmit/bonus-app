@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:AuthorizationRecoveryViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      BackgroundColor="#9c938d"
+                      NavigationPage.HasNavigationBar="False"
+                      x:Class="bonus.app.Core.Pages.Auth.AuthorizationRecoveryPage">
+    <ContentPage.Content>
+        <!--1.4.1 Страница восстановления пароля-->
+        <StackLayout Margin="30,0" Spacing="0">
+            <Image Style="{StaticResource ImageBonus}" />
+            <Label Text="Для восстановления пароля введите&#10;e-mail, указанный при регистрации"
+                   HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White" />
+            <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,0,0,20">
+                <Entry Placeholder="E-mail" Style="{StaticResource AuthAndRegEntry}" />
+            </Frame>
+            <Button Text="Отправить код" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,125"
+                    Clicked="Button_Clicked" />
+            <Label Text="Создать аккаунт" TextColor="White" Margin="0,0,0,30" HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Справочный центр" TextColor="White" HorizontalTextAlignment="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="bonusAccrual:BusinessmanBonusAccrualViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualPage"
+                      BackgroundColor="#9C938D"
+                      NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <!-- Страница 7.1 Начисление бонусов начальная -->
+        <ScrollView>
+            <StackLayout Margin="30,0" Spacing="0">
+                <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large" Margin="0,35,0,10"
+                       TextColor="White" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" />
+                <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"
+                       FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" />
+
+                <Label Text="Для сканирования нажмите на QR-код"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,30"
+                       FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" />
+
+                <Image Source="qrcode.png" WidthRequest="225" HorizontalOptions="Center" Margin="0,0,0,25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenScannerCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Frame Margin="0,0,0,20" CornerRadius="40" IsClippedToBounds="True" Padding="0,-2" HasShadow="False"
+                       HeightRequest="50">
+                    <SearchBar Placeholder="Поиск" PlaceholderColor="White" TextColor="White" WidthRequest="300"
+                               BackgroundColor="#bab3af" FontFamily="Lato-Regular.ttf#Lato-Regular"
+                               CancelButtonColor="#D5D1CF" />
+                </Frame>
+                <Button Text="Далее" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

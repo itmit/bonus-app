@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:AuthVkFcViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Auth.AuthVkFcPage"
+                      NavigationPage.HasNavigationBar="False"
+                      BackgroundColor="#9c938d">
+    <ContentPage.Content>
+        <!--Страница 1.5.1 Авторизация, VK-->
+        <StackLayout Margin="30,0" Spacing="0">
+            <Image Style="{StaticResource ImageBonus}" />
+            <Label Text="Войдите в свой аккаунт Vkontakte,&#10;чтобы связать его с Bonus &amp; Marketing"
+                   HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White" />
+            <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,0,0,15">
+                <Entry x:Name="Login" Placeholder="Телефон или E-mail" Style="{StaticResource AuthAndRegEntry}" />
+            </Frame>
+            <Grid>
+                <Frame Style="{StaticResource AuthAndRegFrame}">
+                    <Entry x:Name="Password" Placeholder="Пароль" Style="{StaticResource AuthAndRegEntry}" />
+                </Frame>
+                <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"
+                       WidthRequest="24">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <StackLayout Orientation="Horizontal" Spacing="0" Margin="0,0,0,30">
+                <CheckBox x:Name="remember" VerticalOptions="Center" HorizontalOptions="Start" Color="#DADADA" />
+                <Label Text="Запомнить" FontSize="12" TextColor="White" HorizontalOptions="Start" Margin="15,0,0,0"
+                       VerticalOptions="Center" />
+                <Label Text="Забыли пароль?" TextColor="White" FontSize="12" HorizontalOptions="EndAndExpand"
+                       VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Button Text="Войти" Style="{StaticResource AppButton}" Margin="0,0,0,30" />
+            <Label Text="Создать аккаунт" TextColor="White" HorizontalTextAlignment="Center" Margin="0,0,0,10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Справочный центр" TextColor="White" Margin="0,0,0,10" HorizontalTextAlignment="Center" />
+            <Label Text="Авторизация" TextColor="White" HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:BusinessmanAndCustomerViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      BackgroundColor="#9c938d"
+                      NavigationPage.HasNavigationBar="False"
+                      x:Class="bonus.app.Core.Pages.Auth.BusinessmanAndCustomerPage">
+    <ContentPage.Content>
+        <!-- Страница 14.1 Регистрация -->
+        <StackLayout Margin="30,0" Spacing="0">
+            <Image Source="pic_dragon.png" WidthRequest="85" HorizontalOptions="Center" Margin="0,65,0,10" />
+            <Image Source="pic_bonusandmarketing.png" HorizontalOptions="Center" Margin="0,0,0,55" HeightRequest="20"
+                   WidthRequest="180" />
+            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White"
+                   FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
+                <Label.Text>
+                    Для продолжения пройдите &#10; простую процедуру регистрации
+                </Label.Text>
+            </Label>
+            <Button Text="Предприниматель" Style="{StaticResource AuthAndRegButton}"
+                    Margin="0,0,0,15"
+                    Command="{Binding OpenEntrepreneurRegistrationCommand}" />
+            <Button Text="Покупатель" Style="{StaticResource AuthAndRegButton}"
+                    Command="{Binding OpenBuyerRegistrationCommand}" />
+
+            <Label Text="перейти к авторизации" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                   Margin="0,40,0,30" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenAuthorizationPageCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

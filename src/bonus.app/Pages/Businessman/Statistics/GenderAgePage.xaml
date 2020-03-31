@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="statistics:GenderAgeViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
+                      xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.Statistics.GenderAgePage">
+    <NavigationPage.TitleView>
+        <Label Text="Пол и возраст" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!--Страница 11.2 Пол и возраст-->
+        <ScrollView>
+            <StackLayout Margin="15,10" Spacing="0">
+                <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
+                    <Label Text="Мужчины" />
+                    <Image Source="ic_coloorblue_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
+                </StackLayout>
+                <BoxView />
+                <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
+                    <Label Text="Женщины" />
+                    <Image Source="ic_coloorpink_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
+                </StackLayout>
+                <BoxView />
+                <Entry Placeholder="За период"
+                       PlaceholderColor="#505050"
+                       TextColor="#505050"
+                       Keyboard="Numeric"
+                       Visual="Material"
+                       FontFamily="Lato-Regular.ttf#Lato-Regular"
+                       Margin="0,0,0,20">
+                    <Entry.Behaviors>
+                        <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Button Text="Сформировать" Style="{StaticResource StatisticsButton}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

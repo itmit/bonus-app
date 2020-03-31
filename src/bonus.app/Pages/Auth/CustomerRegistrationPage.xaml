@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:CustomerRegistrationViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Auth.CustomerRegistrationPage">
+    <NavigationPage.TitleView>
+        <Label Text="Регистрация" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!-- Страница 14.2.1 - 14.2.4 Регистрация покупателя -->
+        <ScrollView Margin="0,0,0,5">
+            <StackLayout Margin="15,0" Spacing="0">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Entry">
+                            <Setter Property="PlaceholderColor" Value="#505050" />
+                            <Setter Property="Visual" Value="Material" />
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="Margin" Value="0,10" />
+                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Entry Text="{Binding Login}" Placeholder="Логин" />
+                <Label Text="{Binding Errors[login]}"
+                       IsVisible="{Binding Errors[login], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                <Entry Text="{Binding Name}" Placeholder="Ф.И.О." />
+                <Label Text="{Binding Errors[name]}"
+                       IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                <Entry Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail" />
+                <Label Text="{Binding Errors[email]}"
+                       IsVisible="{Binding Errors[email], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Пароль" />
+                <Label Text="{Binding Errors[password]}"
+                       IsVisible="{Binding Errors[password], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль" />
+                <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
+                       Placeholder="Код из 4 цифр для быстрого входа" Margin="0,0,0,10" />
+
+
+                <Button Text="Зарегистрироваться" Style="{StaticResource AppButton}"
+                        Command="{Binding RegistrationCommand}" Margin="0,0,0,20" />
+                <Label HorizontalTextAlignment="Center" Text="или создать учетную запись с помощью:" Margin="0,0,0,10" />
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" WidthRequest="155" HeightRequest="40"
+                           CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Image Source="ic_face_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
+                            <Label Text="Facebook" FontSize="Body" TextColor="#A0968E"
+                                   FontFamily="Montserrat-Regular.ttf" VerticalOptions="Center" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame Grid.Column="1" IsClippedToBounds="True" Padding="0" WidthRequest="155" HeightRequest="40"
+                           CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Image Source="ic_vk_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
+                            <Label Text="Вконтакте" FontSize="Body" TextColor="#A0968E"
+                                   FontFamily="Montserrat-Regular.ttf" VerticalOptions="Center" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

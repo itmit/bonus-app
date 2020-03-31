@@ -28,58 +28,58 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Page\Businessman\Shares\ShareArchivePage.xaml.cs">
+    <Compile Update="Pages\Businessman\Shares\ShareArchivePage.xaml.cs">
       <DependentUpon>ShareArchivePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\AuthVkFcPage.xaml.cs">
+    <Compile Update="Pages\Auth\AuthVkFcPage.xaml.cs">
       <DependentUpon>AuthVkFcPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\BusinessmanAndCustomerPage.xaml.cs">
+    <Compile Update="Pages\Auth\BusinessmanAndCustomerPage.xaml.cs">
       <DependentUpon>BusinessmanAndCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\CustomerRegistrationPage.xaml.cs">
+    <Compile Update="Pages\Auth\CustomerRegistrationPage.xaml.cs">
       <DependentUpon>CustomerRegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Auth\BusinessmanRegistrationPage.xaml.cs">
+    <Compile Update="Pages\Auth\BusinessmanRegistrationPage.xaml.cs">
       <DependentUpon>BusinessmanRegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Businessman\Shares\BusinessmanSharesDetailPage.xaml.cs">
+    <Compile Update="Pages\Businessman\Shares\BusinessmanSharesDetailPage.xaml.cs">
       <DependentUpon>BusinessmanSharesDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Businessman\Pay\PaySubscribesPage.xaml.cs">
+    <Compile Update="Pages\Businessman\Pay\PaySubscribesPage.xaml.cs">
       <DependentUpon>PaySubscribesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Businessman\Shares\CreateSharePage.xaml.cs">
+    <Compile Update="Pages\Businessman\Shares\CreateSharePage.xaml.cs">
       <DependentUpon>CreateSharePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\News\CustomerNewsDetailsPage.xaml.cs">
+    <Compile Update="Pages\Customer\News\CustomerNewsDetailsPage.xaml.cs">
       <DependentUpon>CustomerNewsDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\News\CustomerNewsPage.xaml.cs">
+    <Compile Update="Pages\Customer\News\CustomerNewsPage.xaml.cs">
       <DependentUpon>CustomerNewsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\Services\CustomerServicesPage.xaml.cs">
+    <Compile Update="Pages\Customer\Services\CustomerServicesPage.xaml.cs">
       <DependentUpon>CustomerServicesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\Shares\BuyerSharesDetailPage.xaml.cs">
+    <Compile Update="Pages\Customer\Shares\BuyerSharesDetailPage.xaml.cs">
       <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\MenuCustomerPage.xaml.cs">
+    <Compile Update="Pages\Customer\MenuCustomerPage.xaml.cs">
       <DependentUpon>MenuCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\Profile\CustomerProfilePage.xaml.cs">
+    <Compile Update="Pages\Customer\Profile\CustomerProfilePage.xaml.cs">
       <DependentUpon>CustomerProfilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\Profile\EditProfileCustomerPage.xaml.cs">
+    <Compile Update="Pages\Customer\Profile\EditProfileCustomerPage.xaml.cs">
       <DependentUpon>EditProfileCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\MainCustomerPage.xaml.cs">
+    <Compile Update="Pages\Customer\MainCustomerPage.xaml.cs">
       <DependentUpon>MainCustomerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\Customer\Shares\CustomerSharesPage.xaml.cs">
+    <Compile Update="Pages\Customer\Shares\CustomerSharesPage.xaml.cs">
       <DependentUpon>CustomerSharesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Page\SubscribesPage.xaml.cs">
+    <Compile Update="Pages\SubscribesPage.xaml.cs">
       <DependentUpon>SubscribesPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Popups\SuccessRegisterPopupPage.xaml.cs">
@@ -91,169 +91,169 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Page\AllStock.xaml">
+    <EmbeddedResource Update="Pages\AllStock.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Shares\ShareArchivePage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Shares\ShareArchivePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\AuthorizationPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\AuthorizationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\AuthorizationRecoveryPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\AuthorizationRecoveryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\AuthVkFcPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\AuthVkFcPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\BonusAccrual\BusinessmanBonusAccrualDetails.xaml">
+    <EmbeddedResource Update="Pages\Businessman\BonusAccrual\BusinessmanBonusAccrualDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\BonusAccrual\BusinessmanBonusAccrualPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\BonusAccrual\BusinessmanBonusAccrualPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\News\BusinessmanNewsDetailsPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\News\BusinessmanNewsDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\News\BusinessmanNewsPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\News\BusinessmanNewsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Profile\BusinessmanProfilePage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Profile\BusinessmanProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\CustomerRegistrationPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\CustomerRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Shares\BusinessmanSharesDetailPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Shares\BusinessmanSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Services\BusinessmanServicesPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Services\BusinessmanServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Shares\BusinessmanSharesPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Shares\BusinessmanSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\BusinessmanTabbedPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\BusinessmanTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\BuyerSharesDetailPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Shares\BuyerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\BusinessmanAndCustomerPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\BusinessmanAndCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\CustomerTabbedPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\CustomerTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Profile\CustomerProfilePage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Profile\CustomerProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\CustomerSharesPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Shares\CustomerSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\ChargesPage.xaml">
+    <EmbeddedResource Update="Pages\ChargesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Shares\CreateSharePage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Shares\CreateSharePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\SelectedSharesDetailPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Shares\SelectedSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Shares\SelectedSharesPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Shares\SelectedSharesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Services\EditBusinessmanServicesDetailsPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Services\EditBusinessmanServicesDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Services\EditBusinessmanServicesPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Services\EditBusinessmanServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\EditorStockPage.xaml">
+    <EmbeddedResource Update="Pages\EditorStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\MainBusinessmanPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\MainBusinessmanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Profile\EditProfileCustomerPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Profile\EditProfileCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Profile\EditProfileBusinessPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Profile\EditProfileBusinessPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\FillinDetailsPage.xaml">
+    <EmbeddedResource Update="Pages\FillinDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\GenderAgePage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\GenderAgePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\GeographyPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\GeographyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\MainCustomerPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\MainCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\MessageListPage.xaml">
+    <EmbeddedResource Update="Pages\MessageListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\MyBonusPage.xaml">
+    <EmbeddedResource Update="Pages\MyBonusPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\MyStock.xaml">
+    <EmbeddedResource Update="Pages\MyStock.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Pay\PaySubscribesPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Pay\PaySubscribesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\PublicOfferPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\PublicOfferPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Auth\BusinessmanRegistrationPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\BusinessmanRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\RecoveryDetailPage.xaml">
+    <EmbeddedResource Update="Pages\RecoveryDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\SalesTypesPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\SalesTypesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\Services\CustomerServicesPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\Services\CustomerServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\StatisticsPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\StatisticsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\StockPage.xaml">
+    <EmbeddedResource Update="Pages\StockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\SubscribesPage.xaml">
+    <EmbeddedResource Update="Pages\SubscribesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\SubscribersPage.xaml">
+    <EmbeddedResource Update="Pages\SubscribersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\SupportPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\TariffPage.xaml">
+    <EmbeddedResource Update="Pages\TariffPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\TransitionsProfilePage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\TransitionsProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\ViewsProfilePage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\ViewsProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\Statistics\ViewsStockPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Statistics\ViewsStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IconView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Businessman\MenuBusinessmanPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\MenuBusinessmanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Page\Customer\MenuCustomerPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\MenuCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MyStockCell.xaml">
