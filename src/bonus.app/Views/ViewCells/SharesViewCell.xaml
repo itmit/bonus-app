@@ -14,11 +14,11 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0" Grid.Column="0" HasShadow="False">
-                    <Image Source="chika.png" Aspect="AspectFill"  WidthRequest="85"/>
+                    <Image Source="{Binding ImageSource}" Aspect="AspectFill"  WidthRequest="85"/>
                 </Frame>
                 <StackLayout Grid.Column="1">
-                    <Label Text="Супер стрижка" MaxLines="1"/>
-                    <Label Text="Всю неделю до 12.00 на загар в солярии&#10;предоставляем бонус 25% на загар море&#10;в солярии предоставляем бонус 25%" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption" TextColor="Gray"/>
+                    <Label Text="{Binding Name}" MaxLines="1"/>
+                    <Label Text="{Binding ShortDescription}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption" TextColor="Gray"/>
                 </StackLayout>
             </Grid>
         </Frame>

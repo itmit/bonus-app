@@ -34,7 +34,7 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public DateTimeOffset ShareTime
+		public DateTime ShareTime
 		{
 			get;
 			set;

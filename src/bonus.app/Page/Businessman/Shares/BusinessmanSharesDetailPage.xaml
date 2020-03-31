@@ -8,10 +8,16 @@
              xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Page.Businessman.Shares.BusinessmanSharesDetailPage"
-             x:Name="ContentPageBackground">
+             BackgroundColor="{Binding ShareColor}">
     <NavigationPage.TitleView>
         <Label Text="Мои акции" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
+
+    <views:MvxContentPage.ToolbarItems>
+        <ToolbarItem Text="Создать новую акцию" Order="Secondary" Priority="0" Command="{Binding OpenCreateSharePageCommand}"/>
+        <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1" Command="{Binding OpenCreateShareArchivePageCommand}"/>
+        <ToolbarItem Text="Редактировать акцию" Order="Secondary" Priority="2" Command="{Binding OpenCreateShareArchivePageCommand}"/>
+    </views:MvxContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <!--5.1 Мои акции(предприниматель)-->
@@ -20,16 +26,16 @@
                 <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="0,20">
                     <Image Source="slider_devuska1.png" Aspect="AspectFill" WidthRequest="320"/>
                 </Frame>
-                <Label Text="Салон Бигуди" TextColor="#858585"/>
-                <Label Text="Супер загар" TextColor="#505050" FontSize="Body" Margin="0,5"/>
-                <Label Text="Всю неделю до 12.00 на загар в солярии &#10;предоставляем бонус 25% Метеорный дождь &#10;меняет поперечник. Фаза, сублимируя кометы, &#10;ничтожно иллюстрирует возмущающий фактор" TextColor="#505050" Margin="0,0,0,10"/>
+                <Label Text="{Binding User.Name}" TextColor="#858585"/>
+                <Label Text="{Binding Share.Name}" TextColor="#505050" FontSize="Body" Margin="0,5"/>
+                <Label Text="{Binding Share.Description}" TextColor="#505050" Margin="0,0,0,10"/>
                 <StackLayout Orientation="Horizontal">
                     <Label TextColor="#505050" FontSize="Caption" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Статус: "/>
-                                    <Span x:Name="TextSpan"/>
+                                    <Span Text="{Binding Share.Status}"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
@@ -39,7 +45,7 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="до "/>
-                                    <Span Text="10.04.2019"/>
+                                    <Span Text="{Binding Share.ShareTime}"/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>

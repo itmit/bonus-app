@@ -1,4 +1,5 @@
 ﻿using System;
+using bonus.app.Core.Page.Businessman.Shares;
 using bonus.app.Core.ViewModels.Customer.Shares;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
@@ -43,7 +44,7 @@ namespace bonus.app.Core.Page.Customer.Shares
 
 		private void TwoItem_Clicked(object sender, EventArgs e)
 		{
-			Navigation.PushAsync(new ArchiveStockPage());
+			Navigation.PushAsync(new ShareArchivePage());
 		}
 
 		private void OneItem_Clicked(object sender, EventArgs e)
