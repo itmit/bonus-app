@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
@@ -47,8 +48,6 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Пароль пользователя.
 		/// </summary>
 		private string _password;
-		private readonly IUserRepository _repository;
-		private readonly IUserRepository _userRepository;
 		#endregion
 		#endregion
 
@@ -58,16 +57,13 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// </summary>
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
+		/// <param name="authService">Сервис для авторизации.</param>
 		public AuthorizationViewModel(IMvxLogProvider logProvider,
 									  IMvxNavigationService navigationService,
-									  IUserRepository repository,
-									  IAuthService authService,
-									  IUserRepository userRepository)
+									  IAuthService authService)
 			: base(logProvider, navigationService)
 		{
-			_repository = repository;
 			_authService = authService;
-			_userRepository = userRepository;
 		}
 		#endregion
 
@@ -190,25 +186,7 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (user == null)
 			{
-				if (_authService.ErrorDetails == null)
-				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
-					return;
-				}
-
-				var dictionary = new Dictionary<string, string>();
-				foreach (var detail in _authService.ErrorDetails)
-				{
-					dictionary[detail.Key] = string.Join("&#10;", detail.Value);
-				}
-
-				Errors = dictionary;
-
-				if (!string.IsNullOrEmpty(_authService.Error))
-				{
-					await Application.Current.MainPage.DisplayAlert("Внимание", _authService.Error, "Ок");
-				}
-
+				ShowErrors();
 				return;
 			}
 
@@ -226,8 +204,6 @@ namespace bonus.app.Core.ViewModels.Auth
 				return;
 			}
 
-			_userRepository.Add(user);
-
 			if (user.Role == UserRole.Businessman)
 			{
 				await NavigationService.Navigate<MainBusinessmanViewModel>();
@@ -235,6 +211,28 @@ namespace bonus.app.Core.ViewModels.Auth
 			else if (user.Role == UserRole.Customer)
 			{
 				await NavigationService.Navigate<MainCustomerViewModel>();
+			}
+		}
+
+		private void ShowErrors()
+		{
+			if (_authService.ErrorDetails == null)
+			{
+				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
+				return;
+			}
+
+			var dictionary = new Dictionary<string, string>();
+			foreach (var detail in _authService.ErrorDetails)
+			{
+				dictionary[detail.Key] = string.Join("&#10;", detail.Value);
+			}
+
+			Errors = dictionary;
+
+			if (!string.IsNullOrEmpty(_authService.Error))
+			{
+				Application.Current.MainPage.DisplayAlert("Внимание", _authService.Error, "Ок");
 			}
 		}
 		#endregion

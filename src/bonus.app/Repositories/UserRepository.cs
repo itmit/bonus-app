@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using battery.app.Core.RealmObjects;
 using bonus.app.Core.Models;
@@ -73,6 +74,15 @@ namespace bonus.app.Core.Repositories
 					realm.Remove(userRealm);
 					transaction.Commit();
 				}
+			}
+		}
+
+		public User Find(Guid uuid)
+		{
+			using (var realm = Realm.GetInstance())
+			{
+				var user = realm.Find<UserRealmObject>(uuid.ToString());
+				return _mapper.Map<User>(user);
 			}
 		}
 

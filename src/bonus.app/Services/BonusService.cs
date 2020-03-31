@@ -14,11 +14,11 @@ namespace bonus.app.Core.Services
 {
 	public class BonusService : IBonusService
 	{
-		private readonly AccessToken _token;
+		private readonly IAuthService _authService;
 
-		public BonusService(IUserRepository repository)
+		public BonusService(IAuthService authService)
 		{
-			_token = repository.GetAll().Single().AccessToken;
+			_authService = authService;
 		}
 
 		private const string AccrueAndWriteOffBonusesUri = "http://bonus.itmit-studio.ru/api/service";
@@ -28,7 +28,7 @@ namespace bonus.app.Core.Services
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
 
 				var json = JsonConvert.SerializeObject(requestDto);
 				Debug.WriteLine(json);

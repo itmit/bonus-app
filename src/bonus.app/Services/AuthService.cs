@@ -19,9 +19,12 @@ namespace bonus.app.Core.Services
 	public class AuthService : IAuthService
 	{
 		private readonly Mapper _mapper;
+		private readonly IUserRepository _userRepository;
+		private Guid _userUuid = Guid.Empty;
 
-		public AuthService()
+		public AuthService(IUserRepository userRepository)
 		{
+			_userRepository = userRepository;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<AccessToken, UserDto>();
@@ -33,10 +36,6 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
-
-			User = Mvx.IoCProvider.Resolve<IUserRepository>()
-					  .GetAll()
-					  .SingleOrDefault();
 		}
 
 		public Dictionary<string, string[]> ErrorDetails
@@ -96,8 +95,18 @@ namespace bonus.app.Core.Services
 
 		public User User
 		{
-			get;
-			private set;
+			get
+			{
+				if (_userUuid == Guid.Empty)
+				{
+					var u = _userRepository.GetAll()
+										  .Single();
+					_userUuid = u.Guid;
+					return u;
+				}
+
+				return _userRepository.Find(_userUuid);
+			}
 		}
 
 		public AccessToken Token => User?.AccessToken;
@@ -106,6 +115,11 @@ namespace bonus.app.Core.Services
 
 		public async Task<bool> LogOut(User user)
 		{
+			_userUuid = Guid.Empty;
+			_userRepository.Remove(user);
+			return true;
+			
+			// TODO: Сделать выход на сервере.
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -118,7 +132,8 @@ namespace bonus.app.Core.Services
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
 				if (data.Success)
 				{
-					User = null;
+					_userUuid = Guid.Empty;
+					_userRepository.Remove(user);
 				}
 
 				return data.Success;
@@ -158,9 +173,18 @@ namespace bonus.app.Core.Services
 				{
 					if (data.Success)
 					{
-						User = _mapper.Map<User>(data.Data.Client);
-						User.AccessToken = _mapper.Map<User>(data.Data).AccessToken;
-						return User;
+						var user = _mapper.Map<User>(data.Data.Client);
+						user.AccessToken = _mapper.Map<User>(data.Data).AccessToken;
+
+						if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Guid != Guid.Empty)
+						{
+							return user;
+						}
+
+						_userUuid = user.Guid;
+						_userRepository.Add(user);
+
+						return user;
 					}
 
 					return _mapper.Map<User>(data.Data);

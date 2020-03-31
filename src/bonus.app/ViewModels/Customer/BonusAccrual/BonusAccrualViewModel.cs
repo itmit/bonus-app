@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Repositories;
+using bonus.app.Core.Services;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
@@ -10,12 +11,12 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 	public class BonusAccrualViewModel : MvxViewModel
 	{
 		private IMvxNavigationService _navigationService;
-		private IUserRepository _userRepository;
 		private Guid _userUuid;
+		private readonly IAuthService _authService;
 
-		public BonusAccrualViewModel(IUserRepository repository, IMvxNavigationService navigationService)
+		public BonusAccrualViewModel(IAuthService authService, IMvxNavigationService navigationService)
 		{
-			_userRepository = repository;
+			_authService = authService;
 			_navigationService = navigationService;
 		}
 
@@ -27,8 +28,7 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 
 		public override Task Initialize()
 		{
-			UserUuid = _userRepository.GetAll()
-								  .Single().Guid;
+			UserUuid = _authService.User.Guid;
 			return base.Initialize();
 		}
 	}

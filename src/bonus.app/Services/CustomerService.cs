@@ -18,11 +18,11 @@ namespace bonus.app.Core.Services
 	public class CustomerService : ICustomerService
 	{
 		private readonly Mapper _mapper;
-		private readonly AccessToken _token;
+		private readonly IAuthService _authService;
 
-		public CustomerService(IUserRepository repository)
+		public CustomerService(IAuthService authService)
 		{
-			_token = repository.GetAll().Single().AccessToken;
+			_authService = authService;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<AccessToken, UserDto>();
@@ -43,7 +43,7 @@ namespace bonus.app.Core.Services
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
 
 				var response = await client.PostAsync(GetCustomerByUuidUri, new FormUrlEncodedContent(new Dictionary<string, string>
 				{

@@ -9,7 +9,6 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
@@ -25,17 +24,13 @@ namespace bonus.app.Core.Services
 
 		#region Fields
 		private readonly Mapper _mapper;
-		private readonly AccessToken _token;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public ServicesService(IUserRepository repository, IAuthService authService)
+		public ServicesService(IAuthService authService)
 			: base(authService)
 		{
-			_token = repository.GetAll()
-							   .Single()
-							   .AccessToken;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<ServicesDto, ServiceType>()
@@ -53,7 +48,7 @@ namespace bonus.app.Core.Services
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
 				var request = JsonConvert.SerializeObject(createServiceDto);
 
@@ -75,32 +70,7 @@ namespace bonus.app.Core.Services
 
 		public async Task<IEnumerable<ServiceType>> GetAll() => await GetAsync<IEnumerable<ServiceType>>(GetAllUri);
 
-		public async Task<IEnumerable<Service>> GetBusinessmenService()
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
-
-				var response = await client.GetAsync(ServiceUri);
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Service[]>>(json);
-				if (data.Success)
-				{
-					return _mapper.Map<Service[]>(data.Data);
-				}
-
-				return null;
-			}
-		}
+		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(ServiceUri);
 		#endregion
 	}
 }

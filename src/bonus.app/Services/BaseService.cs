@@ -12,9 +12,12 @@ namespace bonus.app.Core.Services
 {
 	public abstract class BaseService
 	{
-		private readonly IAuthService _authService;
+		protected IAuthService AuthService
+		{
+			get;
+		}
 
-		public BaseService(IAuthService authService) => _authService = authService;
+		public BaseService(IAuthService authService) => AuthService = authService;
 
 		protected async Task<T> GetAsync<T>(string url, int days = 1, bool forceRefresh = true)
 		{
@@ -40,7 +43,7 @@ namespace bonus.app.Core.Services
 					using (var  client = new HttpClient())
 					{
 						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_authService.Token.Type} {_authService.Token.Body}");
+						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{AuthService.Token.Type} {AuthService.Token.Body}");
 
 						json = await client.GetStringAsync(url);
 					}

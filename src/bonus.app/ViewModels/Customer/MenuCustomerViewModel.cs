@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using bonus.app.Core.Repositories;
+﻿using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
@@ -11,13 +9,13 @@ namespace bonus.app.Core.ViewModels.Customer
 	public class MenuCustomerViewModel : MvxViewModel
 	{
 		private MvxCommand _logOutCommand;
-		private readonly IUserRepository _userRepository;
 		private readonly IMvxNavigationService _navigationService;
+		private readonly IAuthService _authService;
 
-		public MenuCustomerViewModel(IMvxNavigationService navigationService, IUserRepository userRepository)
+		public MenuCustomerViewModel(IMvxNavigationService navigationService, IAuthService authService)
 		{
 			_navigationService = navigationService;
-			_userRepository = userRepository;
+			_authService = authService;
 		}
 
 		public MvxCommand LogOutCommand
@@ -31,11 +29,10 @@ namespace bonus.app.Core.ViewModels.Customer
 
 		private async void LogOutCommandExecute()
 		{
-			var user = _userRepository.GetAll()
-									  .Single();
-			
-			_userRepository.Remove(user);
-			await _navigationService.Navigate<AuthorizationViewModel>();
+			if (await _authService.LogOut(_authService.User))
+			{
+				await _navigationService.Navigate<AuthorizationViewModel>();
+			}
 		}
 	}
 }

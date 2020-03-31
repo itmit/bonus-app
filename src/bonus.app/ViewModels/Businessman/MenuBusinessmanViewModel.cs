@@ -13,15 +13,13 @@ namespace bonus.app.Core.ViewModels.Businessman
 {
 	public class MenuBusinessmanViewModel : MvxViewModel
 	{
-		private readonly IUserRepository _userRepository;
 		private readonly IAuthService _authService;
 		private MvxCommand _logOutCommand;
 		private readonly IMvxNavigationService _navigationService;
 
 		#region .ctor
-		public MenuBusinessmanViewModel(IUserRepository userRepository, IAuthService authService, IMvxNavigationService navigationService)
+		public MenuBusinessmanViewModel(IAuthService authService, IMvxNavigationService navigationService)
 		{
-			_userRepository = userRepository;
 			_authService = authService;
 			_navigationService = navigationService;
 		}
@@ -104,10 +102,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 
 		public async void LogOutCommandExecute()
 		{
-			var user = _userRepository.GetAll()
-									   .Single();
-			
-			_userRepository.Remove(user);
+			await _authService.LogOut(_authService.User);
 			await _navigationService.Navigate<AuthorizationViewModel>();
 		}
 	}
