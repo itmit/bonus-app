@@ -78,7 +78,6 @@
                             HasUnevenRows="True"
                             ItemsSource="{Binding Cities}"
                             SelectedItem="{Binding SelectedCity}"
-                            ItemAppearing="Cities_OnItemAppearing"
                             ItemSelected="OnSelectCity"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand">
@@ -90,7 +89,7 @@
                             </views:MvxListView.ItemTemplate>
                         </views:MvxListView>
 
-                        <StackLayout Spacing="0" Grid.Row="1" x:Name="Layout">
+                        <StackLayout Spacing="0" Grid.Row="1" x:Name="FieldsLayout">
                             <controls:EntryAuthPage Placeholder="Название акции" PlaceholderColor="#505050" TextColor="#505050" Visual="Material" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="14" Margin="0,0,0,20" BackgroundColor="Transparent"/>
                                 <Editor Placeholder="Описание акции&#10;&#10;" PlaceholderColor="#505050" TextColor="#505050" FontSize="14" FontFamily="Lato-Regular.ttf#Lato-Regular" AutoSize="TextChanges" Margin="0,0,0,20" BackgroundColor="Transparent"/>
                             <StackLayout Orientation="Horizontal" Margin="5,0">

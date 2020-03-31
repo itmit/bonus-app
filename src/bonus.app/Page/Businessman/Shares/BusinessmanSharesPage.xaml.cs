@@ -53,7 +53,7 @@ namespace bonus.app.Core.Page.Businessman.Shares
 
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			Navigation.PushAsync(new BusinessmanSharesDetailPage());
+			((ListView) sender).SelectedItem = null;
 		}
 	}
 }

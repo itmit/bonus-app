@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,15 +14,28 @@ using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
-	public class ServicesService : IServicesService
+	public class ServicesService : BaseService, IServicesService
 	{
-		private readonly AccessToken _token;
-		private readonly Mapper _mapper;
+		#region Data
+		#region Consts
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/service";
 
-		public ServicesService(IUserRepository repository)
+		private const string ServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+		#endregion
+
+		#region Fields
+		private readonly Mapper _mapper;
+		private readonly AccessToken _token;
+		#endregion
+		#endregion
+
+		#region .ctor
+		public ServicesService(IUserRepository repository, IAuthService authService)
+			: base(authService)
 		{
-			_token = repository.GetAll().Single().AccessToken;
+			_token = repository.GetAll()
+							   .Single()
+							   .AccessToken;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<ServicesDto, ServiceType>()
@@ -33,35 +45,9 @@ namespace bonus.app.Core.Services
 				   .ForPath(model => model.Services, m => m.MapFrom(dto => dto.Items));
 			}));
 		}
+		#endregion
 
-		public async Task<IEnumerable<ServiceType>> GetAll()
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{_token.Type} {_token.Body}");
-
-				var response = await client.GetAsync(GetAllUri);
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<ServicesDto[]>>(json);
-				if (data.Success)
-				{
-					return _mapper.Map<ServiceType[]>(data.Data);
-				}
-
-				return null;
-			}
-		}
-
-		private const string ServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+		#region IServicesService members
 		public async Task<bool> CreateService(CreateServiceDto createServiceDto)
 		{
 			using (var client = new HttpClient())
@@ -86,6 +72,8 @@ namespace bonus.app.Core.Services
 				return data.Success;
 			}
 		}
+
+		public async Task<IEnumerable<ServiceType>> GetAll() => await GetAsync<IEnumerable<ServiceType>>(GetAllUri);
 
 		public async Task<IEnumerable<Service>> GetBusinessmenService()
 		{
@@ -113,5 +101,6 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
+		#endregion
 	}
 }

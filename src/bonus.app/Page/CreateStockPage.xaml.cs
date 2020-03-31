@@ -76,28 +76,15 @@ namespace bonus.app.Core.Page
 				Cities.IsEnabled = false;
 				Cities.IsVisible = false;
 				Shape1.Rotation = 0;
-				Layout.IsVisible = true;
+				FieldsLayout.IsVisible = true;
 			}
 			else
 			{
 				Shape1.Rotation = 180;
 				Cities.IsEnabled = true;
 				Cities.IsVisible = true;
-				Layout.IsVisible = false;
+				FieldsLayout.IsVisible = false;
 			}
-		}
-
-		private void Cities_OnItemAppearing(object sender, ItemVisibilityEventArgs e)
-		{
-			//if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
-			//{
-			//	return;
-			//}
-
-			//if (e.Item is City city && city.Id == ViewModel.Cities[ViewModel.Cities.Count - 1].Id)
-			//{
-			//	ViewModel.LoadMoreCitiesCommand.Execute();
-			//}
 		}
 
 		private void OnSelectCity(object sender, SelectedItemChangedEventArgs e)
@@ -106,7 +93,7 @@ namespace bonus.app.Core.Page
 			{
 				Cities.IsEnabled = false;
 				Cities.IsVisible = false;
-				Layout.IsVisible = true;
+				FieldsLayout.IsVisible = true;
 				Shape1.Rotation = 0;
 			}
 		}

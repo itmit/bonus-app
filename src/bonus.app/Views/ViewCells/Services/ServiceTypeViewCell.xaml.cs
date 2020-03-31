@@ -8,8 +8,6 @@ namespace bonus.app.Core.Views.ViewCells.Services
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ServiceTypeViewCell : ViewCell
     {
-		private MvxViewModel _viewModel;
-
 		public ServiceTypeViewCell()
         {
             InitializeComponent();

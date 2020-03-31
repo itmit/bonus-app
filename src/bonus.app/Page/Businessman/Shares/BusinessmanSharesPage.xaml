@@ -16,10 +16,13 @@
 
     <ContentPage.Content>
         <!--5. Мои акции(предприниматель)-->
-        <ListView VerticalScrollBarVisibility="Never" SeparatorVisibility="None" HasUnevenRows="True" Margin="0,5" ItemTapped="ListView_OnItemTapped">
-            <ListView.ItemsSource>
-                <x:String>0000000000000000</x:String>
-            </ListView.ItemsSource>
+        <ListView VerticalScrollBarVisibility="Never"
+                  SeparatorVisibility="None"
+                  HasUnevenRows="True"
+                  Margin="0,5"
+                  ItemsSource="{Binding Shares}"
+                  SelectedItem="{Binding SelectedShare}"
+                  ItemTapped="ListView_OnItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <viewCells:SharesViewCell/>

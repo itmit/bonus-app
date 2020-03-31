@@ -6,6 +6,7 @@ using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Customer;
+using MonkeyCache.FileStore;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
@@ -27,6 +28,8 @@ namespace bonus.app.Core
 				.EndingWith("Repository")
 				.AsInterfaces()
 				.RegisterAsDynamic();
+
+			Barrel.ApplicationId = "itmit.bonus.app";
 
 			var firstRun = Preferences.Get("FirstRun", "true");
 			if (firstRun.Equals("true"))
