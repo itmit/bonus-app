@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\SettingsHelper.cs" />
     <Compile Include="Startup.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
@@ -158,4 +159,5 @@
       <Name>bonus.app.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>

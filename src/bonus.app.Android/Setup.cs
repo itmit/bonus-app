@@ -1,4 +1,6 @@
 ﻿using bonus.app.Core;
+using bonus.app.Core.Services;
+using bonus.app.Droid.Services;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Core;
 using MvvmCross.Forms.Presenters;
@@ -17,6 +19,7 @@ namespace bonus.app.Droid
 		{
 			var formsPagePresenter = new CustomMvxFormsPagePresenter(viewPresenter);
 			Mvx.IoCProvider.RegisterSingleton<IMvxFormsPagePresenter>(formsPagePresenter);
+			Mvx.IoCProvider.RegisterSingleton<ISettingsHelper>(new SettingsHelper());
 			return formsPagePresenter;
 		}
 	}

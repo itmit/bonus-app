@@ -15,6 +15,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private readonly IShareService _shareService;
 		private MvxCommand _openCreateSharePageCommand;
 		private MvxCommand _openCreateShareArchivePageCommand;
+		private MvxCommand _refreshCommand;
+		private bool _isRefreshing;
 
 		public BusinessmanSharesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService,  IShareService shareService)
 			: base(logProvider, navigationService)
@@ -59,6 +61,26 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 													 });
 				return _openCreateShareArchivePageCommand;
 			}
+		}
+		public MvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ??
+								  new MvxCommand(async () =>
+								  {
+									  IsRefreshing = true;
+									  Shares = new MvxObservableCollection<Share>(await _shareService.GetAll());
+									  IsRefreshing = false;
+								  });
+				return _refreshCommand;
+			}
+		}
+
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			 private set => SetProperty(ref _isRefreshing, value);
 		}
 
 		public Share SelectedShare

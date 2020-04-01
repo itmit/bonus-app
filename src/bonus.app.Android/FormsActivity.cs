@@ -12,8 +12,15 @@ namespace bonus.app.Droid
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class FormsActivity : MvxFormsAppCompatActivity
 	{
+		public static string AppPackageName
+		{
+			get;
+			private set;
+		}
+
 		protected override void OnCreate(Bundle bundle)
 		{
+			AppPackageName = ApplicationContext.PackageName;
 			Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 			Rg.Plugins.Popup.Popup.Init(this, bundle);

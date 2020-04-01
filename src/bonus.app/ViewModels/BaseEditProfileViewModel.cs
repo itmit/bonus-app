@@ -24,7 +24,6 @@ namespace bonus.app.Core.ViewModels
 		private bool _isAuthorization;
 		private bool _isBusy;
 		private MvxCommand _loadMoreCitiesCommand;
-		private readonly IMvxNavigationService _navigationService;
 		private City _selectedCity;
 		private Country _selectedCountry;
 		private User _user;
@@ -37,10 +36,9 @@ namespace bonus.app.Core.ViewModels
 		#endregion
 
 		#region .ctor
-		public BaseEditProfileViewModel(IAuthService authService, IMvxNavigationService navigationService, IGeoHelperService geoHelperService)
+		public BaseEditProfileViewModel(IAuthService authService, IGeoHelperService geoHelperService)
 		{
 			_authService = authService;
-			_navigationService = navigationService;
 			_geoHelperService = geoHelperService;
 		}
 		#endregion

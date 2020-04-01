@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -16,29 +17,18 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		#region Data
 		#region Fields
 		private IMvxCommand _furetherCommand;
-		private bool _isEnabledScan;
 		private MvxCommand _openScannerCommand;
+		private readonly IPermissionsService _permissionsService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BusinessmanBonusAccrualViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+		public BusinessmanBonusAccrualViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IPermissionsService permissionsService)
 			: base(logProvider, navigationService)
 		{
+			_permissionsService = permissionsService;
 		}
 		#endregion
-
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-			IsEnabledScan = await CheckPermission(Permission.Camera);
-		}
-
-		public bool IsEnabledScan
-		{
-			get => _isEnabledScan;
-			set => SetProperty(ref _isEnabledScan, value);
-		}
 
 		#region Properties
 		public IMvxCommand FurtherCommand
@@ -55,43 +45,17 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		}
 		#endregion
 
-		#region Private
-		/// <summary>
-		/// Проверяет разрешения.
-		/// </summary>
-		/// <param name="permission">Разрешение.</param>
-		/// <returns>Было ли получено разрешение.</returns>
-		private async Task<bool> CheckPermission(Permission permission)
-		{
-			var status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
-			if (status != PermissionStatus.Granted)
-			{
-				await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(permission);
-
-				try
-				{
-					await CrossPermissions.Current.RequestPermissionsAsync(permission);
-				}
-				catch (TaskCanceledException e)
-				{
-					Console.WriteLine(e);
-				}
-
-				status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
-			}
-
-			return await Task.FromResult(status == PermissionStatus.Granted);
-		}
-		#endregion
-
 		public MvxCommand OpenScannerCommand
 		{
 			get
 			{
 				_openScannerCommand = _openScannerCommand ?? new MvxCommand(async () =>
 				{
-					Guid result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
-					await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(result);
+					if (await _permissionsService.CheckPermission(Permission.Camera, "Для сканирования QR-кода необходимо разрешение на использование камеры."))
+					{
+						Guid result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
+						await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, Guid>(result);
+					}
 				});
 				return _openScannerCommand;
 			}

@@ -18,7 +18,7 @@
                 </Frame>
                 <StackLayout Grid.Column="1">
                     <Label Text="{Binding Name}" MaxLines="1"/>
-                    <Label Text="{Binding ShortDescription}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption" TextColor="Gray"/>
+                    <Label Text="{Binding Description}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption" TextColor="Gray"/>
                 </StackLayout>
             </Grid>
         </Frame>

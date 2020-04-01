@@ -29,6 +29,9 @@
                   HasUnevenRows="True"
                   Margin="0,5"
                   ItemsSource="{Binding Shares}"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}"
                   SelectedItem="{Binding SelectedShare}"
                   ItemTapped="ListView_OnItemTapped">
             <ListView.ItemTemplate>

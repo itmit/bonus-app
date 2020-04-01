@@ -29,7 +29,7 @@
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,0" Spacing="0">
                 <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="0,20">
-                    <Image Source="slider_devuska1.png" Aspect="AspectFill" WidthRequest="320" />
+                    <Image Source="{Binding Share.ImageSource}" Aspect="AspectFill" WidthRequest="320" />
                 </Frame>
                 <Label Text="{Binding User.Name}" TextColor="#858585" />
                 <Label Text="{Binding Share.Name}" TextColor="#505050" FontSize="Body" Margin="0,5" />

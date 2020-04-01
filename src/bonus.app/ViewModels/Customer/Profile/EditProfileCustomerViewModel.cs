@@ -31,7 +31,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 											IGeoHelperService geoHelperService,
 											IProfileService customerProfileService,
 											IUserRepository userRepository)
-			: base(authService, navigationService, geoHelperService)
+			: base(authService, geoHelperService)
 		{
 			_navigationService = navigationService;
 			_customerProfileService = customerProfileService;

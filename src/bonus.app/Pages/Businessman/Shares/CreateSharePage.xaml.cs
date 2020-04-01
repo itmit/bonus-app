@@ -1,4 +1,5 @@
 ﻿using System;
+using bonus.app.Core.Models;
 using bonus.app.Core.ViewModels.Businessman.Shares;
 using bonus.app.Core.Views.Popups;
 using MvvmCross.Forms.Views;
@@ -19,16 +20,6 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 		#endregion
 
 		#region Private
-		private void Button_Clicked(object sender, EventArgs e)
-		{
-			var popup = new ViewSharesPopupPage();
-			Navigation.PushPopupAsync(popup);
-		}
-
-		private void Button_Clicked_1(object sender, EventArgs e)
-		{
-		}
-
 		private void Cell_OnTapped(object sender, EventArgs e)
 		{
 			if (Countries.IsEnabled)
@@ -54,6 +45,22 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 				Countries.IsEnabled = true;
 				Countries.IsVisible = true;
 				Grid.IsVisible = false;
+			}
+		}
+
+		private void Cities_OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+		{
+			if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
+			{
+				return;
+			}
+
+			if (e.Item is City city &&
+				city.Id ==
+				ViewModel.Cities[ViewModel.Cities.Count - 1]
+						 .Id)
+			{
+				ViewModel.LoadMoreCitiesCommand.Execute();
 			}
 		}
 

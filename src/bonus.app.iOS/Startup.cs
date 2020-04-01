@@ -1,4 +1,6 @@
 ﻿using bonus.app.Core;
+using bonus.app.Core.Services;
+using bonus.app.iOS.Services;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using MvvmCross.Forms.Presenters;
@@ -16,6 +18,7 @@ namespace bonus.app.iOS
 		{
 			var formsPagePresenter = new CustomMvxFormsPagePresenter(viewPresenter);
 			Mvx.IoCProvider.RegisterSingleton<IMvxFormsPagePresenter>(formsPagePresenter);
+			Mvx.IoCProvider.RegisterSingleton<ISettingsHelper>(new SettingsHelper());
 			return formsPagePresenter;
 		}
 	}
