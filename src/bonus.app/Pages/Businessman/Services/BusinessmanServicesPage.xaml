@@ -9,6 +9,7 @@
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
                       xmlns:services1="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.BusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -47,8 +48,8 @@
                 <Label Text="Добавить услугу" Margin="0,0,0,35" FontSize="Body" HorizontalOptions="Center"
                        FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" />
 
-                <services1:MyServicesContentView />
-
+                <contentViews:MyServicesContentView />
+                <contentViews:ServiceAccrualBonusesContentView/>
                 <Button Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource AppButton}" Command="{Binding AddServiceCommand}" />
             </StackLayout>
         </ScrollView>

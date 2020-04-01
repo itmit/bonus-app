@@ -10,7 +10,6 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
-using bonus.app.Views;
 using MvvmCross;
 using Newtonsoft.Json;
 

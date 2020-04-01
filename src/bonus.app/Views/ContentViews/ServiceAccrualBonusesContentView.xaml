@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.ServiceAccrualBonusesContentView">
+  <ContentView.Content>
+        <StackLayout>
+            <Label Text="Начисление бонусов" TextColor="#858585" Margin="5,0,0,0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Column="0" Placeholder="Количество бонусов"
+                           FontSize="14"
+                           Text="{Binding BonusAmount}"
+                           PlaceholderColor="#505050"
+                           VerticalOptions="Center"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           TextColor="#505050"
+                           Visual="Material"/>
+                <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
+                <Entry Grid.Column="2" Placeholder="Процент бонусов"
+                           FontSize="14"
+                           Text="{Binding BonusPercentage}"
+                           PlaceholderColor="#505050"
+                           VerticalOptions="Center"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           TextColor="#505050"
+                           Visual="Material"/>
+            </Grid>
+
+            <BoxView Margin="0,0,0,15"/>
+
+            <Label Text="Списание бонусов" TextColor="#858585" Margin="5,0,0,0"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Column="0" Placeholder="Количество бонусов"
+                           FontSize="14"
+                           Text="{Binding CancellationBonusAmount}"
+                           VerticalOptions="Center"
+                           PlaceholderColor="#505050"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           Visual="Material"/>
+                <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
+                <Entry Grid.Column="2" Placeholder="Процент бонусов"
+                           FontSize="14"
+                           Text="{Binding CancellationBonusPercentage}"
+                           VerticalOptions="Center"
+                           PlaceholderColor="#505050"
+                           BackgroundColor="Transparent"
+                           Keyboard="Numeric"
+                           Visual="Material"/>
+            </Grid>
+
+            <BoxView Margin="0,0,0,20"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

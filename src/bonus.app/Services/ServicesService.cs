@@ -68,7 +68,16 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<IEnumerable<ServiceType>> GetAll() => await GetAsync<IEnumerable<ServiceType>>(GetAllUri);
+		public async Task<IEnumerable<ServiceType>> GetAll()
+		{
+			var dtos = await GetAsync<IEnumerable<ServicesDto>>(GetAllUri);
+			if (dtos == null)
+			{
+				return new List<ServiceType>();
+			}
+
+			return _mapper.Map<ServiceType[]>(dtos);
+		}
 
 		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(ServiceUri);
 		#endregion

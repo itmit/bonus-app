@@ -2,53 +2,65 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
+using bonus.app.Core.ViewModels.Businessman.Services;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Realms;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Shares
 {
-	public class CreateShareViewModel : MvxViewModel
+	public class CreateShareViewModel : MvxViewModel, IServiceParentViewModel
 	{
 		#region Data
 		#region Fields
 		private MvxObservableCollection<City> _cities;
 		private MvxObservableCollection<Country> _countries;
 		private int _currentPageNumber;
+		private string _description;
 		private Dictionary<string, string> _errors = new Dictionary<string, string>();
 		private readonly IGeoHelperService _geoHelperService;
+		private bool _hasNoImage = true;
+		private string _imageName;
 		private bool _isBusy;
 		private MvxCommand _loadMoreCitiesCommand;
-		private Country _selectedCountry;
-		private readonly IShareService _shareService;
+		private readonly Mapper _mapper;
 		private string _name;
-		private string _description;
-		private City _selectedCity;
-		private MvxCommand _picPhotoCommand;
 		private readonly IPermissionsService _permissionsService;
-		private string _imageName;
-		private bool _hasNoImage = true;
+		private MvxCommand _picPhotoCommand;
+		private City _selectedCity;
+		private Country _selectedCountry;
+		private MvxObservableCollection<ServiceTypeViewModel> _services;
+		private readonly IServicesService _servicesServices;
+		private readonly IShareService _shareService;
 		private DateTime _shareTime = DateTime.Today;
+		private ServiceViewModel _selectedService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CreateShareViewModel(IShareService shareService, IGeoHelperService geoHelperService, IPermissionsService permissionsService)
+		public CreateShareViewModel(IShareService shareService, IGeoHelperService geoHelperService, IPermissionsService permissionsService, IServicesService servicesServices)
 		{
 			_shareService = shareService;
 			_geoHelperService = geoHelperService;
 			_permissionsService = permissionsService;
+			_servicesServices = servicesServices;
+			_mapper = new Mapper(new MapperConfiguration(cfg =>
+			{
+				cfg.CreateMap<ServiceType, ServiceTypeViewModel>()
+				   .ForMember(vm => vm.Services, m => m.MapFrom(model => model.Services));
+
+				cfg.CreateMap<Service, ServiceViewModel>()
+				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
+			}));
 		}
 		#endregion
 
@@ -65,6 +77,27 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			private set => SetProperty(ref _countries, value);
 		}
 
+		public string Description
+		{
+			get => _description;
+			set
+			{
+				SetProperty(ref _description, value);
+				if (string.IsNullOrEmpty(value))
+				{
+					Errors[nameof(Description)
+							   .ToLower()] = "Описание не может быть пустым.";
+				}
+				else
+				{
+					Errors[nameof(Description)
+							   .ToLower()] = null;
+				}
+
+				RaisePropertyChanged(() => Errors);
+			}
+		}
+
 		public Dictionary<string, string> Errors
 		{
 			get => _errors;
@@ -75,70 +108,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 					SetProperty(ref _errors, new Dictionary<string, string>());
 					return;
 				}
+
 				SetProperty(ref _errors, value);
-			}
-		}
-
-		public DateTime ShareTime
-		{
-			get => _shareTime;
-			set
-			{
-				SetProperty(ref _shareTime, value);
-				if (value <= DateTime.Today)
-				{
-					Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
-				}
-				else
-				{
-					Errors["share_time"] = null;
-				}
-				RaisePropertyChanged(() => Errors);
-			}
-		}
-
-		public bool IsBusy
-		{
-			get => _isBusy;
-			set => SetProperty(ref _isBusy, value);
-		}
-
-		public MvxCommand PicImageCommand
-		{
-			get
-			{
-				_picPhotoCommand = _picPhotoCommand ?? new MvxCommand(PicImageCommandExecute);
-				return _picPhotoCommand;
-			}
-		}
-
-		private async void PicImageCommandExecute()
-		{
-			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
-			{
-				if (!CrossMedia.Current.IsPickPhotoSupported)
-				{
-					return;
-				}
-
-				var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-				{
-					PhotoSize = PhotoSize.Medium
-				});
-
-				if (image == null)
-				{
-					return;
-				}
-
-				ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
-
-				using (var memoryStream = new MemoryStream())
-				{
-					image.GetStream()
-						 .CopyTo(memoryStream);
-					image.Dispose();
-				}
 			}
 		}
 
@@ -155,6 +126,21 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			{
 				SetProperty(ref _imageName, value);
 				HasNoImage = string.IsNullOrEmpty(value);
+			}
+		}
+
+		public bool IsBusy
+		{
+			get => _isBusy;
+			set => SetProperty(ref _isBusy, value);
+		}
+
+		public MvxCommand LoadMoreCitiesCommand
+		{
+			get
+			{
+				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1), () => !IsBusy);
+				return _loadMoreCitiesCommand;
 			}
 		}
 
@@ -179,36 +165,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 					Errors[nameof(Name)
 							   .ToLower()] = null;
 				}
+
 				RaisePropertyChanged(() => Errors);
 			}
 		}
 
-		public string Description
-		{
-			get => _description;
-			set
-			{
-				SetProperty(ref _description, value);
-				if (string.IsNullOrEmpty(value))
-				{
-					Errors[nameof(Description)
-							   .ToLower()] = "Описание не может быть пустым.";
-				}
-				else
-				{
-					Errors[nameof(Description)
-							   .ToLower()] = null;
-				}
-				RaisePropertyChanged(() => Errors);
-			}
-		}
-
-		public MvxCommand LoadMoreCitiesCommand
+		public MvxCommand PicImageCommand
 		{
 			get
 			{
-				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1), () => !IsBusy);
-				return _loadMoreCitiesCommand;
+				_picPhotoCommand = _picPhotoCommand ?? new MvxCommand(PicImageCommandExecute);
+				return _picPhotoCommand;
 			}
 		}
 
@@ -228,6 +195,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				LoadCities(value, 1);
 			}
 		}
+
+		public MvxObservableCollection<ServiceTypeViewModel> Services
+		{
+			get => _services;
+			private set => SetProperty(ref _services, value);
+		}
+
+		public DateTime ShareTime
+		{
+			get => _shareTime;
+			set
+			{
+				SetProperty(ref _shareTime, value);
+				if (value <= DateTime.Today)
+				{
+					Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
+				}
+				else
+				{
+					Errors["share_time"] = null;
+				}
+
+				RaisePropertyChanged(() => Errors);
+			}
+		}
 		#endregion
 
 		#region Overrided
@@ -237,6 +229,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 
 			try
 			{
+				var a = await _servicesServices.GetAll();
+				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(a);
+				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
+
 				var countries = await _geoHelperService.GetCountries(new LocaleDto
 				{
 					FallbackLang = "en",
@@ -297,6 +293,50 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 
 			IsBusy = false;
 		}
+
+		private async void PicImageCommandExecute()
+		{
+			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			{
+				if (!CrossMedia.Current.IsPickPhotoSupported)
+				{
+					return;
+				}
+
+				var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+				{
+					PhotoSize = PhotoSize.Medium
+				});
+
+				if (image == null)
+				{
+					return;
+				}
+
+				ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
+
+				using (var memoryStream = new MemoryStream())
+				{
+					image.GetStream()
+						 .CopyTo(memoryStream);
+					image.Dispose();
+				}
+			}
+		}
 		#endregion
+
+		public ServiceViewModel SelectedService
+		{
+			get => _selectedService;
+			set
+			{
+				if (_selectedService != null)
+				{
+					_selectedService.Color = Color.Transparent;
+				}
+				value.Color = Color.FromHex("#BB8D91");
+				SetProperty(ref _selectedService, value);
+			}
+		}
 	}
 }

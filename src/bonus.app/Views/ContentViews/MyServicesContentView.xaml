@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.ViewCells.Services.MyServicesContentView">
+             x:Class="bonus.app.Core.Views.ContentViews.MyServicesContentView">
     <!--Содержимое с добавлением услуг-->
     <ContentView.Content>
         <StackLayout Spacing="0">
@@ -15,7 +15,7 @@
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                 </StackLayout.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                    <Label Text="Вид услуги"/>
+                    <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}"/>
                     <Image Source="Shape.png"
                                WidthRequest="15"
                                x:Name="Shape"
@@ -42,7 +42,7 @@
 
             <StackLayout x:Name="ServicesEntry" IsVisible="False" IsEnabled="False">
                 <BindableLayout.ItemsSource>
-                    <x:String>000</x:String>
+                    <x:String>0</x:String>
                 </BindableLayout.ItemsSource>
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:Name="DataTemplate">
@@ -74,64 +74,6 @@
                 </StackLayout>
                 <BoxView/>
             </StackLayout>
-
-            <Label Text="Начисление бонусов" TextColor="#858585" Margin="5,0,0,0"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Entry Grid.Column="0" Placeholder="Количество бонусов"
-                           FontSize="14"
-                           Text="{Binding BonusAmount}"
-                           PlaceholderColor="#505050"
-                           VerticalOptions="Center"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           TextColor="#505050"
-                           Visual="Material"/>
-                <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
-                <Entry Grid.Column="2" Placeholder="Процент бонусов"
-                           FontSize="14"
-                           Text="{Binding BonusPercentage}"
-                           PlaceholderColor="#505050"
-                           VerticalOptions="Center"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           TextColor="#505050"
-                           Visual="Material"/>
-            </Grid>
-
-            <BoxView Margin="0,0,0,15"/>
-
-            <Label Text="Списание бонусов" TextColor="#858585" Margin="5,0,0,0"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Entry Grid.Column="0" Placeholder="Количество бонусов"
-                           FontSize="14"
-                           Text="{Binding CancellationBonusAmount}"
-                           VerticalOptions="Center"
-                           PlaceholderColor="#505050"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           Visual="Material"/>
-                <Label Grid.Column="1" Text="или" VerticalOptions="Center"/>
-                <Entry Grid.Column="2" Placeholder="Процент бонусов"
-                           FontSize="14"
-                           Text="{Binding CancellationBonusPercentage}"
-                           VerticalOptions="Center"
-                           PlaceholderColor="#505050"
-                           BackgroundColor="Transparent"
-                           Keyboard="Numeric"
-                           Visual="Material"/>
-            </Grid>
-
-            <BoxView Margin="0,0,0,20"/>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

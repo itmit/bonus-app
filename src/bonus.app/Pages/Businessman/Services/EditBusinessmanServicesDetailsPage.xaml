@@ -8,6 +8,7 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
                       xmlns:viewModels1="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.EditBusinessmanServicesDetailsPage">
     <NavigationPage.TitleView>
@@ -18,7 +19,8 @@
         <!--Страница 4.3.2 редактор мои услуги у предпринимателя-->
         <ScrollView>
             <StackLayout Spacing="0" Margin="15,20">
-                <services:MyServicesContentView />
+                <contentViews:MyServicesContentView />
+                <contentViews:ServiceAccrualBonusesContentView/>
                 <Button Text="Сохранить изменения" Style="{StaticResource AppButton}" Clicked="Button_OnClicked" />
             </StackLayout>
         </ScrollView>
