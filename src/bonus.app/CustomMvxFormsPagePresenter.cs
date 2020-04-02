@@ -4,7 +4,12 @@ using System.Threading.Tasks;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using MvvmCross.Presenters;
+using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace bonus.app.Core
@@ -70,6 +75,36 @@ namespace bonus.app.Core
 			}
 
 			return base.TopNavigationPage(rootPage);
+		}
+
+		public override void RegisterAttributeTypes()
+		{
+			base.RegisterAttributeTypes();
+			AttributeTypesToActionsDictionary.Register<MvxPopupPagePresentationAttribute>(ShowPopupPage, ClosePopupPage);
+		}
+
+		private async Task<bool> ClosePopupPage(IMvxViewModel viewModel, MvxPopupPagePresentationAttribute attribute)
+		{
+			var page = PopupNavigation.Instance.PopupStack?.OfType<IMvxPage>()
+						   .FirstOrDefault(x => x.ViewModel == viewModel) as PopupPage;
+
+			if (page == null)
+			{
+				await FormsApplication.MainPage.Navigation.PopPopupAsync(attribute.Animated);
+				return true;
+			}
+
+			await FormsApplication.MainPage.Navigation.RemovePopupPageAsync(page, attribute.Animated);
+			return true;
+		}
+
+		private async Task<bool> ShowPopupPage(Type view, MvxPopupPagePresentationAttribute attribute, MvxViewModelRequest request)
+		{
+			var page = CreatePage(view, request, attribute) as PopupPage;     
+
+			await FormsApplication.MainPage.Navigation.PushPopupAsync(page, attribute.Animated);
+
+			return true;
 		}
 
 		public override async Task<bool> ShowTabbedPage(Type view, MvxTabbedPagePresentationAttribute attribute, MvxViewModelRequest request)

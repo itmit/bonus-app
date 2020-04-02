@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<core:MvxPopupPage x:TypeArguments="popups:SharePopupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                   xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                   xmlns:core="clr-namespace:bonus.app.Core;assembly=bonus.app.Core"
+                   xmlns:popups="clr-namespace:bonus.app.Core.ViewModels.Businessman.Popups;assembly=bonus.app.Core"
+                   xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                   xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                   mc:Ignorable="d"
+                   x:Class="bonus.app.Core.Pages.Businessman.Popups.SharePopupPage">
+<!--popup с просмотром созданной акции в предпринимателе-->
+<pages:PopupPage.Animation>
+    <animations:ScaleAnimation
+        PositionIn="Center"
+        PositionOut="Center"
+        ScaleIn="1"
+        ScaleOut="0.8"
+        DurationIn="400"
+        DurationOut="300"
+        EasingIn="SinOut"
+        EasingOut="SinIn"
+        HasBackgroundAnimation="True"/>
+</pages:PopupPage.Animation>
+
+<Frame CornerRadius="10" Padding="0,20,0,30" WidthRequest="320" BackgroundColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="0">
+                <ImageButton Source="ic_close_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="10" Margin="0,0,20,15" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"/>
+
+                <forms:CachedImage
+                    Source="{Binding Share.ImageSource}"
+                    WidthRequest="290"
+                    Aspect="AspectFill"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="Center" Margin="0,0,0,20">
+
+                    <forms:CachedImage.Transformations>
+                        <transformations:RoundedTransformation Radius="100"/>
+                    </forms:CachedImage.Transformations>
+                </forms:CachedImage>
+
+                <Label Text="{Binding User.Name}" TextColor="#858585" Margin="15,0,0,10"/>
+                <Label Text="{Binding Share.Name}" Margin="15,0,0,10"/>
+                <Label Text="{Binding Share.Description}" Margin="15,0,0,0"/>
+            </StackLayout>
+        </ScrollView>
+    </Frame>
+</core:MvxPopupPage>

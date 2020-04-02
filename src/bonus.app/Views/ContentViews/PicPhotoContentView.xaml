@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.PicPhotoContentView">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" Margin="5,0">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding PicImageCommand}"/>
+            </StackLayout.GestureRecognizers>
+            <StackLayout>
+                <Label Text="Загрузите изображение акции" />
+                <Label Text="{Binding ImageName}" Margin="0,5" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <Image Source="icon_photo"
+                   WidthRequest="70"
+                   HeightRequest="40"
+                   IsVisible="{Binding IsShowDefaultImage}"
+                   HorizontalOptions="EndAndExpand" Margin="0,10,0,10"/>
+
+            <forms:CachedImage
+                Source="{Binding ImageSource}"
+                IsVisible="{Binding ImageSource, Converter={StaticResource NullToBoolConverter}}"
+                WidthRequest="70"
+                HeightRequest="40"
+                HorizontalOptions="EndAndExpand"
+                Margin="0,10,0,10">
+
+                <forms:CachedImage.Transformations>
+                    <transformations:RoundedTransformation Radius="100"/>
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

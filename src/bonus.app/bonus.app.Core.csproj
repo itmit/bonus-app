@@ -21,14 +21,19 @@
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Realm" Version="4.3.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
-    <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />  
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />  
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.5.0.495" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.5.0.530" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\Businessman\Popups\SharePopupPage.xaml.cs">
+      <DependentUpon>SharePopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Businessman\Shares\ShareArchivePage.xaml.cs">
       <DependentUpon>ShareArchivePage.xaml</DependentUpon>
     </Compile>
@@ -258,6 +263,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Customer\MenuCustomerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\PicPhotoContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\ServiceAccrualBonusesContentView.xaml">

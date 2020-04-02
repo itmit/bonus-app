@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
+using MonkeyCache.FileStore;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace bonus.app.Core.Services
 {
@@ -19,54 +23,80 @@ namespace bonus.app.Core.Services
 
 		public async Task<List<Country>> GetCountries(LocaleDto locale)
 		{
-			using (var client = new HttpClient())
+			var uri = string.Format(GetCountriesUri, Secrets.GeoHelperApiKey, locale.Lang, locale.FallbackLang);
+
+			var res = await GetAsync<Country>(uri);
+
+			if (res == null)
 			{
-				var resp = await client.GetAsync(string.Format(GetCountriesUri, Secrets.GeoHelperApiKey, locale.Lang, locale.FallbackLang));
-
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<GeoHelperResponseDto<Country>>(json);
-
-				if (data.Success)
-				{
-					return data.Result.ToList();
-				}
-
-				return null;
+				return new List<Country>();
 			}
+
+			return res;
+		}
+
+		private async Task<List<T>> GetAsync<T>(string url, int days = 1)
+		{
+			var json = string.Empty;
+
+			//check if we are connected, else check to see if we have valid data
+			if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+			{
+				json = Barrel.Current.Get<string>(url);
+			}
+			else if (!Barrel.Current.IsExpired(url))
+			{
+				json = Barrel.Current.Get<string>(url);
+			}
+
+			try
+			{
+				GeoHelperResponseDto<T> response;
+
+				//skip web request because we are using cached data
+				if (string.IsNullOrWhiteSpace(json))
+				{
+					using (var client = new HttpClient())
+					{
+						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+						json = await client.GetStringAsync(url);
+					}
+
+					response = JsonConvert.DeserializeObject<GeoHelperResponseDto<T>>(json);
+					if (response.Success)
+					{
+						Barrel.Current.Add(url, json, TimeSpan.FromDays(days));
+					}
+				}
+				else
+				{
+					response = JsonConvert.DeserializeObject<GeoHelperResponseDto<T>>(json);
+				}
+
+				return response.Result;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"Unable to get information from server {ex}");
+			}
+
+			return default;
 		}
 
 		public async Task<List<City>> GetCities(LocaleDto locale, CityFilterDto filter = null, PaginationRequestDto pagination = null, OrderDto order = null) 
 		{
-			using (var client = new HttpClient())
+			var uri = string.Format(FormatUriForGetCities(filter, pagination, order), Secrets.GeoHelperApiKey, locale.Lang, locale.FallbackLang);
+			Debug.WriteLine(uri);
+
+			var res = await GetAsync<City>(uri);
+
+			if (res == null)
 			{
-				var uri = string.Format(FormatUriForGetCities(filter, pagination, order), Secrets.GeoHelperApiKey, locale.Lang, locale.FallbackLang);
-				Debug.WriteLine(uri);
-				var resp = await client.GetAsync(uri);
-
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<GeoHelperResponseDto<City>>(json);
-
-				if (data.Success)
-				{
-					return data.Result.ToList();
-				}
-
-				return null;
+				return new List<City>();
 			}
+
+			return res;
 		}
 
 		private string FormatUriForGetCities(CityFilterDto filter, PaginationRequestDto pagination, OrderDto order)

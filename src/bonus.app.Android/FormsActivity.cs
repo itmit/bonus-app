@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
 using Plugin.Permissions;
+using FFImageLoading.Forms.Platform;
 
 namespace bonus.app.Droid
 {
@@ -27,6 +28,7 @@ namespace bonus.app.Droid
 			Xamarin.Forms.Forms.Init(this, bundle);
 			Xamarin.Forms.FormsMaterial.Init(this, bundle);
 			base.OnCreate(bundle);
+			CachedImageRenderer.Init(true);
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 		}

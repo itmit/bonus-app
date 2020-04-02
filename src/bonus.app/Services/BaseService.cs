@@ -45,7 +45,7 @@ namespace bonus.app.Core.Services
 						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{AuthService.Token.Type} {AuthService.Token.Body}");
 
-						json = await client.GetStringAsync(url);
+						json = await client.GetStringAsync(new Uri(url));
 					}
 
 					response = JsonConvert.DeserializeObject<ResponseDto<T>>(json);

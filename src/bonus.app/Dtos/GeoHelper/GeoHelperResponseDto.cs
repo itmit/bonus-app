@@ -1,4 +1,6 @@
-﻿namespace bonus.app.Core.Dtos.GeoHelper
+﻿using System.Collections.Generic;
+
+namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class GeoHelperResponseDto<T>
 	{
@@ -14,7 +16,7 @@
 			set;
 		}
 
-		public T[] Result
+		public List<T> Result
 		{
 			get;
 			set;

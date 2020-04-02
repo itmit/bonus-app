@@ -5,6 +5,7 @@ using bonus.app.Core;
 using Foundation;
 using MvvmCross.Platforms.Ios.Core;
 using UIKit;
+using FFImageLoading.Forms.Platform;
 
 namespace bonus.app.iOS
 {
@@ -26,6 +27,8 @@ namespace bonus.app.iOS
 			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             Rg.Plugins.Popup.Popup.Init();
             global::Xamarin.Forms.Forms.Init();
+			CachedImageRenderer.Init();
+
             return base.FinishedLaunching(app, options);
         }
     }

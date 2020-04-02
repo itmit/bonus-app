@@ -70,6 +70,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		public override void Prepare(Share parameter)
 		{
 			Share = parameter;
+			if (Share.Status == null)
+			{
+				ShareColor = Color.Transparent;
+				return;
+			}
+
 			if (Share.Status.Equals("Завершена"))
 			{
 				ShareColor = Color.FromHex("#807D746D");
