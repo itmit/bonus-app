@@ -99,7 +99,7 @@ namespace bonus.app.Core.Services
 				if (_userUuid == Guid.Empty)
 				{
 					var u = _userRepository.GetAll()
-										  .Single();
+										  .SingleOrDefault();
 					_userUuid = u.Guid;
 					return u;
 				}
