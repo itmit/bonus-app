@@ -100,8 +100,11 @@ namespace bonus.app.Core.Services
 				{
 					var u = _userRepository.GetAll()
 										  .SingleOrDefault();
-					_userUuid = u.Guid;
-					return u;
+					if (u != null)
+					{
+						_userUuid = u.Guid;
+						return u;
+					}
 				}
 
 				return _userRepository.Find(_userUuid);
