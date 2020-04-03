@@ -41,7 +41,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		{
 			await base.Initialize();
 
-			Shares = new MvxObservableCollection<Share>(await _shareService.GetAll());
+			Shares = new MvxObservableCollection<Share>(await _shareService.GetMyShares());
 		}
 
 		public MvxCommand OpenCreateSharePageCommand
@@ -77,7 +77,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 								  new MvxCommand(async () =>
 								  {
 									  IsRefreshing = true;
-									  Shares = new MvxObservableCollection<Share>(await _shareService.GetAll());
+									  Shares = new MvxObservableCollection<Share>(await _shareService.GetMyShares());
 									  IsRefreshing = false;
 								  });
 				return _refreshCommand;

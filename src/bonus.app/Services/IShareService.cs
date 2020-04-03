@@ -7,9 +7,11 @@ namespace bonus.app.Core.Services
 {
 	public interface IShareService
 	{
-		Task<IEnumerable<Share>> GetAll();
+		Task<IEnumerable<Share>> GetMyShares();
 
 		Task<bool> CreateShare(Share share, byte[] imageBytes);
+
+		Task<IEnumerable<Share>> GetAll();
 
 		event EventHandler CreatedShareEventHandler;
 	}

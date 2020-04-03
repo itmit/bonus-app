@@ -15,7 +15,7 @@
                   <ColumnDefinition Width="Auto"/>
                   <ColumnDefinition Width="Auto"/>
               </Grid.ColumnDefinitions>
-              <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" Grid.Column="0" Margin="10,0" WidthRequest="85">
+              <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" VerticalOptions="FillAndExpand" Grid.Column="0" Margin="10,0" WidthRequest="85">
                   <forms:CachedImage.Transformations>
                       <transformations:RoundedTransformation Radius="100"/>
                   </forms:CachedImage.Transformations>

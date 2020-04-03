@@ -30,7 +30,7 @@
         <!--5.1 Мои акции(предприниматель)-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,0" Spacing="0">
-                <forms:CachedImage Source="{Binding Share.ImageSource}" Aspect="AspectFill" Margin="0,20" WidthRequest="320">
+                <forms:CachedImage Source="{Binding Share.ImageSource}" HorizontalOptions="Center" Margin="0,20" WidthRequest="320">
                     <forms:CachedImage.Transformations>
                         <transformations:RoundedTransformation Radius="100"/>
                     </forms:CachedImage.Transformations>
