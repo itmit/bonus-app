@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
@@ -22,6 +23,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			: base(logProvider, navigationService)
 		{
 			_shareService = shareService;
+			_shareService.CreatedShareEventHandler += ShareServiceOnCreatedShareEventHandler;
+		}
+
+		private void ShareServiceOnCreatedShareEventHandler(object sender, EventArgs e)
+		{
+			RefreshCommand.Execute();
 		}
 
 		public MvxObservableCollection<Share> Shares

@@ -10,5 +10,7 @@ namespace bonus.app.Core.Services
 		Task<IEnumerable<Share>> GetAll();
 
 		Task<bool> CreateShare(Share share, byte[] imageBytes);
+
+		event EventHandler CreatedShareEventHandler;
 	}
 }

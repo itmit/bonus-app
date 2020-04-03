@@ -50,7 +50,7 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="до " />
-                                    <Span Text="{Binding Share.ShareTime}" />
+                                    <Span Text="{Binding Share.ShareTime, StringFormat='{0:dd.MM.yyyy}'}" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>

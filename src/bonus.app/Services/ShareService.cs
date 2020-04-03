@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -17,10 +18,25 @@ namespace bonus.app.Core.Services
 
 		public async Task<IEnumerable<Share>> GetAll()
 		{
-			return await GetAsync<IEnumerable<Share>>(GetAllUri);
+			var shares = (await GetAsync<IEnumerable<Share>>(GetAllUri))?.ToList();
+			if (shares == null)
+			{
+				return new List<Share>();
+			}
+			foreach (var share in shares)
+			{
+				if (string.IsNullOrEmpty(share.ImageSource))
+				{
+					share.ImageSource = string.Empty;
+					continue;
+				}
+				share.ImageSource = Domain + share.ImageSource;
+			}
+			return shares;
 		}
 
 		public const string CreateShareUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+
 		public async Task<bool> CreateShare(Share share, byte[] imageBytes)
 		{
 			using (var client = new HttpClient())
@@ -70,10 +86,15 @@ namespace bonus.app.Core.Services
 				}
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
+				if (data.Success)
+				{
+					CreatedShareEventHandler?.Invoke(this, EventArgs.Empty);
+				}
 				return data.Success;
 			}
 		}
+
+		public event EventHandler CreatedShareEventHandler;
 
 		public ShareService(IAuthService authService)
 			: base(authService)

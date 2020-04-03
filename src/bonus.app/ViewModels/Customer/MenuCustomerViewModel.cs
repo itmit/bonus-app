@@ -29,7 +29,7 @@ namespace bonus.app.Core.ViewModels.Customer
 
 		private async void LogOutCommandExecute()
 		{
-			if (await _authService.LogOut(_authService.User))
+			if (await _authService.Logout(_authService.User))
 			{
 				await _navigationService.Navigate<AuthorizationViewModel>();
 			}

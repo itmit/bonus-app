@@ -50,6 +50,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private MvxCommand _showShareCommand;
 		private MvxCommand _createShareCommand;
 		private byte[] _imageBytes;
+		private bool _canCreateShareCommand = true;
 		#endregion
 		#endregion
 
@@ -232,106 +233,24 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			}
 		}
 
-		private void CreateShareCommandExecute()
+		private async void CreateShareCommandExecute()
 		{
-			if (SelectedCountry == null)
+			if (!CheckValidFields())
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
-				});
 				return;
 			}
 
-			if (SelectedCity == null)
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
-				});
-				return;
-			}
-
-			if (SelectedService == null)
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите услугу.", "Ок");
-				});
-				return;
-			}
-
-			var name = Name.Trim();
-			if (string.IsNullOrEmpty(name))
-			{
-				Errors[nameof(Name)
-						   .ToLower()] = "Название акции не может быть пустым.";
-
-				RaisePropertyChanged(() => Errors);
-				return;
-			}
-			else if (name.Length < 4)
-			{
-				Errors[nameof(Name)
-						   .ToLower()] = "Название акции не может содержать меньше 4 символов.";
-
-				RaisePropertyChanged(() => Errors);
-				return;
-			}
-			else
-			{
-				Errors[nameof(Name)
-						   .ToLower()] = null;
-				RaisePropertyChanged(() => Errors);
-			}
-
-			var desc = Description.Trim();
-			if (string.IsNullOrEmpty(desc))
-			{
-				Errors[nameof(Description)
-						   .ToLower()] = "Описание не может быть пустым.";
-				RaisePropertyChanged(() => Errors);
-				return;
-			}
-			else
-			{
-				Errors[nameof(Description)
-						   .ToLower()] = null;
-				RaisePropertyChanged(() => Errors);
-			}
-
-			if (string.IsNullOrEmpty(ImageSource))
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите изображение акции.", "Ок");
-				});
-				return;
-			}
-
-			if (ShareTime <= DateTime.Today)
-			{
-				Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
-				RaisePropertyChanged(() => Errors);
-				return;
-			}
-			else
-			{
-				Errors["share_time"] = null;
-				RaisePropertyChanged(() => Errors);
-			}
-
-
+			bool res = false;
 			try
 			{
-				_shareService.CreateShare(new Share
+				res = await _shareService.CreateShare(new Share
 				{
 					Country = SelectedCountry.LocalizedNames.Ru,
 					City = SelectedCity.LocalizedNames.Ru,
 					Service = SelectedService.Uuid,
-					Description = desc,
+					Description = Description.Trim(),
 					ImageSource = ImageName,
-					Name = name,
+					Name = Name.Trim(),
 					ShareTime = ShareTime,
 					IsSubscriberOnly = IsSubscriberOnly
 				}, _imageBytes);
@@ -339,10 +258,117 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
-				throw;
 			}
-			
 
+			CanCreateShareCommand = !res;
+			if (res)
+			{
+				var vmRes = await _navigationService.Navigate<SuccessCreateSharesPopupViewModel, object, bool>(null);
+				if (vmRes)
+				{
+					await _navigationService.Close(this);
+				}
+				return;
+			}
+
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка попробуйте повторить запрос позже.", "Ок");
+			});
+		}
+
+		private bool CheckValidFields()
+		{
+			CanCreateShareCommand = false;
+			bool result = true;
+			if (SelectedCountry == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
+				});
+				result = false;
+			}
+
+			if (SelectedCity == null && result)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
+				});
+				result = false;
+			}
+
+			if (SelectedService == null && result)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите услугу.", "Ок");
+				});
+				result = false;
+			}
+
+			if (string.IsNullOrEmpty(ImageSource) && result)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите изображение акции.", "Ок");
+				});
+				result = false;
+			}
+
+			var name = Name?.Trim();
+			if (string.IsNullOrEmpty(name))
+			{
+				Errors[nameof(Name)
+						   .ToLower()] = "Название акции не может быть пустым.";
+
+				result = false;
+			}
+			else if (name.Length < 4)
+			{
+				Errors[nameof(Name)
+						   .ToLower()] = "Название акции не может содержать меньше 4 символов.";
+
+				result = false;
+			}
+			else
+			{
+				Errors[nameof(Name)
+						   .ToLower()] = null;
+			}
+
+			if (string.IsNullOrEmpty(Description?.Trim()))
+			{
+				Errors[nameof(Description)
+						   .ToLower()] = "Описание не может быть пустым.";
+				result = false;
+			}
+			else
+			{
+				Errors[nameof(Description)
+						   .ToLower()] = null;
+			}
+
+			if (ShareTime <= DateTime.Today)
+			{
+				Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
+				result = false;
+			}
+			else
+			{
+				Errors["share_time"] = null;
+			}
+
+			CanCreateShareCommand = !result;
+			RaisePropertyChanged(() => Errors);
+			return result;
+		}
+
+		public bool CanCreateShareCommand
+		{
+			get => _canCreateShareCommand;
+			set => SetProperty(ref _canCreateShareCommand, value);
 		}
 
 		public DateTime ShareTime

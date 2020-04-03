@@ -26,7 +26,7 @@ namespace bonus.app.Core.Services
 			get;
 		}
 
-		Task<bool> LogOut(User user);
+		Task<bool> Logout(User user);
 
 		string Error
 		{

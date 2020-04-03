@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace bonus.app.Core.Services
 		{
 			get;
 		}
+
+		public const string Domain = "http://bonus.itmit-studio.ru/";
 
 		public BaseService(IAuthService authService) => AuthService = authService;
 
@@ -47,7 +50,7 @@ namespace bonus.app.Core.Services
 
 						json = await client.GetStringAsync(new Uri(url));
 					}
-
+					Debug.WriteLine(json);
 					response = JsonConvert.DeserializeObject<ResponseDto<T>>(json);
 					if (response.Success)
 					{

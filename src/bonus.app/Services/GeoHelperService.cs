@@ -35,7 +35,7 @@ namespace bonus.app.Core.Services
 			return res;
 		}
 
-		private async Task<List<T>> GetAsync<T>(string url, int days = 1)
+		private async Task<List<T>> GetAsync<T>(string url, int days = 30)
 		{
 			var json = string.Empty;
 

@@ -115,7 +115,7 @@ namespace bonus.app.Core.Services
 
 		private const string LogOutUri = "http://bonus.itmit-studio.ru/api/logout";
 
-		public async Task<bool> LogOut(User user)
+		public async Task<bool> Logout(User user)
 		{
 			_userUuid = Guid.Empty;
 			_userRepository.Remove(user);
