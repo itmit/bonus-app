@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.SharesViewCell">
   <ViewCell.View>
@@ -13,9 +15,13 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Margin="10,0" Grid.Column="0" HasShadow="False">
-                    <Image Source="{Binding ImageSource}" Aspect="AspectFill"  WidthRequest="85"/>
-                </Frame>
+
+                <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" Grid.Column="0" Margin="10,0" WidthRequest="85">
+                    <forms:CachedImage.Transformations>
+                        <transformations:RoundedTransformation Radius="100"/>
+                    </forms:CachedImage.Transformations>
+                </forms:CachedImage>
+
                 <StackLayout Grid.Column="1">
                     <Label Text="{Binding Name}" MaxLines="1"/>
                     <Label Text="{Binding Description}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption" TextColor="Gray"/>

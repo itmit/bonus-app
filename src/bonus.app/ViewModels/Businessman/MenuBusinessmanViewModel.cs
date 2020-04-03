@@ -1,21 +1,32 @@
 ﻿using System.Linq;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
-using bonus.app.Core.ViewModels.Businessman.News;
 using bonus.app.Core.ViewModels.Businessman.Pay;
+using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Businessman.Statistics;
 using MvvmCross.Commands;
+using MvvmCross.Forms.Views;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman
 {
 	public class MenuBusinessmanViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
 		private readonly IAuthService _authService;
 		private MvxCommand _logOutCommand;
 		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openPayCommand;
+
+		private MvxCommand _openProfileCommand;
+		private MvxCommand _openStatisticsCommand;
+		private MvxCommand _openSupportCommand;
+		private MvxCommand _openTariffCommand;
+		#endregion
+		#endregion
 
 		#region .ctor
 		public MenuBusinessmanViewModel(IAuthService authService, IMvxNavigationService navigationService)
@@ -25,6 +36,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 		}
 		#endregion
 
+		#region Properties
 		public MvxCommand LogOutCommand
 		{
 			get
@@ -34,57 +46,57 @@ namespace bonus.app.Core.ViewModels.Businessman
 			}
 		}
 
-		private MvxCommand _openProfileCommand;
-		private MvxCommand _openPayCommand;
-		private MvxCommand _openTariffCommand;
-		private MvxCommand _openSupportCommand;
-		private MvxCommand _openStatisticsCommand;
+		public MvxCommand OpenPayCommand
+		{
+			get
+			{
+				_openPayCommand = _openPayCommand ??
+								  new MvxCommand(() =>
+								  {
+									  _navigationService.Navigate<PaySubscribesViewModel>();
+									  ((MasterDetailPage) Application.Current.MainPage).IsPresented = false;
+								  });
+				return _openPayCommand;
+			}
+		}
 
 		public MvxCommand OpenProfileCommand
 		{
 			get
 			{
-				_openProfileCommand = _openProfileCommand ?? new MvxCommand(() =>
-				{
-					//_navigationService.Navigate<>();
-				});
+				_openProfileCommand = _openProfileCommand ??
+									  new MvxCommand(OpenProfileCommandExecute);
 				return _openProfileCommand;
 			}
 		}
 
-		public MvxCommand OpenPayCommand
+		private void OpenProfileCommandExecute()
 		{
-			get
+			if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
 			{
-				_openPayCommand = _openPayCommand ?? new MvxCommand(() =>
+				if (masterDetailPage.Detail is TabbedPage tabbedPage)
 				{
-					_navigationService.Navigate<PaySubscribesViewModel>();
-				});
-				return _openPayCommand;
-			}
-		}
+					var profilePage =
+						tabbedPage.Children.Single(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
+														(p as IMvxPage)?.ViewModel is BusinessmanProfileViewModel);
+					tabbedPage.CurrentPage = profilePage;
+					if (profilePage is NavigationPage profileNavigationPage && profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
+					{
+						foreach (var page in profileNavigationPage.Navigation.NavigationStack)
+						{
+							if (profileNavigationPage.RootPage == profileNavigationPage.CurrentPage)
+							{
+								break;
+							}
 
-		public MvxCommand OpenTariffCommand
-		{
-			get
-			{
-				_openTariffCommand = _openTariffCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<TariffViewModel>();
-				});
-				return _openTariffCommand;
-			}
-		}
+							_navigationService.Close(((IMvxPage)page).ViewModel);
+						}
+					}
 
-		public MvxCommand OpenSupportCommand
-		{
-			get
-			{
-				_openSupportCommand = _openSupportCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<ChatViewModel>();
-				});
-				return _openSupportCommand;
+					tabbedPage.CurrentPage = profilePage;
+				}
+
+				masterDetailPage.IsPresented = false;
 			}
 		}
 
@@ -92,18 +104,51 @@ namespace bonus.app.Core.ViewModels.Businessman
 		{
 			get
 			{
-				_openStatisticsCommand = _openStatisticsCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<StatisticsViewModel>();
-				});
+				_openStatisticsCommand = _openStatisticsCommand ??
+										 new MvxCommand(() =>
+										 {
+											 _navigationService.Navigate<StatisticsViewModel>();
+											 ((MasterDetailPage) Application.Current.MainPage).IsPresented = false;
+										 });
 				return _openStatisticsCommand;
 			}
 		}
 
+		public MvxCommand OpenSupportCommand
+		{
+			get
+			{
+				_openSupportCommand = _openSupportCommand ??
+									  new MvxCommand(() =>
+									  {
+										  _navigationService.Navigate<ChatViewModel>();
+										  ((MasterDetailPage) Application.Current.MainPage).IsPresented = false;
+									  });
+				return _openSupportCommand;
+			}
+		}
+
+		public MvxCommand OpenTariffCommand
+		{
+			get
+			{
+				_openTariffCommand = _openTariffCommand ??
+									 new MvxCommand(() =>
+									 {
+										 _navigationService.Navigate<TariffViewModel>();
+										 ((MasterDetailPage) Application.Current.MainPage).IsPresented = false;
+									 });
+				return _openTariffCommand;
+			}
+		}
+		#endregion
+
+		#region Public
 		public async void LogOutCommandExecute()
 		{
 			await _authService.Logout(_authService.User);
 			await _navigationService.Navigate<AuthorizationViewModel>();
 		}
+		#endregion
 	}
 }

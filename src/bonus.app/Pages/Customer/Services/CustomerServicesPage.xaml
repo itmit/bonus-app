@@ -9,7 +9,7 @@
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Customer.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Customer.Services.CustomerServicesPage">
+             x:Class="bonus.app.Core.Pages.Customer.Services.CustomerServicesPage">
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" Margin="0,0,25,0">
             <Label Text="Услуги" Style="{StaticResource TitleLabel}"/>

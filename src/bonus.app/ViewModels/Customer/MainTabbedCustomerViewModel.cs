@@ -1,5 +1,4 @@
-﻿using bonus.app.Core.Page.Customer.Shares;
-using bonus.app.Core.ViewModels.Customer.BonusAccrual;
+﻿using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using bonus.app.Core.ViewModels.Customer.News;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using bonus.app.Core.ViewModels.Customer.Services;
@@ -25,7 +24,7 @@ namespace bonus.app.Core.ViewModels.Customer
 			await NavigationService.Navigate<CustomerServicesViewModel>();
 			await NavigationService.Navigate<CustomerSharesViewModel>();
 			await NavigationService.Navigate<CustomerNewsViewModel>();
-			await NavigationService.Navigate<BonusAccrualViewModel>();
+			await NavigationService.Navigate<CustomerBonusAccrualViewModel>();
 		}
 	}
 }

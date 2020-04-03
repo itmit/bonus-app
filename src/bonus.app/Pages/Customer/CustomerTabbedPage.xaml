@@ -4,17 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-             xmlns:page="clr-namespace:bonus.app.Core.Page;assembly=bonus.app.Core"
              xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:news="clr-namespace:bonus.app.Core.Customer.News;assembly=bonus.app.Core"
-             xmlns:shares1="clr-namespace:bonus.app.Core.Page.Customer.Shares;assembly=bonus.app.Core"
              xmlns:customer="clr-namespace:bonus.app.Core.ViewModels.Customer;assembly=bonus.app.Core"
              androidSpecific:TabbedPage.IsSwipePagingEnabled="False"
-             SelectedTabColor="#BB8D91"
              BarBackgroundColor="White"
-             mc:Ignorable="d"
+             SelectedTabColor="#BB8D91"
              NavigationPage.HasNavigationBar="False"
-             x:Class="bonus.app.Core.Page.Customer.CustomerTabbedPage">
+             UnselectedTabColor="#505050"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Pages.Customer.CustomerTabbedPage">
     <!--Нижний таб-->
 </views:MvxTabbedPage>

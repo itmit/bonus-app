@@ -5,12 +5,11 @@ using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page.Customer.Services
+namespace bonus.app.Core.Pages.Customer.Services
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
 		Icon = "ic_star",
-		WrapInNavigationPage = false,
 		Title = "Услуги")]
 	public partial class CustomerServicesPage : MvxContentPage<CustomerServicesViewModel>
     {

@@ -67,9 +67,6 @@
     <Compile Update="Pages\Customer\Services\CustomerServicesPage.xaml.cs">
       <DependentUpon>CustomerServicesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Customer\Shares\BuyerSharesDetailPage.xaml.cs">
-      <DependentUpon>BuyerSharesDetailPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Pages\Customer\MenuCustomerPage.xaml.cs">
       <DependentUpon>MenuCustomerPage.xaml</DependentUpon>
     </Compile>
@@ -93,6 +90,9 @@
     </Compile>
     <Compile Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml.cs">
       <DependentUpon>ServiceTypeViewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewCells\Shares\CustomerSharesViewCell.xaml.cs">
+      <DependentUpon>CustomerSharesViewCell.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ViewCells\Shares\MyShareViewCell.xaml.cs">
       <DependentUpon>MyShareViewCell.xaml</DependentUpon>
@@ -145,9 +145,6 @@
     <EmbeddedResource Update="Pages\Businessman\BusinessmanTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Customer\Shares\BuyerSharesDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Auth\BusinessmanAndCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -155,6 +152,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Customer\Profile\CustomerProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Customer\Shares\CustomerSharesDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Customer\Shares\CustomerSharesPage.xaml">
@@ -313,7 +313,7 @@
     <EmbeddedResource Update="Views\ViewCells\Shares\SharesViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\BuyerSharesViewCell.xaml">
+    <EmbeddedResource Update="Views\ViewCells\Shares\CustomerSharesViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\CarouselContentView.xaml">

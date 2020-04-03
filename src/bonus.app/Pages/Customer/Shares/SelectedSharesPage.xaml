@@ -7,7 +7,7 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
              xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Customer.Shares;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Customer.Shares.SelectedSharesPage">
+             x:Class="bonus.app.Core.Pages.Customer.Shares.SelectedSharesPage">
     <NavigationPage.TitleView>
         <Label Text="Избранные акции" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
