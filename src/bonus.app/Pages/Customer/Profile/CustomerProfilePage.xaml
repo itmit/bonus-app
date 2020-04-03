@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Customer.Profile;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Customer.Profile.CustomerProfilePage">
+             x:Class="bonus.app.Core.Pages.Customer.Profile.CustomerProfilePage">
     <NavigationPage.TitleView>
         <Label Text="Профиль" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>

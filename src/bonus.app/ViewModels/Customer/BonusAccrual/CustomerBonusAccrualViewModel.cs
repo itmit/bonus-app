@@ -8,13 +8,13 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 {
-	public class BonusAccrualViewModel : MvxViewModel
+	public class CustomerBonusAccrualViewModel : MvxViewModel
 	{
 		private IMvxNavigationService _navigationService;
 		private Guid _userUuid;
 		private readonly IAuthService _authService;
 
-		public BonusAccrualViewModel(IAuthService authService, IMvxNavigationService navigationService)
+		public CustomerBonusAccrualViewModel(IAuthService authService, IMvxNavigationService navigationService)
 		{
 			_authService = authService;
 			_navigationService = navigationService;

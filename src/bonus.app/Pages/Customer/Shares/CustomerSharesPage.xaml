@@ -8,7 +8,7 @@
              xmlns:contentView="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
              xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Customer.Shares;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Page.Customer.Shares.CustomerSharesPage">
+             x:Class="bonus.app.Core.Pages.Customer.Shares.CustomerSharesPage">
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Акции" Style="{StaticResource TitleLabel}"/>
@@ -42,13 +42,15 @@
             <views:MvxListView Grid.Row="1"
                                HasUnevenRows="True"
                                SeparatorVisibility="None"
-                               ItemTapped="TapGestureRecognizer_Tapped">
-                <views:MvxListView.ItemsSource>
-                    <x:String>000000000000000</x:String>
-                </views:MvxListView.ItemsSource>
+                               ItemsSource="{Binding Shares}"
+                               SelectedItem="{Binding SelectedShare}"
+                               IsPullToRefreshEnabled="True"
+                               RefreshCommand="{Binding RefreshCommand}"
+                               IsRefreshing="{Binding IsRefreshing}"
+                               ItemSelected="ListView_OnItemSelected">
                 <views:MvxListView.ItemTemplate>
                     <DataTemplate>
-                        <viewCells:BuyerSharesViewCell/>
+                        <viewCells:CustomerSharesViewCell/>
                     </DataTemplate>
                 </views:MvxListView.ItemTemplate>
             </views:MvxListView>

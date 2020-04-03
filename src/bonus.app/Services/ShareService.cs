@@ -14,11 +14,12 @@ namespace bonus.app.Core.Services
 {
 	class ShareService : BaseService, IShareService
 	{
-		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+		private const string GetMySharesUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
 
-		public async Task<IEnumerable<Share>> GetAll()
+		public async Task<IEnumerable<Share>> GetMyShares()
 		{
-			var shares = (await GetAsync<IEnumerable<Share>>(GetAllUri))?.ToList();
+			var shares = (await GetAsync<IEnumerable<Share>>(GetMySharesUri))?.ToList();
 			if (shares == null)
 			{
 				return new List<Share>();
@@ -92,6 +93,25 @@ namespace bonus.app.Core.Services
 				}
 				return data.Success;
 			}
+		}
+
+		public async Task<IEnumerable<Share>> GetAll()
+		{
+			var shares = (await GetAsync<IEnumerable<Share>>(GetAllUri))?.ToList();
+			if (shares == null)
+			{
+				return new List<Share>();
+			}
+			foreach (var share in shares)
+			{
+				if (string.IsNullOrEmpty(share.ImageSource))
+				{
+					share.ImageSource = string.Empty;
+					continue;
+				}
+				share.ImageSource = Domain + share.ImageSource;
+			}
+			return shares;
 		}
 
 		public event EventHandler CreatedShareEventHandler;

@@ -6,12 +6,11 @@ using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page.Customer.Shares
+namespace bonus.app.Core.Pages.Customer.Shares
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
 		Icon = "ic_stock",
-		WrapInNavigationPage = false,
 		Title = "Акции")]
 	public partial class CustomerSharesPage : MvxContentPage<CustomerSharesViewModel>
     {
@@ -52,11 +51,6 @@ namespace bonus.app.Core.Page.Customer.Shares
 			Navigation.PushAsync(new SelectedSharesPage());
 		}
 
-		private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new BayerSharesDetailPage());
-        }
-
 		private void ImageButton_OnClicked(object sender, EventArgs e)
 		{
 			if (StackLayout.IsEnabled)
@@ -69,6 +63,11 @@ namespace bonus.app.Core.Page.Customer.Shares
 				StackLayout.IsVisible = true;
 				StackLayout.IsEnabled = true;
 			}
+		}
+
+		private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+		{
+			((ListView) sender).SelectedItem = null;
 		}
 	}
 }

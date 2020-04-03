@@ -1,11 +1,9 @@
-﻿using bonus.app.Core.ViewModels;
-using bonus.app.Core.ViewModels.Businessman.News;
-using bonus.app.Core.ViewModels.Customer.News;
+﻿using bonus.app.Core.ViewModels.Customer.News;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Customer.News
+namespace bonus.app.Core.Pages.Customer.News
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomerNewsDetailsPage : MvxContentPage<CustomerNewsDetailsViewModel>

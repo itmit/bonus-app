@@ -5,7 +5,7 @@ using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page.Customer.Profile
+namespace bonus.app.Core.Pages.Customer.Profile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfileCustomerPage : MvxContentPage<EditProfileCustomerViewModel>

@@ -41,23 +41,21 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Row="0" Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenProfileCommand}" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
                         <Image Source="ic_profile_w.png" Style="{StaticResource image}" />
 
-                        <Label Text="Профиль" TextColor="White">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenProfileCommand}" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <Label Text="Профиль" TextColor="White"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenPayCommand}" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
                         <Image Source="ic_rub.png" Style="{StaticResource image}" />
 
-                        <Label Text="Оплата" TextColor="White">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenPayCommand}" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <Label Text="Оплата" TextColor="White"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Fill">
