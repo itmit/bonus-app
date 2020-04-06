@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Auth.CustomerRegistrationPage">
     <NavigationPage.TitleView>
@@ -26,7 +27,7 @@
                             <Setter Property="FontSize" Value="14" />
                             <Setter Property="BackgroundColor" Value="Transparent" />
                             <Setter Property="Margin" Value="0,10" />
-                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular" />
+                            <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
@@ -47,7 +48,7 @@
                        Placeholder="Код из 4 цифр для быстрого входа" Margin="0,0,0,10" />
 
 
-                <Button Text="Зарегистрироваться" Style="{StaticResource AppButton}"
+                <Button Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource AppButton}"
                         Command="{Binding RegistrationCommand}" Margin="0,0,0,20" />
                 <Label HorizontalTextAlignment="Center" Text="или создать учетную запись с помощью:" Margin="0,0,0,10" />
                 <Grid ColumnSpacing="10">
@@ -55,23 +56,23 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" WidthRequest="155" HeightRequest="40"
+                    <Frame Grid.Column="0" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
                            CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image Source="ic_face_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
                             <Label Text="Facebook" FontSize="Body" TextColor="#A0968E"
-                                   FontFamily="Montserrat-Regular.ttf" VerticalOptions="Center" />
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" VerticalOptions="Center" />
                         </StackLayout>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />
                         </Frame.GestureRecognizers>
                     </Frame>
-                    <Frame Grid.Column="1" IsClippedToBounds="True" Padding="0" WidthRequest="155" HeightRequest="40"
+                    <Frame Grid.Column="1" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
                            CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image Source="ic_vk_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
                             <Label Text="Вконтакте" FontSize="Body" TextColor="#A0968E"
-                                   FontFamily="Montserrat-Regular.ttf" VerticalOptions="Center" />
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" VerticalOptions="Center" />
                         </StackLayout>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />

@@ -9,6 +9,7 @@
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage"
@@ -25,7 +26,7 @@
                     <ResourceDictionary>
                         <Style x:Key="Entry" TargetType="Entry">
                             <Setter Property="TextColor" Value="#505050" />
-                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular" />
+                            <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                             <Setter Property="Keyboard" Value="Chat" />
                             <Setter Property="FontSize" Value="14" />
                             <Setter Property="Visual" Value="Material" />

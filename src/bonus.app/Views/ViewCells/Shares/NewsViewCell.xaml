@@ -7,7 +7,7 @@
              x:Class="bonus.app.Core.Views.ViewCells.NewsViewCell">
   <ViewCell.View>
       <!--Ячейка для списка мои новости у предпринимателя-->
-      <StackLayout Margin="5,25,5,10">
+      <StackLayout Margin="25,25,5,10">
           <StackLayout Orientation="Horizontal" Spacing="20">
               <Frame x:Name="Frame" Padding="0" CornerRadius="10" IsClippedToBounds="True" HasShadow="False" IsVisible="True" IsEnabled="True">
                     <Image Source="chika.png" Aspect="AspectFill" HeightRequest="55" WidthRequest="60"/>

@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.BusinessmanProfilePage">
 
@@ -39,7 +40,7 @@
                         </Frame>
                         <StackLayout>
                             <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body"
-                                   FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" />
+                                   FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2"/>
                             <Label
                                 Text="Стрижки, Кератин, Ботокс,&#10;Ламинирование, Нанопластика&#10;Еще одна строка об услугах"
                                 TextColor="#FFFFFF" MaxLines="3" />
@@ -54,8 +55,8 @@
                         </Grid.ColumnDefinitions>
 
                         <!--Кнопка "сообщения"-->
-                        <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="40" Padding="0"
-                               WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" Padding="0"
+                               WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af" HasShadow="False">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -73,8 +74,8 @@
                         </Frame>
 
                         <!--Кнопка "подписчики"-->
-                        <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0"
-                               WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
+                               WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af" HasShadow="False">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -106,7 +107,8 @@
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Frame Margin="0,0,5,0" BackgroundColor="Transparent" HeightRequest="25"
-                                       CornerRadius="40" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A">
+                                       CornerRadius="12" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A"
+                                       HasShadow="False">
                                     <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption"
                                            VerticalOptions="Center" HorizontalOptions="Center" />
                                 </Frame>
@@ -116,7 +118,7 @@
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
                            TextDecorations="Underline" Margin="0,40,0,35" />
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
-                           FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,10" />
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,10" />
                     <StackLayout Orientation="Horizontal" Spacing="20" Margin="0,0,0,15">
                         <Image Source="ic_vk_red_4x.png" WidthRequest="30" />
                         <Image Source="ic_inst_red_4x.png" WidthRequest="30" />
@@ -124,7 +126,8 @@
                         <Image Source="ic_odn_red_4x.png" WidthRequest="30" />
                     </StackLayout>
                 </StackLayout>
-                <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25">
+                <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"
+                       HasShadow="{x:Static design:DesignClass.Shadow}" BorderColor="{x:Static design:DesignClass.BorderColor}">
                     <Grid>
                         <StackLayout Spacing="0">
                             <StackLayout Orientation="Horizontal" Margin="0,0,0,15">
@@ -140,7 +143,7 @@
                                 </BindableLayout.ItemsSource>
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame Margin="0,0,5,5" Padding="0" CornerRadius="10" IsClippedToBounds="True"
+                                        <Frame Margin="0,0,10,10" Padding="0" CornerRadius="10" IsClippedToBounds="True"
                                                WidthRequest="100" HeightRequest="60" HasShadow="False">
                                             <Image Source="longhair.png" Aspect="AspectFit" />
                                         </Frame>
@@ -150,7 +153,8 @@
                         </StackLayout>
                         <Frame x:Name="Frame" Padding="15,10" IsClippedToBounds="True" CornerRadius="5"
                                IsVisible="False" HorizontalOptions="End" VerticalOptions="Start" HeightRequest="25"
-                               Margin="0,10,15,0">
+                               Margin="0,10,15,0" HasShadow="{x:Static design:DesignClass.Shadow}"
+                               BorderColor="{x:Static design:DesignClass.BorderColor}">
                             <Label Text="Добавить изображение" TextColor="Black" FontFamily="Roboto" FontSize="Body"
                                    VerticalOptions="Center" HorizontalOptions="Center" />
                             <Frame.GestureRecognizers>

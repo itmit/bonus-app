@@ -15,7 +15,7 @@
         <!--6.2 Детальная страница новостей(предприниматель)-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,0" Spacing="0">
-                <Frame x:Name="FrameImage" Padding="0" IsClippedToBounds="True" CornerRadius="5">
+                <Frame x:Name="FrameImage" Padding="0" IsClippedToBounds="True" CornerRadius="5" HasShadow="False">
                     <Image Source="chika.png" Aspect="AspectFill" WidthRequest="300"/>
                 </Frame>
                 <CarouselView x:Name="CarouselViewImages" Margin="0,0,0,20" HeightRequest="60" WidthRequest="70">
@@ -28,7 +28,7 @@
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Frame IsClippedToBounds="True" Padding="0" CornerRadius="10" HorizontalOptions="Start">
+                                <Frame IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="10" HorizontalOptions="Start">
                                     <Image Source="chika.png" WidthRequest="70"/>
                                 </Frame>
                             </StackLayout>

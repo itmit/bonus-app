@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualPage"
                       BackgroundColor="#9C938D"
@@ -16,15 +17,15 @@
         <ScrollView>
             <StackLayout Margin="30,0" Spacing="0">
                 <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large" Margin="0,35,0,10"
-                       TextColor="White" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" />
+                       TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratBold}" />
                 <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"
-                       FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" />
+                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
 
                 <Label Text="Для сканирования нажмите на QR-код"
                        TextColor="White"
                        HorizontalOptions="Center"
                        Margin="0,0,0,30"
-                       FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" />
+                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
 
                 <Image Source="qrcode.png" WidthRequest="225" HorizontalOptions="Center" Margin="0,0,0,25">
                     <Image.GestureRecognizers>
@@ -32,13 +33,13 @@
                     </Image.GestureRecognizers>
                 </Image>
 
-                <Frame Margin="0,0,0,20" CornerRadius="40" IsClippedToBounds="True" Padding="0,-2" HasShadow="False"
-                       HeightRequest="50">
+                <Frame Margin="0,0,0,20" CornerRadius="23" IsClippedToBounds="True" Padding="0,-2" HasShadow="False"
+                       HeightRequest="50" BackgroundColor="#bab3af">
                     <SearchBar Placeholder="Поиск" PlaceholderColor="White" TextColor="White" WidthRequest="300"
-                               BackgroundColor="#bab3af" FontFamily="Lato-Regular.ttf#Lato-Regular"
+                               BackgroundColor="#bab3af" FontFamily="{x:Static design:DesignClass.LatoRegular}"
                                CancelButtonColor="#D5D1CF" />
                 </Frame>
-                <Button Text="Далее" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
+                <Button Text="ДАЛЕЕ" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

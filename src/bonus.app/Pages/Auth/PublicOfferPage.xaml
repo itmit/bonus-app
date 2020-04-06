@@ -59,7 +59,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <Button Text="Сохранить"
+                <Button Text="СОХРАНИТЬ"
                         IsEnabled="{Binding CanRegister, FallbackValue=false}"
                         Style="{StaticResource AppButton}"
                         Command="{Binding OpenRegistrationCommand}" />
