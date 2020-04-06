@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Customer.BonusAccrual;assembly=bonus.app.Core"
              xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9C938D"
@@ -15,13 +16,14 @@
         <ScrollView>
             <StackLayout Margin="30,0" Spacing="0">
                 <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" Style="{StaticResource TitleLabel}" Margin="0,35,0,5" TextColor="White"/>
-                <Label Text="QR barcode" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"/>
+                <Label Text="QR barcode" FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"/>
 
                 <Frame CornerRadius="60"
                        WidthRequest="225"
                        HeightRequest="225"
                        HorizontalOptions="Center"
-                       Margin="0,0,0,40">
+                       Margin="0,0,0,40"
+                       HasShadow="False">
                     <forms:ZXingBarcodeImageView
                         x:Name="BarcodeImageView"
                         AutomationId="zxingBarcodeImageView"
@@ -29,8 +31,8 @@
                         BarcodeValue="{Binding UserUuid}"/>
                 </Frame>
 
-                <Label Text="Покажите QR code продавцу,&#10;для начисления бонусов" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" Margin="0,0,0,40" HorizontalTextAlignment="Center"/>
-                <Button Text="Мои бонусы" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
+                <Label Text="Покажите QR code продавцу,&#10;для начисления бонусов" TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,40" HorizontalTextAlignment="Center"/>
+                <Button Text="МОИ БОНУСЫ" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

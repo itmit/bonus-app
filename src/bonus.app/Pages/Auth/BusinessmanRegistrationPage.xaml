@@ -45,7 +45,7 @@
                 <Entry Text="{Binding ConfirmPassword}" IsPassword="True" Placeholder="Повторите пароль" />
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
                        Placeholder="Код из 4 цифр для быстрого входа" />
-                <Button Text="Зарегистрироваться" Style="{StaticResource AppButton}"
+                <Button Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource AppButton}"
                         Command="{Binding RegistrationCommand}" />
             </StackLayout>
         </ScrollView>

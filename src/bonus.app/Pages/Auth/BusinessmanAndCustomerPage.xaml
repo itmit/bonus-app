@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       BackgroundColor="#9c938d"
                       NavigationPage.HasNavigationBar="False"
@@ -18,19 +19,19 @@
             <Image Source="pic_bonusandmarketing.png" HorizontalOptions="Center" Margin="0,0,0,55" HeightRequest="20"
                    WidthRequest="180" />
             <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White"
-                   FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
+                   FontFamily="{x:Static design:DesignClass.MontserratRegular}">
                 <Label.Text>
                     Для продолжения пройдите &#10; простую процедуру регистрации
                 </Label.Text>
             </Label>
-            <Button Text="Предприниматель" Style="{StaticResource AuthAndRegButton}"
+            <Button Text="ПРЕДПРИНИМАТЕЛЬ" Style="{StaticResource AuthAndRegButton}"
                     Margin="0,0,0,15"
                     Command="{Binding OpenEntrepreneurRegistrationCommand}" />
-            <Button Text="Покупатель" Style="{StaticResource AuthAndRegButton}"
+            <Button Text="ПОКУПАТЕЛЬ" Style="{StaticResource AuthAndRegButton}"
                     Command="{Binding OpenBuyerRegistrationCommand}" />
 
             <Label Text="перейти к авторизации" HorizontalTextAlignment="Center" HorizontalOptions="Center"
-                   Margin="0,40,0,30" TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
+                   Margin="0,40,0,30" TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratRegular}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding OpenAuthorizationPageCommand}" />
                 </Label.GestureRecognizers>

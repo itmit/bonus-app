@@ -39,7 +39,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button Text="Перейти в профиль" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
+            <Button Text="ПЕРЕЙТИ В ПРОФИЛЬ" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
         </StackLayout>
     </Frame>
 </pages:PopupPage>

@@ -200,10 +200,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\ic_charges.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\ic_close_4x.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -272,10 +268,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\ic_news.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\ic_odn_red_4x.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -289,10 +281,6 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
     <BundleResource Include="Resources\ic_pref_4x.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
-    <BundleResource Include="Resources\ic_profile.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
@@ -316,10 +304,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\ic_star.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\ic_startwocolor_4x.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -329,10 +313,6 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
     <BundleResource Include="Resources\ic_statistic_4x.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
-    <BundleResource Include="Resources\ic_stock.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
@@ -426,5 +406,10 @@
     <BundleResource Include="Resources\Montserrat-Light.ttf" />
     <BundleResource Include="Resources\Montserrat-Medium.ttf" />
     <BundleResource Include="Resources\Montserrat-Regular.ttf" />
+    <BundleResource Include="Resources\ic_charges%403x.png" />
+    <BundleResource Include="Resources\ic_star%403x.png" />
+    <BundleResource Include="Resources\ic_stock%403x.png" />
+    <BundleResource Include="Resources\ic_profile%403x.png" />
+    <BundleResource Include="Resources\ic_news%403x.png" />
   </ItemGroup>
 </Project>

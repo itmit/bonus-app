@@ -23,7 +23,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" CornerRadius="50" VerticalOptions="Start">
+                    <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" HasShadow="False" CornerRadius="50" VerticalOptions="Start">
                         <Image Source="bitmap" WidthRequest="100" HeightRequest="100"/>
                     </Frame>
                     <StackLayout Grid.Column="1" VerticalOptions="Start">
@@ -36,7 +36,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                    <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -46,7 +46,7 @@
                             <Label Grid.Column="1" Text="Сообщения" FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White" VerticalTextAlignment="Center"/>
                         </Grid>
                     </Frame>
-                    <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="40" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                    <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>

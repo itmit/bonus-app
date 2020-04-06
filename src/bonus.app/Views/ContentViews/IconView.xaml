@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Image Source="ic_fb_w.pngg" Grid.Row="0" Grid.Column="0" WidthRequest="24"/>
+                <Image Source="ic_fb_w.png" Grid.Row="0" Grid.Column="0" WidthRequest="24"/>
                 <Image Source="ic_tw_w.png" Grid.Row="0" Grid.Column="1" WidthRequest="24"/>
                 <Image Source="ic_wp_w.png" Grid.Row="0" Grid.Column="2" WidthRequest="24"/>
                 <Image Source="ic_inst_w.png" Grid.Row="0" Grid.Column="3" WidthRequest="24"/>
