@@ -12,9 +12,16 @@ namespace bonus.app.Core.Views.ContentViews
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PicPhotoContentView : ContentView
 	{
+		public string Placeholder
+		{
+			get;
+			set;
+		}
+
 		public PicPhotoContentView()
 		{
 			InitializeComponent();
+			PlaceholderLabel.Text = Placeholder;
 		}
 	}
 }

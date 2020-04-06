@@ -12,7 +12,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private Share _share;
 		private User _user;
 		private Color _shareColor;
-		private IMvxNavigationService _navigationService;
+		private readonly IMvxNavigationService _navigationService;
 		private MvxCommand _openCreateSharePageCommand;
 		private MvxCommand _openCreateShareArchivePageCommand;
 

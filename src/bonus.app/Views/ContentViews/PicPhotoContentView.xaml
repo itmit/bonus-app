@@ -13,7 +13,7 @@
                 <TapGestureRecognizer Command="{Binding PicImageCommand}"/>
             </StackLayout.GestureRecognizers>
             <StackLayout>
-                <Label Text="Загрузите изображение акции" />
+                <Label x:Name="PlaceholderLabel" />
                 <Label Text="{Binding ImageName}" Margin="0,5" VerticalOptions="Center" VerticalTextAlignment="Center"/>
             </StackLayout>
             <Image Source="icon_photo"

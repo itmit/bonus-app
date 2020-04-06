@@ -10,6 +10,7 @@
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage"
                       NavigationPage.HasBackButton="False">
@@ -146,6 +147,8 @@
                                 </StackLayout>
                                 <BoxView />
                             </StackLayout>
+
+                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
                             <Button Text="СОХРАНИТЬ" Command="{Binding EditCommand}" Style="{StaticResource AppButton}" />
                         </StackLayout>
