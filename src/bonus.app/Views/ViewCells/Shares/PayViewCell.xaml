@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+          xmlns:design="clr-namespace:bonus.app.Core.Design"
              x:Class="bonus.app.Core.Views.ViewCells.PayViewCell">
   <ViewCell.View>
         <StackLayout Spacing="0">
@@ -27,14 +28,14 @@
                     </Label>
                     <Label Text="Ожидание оплаты" TextColor="Gray"/>
                 </StackLayout>
-                <Frame Grid.Column="1" BackgroundColor="#BB8D91" CornerRadius="20" Padding="15,10" Margin="0,0,25,0" VerticalOptions="Start" HorizontalOptions="Start" HasShadow="False">
-                    <Label Text="Оплатить" TextColor="White" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
+                <Frame Grid.Column="1" BackgroundColor="#BB8D91" CornerRadius="17" Padding="15,10" Margin="0,0,25,0" VerticalOptions="Start" HorizontalOptions="Start" HasShadow="False">
+                    <Label Text="Оплатить" TextColor="White" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer/>
                     </Frame.GestureRecognizers>
                 </Frame>
-                <Frame Grid.Column="1" BackgroundColor="Transparent" BorderColor="#BB8D91" Padding="15,10" CornerRadius="20" Margin="0,0,25,0" HasShadow="False" IsVisible="False" IsEnabled="False">
-                    <Label Text="Продлить" TextColor="#BB8D91" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular"/>
+                <Frame Grid.Column="1" BackgroundColor="Transparent" BorderColor="#BB8D91" Padding="15,10" CornerRadius="17" Margin="0,0,25,0" HasShadow="False" IsVisible="False" IsEnabled="False">
+                    <Label Text="Продлить" TextColor="#BB8D91" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer/>
                     </Frame.GestureRecognizers>
