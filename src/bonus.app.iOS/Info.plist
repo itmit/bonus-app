@@ -22,17 +22,15 @@
 	<key>MinimumOSVersion</key>
 	<string>13.4</string>
 	<key>CFBundleDisplayName</key>
-	<string>bonus.app</string>
+	<string>Bonus &amp; Marketing</string>
 	<key>CFBundleIdentifier</key>
-	<string>itmit.bonus.app</string>
+	<string>com.itmit.bonus</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>CFBundleName</key>
-	<string>bonus.app</string>
 	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Bold.ttf</string>
@@ -57,5 +55,7 @@
 	<string>Location usage description</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo usage description</string>
+	<key>CFBundleName</key>
+	<string>Bonus &amp; Marketing</string>
 </dict>
 </plist>
