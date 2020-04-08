@@ -118,11 +118,7 @@
                             <Entry Text="{Binding WorkingMode}"
                                    Style="{StaticResource Entry}"
                                    Placeholder="Режим работы"
-                                   Keyboard="Numeric"
                                    BackgroundColor="Transparent">
-                                <Entry.Behaviors>
-                                    <behaviors:MaskedBehavior Mask="XX.XX-XX.XX" />
-                                </Entry.Behaviors>
                             </Entry>
 
                             <Entry Style="{StaticResource Entry}"
