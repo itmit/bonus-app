@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              x:Class="bonus.app.Page.TariffPage"
              NavigationPage.BackButtonTitle="false">
@@ -15,7 +16,7 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="15,0" Spacing="0">
-                <Label FontSize="Body" TextColor="#505050" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" HorizontalOptions="Center" Margin="0,20,0,35">
+                <Label FontSize="Body" TextColor="#505050" FontFamily="{x:Static design:DesignClass.MontserratBold}" HorizontalOptions="Center" Margin="0,20,0,35">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
@@ -40,7 +41,7 @@
                     </Grid.RowDefinitions>
                     <StackLayout Orientation="Horizontal" Margin="5,0,5,15" Grid.Row="0">
                         <Label Text="Стоимость подписки"/>
-                        <Label HorizontalOptions="EndAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold">
+                        <Label HorizontalOptions="EndAndExpand" FontFamily="{x:Static design:DesignClass.LatoBold}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <FormattedString.Spans>
@@ -54,12 +55,12 @@
                     <BoxView Grid.Row="1"/>
                     <StackLayout Orientation="Horizontal" Margin="5,20,5,15" Grid.Row="2">
                         <Label Text="Акции (доступно)"/>
-                        <Label Text="3" FontFamily="Lato-Bold.ttf#Lato-Bold" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="3" FontFamily="{x:Static design:DesignClass.LatoBold}" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <BoxView Grid.Row="3"/>
                     <StackLayout Orientation="Horizontal" Margin="5,20,5,15" Grid.Row="4">
                         <Label Text="Акции (создано)"/>
-                        <Label Text="2" FontFamily="Lato-Bold.ttf#Lato-Bold" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="2" FontFamily="{x:Static design:DesignClass.LatoBold}" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <BoxView Grid.Row="5"/>
                     <StackLayout Orientation="Horizontal" Margin="5,20,5,15" Grid.Row="6">
@@ -70,13 +71,13 @@
                     <BoxView Grid.Row="7"/>
                 </Grid>
 
-                <Button Text="Продлить" Style="{StaticResource AppButton}" Margin="0,20,0,30"/>
+                <Button Text="ПРОДЛИТЬ" Style="{StaticResource AppButton}" Margin="0,20,0,30"/>
 
-                <Label Text="Доступные тарифы" FontSize="Body" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" HorizontalOptions="Center" Margin="0,0,0,15"/>
+                <Label Text="Доступные тарифы" FontSize="Body" FontFamily="{x:Static design:DesignClass.MontserratBold}" HorizontalOptions="Center" Margin="0,0,0,15"/>
 
                 <Frame x:Name="Tariff" CornerRadius="10" BorderColor="#A0968E" Margin="0,0,0,20" Padding="20,25,20,45">
                     <StackLayout Spacing="0">
-                        <Label FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" HorizontalOptions="Center" Margin="0,0,0,20">
+                        <Label FontSize="Body" FontFamily="{x:Static design:DesignClass.MontserratRegular}" HorizontalOptions="Center" Margin="0,0,0,20">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <FormattedString.Spans>
@@ -114,7 +115,7 @@
 
                 <Frame x:Name="Frame" CornerRadius="10" BorderColor="#A0968E" Margin="0,10" Padding="20,25,20,45">
                     <StackLayout Spacing="0">
-                        <Label FontSize="Body" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" HorizontalOptions="Center" Margin="0,0,0,20">
+                        <Label FontSize="Body" FontFamily="{x:Static design:DesignClass.MontserratRegular}" HorizontalOptions="Center" Margin="0,0,0,20">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <FormattedString.Spans>

@@ -1,5 +1,6 @@
 ﻿using bonus.app.Core.ViewModels.Businessman.BonusAccrual;
 using bonus.app.Core.ViewModels.Businessman.News;
+using bonus.app.Core.ViewModels.Businessman.Pay;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Businessman.Services;
 using bonus.app.Core.ViewModels.Businessman.Shares;

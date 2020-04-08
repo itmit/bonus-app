@@ -82,7 +82,7 @@
                         </ScrollView>
                     </StackLayout>
 
-                    <Button Text="Применить" Style="{StaticResource AppButton}" Margin="0" CornerRadius="0"/>
+                    <Button Text="ПРИМЕНИТЬ" Style="{StaticResource AppButton}" Margin="0" CornerRadius="0"/>
                 </StackLayout>
             </Grid>
     </ContentView.Content>

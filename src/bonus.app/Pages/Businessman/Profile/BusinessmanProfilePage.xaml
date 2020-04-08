@@ -65,7 +65,7 @@
                                 <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15"
                                        VerticalOptions="Center" />
                                 <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
-                                       FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White"
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
@@ -84,7 +84,7 @@
                                 <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
                                        VerticalOptions="Center" />
                                 <Label Text="Подписчики" Grid.Column="1" FontSize="Body"
-                                       FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" TextColor="White"
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>

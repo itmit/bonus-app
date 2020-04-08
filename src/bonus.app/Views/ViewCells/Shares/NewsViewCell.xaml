@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.NewsViewCell">
   <ViewCell.View>
       <!--Ячейка для списка мои новости у предпринимателя-->
-      <StackLayout Margin="25,25,5,10">
+      <StackLayout Margin="{x:Static design:DesignClass.Margin}">
           <StackLayout Orientation="Horizontal" Spacing="20">
               <Frame x:Name="Frame" Padding="0" CornerRadius="10" IsClippedToBounds="True" HasShadow="False" IsVisible="True" IsEnabled="True">
                     <Image Source="chika.png" Aspect="AspectFill" HeightRequest="55" WidthRequest="60"/>
