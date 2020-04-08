@@ -4,9 +4,9 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Popups
 {
-	public class SharePopupViewModel : MvxViewModel<Share>
+	public class SharePopupViewModel : MvxViewModel<Stock>
 	{
-		private Share _share;
+		private Stock _stock;
 		private User _user;
 
 		public SharePopupViewModel(IAuthService authService)
@@ -20,15 +20,15 @@ namespace bonus.app.Core.ViewModels.Businessman.Popups
 			private set => SetProperty(ref _user, value);
 		}
 
-		public override void Prepare(Share parameter)
+		public override void Prepare(Stock parameter)
 		{
-			Share = parameter;
+			Stock = parameter;
 		}
 
-		public Share Share
+		public Stock Stock
 		{
-			get => _share;
-			private set => SetProperty(ref _share, value);
+			get => _stock;
+			private set => SetProperty(ref _stock, value);
 		}
 	}
 }

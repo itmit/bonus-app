@@ -70,5 +70,40 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
+
+		private const string GetCustomerByLoginUri = "http://bonus.itmit-studio.ru/api/service/searchCustomer";
+
+		public async Task<User> GetCustomerByLogin(string login)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+
+				var response = await client.PostAsync(GetCustomerByLoginUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"login", login}
+				}));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				if (string.IsNullOrEmpty(jsonString))
+				{
+					return null;
+				}
+				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+				if (response.IsSuccessStatusCode)
+				{
+					var user = _mapper.Map<User>(data.Data);
+					var userInfo = _mapper.Map<User>(data.Data.Client);
+					userInfo.Balance = user.Balance / 100;
+					return userInfo;
+				}
+
+				return null;
+			}
+		}
 	}
 }

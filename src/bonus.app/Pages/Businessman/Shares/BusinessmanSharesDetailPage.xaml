@@ -19,32 +19,32 @@
 
     <views:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Создать новую акцию" Order="Secondary" Priority="0"
-                     Command="{Binding OpenCreateSharePageCommand}" />
+                     Command="{Binding OpenCreateStockPageCommand}" />
         <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
-                     Command="{Binding OpenCreateShareArchivePageCommand}" />
+                     Command="{Binding OpenArchivePageCommand}" />
         <ToolbarItem Text="Редактировать акцию" Order="Secondary" Priority="2"
-                     Command="{Binding OpenCreateShareArchivePageCommand}" />
+                     Command="{Binding OpenEditStockArchivePageCommand}" />
     </views:MvxContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <!--5.1 Мои акции(предприниматель)-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,0" Spacing="0">
-                <forms:CachedImage Source="{Binding Share.ImageSource}" HorizontalOptions="Center" Margin="0,20" WidthRequest="320">
+                <forms:CachedImage Source="{Binding Stock.ImageSource}" HorizontalOptions="Center" Margin="0,20" WidthRequest="320">
                     <forms:CachedImage.Transformations>
                         <transformations:RoundedTransformation Radius="100"/>
                     </forms:CachedImage.Transformations>
                 </forms:CachedImage>
                 <Label Text="{Binding User.Name}" TextColor="#858585" />
-                <Label Text="{Binding Share.Name}" TextColor="#505050" FontSize="Body" Margin="0,5" />
-                <Label Text="{Binding Share.Description}" TextColor="#505050" Margin="0,0,0,10" />
+                <Label Text="{Binding Stock.Name}" TextColor="#505050" FontSize="Body" Margin="0,5" />
+                <Label Text="{Binding Stock.Description}" TextColor="#505050" Margin="0,0,0,10" />
                 <StackLayout Orientation="Horizontal">
                     <Label TextColor="#505050" FontSize="Caption" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="Статус: " />
-                                    <Span Text="{Binding Share.Status}" />
+                                    <Span Text="{Binding Stock.Status}" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
@@ -54,7 +54,7 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="до " />
-                                    <Span Text="{Binding Share.ShareTime, StringFormat='{0:dd.MM.yyyy}'}" />
+                                    <Span Text="{Binding Stock.ShareTime, StringFormat='{0:dd.MM.yyyy}'}" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>

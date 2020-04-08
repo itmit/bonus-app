@@ -11,26 +11,26 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 {
 	public class CustomerSharesViewModel : MvxNavigationViewModel
 	{
-		private IShareService _shareService;
-		private MvxObservableCollection<Share> _shares;
-		private Share _selectedShare;
+		private IStockService _stockService;
+		private MvxObservableCollection<Stock> _shares;
+		private Stock _selectedStock;
 		private bool _isRefreshing;
 		private MvxCommand _refreshCommand;
 
-		public CustomerSharesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IShareService shareService)
+		public CustomerSharesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IStockService stockService)
 			: base(logProvider, navigationService)
 		{
-			_shareService = shareService;
+			_stockService = stockService;
 		}
 
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
-			Shares = new MvxObservableCollection<Share>(await _shareService.GetAll());
+			Shares = new MvxObservableCollection<Stock>(await _stockService.GetAll());
 		}
 
-		public MvxObservableCollection<Share> Shares
+		public MvxObservableCollection<Stock> Shares
 		{
 			get => _shares;
 			set => SetProperty(ref _shares, value);
@@ -44,7 +44,7 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 								  new MvxCommand(async () =>
 								  {
 									  IsRefreshing = true;
-									  Shares = new MvxObservableCollection<Share>(await _shareService.GetAll());
+									  Shares = new MvxObservableCollection<Stock>(await _stockService.GetAll());
 									  IsRefreshing = false;
 								  });
 				return _refreshCommand;
@@ -57,15 +57,15 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 			private set => SetProperty(ref _isRefreshing, value);
 		}
 
-		public Share SelectedShare
+		public Stock SelectedStock
 		{
-			get => _selectedShare;
+			get => _selectedStock;
 			set
 			{
 				if (value != null)
 				{
-					SetProperty(ref _selectedShare, value);
-					NavigationService.Navigate<CustomerSharesDetailViewModel, Share>(value);
+					SetProperty(ref _selectedStock, value);
+					NavigationService.Navigate<CustomerSharesDetailViewModel, Stock>(value);
 				}
 			}
 		}

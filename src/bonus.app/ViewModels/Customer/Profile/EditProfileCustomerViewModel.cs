@@ -30,8 +30,9 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 											IMvxNavigationService navigationService,
 											IGeoHelperService geoHelperService,
 											IProfileService customerProfileService,
-											IUserRepository userRepository)
-			: base(authService, geoHelperService)
+											IUserRepository userRepository,
+											IPermissionsService permissionsService)
+			: base(authService, geoHelperService, permissionsService)
 		{
 			_navigationService = navigationService;
 			_customerProfileService = customerProfileService;
@@ -118,7 +119,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			User user = null;
 			try
 			{
-				user = await _customerProfileService.Edit(arg, null);
+				user = await _customerProfileService.Edit(arg, ImageBytes, ImageName);
 				_userRepository.Add(user);
 			}
 			catch (Exception e)
