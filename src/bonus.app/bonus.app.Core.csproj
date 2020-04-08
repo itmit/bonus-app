@@ -100,6 +100,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Views\ContentViews\ArchiveStockContenView.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Pages\AllStock.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -280,9 +283,6 @@
     <EmbeddedResource Update="Views\Popups\SuccessRegisterPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\ArchiveStockViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Shares\CountryCityViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -293,9 +293,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Shares\PayViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Services\CustomerServicesViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\MyServicesContentView.xaml">
@@ -328,5 +325,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Design\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="mono_crash.115869eaf6.0.json" />
+    <None Remove="mono_crash.mem.1906.1.blob" />
+    <None Remove="mono_crash.dd6a2686f.0.json" />
   </ItemGroup>
 </Project>

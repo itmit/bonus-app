@@ -139,17 +139,16 @@
             </Grid>
             
             <!--Список услуг-->
-            <views:MvxListView Grid.Row="1" HasUnevenRows="True">
-                <views:MvxListView.ItemsSource>
-                    <x:String>00000000000000000000000</x:String>
-                </views:MvxListView.ItemsSource>
-                <views:MvxListView.ItemTemplate>
+            <CollectionView Grid.Row="1">
+                <CollectionView.ItemsSource>
+                    <x:String>000000</x:String>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <viewCells:CustomerServicesViewCell/>
+                        <viewCells:CustomerServicesContentView/>
                     </DataTemplate>
-                </views:MvxListView.ItemTemplate>
-            </views:MvxListView>
-
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

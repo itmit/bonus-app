@@ -8,6 +8,7 @@
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
+                      xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Shares.ShareArchivePage">
     <NavigationPage.TitleView>
@@ -21,17 +22,17 @@
     <ContentPage.Content>
         <!--5.5 Архив акций-->
         <Grid>
-            <ListView Margin="10,0,0,0" VerticalScrollBarVisibility="Never" SeparatorVisibility="None"
-                      HasUnevenRows="True">
-                <ListView.ItemsSource>
+            <CollectionView Margin="10,0,0,0">
+                <CollectionView.ItemsSource>
                     <x:String>000000000000</x:String>
-                </ListView.ItemsSource>
-                <ListView.ItemTemplate>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <viewCells:ArchiveStockViewCell />
+                        <contentviews:ArchiveStockContentView/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <!--Затемнение заднего фона-->
             <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False" />
             <!--Появляющийся фильтр-->

@@ -16,15 +16,15 @@ namespace bonus.app.Core.ViewModels.Customer
 		{
 		}
 
-		public override async void ViewAppearing()
+		public override void ViewAppearing()
 		{
 			base.ViewAppearing();
 
-			await NavigationService.Navigate<CustomerProfileViewModel>();
-			await NavigationService.Navigate<CustomerServicesViewModel>();
-			await NavigationService.Navigate<CustomerSharesViewModel>();
-			await NavigationService.Navigate<CustomerNewsViewModel>();
-			await NavigationService.Navigate<CustomerBonusAccrualViewModel>();
+			NavigationService.Navigate<CustomerProfileViewModel>();
+			NavigationService.Navigate<CustomerServicesViewModel>();
+			NavigationService.Navigate<CustomerSharesViewModel>();
+			NavigationService.Navigate<CustomerNewsViewModel>();
+			NavigationService.Navigate<CustomerBonusAccrualViewModel>();
 		}
 	}
 }

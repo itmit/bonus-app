@@ -22,8 +22,8 @@ namespace bonus.app.Core.Design
         private static Color _borderColor;
 
         private static bool _shadow;
-        private static string _tabIconProfile;
         private static Thickness _margin;
+        private static Thickness _marginForTitle;
 
 
         #endregion
@@ -44,6 +44,7 @@ namespace bonus.app.Core.Design
                 BorderColor = Color.FromHex("#9A9A9A");
                 Shadow = false;
                 Margin = new Thickness(25, 25, 5, 10);
+                MarginForTitle = new Thickness(0, 50, 0, 10);
             }
             else if(Device.Android == Device.RuntimePlatform)
             {
@@ -58,6 +59,7 @@ namespace bonus.app.Core.Design
                 Horizontal = LayoutOptions.Start;
                 Shadow = true;
                 Margin = new Thickness(5, 25, 5, 10);
+                MarginForTitle = new Thickness(0, 35, 0, 10);
             }
         }
 
@@ -132,6 +134,12 @@ namespace bonus.app.Core.Design
         {
             get => _margin;
             set => _margin = value;
+        }
+
+        public static Thickness MarginForTitle
+        {
+            get => _marginForTitle;
+            set => _marginForTitle = value;
         }
         #endregion
     }

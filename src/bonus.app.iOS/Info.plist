@@ -20,13 +20,13 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>13.4</string>
+	<string>8.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>Bonus &amp; Marketing</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.itmit.bonus</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>XSAppIconAssets</key>
@@ -57,5 +57,7 @@
 	<string>Photo usage description</string>
 	<key>CFBundleName</key>
 	<string>Bonus &amp; Marketing</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
 </dict>
 </plist>

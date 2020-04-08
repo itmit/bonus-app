@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
@@ -83,7 +84,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
+				Debug.WriteLine(e);
 			}
 
 			if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
