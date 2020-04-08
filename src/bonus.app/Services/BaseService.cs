@@ -18,7 +18,7 @@ namespace bonus.app.Core.Services
 			get;
 		}
 
-		public const string Domain = "http://bonus.itmit-studio.ru/";
+		public static readonly string Domain = "http://bonus.itmit-studio.ru/";
 
 		public BaseService(IAuthService authService) => AuthService = authService;
 

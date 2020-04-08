@@ -6,35 +6,38 @@ namespace bonus.app.Core.Dtos
 {
 	public class UserInfoDto
 	{
-		[JsonProperty("type")]
-		public UserRole Role
+		public string City
 		{
 			get;
 			set;
 		}
 
-		public Guid Uuid
+		public string Country
 		{
 			get;
 			set;
 		}
 
-		[JsonProperty("email")]
-		public string Email
-		{
-			get;
-			set;
-		}
-		
-		[JsonProperty("phone")]
-		public string Phone
+		public string Address
 		{
 			get;
 			set;
 		}
 
-		[JsonProperty("name")]
-		public string Name
+		[JsonProperty("work_time")]
+		public string WorkTime
+		{
+			get;
+			set;
+		}
+
+		public string Contact
+		{
+			get;
+			set;
+		}
+
+		public string Description
 		{
 			get;
 			set;

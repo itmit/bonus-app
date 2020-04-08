@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -189,6 +191,8 @@ namespace bonus.app.Core.ViewModels
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
+
+		public bool HasErrors => throw new NotImplementedException();
 		#endregion
 
 		#region Overrided
@@ -307,6 +311,11 @@ namespace bonus.app.Core.ViewModels
 					ImageBytes = memoryStream.ToArray();
 				}
 			}
+		}
+
+		public IEnumerable GetErrors(string propertyName)
+		{
+			throw new NotImplementedException();
 		}
 		#endregion
 	}

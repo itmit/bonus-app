@@ -28,6 +28,8 @@ namespace bonus.app.Droid
 			Xamarin.Forms.Forms.Init(this, bundle);
 			Xamarin.Forms.FormsMaterial.Init(this, bundle);
 			base.OnCreate(bundle);
+
+			Plugin.InputKit.Platforms.Droid.Config.Init(this, bundle);
 			CachedImageRenderer.Init(true);
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;

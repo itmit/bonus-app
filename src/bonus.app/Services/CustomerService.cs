@@ -30,7 +30,7 @@ namespace bonus.app.Core.Services
 				cfg.CreateMap<UserDto, User>()
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
-				cfg.CreateMap<UserInfoDto, User>()
+				cfg.CreateMap<UserData, User>()
 				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
