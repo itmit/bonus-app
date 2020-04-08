@@ -72,14 +72,11 @@
                         </StackLayout>
                         <!--Список с видами услуг-->
                         <ScrollView HeightRequest="140" x:Name="ServicesList" IsVisible="False" IsEnabled="False">
-                            <StackLayout>
-                                <BindableLayout.ItemsSource>
-                                    <x:String>00000</x:String>
-                                </BindableLayout.ItemsSource>
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Text="Стрижка" Padding="30,0,20,20"/>
-                                    </DataTemplate>
+                        <StackLayout BindableLayout.ItemsSource="{Binding ServiceTypes}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="Стрижка" Padding="30,0,20,20"/>
+                                </DataTemplate>
                                 </BindableLayout.ItemTemplate>
                             </StackLayout>
                         </ScrollView>

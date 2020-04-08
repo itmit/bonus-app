@@ -125,8 +125,7 @@
                                     Margin="0,0,0,20"
                                     BackgroundColor="Transparent" />
 
-                            <contentViews:PicPhotoContentView Placeholder="Загрузите изображение акции"/>
-                            <BoxView Margin="0,0,0,20"/>
+                            <contentViews:PicPhotoContentView Placeholder="Загрузите изображение акции" Margin="0,0,0,20"/>
 
                             <Label Text="{Binding Errors[share_time]}"
                                    IsVisible="{Binding Errors[share_time], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />

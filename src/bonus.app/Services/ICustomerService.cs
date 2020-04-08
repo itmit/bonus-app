@@ -7,5 +7,7 @@ namespace bonus.app.Core.Services
 	public interface ICustomerService
 	{
 		Task<User> GetCustomerByUuid(Guid uuid);
+
+		Task<User> GetCustomerByLogin(string login);
 	}
 }

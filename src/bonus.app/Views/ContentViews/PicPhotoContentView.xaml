@@ -8,32 +8,37 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.PicPhotoContentView">
     <ContentView.Content>
-        <StackLayout Orientation="Horizontal" Margin="5,0">
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding PicImageCommand}"/>
-            </StackLayout.GestureRecognizers>
-            <StackLayout>
-                <Label x:Name="PlaceholderLabel" />
-                <Label Text="{Binding ImageName}" Margin="0,5" VerticalOptions="Center" VerticalTextAlignment="Center"/>
-            </StackLayout>
-            <Image Source="icon_photo"
-                   WidthRequest="70"
-                   HeightRequest="40"
-                   IsVisible="{Binding IsShowDefaultImage}"
-                   HorizontalOptions="EndAndExpand" Margin="0,10,0,10"/>
+        <StackLayout>
+            <Grid Margin="5,0">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PicImageCommand}"/>
+                </Grid.GestureRecognizers>
+                <StackLayout>
+                    <Label x:Name="PlaceholderLabel" />
+                    <Label Text="{Binding ImageName}" Margin="0,5" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <Image Source="icon_photo"
+                       WidthRequest="70"
+                       HeightRequest="40"
+                       VerticalOptions="CenterAndExpand"
+                       IsVisible="{Binding IsShowDefaultImage}"
+                       HorizontalOptions="EndAndExpand" Margin="0,10,0,10"/>
 
-            <forms:CachedImage
-                Source="{Binding ImageSource}"
-                IsVisible="{Binding ImageSource, Converter={StaticResource NullToBoolConverter}}"
-                WidthRequest="70"
-                HeightRequest="40"
-                HorizontalOptions="EndAndExpand"
-                Margin="0,10,0,10">
+                <forms:CachedImage
+                    Source="{Binding ImageSource}"
+                    IsVisible="{Binding ImageSource, Converter={StaticResource NullToBoolConverter}}"
+                    WidthRequest="70"
+                    HeightRequest="40"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="EndAndExpand"
+                    Margin="0,10,0,10">
 
-                <forms:CachedImage.Transformations>
-                    <transformations:RoundedTransformation Radius="100"/>
-                </forms:CachedImage.Transformations>
-            </forms:CachedImage>
+                    <forms:CachedImage.Transformations>
+                        <transformations:RoundedTransformation Radius="100"/>
+                    </forms:CachedImage.Transformations>
+                </forms:CachedImage>
+            </Grid>
+            <BoxView Margin="0"/>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

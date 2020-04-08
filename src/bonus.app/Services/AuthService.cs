@@ -32,6 +32,8 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
 				cfg.CreateMap<UserInfoDto, User>()
+				   .ForPath(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo));
+				cfg.CreateMap<UserData, User>()
 				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
@@ -176,17 +178,30 @@ namespace bonus.app.Core.Services
 					if (data.Success)
 					{
 						var user = _mapper.Map<User>(data.Data.Client);
-						user.AccessToken = _mapper.Map<User>(data.Data).AccessToken;
+						var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
 
-						if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Guid != Guid.Empty)
+						userInfo.Role = user.Role;
+						userInfo.Guid = user.Guid;
+						userInfo.Email = user.Email ?? string.Empty;
+						userInfo.Phone = user.Phone ?? string.Empty;
+						userInfo.Name = user.Name ?? string.Empty;
+						userInfo.Login = user.Login ?? string.Empty;
+
+						userInfo.AccessToken = new AccessToken
 						{
-							return user;
+							Body = data.Data.Body,
+							Type = data.Data.Type
+						};
+
+						if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Guid != Guid.Empty)
+						{
+							return userInfo;
 						}
 
-						_userUuid = user.Guid;
-						_userRepository.Add(user);
+						_userUuid = userInfo.Guid;
+						_userRepository.Add(userInfo);
 
-						return user;
+						return userInfo;
 					}
 
 					return _mapper.Map<User>(data.Data);

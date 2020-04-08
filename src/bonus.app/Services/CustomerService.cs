@@ -30,7 +30,7 @@ namespace bonus.app.Core.Services
 				cfg.CreateMap<UserDto, User>()
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
-				cfg.CreateMap<UserInfoDto, User>()
+				cfg.CreateMap<UserData, User>()
 				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
@@ -48,6 +48,41 @@ namespace bonus.app.Core.Services
 				var response = await client.PostAsync(GetCustomerByUuidUri, new FormUrlEncodedContent(new Dictionary<string, string>
 				{
 					{"uuid", uuid.ToString()}
+				}));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				if (string.IsNullOrEmpty(jsonString))
+				{
+					return null;
+				}
+				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+				if (response.IsSuccessStatusCode)
+				{
+					var user = _mapper.Map<User>(data.Data);
+					var userInfo = _mapper.Map<User>(data.Data.Client);
+					userInfo.Balance = user.Balance / 100;
+					return userInfo;
+				}
+
+				return null;
+			}
+		}
+
+		private const string GetCustomerByLoginUri = "http://bonus.itmit-studio.ru/api/service/searchCustomer";
+
+		public async Task<User> GetCustomerByLogin(string login)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+
+				var response = await client.PostAsync(GetCustomerByLoginUri, new FormUrlEncodedContent(new Dictionary<string, string>
+				{
+					{"login", login}
 				}));
 
 				var jsonString = await response.Content.ReadAsStringAsync();

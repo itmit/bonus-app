@@ -7,6 +7,7 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Customer.Profile;assembly=bonus.app.Core"
+             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage"
              NavigationPage.HasBackButton="False">
@@ -144,13 +145,7 @@
 
                             <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent"/>
 
-                            <StackLayout Margin="0,0,0,20">
-                                <Label Text="Установите фотографию профиля" Margin="15,0"/>
-                                <StackLayout Orientation="Horizontal" HeightRequest="30">
-                                    <Image Source="icon_photo.png" WidthRequest="70" HeightRequest="40" HorizontalOptions="EndAndExpand"/>
-                                </StackLayout>
-                                <BoxView/>
-                            </StackLayout>
+                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
                             <Button Text="СОХРАНИТЬ" Command="{Binding EditCommand}" Style="{StaticResource AppButton}"/>
                         </StackLayout>

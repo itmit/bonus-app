@@ -118,17 +118,15 @@
                             <Entry Text="{Binding WorkingMode}"
                                    Style="{StaticResource Entry}"
                                    Placeholder="Режим работы"
-                                   Keyboard="Numeric"
                                    BackgroundColor="Transparent">
-                                <Entry.Behaviors>
-                                    <behaviors:MaskedBehavior Mask="XX.XX-XX.XX" />
-                                </Entry.Behaviors>
                             </Entry>
 
                             <Entry Style="{StaticResource Entry}"
                                    Placeholder="Контактное лицо"
-                                   Text="{Binding ContactPerson}"
+                                   Text="{Binding Contact}"
                                    BackgroundColor="Transparent" />
+                            <Label Text="{Binding Errors[contact]}"
+                                   IsVisible="{Binding Errors[contact], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
 
                             <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}"
                                    Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
@@ -139,14 +137,18 @@
                             <Label Text="{Binding Errors[phoneNumber]}"
                                    IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
 
-                            <StackLayout Margin="0,0,0,25">
-                                <Label Text="Установите фотографию профиля" Margin="15,0" />
-                                <StackLayout Orientation="Horizontal" HeightRequest="30">
-                                    <Image Source="icon_photo.png" WidthRequest="70" HeightRequest="40"
-                                           HorizontalOptions="EndAndExpand" />
-                                </StackLayout>
-                                <BoxView />
-                            </StackLayout>
+                            <Label Text="{Binding Errors[description]}"
+                                   IsVisible="{Binding Errors[description], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                            <Editor Placeholder="Описание услуг&#10;&#10;"
+                                    Text="{Binding Description}"
+                                    PlaceholderColor="#505050"
+                                    Keyboard="Chat"
+                                    TextColor="#505050"
+                                    FontSize="14"
+                                    FontFamily="Lato-Regular.ttf#Lato-Regular"
+                                    AutoSize="TextChanges"
+                                    Margin="0,0,0,20"
+                                    BackgroundColor="Transparent" />
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 

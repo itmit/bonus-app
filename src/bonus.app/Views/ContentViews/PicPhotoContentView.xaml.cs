@@ -14,14 +14,13 @@ namespace bonus.app.Core.Views.ContentViews
 	{
 		public string Placeholder
 		{
-			get;
-			set;
+			get => PlaceholderLabel.Text;
+			set => PlaceholderLabel.Text = value;
 		}
 
 		public PicPhotoContentView()
 		{
 			InitializeComponent();
-			PlaceholderLabel.Text = Placeholder;
 		}
 	}
 }

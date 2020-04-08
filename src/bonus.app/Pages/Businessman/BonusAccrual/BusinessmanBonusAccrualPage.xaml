@@ -35,8 +35,13 @@
 
                 <Frame Margin="0,0,0,20" CornerRadius="23" IsClippedToBounds="True" Padding="0,-2" HasShadow="False"
                        HeightRequest="50" BackgroundColor="#bab3af">
-                    <SearchBar Placeholder="Поиск" PlaceholderColor="White" TextColor="White" WidthRequest="300"
-                               BackgroundColor="#bab3af" FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                    <SearchBar Placeholder="Поиск"
+                               PlaceholderColor="White"
+                               TextColor="White"
+                               WidthRequest="300"
+                               Text="{Binding UserLogin}"
+                               BackgroundColor="#bab3af"
+                               FontFamily="{x:Static design:DesignClass.LatoRegular}"
                                CancelButtonColor="#D5D1CF" />
                 </Frame>
                 <Button Text="ДАЛЕЕ" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
