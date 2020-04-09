@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
@@ -14,12 +15,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 	{
 		#region Data
 		#region Fields
-		private string _contactPerson;
+		private string _contact;
 		private MvxCommand _editCommand;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IProfileService _profileService;
 		private readonly IUserRepository _userRepository;
 		private string _workingMode;
+		private string _description;
 		#endregion
 		#endregion
 
@@ -28,8 +30,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 											   IMvxNavigationService navigationService,
 											   IGeoHelperService geoHelperService,
 											   IProfileService profileService,
-											   IUserRepository userRepository)
-			: base(authService, geoHelperService)
+											   IUserRepository userRepository,
+											   IPermissionsService permissionsService)
+			: base(authService, geoHelperService, permissionsService)
 		{
 			_navigationService = navigationService;
 			_profileService = profileService;
@@ -38,10 +41,25 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region Properties
-		public string ContactPerson
+		public string Contact
 		{
-			get => _contactPerson;
-			set => SetProperty(ref _contactPerson, value);
+			get => _contact;
+			set
+			{
+				SetProperty(ref _contact, value);
+				if (string.IsNullOrEmpty(value?.Trim()))
+				{
+					Errors[nameof(Contact)
+							   .ToLower()] = "Контактное лицо не может быть пустым.";
+				}
+				else
+				{
+					Errors[nameof(Contact)
+							   .ToLower()] = null;
+				}
+
+				RaisePropertyChanged(() => Errors);
+			}
 		}
 
 		public MvxCommand EditCommand
@@ -63,6 +81,54 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Private
 		private async void EditCommandExecute()
 		{
+			if (SelectedCountry == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
+				});
+				return;
+			}
+
+			if (SelectedCity == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
+				});
+				return;
+			}
+
+			var isValid = true;
+			if (string.IsNullOrEmpty(Address?.Trim()))
+			{
+				Errors[nameof(Address)
+						   .ToLower()] = "Адрес не может быть пустым.";
+				isValid = false;
+			}
+			else
+			{
+				Errors[nameof(Address)
+						   .ToLower()] = null;
+			}
+			if (string.IsNullOrEmpty(Contact?.Trim()))
+			{
+				Errors[nameof(Contact)
+						   .ToLower()] = "Контактное лицо не может быть пустым.";
+			}
+			else
+			{
+				Errors[nameof(Contact)
+						   .ToLower()] = null;
+			}
+
+
+			await RaisePropertyChanged(() => Errors);
+			if (!isValid)
+			{
+				return;
+			}
+
 			var arg = new EditBusinessmanDto
 			{
 				Uuid = Parameter.Guid,
@@ -70,20 +136,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				City = SelectedCity.LocalizedNames.Ru,
 				Address = Address,
 				WorkTime = WorkingMode,
-				Contact = ContactPerson,
+				Contact = Contact,
 				Phone = PhoneNumber,
-				Description = "-",
+				Description = Description,
 				Password = Parameter.Password
 			};
 			User user = null;
 			try
 			{
-				user = await _profileService.Edit(arg, null);
+				user = await _profileService.Edit(arg, ImageBytes, ImageName);
 				_userRepository.Add(user);
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
+				Debug.WriteLine(e);
 			}
 
 			if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
@@ -105,6 +171,27 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				{
 					Application.Current.MainPage.DisplayAlert("Ошибка", _profileService.Error, "Ок");
 				});
+			}
+		}
+
+		public string Description
+		{
+			get => _description;
+			set
+			{
+				SetProperty(ref _description, value);
+				if (string.IsNullOrEmpty(value?.Trim()))
+				{
+					Errors[nameof(Description)
+							   .ToLower()] = "Описание не может быть пустым.";
+				}
+				else
+				{
+					Errors[nameof(Description)
+							   .ToLower()] = null;
+				}
+
+				RaisePropertyChanged(() => Errors);
 			}
 		}
 		#endregion

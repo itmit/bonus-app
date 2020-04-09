@@ -26,15 +26,15 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Text="Ожидание оплаты" TextColor="Gray"/>
+                    <Label Text="Ожидание оплаты&#10;Ожидание оплаты Ожидание оплаты Ожидание оплаты Ожидание оплаты" TextColor="Gray"/>
                 </StackLayout>
-                <Frame Grid.Column="1" BackgroundColor="#BB8D91" CornerRadius="17" Padding="15,10" Margin="0,0,25,0" VerticalOptions="Start" HorizontalOptions="Start" HasShadow="False">
+                <Frame Grid.Column="1" BackgroundColor="#BB8D91" CornerRadius="17.5" Padding="15,10" Margin="0,0,25,0" HasShadow="False" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center">
                     <Label Text="Оплатить" TextColor="White" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer/>
                     </Frame.GestureRecognizers>
                 </Frame>
-                <Frame Grid.Column="1" BackgroundColor="Transparent" BorderColor="#BB8D91" Padding="15,10" CornerRadius="17" Margin="0,0,25,0" HasShadow="False" IsVisible="False" IsEnabled="False">
+                <Frame Grid.Column="1" BackgroundColor="Transparent" BorderColor="#BB8D91" Padding="15,10" CornerRadius="17.5" Margin="0,0,25,0" HasShadow="False" IsVisible="True" VerticalOptions="Center" HorizontalOptions="Center">
                     <Label Text="Продлить" TextColor="#BB8D91" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer/>

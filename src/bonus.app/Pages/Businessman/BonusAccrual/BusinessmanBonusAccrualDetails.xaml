@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualDetails"
                       NavigationPage.HasBackButton="False"
@@ -24,27 +25,27 @@
                             <Setter Property="TextColor" Value="White" />
                             <Setter Property="CursorPosition" Value="0" />
                             <Setter Property="FontSize" Value="14" />
-                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular" />
+                            <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                             <Setter Property="Keyboard" Value="Numeric" />
                         </Style>
                         <Style x:Key="Frame" TargetType="Frame">
                             <Setter Property="IsClippedToBounds" Value="True" />
-                            <Setter Property="CornerRadius" Value="40" />
+                            <Setter Property="CornerRadius" Value="24" />
                             <Setter Property="Padding" Value="0,-5" />
-                            <Setter Property="HasShadow" Value="False" />
+                            <Setter Property="HasShadow" Value="False"/>
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
-                <Label Text="Начисление бонусов" Margin="0,35,0,10" HorizontalTextAlignment="Center" FontSize="Large"
-                       TextColor="White" FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" />
+                <Label Text="Начисление бонусов" Margin="{x:Static design:DesignClass.MarginForTitle}" HorizontalTextAlignment="Center" FontSize="Large"
+                       TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratBold}" />
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Margin="0,0,0,15">
-                    <Frame Padding="0" IsClippedToBounds="True" CornerRadius="30">
+                    <Frame Padding="0" IsClippedToBounds="True" CornerRadius="30" HasShadow="False">
                         <Image Source="bitmap.png" WidthRequest="60" />
                     </Frame>
                     <StackLayout>
                         <Label Text="{Binding User.Name}" TextColor="White" FontSize="Body"
-                               FontFamily="Montserrat-Regular.ttf#Montserrat-Regular" />
-                        <Label TextColor="White" FontFamily="Montserrat-Regular.ttf#Montserrat-Regular">
+                               FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+                        <Label TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratRegular}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <FormattedString.Spans>
@@ -66,14 +67,15 @@
                             BackgroundColor="#bab3af"
                             TitleColor="White"
                             TextColor="White"
-                            FontFamily="Lato-Regular.ttf#Lato-Regular"
-                            Visual="Material" />
+                            FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                            Visual="Material"
+                            FontSize="14"/>
                     </Frame>
                     <Image Source="ic_shape_4x.png" WidthRequest="10" HeightRequest="5" VerticalOptions="Center"
                            HorizontalOptions="EndAndExpand" Margin="0,0,20,0" />
                 </Grid>
 
-                <Frame Style="{StaticResource Frame}" Margin="0,10">
+                <Frame Style="{StaticResource Frame}" Margin="0,10,0,0">
                     <Grid BackgroundColor="#bab3af" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -133,9 +135,7 @@
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
                     <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Visual="Material" />
                 </Frame>
-                <Button Text="Начислить бонусы" Command="{Binding AccrueAndWriteOffBonusesCommand}"
-                        BackgroundColor="#bab3af" TextColor="White" FontFamily="Lato-Regular.ttf#Lato-Regular"
-                        CornerRadius="40" />
+                <Button Text="НАЧИСЛИТЬ БОНУСЫ" Style="{StaticResource AppButton}" Command="{Binding AccrueAndWriteOffBonusesCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -8,6 +8,8 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.BusinessmanProfilePage">
 
@@ -25,24 +27,25 @@
             <StackLayout>
                 <Grid BackgroundColor="#ADA49E">
                     <StackLayout Orientation="Horizontal" Padding="20,20" HorizontalOptions="Center">
-                        <Frame Padding="0" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True"
-                               WidthRequest="100" HeightRequest="100" VerticalOptions="Center"
+                        <Frame Padding="2" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True"
+                               VerticalOptions="Center"
                                HorizontalOptions="Center" HasShadow="False">
-                            <Frame Padding="0" HasShadow="False" IsClippedToBounds="True" WidthRequest="96"
-                                   HeightRequest="96" CornerRadius="48" VerticalOptions="Center"
-                                   HorizontalOptions="Center">
-                                <Image Source="pic_avatar_512w.png" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Image.GestureRecognizers>
+                                <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="96"
+                                                   HeightRequest="96" VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                    <forms:CachedImage.Transformations>
+                                        <transformations:CircleTransformation />
+                                    </forms:CachedImage.Transformations>
+                                    <forms:CachedImage.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                                    </Image.GestureRecognizers>
-                                </Image>
-                            </Frame>
+                                    </forms:CachedImage.GestureRecognizers>
+                                </forms:CachedImage>
                         </Frame>
                         <StackLayout>
-                            <Label Text="Салон красоты&#10;PEONY workshop" TextColor="#FFFFFF" FontSize="Body"
+                            <Label Text="{Binding User.Name}" TextColor="#FFFFFF" FontSize="Body"
                                    FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2"/>
                             <Label
-                                Text="Стрижки, Кератин, Ботокс,&#10;Ламинирование, Нанопластика&#10;Еще одна строка об услугах"
+                                Text="{Binding User.Description}"
                                 TextColor="#FFFFFF" MaxLines="3" />
                         </StackLayout>
                     </StackLayout>
@@ -92,13 +95,23 @@
                             </Frame.GestureRecognizers>
                         </Frame>
                     </Grid>
-                    <Label Text="+7(922)783-33-11" Margin="10,0" />
+                    <Label Text="{Binding User.Phone}" Margin="10,0" />
                     <BoxView />
-                    <Label Text="Москва, ул.Петразоводская, 12" Margin="10,0" />
+                    <Label Margin="10,0" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="{Binding User.City}"/>
+                                    <Span Text=", "/>
+                                    <Span Text="{Binding User.Address}"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
                     <BoxView />
-                    <Label Text="10:00 — 18:00" Margin="10,0" />
+                    <Label Text="{Binding User.WorkTime}" Margin="10,0" />
                     <BoxView />
-                    <Label Text="Василий Леонидович" Margin="10,0" />
+                    <Label Text="{Binding User.Contact}" Margin="10,0" />
                     <BoxView Margin="0,0,0,40" />
                     <FlexLayout Wrap="Wrap">
                         <BindableLayout.ItemsSource>

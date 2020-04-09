@@ -28,11 +28,11 @@
                   SeparatorVisibility="None"
                   HasUnevenRows="True"
                   Margin="0,5"
-                  ItemsSource="{Binding Shares}"
+                  ItemsSource="{Binding Stocks}"
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsRefreshing="{Binding IsRefreshing}"
-                  SelectedItem="{Binding SelectedShare}"
+                  SelectedItem="{Binding SelectedStock}"
                   ItemTapped="ListView_OnItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>

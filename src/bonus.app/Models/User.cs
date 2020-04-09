@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace bonus.app.Core.Models
 {
@@ -46,6 +47,36 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		public string Address
+		{
+			get;
+			set;
+		}
+
+		public string WorkTime
+		{
+			get;
+			set;
+		}
+
+		public string Contact
+		{
+			get;
+			set;
+		}
+
+		public string Description
+		{
+			get;
+			set;
+		}
+
+		public string PhotoSource
+		{
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Возвращает или устанавливает token доступа пользователя.
 		/// </summary>
@@ -74,6 +105,12 @@ namespace bonus.app.Core.Models
 		}
 
 		public int Balance
+		{
+			get;
+			set;
+		}
+
+		public string Phone
 		{
 			get;
 			set;

@@ -45,7 +45,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private ServiceViewModel _selectedService;
 		private MvxObservableCollection<ServiceTypeViewModel> _services;
 		private readonly IServicesService _servicesServices;
-		private readonly IShareService _shareService;
+		private readonly IStockService _stockService;
 		private DateTime _shareTime = DateTime.Today;
 		private MvxCommand _showShareCommand;
 		private MvxCommand _createShareCommand;
@@ -55,13 +55,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		#endregion
 
 		#region .ctor
-		public CreateShareViewModel(IShareService shareService,
+		public CreateShareViewModel(IStockService stockService,
 									IGeoHelperService geoHelperService,
 									IPermissionsService permissionsService,
 									IServicesService servicesServices,
 									IMvxNavigationService navigationService)
 		{
-			_shareService = shareService;
+			_stockService = stockService;
 			_geoHelperService = geoHelperService;
 			_permissionsService = permissionsService;
 			_servicesServices = servicesServices;
@@ -96,7 +96,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			set
 			{
 				SetProperty(ref _description, value);
-				if (string.IsNullOrEmpty(value.Trim()))
+				if (string.IsNullOrEmpty(value?.Trim()))
 				{
 					Errors[nameof(Description)
 							   .ToLower()] = "Описание не может быть пустым.";
@@ -169,7 +169,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			set
 			{
 				SetProperty(ref _name, value);
-				var tVal = value.Trim();
+				var tVal = value?.Trim();
 				if (string.IsNullOrEmpty(tVal))
 				{
 					Errors[nameof(Name)
@@ -243,7 +243,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			bool res = false;
 			try
 			{
-				res = await _shareService.CreateShare(new Share
+				res = await _stockService.CreateStock(new Stock
 				{
 					Country = SelectedCountry.LocalizedNames.Ru,
 					City = SelectedCity.LocalizedNames.Ru,
@@ -397,7 +397,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				_showShareCommand = _showShareCommand ??
 									new MvxCommand(() =>
 									{
-										_navigationService.Navigate<SharePopupViewModel, Share>(new Share
+										_navigationService.Navigate<SharePopupViewModel, Stock>(new Stock
 										{
 											ImageSource = ImageSource,
 											Description = Description,

@@ -1,36 +1,70 @@
-﻿namespace bonus.app.Core.Models
+﻿using System;
+using Newtonsoft.Json;
+
+namespace bonus.app.Core.Models
 {
-    public class Stock
-    {
-        public string Name
-        {
-            get;
-            set;
-        }
-        public string Company
-        {
-            get;
-            set;
-        }
-        public string Imgsource
-        {
-            get;
-            set;
-        }
-        public string Text
-        {
-            get;
-            set;
-        }
-        public string Status
-        {
-            get;
-            set;
-        }
-        public string Date
-        {
-            get;
-            set;
-        }
-    }
+	public class Stock
+	{
+		[JsonProperty("country")]
+		public string Country
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("city")]
+		public string City
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("service_uuid")]
+		public Guid Service
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("photo")]
+		public string ImageSource
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("name")]
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("description")]
+		public string Description
+		{
+			get;
+			set;
+		}
+
+		public string Status
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("expires_at")]
+		public DateTime ShareTime
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("sub_only")]
+		public bool IsSubscriberOnly
+		{
+			get;
+			set;
+		}
+	}
 }

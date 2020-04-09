@@ -8367,6 +8367,2228 @@ namespace bonus.app.Droid
 			global::MvvmCross.Forms.Resource.Styleable.View_paddingStart = global::bonus.app.Droid.Resource.Styleable.View_paddingStart;
 			global::MvvmCross.Forms.Resource.Styleable.View_theme = global::bonus.app.Droid.Resource.Styleable.View_theme;
 			global::MvvmCross.Forms.Resource.Xml.Empty = global::bonus.app.Droid.Resource.Xml.Empty;
+			global::Plugin.InputKit.Resource.Animation.abc_fade_in = global::bonus.app.Droid.Resource.Animation.abc_fade_in;
+			global::Plugin.InputKit.Resource.Animation.abc_fade_out = global::bonus.app.Droid.Resource.Animation.abc_fade_out;
+			global::Plugin.InputKit.Resource.Animation.abc_grow_fade_in_from_bottom = global::bonus.app.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Plugin.InputKit.Resource.Animation.abc_popup_enter = global::bonus.app.Droid.Resource.Animation.abc_popup_enter;
+			global::Plugin.InputKit.Resource.Animation.abc_popup_exit = global::bonus.app.Droid.Resource.Animation.abc_popup_exit;
+			global::Plugin.InputKit.Resource.Animation.abc_shrink_fade_out_from_bottom = global::bonus.app.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Plugin.InputKit.Resource.Animation.abc_slide_in_bottom = global::bonus.app.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Plugin.InputKit.Resource.Animation.abc_slide_in_top = global::bonus.app.Droid.Resource.Animation.abc_slide_in_top;
+			global::Plugin.InputKit.Resource.Animation.abc_slide_out_bottom = global::bonus.app.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Plugin.InputKit.Resource.Animation.abc_slide_out_top = global::bonus.app.Droid.Resource.Animation.abc_slide_out_top;
+			global::Plugin.InputKit.Resource.Animation.design_bottom_sheet_slide_in = global::bonus.app.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Plugin.InputKit.Resource.Animation.design_bottom_sheet_slide_out = global::bonus.app.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Plugin.InputKit.Resource.Animation.design_snackbar_in = global::bonus.app.Droid.Resource.Animation.design_snackbar_in;
+			global::Plugin.InputKit.Resource.Animation.design_snackbar_out = global::bonus.app.Droid.Resource.Animation.design_snackbar_out;
+			global::Plugin.InputKit.Resource.Animator.design_appbar_state_list_animator = global::bonus.app.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::Plugin.InputKit.Resource.Attribute.actionBarDivider = global::bonus.app.Droid.Resource.Attribute.actionBarDivider;
+			global::Plugin.InputKit.Resource.Attribute.actionBarItemBackground = global::bonus.app.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Plugin.InputKit.Resource.Attribute.actionBarPopupTheme = global::bonus.app.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Plugin.InputKit.Resource.Attribute.actionBarSize = global::bonus.app.Droid.Resource.Attribute.actionBarSize;
+			global::Plugin.InputKit.Resource.Attribute.actionBarSplitStyle = global::bonus.app.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionBarStyle = global::bonus.app.Droid.Resource.Attribute.actionBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionBarTabBarStyle = global::bonus.app.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionBarTabStyle = global::bonus.app.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionBarTabTextStyle = global::bonus.app.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionBarTheme = global::bonus.app.Droid.Resource.Attribute.actionBarTheme;
+			global::Plugin.InputKit.Resource.Attribute.actionBarWidgetTheme = global::bonus.app.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Plugin.InputKit.Resource.Attribute.actionButtonStyle = global::bonus.app.Droid.Resource.Attribute.actionButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionDropDownStyle = global::bonus.app.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionLayout = global::bonus.app.Droid.Resource.Attribute.actionLayout;
+			global::Plugin.InputKit.Resource.Attribute.actionMenuTextAppearance = global::bonus.app.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.actionMenuTextColor = global::bonus.app.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Plugin.InputKit.Resource.Attribute.actionModeBackground = global::bonus.app.Droid.Resource.Attribute.actionModeBackground;
+			global::Plugin.InputKit.Resource.Attribute.actionModeCloseButtonStyle = global::bonus.app.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionModeCloseDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModeCopyDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModeCutDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModeFindDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModePasteDrawable = global::bonus.app.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModePopupWindowStyle = global::bonus.app.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionModeSelectAllDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModeShareDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionModeSplitBackground = global::bonus.app.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Plugin.InputKit.Resource.Attribute.actionModeStyle = global::bonus.app.Droid.Resource.Attribute.actionModeStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionModeWebSearchDrawable = global::bonus.app.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Plugin.InputKit.Resource.Attribute.actionOverflowButtonStyle = global::bonus.app.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionOverflowMenuStyle = global::bonus.app.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Plugin.InputKit.Resource.Attribute.actionProviderClass = global::bonus.app.Droid.Resource.Attribute.actionProviderClass;
+			global::Plugin.InputKit.Resource.Attribute.actionViewClass = global::bonus.app.Droid.Resource.Attribute.actionViewClass;
+			global::Plugin.InputKit.Resource.Attribute.activityChooserViewStyle = global::bonus.app.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Plugin.InputKit.Resource.Attribute.alertDialogButtonGroupStyle = global::bonus.app.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Plugin.InputKit.Resource.Attribute.alertDialogCenterButtons = global::bonus.app.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Plugin.InputKit.Resource.Attribute.alertDialogStyle = global::bonus.app.Droid.Resource.Attribute.alertDialogStyle;
+			global::Plugin.InputKit.Resource.Attribute.alertDialogTheme = global::bonus.app.Droid.Resource.Attribute.alertDialogTheme;
+			global::Plugin.InputKit.Resource.Attribute.allowStacking = global::bonus.app.Droid.Resource.Attribute.allowStacking;
+			global::Plugin.InputKit.Resource.Attribute.alpha = global::bonus.app.Droid.Resource.Attribute.alpha;
+			global::Plugin.InputKit.Resource.Attribute.alphabeticModifiers = global::bonus.app.Droid.Resource.Attribute.alphabeticModifiers;
+			global::Plugin.InputKit.Resource.Attribute.arrowHeadLength = global::bonus.app.Droid.Resource.Attribute.arrowHeadLength;
+			global::Plugin.InputKit.Resource.Attribute.arrowShaftLength = global::bonus.app.Droid.Resource.Attribute.arrowShaftLength;
+			global::Plugin.InputKit.Resource.Attribute.autoCompleteTextViewStyle = global::bonus.app.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Plugin.InputKit.Resource.Attribute.autoSizeMaxTextSize = global::bonus.app.Droid.Resource.Attribute.autoSizeMaxTextSize;
+			global::Plugin.InputKit.Resource.Attribute.autoSizeMinTextSize = global::bonus.app.Droid.Resource.Attribute.autoSizeMinTextSize;
+			global::Plugin.InputKit.Resource.Attribute.autoSizePresetSizes = global::bonus.app.Droid.Resource.Attribute.autoSizePresetSizes;
+			global::Plugin.InputKit.Resource.Attribute.autoSizeStepGranularity = global::bonus.app.Droid.Resource.Attribute.autoSizeStepGranularity;
+			global::Plugin.InputKit.Resource.Attribute.autoSizeTextType = global::bonus.app.Droid.Resource.Attribute.autoSizeTextType;
+			global::Plugin.InputKit.Resource.Attribute.background = global::bonus.app.Droid.Resource.Attribute.background;
+			global::Plugin.InputKit.Resource.Attribute.backgroundSplit = global::bonus.app.Droid.Resource.Attribute.backgroundSplit;
+			global::Plugin.InputKit.Resource.Attribute.backgroundStacked = global::bonus.app.Droid.Resource.Attribute.backgroundStacked;
+			global::Plugin.InputKit.Resource.Attribute.backgroundTint = global::bonus.app.Droid.Resource.Attribute.backgroundTint;
+			global::Plugin.InputKit.Resource.Attribute.backgroundTintMode = global::bonus.app.Droid.Resource.Attribute.backgroundTintMode;
+			global::Plugin.InputKit.Resource.Attribute.barLength = global::bonus.app.Droid.Resource.Attribute.barLength;
+			global::Plugin.InputKit.Resource.Attribute.behavior_autoHide = global::bonus.app.Droid.Resource.Attribute.behavior_autoHide;
+			global::Plugin.InputKit.Resource.Attribute.behavior_hideable = global::bonus.app.Droid.Resource.Attribute.behavior_hideable;
+			global::Plugin.InputKit.Resource.Attribute.behavior_overlapTop = global::bonus.app.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Plugin.InputKit.Resource.Attribute.behavior_peekHeight = global::bonus.app.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Plugin.InputKit.Resource.Attribute.behavior_skipCollapsed = global::bonus.app.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::Plugin.InputKit.Resource.Attribute.borderlessButtonStyle = global::bonus.app.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.borderWidth = global::bonus.app.Droid.Resource.Attribute.borderWidth;
+			global::Plugin.InputKit.Resource.Attribute.bottomSheetDialogTheme = global::bonus.app.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Plugin.InputKit.Resource.Attribute.bottomSheetStyle = global::bonus.app.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonBarButtonStyle = global::bonus.app.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonBarNegativeButtonStyle = global::bonus.app.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonBarNeutralButtonStyle = global::bonus.app.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonBarPositiveButtonStyle = global::bonus.app.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonBarStyle = global::bonus.app.Droid.Resource.Attribute.buttonBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonGravity = global::bonus.app.Droid.Resource.Attribute.buttonGravity;
+			global::Plugin.InputKit.Resource.Attribute.buttonPanelSideLayout = global::bonus.app.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Plugin.InputKit.Resource.Attribute.buttonStyle = global::bonus.app.Droid.Resource.Attribute.buttonStyle;
+			global::Plugin.InputKit.Resource.Attribute.buttonStyleSmall = global::bonus.app.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Plugin.InputKit.Resource.Attribute.buttonTint = global::bonus.app.Droid.Resource.Attribute.buttonTint;
+			global::Plugin.InputKit.Resource.Attribute.buttonTintMode = global::bonus.app.Droid.Resource.Attribute.buttonTintMode;
+			global::Plugin.InputKit.Resource.Attribute.cardBackgroundColor = global::bonus.app.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Plugin.InputKit.Resource.Attribute.cardCornerRadius = global::bonus.app.Droid.Resource.Attribute.cardCornerRadius;
+			global::Plugin.InputKit.Resource.Attribute.cardElevation = global::bonus.app.Droid.Resource.Attribute.cardElevation;
+			global::Plugin.InputKit.Resource.Attribute.cardMaxElevation = global::bonus.app.Droid.Resource.Attribute.cardMaxElevation;
+			global::Plugin.InputKit.Resource.Attribute.cardPreventCornerOverlap = global::bonus.app.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Plugin.InputKit.Resource.Attribute.cardUseCompatPadding = global::bonus.app.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Plugin.InputKit.Resource.Attribute.checkboxStyle = global::bonus.app.Droid.Resource.Attribute.checkboxStyle;
+			global::Plugin.InputKit.Resource.Attribute.checkedTextViewStyle = global::bonus.app.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Plugin.InputKit.Resource.Attribute.closeIcon = global::bonus.app.Droid.Resource.Attribute.closeIcon;
+			global::Plugin.InputKit.Resource.Attribute.closeItemLayout = global::bonus.app.Droid.Resource.Attribute.closeItemLayout;
+			global::Plugin.InputKit.Resource.Attribute.collapseContentDescription = global::bonus.app.Droid.Resource.Attribute.collapseContentDescription;
+			global::Plugin.InputKit.Resource.Attribute.collapsedTitleGravity = global::bonus.app.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Plugin.InputKit.Resource.Attribute.collapsedTitleTextAppearance = global::bonus.app.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.collapseIcon = global::bonus.app.Droid.Resource.Attribute.collapseIcon;
+			global::Plugin.InputKit.Resource.Attribute.color = global::bonus.app.Droid.Resource.Attribute.color;
+			global::Plugin.InputKit.Resource.Attribute.colorAccent = global::bonus.app.Droid.Resource.Attribute.colorAccent;
+			global::Plugin.InputKit.Resource.Attribute.colorBackgroundFloating = global::bonus.app.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::Plugin.InputKit.Resource.Attribute.colorButtonNormal = global::bonus.app.Droid.Resource.Attribute.colorButtonNormal;
+			global::Plugin.InputKit.Resource.Attribute.colorControlActivated = global::bonus.app.Droid.Resource.Attribute.colorControlActivated;
+			global::Plugin.InputKit.Resource.Attribute.colorControlHighlight = global::bonus.app.Droid.Resource.Attribute.colorControlHighlight;
+			global::Plugin.InputKit.Resource.Attribute.colorControlNormal = global::bonus.app.Droid.Resource.Attribute.colorControlNormal;
+			global::Plugin.InputKit.Resource.Attribute.colorError = global::bonus.app.Droid.Resource.Attribute.colorError;
+			global::Plugin.InputKit.Resource.Attribute.colorPrimary = global::bonus.app.Droid.Resource.Attribute.colorPrimary;
+			global::Plugin.InputKit.Resource.Attribute.colorPrimaryDark = global::bonus.app.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Plugin.InputKit.Resource.Attribute.colorSwitchThumbNormal = global::bonus.app.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Plugin.InputKit.Resource.Attribute.commitIcon = global::bonus.app.Droid.Resource.Attribute.commitIcon;
+			global::Plugin.InputKit.Resource.Attribute.contentDescription = global::bonus.app.Droid.Resource.Attribute.contentDescription;
+			global::Plugin.InputKit.Resource.Attribute.contentInsetEnd = global::bonus.app.Droid.Resource.Attribute.contentInsetEnd;
+			global::Plugin.InputKit.Resource.Attribute.contentInsetEndWithActions = global::bonus.app.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::Plugin.InputKit.Resource.Attribute.contentInsetLeft = global::bonus.app.Droid.Resource.Attribute.contentInsetLeft;
+			global::Plugin.InputKit.Resource.Attribute.contentInsetRight = global::bonus.app.Droid.Resource.Attribute.contentInsetRight;
+			global::Plugin.InputKit.Resource.Attribute.contentInsetStart = global::bonus.app.Droid.Resource.Attribute.contentInsetStart;
+			global::Plugin.InputKit.Resource.Attribute.contentInsetStartWithNavigation = global::bonus.app.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Plugin.InputKit.Resource.Attribute.contentPadding = global::bonus.app.Droid.Resource.Attribute.contentPadding;
+			global::Plugin.InputKit.Resource.Attribute.contentPaddingBottom = global::bonus.app.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Plugin.InputKit.Resource.Attribute.contentPaddingLeft = global::bonus.app.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Plugin.InputKit.Resource.Attribute.contentPaddingRight = global::bonus.app.Droid.Resource.Attribute.contentPaddingRight;
+			global::Plugin.InputKit.Resource.Attribute.contentPaddingTop = global::bonus.app.Droid.Resource.Attribute.contentPaddingTop;
+			global::Plugin.InputKit.Resource.Attribute.contentScrim = global::bonus.app.Droid.Resource.Attribute.contentScrim;
+			global::Plugin.InputKit.Resource.Attribute.controlBackground = global::bonus.app.Droid.Resource.Attribute.controlBackground;
+			global::Plugin.InputKit.Resource.Attribute.counterEnabled = global::bonus.app.Droid.Resource.Attribute.counterEnabled;
+			global::Plugin.InputKit.Resource.Attribute.counterMaxLength = global::bonus.app.Droid.Resource.Attribute.counterMaxLength;
+			global::Plugin.InputKit.Resource.Attribute.counterOverflowTextAppearance = global::bonus.app.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.counterTextAppearance = global::bonus.app.Droid.Resource.Attribute.counterTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.customNavigationLayout = global::bonus.app.Droid.Resource.Attribute.customNavigationLayout;
+			global::Plugin.InputKit.Resource.Attribute.defaultQueryHint = global::bonus.app.Droid.Resource.Attribute.defaultQueryHint;
+			global::Plugin.InputKit.Resource.Attribute.dialogPreferredPadding = global::bonus.app.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Plugin.InputKit.Resource.Attribute.dialogTheme = global::bonus.app.Droid.Resource.Attribute.dialogTheme;
+			global::Plugin.InputKit.Resource.Attribute.displayOptions = global::bonus.app.Droid.Resource.Attribute.displayOptions;
+			global::Plugin.InputKit.Resource.Attribute.divider = global::bonus.app.Droid.Resource.Attribute.divider;
+			global::Plugin.InputKit.Resource.Attribute.dividerHorizontal = global::bonus.app.Droid.Resource.Attribute.dividerHorizontal;
+			global::Plugin.InputKit.Resource.Attribute.dividerPadding = global::bonus.app.Droid.Resource.Attribute.dividerPadding;
+			global::Plugin.InputKit.Resource.Attribute.dividerVertical = global::bonus.app.Droid.Resource.Attribute.dividerVertical;
+			global::Plugin.InputKit.Resource.Attribute.drawableSize = global::bonus.app.Droid.Resource.Attribute.drawableSize;
+			global::Plugin.InputKit.Resource.Attribute.drawerArrowStyle = global::bonus.app.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Plugin.InputKit.Resource.Attribute.dropdownListPreferredItemHeight = global::bonus.app.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Plugin.InputKit.Resource.Attribute.dropDownListViewStyle = global::bonus.app.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Plugin.InputKit.Resource.Attribute.editTextBackground = global::bonus.app.Droid.Resource.Attribute.editTextBackground;
+			global::Plugin.InputKit.Resource.Attribute.editTextColor = global::bonus.app.Droid.Resource.Attribute.editTextColor;
+			global::Plugin.InputKit.Resource.Attribute.editTextStyle = global::bonus.app.Droid.Resource.Attribute.editTextStyle;
+			global::Plugin.InputKit.Resource.Attribute.elevation = global::bonus.app.Droid.Resource.Attribute.elevation;
+			global::Plugin.InputKit.Resource.Attribute.errorEnabled = global::bonus.app.Droid.Resource.Attribute.errorEnabled;
+			global::Plugin.InputKit.Resource.Attribute.errorTextAppearance = global::bonus.app.Droid.Resource.Attribute.errorTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.expandActivityOverflowButtonDrawable = global::bonus.app.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Plugin.InputKit.Resource.Attribute.expanded = global::bonus.app.Droid.Resource.Attribute.expanded;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleGravity = global::bonus.app.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleMargin = global::bonus.app.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleMarginBottom = global::bonus.app.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleMarginEnd = global::bonus.app.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleMarginStart = global::bonus.app.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleMarginTop = global::bonus.app.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Plugin.InputKit.Resource.Attribute.expandedTitleTextAppearance = global::bonus.app.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.externalRouteEnabledDrawable = global::bonus.app.Droid.Resource.Attribute.externalRouteEnabledDrawable;
+			global::Plugin.InputKit.Resource.Attribute.fabSize = global::bonus.app.Droid.Resource.Attribute.fabSize;
+			global::Plugin.InputKit.Resource.Attribute.fastScrollEnabled = global::bonus.app.Droid.Resource.Attribute.fastScrollEnabled;
+			global::Plugin.InputKit.Resource.Attribute.fastScrollHorizontalThumbDrawable = global::bonus.app.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable;
+			global::Plugin.InputKit.Resource.Attribute.fastScrollHorizontalTrackDrawable = global::bonus.app.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable;
+			global::Plugin.InputKit.Resource.Attribute.fastScrollVerticalThumbDrawable = global::bonus.app.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable;
+			global::Plugin.InputKit.Resource.Attribute.fastScrollVerticalTrackDrawable = global::bonus.app.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable;
+			global::Plugin.InputKit.Resource.Attribute.font = global::bonus.app.Droid.Resource.Attribute.font;
+			global::Plugin.InputKit.Resource.Attribute.fontFamily = global::bonus.app.Droid.Resource.Attribute.fontFamily;
+			global::Plugin.InputKit.Resource.Attribute.fontProviderAuthority = global::bonus.app.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Plugin.InputKit.Resource.Attribute.fontProviderCerts = global::bonus.app.Droid.Resource.Attribute.fontProviderCerts;
+			global::Plugin.InputKit.Resource.Attribute.fontProviderFetchStrategy = global::bonus.app.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Plugin.InputKit.Resource.Attribute.fontProviderFetchTimeout = global::bonus.app.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Plugin.InputKit.Resource.Attribute.fontProviderPackage = global::bonus.app.Droid.Resource.Attribute.fontProviderPackage;
+			global::Plugin.InputKit.Resource.Attribute.fontProviderQuery = global::bonus.app.Droid.Resource.Attribute.fontProviderQuery;
+			global::Plugin.InputKit.Resource.Attribute.fontStyle = global::bonus.app.Droid.Resource.Attribute.fontStyle;
+			global::Plugin.InputKit.Resource.Attribute.fontWeight = global::bonus.app.Droid.Resource.Attribute.fontWeight;
+			global::Plugin.InputKit.Resource.Attribute.foregroundInsidePadding = global::bonus.app.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Plugin.InputKit.Resource.Attribute.gapBetweenBars = global::bonus.app.Droid.Resource.Attribute.gapBetweenBars;
+			global::Plugin.InputKit.Resource.Attribute.goIcon = global::bonus.app.Droid.Resource.Attribute.goIcon;
+			global::Plugin.InputKit.Resource.Attribute.headerLayout = global::bonus.app.Droid.Resource.Attribute.headerLayout;
+			global::Plugin.InputKit.Resource.Attribute.height = global::bonus.app.Droid.Resource.Attribute.height;
+			global::Plugin.InputKit.Resource.Attribute.hideOnContentScroll = global::bonus.app.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Plugin.InputKit.Resource.Attribute.hintAnimationEnabled = global::bonus.app.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Plugin.InputKit.Resource.Attribute.hintEnabled = global::bonus.app.Droid.Resource.Attribute.hintEnabled;
+			global::Plugin.InputKit.Resource.Attribute.hintTextAppearance = global::bonus.app.Droid.Resource.Attribute.hintTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.homeAsUpIndicator = global::bonus.app.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Plugin.InputKit.Resource.Attribute.homeLayout = global::bonus.app.Droid.Resource.Attribute.homeLayout;
+			global::Plugin.InputKit.Resource.Attribute.icon = global::bonus.app.Droid.Resource.Attribute.icon;
+			global::Plugin.InputKit.Resource.Attribute.iconifiedByDefault = global::bonus.app.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Plugin.InputKit.Resource.Attribute.iconTint = global::bonus.app.Droid.Resource.Attribute.iconTint;
+			global::Plugin.InputKit.Resource.Attribute.iconTintMode = global::bonus.app.Droid.Resource.Attribute.iconTintMode;
+			global::Plugin.InputKit.Resource.Attribute.imageButtonStyle = global::bonus.app.Droid.Resource.Attribute.imageButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.indeterminateProgressStyle = global::bonus.app.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Plugin.InputKit.Resource.Attribute.initialActivityCount = global::bonus.app.Droid.Resource.Attribute.initialActivityCount;
+			global::Plugin.InputKit.Resource.Attribute.insetForeground = global::bonus.app.Droid.Resource.Attribute.insetForeground;
+			global::Plugin.InputKit.Resource.Attribute.isLightTheme = global::bonus.app.Droid.Resource.Attribute.isLightTheme;
+			global::Plugin.InputKit.Resource.Attribute.itemBackground = global::bonus.app.Droid.Resource.Attribute.itemBackground;
+			global::Plugin.InputKit.Resource.Attribute.itemIconTint = global::bonus.app.Droid.Resource.Attribute.itemIconTint;
+			global::Plugin.InputKit.Resource.Attribute.itemPadding = global::bonus.app.Droid.Resource.Attribute.itemPadding;
+			global::Plugin.InputKit.Resource.Attribute.itemTextAppearance = global::bonus.app.Droid.Resource.Attribute.itemTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.itemTextColor = global::bonus.app.Droid.Resource.Attribute.itemTextColor;
+			global::Plugin.InputKit.Resource.Attribute.keylines = global::bonus.app.Droid.Resource.Attribute.keylines;
+			global::Plugin.InputKit.Resource.Attribute.layout = global::bonus.app.Droid.Resource.Attribute.layout;
+			global::Plugin.InputKit.Resource.Attribute.layoutManager = global::bonus.app.Droid.Resource.Attribute.layoutManager;
+			global::Plugin.InputKit.Resource.Attribute.layout_anchor = global::bonus.app.Droid.Resource.Attribute.layout_anchor;
+			global::Plugin.InputKit.Resource.Attribute.layout_anchorGravity = global::bonus.app.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Plugin.InputKit.Resource.Attribute.layout_behavior = global::bonus.app.Droid.Resource.Attribute.layout_behavior;
+			global::Plugin.InputKit.Resource.Attribute.layout_collapseMode = global::bonus.app.Droid.Resource.Attribute.layout_collapseMode;
+			global::Plugin.InputKit.Resource.Attribute.layout_collapseParallaxMultiplier = global::bonus.app.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Plugin.InputKit.Resource.Attribute.layout_dodgeInsetEdges = global::bonus.app.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Plugin.InputKit.Resource.Attribute.layout_insetEdge = global::bonus.app.Droid.Resource.Attribute.layout_insetEdge;
+			global::Plugin.InputKit.Resource.Attribute.layout_keyline = global::bonus.app.Droid.Resource.Attribute.layout_keyline;
+			global::Plugin.InputKit.Resource.Attribute.layout_scrollFlags = global::bonus.app.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Plugin.InputKit.Resource.Attribute.layout_scrollInterpolator = global::bonus.app.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Plugin.InputKit.Resource.Attribute.listChoiceBackgroundIndicator = global::bonus.app.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Plugin.InputKit.Resource.Attribute.listDividerAlertDialog = global::bonus.app.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Plugin.InputKit.Resource.Attribute.listItemLayout = global::bonus.app.Droid.Resource.Attribute.listItemLayout;
+			global::Plugin.InputKit.Resource.Attribute.listLayout = global::bonus.app.Droid.Resource.Attribute.listLayout;
+			global::Plugin.InputKit.Resource.Attribute.listMenuViewStyle = global::bonus.app.Droid.Resource.Attribute.listMenuViewStyle;
+			global::Plugin.InputKit.Resource.Attribute.listPopupWindowStyle = global::bonus.app.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemHeight = global::bonus.app.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemHeightLarge = global::bonus.app.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemHeightSmall = global::bonus.app.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemPaddingLeft = global::bonus.app.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Plugin.InputKit.Resource.Attribute.listPreferredItemPaddingRight = global::bonus.app.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Plugin.InputKit.Resource.Attribute.logo = global::bonus.app.Droid.Resource.Attribute.logo;
+			global::Plugin.InputKit.Resource.Attribute.logoDescription = global::bonus.app.Droid.Resource.Attribute.logoDescription;
+			global::Plugin.InputKit.Resource.Attribute.maxActionInlineWidth = global::bonus.app.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Plugin.InputKit.Resource.Attribute.maxButtonHeight = global::bonus.app.Droid.Resource.Attribute.maxButtonHeight;
+			global::Plugin.InputKit.Resource.Attribute.measureWithLargestChild = global::bonus.app.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteAudioTrackDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteAudioTrackDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteButtonStyle = global::bonus.app.Droid.Resource.Attribute.mediaRouteButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteButtonTint = global::bonus.app.Droid.Resource.Attribute.mediaRouteButtonTint;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteCloseDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteCloseDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteControlPanelThemeOverlay = global::bonus.app.Droid.Resource.Attribute.mediaRouteControlPanelThemeOverlay;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteDefaultIconDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteDefaultIconDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRoutePauseDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRoutePauseDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRoutePlayDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRoutePlayDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteSpeakerGroupIconDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteSpeakerIconDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteSpeakerIconDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteStopDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteStopDrawable;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteTheme = global::bonus.app.Droid.Resource.Attribute.mediaRouteTheme;
+			global::Plugin.InputKit.Resource.Attribute.mediaRouteTvIconDrawable = global::bonus.app.Droid.Resource.Attribute.mediaRouteTvIconDrawable;
+			global::Plugin.InputKit.Resource.Attribute.menu = global::bonus.app.Droid.Resource.Attribute.menu;
+			global::Plugin.InputKit.Resource.Attribute.multiChoiceItemLayout = global::bonus.app.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Plugin.InputKit.Resource.Attribute.navigationContentDescription = global::bonus.app.Droid.Resource.Attribute.navigationContentDescription;
+			global::Plugin.InputKit.Resource.Attribute.navigationIcon = global::bonus.app.Droid.Resource.Attribute.navigationIcon;
+			global::Plugin.InputKit.Resource.Attribute.navigationMode = global::bonus.app.Droid.Resource.Attribute.navigationMode;
+			global::Plugin.InputKit.Resource.Attribute.numericModifiers = global::bonus.app.Droid.Resource.Attribute.numericModifiers;
+			global::Plugin.InputKit.Resource.Attribute.overlapAnchor = global::bonus.app.Droid.Resource.Attribute.overlapAnchor;
+			global::Plugin.InputKit.Resource.Attribute.paddingBottomNoButtons = global::bonus.app.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Plugin.InputKit.Resource.Attribute.paddingEnd = global::bonus.app.Droid.Resource.Attribute.paddingEnd;
+			global::Plugin.InputKit.Resource.Attribute.paddingStart = global::bonus.app.Droid.Resource.Attribute.paddingStart;
+			global::Plugin.InputKit.Resource.Attribute.paddingTopNoTitle = global::bonus.app.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::Plugin.InputKit.Resource.Attribute.panelBackground = global::bonus.app.Droid.Resource.Attribute.panelBackground;
+			global::Plugin.InputKit.Resource.Attribute.panelMenuListTheme = global::bonus.app.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Plugin.InputKit.Resource.Attribute.panelMenuListWidth = global::bonus.app.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Plugin.InputKit.Resource.Attribute.passwordToggleContentDescription = global::bonus.app.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::Plugin.InputKit.Resource.Attribute.passwordToggleDrawable = global::bonus.app.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::Plugin.InputKit.Resource.Attribute.passwordToggleEnabled = global::bonus.app.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::Plugin.InputKit.Resource.Attribute.passwordToggleTint = global::bonus.app.Droid.Resource.Attribute.passwordToggleTint;
+			global::Plugin.InputKit.Resource.Attribute.passwordToggleTintMode = global::bonus.app.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Plugin.InputKit.Resource.Attribute.popupMenuStyle = global::bonus.app.Droid.Resource.Attribute.popupMenuStyle;
+			global::Plugin.InputKit.Resource.Attribute.popupTheme = global::bonus.app.Droid.Resource.Attribute.popupTheme;
+			global::Plugin.InputKit.Resource.Attribute.popupWindowStyle = global::bonus.app.Droid.Resource.Attribute.popupWindowStyle;
+			global::Plugin.InputKit.Resource.Attribute.preserveIconSpacing = global::bonus.app.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Plugin.InputKit.Resource.Attribute.pressedTranslationZ = global::bonus.app.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Plugin.InputKit.Resource.Attribute.progressBarPadding = global::bonus.app.Droid.Resource.Attribute.progressBarPadding;
+			global::Plugin.InputKit.Resource.Attribute.progressBarStyle = global::bonus.app.Droid.Resource.Attribute.progressBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.queryBackground = global::bonus.app.Droid.Resource.Attribute.queryBackground;
+			global::Plugin.InputKit.Resource.Attribute.queryHint = global::bonus.app.Droid.Resource.Attribute.queryHint;
+			global::Plugin.InputKit.Resource.Attribute.radioButtonStyle = global::bonus.app.Droid.Resource.Attribute.radioButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.ratingBarStyle = global::bonus.app.Droid.Resource.Attribute.ratingBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.ratingBarStyleIndicator = global::bonus.app.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Plugin.InputKit.Resource.Attribute.ratingBarStyleSmall = global::bonus.app.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Plugin.InputKit.Resource.Attribute.reverseLayout = global::bonus.app.Droid.Resource.Attribute.reverseLayout;
+			global::Plugin.InputKit.Resource.Attribute.rippleColor = global::bonus.app.Droid.Resource.Attribute.rippleColor;
+			global::Plugin.InputKit.Resource.Attribute.scrimAnimationDuration = global::bonus.app.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::Plugin.InputKit.Resource.Attribute.scrimVisibleHeightTrigger = global::bonus.app.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Plugin.InputKit.Resource.Attribute.searchHintIcon = global::bonus.app.Droid.Resource.Attribute.searchHintIcon;
+			global::Plugin.InputKit.Resource.Attribute.searchIcon = global::bonus.app.Droid.Resource.Attribute.searchIcon;
+			global::Plugin.InputKit.Resource.Attribute.searchViewStyle = global::bonus.app.Droid.Resource.Attribute.searchViewStyle;
+			global::Plugin.InputKit.Resource.Attribute.seekBarStyle = global::bonus.app.Droid.Resource.Attribute.seekBarStyle;
+			global::Plugin.InputKit.Resource.Attribute.selectableItemBackground = global::bonus.app.Droid.Resource.Attribute.selectableItemBackground;
+			global::Plugin.InputKit.Resource.Attribute.selectableItemBackgroundBorderless = global::bonus.app.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Plugin.InputKit.Resource.Attribute.showAsAction = global::bonus.app.Droid.Resource.Attribute.showAsAction;
+			global::Plugin.InputKit.Resource.Attribute.showDividers = global::bonus.app.Droid.Resource.Attribute.showDividers;
+			global::Plugin.InputKit.Resource.Attribute.showText = global::bonus.app.Droid.Resource.Attribute.showText;
+			global::Plugin.InputKit.Resource.Attribute.showTitle = global::bonus.app.Droid.Resource.Attribute.showTitle;
+			global::Plugin.InputKit.Resource.Attribute.singleChoiceItemLayout = global::bonus.app.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Plugin.InputKit.Resource.Attribute.spanCount = global::bonus.app.Droid.Resource.Attribute.spanCount;
+			global::Plugin.InputKit.Resource.Attribute.spinBars = global::bonus.app.Droid.Resource.Attribute.spinBars;
+			global::Plugin.InputKit.Resource.Attribute.spinnerDropDownItemStyle = global::bonus.app.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Plugin.InputKit.Resource.Attribute.spinnerStyle = global::bonus.app.Droid.Resource.Attribute.spinnerStyle;
+			global::Plugin.InputKit.Resource.Attribute.splitTrack = global::bonus.app.Droid.Resource.Attribute.splitTrack;
+			global::Plugin.InputKit.Resource.Attribute.srcCompat = global::bonus.app.Droid.Resource.Attribute.srcCompat;
+			global::Plugin.InputKit.Resource.Attribute.stackFromEnd = global::bonus.app.Droid.Resource.Attribute.stackFromEnd;
+			global::Plugin.InputKit.Resource.Attribute.state_above_anchor = global::bonus.app.Droid.Resource.Attribute.state_above_anchor;
+			global::Plugin.InputKit.Resource.Attribute.state_collapsed = global::bonus.app.Droid.Resource.Attribute.state_collapsed;
+			global::Plugin.InputKit.Resource.Attribute.state_collapsible = global::bonus.app.Droid.Resource.Attribute.state_collapsible;
+			global::Plugin.InputKit.Resource.Attribute.statusBarBackground = global::bonus.app.Droid.Resource.Attribute.statusBarBackground;
+			global::Plugin.InputKit.Resource.Attribute.statusBarScrim = global::bonus.app.Droid.Resource.Attribute.statusBarScrim;
+			global::Plugin.InputKit.Resource.Attribute.subMenuArrow = global::bonus.app.Droid.Resource.Attribute.subMenuArrow;
+			global::Plugin.InputKit.Resource.Attribute.submitBackground = global::bonus.app.Droid.Resource.Attribute.submitBackground;
+			global::Plugin.InputKit.Resource.Attribute.subtitle = global::bonus.app.Droid.Resource.Attribute.subtitle;
+			global::Plugin.InputKit.Resource.Attribute.subtitleTextAppearance = global::bonus.app.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.subtitleTextColor = global::bonus.app.Droid.Resource.Attribute.subtitleTextColor;
+			global::Plugin.InputKit.Resource.Attribute.subtitleTextStyle = global::bonus.app.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Plugin.InputKit.Resource.Attribute.suggestionRowLayout = global::bonus.app.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Plugin.InputKit.Resource.Attribute.switchMinWidth = global::bonus.app.Droid.Resource.Attribute.switchMinWidth;
+			global::Plugin.InputKit.Resource.Attribute.switchPadding = global::bonus.app.Droid.Resource.Attribute.switchPadding;
+			global::Plugin.InputKit.Resource.Attribute.switchStyle = global::bonus.app.Droid.Resource.Attribute.switchStyle;
+			global::Plugin.InputKit.Resource.Attribute.switchTextAppearance = global::bonus.app.Droid.Resource.Attribute.switchTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.tabBackground = global::bonus.app.Droid.Resource.Attribute.tabBackground;
+			global::Plugin.InputKit.Resource.Attribute.tabContentStart = global::bonus.app.Droid.Resource.Attribute.tabContentStart;
+			global::Plugin.InputKit.Resource.Attribute.tabGravity = global::bonus.app.Droid.Resource.Attribute.tabGravity;
+			global::Plugin.InputKit.Resource.Attribute.tabIndicatorColor = global::bonus.app.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Plugin.InputKit.Resource.Attribute.tabIndicatorHeight = global::bonus.app.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Plugin.InputKit.Resource.Attribute.tabMaxWidth = global::bonus.app.Droid.Resource.Attribute.tabMaxWidth;
+			global::Plugin.InputKit.Resource.Attribute.tabMinWidth = global::bonus.app.Droid.Resource.Attribute.tabMinWidth;
+			global::Plugin.InputKit.Resource.Attribute.tabMode = global::bonus.app.Droid.Resource.Attribute.tabMode;
+			global::Plugin.InputKit.Resource.Attribute.tabPadding = global::bonus.app.Droid.Resource.Attribute.tabPadding;
+			global::Plugin.InputKit.Resource.Attribute.tabPaddingBottom = global::bonus.app.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Plugin.InputKit.Resource.Attribute.tabPaddingEnd = global::bonus.app.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Plugin.InputKit.Resource.Attribute.tabPaddingStart = global::bonus.app.Droid.Resource.Attribute.tabPaddingStart;
+			global::Plugin.InputKit.Resource.Attribute.tabPaddingTop = global::bonus.app.Droid.Resource.Attribute.tabPaddingTop;
+			global::Plugin.InputKit.Resource.Attribute.tabSelectedTextColor = global::bonus.app.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Plugin.InputKit.Resource.Attribute.tabTextAppearance = global::bonus.app.Droid.Resource.Attribute.tabTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.tabTextColor = global::bonus.app.Droid.Resource.Attribute.tabTextColor;
+			global::Plugin.InputKit.Resource.Attribute.textAllCaps = global::bonus.app.Droid.Resource.Attribute.textAllCaps;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceLargePopupMenu = global::bonus.app.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceListItem = global::bonus.app.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceListItemSecondary = global::bonus.app.Droid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceListItemSmall = global::bonus.app.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Plugin.InputKit.Resource.Attribute.textAppearancePopupMenuHeader = global::bonus.app.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceSearchResultSubtitle = global::bonus.app.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceSearchResultTitle = global::bonus.app.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Plugin.InputKit.Resource.Attribute.textAppearanceSmallPopupMenu = global::bonus.app.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Plugin.InputKit.Resource.Attribute.textColorAlertDialogListItem = global::bonus.app.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Plugin.InputKit.Resource.Attribute.textColorSearchUrl = global::bonus.app.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Plugin.InputKit.Resource.Attribute.theme = global::bonus.app.Droid.Resource.Attribute.theme;
+			global::Plugin.InputKit.Resource.Attribute.thickness = global::bonus.app.Droid.Resource.Attribute.thickness;
+			global::Plugin.InputKit.Resource.Attribute.thumbTextPadding = global::bonus.app.Droid.Resource.Attribute.thumbTextPadding;
+			global::Plugin.InputKit.Resource.Attribute.thumbTint = global::bonus.app.Droid.Resource.Attribute.thumbTint;
+			global::Plugin.InputKit.Resource.Attribute.thumbTintMode = global::bonus.app.Droid.Resource.Attribute.thumbTintMode;
+			global::Plugin.InputKit.Resource.Attribute.tickMark = global::bonus.app.Droid.Resource.Attribute.tickMark;
+			global::Plugin.InputKit.Resource.Attribute.tickMarkTint = global::bonus.app.Droid.Resource.Attribute.tickMarkTint;
+			global::Plugin.InputKit.Resource.Attribute.tickMarkTintMode = global::bonus.app.Droid.Resource.Attribute.tickMarkTintMode;
+			global::Plugin.InputKit.Resource.Attribute.tint = global::bonus.app.Droid.Resource.Attribute.tint;
+			global::Plugin.InputKit.Resource.Attribute.tintMode = global::bonus.app.Droid.Resource.Attribute.tintMode;
+			global::Plugin.InputKit.Resource.Attribute.title = global::bonus.app.Droid.Resource.Attribute.title;
+			global::Plugin.InputKit.Resource.Attribute.titleEnabled = global::bonus.app.Droid.Resource.Attribute.titleEnabled;
+			global::Plugin.InputKit.Resource.Attribute.titleMargin = global::bonus.app.Droid.Resource.Attribute.titleMargin;
+			global::Plugin.InputKit.Resource.Attribute.titleMarginBottom = global::bonus.app.Droid.Resource.Attribute.titleMarginBottom;
+			global::Plugin.InputKit.Resource.Attribute.titleMarginEnd = global::bonus.app.Droid.Resource.Attribute.titleMarginEnd;
+			global::Plugin.InputKit.Resource.Attribute.titleMargins = global::bonus.app.Droid.Resource.Attribute.titleMargins;
+			global::Plugin.InputKit.Resource.Attribute.titleMarginStart = global::bonus.app.Droid.Resource.Attribute.titleMarginStart;
+			global::Plugin.InputKit.Resource.Attribute.titleMarginTop = global::bonus.app.Droid.Resource.Attribute.titleMarginTop;
+			global::Plugin.InputKit.Resource.Attribute.titleTextAppearance = global::bonus.app.Droid.Resource.Attribute.titleTextAppearance;
+			global::Plugin.InputKit.Resource.Attribute.titleTextColor = global::bonus.app.Droid.Resource.Attribute.titleTextColor;
+			global::Plugin.InputKit.Resource.Attribute.titleTextStyle = global::bonus.app.Droid.Resource.Attribute.titleTextStyle;
+			global::Plugin.InputKit.Resource.Attribute.toolbarId = global::bonus.app.Droid.Resource.Attribute.toolbarId;
+			global::Plugin.InputKit.Resource.Attribute.toolbarNavigationButtonStyle = global::bonus.app.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Plugin.InputKit.Resource.Attribute.toolbarStyle = global::bonus.app.Droid.Resource.Attribute.toolbarStyle;
+			global::Plugin.InputKit.Resource.Attribute.tooltipForegroundColor = global::bonus.app.Droid.Resource.Attribute.tooltipForegroundColor;
+			global::Plugin.InputKit.Resource.Attribute.tooltipFrameBackground = global::bonus.app.Droid.Resource.Attribute.tooltipFrameBackground;
+			global::Plugin.InputKit.Resource.Attribute.tooltipText = global::bonus.app.Droid.Resource.Attribute.tooltipText;
+			global::Plugin.InputKit.Resource.Attribute.track = global::bonus.app.Droid.Resource.Attribute.track;
+			global::Plugin.InputKit.Resource.Attribute.trackTint = global::bonus.app.Droid.Resource.Attribute.trackTint;
+			global::Plugin.InputKit.Resource.Attribute.trackTintMode = global::bonus.app.Droid.Resource.Attribute.trackTintMode;
+			global::Plugin.InputKit.Resource.Attribute.useCompatPadding = global::bonus.app.Droid.Resource.Attribute.useCompatPadding;
+			global::Plugin.InputKit.Resource.Attribute.voiceIcon = global::bonus.app.Droid.Resource.Attribute.voiceIcon;
+			global::Plugin.InputKit.Resource.Attribute.windowActionBar = global::bonus.app.Droid.Resource.Attribute.windowActionBar;
+			global::Plugin.InputKit.Resource.Attribute.windowActionBarOverlay = global::bonus.app.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Plugin.InputKit.Resource.Attribute.windowActionModeOverlay = global::bonus.app.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Plugin.InputKit.Resource.Attribute.windowFixedHeightMajor = global::bonus.app.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Plugin.InputKit.Resource.Attribute.windowFixedHeightMinor = global::bonus.app.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Plugin.InputKit.Resource.Attribute.windowFixedWidthMajor = global::bonus.app.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Plugin.InputKit.Resource.Attribute.windowFixedWidthMinor = global::bonus.app.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Plugin.InputKit.Resource.Attribute.windowMinWidthMajor = global::bonus.app.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Plugin.InputKit.Resource.Attribute.windowMinWidthMinor = global::bonus.app.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Plugin.InputKit.Resource.Attribute.windowNoTitle = global::bonus.app.Droid.Resource.Attribute.windowNoTitle;
+			global::Plugin.InputKit.Resource.Boolean.abc_action_bar_embed_tabs = global::bonus.app.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Plugin.InputKit.Resource.Boolean.abc_allow_stacked_button_bar = global::bonus.app.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Plugin.InputKit.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::bonus.app.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Plugin.InputKit.Resource.Color.abc_background_cache_hint_selector_material_dark = global::bonus.app.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Plugin.InputKit.Resource.Color.abc_background_cache_hint_selector_material_light = global::bonus.app.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Plugin.InputKit.Resource.Color.abc_btn_colored_borderless_text_material = global::bonus.app.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Plugin.InputKit.Resource.Color.abc_btn_colored_text_material = global::bonus.app.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::Plugin.InputKit.Resource.Color.abc_color_highlight_material = global::bonus.app.Droid.Resource.Color.abc_color_highlight_material;
+			global::Plugin.InputKit.Resource.Color.abc_hint_foreground_material_dark = global::bonus.app.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Plugin.InputKit.Resource.Color.abc_hint_foreground_material_light = global::bonus.app.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::Plugin.InputKit.Resource.Color.abc_input_method_navigation_guard = global::bonus.app.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Plugin.InputKit.Resource.Color.abc_primary_text_disable_only_material_dark = global::bonus.app.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Plugin.InputKit.Resource.Color.abc_primary_text_disable_only_material_light = global::bonus.app.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Plugin.InputKit.Resource.Color.abc_primary_text_material_dark = global::bonus.app.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Plugin.InputKit.Resource.Color.abc_primary_text_material_light = global::bonus.app.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Plugin.InputKit.Resource.Color.abc_search_url_text = global::bonus.app.Droid.Resource.Color.abc_search_url_text;
+			global::Plugin.InputKit.Resource.Color.abc_search_url_text_normal = global::bonus.app.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Plugin.InputKit.Resource.Color.abc_search_url_text_pressed = global::bonus.app.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Plugin.InputKit.Resource.Color.abc_search_url_text_selected = global::bonus.app.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Plugin.InputKit.Resource.Color.abc_secondary_text_material_dark = global::bonus.app.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Plugin.InputKit.Resource.Color.abc_secondary_text_material_light = global::bonus.app.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Plugin.InputKit.Resource.Color.abc_tint_btn_checkable = global::bonus.app.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::Plugin.InputKit.Resource.Color.abc_tint_default = global::bonus.app.Droid.Resource.Color.abc_tint_default;
+			global::Plugin.InputKit.Resource.Color.abc_tint_edittext = global::bonus.app.Droid.Resource.Color.abc_tint_edittext;
+			global::Plugin.InputKit.Resource.Color.abc_tint_seek_thumb = global::bonus.app.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::Plugin.InputKit.Resource.Color.abc_tint_spinner = global::bonus.app.Droid.Resource.Color.abc_tint_spinner;
+			global::Plugin.InputKit.Resource.Color.abc_tint_switch_track = global::bonus.app.Droid.Resource.Color.abc_tint_switch_track;
+			global::Plugin.InputKit.Resource.Color.accent_material_dark = global::bonus.app.Droid.Resource.Color.accent_material_dark;
+			global::Plugin.InputKit.Resource.Color.accent_material_light = global::bonus.app.Droid.Resource.Color.accent_material_light;
+			global::Plugin.InputKit.Resource.Color.background_floating_material_dark = global::bonus.app.Droid.Resource.Color.background_floating_material_dark;
+			global::Plugin.InputKit.Resource.Color.background_floating_material_light = global::bonus.app.Droid.Resource.Color.background_floating_material_light;
+			global::Plugin.InputKit.Resource.Color.background_material_dark = global::bonus.app.Droid.Resource.Color.background_material_dark;
+			global::Plugin.InputKit.Resource.Color.background_material_light = global::bonus.app.Droid.Resource.Color.background_material_light;
+			global::Plugin.InputKit.Resource.Color.bright_foreground_disabled_material_dark = global::bonus.app.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Plugin.InputKit.Resource.Color.bright_foreground_disabled_material_light = global::bonus.app.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Plugin.InputKit.Resource.Color.bright_foreground_inverse_material_dark = global::bonus.app.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Plugin.InputKit.Resource.Color.bright_foreground_inverse_material_light = global::bonus.app.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Plugin.InputKit.Resource.Color.bright_foreground_material_dark = global::bonus.app.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Plugin.InputKit.Resource.Color.bright_foreground_material_light = global::bonus.app.Droid.Resource.Color.bright_foreground_material_light;
+			global::Plugin.InputKit.Resource.Color.button_material_dark = global::bonus.app.Droid.Resource.Color.button_material_dark;
+			global::Plugin.InputKit.Resource.Color.button_material_light = global::bonus.app.Droid.Resource.Color.button_material_light;
+			global::Plugin.InputKit.Resource.Color.cardview_dark_background = global::bonus.app.Droid.Resource.Color.cardview_dark_background;
+			global::Plugin.InputKit.Resource.Color.cardview_light_background = global::bonus.app.Droid.Resource.Color.cardview_light_background;
+			global::Plugin.InputKit.Resource.Color.cardview_shadow_end_color = global::bonus.app.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Plugin.InputKit.Resource.Color.cardview_shadow_start_color = global::bonus.app.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Plugin.InputKit.Resource.Color.design_bottom_navigation_shadow_color = global::bonus.app.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Plugin.InputKit.Resource.Color.design_error = global::bonus.app.Droid.Resource.Color.design_error;
+			global::Plugin.InputKit.Resource.Color.design_fab_shadow_end_color = global::bonus.app.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Plugin.InputKit.Resource.Color.design_fab_shadow_mid_color = global::bonus.app.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Plugin.InputKit.Resource.Color.design_fab_shadow_start_color = global::bonus.app.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Plugin.InputKit.Resource.Color.design_fab_stroke_end_inner_color = global::bonus.app.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Plugin.InputKit.Resource.Color.design_fab_stroke_end_outer_color = global::bonus.app.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Plugin.InputKit.Resource.Color.design_fab_stroke_top_inner_color = global::bonus.app.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Plugin.InputKit.Resource.Color.design_fab_stroke_top_outer_color = global::bonus.app.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Plugin.InputKit.Resource.Color.design_snackbar_background_color = global::bonus.app.Droid.Resource.Color.design_snackbar_background_color;
+			global::Plugin.InputKit.Resource.Color.design_tint_password_toggle = global::bonus.app.Droid.Resource.Color.design_tint_password_toggle;
+			global::Plugin.InputKit.Resource.Color.dim_foreground_disabled_material_dark = global::bonus.app.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Plugin.InputKit.Resource.Color.dim_foreground_disabled_material_light = global::bonus.app.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Plugin.InputKit.Resource.Color.dim_foreground_material_dark = global::bonus.app.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Plugin.InputKit.Resource.Color.dim_foreground_material_light = global::bonus.app.Droid.Resource.Color.dim_foreground_material_light;
+			global::Plugin.InputKit.Resource.Color.foreground_material_dark = global::bonus.app.Droid.Resource.Color.foreground_material_dark;
+			global::Plugin.InputKit.Resource.Color.foreground_material_light = global::bonus.app.Droid.Resource.Color.foreground_material_light;
+			global::Plugin.InputKit.Resource.Color.highlighted_text_material_dark = global::bonus.app.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Plugin.InputKit.Resource.Color.highlighted_text_material_light = global::bonus.app.Droid.Resource.Color.highlighted_text_material_light;
+			global::Plugin.InputKit.Resource.Color.material_blue_grey_800 = global::bonus.app.Droid.Resource.Color.material_blue_grey_800;
+			global::Plugin.InputKit.Resource.Color.material_blue_grey_900 = global::bonus.app.Droid.Resource.Color.material_blue_grey_900;
+			global::Plugin.InputKit.Resource.Color.material_blue_grey_950 = global::bonus.app.Droid.Resource.Color.material_blue_grey_950;
+			global::Plugin.InputKit.Resource.Color.material_deep_teal_200 = global::bonus.app.Droid.Resource.Color.material_deep_teal_200;
+			global::Plugin.InputKit.Resource.Color.material_deep_teal_500 = global::bonus.app.Droid.Resource.Color.material_deep_teal_500;
+			global::Plugin.InputKit.Resource.Color.material_grey_100 = global::bonus.app.Droid.Resource.Color.material_grey_100;
+			global::Plugin.InputKit.Resource.Color.material_grey_300 = global::bonus.app.Droid.Resource.Color.material_grey_300;
+			global::Plugin.InputKit.Resource.Color.material_grey_50 = global::bonus.app.Droid.Resource.Color.material_grey_50;
+			global::Plugin.InputKit.Resource.Color.material_grey_600 = global::bonus.app.Droid.Resource.Color.material_grey_600;
+			global::Plugin.InputKit.Resource.Color.material_grey_800 = global::bonus.app.Droid.Resource.Color.material_grey_800;
+			global::Plugin.InputKit.Resource.Color.material_grey_850 = global::bonus.app.Droid.Resource.Color.material_grey_850;
+			global::Plugin.InputKit.Resource.Color.material_grey_900 = global::bonus.app.Droid.Resource.Color.material_grey_900;
+			global::Plugin.InputKit.Resource.Color.notification_action_color_filter = global::bonus.app.Droid.Resource.Color.notification_action_color_filter;
+			global::Plugin.InputKit.Resource.Color.notification_icon_bg_color = global::bonus.app.Droid.Resource.Color.notification_icon_bg_color;
+			global::Plugin.InputKit.Resource.Color.notification_material_background_media_default_color = global::bonus.app.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::Plugin.InputKit.Resource.Color.primary_dark_material_dark = global::bonus.app.Droid.Resource.Color.primary_dark_material_dark;
+			global::Plugin.InputKit.Resource.Color.primary_dark_material_light = global::bonus.app.Droid.Resource.Color.primary_dark_material_light;
+			global::Plugin.InputKit.Resource.Color.primary_material_dark = global::bonus.app.Droid.Resource.Color.primary_material_dark;
+			global::Plugin.InputKit.Resource.Color.primary_material_light = global::bonus.app.Droid.Resource.Color.primary_material_light;
+			global::Plugin.InputKit.Resource.Color.primary_text_default_material_dark = global::bonus.app.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Plugin.InputKit.Resource.Color.primary_text_default_material_light = global::bonus.app.Droid.Resource.Color.primary_text_default_material_light;
+			global::Plugin.InputKit.Resource.Color.primary_text_disabled_material_dark = global::bonus.app.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Plugin.InputKit.Resource.Color.primary_text_disabled_material_light = global::bonus.app.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Plugin.InputKit.Resource.Color.ripple_material_dark = global::bonus.app.Droid.Resource.Color.ripple_material_dark;
+			global::Plugin.InputKit.Resource.Color.ripple_material_light = global::bonus.app.Droid.Resource.Color.ripple_material_light;
+			global::Plugin.InputKit.Resource.Color.secondary_text_default_material_dark = global::bonus.app.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Plugin.InputKit.Resource.Color.secondary_text_default_material_light = global::bonus.app.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Plugin.InputKit.Resource.Color.secondary_text_disabled_material_dark = global::bonus.app.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Plugin.InputKit.Resource.Color.secondary_text_disabled_material_light = global::bonus.app.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Plugin.InputKit.Resource.Color.switch_thumb_disabled_material_dark = global::bonus.app.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Plugin.InputKit.Resource.Color.switch_thumb_disabled_material_light = global::bonus.app.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Plugin.InputKit.Resource.Color.switch_thumb_material_dark = global::bonus.app.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Plugin.InputKit.Resource.Color.switch_thumb_material_light = global::bonus.app.Droid.Resource.Color.switch_thumb_material_light;
+			global::Plugin.InputKit.Resource.Color.switch_thumb_normal_material_dark = global::bonus.app.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Plugin.InputKit.Resource.Color.switch_thumb_normal_material_light = global::bonus.app.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Plugin.InputKit.Resource.Color.tooltip_background_dark = global::bonus.app.Droid.Resource.Color.tooltip_background_dark;
+			global::Plugin.InputKit.Resource.Color.tooltip_background_light = global::bonus.app.Droid.Resource.Color.tooltip_background_light;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_content_inset_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_default_height_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_default_padding_end_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_default_padding_start_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_elevation_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_stacked_max_height = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::bonus.app.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_button_min_height_material = global::bonus.app.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_button_min_width_material = global::bonus.app.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_action_button_min_width_overflow_material = global::bonus.app.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_alert_dialog_button_bar_height = global::bonus.app.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Plugin.InputKit.Resource.Dimension.abc_button_inset_horizontal_material = global::bonus.app.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_button_inset_vertical_material = global::bonus.app.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_button_padding_horizontal_material = global::bonus.app.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_button_padding_vertical_material = global::bonus.app.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::bonus.app.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Plugin.InputKit.Resource.Dimension.abc_config_prefDialogWidth = global::bonus.app.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Plugin.InputKit.Resource.Dimension.abc_control_corner_material = global::bonus.app.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_control_inset_material = global::bonus.app.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_control_padding_material = global::bonus.app.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_fixed_height_major = global::bonus.app.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_fixed_height_minor = global::bonus.app.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_fixed_width_major = global::bonus.app.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_fixed_width_minor = global::bonus.app.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::bonus.app.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::bonus.app.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_min_width_major = global::bonus.app.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_min_width_minor = global::bonus.app.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_padding_material = global::bonus.app.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_padding_top_material = global::bonus.app.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_dialog_title_divider_material = global::bonus.app.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_disabled_alpha_material_dark = global::bonus.app.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Plugin.InputKit.Resource.Dimension.abc_disabled_alpha_material_light = global::bonus.app.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Plugin.InputKit.Resource.Dimension.abc_dropdownitem_icon_width = global::bonus.app.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Plugin.InputKit.Resource.Dimension.abc_dropdownitem_text_padding_left = global::bonus.app.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Plugin.InputKit.Resource.Dimension.abc_dropdownitem_text_padding_right = global::bonus.app.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Plugin.InputKit.Resource.Dimension.abc_edit_text_inset_bottom_material = global::bonus.app.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::bonus.app.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_edit_text_inset_top_material = global::bonus.app.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_floating_window_z = global::bonus.app.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Plugin.InputKit.Resource.Dimension.abc_list_item_padding_horizontal_material = global::bonus.app.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_panel_menu_list_width = global::bonus.app.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Plugin.InputKit.Resource.Dimension.abc_progress_bar_height_material = global::bonus.app.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_search_view_preferred_height = global::bonus.app.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Plugin.InputKit.Resource.Dimension.abc_search_view_preferred_width = global::bonus.app.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Plugin.InputKit.Resource.Dimension.abc_seekbar_track_background_height_material = global::bonus.app.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_seekbar_track_progress_height_material = global::bonus.app.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_select_dialog_padding_start_material = global::bonus.app.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_switch_padding = global::bonus.app.Droid.Resource.Dimension.abc_switch_padding;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_body_1_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_body_2_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_button_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_caption_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_display_1_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_display_2_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_display_3_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_display_4_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_headline_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_large_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_medium_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_menu_header_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_menu_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_small_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_subhead_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::bonus.app.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_title_material = global::bonus.app.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Plugin.InputKit.Resource.Dimension.abc_text_size_title_material_toolbar = global::bonus.app.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Plugin.InputKit.Resource.Dimension.cardview_compat_inset_shadow = global::bonus.app.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Plugin.InputKit.Resource.Dimension.cardview_default_elevation = global::bonus.app.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Plugin.InputKit.Resource.Dimension.cardview_default_radius = global::bonus.app.Droid.Resource.Dimension.cardview_default_radius;
+			global::Plugin.InputKit.Resource.Dimension.compat_button_inset_horizontal_material = global::bonus.app.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Plugin.InputKit.Resource.Dimension.compat_button_inset_vertical_material = global::bonus.app.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Plugin.InputKit.Resource.Dimension.compat_button_padding_horizontal_material = global::bonus.app.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Plugin.InputKit.Resource.Dimension.compat_button_padding_vertical_material = global::bonus.app.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Plugin.InputKit.Resource.Dimension.compat_control_corner_material = global::bonus.app.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Plugin.InputKit.Resource.Dimension.design_appbar_elevation = global::bonus.app.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_active_text_size = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_elevation = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_height = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_item_max_width = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_item_min_width = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_margin = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_shadow_height = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_navigation_text_size = global::bonus.app.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_sheet_modal_elevation = global::bonus.app.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Plugin.InputKit.Resource.Dimension.design_bottom_sheet_peek_height_min = global::bonus.app.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Plugin.InputKit.Resource.Dimension.design_fab_border_width = global::bonus.app.Droid.Resource.Dimension.design_fab_border_width;
+			global::Plugin.InputKit.Resource.Dimension.design_fab_elevation = global::bonus.app.Droid.Resource.Dimension.design_fab_elevation;
+			global::Plugin.InputKit.Resource.Dimension.design_fab_image_size = global::bonus.app.Droid.Resource.Dimension.design_fab_image_size;
+			global::Plugin.InputKit.Resource.Dimension.design_fab_size_mini = global::bonus.app.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Plugin.InputKit.Resource.Dimension.design_fab_size_normal = global::bonus.app.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Plugin.InputKit.Resource.Dimension.design_fab_translation_z_pressed = global::bonus.app.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Plugin.InputKit.Resource.Dimension.design_navigation_elevation = global::bonus.app.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Plugin.InputKit.Resource.Dimension.design_navigation_icon_padding = global::bonus.app.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Plugin.InputKit.Resource.Dimension.design_navigation_icon_size = global::bonus.app.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Plugin.InputKit.Resource.Dimension.design_navigation_max_width = global::bonus.app.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Plugin.InputKit.Resource.Dimension.design_navigation_padding_bottom = global::bonus.app.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Plugin.InputKit.Resource.Dimension.design_navigation_separator_vertical_padding = global::bonus.app.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_action_inline_max_width = global::bonus.app.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_background_corner_radius = global::bonus.app.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_elevation = global::bonus.app.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::bonus.app.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_max_width = global::bonus.app.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_min_width = global::bonus.app.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_padding_horizontal = global::bonus.app.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_padding_vertical = global::bonus.app.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::bonus.app.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Plugin.InputKit.Resource.Dimension.design_snackbar_text_size = global::bonus.app.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Plugin.InputKit.Resource.Dimension.design_tab_max_width = global::bonus.app.Droid.Resource.Dimension.design_tab_max_width;
+			global::Plugin.InputKit.Resource.Dimension.design_tab_scrollable_min_width = global::bonus.app.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Plugin.InputKit.Resource.Dimension.design_tab_text_size = global::bonus.app.Droid.Resource.Dimension.design_tab_text_size;
+			global::Plugin.InputKit.Resource.Dimension.design_tab_text_size_2line = global::bonus.app.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Plugin.InputKit.Resource.Dimension.disabled_alpha_material_dark = global::bonus.app.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Plugin.InputKit.Resource.Dimension.disabled_alpha_material_light = global::bonus.app.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Plugin.InputKit.Resource.Dimension.fastscroll_default_thickness = global::bonus.app.Droid.Resource.Dimension.fastscroll_default_thickness;
+			global::Plugin.InputKit.Resource.Dimension.fastscroll_margin = global::bonus.app.Droid.Resource.Dimension.fastscroll_margin;
+			global::Plugin.InputKit.Resource.Dimension.fastscroll_minimum_range = global::bonus.app.Droid.Resource.Dimension.fastscroll_minimum_range;
+			global::Plugin.InputKit.Resource.Dimension.highlight_alpha_material_colored = global::bonus.app.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Plugin.InputKit.Resource.Dimension.highlight_alpha_material_dark = global::bonus.app.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Plugin.InputKit.Resource.Dimension.highlight_alpha_material_light = global::bonus.app.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Plugin.InputKit.Resource.Dimension.hint_alpha_material_dark = global::bonus.app.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::Plugin.InputKit.Resource.Dimension.hint_alpha_material_light = global::bonus.app.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::Plugin.InputKit.Resource.Dimension.hint_pressed_alpha_material_dark = global::bonus.app.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Plugin.InputKit.Resource.Dimension.hint_pressed_alpha_material_light = global::bonus.app.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Plugin.InputKit.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::bonus.app.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Plugin.InputKit.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::bonus.app.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Plugin.InputKit.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::bonus.app.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Plugin.InputKit.Resource.Dimension.mr_controller_volume_group_list_item_height = global::bonus.app.Droid.Resource.Dimension.mr_controller_volume_group_list_item_height;
+			global::Plugin.InputKit.Resource.Dimension.mr_controller_volume_group_list_item_icon_size = global::bonus.app.Droid.Resource.Dimension.mr_controller_volume_group_list_item_icon_size;
+			global::Plugin.InputKit.Resource.Dimension.mr_controller_volume_group_list_max_height = global::bonus.app.Droid.Resource.Dimension.mr_controller_volume_group_list_max_height;
+			global::Plugin.InputKit.Resource.Dimension.mr_controller_volume_group_list_padding_top = global::bonus.app.Droid.Resource.Dimension.mr_controller_volume_group_list_padding_top;
+			global::Plugin.InputKit.Resource.Dimension.mr_dialog_fixed_width_major = global::bonus.app.Droid.Resource.Dimension.mr_dialog_fixed_width_major;
+			global::Plugin.InputKit.Resource.Dimension.mr_dialog_fixed_width_minor = global::bonus.app.Droid.Resource.Dimension.mr_dialog_fixed_width_minor;
+			global::Plugin.InputKit.Resource.Dimension.notification_action_icon_size = global::bonus.app.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Plugin.InputKit.Resource.Dimension.notification_action_text_size = global::bonus.app.Droid.Resource.Dimension.notification_action_text_size;
+			global::Plugin.InputKit.Resource.Dimension.notification_big_circle_margin = global::bonus.app.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Plugin.InputKit.Resource.Dimension.notification_content_margin_start = global::bonus.app.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Plugin.InputKit.Resource.Dimension.notification_large_icon_height = global::bonus.app.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Plugin.InputKit.Resource.Dimension.notification_large_icon_width = global::bonus.app.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Plugin.InputKit.Resource.Dimension.notification_main_column_padding_top = global::bonus.app.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Plugin.InputKit.Resource.Dimension.notification_media_narrow_margin = global::bonus.app.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Plugin.InputKit.Resource.Dimension.notification_right_icon_size = global::bonus.app.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Plugin.InputKit.Resource.Dimension.notification_right_side_padding_top = global::bonus.app.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Plugin.InputKit.Resource.Dimension.notification_small_icon_background_padding = global::bonus.app.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Plugin.InputKit.Resource.Dimension.notification_small_icon_size_as_large = global::bonus.app.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Plugin.InputKit.Resource.Dimension.notification_subtext_size = global::bonus.app.Droid.Resource.Dimension.notification_subtext_size;
+			global::Plugin.InputKit.Resource.Dimension.notification_top_pad = global::bonus.app.Droid.Resource.Dimension.notification_top_pad;
+			global::Plugin.InputKit.Resource.Dimension.notification_top_pad_large_text = global::bonus.app.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_corner_radius = global::bonus.app.Droid.Resource.Dimension.tooltip_corner_radius;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_horizontal_padding = global::bonus.app.Droid.Resource.Dimension.tooltip_horizontal_padding;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_margin = global::bonus.app.Droid.Resource.Dimension.tooltip_margin;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_precise_anchor_extra_offset = global::bonus.app.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_precise_anchor_threshold = global::bonus.app.Droid.Resource.Dimension.tooltip_precise_anchor_threshold;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_vertical_padding = global::bonus.app.Droid.Resource.Dimension.tooltip_vertical_padding;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_y_offset_non_touch = global::bonus.app.Droid.Resource.Dimension.tooltip_y_offset_non_touch;
+			global::Plugin.InputKit.Resource.Dimension.tooltip_y_offset_touch = global::bonus.app.Droid.Resource.Dimension.tooltip_y_offset_touch;
+			global::Plugin.InputKit.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_action_bar_item_background_material = global::bonus.app.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_borderless_material = global::bonus.app.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_material = global::bonus.app.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::bonus.app.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::bonus.app.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_colored_material = global::bonus.app.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_default_mtrl_shape = global::bonus.app.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_material = global::bonus.app.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::bonus.app.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::bonus.app.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::bonus.app.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Plugin.InputKit.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::bonus.app.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Plugin.InputKit.Resource.Drawable.abc_cab_background_internal_bg = global::bonus.app.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Plugin.InputKit.Resource.Drawable.abc_cab_background_top_material = global::bonus.app.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_control_background_material = global::bonus.app.Droid.Resource.Drawable.abc_control_background_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_dialog_material_background = global::bonus.app.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::Plugin.InputKit.Resource.Drawable.abc_edit_text_material = global::bonus.app.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_ab_back_material = global::bonus.app.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_clear_material = global::bonus.app.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_go_search_api_material = global::bonus.app.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_menu_overflow_material = global::bonus.app.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_search_api_material = global::bonus.app.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_star_black_16dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_star_black_36dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_star_black_48dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_star_half_black_16dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_star_half_black_36dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_star_half_black_48dp = global::bonus.app.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Plugin.InputKit.Resource.Drawable.abc_ic_voice_search_api_material = global::bonus.app.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_item_background_holo_dark = global::bonus.app.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_item_background_holo_light = global::bonus.app.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_divider_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_focused_holo = global::bonus.app.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_longpressed_holo = global::bonus.app.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_pressed_holo_dark = global::bonus.app.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_pressed_holo_light = global::bonus.app.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::bonus.app.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::bonus.app.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::bonus.app.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_selector_disabled_holo_light = global::bonus.app.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_selector_holo_dark = global::bonus.app.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_list_selector_holo_light = global::bonus.app.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::bonus.app.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Plugin.InputKit.Resource.Drawable.abc_popup_background_mtrl_mult = global::bonus.app.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Plugin.InputKit.Resource.Drawable.abc_ratingbar_indicator_material = global::bonus.app.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ratingbar_material = global::bonus.app.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_ratingbar_small_material = global::bonus.app.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::bonus.app.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Plugin.InputKit.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::bonus.app.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Plugin.InputKit.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_seekbar_thumb_material = global::bonus.app.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_seekbar_tick_mark_material = global::bonus.app.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_seekbar_track_material = global::bonus.app.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::bonus.app.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_spinner_textfield_background_material = global::bonus.app.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_switch_thumb_material = global::bonus.app.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_switch_track_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_tab_indicator_material = global::bonus.app.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::bonus.app.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Plugin.InputKit.Resource.Drawable.abc_textfield_search_material = global::bonus.app.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_cursor_material = global::bonus.app.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::bonus.app.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::bonus.app.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::bonus.app.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::bonus.app.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::bonus.app.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Plugin.InputKit.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::bonus.app.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Plugin.InputKit.Resource.Drawable.abc_vector_test = global::bonus.app.Droid.Resource.Drawable.abc_vector_test;
+			global::Plugin.InputKit.Resource.Drawable.avd_hide_password = global::bonus.app.Droid.Resource.Drawable.avd_hide_password;
+			global::Plugin.InputKit.Resource.Drawable.avd_show_password = global::bonus.app.Droid.Resource.Drawable.avd_show_password;
+			global::Plugin.InputKit.Resource.Drawable.design_bottom_navigation_item_background = global::bonus.app.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Plugin.InputKit.Resource.Drawable.design_fab_background = global::bonus.app.Droid.Resource.Drawable.design_fab_background;
+			global::Plugin.InputKit.Resource.Drawable.design_ic_visibility = global::bonus.app.Droid.Resource.Drawable.design_ic_visibility;
+			global::Plugin.InputKit.Resource.Drawable.design_ic_visibility_off = global::bonus.app.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::Plugin.InputKit.Resource.Drawable.design_password_eye = global::bonus.app.Droid.Resource.Drawable.design_password_eye;
+			global::Plugin.InputKit.Resource.Drawable.design_snackbar_background = global::bonus.app.Droid.Resource.Drawable.design_snackbar_background;
+			global::Plugin.InputKit.Resource.Drawable.ic_audiotrack_dark = global::bonus.app.Droid.Resource.Drawable.ic_audiotrack_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_audiotrack_light = global::bonus.app.Droid.Resource.Drawable.ic_audiotrack_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_dialog_close_dark = global::bonus.app.Droid.Resource.Drawable.ic_dialog_close_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_dialog_close_light = global::bonus.app.Droid.Resource.Drawable.ic_dialog_close_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_00 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_00;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_01 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_01;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_02 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_02;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_03 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_03;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_04 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_04;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_05 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_05;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_06 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_06;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_07 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_07;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_08 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_08;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_09 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_09;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_10 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_10;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_11 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_11;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_12 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_12;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_13 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_13;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_14 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_14;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_collapse_15 = global::bonus.app.Droid.Resource.Drawable.ic_group_collapse_15;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_00 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_00;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_01 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_01;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_02 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_02;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_03 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_03;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_04 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_04;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_05 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_05;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_06 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_06;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_07 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_07;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_08 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_08;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_09 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_09;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_10 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_10;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_11 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_11;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_12 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_12;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_13 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_13;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_14 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_14;
+			global::Plugin.InputKit.Resource.Drawable.ic_group_expand_15 = global::bonus.app.Droid.Resource.Drawable.ic_group_expand_15;
+			global::Plugin.InputKit.Resource.Drawable.ic_media_pause_dark = global::bonus.app.Droid.Resource.Drawable.ic_media_pause_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_media_pause_light = global::bonus.app.Droid.Resource.Drawable.ic_media_pause_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_media_play_dark = global::bonus.app.Droid.Resource.Drawable.ic_media_play_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_media_play_light = global::bonus.app.Droid.Resource.Drawable.ic_media_play_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_media_stop_dark = global::bonus.app.Droid.Resource.Drawable.ic_media_stop_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_media_stop_light = global::bonus.app.Droid.Resource.Drawable.ic_media_stop_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_00_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_00_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_00_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_00_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_01_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_01_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_01_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_01_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_02_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_02_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_02_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_02_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_03_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_03_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_03_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_03_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_04_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_04_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_04_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_04_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_05_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_05_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_05_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_05_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_06_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_06_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_06_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_06_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_07_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_07_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_07_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_07_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_08_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_08_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_08_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_08_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_09_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_09_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_09_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_09_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_10_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_10_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_10_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_10_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_11_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_11_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_11_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_11_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_12_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_12_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_12_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_12_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_13_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_13_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_13_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_13_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_14_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_14_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_14_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_14_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_15_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_15_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_15_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_15_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_16_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_16_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_16_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_16_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_17_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_17_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_17_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_17_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_18_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_18_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_18_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_18_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_19_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_19_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_19_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_19_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_20_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_20_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_20_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_20_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_21_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_21_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_21_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_21_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_22_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_22_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_22_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_22_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_23_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_23_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_23_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_23_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_24_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_24_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_24_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_24_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_25_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_25_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_25_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_25_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_26_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_26_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_26_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_26_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_27_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_27_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_27_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_27_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_28_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_28_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_28_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_28_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_29_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_29_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_29_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_29_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_30_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_30_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connected_30_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connected_30_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_00_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_00_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_00_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_00_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_01_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_01_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_01_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_01_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_02_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_02_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_02_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_02_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_03_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_03_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_03_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_03_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_04_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_04_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_04_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_04_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_05_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_05_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_05_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_05_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_06_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_06_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_06_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_06_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_07_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_07_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_07_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_07_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_08_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_08_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_08_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_08_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_09_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_09_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_09_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_09_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_10_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_10_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_10_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_10_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_11_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_11_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_11_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_11_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_12_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_12_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_12_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_12_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_13_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_13_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_13_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_13_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_14_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_14_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_14_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_14_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_15_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_15_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_15_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_15_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_16_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_16_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_16_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_16_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_17_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_17_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_17_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_17_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_18_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_18_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_18_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_18_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_19_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_19_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_19_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_19_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_20_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_20_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_20_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_20_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_21_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_21_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_21_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_21_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_22_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_22_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_22_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_22_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_23_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_23_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_23_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_23_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_24_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_24_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_24_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_24_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_25_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_25_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_25_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_25_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_26_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_26_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_26_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_26_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_27_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_27_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_27_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_27_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_28_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_28_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_28_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_28_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_29_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_29_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_29_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_29_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_30_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_30_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_connecting_30_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_connecting_30_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_disabled_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_disabled_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_disabled_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_disabled_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_disconnected_dark = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_disconnected_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_disconnected_light = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_disconnected_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_mr_button_grey = global::bonus.app.Droid.Resource.Drawable.ic_mr_button_grey;
+			global::Plugin.InputKit.Resource.Drawable.ic_vol_type_speaker_dark = global::bonus.app.Droid.Resource.Drawable.ic_vol_type_speaker_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_vol_type_speaker_group_dark = global::bonus.app.Droid.Resource.Drawable.ic_vol_type_speaker_group_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_vol_type_speaker_group_light = global::bonus.app.Droid.Resource.Drawable.ic_vol_type_speaker_group_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_vol_type_speaker_light = global::bonus.app.Droid.Resource.Drawable.ic_vol_type_speaker_light;
+			global::Plugin.InputKit.Resource.Drawable.ic_vol_type_tv_dark = global::bonus.app.Droid.Resource.Drawable.ic_vol_type_tv_dark;
+			global::Plugin.InputKit.Resource.Drawable.ic_vol_type_tv_light = global::bonus.app.Droid.Resource.Drawable.ic_vol_type_tv_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_button_connected_dark = global::bonus.app.Droid.Resource.Drawable.mr_button_connected_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_button_connected_light = global::bonus.app.Droid.Resource.Drawable.mr_button_connected_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_button_connecting_dark = global::bonus.app.Droid.Resource.Drawable.mr_button_connecting_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_button_connecting_light = global::bonus.app.Droid.Resource.Drawable.mr_button_connecting_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_button_dark = global::bonus.app.Droid.Resource.Drawable.mr_button_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_button_light = global::bonus.app.Droid.Resource.Drawable.mr_button_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_dialog_close_dark = global::bonus.app.Droid.Resource.Drawable.mr_dialog_close_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_dialog_close_light = global::bonus.app.Droid.Resource.Drawable.mr_dialog_close_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_dialog_material_background_dark = global::bonus.app.Droid.Resource.Drawable.mr_dialog_material_background_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_dialog_material_background_light = global::bonus.app.Droid.Resource.Drawable.mr_dialog_material_background_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_group_collapse = global::bonus.app.Droid.Resource.Drawable.mr_group_collapse;
+			global::Plugin.InputKit.Resource.Drawable.mr_group_expand = global::bonus.app.Droid.Resource.Drawable.mr_group_expand;
+			global::Plugin.InputKit.Resource.Drawable.mr_media_pause_dark = global::bonus.app.Droid.Resource.Drawable.mr_media_pause_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_media_pause_light = global::bonus.app.Droid.Resource.Drawable.mr_media_pause_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_media_play_dark = global::bonus.app.Droid.Resource.Drawable.mr_media_play_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_media_play_light = global::bonus.app.Droid.Resource.Drawable.mr_media_play_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_media_stop_dark = global::bonus.app.Droid.Resource.Drawable.mr_media_stop_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_media_stop_light = global::bonus.app.Droid.Resource.Drawable.mr_media_stop_light;
+			global::Plugin.InputKit.Resource.Drawable.mr_vol_type_audiotrack_dark = global::bonus.app.Droid.Resource.Drawable.mr_vol_type_audiotrack_dark;
+			global::Plugin.InputKit.Resource.Drawable.mr_vol_type_audiotrack_light = global::bonus.app.Droid.Resource.Drawable.mr_vol_type_audiotrack_light;
+			global::Plugin.InputKit.Resource.Drawable.navigation_empty_icon = global::bonus.app.Droid.Resource.Drawable.navigation_empty_icon;
+			global::Plugin.InputKit.Resource.Drawable.notification_action_background = global::bonus.app.Droid.Resource.Drawable.notification_action_background;
+			global::Plugin.InputKit.Resource.Drawable.notification_bg = global::bonus.app.Droid.Resource.Drawable.notification_bg;
+			global::Plugin.InputKit.Resource.Drawable.notification_bg_low = global::bonus.app.Droid.Resource.Drawable.notification_bg_low;
+			global::Plugin.InputKit.Resource.Drawable.notification_bg_low_normal = global::bonus.app.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Plugin.InputKit.Resource.Drawable.notification_bg_low_pressed = global::bonus.app.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Plugin.InputKit.Resource.Drawable.notification_bg_normal = global::bonus.app.Droid.Resource.Drawable.notification_bg_normal;
+			global::Plugin.InputKit.Resource.Drawable.notification_bg_normal_pressed = global::bonus.app.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Plugin.InputKit.Resource.Drawable.notification_icon_background = global::bonus.app.Droid.Resource.Drawable.notification_icon_background;
+			global::Plugin.InputKit.Resource.Drawable.notification_template_icon_bg = global::bonus.app.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Plugin.InputKit.Resource.Drawable.notification_template_icon_low_bg = global::bonus.app.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Plugin.InputKit.Resource.Drawable.notification_tile_bg = global::bonus.app.Droid.Resource.Drawable.notification_tile_bg;
+			global::Plugin.InputKit.Resource.Drawable.notify_panel_notification_icon_bg = global::bonus.app.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Plugin.InputKit.Resource.Drawable.tooltip_frame_dark = global::bonus.app.Droid.Resource.Drawable.tooltip_frame_dark;
+			global::Plugin.InputKit.Resource.Drawable.tooltip_frame_light = global::bonus.app.Droid.Resource.Drawable.tooltip_frame_light;
+			global::Plugin.InputKit.Resource.Id.action0 = global::bonus.app.Droid.Resource.Id.action0;
+			global::Plugin.InputKit.Resource.Id.actions = global::bonus.app.Droid.Resource.Id.actions;
+			global::Plugin.InputKit.Resource.Id.action_bar = global::bonus.app.Droid.Resource.Id.action_bar;
+			global::Plugin.InputKit.Resource.Id.action_bar_activity_content = global::bonus.app.Droid.Resource.Id.action_bar_activity_content;
+			global::Plugin.InputKit.Resource.Id.action_bar_container = global::bonus.app.Droid.Resource.Id.action_bar_container;
+			global::Plugin.InputKit.Resource.Id.action_bar_root = global::bonus.app.Droid.Resource.Id.action_bar_root;
+			global::Plugin.InputKit.Resource.Id.action_bar_spinner = global::bonus.app.Droid.Resource.Id.action_bar_spinner;
+			global::Plugin.InputKit.Resource.Id.action_bar_subtitle = global::bonus.app.Droid.Resource.Id.action_bar_subtitle;
+			global::Plugin.InputKit.Resource.Id.action_bar_title = global::bonus.app.Droid.Resource.Id.action_bar_title;
+			global::Plugin.InputKit.Resource.Id.action_container = global::bonus.app.Droid.Resource.Id.action_container;
+			global::Plugin.InputKit.Resource.Id.action_context_bar = global::bonus.app.Droid.Resource.Id.action_context_bar;
+			global::Plugin.InputKit.Resource.Id.action_divider = global::bonus.app.Droid.Resource.Id.action_divider;
+			global::Plugin.InputKit.Resource.Id.action_image = global::bonus.app.Droid.Resource.Id.action_image;
+			global::Plugin.InputKit.Resource.Id.action_menu_divider = global::bonus.app.Droid.Resource.Id.action_menu_divider;
+			global::Plugin.InputKit.Resource.Id.action_menu_presenter = global::bonus.app.Droid.Resource.Id.action_menu_presenter;
+			global::Plugin.InputKit.Resource.Id.action_mode_bar = global::bonus.app.Droid.Resource.Id.action_mode_bar;
+			global::Plugin.InputKit.Resource.Id.action_mode_bar_stub = global::bonus.app.Droid.Resource.Id.action_mode_bar_stub;
+			global::Plugin.InputKit.Resource.Id.action_mode_close_button = global::bonus.app.Droid.Resource.Id.action_mode_close_button;
+			global::Plugin.InputKit.Resource.Id.action_text = global::bonus.app.Droid.Resource.Id.action_text;
+			global::Plugin.InputKit.Resource.Id.activity_chooser_view_content = global::bonus.app.Droid.Resource.Id.activity_chooser_view_content;
+			global::Plugin.InputKit.Resource.Id.add = global::bonus.app.Droid.Resource.Id.add;
+			global::Plugin.InputKit.Resource.Id.alertTitle = global::bonus.app.Droid.Resource.Id.alertTitle;
+			global::Plugin.InputKit.Resource.Id.all = global::bonus.app.Droid.Resource.Id.all;
+			global::Plugin.InputKit.Resource.Id.ALT = global::bonus.app.Droid.Resource.Id.ALT;
+			global::Plugin.InputKit.Resource.Id.always = global::bonus.app.Droid.Resource.Id.always;
+			global::Plugin.InputKit.Resource.Id.async = global::bonus.app.Droid.Resource.Id.async;
+			global::Plugin.InputKit.Resource.Id.auto = global::bonus.app.Droid.Resource.Id.auto;
+			global::Plugin.InputKit.Resource.Id.beginning = global::bonus.app.Droid.Resource.Id.beginning;
+			global::Plugin.InputKit.Resource.Id.blocking = global::bonus.app.Droid.Resource.Id.blocking;
+			global::Plugin.InputKit.Resource.Id.bottom = global::bonus.app.Droid.Resource.Id.bottom;
+			global::Plugin.InputKit.Resource.Id.buttonPanel = global::bonus.app.Droid.Resource.Id.buttonPanel;
+			global::Plugin.InputKit.Resource.Id.cancel_action = global::bonus.app.Droid.Resource.Id.cancel_action;
+			global::Plugin.InputKit.Resource.Id.center = global::bonus.app.Droid.Resource.Id.center;
+			global::Plugin.InputKit.Resource.Id.center_horizontal = global::bonus.app.Droid.Resource.Id.center_horizontal;
+			global::Plugin.InputKit.Resource.Id.center_vertical = global::bonus.app.Droid.Resource.Id.center_vertical;
+			global::Plugin.InputKit.Resource.Id.checkbox = global::bonus.app.Droid.Resource.Id.checkbox;
+			global::Plugin.InputKit.Resource.Id.chronometer = global::bonus.app.Droid.Resource.Id.chronometer;
+			global::Plugin.InputKit.Resource.Id.clip_horizontal = global::bonus.app.Droid.Resource.Id.clip_horizontal;
+			global::Plugin.InputKit.Resource.Id.clip_vertical = global::bonus.app.Droid.Resource.Id.clip_vertical;
+			global::Plugin.InputKit.Resource.Id.collapseActionView = global::bonus.app.Droid.Resource.Id.collapseActionView;
+			global::Plugin.InputKit.Resource.Id.container = global::bonus.app.Droid.Resource.Id.container;
+			global::Plugin.InputKit.Resource.Id.contentPanel = global::bonus.app.Droid.Resource.Id.contentPanel;
+			global::Plugin.InputKit.Resource.Id.coordinator = global::bonus.app.Droid.Resource.Id.coordinator;
+			global::Plugin.InputKit.Resource.Id.CTRL = global::bonus.app.Droid.Resource.Id.CTRL;
+			global::Plugin.InputKit.Resource.Id.custom = global::bonus.app.Droid.Resource.Id.custom;
+			global::Plugin.InputKit.Resource.Id.customPanel = global::bonus.app.Droid.Resource.Id.customPanel;
+			global::Plugin.InputKit.Resource.Id.decor_content_parent = global::bonus.app.Droid.Resource.Id.decor_content_parent;
+			global::Plugin.InputKit.Resource.Id.default_activity_button = global::bonus.app.Droid.Resource.Id.default_activity_button;
+			global::Plugin.InputKit.Resource.Id.design_bottom_sheet = global::bonus.app.Droid.Resource.Id.design_bottom_sheet;
+			global::Plugin.InputKit.Resource.Id.design_menu_item_action_area = global::bonus.app.Droid.Resource.Id.design_menu_item_action_area;
+			global::Plugin.InputKit.Resource.Id.design_menu_item_action_area_stub = global::bonus.app.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Plugin.InputKit.Resource.Id.design_menu_item_text = global::bonus.app.Droid.Resource.Id.design_menu_item_text;
+			global::Plugin.InputKit.Resource.Id.design_navigation_view = global::bonus.app.Droid.Resource.Id.design_navigation_view;
+			global::Plugin.InputKit.Resource.Id.disableHome = global::bonus.app.Droid.Resource.Id.disableHome;
+			global::Plugin.InputKit.Resource.Id.edit_query = global::bonus.app.Droid.Resource.Id.edit_query;
+			global::Plugin.InputKit.Resource.Id.end = global::bonus.app.Droid.Resource.Id.end;
+			global::Plugin.InputKit.Resource.Id.end_padder = global::bonus.app.Droid.Resource.Id.end_padder;
+			global::Plugin.InputKit.Resource.Id.enterAlways = global::bonus.app.Droid.Resource.Id.enterAlways;
+			global::Plugin.InputKit.Resource.Id.enterAlwaysCollapsed = global::bonus.app.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Plugin.InputKit.Resource.Id.exitUntilCollapsed = global::bonus.app.Droid.Resource.Id.exitUntilCollapsed;
+			global::Plugin.InputKit.Resource.Id.expanded_menu = global::bonus.app.Droid.Resource.Id.expanded_menu;
+			global::Plugin.InputKit.Resource.Id.expand_activities_button = global::bonus.app.Droid.Resource.Id.expand_activities_button;
+			global::Plugin.InputKit.Resource.Id.fill = global::bonus.app.Droid.Resource.Id.fill;
+			global::Plugin.InputKit.Resource.Id.fill_horizontal = global::bonus.app.Droid.Resource.Id.fill_horizontal;
+			global::Plugin.InputKit.Resource.Id.fill_vertical = global::bonus.app.Droid.Resource.Id.fill_vertical;
+			global::Plugin.InputKit.Resource.Id.@fixed = global::bonus.app.Droid.Resource.Id.@fixed;
+			global::Plugin.InputKit.Resource.Id.forever = global::bonus.app.Droid.Resource.Id.forever;
+			global::Plugin.InputKit.Resource.Id.FUNCTION = global::bonus.app.Droid.Resource.Id.FUNCTION;
+			global::Plugin.InputKit.Resource.Id.ghost_view = global::bonus.app.Droid.Resource.Id.ghost_view;
+			global::Plugin.InputKit.Resource.Id.home = global::bonus.app.Droid.Resource.Id.home;
+			global::Plugin.InputKit.Resource.Id.homeAsUp = global::bonus.app.Droid.Resource.Id.homeAsUp;
+			global::Plugin.InputKit.Resource.Id.icon = global::bonus.app.Droid.Resource.Id.icon;
+			global::Plugin.InputKit.Resource.Id.icon_group = global::bonus.app.Droid.Resource.Id.icon_group;
+			global::Plugin.InputKit.Resource.Id.ifRoom = global::bonus.app.Droid.Resource.Id.ifRoom;
+			global::Plugin.InputKit.Resource.Id.image = global::bonus.app.Droid.Resource.Id.image;
+			global::Plugin.InputKit.Resource.Id.info = global::bonus.app.Droid.Resource.Id.info;
+			global::Plugin.InputKit.Resource.Id.italic = global::bonus.app.Droid.Resource.Id.italic;
+			global::Plugin.InputKit.Resource.Id.item_touch_helper_previous_elevation = global::bonus.app.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Plugin.InputKit.Resource.Id.largeLabel = global::bonus.app.Droid.Resource.Id.largeLabel;
+			global::Plugin.InputKit.Resource.Id.left = global::bonus.app.Droid.Resource.Id.left;
+			global::Plugin.InputKit.Resource.Id.line1 = global::bonus.app.Droid.Resource.Id.line1;
+			global::Plugin.InputKit.Resource.Id.line3 = global::bonus.app.Droid.Resource.Id.line3;
+			global::Plugin.InputKit.Resource.Id.listMode = global::bonus.app.Droid.Resource.Id.listMode;
+			global::Plugin.InputKit.Resource.Id.list_item = global::bonus.app.Droid.Resource.Id.list_item;
+			global::Plugin.InputKit.Resource.Id.masked = global::bonus.app.Droid.Resource.Id.masked;
+			global::Plugin.InputKit.Resource.Id.media_actions = global::bonus.app.Droid.Resource.Id.media_actions;
+			global::Plugin.InputKit.Resource.Id.message = global::bonus.app.Droid.Resource.Id.message;
+			global::Plugin.InputKit.Resource.Id.META = global::bonus.app.Droid.Resource.Id.META;
+			global::Plugin.InputKit.Resource.Id.middle = global::bonus.app.Droid.Resource.Id.middle;
+			global::Plugin.InputKit.Resource.Id.mini = global::bonus.app.Droid.Resource.Id.mini;
+			global::Plugin.InputKit.Resource.Id.mr_art = global::bonus.app.Droid.Resource.Id.mr_art;
+			global::Plugin.InputKit.Resource.Id.mr_chooser_list = global::bonus.app.Droid.Resource.Id.mr_chooser_list;
+			global::Plugin.InputKit.Resource.Id.mr_chooser_route_desc = global::bonus.app.Droid.Resource.Id.mr_chooser_route_desc;
+			global::Plugin.InputKit.Resource.Id.mr_chooser_route_icon = global::bonus.app.Droid.Resource.Id.mr_chooser_route_icon;
+			global::Plugin.InputKit.Resource.Id.mr_chooser_route_name = global::bonus.app.Droid.Resource.Id.mr_chooser_route_name;
+			global::Plugin.InputKit.Resource.Id.mr_chooser_title = global::bonus.app.Droid.Resource.Id.mr_chooser_title;
+			global::Plugin.InputKit.Resource.Id.mr_close = global::bonus.app.Droid.Resource.Id.mr_close;
+			global::Plugin.InputKit.Resource.Id.mr_control_divider = global::bonus.app.Droid.Resource.Id.mr_control_divider;
+			global::Plugin.InputKit.Resource.Id.mr_control_playback_ctrl = global::bonus.app.Droid.Resource.Id.mr_control_playback_ctrl;
+			global::Plugin.InputKit.Resource.Id.mr_control_subtitle = global::bonus.app.Droid.Resource.Id.mr_control_subtitle;
+			global::Plugin.InputKit.Resource.Id.mr_control_title = global::bonus.app.Droid.Resource.Id.mr_control_title;
+			global::Plugin.InputKit.Resource.Id.mr_control_title_container = global::bonus.app.Droid.Resource.Id.mr_control_title_container;
+			global::Plugin.InputKit.Resource.Id.mr_custom_control = global::bonus.app.Droid.Resource.Id.mr_custom_control;
+			global::Plugin.InputKit.Resource.Id.mr_default_control = global::bonus.app.Droid.Resource.Id.mr_default_control;
+			global::Plugin.InputKit.Resource.Id.mr_dialog_area = global::bonus.app.Droid.Resource.Id.mr_dialog_area;
+			global::Plugin.InputKit.Resource.Id.mr_expandable_area = global::bonus.app.Droid.Resource.Id.mr_expandable_area;
+			global::Plugin.InputKit.Resource.Id.mr_group_expand_collapse = global::bonus.app.Droid.Resource.Id.mr_group_expand_collapse;
+			global::Plugin.InputKit.Resource.Id.mr_media_main_control = global::bonus.app.Droid.Resource.Id.mr_media_main_control;
+			global::Plugin.InputKit.Resource.Id.mr_name = global::bonus.app.Droid.Resource.Id.mr_name;
+			global::Plugin.InputKit.Resource.Id.mr_playback_control = global::bonus.app.Droid.Resource.Id.mr_playback_control;
+			global::Plugin.InputKit.Resource.Id.mr_title_bar = global::bonus.app.Droid.Resource.Id.mr_title_bar;
+			global::Plugin.InputKit.Resource.Id.mr_volume_control = global::bonus.app.Droid.Resource.Id.mr_volume_control;
+			global::Plugin.InputKit.Resource.Id.mr_volume_group_list = global::bonus.app.Droid.Resource.Id.mr_volume_group_list;
+			global::Plugin.InputKit.Resource.Id.mr_volume_item_icon = global::bonus.app.Droid.Resource.Id.mr_volume_item_icon;
+			global::Plugin.InputKit.Resource.Id.mr_volume_slider = global::bonus.app.Droid.Resource.Id.mr_volume_slider;
+			global::Plugin.InputKit.Resource.Id.multiply = global::bonus.app.Droid.Resource.Id.multiply;
+			global::Plugin.InputKit.Resource.Id.navigation_header_container = global::bonus.app.Droid.Resource.Id.navigation_header_container;
+			global::Plugin.InputKit.Resource.Id.never = global::bonus.app.Droid.Resource.Id.never;
+			global::Plugin.InputKit.Resource.Id.none = global::bonus.app.Droid.Resource.Id.none;
+			global::Plugin.InputKit.Resource.Id.normal = global::bonus.app.Droid.Resource.Id.normal;
+			global::Plugin.InputKit.Resource.Id.notification_background = global::bonus.app.Droid.Resource.Id.notification_background;
+			global::Plugin.InputKit.Resource.Id.notification_main_column = global::bonus.app.Droid.Resource.Id.notification_main_column;
+			global::Plugin.InputKit.Resource.Id.notification_main_column_container = global::bonus.app.Droid.Resource.Id.notification_main_column_container;
+			global::Plugin.InputKit.Resource.Id.parallax = global::bonus.app.Droid.Resource.Id.parallax;
+			global::Plugin.InputKit.Resource.Id.parentPanel = global::bonus.app.Droid.Resource.Id.parentPanel;
+			global::Plugin.InputKit.Resource.Id.parent_matrix = global::bonus.app.Droid.Resource.Id.parent_matrix;
+			global::Plugin.InputKit.Resource.Id.pin = global::bonus.app.Droid.Resource.Id.pin;
+			global::Plugin.InputKit.Resource.Id.progress_circular = global::bonus.app.Droid.Resource.Id.progress_circular;
+			global::Plugin.InputKit.Resource.Id.progress_horizontal = global::bonus.app.Droid.Resource.Id.progress_horizontal;
+			global::Plugin.InputKit.Resource.Id.radio = global::bonus.app.Droid.Resource.Id.radio;
+			global::Plugin.InputKit.Resource.Id.right = global::bonus.app.Droid.Resource.Id.right;
+			global::Plugin.InputKit.Resource.Id.right_icon = global::bonus.app.Droid.Resource.Id.right_icon;
+			global::Plugin.InputKit.Resource.Id.right_side = global::bonus.app.Droid.Resource.Id.right_side;
+			global::Plugin.InputKit.Resource.Id.save_non_transition_alpha = global::bonus.app.Droid.Resource.Id.save_non_transition_alpha;
+			global::Plugin.InputKit.Resource.Id.screen = global::bonus.app.Droid.Resource.Id.screen;
+			global::Plugin.InputKit.Resource.Id.scroll = global::bonus.app.Droid.Resource.Id.scroll;
+			global::Plugin.InputKit.Resource.Id.scrollable = global::bonus.app.Droid.Resource.Id.scrollable;
+			global::Plugin.InputKit.Resource.Id.scrollIndicatorDown = global::bonus.app.Droid.Resource.Id.scrollIndicatorDown;
+			global::Plugin.InputKit.Resource.Id.scrollIndicatorUp = global::bonus.app.Droid.Resource.Id.scrollIndicatorUp;
+			global::Plugin.InputKit.Resource.Id.scrollView = global::bonus.app.Droid.Resource.Id.scrollView;
+			global::Plugin.InputKit.Resource.Id.search_badge = global::bonus.app.Droid.Resource.Id.search_badge;
+			global::Plugin.InputKit.Resource.Id.search_bar = global::bonus.app.Droid.Resource.Id.search_bar;
+			global::Plugin.InputKit.Resource.Id.search_button = global::bonus.app.Droid.Resource.Id.search_button;
+			global::Plugin.InputKit.Resource.Id.search_close_btn = global::bonus.app.Droid.Resource.Id.search_close_btn;
+			global::Plugin.InputKit.Resource.Id.search_edit_frame = global::bonus.app.Droid.Resource.Id.search_edit_frame;
+			global::Plugin.InputKit.Resource.Id.search_go_btn = global::bonus.app.Droid.Resource.Id.search_go_btn;
+			global::Plugin.InputKit.Resource.Id.search_mag_icon = global::bonus.app.Droid.Resource.Id.search_mag_icon;
+			global::Plugin.InputKit.Resource.Id.search_plate = global::bonus.app.Droid.Resource.Id.search_plate;
+			global::Plugin.InputKit.Resource.Id.search_src_text = global::bonus.app.Droid.Resource.Id.search_src_text;
+			global::Plugin.InputKit.Resource.Id.search_voice_btn = global::bonus.app.Droid.Resource.Id.search_voice_btn;
+			global::Plugin.InputKit.Resource.Id.select_dialog_listview = global::bonus.app.Droid.Resource.Id.select_dialog_listview;
+			global::Plugin.InputKit.Resource.Id.SHIFT = global::bonus.app.Droid.Resource.Id.SHIFT;
+			global::Plugin.InputKit.Resource.Id.shortcut = global::bonus.app.Droid.Resource.Id.shortcut;
+			global::Plugin.InputKit.Resource.Id.showCustom = global::bonus.app.Droid.Resource.Id.showCustom;
+			global::Plugin.InputKit.Resource.Id.showHome = global::bonus.app.Droid.Resource.Id.showHome;
+			global::Plugin.InputKit.Resource.Id.showTitle = global::bonus.app.Droid.Resource.Id.showTitle;
+			global::Plugin.InputKit.Resource.Id.smallLabel = global::bonus.app.Droid.Resource.Id.smallLabel;
+			global::Plugin.InputKit.Resource.Id.snackbar_action = global::bonus.app.Droid.Resource.Id.snackbar_action;
+			global::Plugin.InputKit.Resource.Id.snackbar_text = global::bonus.app.Droid.Resource.Id.snackbar_text;
+			global::Plugin.InputKit.Resource.Id.snap = global::bonus.app.Droid.Resource.Id.snap;
+			global::Plugin.InputKit.Resource.Id.spacer = global::bonus.app.Droid.Resource.Id.spacer;
+			global::Plugin.InputKit.Resource.Id.split_action_bar = global::bonus.app.Droid.Resource.Id.split_action_bar;
+			global::Plugin.InputKit.Resource.Id.src_atop = global::bonus.app.Droid.Resource.Id.src_atop;
+			global::Plugin.InputKit.Resource.Id.src_in = global::bonus.app.Droid.Resource.Id.src_in;
+			global::Plugin.InputKit.Resource.Id.src_over = global::bonus.app.Droid.Resource.Id.src_over;
+			global::Plugin.InputKit.Resource.Id.start = global::bonus.app.Droid.Resource.Id.start;
+			global::Plugin.InputKit.Resource.Id.status_bar_latest_event_content = global::bonus.app.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Plugin.InputKit.Resource.Id.submenuarrow = global::bonus.app.Droid.Resource.Id.submenuarrow;
+			global::Plugin.InputKit.Resource.Id.submit_area = global::bonus.app.Droid.Resource.Id.submit_area;
+			global::Plugin.InputKit.Resource.Id.SYM = global::bonus.app.Droid.Resource.Id.SYM;
+			global::Plugin.InputKit.Resource.Id.tabMode = global::bonus.app.Droid.Resource.Id.tabMode;
+			global::Plugin.InputKit.Resource.Id.tag_transition_group = global::bonus.app.Droid.Resource.Id.tag_transition_group;
+			global::Plugin.InputKit.Resource.Id.text = global::bonus.app.Droid.Resource.Id.text;
+			global::Plugin.InputKit.Resource.Id.text2 = global::bonus.app.Droid.Resource.Id.text2;
+			global::Plugin.InputKit.Resource.Id.textinput_counter = global::bonus.app.Droid.Resource.Id.textinput_counter;
+			global::Plugin.InputKit.Resource.Id.textinput_error = global::bonus.app.Droid.Resource.Id.textinput_error;
+			global::Plugin.InputKit.Resource.Id.textSpacerNoButtons = global::bonus.app.Droid.Resource.Id.textSpacerNoButtons;
+			global::Plugin.InputKit.Resource.Id.textSpacerNoTitle = global::bonus.app.Droid.Resource.Id.textSpacerNoTitle;
+			global::Plugin.InputKit.Resource.Id.text_input_password_toggle = global::bonus.app.Droid.Resource.Id.text_input_password_toggle;
+			global::Plugin.InputKit.Resource.Id.time = global::bonus.app.Droid.Resource.Id.time;
+			global::Plugin.InputKit.Resource.Id.title = global::bonus.app.Droid.Resource.Id.title;
+			global::Plugin.InputKit.Resource.Id.titleDividerNoCustom = global::bonus.app.Droid.Resource.Id.titleDividerNoCustom;
+			global::Plugin.InputKit.Resource.Id.title_template = global::bonus.app.Droid.Resource.Id.title_template;
+			global::Plugin.InputKit.Resource.Id.top = global::bonus.app.Droid.Resource.Id.top;
+			global::Plugin.InputKit.Resource.Id.topPanel = global::bonus.app.Droid.Resource.Id.topPanel;
+			global::Plugin.InputKit.Resource.Id.touch_outside = global::bonus.app.Droid.Resource.Id.touch_outside;
+			global::Plugin.InputKit.Resource.Id.transition_current_scene = global::bonus.app.Droid.Resource.Id.transition_current_scene;
+			global::Plugin.InputKit.Resource.Id.transition_layout_save = global::bonus.app.Droid.Resource.Id.transition_layout_save;
+			global::Plugin.InputKit.Resource.Id.transition_position = global::bonus.app.Droid.Resource.Id.transition_position;
+			global::Plugin.InputKit.Resource.Id.transition_scene_layoutid_cache = global::bonus.app.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Plugin.InputKit.Resource.Id.transition_transform = global::bonus.app.Droid.Resource.Id.transition_transform;
+			global::Plugin.InputKit.Resource.Id.uniform = global::bonus.app.Droid.Resource.Id.uniform;
+			global::Plugin.InputKit.Resource.Id.up = global::bonus.app.Droid.Resource.Id.up;
+			global::Plugin.InputKit.Resource.Id.useLogo = global::bonus.app.Droid.Resource.Id.useLogo;
+			global::Plugin.InputKit.Resource.Id.view_offset_helper = global::bonus.app.Droid.Resource.Id.view_offset_helper;
+			global::Plugin.InputKit.Resource.Id.visible = global::bonus.app.Droid.Resource.Id.visible;
+			global::Plugin.InputKit.Resource.Id.volume_item_container = global::bonus.app.Droid.Resource.Id.volume_item_container;
+			global::Plugin.InputKit.Resource.Id.withText = global::bonus.app.Droid.Resource.Id.withText;
+			global::Plugin.InputKit.Resource.Id.wrap_content = global::bonus.app.Droid.Resource.Id.wrap_content;
+			global::Plugin.InputKit.Resource.Integer.abc_config_activityDefaultDur = global::bonus.app.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Plugin.InputKit.Resource.Integer.abc_config_activityShortDur = global::bonus.app.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Plugin.InputKit.Resource.Integer.app_bar_elevation_anim_duration = global::bonus.app.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Plugin.InputKit.Resource.Integer.bottom_sheet_slide_duration = global::bonus.app.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Plugin.InputKit.Resource.Integer.cancel_button_image_alpha = global::bonus.app.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Plugin.InputKit.Resource.Integer.config_tooltipAnimTime = global::bonus.app.Droid.Resource.Integer.config_tooltipAnimTime;
+			global::Plugin.InputKit.Resource.Integer.design_snackbar_text_max_lines = global::bonus.app.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Plugin.InputKit.Resource.Integer.hide_password_duration = global::bonus.app.Droid.Resource.Integer.hide_password_duration;
+			global::Plugin.InputKit.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms = global::bonus.app.Droid.Resource.Integer.mr_controller_volume_group_list_animation_duration_ms;
+			global::Plugin.InputKit.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms = global::bonus.app.Droid.Resource.Integer.mr_controller_volume_group_list_fade_in_duration_ms;
+			global::Plugin.InputKit.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms = global::bonus.app.Droid.Resource.Integer.mr_controller_volume_group_list_fade_out_duration_ms;
+			global::Plugin.InputKit.Resource.Integer.show_password_duration = global::bonus.app.Droid.Resource.Integer.show_password_duration;
+			global::Plugin.InputKit.Resource.Integer.status_bar_notification_info_maxnum = global::bonus.app.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Plugin.InputKit.Resource.Interpolator.mr_fast_out_slow_in = global::bonus.app.Droid.Resource.Interpolator.mr_fast_out_slow_in;
+			global::Plugin.InputKit.Resource.Interpolator.mr_linear_out_slow_in = global::bonus.app.Droid.Resource.Interpolator.mr_linear_out_slow_in;
+			global::Plugin.InputKit.Resource.Layout.abc_action_bar_title_item = global::bonus.app.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Plugin.InputKit.Resource.Layout.abc_action_bar_up_container = global::bonus.app.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Plugin.InputKit.Resource.Layout.abc_action_menu_item_layout = global::bonus.app.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Plugin.InputKit.Resource.Layout.abc_action_menu_layout = global::bonus.app.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Plugin.InputKit.Resource.Layout.abc_action_mode_bar = global::bonus.app.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Plugin.InputKit.Resource.Layout.abc_action_mode_close_item_material = global::bonus.app.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Plugin.InputKit.Resource.Layout.abc_activity_chooser_view = global::bonus.app.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Plugin.InputKit.Resource.Layout.abc_activity_chooser_view_list_item = global::bonus.app.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Plugin.InputKit.Resource.Layout.abc_alert_dialog_button_bar_material = global::bonus.app.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Plugin.InputKit.Resource.Layout.abc_alert_dialog_material = global::bonus.app.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Plugin.InputKit.Resource.Layout.abc_alert_dialog_title_material = global::bonus.app.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Plugin.InputKit.Resource.Layout.abc_dialog_title_material = global::bonus.app.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Plugin.InputKit.Resource.Layout.abc_expanded_menu_layout = global::bonus.app.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Plugin.InputKit.Resource.Layout.abc_list_menu_item_checkbox = global::bonus.app.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Plugin.InputKit.Resource.Layout.abc_list_menu_item_icon = global::bonus.app.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Plugin.InputKit.Resource.Layout.abc_list_menu_item_layout = global::bonus.app.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Plugin.InputKit.Resource.Layout.abc_list_menu_item_radio = global::bonus.app.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Plugin.InputKit.Resource.Layout.abc_popup_menu_header_item_layout = global::bonus.app.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Plugin.InputKit.Resource.Layout.abc_popup_menu_item_layout = global::bonus.app.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Plugin.InputKit.Resource.Layout.abc_screen_content_include = global::bonus.app.Droid.Resource.Layout.abc_screen_content_include;
+			global::Plugin.InputKit.Resource.Layout.abc_screen_simple = global::bonus.app.Droid.Resource.Layout.abc_screen_simple;
+			global::Plugin.InputKit.Resource.Layout.abc_screen_simple_overlay_action_mode = global::bonus.app.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Plugin.InputKit.Resource.Layout.abc_screen_toolbar = global::bonus.app.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Plugin.InputKit.Resource.Layout.abc_search_dropdown_item_icons_2line = global::bonus.app.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Plugin.InputKit.Resource.Layout.abc_search_view = global::bonus.app.Droid.Resource.Layout.abc_search_view;
+			global::Plugin.InputKit.Resource.Layout.abc_select_dialog_material = global::bonus.app.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Plugin.InputKit.Resource.Layout.design_bottom_navigation_item = global::bonus.app.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::Plugin.InputKit.Resource.Layout.design_bottom_sheet_dialog = global::bonus.app.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Plugin.InputKit.Resource.Layout.design_layout_snackbar = global::bonus.app.Droid.Resource.Layout.design_layout_snackbar;
+			global::Plugin.InputKit.Resource.Layout.design_layout_snackbar_include = global::bonus.app.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Plugin.InputKit.Resource.Layout.design_layout_tab_icon = global::bonus.app.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Plugin.InputKit.Resource.Layout.design_layout_tab_text = global::bonus.app.Droid.Resource.Layout.design_layout_tab_text;
+			global::Plugin.InputKit.Resource.Layout.design_menu_item_action_area = global::bonus.app.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Plugin.InputKit.Resource.Layout.design_navigation_item = global::bonus.app.Droid.Resource.Layout.design_navigation_item;
+			global::Plugin.InputKit.Resource.Layout.design_navigation_item_header = global::bonus.app.Droid.Resource.Layout.design_navigation_item_header;
+			global::Plugin.InputKit.Resource.Layout.design_navigation_item_separator = global::bonus.app.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Plugin.InputKit.Resource.Layout.design_navigation_item_subheader = global::bonus.app.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Plugin.InputKit.Resource.Layout.design_navigation_menu = global::bonus.app.Droid.Resource.Layout.design_navigation_menu;
+			global::Plugin.InputKit.Resource.Layout.design_navigation_menu_item = global::bonus.app.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Plugin.InputKit.Resource.Layout.design_text_input_password_icon = global::bonus.app.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Plugin.InputKit.Resource.Layout.mr_chooser_dialog = global::bonus.app.Droid.Resource.Layout.mr_chooser_dialog;
+			global::Plugin.InputKit.Resource.Layout.mr_chooser_list_item = global::bonus.app.Droid.Resource.Layout.mr_chooser_list_item;
+			global::Plugin.InputKit.Resource.Layout.mr_controller_material_dialog_b = global::bonus.app.Droid.Resource.Layout.mr_controller_material_dialog_b;
+			global::Plugin.InputKit.Resource.Layout.mr_controller_volume_item = global::bonus.app.Droid.Resource.Layout.mr_controller_volume_item;
+			global::Plugin.InputKit.Resource.Layout.mr_playback_control = global::bonus.app.Droid.Resource.Layout.mr_playback_control;
+			global::Plugin.InputKit.Resource.Layout.mr_volume_control = global::bonus.app.Droid.Resource.Layout.mr_volume_control;
+			global::Plugin.InputKit.Resource.Layout.notification_action = global::bonus.app.Droid.Resource.Layout.notification_action;
+			global::Plugin.InputKit.Resource.Layout.notification_action_tombstone = global::bonus.app.Droid.Resource.Layout.notification_action_tombstone;
+			global::Plugin.InputKit.Resource.Layout.notification_media_action = global::bonus.app.Droid.Resource.Layout.notification_media_action;
+			global::Plugin.InputKit.Resource.Layout.notification_media_cancel_action = global::bonus.app.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Plugin.InputKit.Resource.Layout.notification_template_big_media = global::bonus.app.Droid.Resource.Layout.notification_template_big_media;
+			global::Plugin.InputKit.Resource.Layout.notification_template_big_media_custom = global::bonus.app.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Plugin.InputKit.Resource.Layout.notification_template_big_media_narrow = global::bonus.app.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Plugin.InputKit.Resource.Layout.notification_template_big_media_narrow_custom = global::bonus.app.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Plugin.InputKit.Resource.Layout.notification_template_custom_big = global::bonus.app.Droid.Resource.Layout.notification_template_custom_big;
+			global::Plugin.InputKit.Resource.Layout.notification_template_icon_group = global::bonus.app.Droid.Resource.Layout.notification_template_icon_group;
+			global::Plugin.InputKit.Resource.Layout.notification_template_lines_media = global::bonus.app.Droid.Resource.Layout.notification_template_lines_media;
+			global::Plugin.InputKit.Resource.Layout.notification_template_media = global::bonus.app.Droid.Resource.Layout.notification_template_media;
+			global::Plugin.InputKit.Resource.Layout.notification_template_media_custom = global::bonus.app.Droid.Resource.Layout.notification_template_media_custom;
+			global::Plugin.InputKit.Resource.Layout.notification_template_part_chronometer = global::bonus.app.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Plugin.InputKit.Resource.Layout.notification_template_part_time = global::bonus.app.Droid.Resource.Layout.notification_template_part_time;
+			global::Plugin.InputKit.Resource.Layout.select_dialog_item_material = global::bonus.app.Droid.Resource.Layout.select_dialog_item_material;
+			global::Plugin.InputKit.Resource.Layout.select_dialog_multichoice_material = global::bonus.app.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Plugin.InputKit.Resource.Layout.select_dialog_singlechoice_material = global::bonus.app.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Plugin.InputKit.Resource.Layout.support_simple_spinner_dropdown_item = global::bonus.app.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Plugin.InputKit.Resource.String.abc_action_bar_home_description = global::bonus.app.Droid.Resource.String.abc_action_bar_home_description;
+			global::Plugin.InputKit.Resource.String.abc_action_bar_up_description = global::bonus.app.Droid.Resource.String.abc_action_bar_up_description;
+			global::Plugin.InputKit.Resource.String.abc_action_menu_overflow_description = global::bonus.app.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Plugin.InputKit.Resource.String.abc_action_mode_done = global::bonus.app.Droid.Resource.String.abc_action_mode_done;
+			global::Plugin.InputKit.Resource.String.abc_activitychooserview_choose_application = global::bonus.app.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Plugin.InputKit.Resource.String.abc_activity_chooser_view_see_all = global::bonus.app.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Plugin.InputKit.Resource.String.abc_capital_off = global::bonus.app.Droid.Resource.String.abc_capital_off;
+			global::Plugin.InputKit.Resource.String.abc_capital_on = global::bonus.app.Droid.Resource.String.abc_capital_on;
+			global::Plugin.InputKit.Resource.String.abc_searchview_description_clear = global::bonus.app.Droid.Resource.String.abc_searchview_description_clear;
+			global::Plugin.InputKit.Resource.String.abc_searchview_description_query = global::bonus.app.Droid.Resource.String.abc_searchview_description_query;
+			global::Plugin.InputKit.Resource.String.abc_searchview_description_search = global::bonus.app.Droid.Resource.String.abc_searchview_description_search;
+			global::Plugin.InputKit.Resource.String.abc_searchview_description_submit = global::bonus.app.Droid.Resource.String.abc_searchview_description_submit;
+			global::Plugin.InputKit.Resource.String.abc_searchview_description_voice = global::bonus.app.Droid.Resource.String.abc_searchview_description_voice;
+			global::Plugin.InputKit.Resource.String.abc_search_hint = global::bonus.app.Droid.Resource.String.abc_search_hint;
+			global::Plugin.InputKit.Resource.String.abc_shareactionprovider_share_with = global::bonus.app.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Plugin.InputKit.Resource.String.abc_shareactionprovider_share_with_application = global::bonus.app.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Plugin.InputKit.Resource.String.abc_toolbar_collapse_description = global::bonus.app.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Plugin.InputKit.Resource.String.appbar_scrolling_view_behavior = global::bonus.app.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Plugin.InputKit.Resource.String.bottom_sheet_behavior = global::bonus.app.Droid.Resource.String.bottom_sheet_behavior;
+			global::Plugin.InputKit.Resource.String.character_counter_pattern = global::bonus.app.Droid.Resource.String.character_counter_pattern;
+			global::Plugin.InputKit.Resource.String.mr_button_content_description = global::bonus.app.Droid.Resource.String.mr_button_content_description;
+			global::Plugin.InputKit.Resource.String.mr_cast_button_connected = global::bonus.app.Droid.Resource.String.mr_cast_button_connected;
+			global::Plugin.InputKit.Resource.String.mr_cast_button_connecting = global::bonus.app.Droid.Resource.String.mr_cast_button_connecting;
+			global::Plugin.InputKit.Resource.String.mr_cast_button_disconnected = global::bonus.app.Droid.Resource.String.mr_cast_button_disconnected;
+			global::Plugin.InputKit.Resource.String.mr_chooser_searching = global::bonus.app.Droid.Resource.String.mr_chooser_searching;
+			global::Plugin.InputKit.Resource.String.mr_chooser_title = global::bonus.app.Droid.Resource.String.mr_chooser_title;
+			global::Plugin.InputKit.Resource.String.mr_controller_album_art = global::bonus.app.Droid.Resource.String.mr_controller_album_art;
+			global::Plugin.InputKit.Resource.String.mr_controller_casting_screen = global::bonus.app.Droid.Resource.String.mr_controller_casting_screen;
+			global::Plugin.InputKit.Resource.String.mr_controller_close_description = global::bonus.app.Droid.Resource.String.mr_controller_close_description;
+			global::Plugin.InputKit.Resource.String.mr_controller_collapse_group = global::bonus.app.Droid.Resource.String.mr_controller_collapse_group;
+			global::Plugin.InputKit.Resource.String.mr_controller_disconnect = global::bonus.app.Droid.Resource.String.mr_controller_disconnect;
+			global::Plugin.InputKit.Resource.String.mr_controller_expand_group = global::bonus.app.Droid.Resource.String.mr_controller_expand_group;
+			global::Plugin.InputKit.Resource.String.mr_controller_no_info_available = global::bonus.app.Droid.Resource.String.mr_controller_no_info_available;
+			global::Plugin.InputKit.Resource.String.mr_controller_no_media_selected = global::bonus.app.Droid.Resource.String.mr_controller_no_media_selected;
+			global::Plugin.InputKit.Resource.String.mr_controller_pause = global::bonus.app.Droid.Resource.String.mr_controller_pause;
+			global::Plugin.InputKit.Resource.String.mr_controller_play = global::bonus.app.Droid.Resource.String.mr_controller_play;
+			global::Plugin.InputKit.Resource.String.mr_controller_stop = global::bonus.app.Droid.Resource.String.mr_controller_stop;
+			global::Plugin.InputKit.Resource.String.mr_controller_stop_casting = global::bonus.app.Droid.Resource.String.mr_controller_stop_casting;
+			global::Plugin.InputKit.Resource.String.mr_controller_volume_slider = global::bonus.app.Droid.Resource.String.mr_controller_volume_slider;
+			global::Plugin.InputKit.Resource.String.mr_system_route_name = global::bonus.app.Droid.Resource.String.mr_system_route_name;
+			global::Plugin.InputKit.Resource.String.mr_user_route_category_name = global::bonus.app.Droid.Resource.String.mr_user_route_category_name;
+			global::Plugin.InputKit.Resource.String.password_toggle_content_description = global::bonus.app.Droid.Resource.String.password_toggle_content_description;
+			global::Plugin.InputKit.Resource.String.path_password_eye = global::bonus.app.Droid.Resource.String.path_password_eye;
+			global::Plugin.InputKit.Resource.String.path_password_eye_mask_strike_through = global::bonus.app.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::Plugin.InputKit.Resource.String.path_password_eye_mask_visible = global::bonus.app.Droid.Resource.String.path_password_eye_mask_visible;
+			global::Plugin.InputKit.Resource.String.path_password_strike_through = global::bonus.app.Droid.Resource.String.path_password_strike_through;
+			global::Plugin.InputKit.Resource.String.search_menu_title = global::bonus.app.Droid.Resource.String.search_menu_title;
+			global::Plugin.InputKit.Resource.String.status_bar_notification_info_overflow = global::bonus.app.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Plugin.InputKit.Resource.Style.AlertDialog_AppCompat = global::bonus.app.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Plugin.InputKit.Resource.Style.AlertDialog_AppCompat_Light = global::bonus.app.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Animation_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Animation_AppCompat_DropDownUp = global::bonus.app.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Plugin.InputKit.Resource.Style.Animation_AppCompat_Tooltip = global::bonus.app.Droid.Resource.Style.Animation_AppCompat_Tooltip;
+			global::Plugin.InputKit.Resource.Style.Animation_Design_BottomSheetDialog = global::bonus.app.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Plugin.InputKit.Resource.Style.Base_AlertDialog_AppCompat = global::bonus.app.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_AlertDialog_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_Animation_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::bonus.app.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Plugin.InputKit.Resource.Style.Base_Animation_AppCompat_Tooltip = global::bonus.app.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip;
+			global::Plugin.InputKit.Resource.Style.Base_CardView = global::bonus.app.Droid.Resource.Style.Base_CardView;
+			global::Plugin.InputKit.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::bonus.app.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_DialogWindowTitle_AppCompat = global::bonus.app.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Button = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Large = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Small = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Title = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Tooltip = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.InputKit.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::bonus.app.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Plugin.InputKit.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::bonus.app.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.InputKit.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_V21_Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_V21_Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::bonus.app.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_V22_Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_V22_Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_V23_Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_V23_Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_V26_Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Base_V26_Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_V26_Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::bonus.app.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
+			global::Plugin.InputKit.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::bonus.app.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::bonus.app.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::bonus.app.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Plugin.InputKit.Resource.Style.Base_V7_Widget_AppCompat_Toolbar = global::bonus.app.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionButton = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActionMode = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Button = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Button_Small = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_EditText = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ImageButton = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ListView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_RatingBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_SearchView = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_SeekBar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Spinner = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Toolbar = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::bonus.app.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.InputKit.Resource.Style.Base_Widget_Design_TabLayout = global::bonus.app.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Plugin.InputKit.Resource.Style.CardView = global::bonus.app.Droid.Resource.Style.CardView;
+			global::Plugin.InputKit.Resource.Style.CardView_Dark = global::bonus.app.Droid.Resource.Style.CardView_Dark;
+			global::Plugin.InputKit.Resource.Style.CardView_Light = global::bonus.app.Droid.Resource.Style.CardView_Light;
+			global::Plugin.InputKit.Resource.Style.MyPopupMenu = global::bonus.app.Droid.Resource.Style.MyPopupMenu;
+			global::Plugin.InputKit.Resource.Style.Platform_AppCompat = global::bonus.app.Droid.Resource.Style.Platform_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Platform_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Platform_ThemeOverlay_AppCompat = global::bonus.app.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::bonus.app.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Plugin.InputKit.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Platform_V21_AppCompat = global::bonus.app.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Platform_V21_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Platform_V25_AppCompat = global::bonus.app.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Platform_V25_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Platform_Widget_AppCompat_Spinner = global::bonus.app.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::bonus.app.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Plugin.InputKit.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::bonus.app.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Plugin.InputKit.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::bonus.app.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Plugin.InputKit.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::bonus.app.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Body1 = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Body2 = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Button = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Caption = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Display1 = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Display2 = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Display3 = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Display4 = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Headline = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Large = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Medium = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Menu = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Small = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Subhead = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Tooltip = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::bonus.app.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Info = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Info_Media = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Line2_Media = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Media = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Media;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Time = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Time_Media = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::bonus.app.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_Counter = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_Counter_Overflow = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_Error = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_Hint = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_Snackbar_Message = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Design_Tab = global::bonus.app.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_MediaRouter_PrimaryText = global::bonus.app.Droid.Resource.Style.TextAppearance_MediaRouter_PrimaryText;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_MediaRouter_SecondaryText = global::bonus.app.Droid.Resource.Style.TextAppearance_MediaRouter_SecondaryText;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_MediaRouter_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_MediaRouter_Title;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::bonus.app.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::bonus.app.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Plugin.InputKit.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::bonus.app.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dark = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_AppCompat_Light = global::bonus.app.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_MediaRouter_Dark = global::bonus.app.Droid.Resource.Style.ThemeOverlay_MediaRouter_Dark;
+			global::Plugin.InputKit.Resource.Style.ThemeOverlay_MediaRouter_Light = global::bonus.app.Droid.Resource.Style.ThemeOverlay_MediaRouter_Light;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat = global::bonus.app.Droid.Resource.Style.Theme_AppCompat;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_CompactMenu = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Dialog = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Dialog_Alert = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light_Dialog = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_AppCompat_NoActionBar = global::bonus.app.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_Design = global::bonus.app.Droid.Resource.Style.Theme_Design;
+			global::Plugin.InputKit.Resource.Style.Theme_Design_BottomSheetDialog = global::bonus.app.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Plugin.InputKit.Resource.Style.Theme_Design_Light = global::bonus.app.Droid.Resource.Style.Theme_Design_Light;
+			global::Plugin.InputKit.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::bonus.app.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Plugin.InputKit.Resource.Style.Theme_Design_Light_NoActionBar = global::bonus.app.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_Design_NoActionBar = global::bonus.app.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Plugin.InputKit.Resource.Style.Theme_MediaRouter = global::bonus.app.Droid.Resource.Style.Theme_MediaRouter;
+			global::Plugin.InputKit.Resource.Style.Theme_MediaRouter_Light = global::bonus.app.Droid.Resource.Style.Theme_MediaRouter_Light;
+			global::Plugin.InputKit.Resource.Style.Theme_MediaRouter_LightControlPanel = global::bonus.app.Droid.Resource.Style.Theme_MediaRouter_LightControlPanel;
+			global::Plugin.InputKit.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel = global::bonus.app.Droid.Resource.Style.Theme_MediaRouter_Light_DarkControlPanel;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionButton = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActionMode = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ActivityChooserView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Button = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ButtonBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Button_Borderless = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Button_Colored = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Button_Small = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_EditText = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ImageButton = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionButton = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_SearchView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ListMenuView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ListPopupWindow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ListView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ListView_DropDown = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ListView_Menu = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_PopupMenu = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_PopupWindow = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ProgressBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_RatingBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_RatingBar_Small = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_SearchView = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_SeekBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Toolbar = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Plugin.InputKit.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::bonus.app.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Plugin.InputKit.Resource.Style.Widget_Compat_NotificationActionContainer = global::bonus.app.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Plugin.InputKit.Resource.Style.Widget_Compat_NotificationActionText = global::bonus.app.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_AppBarLayout = global::bonus.app.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_BottomNavigationView = global::bonus.app.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_BottomSheet_Modal = global::bonus.app.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_CollapsingToolbar = global::bonus.app.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_FloatingActionButton = global::bonus.app.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_NavigationView = global::bonus.app.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::bonus.app.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_Snackbar = global::bonus.app.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_TabLayout = global::bonus.app.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Plugin.InputKit.Resource.Style.Widget_Design_TextInputLayout = global::bonus.app.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Plugin.InputKit.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::bonus.app.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
+			global::Plugin.InputKit.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::bonus.app.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar = global::bonus.app.Droid.Resource.Styleable.ActionBar;
+			global::Plugin.InputKit.Resource.Styleable.ActionBarLayout = global::bonus.app.Droid.Resource.Styleable.ActionBarLayout;
+			global::Plugin.InputKit.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::bonus.app.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_background = global::bonus.app.Droid.Resource.Styleable.ActionBar_background;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_backgroundSplit = global::bonus.app.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_backgroundStacked = global::bonus.app.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_contentInsetEnd = global::bonus.app.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::bonus.app.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_contentInsetLeft = global::bonus.app.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_contentInsetRight = global::bonus.app.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_contentInsetStart = global::bonus.app.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::bonus.app.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_customNavigationLayout = global::bonus.app.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_displayOptions = global::bonus.app.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_divider = global::bonus.app.Droid.Resource.Styleable.ActionBar_divider;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_elevation = global::bonus.app.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_height = global::bonus.app.Droid.Resource.Styleable.ActionBar_height;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_hideOnContentScroll = global::bonus.app.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_homeAsUpIndicator = global::bonus.app.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_homeLayout = global::bonus.app.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_icon = global::bonus.app.Droid.Resource.Styleable.ActionBar_icon;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::bonus.app.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_itemPadding = global::bonus.app.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_logo = global::bonus.app.Droid.Resource.Styleable.ActionBar_logo;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_navigationMode = global::bonus.app.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_popupTheme = global::bonus.app.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_progressBarPadding = global::bonus.app.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_progressBarStyle = global::bonus.app.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_subtitle = global::bonus.app.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_subtitleTextStyle = global::bonus.app.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_title = global::bonus.app.Droid.Resource.Styleable.ActionBar_title;
+			global::Plugin.InputKit.Resource.Styleable.ActionBar_titleTextStyle = global::bonus.app.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Plugin.InputKit.Resource.Styleable.ActionMenuItemView = global::bonus.app.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Plugin.InputKit.Resource.Styleable.ActionMenuItemView_android_minWidth = global::bonus.app.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Plugin.InputKit.Resource.Styleable.ActionMenuView = global::bonus.app.Droid.Resource.Styleable.ActionMenuView;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode = global::bonus.app.Droid.Resource.Styleable.ActionMode;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode_background = global::bonus.app.Droid.Resource.Styleable.ActionMode_background;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode_backgroundSplit = global::bonus.app.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode_closeItemLayout = global::bonus.app.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode_height = global::bonus.app.Droid.Resource.Styleable.ActionMode_height;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode_subtitleTextStyle = global::bonus.app.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Plugin.InputKit.Resource.Styleable.ActionMode_titleTextStyle = global::bonus.app.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Plugin.InputKit.Resource.Styleable.ActivityChooserView = global::bonus.app.Droid.Resource.Styleable.ActivityChooserView;
+			global::Plugin.InputKit.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::bonus.app.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Plugin.InputKit.Resource.Styleable.ActivityChooserView_initialActivityCount = global::bonus.app.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog = global::bonus.app.Droid.Resource.Styleable.AlertDialog;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_android_layout = global::bonus.app.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::bonus.app.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_listItemLayout = global::bonus.app.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_listLayout = global::bonus.app.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::bonus.app.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_showTitle = global::bonus.app.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::Plugin.InputKit.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::bonus.app.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout = global::bonus.app.Droid.Resource.Styleable.AppBarLayout;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayoutStates = global::bonus.app.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::bonus.app.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::bonus.app.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_android_background = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_elevation = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_expanded = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_Layout = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Plugin.InputKit.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::bonus.app.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatImageView = global::bonus.app.Droid.Resource.Styleable.AppCompatImageView;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatImageView_android_src = global::bonus.app.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatImageView_srcCompat = global::bonus.app.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatImageView_tint = global::bonus.app.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatImageView_tintMode = global::bonus.app.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatSeekBar = global::bonus.app.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatSeekBar_android_thumb = global::bonus.app.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatSeekBar_tickMark = global::bonus.app.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::bonus.app.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::bonus.app.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::bonus.app.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_android_textAppearance = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_fontFamily = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTextView_textAllCaps = global::bonus.app.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarDivider = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarSize = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_checkboxStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorAccent = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorControlActivated = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorControlNormal = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorError = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorError;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorPrimary = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_controlBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_dialogTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_dividerVertical = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_editTextBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_editTextColor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_editTextStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_panelBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_searchViewStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_seekBarStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_spinnerStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_switchStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_toolbarStyle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_tooltipForegroundColor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_tooltipFrameBackground = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowActionBar = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Plugin.InputKit.Resource.Styleable.AppCompatTheme_windowNoTitle = global::bonus.app.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Plugin.InputKit.Resource.Styleable.BottomNavigationView = global::bonus.app.Droid.Resource.Styleable.BottomNavigationView;
+			global::Plugin.InputKit.Resource.Styleable.BottomNavigationView_elevation = global::bonus.app.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Plugin.InputKit.Resource.Styleable.BottomNavigationView_itemBackground = global::bonus.app.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Plugin.InputKit.Resource.Styleable.BottomNavigationView_itemIconTint = global::bonus.app.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Plugin.InputKit.Resource.Styleable.BottomNavigationView_itemTextColor = global::bonus.app.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Plugin.InputKit.Resource.Styleable.BottomNavigationView_menu = global::bonus.app.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::Plugin.InputKit.Resource.Styleable.BottomSheetBehavior_Layout = global::bonus.app.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Plugin.InputKit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::bonus.app.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Plugin.InputKit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::bonus.app.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Plugin.InputKit.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::bonus.app.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Plugin.InputKit.Resource.Styleable.ButtonBarLayout = global::bonus.app.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Plugin.InputKit.Resource.Styleable.ButtonBarLayout_allowStacking = global::bonus.app.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Plugin.InputKit.Resource.Styleable.CardView = global::bonus.app.Droid.Resource.Styleable.CardView;
+			global::Plugin.InputKit.Resource.Styleable.CardView_android_minHeight = global::bonus.app.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Plugin.InputKit.Resource.Styleable.CardView_android_minWidth = global::bonus.app.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Plugin.InputKit.Resource.Styleable.CardView_cardBackgroundColor = global::bonus.app.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Plugin.InputKit.Resource.Styleable.CardView_cardCornerRadius = global::bonus.app.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Plugin.InputKit.Resource.Styleable.CardView_cardElevation = global::bonus.app.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Plugin.InputKit.Resource.Styleable.CardView_cardMaxElevation = global::bonus.app.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Plugin.InputKit.Resource.Styleable.CardView_cardPreventCornerOverlap = global::bonus.app.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Plugin.InputKit.Resource.Styleable.CardView_cardUseCompatPadding = global::bonus.app.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Plugin.InputKit.Resource.Styleable.CardView_contentPadding = global::bonus.app.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Plugin.InputKit.Resource.Styleable.CardView_contentPaddingBottom = global::bonus.app.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Plugin.InputKit.Resource.Styleable.CardView_contentPaddingLeft = global::bonus.app.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Plugin.InputKit.Resource.Styleable.CardView_contentPaddingRight = global::bonus.app.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Plugin.InputKit.Resource.Styleable.CardView_contentPaddingTop = global::bonus.app.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_Layout = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_title = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Plugin.InputKit.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::bonus.app.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Plugin.InputKit.Resource.Styleable.ColorStateListItem = global::bonus.app.Droid.Resource.Styleable.ColorStateListItem;
+			global::Plugin.InputKit.Resource.Styleable.ColorStateListItem_alpha = global::bonus.app.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Plugin.InputKit.Resource.Styleable.ColorStateListItem_android_alpha = global::bonus.app.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Plugin.InputKit.Resource.Styleable.ColorStateListItem_android_color = global::bonus.app.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Plugin.InputKit.Resource.Styleable.CompoundButton = global::bonus.app.Droid.Resource.Styleable.CompoundButton;
+			global::Plugin.InputKit.Resource.Styleable.CompoundButton_android_button = global::bonus.app.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Plugin.InputKit.Resource.Styleable.CompoundButton_buttonTint = global::bonus.app.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Plugin.InputKit.Resource.Styleable.CompoundButton_buttonTintMode = global::bonus.app.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_keylines = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Plugin.InputKit.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::bonus.app.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Plugin.InputKit.Resource.Styleable.DesignTheme = global::bonus.app.Droid.Resource.Styleable.DesignTheme;
+			global::Plugin.InputKit.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::bonus.app.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Plugin.InputKit.Resource.Styleable.DesignTheme_bottomSheetStyle = global::bonus.app.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_barLength = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_color = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_drawableSize = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_spinBars = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Plugin.InputKit.Resource.Styleable.DrawerArrowToggle_thickness = global::bonus.app.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_backgroundTint = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_borderWidth = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_elevation = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_fabSize = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_rippleColor = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Plugin.InputKit.Resource.Styleable.FloatingActionButton_useCompatPadding = global::bonus.app.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily = global::bonus.app.Droid.Resource.Styleable.FontFamily;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont_android_font = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont_android_fontStyle = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont_android_fontWeight = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont_font = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont_fontStyle = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Plugin.InputKit.Resource.Styleable.FontFamilyFont_fontWeight = global::bonus.app.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily_fontProviderAuthority = global::bonus.app.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily_fontProviderCerts = global::bonus.app.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::bonus.app.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::bonus.app.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily_fontProviderPackage = global::bonus.app.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Plugin.InputKit.Resource.Styleable.FontFamily_fontProviderQuery = global::bonus.app.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Plugin.InputKit.Resource.Styleable.ForegroundLinearLayout = global::bonus.app.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Plugin.InputKit.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::bonus.app.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Plugin.InputKit.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::bonus.app.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Plugin.InputKit.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::bonus.app.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_android_gravity = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_android_orientation = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_divider = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_Layout = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Plugin.InputKit.Resource.Styleable.LinearLayoutCompat_showDividers = global::bonus.app.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Plugin.InputKit.Resource.Styleable.ListPopupWindow = global::bonus.app.Droid.Resource.Styleable.ListPopupWindow;
+			global::Plugin.InputKit.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::bonus.app.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Plugin.InputKit.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::bonus.app.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Plugin.InputKit.Resource.Styleable.MediaRouteButton = global::bonus.app.Droid.Resource.Styleable.MediaRouteButton;
+			global::Plugin.InputKit.Resource.Styleable.MediaRouteButton_android_minHeight = global::bonus.app.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
+			global::Plugin.InputKit.Resource.Styleable.MediaRouteButton_android_minWidth = global::bonus.app.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
+			global::Plugin.InputKit.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::bonus.app.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
+			global::Plugin.InputKit.Resource.Styleable.MediaRouteButton_mediaRouteButtonTint = global::bonus.app.Droid.Resource.Styleable.MediaRouteButton_mediaRouteButtonTint;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup = global::bonus.app.Droid.Resource.Styleable.MenuGroup;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup_android_checkableBehavior = global::bonus.app.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup_android_enabled = global::bonus.app.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup_android_id = global::bonus.app.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup_android_menuCategory = global::bonus.app.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup_android_orderInCategory = global::bonus.app.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Plugin.InputKit.Resource.Styleable.MenuGroup_android_visible = global::bonus.app.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem = global::bonus.app.Droid.Resource.Styleable.MenuItem;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_actionLayout = global::bonus.app.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_actionProviderClass = global::bonus.app.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_actionViewClass = global::bonus.app.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_alphabeticModifiers = global::bonus.app.Droid.Resource.Styleable.MenuItem_alphabeticModifiers;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_checkable = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_checked = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_enabled = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_icon = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_id = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_menuCategory = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_numericShortcut = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_onClick = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_orderInCategory = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_title = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_titleCondensed = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_android_visible = global::bonus.app.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_contentDescription = global::bonus.app.Droid.Resource.Styleable.MenuItem_contentDescription;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_iconTint = global::bonus.app.Droid.Resource.Styleable.MenuItem_iconTint;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_iconTintMode = global::bonus.app.Droid.Resource.Styleable.MenuItem_iconTintMode;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_numericModifiers = global::bonus.app.Droid.Resource.Styleable.MenuItem_numericModifiers;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_showAsAction = global::bonus.app.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Plugin.InputKit.Resource.Styleable.MenuItem_tooltipText = global::bonus.app.Droid.Resource.Styleable.MenuItem_tooltipText;
+			global::Plugin.InputKit.Resource.Styleable.MenuView = global::bonus.app.Droid.Resource.Styleable.MenuView;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_headerBackground = global::bonus.app.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_horizontalDivider = global::bonus.app.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_itemBackground = global::bonus.app.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::bonus.app.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_itemTextAppearance = global::bonus.app.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_verticalDivider = global::bonus.app.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_android_windowAnimationStyle = global::bonus.app.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_preserveIconSpacing = global::bonus.app.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Plugin.InputKit.Resource.Styleable.MenuView_subMenuArrow = global::bonus.app.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView = global::bonus.app.Droid.Resource.Styleable.NavigationView;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_android_background = global::bonus.app.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::bonus.app.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_android_maxWidth = global::bonus.app.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_elevation = global::bonus.app.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_headerLayout = global::bonus.app.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_itemBackground = global::bonus.app.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_itemIconTint = global::bonus.app.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_itemTextAppearance = global::bonus.app.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_itemTextColor = global::bonus.app.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Plugin.InputKit.Resource.Styleable.NavigationView_menu = global::bonus.app.Droid.Resource.Styleable.NavigationView_menu;
+			global::Plugin.InputKit.Resource.Styleable.PopupWindow = global::bonus.app.Droid.Resource.Styleable.PopupWindow;
+			global::Plugin.InputKit.Resource.Styleable.PopupWindowBackgroundState = global::bonus.app.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Plugin.InputKit.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::bonus.app.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Plugin.InputKit.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::bonus.app.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Plugin.InputKit.Resource.Styleable.PopupWindow_android_popupBackground = global::bonus.app.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Plugin.InputKit.Resource.Styleable.PopupWindow_overlapAnchor = global::bonus.app.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Plugin.InputKit.Resource.Styleable.RecycleListView = global::bonus.app.Droid.Resource.Styleable.RecycleListView;
+			global::Plugin.InputKit.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::bonus.app.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Plugin.InputKit.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::bonus.app.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView = global::bonus.app.Droid.Resource.Styleable.RecyclerView;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_android_descendantFocusability = global::bonus.app.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_android_orientation = global::bonus.app.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_fastScrollEnabled = global::bonus.app.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable = global::bonus.app.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable = global::bonus.app.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable = global::bonus.app.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable = global::bonus.app.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_layoutManager = global::bonus.app.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_reverseLayout = global::bonus.app.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_spanCount = global::bonus.app.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Plugin.InputKit.Resource.Styleable.RecyclerView_stackFromEnd = global::bonus.app.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Plugin.InputKit.Resource.Styleable.ScrimInsetsFrameLayout = global::bonus.app.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Plugin.InputKit.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::bonus.app.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Plugin.InputKit.Resource.Styleable.ScrollingViewBehavior_Layout = global::bonus.app.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Plugin.InputKit.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::bonus.app.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Plugin.InputKit.Resource.Styleable.SearchView = global::bonus.app.Droid.Resource.Styleable.SearchView;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_android_focusable = global::bonus.app.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_android_imeOptions = global::bonus.app.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_android_inputType = global::bonus.app.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_android_maxWidth = global::bonus.app.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_closeIcon = global::bonus.app.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_commitIcon = global::bonus.app.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_defaultQueryHint = global::bonus.app.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_goIcon = global::bonus.app.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_iconifiedByDefault = global::bonus.app.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_layout = global::bonus.app.Droid.Resource.Styleable.SearchView_layout;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_queryBackground = global::bonus.app.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_queryHint = global::bonus.app.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_searchHintIcon = global::bonus.app.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_searchIcon = global::bonus.app.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_submitBackground = global::bonus.app.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_suggestionRowLayout = global::bonus.app.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Plugin.InputKit.Resource.Styleable.SearchView_voiceIcon = global::bonus.app.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Plugin.InputKit.Resource.Styleable.SnackbarLayout = global::bonus.app.Droid.Resource.Styleable.SnackbarLayout;
+			global::Plugin.InputKit.Resource.Styleable.SnackbarLayout_android_maxWidth = global::bonus.app.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Plugin.InputKit.Resource.Styleable.SnackbarLayout_elevation = global::bonus.app.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Plugin.InputKit.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::bonus.app.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Plugin.InputKit.Resource.Styleable.Spinner = global::bonus.app.Droid.Resource.Styleable.Spinner;
+			global::Plugin.InputKit.Resource.Styleable.Spinner_android_dropDownWidth = global::bonus.app.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Plugin.InputKit.Resource.Styleable.Spinner_android_entries = global::bonus.app.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Plugin.InputKit.Resource.Styleable.Spinner_android_popupBackground = global::bonus.app.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Plugin.InputKit.Resource.Styleable.Spinner_android_prompt = global::bonus.app.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Plugin.InputKit.Resource.Styleable.Spinner_popupTheme = global::bonus.app.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat = global::bonus.app.Droid.Resource.Styleable.SwitchCompat;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_android_textOff = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_android_textOn = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_android_thumb = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_showText = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_splitTrack = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_switchMinWidth = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_switchPadding = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_switchTextAppearance = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_thumbTextPadding = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_thumbTint = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_thumbTintMode = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_track = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_trackTint = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Plugin.InputKit.Resource.Styleable.SwitchCompat_trackTintMode = global::bonus.app.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Plugin.InputKit.Resource.Styleable.TabItem = global::bonus.app.Droid.Resource.Styleable.TabItem;
+			global::Plugin.InputKit.Resource.Styleable.TabItem_android_icon = global::bonus.app.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Plugin.InputKit.Resource.Styleable.TabItem_android_layout = global::bonus.app.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Plugin.InputKit.Resource.Styleable.TabItem_android_text = global::bonus.app.Droid.Resource.Styleable.TabItem_android_text;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout = global::bonus.app.Droid.Resource.Styleable.TabLayout;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabBackground = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabContentStart = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabGravity = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabIndicatorColor = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabIndicatorHeight = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabMaxWidth = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabMinWidth = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabMode = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabPadding = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabPaddingBottom = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabPaddingEnd = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabPaddingStart = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabPaddingTop = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabSelectedTextColor = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabTextAppearance = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.TabLayout_tabTextColor = global::bonus.app.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance = global::bonus.app.Droid.Resource.Styleable.TextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_fontFamily = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_fontFamily;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_shadowColor = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_shadowDx = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_shadowDy = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_shadowRadius = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textColor = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textColorHint = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textColorLink = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textSize = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_textStyle = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_android_typeface = global::bonus.app.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_fontFamily = global::bonus.app.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Plugin.InputKit.Resource.Styleable.TextAppearance_textAllCaps = global::bonus.app.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout = global::bonus.app.Droid.Resource.Styleable.TextInputLayout;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_android_hint = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_android_textColorHint = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_counterEnabled = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_counterMaxLength = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_counterTextAppearance = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_errorEnabled = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_errorTextAppearance = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_hintEnabled = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_hintTextAppearance = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_passwordToggleTint = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Plugin.InputKit.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::bonus.app.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar = global::bonus.app.Droid.Resource.Styleable.Toolbar;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_android_gravity = global::bonus.app.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_android_minHeight = global::bonus.app.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_buttonGravity = global::bonus.app.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_collapseContentDescription = global::bonus.app.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_collapseIcon = global::bonus.app.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_contentInsetEnd = global::bonus.app.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::bonus.app.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_contentInsetLeft = global::bonus.app.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_contentInsetRight = global::bonus.app.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_contentInsetStart = global::bonus.app.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::bonus.app.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_logo = global::bonus.app.Droid.Resource.Styleable.Toolbar_logo;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_logoDescription = global::bonus.app.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_maxButtonHeight = global::bonus.app.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_navigationContentDescription = global::bonus.app.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_navigationIcon = global::bonus.app.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_popupTheme = global::bonus.app.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_subtitle = global::bonus.app.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_subtitleTextAppearance = global::bonus.app.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_subtitleTextColor = global::bonus.app.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_title = global::bonus.app.Droid.Resource.Styleable.Toolbar_title;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleMargin = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleMarginBottom = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleMarginEnd = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleMargins = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleMarginStart = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleMarginTop = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleTextAppearance = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Plugin.InputKit.Resource.Styleable.Toolbar_titleTextColor = global::bonus.app.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Plugin.InputKit.Resource.Styleable.View = global::bonus.app.Droid.Resource.Styleable.View;
+			global::Plugin.InputKit.Resource.Styleable.ViewBackgroundHelper = global::bonus.app.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Plugin.InputKit.Resource.Styleable.ViewBackgroundHelper_android_background = global::bonus.app.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Plugin.InputKit.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::bonus.app.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Plugin.InputKit.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::bonus.app.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Plugin.InputKit.Resource.Styleable.ViewStubCompat = global::bonus.app.Droid.Resource.Styleable.ViewStubCompat;
+			global::Plugin.InputKit.Resource.Styleable.ViewStubCompat_android_id = global::bonus.app.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Plugin.InputKit.Resource.Styleable.ViewStubCompat_android_inflatedId = global::bonus.app.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Plugin.InputKit.Resource.Styleable.ViewStubCompat_android_layout = global::bonus.app.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Plugin.InputKit.Resource.Styleable.View_android_focusable = global::bonus.app.Droid.Resource.Styleable.View_android_focusable;
+			global::Plugin.InputKit.Resource.Styleable.View_android_theme = global::bonus.app.Droid.Resource.Styleable.View_android_theme;
+			global::Plugin.InputKit.Resource.Styleable.View_paddingEnd = global::bonus.app.Droid.Resource.Styleable.View_paddingEnd;
+			global::Plugin.InputKit.Resource.Styleable.View_paddingStart = global::bonus.app.Droid.Resource.Styleable.View_paddingStart;
+			global::Plugin.InputKit.Resource.Styleable.View_theme = global::bonus.app.Droid.Resource.Styleable.View_theme;
 			global::Plugin.Media.Resource.Attribute.alpha = global::bonus.app.Droid.Resource.Attribute.alpha;
 			global::Plugin.Media.Resource.Attribute.coordinatorLayoutStyle = global::bonus.app.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Plugin.Media.Resource.Attribute.font = global::bonus.app.Droid.Resource.Attribute.font;
@@ -23225,8 +25447,8 @@ namespace bonus.app.Droid
 			// aapt resource value: 0x7F0E00C7
 			public const int CardView_Light = 2131624135;
 			
-			// aapt resource value: 0x7F0E0218
-			public const int collectionViewStyle = 2131624472;
+			// aapt resource value: 0x7F0E0219
+			public const int collectionViewStyle = 2131624473;
 			
 			// aapt resource value: 0x7F0E00C8
 			public const int DrawerArrowStyle = 2131624136;
@@ -23238,1003 +25460,1006 @@ namespace bonus.app.Droid
 			public const int MainTheme_Base = 2131624138;
 			
 			// aapt resource value: 0x7F0E00CB
-			public const int NestedScrollBarStyle = 2131624139;
+			public const int MyPopupMenu = 2131624139;
 			
 			// aapt resource value: 0x7F0E00CC
-			public const int Platform_AppCompat = 2131624140;
+			public const int NestedScrollBarStyle = 2131624140;
 			
 			// aapt resource value: 0x7F0E00CD
-			public const int Platform_AppCompat_Light = 2131624141;
+			public const int Platform_AppCompat = 2131624141;
 			
 			// aapt resource value: 0x7F0E00CE
-			public const int Platform_MaterialComponents = 2131624142;
+			public const int Platform_AppCompat_Light = 2131624142;
 			
 			// aapt resource value: 0x7F0E00CF
-			public const int Platform_MaterialComponents_Dialog = 2131624143;
+			public const int Platform_MaterialComponents = 2131624143;
 			
 			// aapt resource value: 0x7F0E00D0
-			public const int Platform_MaterialComponents_Light = 2131624144;
+			public const int Platform_MaterialComponents_Dialog = 2131624144;
 			
 			// aapt resource value: 0x7F0E00D1
-			public const int Platform_MaterialComponents_Light_Dialog = 2131624145;
+			public const int Platform_MaterialComponents_Light = 2131624145;
 			
 			// aapt resource value: 0x7F0E00D2
-			public const int Platform_ThemeOverlay_AppCompat = 2131624146;
+			public const int Platform_MaterialComponents_Light_Dialog = 2131624146;
 			
 			// aapt resource value: 0x7F0E00D3
-			public const int Platform_ThemeOverlay_AppCompat_Dark = 2131624147;
+			public const int Platform_ThemeOverlay_AppCompat = 2131624147;
 			
 			// aapt resource value: 0x7F0E00D4
-			public const int Platform_ThemeOverlay_AppCompat_Light = 2131624148;
+			public const int Platform_ThemeOverlay_AppCompat_Dark = 2131624148;
 			
 			// aapt resource value: 0x7F0E00D5
-			public const int Platform_V21_AppCompat = 2131624149;
+			public const int Platform_ThemeOverlay_AppCompat_Light = 2131624149;
 			
 			// aapt resource value: 0x7F0E00D6
-			public const int Platform_V21_AppCompat_Light = 2131624150;
+			public const int Platform_V21_AppCompat = 2131624150;
 			
 			// aapt resource value: 0x7F0E00D7
-			public const int Platform_V25_AppCompat = 2131624151;
+			public const int Platform_V21_AppCompat_Light = 2131624151;
 			
 			// aapt resource value: 0x7F0E00D8
-			public const int Platform_V25_AppCompat_Light = 2131624152;
+			public const int Platform_V25_AppCompat = 2131624152;
 			
 			// aapt resource value: 0x7F0E00D9
-			public const int Platform_Widget_AppCompat_Spinner = 2131624153;
+			public const int Platform_V25_AppCompat_Light = 2131624153;
 			
 			// aapt resource value: 0x7F0E00DA
-			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131624154;
+			public const int Platform_Widget_AppCompat_Spinner = 2131624154;
 			
 			// aapt resource value: 0x7F0E00DB
-			public const int RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = 2131624155;
+			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131624155;
 			
 			// aapt resource value: 0x7F0E00DC
-			public const int RtlOverlay_Widget_AppCompat_DialogTitle_Icon = 2131624156;
+			public const int RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = 2131624156;
 			
 			// aapt resource value: 0x7F0E00DD
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem = 2131624157;
+			public const int RtlOverlay_Widget_AppCompat_DialogTitle_Icon = 2131624157;
 			
 			// aapt resource value: 0x7F0E00DE
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = 2131624158;
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem = 2131624158;
 			
 			// aapt resource value: 0x7F0E00DF
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = 2131624159;
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = 2131624159;
 			
 			// aapt resource value: 0x7F0E00E0
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = 2131624160;
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = 2131624160;
 			
 			// aapt resource value: 0x7F0E00E1
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = 2131624161;
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = 2131624161;
 			
 			// aapt resource value: 0x7F0E00E2
-			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = 2131624162;
-			
-			// aapt resource value: 0x7F0E00E8
-			public const int RtlOverlay_Widget_AppCompat_SearchView_MagIcon = 2131624168;
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = 2131624162;
 			
 			// aapt resource value: 0x7F0E00E3
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown = 2131624163;
-			
-			// aapt resource value: 0x7F0E00E4
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = 2131624164;
-			
-			// aapt resource value: 0x7F0E00E5
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = 2131624165;
-			
-			// aapt resource value: 0x7F0E00E6
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Query = 2131624166;
-			
-			// aapt resource value: 0x7F0E00E7
-			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Text = 2131624167;
+			public const int RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = 2131624163;
 			
 			// aapt resource value: 0x7F0E00E9
-			public const int RtlUnderlay_Widget_AppCompat_ActionButton = 2131624169;
+			public const int RtlOverlay_Widget_AppCompat_SearchView_MagIcon = 2131624169;
+			
+			// aapt resource value: 0x7F0E00E4
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown = 2131624164;
+			
+			// aapt resource value: 0x7F0E00E5
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = 2131624165;
+			
+			// aapt resource value: 0x7F0E00E6
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = 2131624166;
+			
+			// aapt resource value: 0x7F0E00E7
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Query = 2131624167;
+			
+			// aapt resource value: 0x7F0E00E8
+			public const int RtlOverlay_Widget_AppCompat_Search_DropDown_Text = 2131624168;
 			
 			// aapt resource value: 0x7F0E00EA
-			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131624170;
+			public const int RtlUnderlay_Widget_AppCompat_ActionButton = 2131624170;
 			
 			// aapt resource value: 0x7F0E00EB
-			public const int TextAppearance_AppCompat = 2131624171;
+			public const int RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = 2131624171;
 			
 			// aapt resource value: 0x7F0E00EC
-			public const int TextAppearance_AppCompat_Body1 = 2131624172;
+			public const int TextAppearance_AppCompat = 2131624172;
 			
 			// aapt resource value: 0x7F0E00ED
-			public const int TextAppearance_AppCompat_Body2 = 2131624173;
+			public const int TextAppearance_AppCompat_Body1 = 2131624173;
 			
 			// aapt resource value: 0x7F0E00EE
-			public const int TextAppearance_AppCompat_Button = 2131624174;
+			public const int TextAppearance_AppCompat_Body2 = 2131624174;
 			
 			// aapt resource value: 0x7F0E00EF
-			public const int TextAppearance_AppCompat_Caption = 2131624175;
+			public const int TextAppearance_AppCompat_Button = 2131624175;
 			
 			// aapt resource value: 0x7F0E00F0
-			public const int TextAppearance_AppCompat_Display1 = 2131624176;
+			public const int TextAppearance_AppCompat_Caption = 2131624176;
 			
 			// aapt resource value: 0x7F0E00F1
-			public const int TextAppearance_AppCompat_Display2 = 2131624177;
+			public const int TextAppearance_AppCompat_Display1 = 2131624177;
 			
 			// aapt resource value: 0x7F0E00F2
-			public const int TextAppearance_AppCompat_Display3 = 2131624178;
+			public const int TextAppearance_AppCompat_Display2 = 2131624178;
 			
 			// aapt resource value: 0x7F0E00F3
-			public const int TextAppearance_AppCompat_Display4 = 2131624179;
+			public const int TextAppearance_AppCompat_Display3 = 2131624179;
 			
 			// aapt resource value: 0x7F0E00F4
-			public const int TextAppearance_AppCompat_Headline = 2131624180;
+			public const int TextAppearance_AppCompat_Display4 = 2131624180;
 			
 			// aapt resource value: 0x7F0E00F5
-			public const int TextAppearance_AppCompat_Inverse = 2131624181;
+			public const int TextAppearance_AppCompat_Headline = 2131624181;
 			
 			// aapt resource value: 0x7F0E00F6
-			public const int TextAppearance_AppCompat_Large = 2131624182;
+			public const int TextAppearance_AppCompat_Inverse = 2131624182;
 			
 			// aapt resource value: 0x7F0E00F7
-			public const int TextAppearance_AppCompat_Large_Inverse = 2131624183;
+			public const int TextAppearance_AppCompat_Large = 2131624183;
 			
 			// aapt resource value: 0x7F0E00F8
-			public const int TextAppearance_AppCompat_Light_SearchResult_Subtitle = 2131624184;
+			public const int TextAppearance_AppCompat_Large_Inverse = 2131624184;
 			
 			// aapt resource value: 0x7F0E00F9
-			public const int TextAppearance_AppCompat_Light_SearchResult_Title = 2131624185;
+			public const int TextAppearance_AppCompat_Light_SearchResult_Subtitle = 2131624185;
 			
 			// aapt resource value: 0x7F0E00FA
-			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131624186;
+			public const int TextAppearance_AppCompat_Light_SearchResult_Title = 2131624186;
 			
 			// aapt resource value: 0x7F0E00FB
-			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131624187;
+			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = 2131624187;
 			
 			// aapt resource value: 0x7F0E00FC
-			public const int TextAppearance_AppCompat_Medium = 2131624188;
+			public const int TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = 2131624188;
 			
 			// aapt resource value: 0x7F0E00FD
-			public const int TextAppearance_AppCompat_Medium_Inverse = 2131624189;
+			public const int TextAppearance_AppCompat_Medium = 2131624189;
 			
 			// aapt resource value: 0x7F0E00FE
-			public const int TextAppearance_AppCompat_Menu = 2131624190;
+			public const int TextAppearance_AppCompat_Medium_Inverse = 2131624190;
 			
 			// aapt resource value: 0x7F0E00FF
-			public const int TextAppearance_AppCompat_SearchResult_Subtitle = 2131624191;
+			public const int TextAppearance_AppCompat_Menu = 2131624191;
 			
 			// aapt resource value: 0x7F0E0100
-			public const int TextAppearance_AppCompat_SearchResult_Title = 2131624192;
+			public const int TextAppearance_AppCompat_SearchResult_Subtitle = 2131624192;
 			
 			// aapt resource value: 0x7F0E0101
-			public const int TextAppearance_AppCompat_Small = 2131624193;
+			public const int TextAppearance_AppCompat_SearchResult_Title = 2131624193;
 			
 			// aapt resource value: 0x7F0E0102
-			public const int TextAppearance_AppCompat_Small_Inverse = 2131624194;
+			public const int TextAppearance_AppCompat_Small = 2131624194;
 			
 			// aapt resource value: 0x7F0E0103
-			public const int TextAppearance_AppCompat_Subhead = 2131624195;
+			public const int TextAppearance_AppCompat_Small_Inverse = 2131624195;
 			
 			// aapt resource value: 0x7F0E0104
-			public const int TextAppearance_AppCompat_Subhead_Inverse = 2131624196;
+			public const int TextAppearance_AppCompat_Subhead = 2131624196;
 			
 			// aapt resource value: 0x7F0E0105
-			public const int TextAppearance_AppCompat_Title = 2131624197;
+			public const int TextAppearance_AppCompat_Subhead_Inverse = 2131624197;
 			
 			// aapt resource value: 0x7F0E0106
-			public const int TextAppearance_AppCompat_Title_Inverse = 2131624198;
+			public const int TextAppearance_AppCompat_Title = 2131624198;
 			
 			// aapt resource value: 0x7F0E0107
-			public const int TextAppearance_AppCompat_Tooltip = 2131624199;
+			public const int TextAppearance_AppCompat_Title_Inverse = 2131624199;
 			
 			// aapt resource value: 0x7F0E0108
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131624200;
+			public const int TextAppearance_AppCompat_Tooltip = 2131624200;
 			
 			// aapt resource value: 0x7F0E0109
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131624201;
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Menu = 2131624201;
 			
 			// aapt resource value: 0x7F0E010A
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131624202;
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle = 2131624202;
 			
 			// aapt resource value: 0x7F0E010B
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Title = 2131624203;
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = 2131624203;
 			
 			// aapt resource value: 0x7F0E010C
-			public const int TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131624204;
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Title = 2131624204;
 			
 			// aapt resource value: 0x7F0E010D
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131624205;
+			public const int TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = 2131624205;
 			
 			// aapt resource value: 0x7F0E010E
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = 2131624206;
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle = 2131624206;
 			
 			// aapt resource value: 0x7F0E010F
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Title = 2131624207;
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = 2131624207;
 			
 			// aapt resource value: 0x7F0E0110
-			public const int TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = 2131624208;
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Title = 2131624208;
 			
 			// aapt resource value: 0x7F0E0111
-			public const int TextAppearance_AppCompat_Widget_Button = 2131624209;
+			public const int TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = 2131624209;
 			
 			// aapt resource value: 0x7F0E0112
-			public const int TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131624210;
+			public const int TextAppearance_AppCompat_Widget_Button = 2131624210;
 			
 			// aapt resource value: 0x7F0E0113
-			public const int TextAppearance_AppCompat_Widget_Button_Colored = 2131624211;
+			public const int TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131624211;
 			
 			// aapt resource value: 0x7F0E0114
-			public const int TextAppearance_AppCompat_Widget_Button_Inverse = 2131624212;
+			public const int TextAppearance_AppCompat_Widget_Button_Colored = 2131624212;
 			
 			// aapt resource value: 0x7F0E0115
-			public const int TextAppearance_AppCompat_Widget_DropDownItem = 2131624213;
+			public const int TextAppearance_AppCompat_Widget_Button_Inverse = 2131624213;
 			
 			// aapt resource value: 0x7F0E0116
-			public const int TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131624214;
+			public const int TextAppearance_AppCompat_Widget_DropDownItem = 2131624214;
 			
 			// aapt resource value: 0x7F0E0117
-			public const int TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131624215;
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Header = 2131624215;
 			
 			// aapt resource value: 0x7F0E0118
-			public const int TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131624216;
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Large = 2131624216;
 			
 			// aapt resource value: 0x7F0E0119
-			public const int TextAppearance_AppCompat_Widget_Switch = 2131624217;
+			public const int TextAppearance_AppCompat_Widget_PopupMenu_Small = 2131624217;
 			
 			// aapt resource value: 0x7F0E011A
-			public const int TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131624218;
+			public const int TextAppearance_AppCompat_Widget_Switch = 2131624218;
 			
 			// aapt resource value: 0x7F0E011B
-			public const int TextAppearance_Compat_Notification = 2131624219;
+			public const int TextAppearance_AppCompat_Widget_TextView_SpinnerItem = 2131624219;
 			
 			// aapt resource value: 0x7F0E011C
-			public const int TextAppearance_Compat_Notification_Info = 2131624220;
+			public const int TextAppearance_Compat_Notification = 2131624220;
 			
 			// aapt resource value: 0x7F0E011D
-			public const int TextAppearance_Compat_Notification_Info_Media = 2131624221;
+			public const int TextAppearance_Compat_Notification_Info = 2131624221;
 			
 			// aapt resource value: 0x7F0E011E
-			public const int TextAppearance_Compat_Notification_Line2 = 2131624222;
+			public const int TextAppearance_Compat_Notification_Info_Media = 2131624222;
 			
 			// aapt resource value: 0x7F0E011F
-			public const int TextAppearance_Compat_Notification_Line2_Media = 2131624223;
+			public const int TextAppearance_Compat_Notification_Line2 = 2131624223;
 			
 			// aapt resource value: 0x7F0E0120
-			public const int TextAppearance_Compat_Notification_Media = 2131624224;
+			public const int TextAppearance_Compat_Notification_Line2_Media = 2131624224;
 			
 			// aapt resource value: 0x7F0E0121
-			public const int TextAppearance_Compat_Notification_Time = 2131624225;
+			public const int TextAppearance_Compat_Notification_Media = 2131624225;
 			
 			// aapt resource value: 0x7F0E0122
-			public const int TextAppearance_Compat_Notification_Time_Media = 2131624226;
+			public const int TextAppearance_Compat_Notification_Time = 2131624226;
 			
 			// aapt resource value: 0x7F0E0123
-			public const int TextAppearance_Compat_Notification_Title = 2131624227;
+			public const int TextAppearance_Compat_Notification_Time_Media = 2131624227;
 			
 			// aapt resource value: 0x7F0E0124
-			public const int TextAppearance_Compat_Notification_Title_Media = 2131624228;
+			public const int TextAppearance_Compat_Notification_Title = 2131624228;
 			
 			// aapt resource value: 0x7F0E0125
-			public const int TextAppearance_Design_CollapsingToolbar_Expanded = 2131624229;
+			public const int TextAppearance_Compat_Notification_Title_Media = 2131624229;
 			
 			// aapt resource value: 0x7F0E0126
-			public const int TextAppearance_Design_Counter = 2131624230;
+			public const int TextAppearance_Design_CollapsingToolbar_Expanded = 2131624230;
 			
 			// aapt resource value: 0x7F0E0127
-			public const int TextAppearance_Design_Counter_Overflow = 2131624231;
+			public const int TextAppearance_Design_Counter = 2131624231;
 			
 			// aapt resource value: 0x7F0E0128
-			public const int TextAppearance_Design_Error = 2131624232;
+			public const int TextAppearance_Design_Counter_Overflow = 2131624232;
 			
 			// aapt resource value: 0x7F0E0129
-			public const int TextAppearance_Design_HelperText = 2131624233;
+			public const int TextAppearance_Design_Error = 2131624233;
 			
 			// aapt resource value: 0x7F0E012A
-			public const int TextAppearance_Design_Hint = 2131624234;
+			public const int TextAppearance_Design_HelperText = 2131624234;
 			
 			// aapt resource value: 0x7F0E012B
-			public const int TextAppearance_Design_Snackbar_Message = 2131624235;
+			public const int TextAppearance_Design_Hint = 2131624235;
 			
 			// aapt resource value: 0x7F0E012C
-			public const int TextAppearance_Design_Tab = 2131624236;
+			public const int TextAppearance_Design_Snackbar_Message = 2131624236;
 			
 			// aapt resource value: 0x7F0E012D
-			public const int TextAppearance_MaterialComponents_Body1 = 2131624237;
+			public const int TextAppearance_Design_Tab = 2131624237;
 			
 			// aapt resource value: 0x7F0E012E
-			public const int TextAppearance_MaterialComponents_Body2 = 2131624238;
+			public const int TextAppearance_MaterialComponents_Body1 = 2131624238;
 			
 			// aapt resource value: 0x7F0E012F
-			public const int TextAppearance_MaterialComponents_Button = 2131624239;
+			public const int TextAppearance_MaterialComponents_Body2 = 2131624239;
 			
 			// aapt resource value: 0x7F0E0130
-			public const int TextAppearance_MaterialComponents_Caption = 2131624240;
+			public const int TextAppearance_MaterialComponents_Button = 2131624240;
 			
 			// aapt resource value: 0x7F0E0131
-			public const int TextAppearance_MaterialComponents_Chip = 2131624241;
+			public const int TextAppearance_MaterialComponents_Caption = 2131624241;
 			
 			// aapt resource value: 0x7F0E0132
-			public const int TextAppearance_MaterialComponents_Headline1 = 2131624242;
+			public const int TextAppearance_MaterialComponents_Chip = 2131624242;
 			
 			// aapt resource value: 0x7F0E0133
-			public const int TextAppearance_MaterialComponents_Headline2 = 2131624243;
+			public const int TextAppearance_MaterialComponents_Headline1 = 2131624243;
 			
 			// aapt resource value: 0x7F0E0134
-			public const int TextAppearance_MaterialComponents_Headline3 = 2131624244;
+			public const int TextAppearance_MaterialComponents_Headline2 = 2131624244;
 			
 			// aapt resource value: 0x7F0E0135
-			public const int TextAppearance_MaterialComponents_Headline4 = 2131624245;
+			public const int TextAppearance_MaterialComponents_Headline3 = 2131624245;
 			
 			// aapt resource value: 0x7F0E0136
-			public const int TextAppearance_MaterialComponents_Headline5 = 2131624246;
+			public const int TextAppearance_MaterialComponents_Headline4 = 2131624246;
 			
 			// aapt resource value: 0x7F0E0137
-			public const int TextAppearance_MaterialComponents_Headline6 = 2131624247;
+			public const int TextAppearance_MaterialComponents_Headline5 = 2131624247;
 			
 			// aapt resource value: 0x7F0E0138
-			public const int TextAppearance_MaterialComponents_Overline = 2131624248;
+			public const int TextAppearance_MaterialComponents_Headline6 = 2131624248;
 			
 			// aapt resource value: 0x7F0E0139
-			public const int TextAppearance_MaterialComponents_Subtitle1 = 2131624249;
+			public const int TextAppearance_MaterialComponents_Overline = 2131624249;
 			
 			// aapt resource value: 0x7F0E013A
-			public const int TextAppearance_MaterialComponents_Subtitle2 = 2131624250;
+			public const int TextAppearance_MaterialComponents_Subtitle1 = 2131624250;
 			
 			// aapt resource value: 0x7F0E013B
-			public const int TextAppearance_MaterialComponents_Tab = 2131624251;
+			public const int TextAppearance_MaterialComponents_Subtitle2 = 2131624251;
 			
 			// aapt resource value: 0x7F0E013C
-			public const int TextAppearance_MediaRouter_Dynamic_Body = 2131624252;
+			public const int TextAppearance_MaterialComponents_Tab = 2131624252;
 			
 			// aapt resource value: 0x7F0E013D
-			public const int TextAppearance_MediaRouter_Dynamic_Body_Light = 2131624253;
+			public const int TextAppearance_MediaRouter_Dynamic_Body = 2131624253;
 			
 			// aapt resource value: 0x7F0E013E
-			public const int TextAppearance_MediaRouter_Dynamic_Header = 2131624254;
+			public const int TextAppearance_MediaRouter_Dynamic_Body_Light = 2131624254;
 			
 			// aapt resource value: 0x7F0E013F
-			public const int TextAppearance_MediaRouter_Dynamic_Header_Light = 2131624255;
+			public const int TextAppearance_MediaRouter_Dynamic_Header = 2131624255;
 			
 			// aapt resource value: 0x7F0E0140
-			public const int TextAppearance_MediaRouter_Dynamic_Metadata_PrimaryText = 2131624256;
+			public const int TextAppearance_MediaRouter_Dynamic_Header_Light = 2131624256;
 			
 			// aapt resource value: 0x7F0E0141
-			public const int TextAppearance_MediaRouter_Dynamic_Metadata_SecondaryText = 2131624257;
+			public const int TextAppearance_MediaRouter_Dynamic_Metadata_PrimaryText = 2131624257;
 			
 			// aapt resource value: 0x7F0E0142
-			public const int TextAppearance_MediaRouter_PrimaryText = 2131624258;
+			public const int TextAppearance_MediaRouter_Dynamic_Metadata_SecondaryText = 2131624258;
 			
 			// aapt resource value: 0x7F0E0143
-			public const int TextAppearance_MediaRouter_SecondaryText = 2131624259;
+			public const int TextAppearance_MediaRouter_PrimaryText = 2131624259;
 			
 			// aapt resource value: 0x7F0E0144
-			public const int TextAppearance_MediaRouter_Title = 2131624260;
+			public const int TextAppearance_MediaRouter_SecondaryText = 2131624260;
 			
 			// aapt resource value: 0x7F0E0145
-			public const int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131624261;
+			public const int TextAppearance_MediaRouter_Title = 2131624261;
 			
 			// aapt resource value: 0x7F0E0146
-			public const int TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131624262;
+			public const int TextAppearance_Widget_AppCompat_ExpandedMenu_Item = 2131624262;
 			
 			// aapt resource value: 0x7F0E0147
-			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131624263;
-			
-			// aapt resource value: 0x7F0E017C
-			public const int ThemeOverlay_AppCompat = 2131624316;
-			
-			// aapt resource value: 0x7F0E017D
-			public const int ThemeOverlay_AppCompat_ActionBar = 2131624317;
-			
-			// aapt resource value: 0x7F0E017E
-			public const int ThemeOverlay_AppCompat_Dark = 2131624318;
-			
-			// aapt resource value: 0x7F0E017F
-			public const int ThemeOverlay_AppCompat_Dark_ActionBar = 2131624319;
-			
-			// aapt resource value: 0x7F0E0180
-			public const int ThemeOverlay_AppCompat_DayNight = 2131624320;
-			
-			// aapt resource value: 0x7F0E0181
-			public const int ThemeOverlay_AppCompat_DayNight_ActionBar = 2131624321;
-			
-			// aapt resource value: 0x7F0E0182
-			public const int ThemeOverlay_AppCompat_Dialog = 2131624322;
-			
-			// aapt resource value: 0x7F0E0183
-			public const int ThemeOverlay_AppCompat_Dialog_Alert = 2131624323;
-			
-			// aapt resource value: 0x7F0E0184
-			public const int ThemeOverlay_AppCompat_Light = 2131624324;
-			
-			// aapt resource value: 0x7F0E0185
-			public const int ThemeOverlay_MaterialComponents = 2131624325;
-			
-			// aapt resource value: 0x7F0E0186
-			public const int ThemeOverlay_MaterialComponents_ActionBar = 2131624326;
-			
-			// aapt resource value: 0x7F0E0187
-			public const int ThemeOverlay_MaterialComponents_Dark = 2131624327;
-			
-			// aapt resource value: 0x7F0E0188
-			public const int ThemeOverlay_MaterialComponents_Dark_ActionBar = 2131624328;
-			
-			// aapt resource value: 0x7F0E0189
-			public const int ThemeOverlay_MaterialComponents_Dialog = 2131624329;
-			
-			// aapt resource value: 0x7F0E018A
-			public const int ThemeOverlay_MaterialComponents_Dialog_Alert = 2131624330;
-			
-			// aapt resource value: 0x7F0E018B
-			public const int ThemeOverlay_MaterialComponents_Light = 2131624331;
-			
-			// aapt resource value: 0x7F0E018C
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText = 2131624332;
-			
-			// aapt resource value: 0x7F0E018D
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = 2131624333;
-			
-			// aapt resource value: 0x7F0E018E
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131624334;
-			
-			// aapt resource value: 0x7F0E018F
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = 2131624335;
-			
-			// aapt resource value: 0x7F0E0190
-			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131624336;
-			
-			// aapt resource value: 0x7F0E0191
-			public const int ThemeOverlay_MediaRouter_Dark = 2131624337;
-			
-			// aapt resource value: 0x7F0E0192
-			public const int ThemeOverlay_MediaRouter_Light = 2131624338;
+			public const int TextAppearance_Widget_AppCompat_Toolbar_Subtitle = 2131624263;
 			
 			// aapt resource value: 0x7F0E0148
-			public const int Theme_AppCompat = 2131624264;
+			public const int TextAppearance_Widget_AppCompat_Toolbar_Title = 2131624264;
 			
-			// aapt resource value: 0x7F0E0149
-			public const int Theme_AppCompat_CompactMenu = 2131624265;
+			// aapt resource value: 0x7F0E017D
+			public const int ThemeOverlay_AppCompat = 2131624317;
 			
-			// aapt resource value: 0x7F0E014A
-			public const int Theme_AppCompat_DayNight = 2131624266;
+			// aapt resource value: 0x7F0E017E
+			public const int ThemeOverlay_AppCompat_ActionBar = 2131624318;
 			
-			// aapt resource value: 0x7F0E014B
-			public const int Theme_AppCompat_DayNight_DarkActionBar = 2131624267;
+			// aapt resource value: 0x7F0E017F
+			public const int ThemeOverlay_AppCompat_Dark = 2131624319;
 			
-			// aapt resource value: 0x7F0E014C
-			public const int Theme_AppCompat_DayNight_Dialog = 2131624268;
+			// aapt resource value: 0x7F0E0180
+			public const int ThemeOverlay_AppCompat_Dark_ActionBar = 2131624320;
 			
-			// aapt resource value: 0x7F0E014F
-			public const int Theme_AppCompat_DayNight_DialogWhenLarge = 2131624271;
+			// aapt resource value: 0x7F0E0181
+			public const int ThemeOverlay_AppCompat_DayNight = 2131624321;
 			
-			// aapt resource value: 0x7F0E014D
-			public const int Theme_AppCompat_DayNight_Dialog_Alert = 2131624269;
+			// aapt resource value: 0x7F0E0182
+			public const int ThemeOverlay_AppCompat_DayNight_ActionBar = 2131624322;
 			
-			// aapt resource value: 0x7F0E014E
-			public const int Theme_AppCompat_DayNight_Dialog_MinWidth = 2131624270;
+			// aapt resource value: 0x7F0E0183
+			public const int ThemeOverlay_AppCompat_Dialog = 2131624323;
 			
-			// aapt resource value: 0x7F0E0150
-			public const int Theme_AppCompat_DayNight_NoActionBar = 2131624272;
+			// aapt resource value: 0x7F0E0184
+			public const int ThemeOverlay_AppCompat_Dialog_Alert = 2131624324;
 			
-			// aapt resource value: 0x7F0E0151
-			public const int Theme_AppCompat_Dialog = 2131624273;
+			// aapt resource value: 0x7F0E0185
+			public const int ThemeOverlay_AppCompat_Light = 2131624325;
 			
-			// aapt resource value: 0x7F0E0154
-			public const int Theme_AppCompat_DialogWhenLarge = 2131624276;
+			// aapt resource value: 0x7F0E0186
+			public const int ThemeOverlay_MaterialComponents = 2131624326;
 			
-			// aapt resource value: 0x7F0E0152
-			public const int Theme_AppCompat_Dialog_Alert = 2131624274;
+			// aapt resource value: 0x7F0E0187
+			public const int ThemeOverlay_MaterialComponents_ActionBar = 2131624327;
 			
-			// aapt resource value: 0x7F0E0153
-			public const int Theme_AppCompat_Dialog_MinWidth = 2131624275;
+			// aapt resource value: 0x7F0E0188
+			public const int ThemeOverlay_MaterialComponents_Dark = 2131624328;
 			
-			// aapt resource value: 0x7F0E0155
-			public const int Theme_AppCompat_Light = 2131624277;
+			// aapt resource value: 0x7F0E0189
+			public const int ThemeOverlay_MaterialComponents_Dark_ActionBar = 2131624329;
 			
-			// aapt resource value: 0x7F0E0156
-			public const int Theme_AppCompat_Light_DarkActionBar = 2131624278;
+			// aapt resource value: 0x7F0E018A
+			public const int ThemeOverlay_MaterialComponents_Dialog = 2131624330;
 			
-			// aapt resource value: 0x7F0E0157
-			public const int Theme_AppCompat_Light_Dialog = 2131624279;
+			// aapt resource value: 0x7F0E018B
+			public const int ThemeOverlay_MaterialComponents_Dialog_Alert = 2131624331;
 			
-			// aapt resource value: 0x7F0E015A
-			public const int Theme_AppCompat_Light_DialogWhenLarge = 2131624282;
+			// aapt resource value: 0x7F0E018C
+			public const int ThemeOverlay_MaterialComponents_Light = 2131624332;
 			
-			// aapt resource value: 0x7F0E0158
-			public const int Theme_AppCompat_Light_Dialog_Alert = 2131624280;
+			// aapt resource value: 0x7F0E018D
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText = 2131624333;
 			
-			// aapt resource value: 0x7F0E0159
-			public const int Theme_AppCompat_Light_Dialog_MinWidth = 2131624281;
+			// aapt resource value: 0x7F0E018E
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = 2131624334;
 			
-			// aapt resource value: 0x7F0E015B
-			public const int Theme_AppCompat_Light_NoActionBar = 2131624283;
+			// aapt resource value: 0x7F0E018F
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131624335;
 			
-			// aapt resource value: 0x7F0E015C
-			public const int Theme_AppCompat_NoActionBar = 2131624284;
+			// aapt resource value: 0x7F0E0190
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = 2131624336;
 			
-			// aapt resource value: 0x7F0E015D
-			public const int Theme_Design = 2131624285;
+			// aapt resource value: 0x7F0E0191
+			public const int ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131624337;
 			
-			// aapt resource value: 0x7F0E015E
-			public const int Theme_Design_BottomSheetDialog = 2131624286;
-			
-			// aapt resource value: 0x7F0E015F
-			public const int Theme_Design_Light = 2131624287;
-			
-			// aapt resource value: 0x7F0E0160
-			public const int Theme_Design_Light_BottomSheetDialog = 2131624288;
-			
-			// aapt resource value: 0x7F0E0161
-			public const int Theme_Design_Light_NoActionBar = 2131624289;
-			
-			// aapt resource value: 0x7F0E0162
-			public const int Theme_Design_NoActionBar = 2131624290;
-			
-			// aapt resource value: 0x7F0E0163
-			public const int Theme_MaterialComponents = 2131624291;
-			
-			// aapt resource value: 0x7F0E0164
-			public const int Theme_MaterialComponents_BottomSheetDialog = 2131624292;
-			
-			// aapt resource value: 0x7F0E0165
-			public const int Theme_MaterialComponents_Bridge = 2131624293;
-			
-			// aapt resource value: 0x7F0E0166
-			public const int Theme_MaterialComponents_CompactMenu = 2131624294;
-			
-			// aapt resource value: 0x7F0E0167
-			public const int Theme_MaterialComponents_Dialog = 2131624295;
-			
-			// aapt resource value: 0x7F0E016A
-			public const int Theme_MaterialComponents_DialogWhenLarge = 2131624298;
-			
-			// aapt resource value: 0x7F0E0168
-			public const int Theme_MaterialComponents_Dialog_Alert = 2131624296;
-			
-			// aapt resource value: 0x7F0E0169
-			public const int Theme_MaterialComponents_Dialog_MinWidth = 2131624297;
-			
-			// aapt resource value: 0x7F0E016B
-			public const int Theme_MaterialComponents_Light = 2131624299;
-			
-			// aapt resource value: 0x7F0E016C
-			public const int Theme_MaterialComponents_Light_BottomSheetDialog = 2131624300;
-			
-			// aapt resource value: 0x7F0E016D
-			public const int Theme_MaterialComponents_Light_Bridge = 2131624301;
-			
-			// aapt resource value: 0x7F0E016E
-			public const int Theme_MaterialComponents_Light_DarkActionBar = 2131624302;
-			
-			// aapt resource value: 0x7F0E016F
-			public const int Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131624303;
-			
-			// aapt resource value: 0x7F0E0170
-			public const int Theme_MaterialComponents_Light_Dialog = 2131624304;
-			
-			// aapt resource value: 0x7F0E0173
-			public const int Theme_MaterialComponents_Light_DialogWhenLarge = 2131624307;
-			
-			// aapt resource value: 0x7F0E0171
-			public const int Theme_MaterialComponents_Light_Dialog_Alert = 2131624305;
-			
-			// aapt resource value: 0x7F0E0172
-			public const int Theme_MaterialComponents_Light_Dialog_MinWidth = 2131624306;
-			
-			// aapt resource value: 0x7F0E0174
-			public const int Theme_MaterialComponents_Light_NoActionBar = 2131624308;
-			
-			// aapt resource value: 0x7F0E0175
-			public const int Theme_MaterialComponents_Light_NoActionBar_Bridge = 2131624309;
-			
-			// aapt resource value: 0x7F0E0176
-			public const int Theme_MaterialComponents_NoActionBar = 2131624310;
-			
-			// aapt resource value: 0x7F0E0177
-			public const int Theme_MaterialComponents_NoActionBar_Bridge = 2131624311;
-			
-			// aapt resource value: 0x7F0E0178
-			public const int Theme_MediaRouter = 2131624312;
-			
-			// aapt resource value: 0x7F0E0179
-			public const int Theme_MediaRouter_Light = 2131624313;
-			
-			// aapt resource value: 0x7F0E017B
-			public const int Theme_MediaRouter_LightControlPanel = 2131624315;
-			
-			// aapt resource value: 0x7F0E017A
-			public const int Theme_MediaRouter_Light_DarkControlPanel = 2131624314;
+			// aapt resource value: 0x7F0E0192
+			public const int ThemeOverlay_MediaRouter_Dark = 2131624338;
 			
 			// aapt resource value: 0x7F0E0193
-			public const int Widget_AppCompat_ActionBar = 2131624339;
+			public const int ThemeOverlay_MediaRouter_Light = 2131624339;
+			
+			// aapt resource value: 0x7F0E0149
+			public const int Theme_AppCompat = 2131624265;
+			
+			// aapt resource value: 0x7F0E014A
+			public const int Theme_AppCompat_CompactMenu = 2131624266;
+			
+			// aapt resource value: 0x7F0E014B
+			public const int Theme_AppCompat_DayNight = 2131624267;
+			
+			// aapt resource value: 0x7F0E014C
+			public const int Theme_AppCompat_DayNight_DarkActionBar = 2131624268;
+			
+			// aapt resource value: 0x7F0E014D
+			public const int Theme_AppCompat_DayNight_Dialog = 2131624269;
+			
+			// aapt resource value: 0x7F0E0150
+			public const int Theme_AppCompat_DayNight_DialogWhenLarge = 2131624272;
+			
+			// aapt resource value: 0x7F0E014E
+			public const int Theme_AppCompat_DayNight_Dialog_Alert = 2131624270;
+			
+			// aapt resource value: 0x7F0E014F
+			public const int Theme_AppCompat_DayNight_Dialog_MinWidth = 2131624271;
+			
+			// aapt resource value: 0x7F0E0151
+			public const int Theme_AppCompat_DayNight_NoActionBar = 2131624273;
+			
+			// aapt resource value: 0x7F0E0152
+			public const int Theme_AppCompat_Dialog = 2131624274;
+			
+			// aapt resource value: 0x7F0E0155
+			public const int Theme_AppCompat_DialogWhenLarge = 2131624277;
+			
+			// aapt resource value: 0x7F0E0153
+			public const int Theme_AppCompat_Dialog_Alert = 2131624275;
+			
+			// aapt resource value: 0x7F0E0154
+			public const int Theme_AppCompat_Dialog_MinWidth = 2131624276;
+			
+			// aapt resource value: 0x7F0E0156
+			public const int Theme_AppCompat_Light = 2131624278;
+			
+			// aapt resource value: 0x7F0E0157
+			public const int Theme_AppCompat_Light_DarkActionBar = 2131624279;
+			
+			// aapt resource value: 0x7F0E0158
+			public const int Theme_AppCompat_Light_Dialog = 2131624280;
+			
+			// aapt resource value: 0x7F0E015B
+			public const int Theme_AppCompat_Light_DialogWhenLarge = 2131624283;
+			
+			// aapt resource value: 0x7F0E0159
+			public const int Theme_AppCompat_Light_Dialog_Alert = 2131624281;
+			
+			// aapt resource value: 0x7F0E015A
+			public const int Theme_AppCompat_Light_Dialog_MinWidth = 2131624282;
+			
+			// aapt resource value: 0x7F0E015C
+			public const int Theme_AppCompat_Light_NoActionBar = 2131624284;
+			
+			// aapt resource value: 0x7F0E015D
+			public const int Theme_AppCompat_NoActionBar = 2131624285;
+			
+			// aapt resource value: 0x7F0E015E
+			public const int Theme_Design = 2131624286;
+			
+			// aapt resource value: 0x7F0E015F
+			public const int Theme_Design_BottomSheetDialog = 2131624287;
+			
+			// aapt resource value: 0x7F0E0160
+			public const int Theme_Design_Light = 2131624288;
+			
+			// aapt resource value: 0x7F0E0161
+			public const int Theme_Design_Light_BottomSheetDialog = 2131624289;
+			
+			// aapt resource value: 0x7F0E0162
+			public const int Theme_Design_Light_NoActionBar = 2131624290;
+			
+			// aapt resource value: 0x7F0E0163
+			public const int Theme_Design_NoActionBar = 2131624291;
+			
+			// aapt resource value: 0x7F0E0164
+			public const int Theme_MaterialComponents = 2131624292;
+			
+			// aapt resource value: 0x7F0E0165
+			public const int Theme_MaterialComponents_BottomSheetDialog = 2131624293;
+			
+			// aapt resource value: 0x7F0E0166
+			public const int Theme_MaterialComponents_Bridge = 2131624294;
+			
+			// aapt resource value: 0x7F0E0167
+			public const int Theme_MaterialComponents_CompactMenu = 2131624295;
+			
+			// aapt resource value: 0x7F0E0168
+			public const int Theme_MaterialComponents_Dialog = 2131624296;
+			
+			// aapt resource value: 0x7F0E016B
+			public const int Theme_MaterialComponents_DialogWhenLarge = 2131624299;
+			
+			// aapt resource value: 0x7F0E0169
+			public const int Theme_MaterialComponents_Dialog_Alert = 2131624297;
+			
+			// aapt resource value: 0x7F0E016A
+			public const int Theme_MaterialComponents_Dialog_MinWidth = 2131624298;
+			
+			// aapt resource value: 0x7F0E016C
+			public const int Theme_MaterialComponents_Light = 2131624300;
+			
+			// aapt resource value: 0x7F0E016D
+			public const int Theme_MaterialComponents_Light_BottomSheetDialog = 2131624301;
+			
+			// aapt resource value: 0x7F0E016E
+			public const int Theme_MaterialComponents_Light_Bridge = 2131624302;
+			
+			// aapt resource value: 0x7F0E016F
+			public const int Theme_MaterialComponents_Light_DarkActionBar = 2131624303;
+			
+			// aapt resource value: 0x7F0E0170
+			public const int Theme_MaterialComponents_Light_DarkActionBar_Bridge = 2131624304;
+			
+			// aapt resource value: 0x7F0E0171
+			public const int Theme_MaterialComponents_Light_Dialog = 2131624305;
+			
+			// aapt resource value: 0x7F0E0174
+			public const int Theme_MaterialComponents_Light_DialogWhenLarge = 2131624308;
+			
+			// aapt resource value: 0x7F0E0172
+			public const int Theme_MaterialComponents_Light_Dialog_Alert = 2131624306;
+			
+			// aapt resource value: 0x7F0E0173
+			public const int Theme_MaterialComponents_Light_Dialog_MinWidth = 2131624307;
+			
+			// aapt resource value: 0x7F0E0175
+			public const int Theme_MaterialComponents_Light_NoActionBar = 2131624309;
+			
+			// aapt resource value: 0x7F0E0176
+			public const int Theme_MaterialComponents_Light_NoActionBar_Bridge = 2131624310;
+			
+			// aapt resource value: 0x7F0E0177
+			public const int Theme_MaterialComponents_NoActionBar = 2131624311;
+			
+			// aapt resource value: 0x7F0E0178
+			public const int Theme_MaterialComponents_NoActionBar_Bridge = 2131624312;
+			
+			// aapt resource value: 0x7F0E0179
+			public const int Theme_MediaRouter = 2131624313;
+			
+			// aapt resource value: 0x7F0E017A
+			public const int Theme_MediaRouter_Light = 2131624314;
+			
+			// aapt resource value: 0x7F0E017C
+			public const int Theme_MediaRouter_LightControlPanel = 2131624316;
+			
+			// aapt resource value: 0x7F0E017B
+			public const int Theme_MediaRouter_Light_DarkControlPanel = 2131624315;
 			
 			// aapt resource value: 0x7F0E0194
-			public const int Widget_AppCompat_ActionBar_Solid = 2131624340;
+			public const int Widget_AppCompat_ActionBar = 2131624340;
 			
 			// aapt resource value: 0x7F0E0195
-			public const int Widget_AppCompat_ActionBar_TabBar = 2131624341;
+			public const int Widget_AppCompat_ActionBar_Solid = 2131624341;
 			
 			// aapt resource value: 0x7F0E0196
-			public const int Widget_AppCompat_ActionBar_TabText = 2131624342;
+			public const int Widget_AppCompat_ActionBar_TabBar = 2131624342;
 			
 			// aapt resource value: 0x7F0E0197
-			public const int Widget_AppCompat_ActionBar_TabView = 2131624343;
+			public const int Widget_AppCompat_ActionBar_TabText = 2131624343;
 			
 			// aapt resource value: 0x7F0E0198
-			public const int Widget_AppCompat_ActionButton = 2131624344;
+			public const int Widget_AppCompat_ActionBar_TabView = 2131624344;
 			
 			// aapt resource value: 0x7F0E0199
-			public const int Widget_AppCompat_ActionButton_CloseMode = 2131624345;
+			public const int Widget_AppCompat_ActionButton = 2131624345;
 			
 			// aapt resource value: 0x7F0E019A
-			public const int Widget_AppCompat_ActionButton_Overflow = 2131624346;
+			public const int Widget_AppCompat_ActionButton_CloseMode = 2131624346;
 			
 			// aapt resource value: 0x7F0E019B
-			public const int Widget_AppCompat_ActionMode = 2131624347;
+			public const int Widget_AppCompat_ActionButton_Overflow = 2131624347;
 			
 			// aapt resource value: 0x7F0E019C
-			public const int Widget_AppCompat_ActivityChooserView = 2131624348;
+			public const int Widget_AppCompat_ActionMode = 2131624348;
 			
 			// aapt resource value: 0x7F0E019D
-			public const int Widget_AppCompat_AutoCompleteTextView = 2131624349;
+			public const int Widget_AppCompat_ActivityChooserView = 2131624349;
 			
 			// aapt resource value: 0x7F0E019E
-			public const int Widget_AppCompat_Button = 2131624350;
-			
-			// aapt resource value: 0x7F0E01A4
-			public const int Widget_AppCompat_ButtonBar = 2131624356;
-			
-			// aapt resource value: 0x7F0E01A5
-			public const int Widget_AppCompat_ButtonBar_AlertDialog = 2131624357;
+			public const int Widget_AppCompat_AutoCompleteTextView = 2131624350;
 			
 			// aapt resource value: 0x7F0E019F
-			public const int Widget_AppCompat_Button_Borderless = 2131624351;
+			public const int Widget_AppCompat_Button = 2131624351;
 			
-			// aapt resource value: 0x7F0E01A0
-			public const int Widget_AppCompat_Button_Borderless_Colored = 2131624352;
-			
-			// aapt resource value: 0x7F0E01A1
-			public const int Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131624353;
-			
-			// aapt resource value: 0x7F0E01A2
-			public const int Widget_AppCompat_Button_Colored = 2131624354;
-			
-			// aapt resource value: 0x7F0E01A3
-			public const int Widget_AppCompat_Button_Small = 2131624355;
+			// aapt resource value: 0x7F0E01A5
+			public const int Widget_AppCompat_ButtonBar = 2131624357;
 			
 			// aapt resource value: 0x7F0E01A6
-			public const int Widget_AppCompat_CompoundButton_CheckBox = 2131624358;
+			public const int Widget_AppCompat_ButtonBar_AlertDialog = 2131624358;
+			
+			// aapt resource value: 0x7F0E01A0
+			public const int Widget_AppCompat_Button_Borderless = 2131624352;
+			
+			// aapt resource value: 0x7F0E01A1
+			public const int Widget_AppCompat_Button_Borderless_Colored = 2131624353;
+			
+			// aapt resource value: 0x7F0E01A2
+			public const int Widget_AppCompat_Button_ButtonBar_AlertDialog = 2131624354;
+			
+			// aapt resource value: 0x7F0E01A3
+			public const int Widget_AppCompat_Button_Colored = 2131624355;
+			
+			// aapt resource value: 0x7F0E01A4
+			public const int Widget_AppCompat_Button_Small = 2131624356;
 			
 			// aapt resource value: 0x7F0E01A7
-			public const int Widget_AppCompat_CompoundButton_RadioButton = 2131624359;
+			public const int Widget_AppCompat_CompoundButton_CheckBox = 2131624359;
 			
 			// aapt resource value: 0x7F0E01A8
-			public const int Widget_AppCompat_CompoundButton_Switch = 2131624360;
+			public const int Widget_AppCompat_CompoundButton_RadioButton = 2131624360;
 			
 			// aapt resource value: 0x7F0E01A9
-			public const int Widget_AppCompat_DrawerArrowToggle = 2131624361;
+			public const int Widget_AppCompat_CompoundButton_Switch = 2131624361;
 			
 			// aapt resource value: 0x7F0E01AA
-			public const int Widget_AppCompat_DropDownItem_Spinner = 2131624362;
+			public const int Widget_AppCompat_DrawerArrowToggle = 2131624362;
 			
 			// aapt resource value: 0x7F0E01AB
-			public const int Widget_AppCompat_EditText = 2131624363;
+			public const int Widget_AppCompat_DropDownItem_Spinner = 2131624363;
 			
 			// aapt resource value: 0x7F0E01AC
-			public const int Widget_AppCompat_ImageButton = 2131624364;
+			public const int Widget_AppCompat_EditText = 2131624364;
 			
 			// aapt resource value: 0x7F0E01AD
-			public const int Widget_AppCompat_Light_ActionBar = 2131624365;
+			public const int Widget_AppCompat_ImageButton = 2131624365;
 			
 			// aapt resource value: 0x7F0E01AE
-			public const int Widget_AppCompat_Light_ActionBar_Solid = 2131624366;
+			public const int Widget_AppCompat_Light_ActionBar = 2131624366;
 			
 			// aapt resource value: 0x7F0E01AF
-			public const int Widget_AppCompat_Light_ActionBar_Solid_Inverse = 2131624367;
+			public const int Widget_AppCompat_Light_ActionBar_Solid = 2131624367;
 			
 			// aapt resource value: 0x7F0E01B0
-			public const int Widget_AppCompat_Light_ActionBar_TabBar = 2131624368;
+			public const int Widget_AppCompat_Light_ActionBar_Solid_Inverse = 2131624368;
 			
 			// aapt resource value: 0x7F0E01B1
-			public const int Widget_AppCompat_Light_ActionBar_TabBar_Inverse = 2131624369;
+			public const int Widget_AppCompat_Light_ActionBar_TabBar = 2131624369;
 			
 			// aapt resource value: 0x7F0E01B2
-			public const int Widget_AppCompat_Light_ActionBar_TabText = 2131624370;
+			public const int Widget_AppCompat_Light_ActionBar_TabBar_Inverse = 2131624370;
 			
 			// aapt resource value: 0x7F0E01B3
-			public const int Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131624371;
+			public const int Widget_AppCompat_Light_ActionBar_TabText = 2131624371;
 			
 			// aapt resource value: 0x7F0E01B4
-			public const int Widget_AppCompat_Light_ActionBar_TabView = 2131624372;
+			public const int Widget_AppCompat_Light_ActionBar_TabText_Inverse = 2131624372;
 			
 			// aapt resource value: 0x7F0E01B5
-			public const int Widget_AppCompat_Light_ActionBar_TabView_Inverse = 2131624373;
+			public const int Widget_AppCompat_Light_ActionBar_TabView = 2131624373;
 			
 			// aapt resource value: 0x7F0E01B6
-			public const int Widget_AppCompat_Light_ActionButton = 2131624374;
+			public const int Widget_AppCompat_Light_ActionBar_TabView_Inverse = 2131624374;
 			
 			// aapt resource value: 0x7F0E01B7
-			public const int Widget_AppCompat_Light_ActionButton_CloseMode = 2131624375;
+			public const int Widget_AppCompat_Light_ActionButton = 2131624375;
 			
 			// aapt resource value: 0x7F0E01B8
-			public const int Widget_AppCompat_Light_ActionButton_Overflow = 2131624376;
+			public const int Widget_AppCompat_Light_ActionButton_CloseMode = 2131624376;
 			
 			// aapt resource value: 0x7F0E01B9
-			public const int Widget_AppCompat_Light_ActionMode_Inverse = 2131624377;
+			public const int Widget_AppCompat_Light_ActionButton_Overflow = 2131624377;
 			
 			// aapt resource value: 0x7F0E01BA
-			public const int Widget_AppCompat_Light_ActivityChooserView = 2131624378;
+			public const int Widget_AppCompat_Light_ActionMode_Inverse = 2131624378;
 			
 			// aapt resource value: 0x7F0E01BB
-			public const int Widget_AppCompat_Light_AutoCompleteTextView = 2131624379;
+			public const int Widget_AppCompat_Light_ActivityChooserView = 2131624379;
 			
 			// aapt resource value: 0x7F0E01BC
-			public const int Widget_AppCompat_Light_DropDownItem_Spinner = 2131624380;
+			public const int Widget_AppCompat_Light_AutoCompleteTextView = 2131624380;
 			
 			// aapt resource value: 0x7F0E01BD
-			public const int Widget_AppCompat_Light_ListPopupWindow = 2131624381;
+			public const int Widget_AppCompat_Light_DropDownItem_Spinner = 2131624381;
 			
 			// aapt resource value: 0x7F0E01BE
-			public const int Widget_AppCompat_Light_ListView_DropDown = 2131624382;
+			public const int Widget_AppCompat_Light_ListPopupWindow = 2131624382;
 			
 			// aapt resource value: 0x7F0E01BF
-			public const int Widget_AppCompat_Light_PopupMenu = 2131624383;
+			public const int Widget_AppCompat_Light_ListView_DropDown = 2131624383;
 			
 			// aapt resource value: 0x7F0E01C0
-			public const int Widget_AppCompat_Light_PopupMenu_Overflow = 2131624384;
+			public const int Widget_AppCompat_Light_PopupMenu = 2131624384;
 			
 			// aapt resource value: 0x7F0E01C1
-			public const int Widget_AppCompat_Light_SearchView = 2131624385;
+			public const int Widget_AppCompat_Light_PopupMenu_Overflow = 2131624385;
 			
 			// aapt resource value: 0x7F0E01C2
-			public const int Widget_AppCompat_Light_Spinner_DropDown_ActionBar = 2131624386;
+			public const int Widget_AppCompat_Light_SearchView = 2131624386;
 			
 			// aapt resource value: 0x7F0E01C3
-			public const int Widget_AppCompat_ListMenuView = 2131624387;
+			public const int Widget_AppCompat_Light_Spinner_DropDown_ActionBar = 2131624387;
 			
 			// aapt resource value: 0x7F0E01C4
-			public const int Widget_AppCompat_ListPopupWindow = 2131624388;
+			public const int Widget_AppCompat_ListMenuView = 2131624388;
 			
 			// aapt resource value: 0x7F0E01C5
-			public const int Widget_AppCompat_ListView = 2131624389;
+			public const int Widget_AppCompat_ListPopupWindow = 2131624389;
 			
 			// aapt resource value: 0x7F0E01C6
-			public const int Widget_AppCompat_ListView_DropDown = 2131624390;
+			public const int Widget_AppCompat_ListView = 2131624390;
 			
 			// aapt resource value: 0x7F0E01C7
-			public const int Widget_AppCompat_ListView_Menu = 2131624391;
+			public const int Widget_AppCompat_ListView_DropDown = 2131624391;
 			
 			// aapt resource value: 0x7F0E01C8
-			public const int Widget_AppCompat_PopupMenu = 2131624392;
+			public const int Widget_AppCompat_ListView_Menu = 2131624392;
 			
 			// aapt resource value: 0x7F0E01C9
-			public const int Widget_AppCompat_PopupMenu_Overflow = 2131624393;
+			public const int Widget_AppCompat_PopupMenu = 2131624393;
 			
 			// aapt resource value: 0x7F0E01CA
-			public const int Widget_AppCompat_PopupWindow = 2131624394;
+			public const int Widget_AppCompat_PopupMenu_Overflow = 2131624394;
 			
 			// aapt resource value: 0x7F0E01CB
-			public const int Widget_AppCompat_ProgressBar = 2131624395;
+			public const int Widget_AppCompat_PopupWindow = 2131624395;
 			
 			// aapt resource value: 0x7F0E01CC
-			public const int Widget_AppCompat_ProgressBar_Horizontal = 2131624396;
+			public const int Widget_AppCompat_ProgressBar = 2131624396;
 			
 			// aapt resource value: 0x7F0E01CD
-			public const int Widget_AppCompat_RatingBar = 2131624397;
+			public const int Widget_AppCompat_ProgressBar_Horizontal = 2131624397;
 			
 			// aapt resource value: 0x7F0E01CE
-			public const int Widget_AppCompat_RatingBar_Indicator = 2131624398;
+			public const int Widget_AppCompat_RatingBar = 2131624398;
 			
 			// aapt resource value: 0x7F0E01CF
-			public const int Widget_AppCompat_RatingBar_Small = 2131624399;
+			public const int Widget_AppCompat_RatingBar_Indicator = 2131624399;
 			
 			// aapt resource value: 0x7F0E01D0
-			public const int Widget_AppCompat_SearchView = 2131624400;
+			public const int Widget_AppCompat_RatingBar_Small = 2131624400;
 			
 			// aapt resource value: 0x7F0E01D1
-			public const int Widget_AppCompat_SearchView_ActionBar = 2131624401;
+			public const int Widget_AppCompat_SearchView = 2131624401;
 			
 			// aapt resource value: 0x7F0E01D2
-			public const int Widget_AppCompat_SeekBar = 2131624402;
+			public const int Widget_AppCompat_SearchView_ActionBar = 2131624402;
 			
 			// aapt resource value: 0x7F0E01D3
-			public const int Widget_AppCompat_SeekBar_Discrete = 2131624403;
+			public const int Widget_AppCompat_SeekBar = 2131624403;
 			
 			// aapt resource value: 0x7F0E01D4
-			public const int Widget_AppCompat_Spinner = 2131624404;
+			public const int Widget_AppCompat_SeekBar_Discrete = 2131624404;
 			
 			// aapt resource value: 0x7F0E01D5
-			public const int Widget_AppCompat_Spinner_DropDown = 2131624405;
+			public const int Widget_AppCompat_Spinner = 2131624405;
 			
 			// aapt resource value: 0x7F0E01D6
-			public const int Widget_AppCompat_Spinner_DropDown_ActionBar = 2131624406;
+			public const int Widget_AppCompat_Spinner_DropDown = 2131624406;
 			
 			// aapt resource value: 0x7F0E01D7
-			public const int Widget_AppCompat_Spinner_Underlined = 2131624407;
+			public const int Widget_AppCompat_Spinner_DropDown_ActionBar = 2131624407;
 			
 			// aapt resource value: 0x7F0E01D8
-			public const int Widget_AppCompat_TextView = 2131624408;
+			public const int Widget_AppCompat_Spinner_Underlined = 2131624408;
 			
 			// aapt resource value: 0x7F0E01D9
-			public const int Widget_AppCompat_TextView_SpinnerItem = 2131624409;
+			public const int Widget_AppCompat_TextView = 2131624409;
 			
 			// aapt resource value: 0x7F0E01DA
-			public const int Widget_AppCompat_Toolbar = 2131624410;
+			public const int Widget_AppCompat_TextView_SpinnerItem = 2131624410;
 			
 			// aapt resource value: 0x7F0E01DB
-			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131624411;
+			public const int Widget_AppCompat_Toolbar = 2131624411;
 			
 			// aapt resource value: 0x7F0E01DC
-			public const int Widget_Compat_NotificationActionContainer = 2131624412;
+			public const int Widget_AppCompat_Toolbar_Button_Navigation = 2131624412;
 			
 			// aapt resource value: 0x7F0E01DD
-			public const int Widget_Compat_NotificationActionText = 2131624413;
+			public const int Widget_Compat_NotificationActionContainer = 2131624413;
 			
 			// aapt resource value: 0x7F0E01DE
-			public const int Widget_Design_AppBarLayout = 2131624414;
+			public const int Widget_Compat_NotificationActionText = 2131624414;
 			
 			// aapt resource value: 0x7F0E01DF
-			public const int Widget_Design_BottomNavigationView = 2131624415;
+			public const int Widget_Design_AppBarLayout = 2131624415;
 			
 			// aapt resource value: 0x7F0E01E0
-			public const int Widget_Design_BottomSheet_Modal = 2131624416;
+			public const int Widget_Design_BottomNavigationView = 2131624416;
 			
 			// aapt resource value: 0x7F0E01E1
-			public const int Widget_Design_CollapsingToolbar = 2131624417;
+			public const int Widget_Design_BottomSheet_Modal = 2131624417;
 			
 			// aapt resource value: 0x7F0E01E2
-			public const int Widget_Design_FloatingActionButton = 2131624418;
+			public const int Widget_Design_CollapsingToolbar = 2131624418;
 			
 			// aapt resource value: 0x7F0E01E3
-			public const int Widget_Design_NavigationView = 2131624419;
+			public const int Widget_Design_FloatingActionButton = 2131624419;
 			
 			// aapt resource value: 0x7F0E01E4
-			public const int Widget_Design_ScrimInsetsFrameLayout = 2131624420;
+			public const int Widget_Design_NavigationView = 2131624420;
 			
 			// aapt resource value: 0x7F0E01E5
-			public const int Widget_Design_Snackbar = 2131624421;
+			public const int Widget_Design_ScrimInsetsFrameLayout = 2131624421;
 			
 			// aapt resource value: 0x7F0E01E6
-			public const int Widget_Design_TabLayout = 2131624422;
+			public const int Widget_Design_Snackbar = 2131624422;
 			
 			// aapt resource value: 0x7F0E01E7
-			public const int Widget_Design_TextInputLayout = 2131624423;
+			public const int Widget_Design_TabLayout = 2131624423;
 			
 			// aapt resource value: 0x7F0E01E8
-			public const int Widget_MaterialComponents_BottomAppBar = 2131624424;
+			public const int Widget_Design_TextInputLayout = 2131624424;
 			
 			// aapt resource value: 0x7F0E01E9
-			public const int Widget_MaterialComponents_BottomAppBar_Colored = 2131624425;
+			public const int Widget_MaterialComponents_BottomAppBar = 2131624425;
 			
 			// aapt resource value: 0x7F0E01EA
-			public const int Widget_MaterialComponents_BottomNavigationView = 2131624426;
+			public const int Widget_MaterialComponents_BottomAppBar_Colored = 2131624426;
 			
 			// aapt resource value: 0x7F0E01EB
-			public const int Widget_MaterialComponents_BottomNavigationView_Colored = 2131624427;
+			public const int Widget_MaterialComponents_BottomNavigationView = 2131624427;
 			
 			// aapt resource value: 0x7F0E01EC
-			public const int Widget_MaterialComponents_BottomSheet_Modal = 2131624428;
+			public const int Widget_MaterialComponents_BottomNavigationView_Colored = 2131624428;
 			
 			// aapt resource value: 0x7F0E01ED
-			public const int Widget_MaterialComponents_Button = 2131624429;
+			public const int Widget_MaterialComponents_BottomSheet_Modal = 2131624429;
 			
 			// aapt resource value: 0x7F0E01EE
-			public const int Widget_MaterialComponents_Button_Icon = 2131624430;
+			public const int Widget_MaterialComponents_Button = 2131624430;
 			
 			// aapt resource value: 0x7F0E01EF
-			public const int Widget_MaterialComponents_Button_OutlinedButton = 2131624431;
+			public const int Widget_MaterialComponents_Button_Icon = 2131624431;
 			
 			// aapt resource value: 0x7F0E01F0
-			public const int Widget_MaterialComponents_Button_OutlinedButton_Icon = 2131624432;
+			public const int Widget_MaterialComponents_Button_OutlinedButton = 2131624432;
 			
 			// aapt resource value: 0x7F0E01F1
-			public const int Widget_MaterialComponents_Button_TextButton = 2131624433;
+			public const int Widget_MaterialComponents_Button_OutlinedButton_Icon = 2131624433;
 			
 			// aapt resource value: 0x7F0E01F2
-			public const int Widget_MaterialComponents_Button_TextButton_Dialog = 2131624434;
+			public const int Widget_MaterialComponents_Button_TextButton = 2131624434;
 			
 			// aapt resource value: 0x7F0E01F3
-			public const int Widget_MaterialComponents_Button_TextButton_Dialog_Icon = 2131624435;
+			public const int Widget_MaterialComponents_Button_TextButton_Dialog = 2131624435;
 			
 			// aapt resource value: 0x7F0E01F4
-			public const int Widget_MaterialComponents_Button_TextButton_Icon = 2131624436;
+			public const int Widget_MaterialComponents_Button_TextButton_Dialog_Icon = 2131624436;
 			
 			// aapt resource value: 0x7F0E01F5
-			public const int Widget_MaterialComponents_Button_UnelevatedButton = 2131624437;
+			public const int Widget_MaterialComponents_Button_TextButton_Icon = 2131624437;
 			
 			// aapt resource value: 0x7F0E01F6
-			public const int Widget_MaterialComponents_Button_UnelevatedButton_Icon = 2131624438;
+			public const int Widget_MaterialComponents_Button_UnelevatedButton = 2131624438;
 			
 			// aapt resource value: 0x7F0E01F7
-			public const int Widget_MaterialComponents_CardView = 2131624439;
-			
-			// aapt resource value: 0x7F0E01FC
-			public const int Widget_MaterialComponents_ChipGroup = 2131624444;
+			public const int Widget_MaterialComponents_Button_UnelevatedButton_Icon = 2131624439;
 			
 			// aapt resource value: 0x7F0E01F8
-			public const int Widget_MaterialComponents_Chip_Action = 2131624440;
-			
-			// aapt resource value: 0x7F0E01F9
-			public const int Widget_MaterialComponents_Chip_Choice = 2131624441;
-			
-			// aapt resource value: 0x7F0E01FA
-			public const int Widget_MaterialComponents_Chip_Entry = 2131624442;
-			
-			// aapt resource value: 0x7F0E01FB
-			public const int Widget_MaterialComponents_Chip_Filter = 2131624443;
+			public const int Widget_MaterialComponents_CardView = 2131624440;
 			
 			// aapt resource value: 0x7F0E01FD
-			public const int Widget_MaterialComponents_CompoundButton_CheckBox = 2131624445;
+			public const int Widget_MaterialComponents_ChipGroup = 2131624445;
+			
+			// aapt resource value: 0x7F0E01F9
+			public const int Widget_MaterialComponents_Chip_Action = 2131624441;
+			
+			// aapt resource value: 0x7F0E01FA
+			public const int Widget_MaterialComponents_Chip_Choice = 2131624442;
+			
+			// aapt resource value: 0x7F0E01FB
+			public const int Widget_MaterialComponents_Chip_Entry = 2131624443;
+			
+			// aapt resource value: 0x7F0E01FC
+			public const int Widget_MaterialComponents_Chip_Filter = 2131624444;
 			
 			// aapt resource value: 0x7F0E01FE
-			public const int Widget_MaterialComponents_FloatingActionButton = 2131624446;
+			public const int Widget_MaterialComponents_CompoundButton_CheckBox = 2131624446;
 			
 			// aapt resource value: 0x7F0E01FF
-			public const int Widget_MaterialComponents_NavigationView = 2131624447;
+			public const int Widget_MaterialComponents_FloatingActionButton = 2131624447;
 			
 			// aapt resource value: 0x7F0E0200
-			public const int Widget_MaterialComponents_Snackbar = 2131624448;
+			public const int Widget_MaterialComponents_NavigationView = 2131624448;
 			
 			// aapt resource value: 0x7F0E0201
-			public const int Widget_MaterialComponents_Snackbar_FullWidth = 2131624449;
+			public const int Widget_MaterialComponents_Snackbar = 2131624449;
 			
 			// aapt resource value: 0x7F0E0202
-			public const int Widget_MaterialComponents_TabLayout = 2131624450;
+			public const int Widget_MaterialComponents_Snackbar_FullWidth = 2131624450;
 			
 			// aapt resource value: 0x7F0E0203
-			public const int Widget_MaterialComponents_TabLayout_Colored = 2131624451;
+			public const int Widget_MaterialComponents_TabLayout = 2131624451;
 			
 			// aapt resource value: 0x7F0E0204
-			public const int Widget_MaterialComponents_TextInputEditText_FilledBox = 2131624452;
+			public const int Widget_MaterialComponents_TabLayout_Colored = 2131624452;
 			
 			// aapt resource value: 0x7F0E0205
-			public const int Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131624453;
+			public const int Widget_MaterialComponents_TextInputEditText_FilledBox = 2131624453;
 			
 			// aapt resource value: 0x7F0E0206
-			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox = 2131624454;
+			public const int Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = 2131624454;
 			
 			// aapt resource value: 0x7F0E0207
-			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131624455;
+			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox = 2131624455;
 			
 			// aapt resource value: 0x7F0E0208
-			public const int Widget_MaterialComponents_TextInputLayout_FilledBox = 2131624456;
+			public const int Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = 2131624456;
 			
 			// aapt resource value: 0x7F0E0209
-			public const int Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = 2131624457;
+			public const int Widget_MaterialComponents_TextInputLayout_FilledBox = 2131624457;
 			
 			// aapt resource value: 0x7F0E020A
-			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox = 2131624458;
+			public const int Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = 2131624458;
 			
 			// aapt resource value: 0x7F0E020B
-			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = 2131624459;
+			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox = 2131624459;
 			
 			// aapt resource value: 0x7F0E020C
-			public const int Widget_MaterialComponents_Toolbar = 2131624460;
+			public const int Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = 2131624460;
 			
 			// aapt resource value: 0x7F0E020D
-			public const int Widget_MediaRouter_Light_MediaRouteButton = 2131624461;
+			public const int Widget_MaterialComponents_Toolbar = 2131624461;
 			
 			// aapt resource value: 0x7F0E020E
-			public const int Widget_MediaRouter_MediaRouteButton = 2131624462;
+			public const int Widget_MediaRouter_Light_MediaRouteButton = 2131624462;
 			
 			// aapt resource value: 0x7F0E020F
-			public const int Widget_Support_CoordinatorLayout = 2131624463;
+			public const int Widget_MediaRouter_MediaRouteButton = 2131624463;
 			
 			// aapt resource value: 0x7F0E0210
-			public const int XamarinFormsMaterialButton = 2131624464;
+			public const int Widget_Support_CoordinatorLayout = 2131624464;
 			
 			// aapt resource value: 0x7F0E0211
-			public const int XamarinFormsMaterialButtonOutlined = 2131624465;
+			public const int XamarinFormsMaterialButton = 2131624465;
 			
 			// aapt resource value: 0x7F0E0212
-			public const int XamarinFormsMaterialCheckBox = 2131624466;
+			public const int XamarinFormsMaterialButtonOutlined = 2131624466;
 			
 			// aapt resource value: 0x7F0E0213
-			public const int XamarinFormsMaterialEntryFilled = 2131624467;
+			public const int XamarinFormsMaterialCheckBox = 2131624467;
 			
 			// aapt resource value: 0x7F0E0214
-			public const int XamarinFormsMaterialProgressBarCircular = 2131624468;
+			public const int XamarinFormsMaterialEntryFilled = 2131624468;
 			
 			// aapt resource value: 0x7F0E0215
-			public const int XamarinFormsMaterialProgressBarHorizontal = 2131624469;
+			public const int XamarinFormsMaterialProgressBarCircular = 2131624469;
 			
 			// aapt resource value: 0x7F0E0216
-			public const int XamarinFormsMaterialSlider = 2131624470;
+			public const int XamarinFormsMaterialProgressBarHorizontal = 2131624470;
 			
 			// aapt resource value: 0x7F0E0217
-			public const int XamarinFormsMaterialTheme = 2131624471;
+			public const int XamarinFormsMaterialSlider = 2131624471;
+			
+			// aapt resource value: 0x7F0E0218
+			public const int XamarinFormsMaterialTheme = 2131624472;
 			
 			static Style()
 			{

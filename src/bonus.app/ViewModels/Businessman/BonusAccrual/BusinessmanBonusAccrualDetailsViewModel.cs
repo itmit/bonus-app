@@ -10,7 +10,7 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
-	public class BusinessmanBonusAccrualDetailsViewModel : MvxViewModel<Guid>
+	public class BusinessmanBonusAccrualDetailsViewModel : MvxViewModel<User>
 	{
 		#region Data
 		#region Fields
@@ -221,7 +221,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusesForWriteOff = val;
-					SetProperty(ref _bonusesForWriteOffString, Math.Round(val, 2).ToString());
+					SetProperty(ref _bonusesForWriteOffString, Math.Round(val, 2).ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -452,7 +452,6 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 
 			try
 			{
-				User = await _customerService.GetCustomerByUuid(_guid);
 				Services = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
 			}
 			catch (Exception e)
@@ -461,9 +460,9 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 		}
 
-		public override void Prepare(Guid parameter)
+		public override void Prepare(User parameter)
 		{
-			_guid = parameter;
+			User = parameter;
 		}
 		#endregion
 	}

@@ -5,19 +5,19 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Customer.Shares
 {
-	public class CustomerSharesDetailViewModel : MvxViewModel<Share>
+	public class CustomerSharesDetailViewModel : MvxViewModel<Stock>
 	{
-		private Share _share;
+		private Stock _stock;
 
-		public override void Prepare(Share parameter)
+		public override void Prepare(Stock parameter)
 		{
-			Share = parameter;
+			Stock = parameter;
 		}
 
-		public Share Share
+		public Stock Stock
 		{
-			get => _share;
-			private set => SetProperty(ref _share, value);
+			get => _stock;
+			private set => SetProperty(ref _stock, value);
 		}
 
 	}

@@ -34,14 +34,83 @@ namespace bonus.app.Core.Services
 
 		private const string EditUri = "http://bonus.itmit-studio.ru/api/fillInfo";
 
-		public Task<User> Edit(EditBusinessmanDto arguments, byte[] photo)
+		public Task<User> Edit(EditBusinessmanDto arguments, byte[] photo, string imageName)
 		{
-			return Edit(JsonConvert.SerializeObject(arguments), photo);
+			var byteArrayContent = new ByteArrayContent(photo);
+			MultipartFormDataContent content = new MultipartFormDataContent
+			{
+				{
+					byteArrayContent, "\"photo\"", $"\"{imageName}\""
+				},
+				{
+					new StringContent(arguments.City), "city"
+				},
+				{
+					new StringContent(arguments.Country), "country"
+				},
+				{
+					new StringContent(arguments.Address), "address"
+				},
+				{
+					new StringContent(arguments.Contact), "contact"
+				},
+				{
+					new StringContent(arguments.Description), "description"
+				},
+				{
+					new StringContent(arguments.Uuid.ToString()), "uuid"
+				},
+				{
+					new StringContent(arguments.Phone), "phone"
+				},
+				{
+					new StringContent(arguments.WorkTime), "worktime"
+				},
+				{
+					new StringContent(arguments.Password), "password"
+				}
+			};
+			return Edit(content);
 		}
 
-		public Task<User> Edit(EditCustomerDto arguments, byte[] photo)
+		public Task<User> Edit(EditCustomerDto arguments, byte[] photo, string imageName)
 		{
-			return Edit(JsonConvert.SerializeObject(arguments), photo);
+			var byteArrayContent = new ByteArrayContent(photo);
+			MultipartFormDataContent content = new MultipartFormDataContent
+			{
+				{
+					byteArrayContent, "\"photo\"", $"\"{imageName}\""
+				},
+				{
+					new StringContent(arguments.City), "city"
+				},
+				{
+					new StringContent(arguments.Country), "country"
+				},
+				{
+					new StringContent(arguments.Address), "address"
+				},
+				{
+					new StringContent(arguments.Birthday), "birthday"
+				},
+				{
+					new StringContent(arguments.Car), "car"
+				},
+				{
+					new StringContent(arguments.Uuid.ToString()), "uuid"
+				},
+				{
+					new StringContent(arguments.Phone), "phone"
+				},
+				{
+					new StringContent(arguments.Sex), "sex"
+				},
+				{
+					new StringContent(arguments.Password), "password"
+				}
+			};
+
+			return Edit(content);
 		}
 
 		public string Error
@@ -56,15 +125,13 @@ namespace bonus.app.Core.Services
 			private set;
 		}
 
-		private async Task<User> Edit(string requestBody, byte[] photo)
+		private async Task<User> Edit(HttpContent content)
 		{
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-				Debug.WriteLine(requestBody);
-
-				var response = await client.PostAsync(EditUri, new StringContent(requestBody, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(EditUri, content);
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);

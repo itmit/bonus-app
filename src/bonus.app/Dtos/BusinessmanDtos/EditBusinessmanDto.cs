@@ -27,20 +27,6 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			set;
 		}
 
-		[JsonProperty("sex")]
-		public string Sex
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("birthday")]
-		public string Birthday
-		{
-			get;
-			set;
-		}
-
 		[JsonProperty("address")]
 		public string Address
 		{

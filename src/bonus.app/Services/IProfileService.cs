@@ -8,9 +8,9 @@ namespace bonus.app.Core.Services
 {
 	public interface IProfileService
 	{
-		Task<User> Edit(EditBusinessmanDto arguments, byte[] photo);
+		Task<User> Edit(EditBusinessmanDto arguments, byte[] photo, string imageName);
 
-		Task<User> Edit(EditCustomerDto arguments, byte[] photo);
+		Task<User> Edit(EditCustomerDto arguments, byte[] photo, string imageName);
 
 		string Error
 		{

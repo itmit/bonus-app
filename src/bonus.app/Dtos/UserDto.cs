@@ -13,7 +13,14 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		public UserInfoDto Client
+		public UserData Client
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("client_info")]
+		public UserInfoDto ClientInfo
 		{
 			get;
 			set;

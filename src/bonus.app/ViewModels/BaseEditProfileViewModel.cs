@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions.Abstractions;
 using Realms;
 
 namespace bonus.app.Core.ViewModels
@@ -17,49 +21,114 @@ namespace bonus.app.Core.ViewModels
 	{
 		#region Data
 		#region Fields
+		private string _address;
+
+		private readonly IAuthService _authService;
 		private MvxObservableCollection<City> _cities = new MvxObservableCollection<City>();
 		private MvxObservableCollection<Country> _countries;
 		private int _currentPageNumber;
+		private Dictionary<string, string> _errors = new Dictionary<string, string>();
 		private readonly IGeoHelperService _geoHelperService;
+
+		protected byte[] ImageBytes
+		{
+			get;
+			private set;
+		}
+
+		private string _imageName;
+		private string _imageSource;
 		private bool _isAuthorization;
 		private bool _isBusy;
 		private MvxCommand _loadMoreCitiesCommand;
+		private readonly IPermissionsService _permissionsService;
+		private string _phoneNumber;
+		private MvxCommand _picPhotoCommand;
 		private City _selectedCity;
 		private Country _selectedCountry;
 		private User _user;
-
-		private readonly IAuthService _authService;
-		private string _phoneNumber;
-		private string _address;
-		private Dictionary<string, string> _errors;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BaseEditProfileViewModel(IAuthService authService, IGeoHelperService geoHelperService)
+		public BaseEditProfileViewModel(IAuthService authService, IGeoHelperService geoHelperService, IPermissionsService permissionsService)
 		{
 			_authService = authService;
 			_geoHelperService = geoHelperService;
+			_permissionsService = permissionsService;
 		}
 		#endregion
 
 		#region Properties
+		public EditProfileViewModelArguments Parameter
+		{
+			get;
+			private set;
+		}
+
+		public string Address
+		{
+			get => _address;
+			set
+			{
+				SetProperty(ref _address, value);
+				if (string.IsNullOrEmpty(value?.Trim()))
+				{
+					Errors[nameof(Address)
+							   .ToLower()] = "Адрес не может быть пустым.";
+				}
+				else
+				{
+					Errors[nameof(Address)
+							   .ToLower()] = null;
+				}
+
+				RaisePropertyChanged(() => Errors);
+			}
+		}
+
 		public MvxObservableCollection<City> Cities
 		{
 			get => _cities;
 			private set => SetProperty(ref _cities, value);
 		}
 
-		public Dictionary<string, string> Errors
-		{
-			get => _errors;
-			protected set => SetProperty(ref _errors, value);
-		}
-
 		public MvxObservableCollection<Country> Countries
 		{
 			get => _countries;
 			private set => SetProperty(ref _countries, value);
+		}
+
+		public Dictionary<string, string> Errors
+		{
+			get => _errors;
+			protected set
+			{
+
+				if (value == null)
+				{
+					SetProperty(ref _errors, new Dictionary<string, string>());
+					return;
+				}
+
+				SetProperty(ref _errors, value);
+			}
+		}
+
+		public string ImageName
+		{
+			get => _imageName;
+			private set => SetProperty(ref _imageName, value);
+		}
+
+		public string ImageSource
+		{
+			get => _imageSource;
+			private set
+			{
+				SetProperty(ref _imageSource, value);
+				RaisePropertyChanged(() => IsShowDefaultImage);
+			}
 		}
 
 		public bool IsAuthorization
@@ -74,6 +143,8 @@ namespace bonus.app.Core.ViewModels
 			set => SetProperty(ref _isBusy, value);
 		}
 
+		public bool IsShowDefaultImage => string.IsNullOrEmpty(ImageSource);
+
 		public MvxCommand LoadMoreCitiesCommand
 		{
 			get
@@ -83,10 +154,19 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
-		public string Address
+		public string PhoneNumber
 		{
-			get => _address;
-			set => SetProperty(ref _address, value);
+			get => _phoneNumber;
+			set => SetProperty(ref _phoneNumber, value);
+		}
+
+		public MvxCommand PicImageCommand
+		{
+			get
+			{
+				_picPhotoCommand = _picPhotoCommand ?? new MvxCommand(PicImageCommandExecute);
+				return _picPhotoCommand;
+			}
 		}
 
 		public City SelectedCity
@@ -106,17 +186,13 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
-		public string PhoneNumber
-		{
-			get => _phoneNumber;
-			set => SetProperty(ref _phoneNumber, value);
-		}
-
 		public User User
 		{
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
+
+		public bool HasErrors => throw new NotImplementedException();
 		#endregion
 
 		#region Overrided
@@ -156,12 +232,6 @@ namespace bonus.app.Core.ViewModels
 		{
 			Parameter = parameter;
 		}
-
-		public EditProfileViewModelArguments Parameter
-		{
-			get;
-			private set;
-		}
 		#endregion
 
 		#region Private
@@ -171,6 +241,7 @@ namespace bonus.app.Core.ViewModels
 			{
 				return;
 			}
+
 			IsBusy = true;
 			_currentPageNumber = pageNumber;
 			try
@@ -201,6 +272,7 @@ namespace bonus.app.Core.ViewModels
 			{
 				Console.WriteLine(e);
 			}
+
 			IsBusy = false;
 
 			if (Parameter.IsActiveUser && SelectedCountry != null && SelectedCountry.LocalizedNames.Ru.Equals(User.Country))
@@ -208,25 +280,64 @@ namespace bonus.app.Core.ViewModels
 				SelectedCity = Cities.Single(c => c.LocalizedNames.Ru.Equals(User.City));
 			}
 		}
+
+		private async void PicImageCommandExecute()
+		{
+			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			{
+				if (!CrossMedia.Current.IsPickPhotoSupported)
+				{
+					return;
+				}
+
+				var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+				{
+					PhotoSize = PhotoSize.Medium
+				});
+
+				if (image == null)
+				{
+					return;
+				}
+
+				ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
+				ImageSource = image.Path;
+
+				using (var memoryStream = new MemoryStream())
+				{
+					image.GetStream()
+						 .CopyTo(memoryStream);
+					image.Dispose();
+					ImageBytes = memoryStream.ToArray();
+				}
+			}
+		}
+
+		public IEnumerable GetErrors(string propertyName)
+		{
+			throw new NotImplementedException();
+		}
 		#endregion
 	}
 
-
 	public class EditProfileViewModelArguments
 	{
+		#region .ctor
 		public EditProfileViewModelArguments(Guid guid, bool isActiveUser, string password = null)
 		{
 			Guid = guid;
 			Password = password;
 			IsActiveUser = isActiveUser;
 		}
+		#endregion
 
-		public bool IsActiveUser
+		#region Properties
+		public Guid Guid
 		{
 			get;
 		}
 
-		public Guid Guid
+		public bool IsActiveUser
 		{
 			get;
 		}
@@ -235,5 +346,6 @@ namespace bonus.app.Core.ViewModels
 		{
 			get;
 		}
+		#endregion
 	}
 }

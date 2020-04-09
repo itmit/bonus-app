@@ -7,14 +7,15 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Shares
 {
-	public class BusinessmanSharesDetailViewModel : MvxViewModel<Share>
+	public class BusinessmanSharesDetailViewModel : MvxViewModel<Stock>
 	{
-		private Share _share;
+		private Stock _stock;
 		private User _user;
 		private Color _shareColor;
 		private readonly IMvxNavigationService _navigationService;
-		private MvxCommand _openCreateSharePageCommand;
-		private MvxCommand _openCreateShareArchivePageCommand;
+		private MvxCommand _openCreateStockPageCommand;
+		private MvxCommand _openCreateStockArchivePageCommand;
+		private MvxCommand _openEditStockArchivePageCommand;
 
 		public User User
 		{
@@ -35,52 +36,65 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		}
 
 
-		public MvxCommand OpenCreateSharePageCommand
+		public MvxCommand OpenCreateStockPageCommand
 		{
 			get
 			{
-				_openCreateSharePageCommand = _openCreateSharePageCommand ??
+				_openCreateStockPageCommand = _openCreateStockPageCommand ??
 											  new MvxCommand(() =>
 											  {
 												  _navigationService.Navigate<CreateShareViewModel>();
 											  });
-				return _openCreateSharePageCommand;
+				return _openCreateStockPageCommand;
 			}
 		}
 
-		public MvxCommand OpenCreateShareArchivePageCommand
+		public MvxCommand OpenArchivePageCommand
 		{
 			get
 			{
-				_openCreateShareArchivePageCommand = _openCreateShareArchivePageCommand ??
+				_openCreateStockArchivePageCommand = _openCreateStockArchivePageCommand ??
 													 new MvxCommand(() =>
 													 {
 														 _navigationService.Navigate<ShareArchiveViewModel>();
 													 });
-				return _openCreateShareArchivePageCommand;
+				return _openCreateStockArchivePageCommand;
 			}
 		}
 
-		public Share Share
+		public MvxCommand OpenEditStockArchivePageCommand
 		{
-			get => _share;
-			private set => SetProperty(ref _share, value);
+			get
+			{
+				_openEditStockArchivePageCommand = _openEditStockArchivePageCommand ??
+												   new MvxCommand(() =>
+												   {
+													   _navigationService.Navigate<EditorStockViewModel>();
+												   });
+				return _openEditStockArchivePageCommand;
+			}
 		}
 
-		public override void Prepare(Share parameter)
+		public Stock Stock
 		{
-			Share = parameter;
-			if (Share.Status == null)
+			get => _stock;
+			private set => SetProperty(ref _stock, value);
+		}
+
+		public override void Prepare(Stock parameter)
+		{
+			Stock = parameter;
+			if (Stock.Status == null)
 			{
 				ShareColor = Color.Transparent;
 				return;
 			}
 
-			if (Share.Status.Equals("Завершена"))
+			if (Stock.Status.Equals("Завершена"))
 			{
 				ShareColor = Color.FromHex("#807D746D");
 			}
-			else if (Share.Status.Equals("Отклонена"))
+			else if (Stock.Status.Equals("Отклонена"))
 			{
 				ShareColor = Color.FromHex("#80BB8D91");
 			}
