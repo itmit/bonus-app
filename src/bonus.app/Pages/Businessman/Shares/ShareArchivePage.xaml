@@ -34,7 +34,7 @@
             </CollectionView>
 
             <!--Затемнение заднего фона-->
-            <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False" />
+            <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False"/>
             <!--Появляющийся фильтр-->
             <viewCells:FilterContentView x:Name="Filter" TranslationY="-480" />
         </Grid>

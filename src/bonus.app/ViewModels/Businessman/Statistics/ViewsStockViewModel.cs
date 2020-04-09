@@ -4,9 +4,9 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
-	public class ViewsStockViewsStockViewModel : MvxNavigationViewModel
+	public class ViewsStockViewModel : MvxNavigationViewModel
 	{
-		public ViewsStockViewsStockViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+		public ViewsStockViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}

@@ -46,7 +46,7 @@
             <!--Стиль для кнопок в разделе статистики-->
             <Style x:Key="StatisticsButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="Сформировать"/>
+                <Setter Property="Text" Value="СФОРМИРОВАТЬ"/>
                 <Setter Property="BorderColor" Value="#A0968E"/>
                 <Setter Property="TextColor" Value="#A0968E"/>
                 <Setter Property="BorderWidth" Value="1"/>
