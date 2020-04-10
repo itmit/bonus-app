@@ -10,7 +10,12 @@ namespace bonus.app.Core.Services
 		Task<IEnumerable<Stock>> GetMyStock(Guid? serviceUuid, string city);
 
 		Task<IEnumerable<Stock>> GetArchiveStock(Guid? serviceUuid, string city);
+
+		Task<bool> EditStock(Stock stock, byte[] imageBytes);
+
 		Task<IEnumerable<Stock>> GetMyStock();
+
+		Task<Stock> GetStockForEdit(Guid uuid);
 
 		Task<IEnumerable<Stock>> GetArchiveStock();
 

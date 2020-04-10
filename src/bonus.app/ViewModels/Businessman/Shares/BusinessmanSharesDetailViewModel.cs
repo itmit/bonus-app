@@ -67,9 +67,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			get
 			{
 				_openEditStockArchivePageCommand = _openEditStockArchivePageCommand ??
-												   new MvxCommand(() =>
+												   new MvxCommand(async () =>
 												   {
-													   _navigationService.Navigate<EditorStockViewModel>();
+													   Stock = await _navigationService.Navigate<EditorStockViewModel, Stock, Stock>(Stock);
 												   });
 				return _openEditStockArchivePageCommand;
 			}
