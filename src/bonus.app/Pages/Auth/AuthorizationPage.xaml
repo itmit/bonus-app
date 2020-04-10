@@ -17,21 +17,21 @@
                 <Image Style="{StaticResource ImageBonus}" />
                 <Label Text="Для входа введите телефон или&#10;E-mail и пароль" HorizontalTextAlignment="Center"
                        HorizontalOptions="Center" Margin="0,0,0,20" TextColor="White" />
-                <Frame Padding="0,-3" Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
+                <Frame Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
                     <Entry
                         x:Name="Login"
                         Style="{StaticResource AuthAndRegEntry}"
                         Text="{Binding Login}"
-                        Placeholder="Телефон или E-mail" Visual="Material" />
+                        Placeholder="Телефон или E-mail"/>
                 </Frame>
                 <Grid>
-                    <Frame Padding="0,-3" Style="{StaticResource AuthAndRegFrame}">
+                    <Frame Style="{StaticResource AuthAndRegFrame}">
                         <Entry
                             x:Name="Password"
                             Text="{Binding Password}"
                             Style="{StaticResource AuthAndRegEntry}"
                             Placeholder="Пароль"
-                            IsPassword="True" Visual="Material" />
+                            IsPassword="True"/>
                     </Frame>
                     <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"
                            WidthRequest="24">

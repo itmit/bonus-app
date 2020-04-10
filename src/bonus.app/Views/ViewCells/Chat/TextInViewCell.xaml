@@ -16,7 +16,7 @@
                  Margin="10"
                  CornerRadius="20">
               <StackLayout>
-                    <Label Text="{Binding Text}" TextColor="Black" FontFamily="Roboto"/>
+                    <Label Text="{Binding Text}" TextColor="Black"/>
               </StackLayout>
           </Frame>
       </StackLayout>

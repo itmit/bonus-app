@@ -26,6 +26,7 @@
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="CornerRadius" Value="24"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Padding" Value="0,-3"/>
             </Style>
             <!--Стиль для кнопок в авторизации-->
             <Style x:Key="AuthAndRegButton" TargetType="Button">
@@ -58,6 +59,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="#bab3af"/>
                 <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Visual" Value="Material"/>
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}"/>

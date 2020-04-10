@@ -6,52 +6,134 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells"
                       mc:Ignorable="d"
-                      x:Class="bonus.app.Core.Page.EditorStockPage"
-                      Title="Редактор акции"
-                      NavigationPage.HasBackButton="False">
+                      x:Class="bonus.app.Core.Page.EditorStockPage">
+    <NavigationPage.TitleView>
+        <Label Text="Редактор акции" Style="{StaticResource TitleLabel}"/>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
         <!--5.4.1-5.4.2 Редактор акции-->
         <ScrollView VerticalScrollBarVisibility="Never">
-            <StackLayout Margin="20,5" Spacing="0">
-                <StackLayout.Resources>
-                    <ResourceDictionary>
-                        <Style x:Key="Picker" TargetType="Picker">
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="TitleColor" Value="#505050"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="FontFamily" Value="Lato"/>
-                        </Style>
-                        <Style x:Key="Label" TargetType="Label">
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="FontFamily" Value="Lato"/>
-                        </Style>
-                        <Style x:Key="BoxView" TargetType="BoxView">
-                            <Setter Property="HeightRequest" Value="1"/>
-                            <Setter Property="BackgroundColor" Value="#CCCCCC"/>
-                        </Style>
-                    </ResourceDictionary>
-                </StackLayout.Resources>
+            <Grid Margin="20,5">
+                <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-
-                <Entry Placeholder="Название акции" PlaceholderColor="#505050" TextColor="#505050" FontFamily="Lato" FontSize="14"></Entry>
-                <Editor Placeholder="Описание акции" PlaceholderColor="#505050" FontSize="14" FontFamily="Lato" AutoSize="TextChanges"></Editor>
-                <StackLayout Margin="0,0,0,15">
-                    <Frame Padding="0" Margin="0,15" CornerRadius="10" IsClippedToBounds="True">
-                        <Image Source="chika.png" Aspect="AspectFill" WidthRequest="320" HeightRequest="270"></Image>
-                    </Frame>
-                    <StackLayout Orientation="Horizontal" Margin="5,0">
-                        <contentViews:CountriesContentView AbsoluteLayout.LayoutFlags="HeightProportional"/>
-
-                        <Label Text="Срок размещения, до" Style="{StaticResource Label}"></Label>
-                        <Label Text="05.10.2019" Style="{StaticResource Label}" HorizontalOptions="EndAndExpand"></Label>
-                        <Image Source="calendar.png" Aspect="AspectFill" HorizontalOptions="End"></Image>
+                <StackLayout Spacing="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Cell_OnTapped" />
+                        </StackLayout.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
+                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                        <BoxView />
                     </StackLayout>
+
+                <views:MvxListView
+                        Grid.Row="1"
+                        IsVisible="False"
+                        IsEnabled="False"
+                        x:Name="Countries"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding Countries}"
+                        SelectedItem="{Binding SelectedCountry}"
+                        ItemSelected="Countries_OnItemSelected"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                        <views:MvxListView.ItemTemplate>
+                            <DataTemplate>
+                                <viewCells:CountryCityViewCell />
+                            </DataTemplate>
+                        </views:MvxListView.ItemTemplate>
+                    </views:MvxListView>
+
+                    <Grid Grid.Row="1" x:Name="Grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="City" IsVisible="False">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" />
+                                <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                            <BoxView />
+                        </StackLayout>
+
+                        <views:MvxListView
+                            Grid.Row="1"
+                            IsVisible="False"
+                            IsEnabled="False"
+                            x:Name="Cities"
+                            HasUnevenRows="True"
+                            ItemsSource="{Binding Cities}"
+                            SelectedItem="{Binding SelectedCity}"
+                            ItemAppearing="Cities_OnItemAppearing"
+                            ItemSelected="OnSelectCity"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+
+                            <views:MvxListView.ItemTemplate>
+                                <DataTemplate>
+                                    <viewCells:CountryCityViewCell />
+                                </DataTemplate>
+                            </views:MvxListView.ItemTemplate>
+                        </views:MvxListView>
+                       </Grid>
+
+                <StackLayout Spacing="0" Grid.Row="1" x:Name="FieldsLayout">
+                <Entry Placeholder="Название акции"
+                       PlaceholderColor="#505050"
+                       BackgroundColor="Transparent"
+                       TextColor="#505050"
+                       FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                       FontSize="14"
+                       Visual="Material"/>
+                <Editor Placeholder="Описание акции&#10;&#10;&#10;"
+                        PlaceholderColor="#505050"
+                        BackgroundColor="Transparent"
+                        TextColor="#505050"
+                        FontSize="14"
+                        FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                        AutoSize="TextChanges"
+                        Visual="Material"/>
+                <StackLayout Margin="0,0,0,15">
+                    <Frame Padding="0" Margin="0,15" CornerRadius="10" IsClippedToBounds="True" HasShadow="False">
+                        <Image Source="chika.png" Aspect="AspectFill" WidthRequest="320" HeightRequest="270"/>
+                    </Frame>
+                   <StackLayout Orientation="Horizontal" Margin="5,0" Spacing="0">
+                                <Label Text="Срок размещения, до" VerticalOptions="Center" />
+                                <DatePicker VerticalOptions="Center"
+                                            HorizontalOptions="EndAndExpand"
+                                            Date="{Binding ShareTime}"
+                                            MaximumDate="2099-01-01"
+                                            MinimumDate="2000-01-01"
+                                            FontFamily="{x:Static design:DesignClass.LatoRegular}"/>
+                                <Image Source="ic_calendar_4x.png" VerticalOptions="Center" WidthRequest="18" />
+                            </StackLayout>
+                    <BoxView Margin="0,0,0,20" />
+                            <StackLayout Orientation="Horizontal" Margin="5,0">
+                                <Label Text="Только для подписчиков, до" VerticalOptions="Center" />
+                                <Switch HorizontalOptions="EndAndExpand"
+                                        IsToggled="{Binding IsSubscriberOnly}"
+                                        VerticalOptions="Center" />
+                            </StackLayout>
+                            <BoxView/>
                 </StackLayout>
-                <BoxView Style="{StaticResource BoxView}"></BoxView>
-                <Button Text="Сохранить изменения" TextColor="#FFFFFF" BackgroundColor="#7B726C" WidthRequest="320" CornerRadius="40" HeightRequest="45" Margin="0,10"></Button>
+                <Button Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource AppButton}"/>
             </StackLayout>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>

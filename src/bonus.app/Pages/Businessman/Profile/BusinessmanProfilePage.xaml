@@ -72,7 +72,7 @@
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1" />
+                                <TapGestureRecognizer Command="{Binding OpenChatCommand}"/>
                             </Frame.GestureRecognizers>
                         </Frame>
 
@@ -91,7 +91,7 @@
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Subscribers_OnTapped" />
+                                <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}"/>
                             </Frame.GestureRecognizers>
                         </Frame>
                     </Grid>

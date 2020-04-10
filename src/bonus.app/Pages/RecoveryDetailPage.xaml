@@ -9,7 +9,8 @@
              x:Class="bonus.app.Page.RecoveryDetailPage">
     <ContentPage.Content>
         <!--1.4.2 Детальная страница восстановления пароля-->
-        <StackLayout Margin="30,0" Spacing="0">
+        <ScrollView>
+            <StackLayout Margin="30,0" Spacing="0">
             <Image Style="{StaticResource ImageBonus}"/>
             <Label Text="Мы отправили код для восстановления&#10;пароля на указанный адрес" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,20" TextColor="White"/>
             <Frame Style="{StaticResource AuthAndRegFrame}">
@@ -21,8 +22,9 @@
             <Frame Style="{StaticResource AuthAndRegFrame}"  Margin="0,0,0,20">
                 <Entry Placeholder="Повторите новый пароль" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
-            <Button Text="Сменить пароль" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50"/>
+            <Button Text="СМЕНИТЬ ПАРОЛЬ" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50"/>
             <Label Text="Я не получил код" TextColor="White" HorizontalTextAlignment="Center"/>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

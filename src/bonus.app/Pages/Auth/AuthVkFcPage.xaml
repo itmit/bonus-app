@@ -12,16 +12,17 @@
                       BackgroundColor="#9c938d">
     <ContentPage.Content>
         <!--Страница 1.5.1 Авторизация, VK-->
-        <StackLayout Margin="30,0" Spacing="0">
+        <ScrollView>
+            <StackLayout Margin="30,0" Spacing="0">
             <Image Style="{StaticResource ImageBonus}" />
             <Label Text="Войдите в свой аккаунт Vkontakte,&#10;чтобы связать его с Bonus &amp; Marketing"
                    HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,0,0,30" TextColor="White" />
             <Frame Style="{StaticResource AuthAndRegFrame}" Margin="0,0,0,15">
-                <Entry x:Name="Login" Placeholder="Телефон или E-mail" Style="{StaticResource AuthAndRegEntry}" />
+                <Entry x:Name="Login" Placeholder="Телефон или E-mail" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
             <Grid>
                 <Frame Style="{StaticResource AuthAndRegFrame}">
-                    <Entry x:Name="Password" Placeholder="Пароль" Style="{StaticResource AuthAndRegEntry}" />
+                    <Entry x:Name="Password" Placeholder="Пароль" Style="{StaticResource AuthAndRegEntry}"/>
                 </Frame>
                 <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"
                        WidthRequest="24">
@@ -41,7 +42,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-            <Button Text="Войти" Style="{StaticResource AppButton}" Margin="0,0,0,30" />
+            <Button Text="ВОЙТИ" Style="{StaticResource AppButton}" Margin="0,0,0,30" />
             <Label Text="Создать аккаунт" TextColor="White" HorizontalTextAlignment="Center" Margin="0,0,0,10">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1" />
@@ -54,5 +55,6 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>

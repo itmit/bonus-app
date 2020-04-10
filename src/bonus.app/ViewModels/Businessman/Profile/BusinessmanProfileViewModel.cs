@@ -12,9 +12,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private MvxCommand _openEditProfilePageCommand;
 		private IAuthService _authService;
 		private User _user;
+        private MvxCommand _openChatCommand;
+        private MvxCommand _openSubscribersCommand;
 
-		#region .ctor
-		public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
+        #region .ctor
+        public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
 			: base(logProvider, navigationService)
 		{
 			_authService = authService;
@@ -37,6 +39,30 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(_authService.User.Guid,  true));
 				});
 				return _openEditProfilePageCommand;
+			}
+		}
+
+		public MvxCommand OpenChatCommand
+		{
+			get
+			{
+				_openChatCommand = _openChatCommand ?? new MvxCommand(() =>
+				{
+					NavigationService.Navigate<ChatViewModel>();
+				});
+				return _openChatCommand;
+			}
+		}
+
+		public MvxCommand OpenSubscribersCommand
+		{
+			get
+			{
+				_openSubscribersCommand = _openSubscribersCommand ?? new MvxCommand(() =>
+				{
+					NavigationService.Navigate<SubscribersViewModel>();
+				});
+				return _openSubscribersCommand;
 			}
 		}
 	}

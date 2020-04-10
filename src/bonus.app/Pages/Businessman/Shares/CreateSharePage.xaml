@@ -148,9 +148,9 @@
                                         VerticalOptions="Center" />
                             </StackLayout>
                             <BoxView Margin="0,15,0,20" />
-                            <Button Text="Просмотр" Style="{StaticResource StatisticsButton}" Command="{Binding ShowShareCommand}" 
+                            <Button Text="ПРОСМОТР" Style="{StaticResource StatisticsButton}" Command="{Binding ShowShareCommand}" 
                                     Margin="0,10" />
-                            <Button Text="Создать акцию" Style="{StaticResource AppButton}" Command="{Binding CreateShareCommand}" IsEnabled="{Binding CanCreateShareCommand}"/>
+                            <Button Text="СОЗДАТЬ АКЦИЮ" Style="{StaticResource AppButton}" Command="{Binding CreateShareCommand}" IsEnabled="{Binding CanCreateShareCommand}"/>
                         </StackLayout>
                     </Grid>
                 </Grid>

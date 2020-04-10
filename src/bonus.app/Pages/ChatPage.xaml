@@ -53,7 +53,7 @@
                 </Label.FormattedText>
             </Label>
             <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
-                                           x:Name="ChatInput" Padding="0,0,10,0"/>
+                                           x:Name="ChatInput"/>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

@@ -14,6 +14,7 @@
     <None Remove="mono_crash.115869eaf6.0.json" />
     <None Remove="mono_crash.dd6a2686f.0.json" />
     <None Remove="mono_crash.mem.1906.1.blob" />
+    <None Remove="mono_crash.mem.639.1.blob" />
   </ItemGroup>
 
   <ItemGroup>
