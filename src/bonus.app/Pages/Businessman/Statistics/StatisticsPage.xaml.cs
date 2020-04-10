@@ -14,12 +14,5 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 			InitializeComponent();
 		}
 		#endregion
-
-		#region Private
-		private void Cell_OnTapped(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new SalesTypesPage());
-		}
-		#endregion
-	}
+    }
 }

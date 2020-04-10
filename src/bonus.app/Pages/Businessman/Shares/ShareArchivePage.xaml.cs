@@ -54,6 +54,6 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 				Filter.IsEnabled = true;
 			}
 		}
-		#endregion
-	}
+        #endregion
+    }
 }

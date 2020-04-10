@@ -37,7 +37,7 @@
                    HorizontalTextAlignment="Center"
                    Margin="0,15"/>
 
-                <Button Text="Ок" Clicked="Button_OnClicked" Style="{StaticResource AppButton}" Command="{Binding OpenEditPageCommand}"/>
+                <Button Text="ОК" Clicked="Button_OnClicked" Style="{StaticResource AppButton}" Command="{Binding OpenEditPageCommand}"/>
         </StackLayout>
     </Frame>
 </pages:PopupPage>

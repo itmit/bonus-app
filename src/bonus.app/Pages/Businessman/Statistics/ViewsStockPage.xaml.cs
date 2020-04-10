@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Pages.Businessman.Statistics
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ViewsStockPage : MvxContentPage<ViewsStockViewsStockViewModel>
+	public partial class ViewsStockPage : MvxContentPage<ViewsStockViewModel>
 	{
 		#region .ctor
 		public ViewsStockPage()

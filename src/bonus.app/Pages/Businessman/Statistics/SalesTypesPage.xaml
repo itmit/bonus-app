@@ -7,6 +7,7 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Statistics.SalesTypesPage">
     <NavigationPage.TitleView>
@@ -29,15 +30,16 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
                     </Grid.GestureRecognizers>
                 </Grid>
-                <BoxView Margin="0,0,0,20" />
+                <BoxView/>
 
                 <Entry Placeholder="За период"
                        PlaceholderColor="#505050"
                        TextColor="#505050"
                        Keyboard="Numeric"
                        Visual="Material"
-                       FontFamily="Lato-Regular.ttf#Lato-Regular"
-                       Margin="0,0,0,20">
+                       FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                       Margin="0,0,0,20"
+                       BackgroundColor="Transparent">
                     <Entry.Behaviors>
                         <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
                     </Entry.Behaviors>

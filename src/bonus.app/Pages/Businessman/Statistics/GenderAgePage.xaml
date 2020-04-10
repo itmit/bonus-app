@@ -7,6 +7,7 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Statistics.GenderAgePage">
     <NavigationPage.TitleView>
@@ -16,7 +17,7 @@
     <ContentPage.Content>
         <!--Страница 11.2 Пол и возраст-->
         <ScrollView>
-            <StackLayout Margin="15,10" Spacing="0">
+            <StackLayout Margin="15,0" Spacing="0">
                 <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
                     <Label Text="Мужчины" />
                     <Image Source="ic_coloorblue_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
@@ -32,13 +33,14 @@
                        TextColor="#505050"
                        Keyboard="Numeric"
                        Visual="Material"
-                       FontFamily="Lato-Regular.ttf#Lato-Regular"
-                       Margin="0,0,0,20">
+                       FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                       Margin="0,0,0,20"
+                       BackgroundColor="Transparent">
                     <Entry.Behaviors>
                         <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
                     </Entry.Behaviors>
                 </Entry>
-                <Button Text="Сформировать" Style="{StaticResource StatisticsButton}" />
+                <Button Style="{StaticResource StatisticsButton}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

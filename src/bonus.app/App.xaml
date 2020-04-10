@@ -24,8 +24,7 @@
             <Style x:Key="AuthAndRegFrame" TargetType="Frame">
                 <Setter Property="IsClippedToBounds" Value="True"/>
                 <Setter Property="Padding" Value="0"/>
-                <Setter Property="CornerRadius" Value="{x:Static design:DesignClass.Radius}"/>
-                <Setter Property="HeightRequest" Value="{x:Static design:DesignClass.HeightFrame}"/>
+                <Setter Property="CornerRadius" Value="24"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
             <!--Стиль для кнопок в авторизации-->
@@ -47,7 +46,7 @@
             <!--Стиль для кнопок в разделе статистики-->
             <Style x:Key="StatisticsButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="Text" Value="Сформировать"/>
+                <Setter Property="Text" Value="СФОРМИРОВАТЬ"/>
                 <Setter Property="BorderColor" Value="#A0968E"/>
                 <Setter Property="TextColor" Value="#A0968E"/>
                 <Setter Property="BorderWidth" Value="1"/>
