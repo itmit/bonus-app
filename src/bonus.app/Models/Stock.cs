@@ -5,6 +5,12 @@ namespace bonus.app.Core.Models
 {
 	public class Stock
 	{
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("country")]
 		public string Country
 		{
