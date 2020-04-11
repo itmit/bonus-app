@@ -1,4 +1,5 @@
 ﻿using System;
+using bonus.app.Core.Models;
 using bonus.app.Core.ViewModels.Businessman.Shares;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -45,7 +46,7 @@ namespace bonus.app.Core.Page
 
 		private void Cities_OnItemAppearing(object sender, ItemVisibilityEventArgs e)
 		{
-			/*if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
+			if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
 			{
 				return;
 			}
@@ -56,7 +57,7 @@ namespace bonus.app.Core.Page
 						 .Id)
 			{
 				ViewModel.LoadMoreCitiesCommand.Execute();
-			}*/
+			}
 		}
 
 		private void Countries_OnItemSelected(object sender, SelectedItemChangedEventArgs e)

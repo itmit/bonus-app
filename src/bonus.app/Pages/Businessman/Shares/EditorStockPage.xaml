@@ -6,7 +6,8 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
-                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells"
+                      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Page.EditorStockPage">
     <NavigationPage.TitleView>
@@ -93,15 +94,24 @@
                        </Grid>
 
                 <StackLayout Spacing="0" Grid.Row="1" x:Name="FieldsLayout">
+
+                <contentViews:MyServicesContentView Margin="0,20,0,0"/>
+
+                <Label Text="{Binding Errors[name]}"
+                       IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                 <Entry Placeholder="Название акции"
                        PlaceholderColor="#505050"
+                       Text="{Binding Name}"
                        BackgroundColor="Transparent"
                        TextColor="#505050"
                        FontFamily="{x:Static design:DesignClass.LatoRegular}"
                        FontSize="14"
                        Visual="Material"/>
+                <Label Text="{Binding Errors[description]}"
+                       IsVisible="{Binding Errors[description], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                 <Editor Placeholder="Описание акции&#10;&#10;&#10;"
                         PlaceholderColor="#505050"
+                        Text="{Binding Description}"
                         BackgroundColor="Transparent"
                         TextColor="#505050"
                         FontSize="14"
@@ -109,9 +119,22 @@
                         AutoSize="TextChanges"
                         Visual="Material"/>
                 <StackLayout Margin="0,0,0,15">
-                    <Frame Padding="0" Margin="0,15" CornerRadius="10" IsClippedToBounds="True" HasShadow="False">
-                        <Image Source="chika.png" Aspect="AspectFill" WidthRequest="320" HeightRequest="270"/>
-                    </Frame>
+
+                    <forms:CachedImage Source="{Binding ImageSource}"
+                                       Margin="0,15"
+                                       Aspect="AspectFill"
+                                       WidthRequest="320"
+                                       HeightRequest="270">
+                        <forms:CachedImage.Transformations>
+                           <transformations:RoundedTransformation Radius="100"/>
+                        </forms:CachedImage.Transformations>
+                        <forms:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PicImageCommand}"/>
+                        </forms:CachedImage.GestureRecognizers>
+                    </forms:CachedImage>
+
+                   <Label Text="{Binding Errors[share_time]}"
+                       IsVisible="{Binding Errors[share_time], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
                    <StackLayout Orientation="Horizontal" Margin="5,0" Spacing="0">
                                 <Label Text="Срок размещения, до" VerticalOptions="Center" />
                                 <DatePicker VerticalOptions="Center"
