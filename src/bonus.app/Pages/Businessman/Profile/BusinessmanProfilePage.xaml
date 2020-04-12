@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
@@ -25,7 +26,8 @@
         <!--Страница 3. Профиль предпринимателя-->
         <ScrollView>
             <StackLayout>
-                <Grid BackgroundColor="#ADA49E">
+                <Grid HeightRequest="140">
+                    <graphic:RectangleInProfile/>
                     <StackLayout Orientation="Horizontal" Padding="20,20" HorizontalOptions="Center">
                         <Frame Padding="2" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True"
                                VerticalOptions="Center"

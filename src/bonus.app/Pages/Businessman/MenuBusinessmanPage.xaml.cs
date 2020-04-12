@@ -15,7 +15,7 @@ namespace bonus.app.Core.Pages.Businessman
 		{
 			InitializeComponent();
 
-			BackgroundColor = Color.FromRgba(160, 150, 142, 235);
+			BackgroundColor = Color.FromHex("#99a0968e");
 		}
 		#endregion
 	}
