@@ -12,10 +12,15 @@ using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
-	internal class StockService : BaseService, IStockService
+	public class StockService : BaseService, IStockService
 	{
 		#region Delegates and events
-		public event EventHandler CreatedShareEventHandler;
+
+		public delegate void EditedStockEventHandler(Stock stock);
+
+		public event EventHandler CreatedStockEventHandler;
+
+		public event EditedStockEventHandler EditedStock;
 		#endregion
 
 		#region Data
@@ -114,7 +119,7 @@ namespace bonus.app.Core.Services
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
 				if (data.Success)
 				{
-					CreatedShareEventHandler?.Invoke(this, EventArgs.Empty);
+					CreatedStockEventHandler?.Invoke(this, EventArgs.Empty);
 				}
 
 				return data.Success;
@@ -205,9 +210,6 @@ namespace bonus.app.Core.Services
 						new StringContent(date), "expires_at"
 					},
 					{
-						new StringContent(stock.IsSubscriberOnly ? "1" : "0"), "sub_only"
-					},
-					{
 						new StringContent(stock.Service.ToString()), "service_uuid"
 					}
 				};
@@ -221,8 +223,7 @@ namespace bonus.app.Core.Services
 								$"\"{stock.ImageSource}\"");
 				}
 
-				stock.ImageSource = null;
-				var response = await client.PutAsync(new Uri(string.Format(EditStockUri, stock.Uuid)), new StringContent(JsonConvert.SerializeObject(stock), Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(new Uri(string.Format(EditStockUri, stock.Uuid)), content);
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -233,7 +234,10 @@ namespace bonus.app.Core.Services
 				}
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
+				if (data.Success)
+				{
+					EditedStock?.Invoke(stock);
+				}
 				return data.Success;
 			}
 		}

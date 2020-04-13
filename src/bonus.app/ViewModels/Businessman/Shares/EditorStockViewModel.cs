@@ -46,6 +46,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private bool _canCreateShareCommand =true;
 		private IPermissionsService _permissionsService;
 		private IMvxNavigationService _navigationService;
+		private string _imageSource;
 
 		public EditorStockViewModel(IGeoHelperService geoHelperService, IServicesService servicesServices, IStockService stockService, IPermissionsService permissionsService, IMvxNavigationService navigationService)
 		{
@@ -155,19 +156,15 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			get => Stock.Description;
 			set
 			{
-				Stock.Name = value;
+				Stock.Description = value;
 				RaisePropertyChanged(() => Description);
 			}
 		}
 
 		public string ImageSource
 		{
-			get => Stock.ImageSource;
-			set
-			{
-				Stock.ImageSource = value;
-				RaisePropertyChanged(() => ImageSource);
-			}
+			get => _imageSource;
+			set => SetProperty(ref _imageSource, value);
 		}
 
 		public Country SelectedCountry
@@ -222,14 +219,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				try
 				{
 					Stock = await _stockService.GetStockForEdit(Stock.Uuid);
+					_shareTime = Stock.ShareTime;
+					ImageSource = Stock.ImageSource;
+					await RaisePropertyChanged(() => ShareTime);
+
 					_selectedCountry = Countries.SingleOrDefault(country => country.LocalizedNames.Ru.Equals(Stock.Country));
 					await RaisePropertyChanged(() => SelectedCountry);
+
 					_cities = new MvxObservableCollection<City>();
 					LoadCities(_selectedCountry, 1);
 					SelectedCity = Cities.SingleOrDefault(city => city.LocalizedNames.Ru.Equals(Stock.City));
 					IsVisibleCity = SelectedCity != null;
-					var temp = Services.SingleOrDefault(model => model.Services.Any(service => service.Uuid == Stock.Uuid));
-					var ser = temp?.Services.SingleOrDefault(service => service.Uuid == Stock.Uuid);
+
+					var temp = Services.SingleOrDefault(model => model.Services.Any(service => service.Uuid == Stock.Service));
+					var ser = temp?.Services.SingleOrDefault(service => service.Uuid == Stock.Service);
 					SelectedService = ser;
 				}
 				catch (Exception e)
@@ -328,11 +331,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 
 		public string ImageName
 		{
-			get => _imageName;
+			get => Stock.ImageSource;
 			private set
 			{
-				_imageName = value;
 				Stock.ImageSource = value;
+				RaisePropertyChanged(() => ImageName);
 			}
 		}
 
