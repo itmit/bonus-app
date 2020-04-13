@@ -7,6 +7,7 @@ using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
@@ -39,6 +40,8 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private double _bonusWhiteOffAmount;
 		private double _bonusWhiteOffPercentage;
 		private double _servicePrice;
+		private string _accrueBonusesString;
+		private double _accrueBonuses;
 		#endregion
 		#endregion
 
@@ -142,7 +145,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			var res = await _bonusService.AccrueAndWriteOffBonuses(new AccrueAndWriteOffBonusesDto
 			{
 				AccrualMethod = SelectedService.AccrualMethod,
-				AccrualValue = BonusesForAccrual,
+				AccrualValue = AccrueBonuses,
 				ClientUuid = _guid,
 				Price = ServicePrice,
 				ServiceUuid = SelectedService.Uuid,
@@ -198,11 +201,50 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusesForAccrual = val;
-					SetProperty(ref _bonusesForAccrualString, Math.Round(val, 2).ToString());
+					SetProperty(ref _bonusesForAccrualString, Math.Round(val, 2).ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
 				RaisePropertyChanged(() => BonusesForAccrualString);
+			}
+		}
+
+		public string AccrueBonusesString
+		{
+			get => _accrueBonusesString;
+			set
+			{
+				if (string.IsNullOrEmpty(value))
+				{
+					_accrueBonuses = 0;
+					SetProperty(ref _accrueBonusesString, string.Empty);
+
+					return;
+				}
+
+				if (double.TryParse(value, out var val))
+				{
+					_accrueBonuses = val;
+					SetProperty(ref _accrueBonusesString, Math.Round(val, 2).ToString(CultureInfo.InvariantCulture));
+					return;
+				}
+
+				RaisePropertyChanged(() => AccrueBonusesString);
+			}
+		}
+
+		public double AccrueBonuses
+		{
+			get => _accrueBonuses;
+			private set
+			{
+				if (value.Equals(_accrueBonuses))
+				{
+					return;
+				}
+				_accrueBonuses = value;
+				_accrueBonusesString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => AccrueBonuses);
 			}
 		}
 
@@ -401,6 +443,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			{
 				BonusesForWriteOff = 0;
 				BonusesForAccrual = 0;
+				AccrueBonuses = 0;
 				return;
 			}
 
@@ -429,14 +472,15 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				return;
 			}
 
+			BonusesForAccrual = sub;
 			switch (selectedService.AccrualMethod)
 			{
 				case BonusValueType.Percent:
-					var maxBonuses = Math.Round(price / 100 * bonusPercentage, 2);
-					BonusesForAccrual = sub > maxBonuses ? maxBonuses : sub;
+					var maxBonuses = Math.Round(BonusesForAccrual / 100 * bonusPercentage, 2);
+					AccrueBonuses = sub > maxBonuses ? maxBonuses : sub;
 					break;
 				case BonusValueType.Points:
-					BonusesForAccrual = sub > bonusPoints ? bonusPoints : sub;
+					AccrueBonuses = sub > bonusPoints ? bonusPoints : sub;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(selectedService.AccrualMethod),

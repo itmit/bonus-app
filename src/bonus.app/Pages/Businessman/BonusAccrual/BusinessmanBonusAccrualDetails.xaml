@@ -8,11 +8,17 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                      xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualDetails"
                       NavigationPage.HasBackButton="False"
                       NavigationPage.HasNavigationBar="False"
                       BackgroundColor="#9C938D">
+    <views:MvxContentPage.Resources>
+        <converters:DoubleConverter x:Key="DoubleConverter" />
+    </views:MvxContentPage.Resources>
     <ContentPage.Content>
         <!-- Страница 7.2 Начисление бонусов детальная-->
         <ScrollView Margin="0,0,0,5">
@@ -39,9 +45,11 @@
                 <Label Text="Начисление бонусов" Margin="{x:Static design:DesignClass.MarginForTitle}" HorizontalTextAlignment="Center" FontSize="Large"
                        TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratBold}" />
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Margin="0,0,0,15">
-                    <Frame Padding="0" IsClippedToBounds="True" CornerRadius="30" HasShadow="False">
-                        <Image Source="bitmap.png" WidthRequest="60" />
-                    </Frame>
+                    <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="60">
+                        <forms:CachedImage.Transformations>
+                            <transformations:CircleTransformation/>
+                        </forms:CachedImage.Transformations>
+                    </forms:CachedImage>
                     <StackLayout>
                         <Label Text="{Binding User.Name}" TextColor="White" FontSize="Body"
                                FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
@@ -133,9 +141,9 @@
                            Visual="Material" />
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <Entry Placeholder="Начислить бонусов" Style="{StaticResource Entry}" Visual="Material" />
+                    <Entry Placeholder="Начислить бонусов" Text="{Binding AccrueBonuses, Converter={StaticResource DoubleConverter}}" Style="{StaticResource Entry}" Visual="Material" />
                 </Frame>
-                <Button Text="НАЧИСЛИТЬ БОНУСЫ" Style="{StaticResource AppButton}" Command="{Binding AccrueAndWriteOffBonusesCommand}"/>
+                <Button Text="НАЧИСЛИТЬ БОНУСЫ" Style="{StaticResource AuthAndRegButton}" Command="{Binding AccrueAndWriteOffBonusesCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

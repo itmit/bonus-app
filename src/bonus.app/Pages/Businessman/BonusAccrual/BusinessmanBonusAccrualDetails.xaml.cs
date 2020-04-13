@@ -32,7 +32,7 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 		#region Private
 		private void OnAccrueAndWriteOffBonuses(object sender, EventArgs e)
 		{
-			Navigation.PushPopupAsync(new SuccessAccrualPopupPage(ViewModel.BonusesForAccrual));
+			Navigation.PushPopupAsync(new SuccessAccrualPopupPage(ViewModel.AccrueBonuses));
 		}
 
 		private void VisualElement_OnUnfocused(object sender, FocusEventArgs e)
