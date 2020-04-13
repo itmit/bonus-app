@@ -32,7 +32,7 @@
                 </Frame>
 
                 <Label Text="Покажите QR code продавцу,&#10;для начисления бонусов" TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,40" HorizontalTextAlignment="Center"/>
-                <Button Text="МОИ БОНУСЫ" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
+                <Button Text="МОИ БОНУСЫ" Style="{StaticResource AuthAndRegButton}" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
