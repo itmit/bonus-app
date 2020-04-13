@@ -5,13 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:customer="clr-namespace:bonus.app.Core.ViewModels.Customer;assembly=bonus.app.Core"
+             xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              xmlns:views1="clr-namespace:bonus.app.Core.Views;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Customer.MenuCustomerPage">
 
     <ContentPage.Content>
         <!--Страница 16.1.1 Меню -->
-        <ScrollView>
+        <Grid>
+            <graphic:MenuLinearGradientColor/>
+
+            <ScrollView>
             <StackLayout Spacing="0" Margin="20,0">
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,45,0,65">
                     <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65"/>
@@ -62,5 +66,6 @@
                 <views1:IconView/>
             </StackLayout>
         </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

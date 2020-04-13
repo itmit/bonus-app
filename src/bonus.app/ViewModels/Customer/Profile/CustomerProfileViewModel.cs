@@ -20,5 +20,8 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
+
+
+
 	}
 }

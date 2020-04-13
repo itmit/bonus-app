@@ -28,15 +28,5 @@ namespace bonus.app.Core.Pages.Customer.Profile
         {
             Navigation.PushAsync(new SubscribesPage());
         }
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new MessageListPage());
-        }
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new SubscribesPage());
-		}
 	}
 }

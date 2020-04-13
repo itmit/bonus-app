@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-             xmlns:design="clr-namespace:bonus.app.Core.Design"
+             xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.Popups.SuccessSharesPopupPage">
     <!--еще одна popup после успешного создания акции в профиле предпринимателя-->
@@ -35,7 +35,15 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button Text="МОИ АКЦИИ" Style="{StaticResource AppButton}" WidthRequest="260" HorizontalOptions="Center"/>
+            <Frame Style="{StaticResource AppButtonGradient}" WidthRequest="260" HorizontalOptions="Center">
+                <Grid>
+                    <graphic:RectangleInProfile/>
+                    <Label Text="МОИ АКЦИИ" Style="{StaticResource TextForAppButton}"/>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Frame.GestureRecognizers>
+            </Frame>
         </StackLayout>
     </Frame>
 </pages:PopupPage>

@@ -6,32 +6,35 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
-                      BackgroundColor="#9c938d"
                       NavigationPage.HasNavigationBar="False"
                       x:Class="bonus.app.Core.Pages.Auth.AuthorizationPage">
     <ContentPage.Content>
         <!-- Страница авторизации -->
-        <ScrollView>
-            <StackLayout Margin="30,0" Spacing="0">
+            <Grid>
+                <graphic:RectangleForContentPage/>
+
+                <ScrollView>
+                    <StackLayout Margin="30,0" Spacing="0">
                 <Image Style="{StaticResource ImageBonus}" />
                 <Label Text="Для входа введите телефон или&#10;E-mail и пароль" HorizontalTextAlignment="Center"
                        HorizontalOptions="Center" Margin="0,0,0,20" TextColor="White" />
-                <Frame Padding="0,-3" Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
+                <Frame Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
                     <Entry
                         x:Name="Login"
                         Style="{StaticResource AuthAndRegEntry}"
                         Text="{Binding Login}"
-                        Placeholder="Телефон или E-mail" Visual="Material" />
+                        Placeholder="Телефон или E-mail"/>
                 </Frame>
                 <Grid>
-                    <Frame Padding="0,-3" Style="{StaticResource AuthAndRegFrame}">
+                    <Frame Style="{StaticResource AuthAndRegFrame}">
                         <Entry
                             x:Name="Password"
                             Text="{Binding Password}"
                             Style="{StaticResource AuthAndRegEntry}"
                             Placeholder="Пароль"
-                            IsPassword="True" Visual="Material" />
+                            IsPassword="True"/>
                     </Frame>
                     <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"
                            WidthRequest="24">
@@ -76,6 +79,7 @@
                 </Label>
                 <Label Text="Справочный центр" TextColor="White" HorizontalTextAlignment="Center" />
             </StackLayout>
-        </ScrollView>
+                </ScrollView>
+            </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

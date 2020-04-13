@@ -3,13 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             BackgroundColor="#9c938d"
+             xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              NavigationPage.HasNavigationBar="False"
              mc:Ignorable="d"
              x:Class="bonus.app.Page.RecoveryDetailPage">
     <ContentPage.Content>
         <!--1.4.2 Детальная страница восстановления пароля-->
-        <StackLayout Margin="30,0" Spacing="0">
+        <Grid>
+            <graphic:RectangleForContentPage/>
+
+            <ScrollView>
+            <StackLayout Margin="30,0" Spacing="0">
             <Image Style="{StaticResource ImageBonus}"/>
             <Label Text="Мы отправили код для восстановления&#10;пароля на указанный адрес" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,20" TextColor="White"/>
             <Frame Style="{StaticResource AuthAndRegFrame}">
@@ -21,8 +25,10 @@
             <Frame Style="{StaticResource AuthAndRegFrame}"  Margin="0,0,0,20">
                 <Entry Placeholder="Повторите новый пароль" Style="{StaticResource AuthAndRegEntry}"/>
             </Frame>
-            <Button Text="Сменить пароль" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50"/>
+            <Button Text="СМЕНИТЬ ПАРОЛЬ" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50"/>
             <Label Text="Я не получил код" TextColor="White" HorizontalTextAlignment="Center"/>
         </StackLayout>
+        </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

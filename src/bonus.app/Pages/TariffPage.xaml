@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              mc:Ignorable="d"
              x:Class="bonus.app.Page.TariffPage"
              NavigationPage.BackButtonTitle="false">
@@ -71,7 +71,26 @@
                     <BoxView Grid.Row="7"/>
                 </Grid>
 
-                <Button Text="ПРОДЛИТЬ" Style="{StaticResource AppButton}" Margin="0,20,0,30"/>
+                <Grid>
+                    <Frame Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="True">
+                        <Grid>
+                            <graphic:RectangleInProfile/>
+                            <Label Text="ПРОДЛИТЬ" Style="{StaticResource TextForAppButton}"/>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="False">
+                        <Grid>
+                            <graphic:RectangleInProfile/>
+                            <Label Text="ПОДКЛЮЧИТЬ" Style="{StaticResource TextForAppButton}"/>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
 
                 <Label Text="Доступные тарифы" FontSize="Body" FontFamily="{x:Static design:DesignClass.MontserratBold}" HorizontalOptions="Center" Margin="0,0,0,15"/>
 

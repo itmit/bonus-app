@@ -24,7 +24,8 @@ namespace bonus.app.Core.Design
         private static bool _shadow;
         private static Thickness _margin;
         private static Thickness _marginForTitle;
-
+        private static Thickness _marginForImage;
+        private static Color _colorButtom = Color.FromRgba(255, 255, 255, 0.3);
 
         #endregion
 
@@ -45,6 +46,7 @@ namespace bonus.app.Core.Design
                 Shadow = false;
                 Margin = new Thickness(25, 25, 5, 10);
                 MarginForTitle = new Thickness(0, 50, 0, 10);
+                MarginForImage = new Thickness(0, 45, 0, 55);
             }
             else if(Device.Android == Device.RuntimePlatform)
             {
@@ -60,6 +62,7 @@ namespace bonus.app.Core.Design
                 Shadow = true;
                 Margin = new Thickness(5, 25, 5, 10);
                 MarginForTitle = new Thickness(0, 35, 0, 10);
+                MarginForImage = new Thickness(0, 35, 0, 55);
             }
         }
 
@@ -140,6 +143,18 @@ namespace bonus.app.Core.Design
         {
             get => _marginForTitle;
             set => _marginForTitle = value;
+        }
+
+        public static Thickness MarginForImage
+        {
+            get => _marginForImage;
+            set => _marginForImage = value;
+        }
+
+        public static Color ColorButtom
+        {
+            get => _colorButtom;
+            set => _colorButtom = value;
         }
         #endregion
     }

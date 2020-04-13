@@ -7,7 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
-                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Auth.CustomerRegistrationPage">
     <NavigationPage.TitleView>
@@ -47,9 +47,16 @@
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
                        Placeholder="Код из 4 цифр для быстрого входа" Margin="0,0,0,10" />
 
+                <Frame Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
+                    <Grid>
+                        <graphic:RectangleInProfile/>
+                        <Label Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource TextForAppButton}"/>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegistrationCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
 
-                <Button Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource AppButton}"
-                        Command="{Binding RegistrationCommand}" Margin="0,0,0,20" />
                 <Label HorizontalTextAlignment="Center" Text="или создать учетную запись с помощью:" Margin="0,0,0,10" />
                 <Grid ColumnSpacing="10">
                     <Grid.ColumnDefinitions>

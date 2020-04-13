@@ -7,7 +7,7 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Customer.Profile;assembly=bonus.app.Core"
-             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage"
              NavigationPage.HasBackButton="False">
@@ -147,7 +147,15 @@
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
-                            <Button Text="СОХРАНИТЬ" Command="{Binding EditCommand}" Style="{StaticResource AppButton}"/>
+                            <Frame Style="{StaticResource AppButtonGradient}">
+                                <Grid>
+                                    <graphic:RectangleInProfile/>
+                                    <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
                         </StackLayout>
                     </Grid>
                 </Grid>
