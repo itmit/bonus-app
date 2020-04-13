@@ -23,7 +23,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			: base(logProvider, navigationService)
 		{
 			_stockService = stockService;
-			_stockService.CreatedShareEventHandler += StockServiceOnCreatedStockEventHandler;
+			_stockService.CreatedStockEventHandler += StockServiceOnCreatedStockEventHandler;
 		}
 
 		private void StockServiceOnCreatedStockEventHandler(object sender, EventArgs e)

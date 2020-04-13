@@ -23,6 +23,9 @@ namespace bonus.app.Core.Services
 
 		Task<IEnumerable<Stock>> GetAll();
 
-		event EventHandler CreatedShareEventHandler;
+		event EventHandler CreatedStockEventHandler;
+
+
+		event StockService.EditedStockEventHandler EditedStock;
 	}
 }

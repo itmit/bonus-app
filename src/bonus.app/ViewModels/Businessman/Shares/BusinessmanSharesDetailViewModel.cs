@@ -1,4 +1,5 @@
-﻿using bonus.app.Core.Models;
+﻿using System;
+using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -16,6 +17,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private MvxCommand _openCreateStockPageCommand;
 		private MvxCommand _openCreateStockArchivePageCommand;
 		private MvxCommand _openEditStockArchivePageCommand;
+		private IStockService _stockService;
 
 		public User User
 		{
@@ -29,12 +31,22 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			private set => SetProperty(ref _shareColor, value);
 		}
 
-		public BusinessmanSharesDetailViewModel(IAuthService authService, IMvxNavigationService navigationService)
+		public BusinessmanSharesDetailViewModel(IAuthService authService, IMvxNavigationService navigationService, IStockService stockService)
 		{
 			User = authService.User;
 			_navigationService = navigationService;
+			_stockService = stockService;
+			_stockService.EditedStock += StockServiceOnEditedStock;
 		}
 
+		private void StockServiceOnEditedStock(Stock stock)
+		{
+			if (stock != null)
+			{
+				Stock = stock;
+				RaiseAllPropertiesChanged();
+			}
+		}
 
 		public MvxCommand OpenCreateStockPageCommand
 		{
@@ -67,9 +79,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			get
 			{
 				_openEditStockArchivePageCommand = _openEditStockArchivePageCommand ??
-												   new MvxCommand(async () =>
+												   new MvxCommand(() =>
 												   {
-													   Stock = await _navigationService.Navigate<EditorStockViewModel, Stock, Stock>(Stock);
+													   _navigationService.Navigate<EditorStockViewModel, Stock>(Stock);
 												   });
 				return _openEditStockArchivePageCommand;
 			}
