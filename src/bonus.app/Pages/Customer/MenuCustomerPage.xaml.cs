@@ -15,8 +15,6 @@ namespace bonus.app.Core.Pages.Customer
         public MenuCustomerPage()
         {
             InitializeComponent();
-
-            BackgroundColor = Color.FromRgba(160, 150, 142, 235);
         }
 
         private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)

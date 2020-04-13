@@ -14,8 +14,6 @@ namespace bonus.app.Core.Pages.Businessman
 		public MenuBusinessmanPage()
 		{
 			InitializeComponent();
-
-			BackgroundColor = Color.FromHex("#99a0968e");
 		}
 		#endregion
 	}

@@ -25,6 +25,7 @@ namespace bonus.app.Core.Design
         private static Thickness _margin;
         private static Thickness _marginForTitle;
         private static Thickness _marginForImage;
+        private static Color _colorButtom = Color.FromRgba(255, 255, 255, 0.3);
 
         #endregion
 
@@ -148,6 +149,12 @@ namespace bonus.app.Core.Design
         {
             get => _marginForImage;
             set => _marginForImage = value;
+        }
+
+        public static Color ColorButtom
+        {
+            get => _colorButtom;
+            set => _colorButtom = value;
         }
         #endregion
     }

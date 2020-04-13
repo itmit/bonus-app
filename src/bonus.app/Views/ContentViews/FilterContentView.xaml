@@ -2,7 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.FilterContentView">
     <ContentView.Content>
@@ -82,7 +82,15 @@
                         </ScrollView>
                     </StackLayout>
 
-                    <Button Text="ПРИМЕНИТЬ" Style="{StaticResource AppButton}" Margin="0" CornerRadius="0"/>
+                    <Frame Style="{StaticResource AppButtonGradient}" Margin="0" CornerRadius="0">
+                        <Grid>
+                            <graphic:RectangleInProfile/>
+                            <Label Text="ПРИМЕНИТЬ" Style="{StaticResource TextForAppButton}"/>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
                 </StackLayout>
             </Grid>
     </ContentView.Content>

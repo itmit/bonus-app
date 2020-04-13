@@ -6,7 +6,7 @@
                    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                    xmlns:core="clr-namespace:bonus.app.Core;assembly=bonus.app.Core"
-                   xmlns:popups="clr-namespace:bonus.app.Core.ViewModels.Businessman.Popups;assembly=bonus.app.Core"
+                   xmlns:popups="clr-namespace:bonus.app.Core.ViewModels.Businessman.Popups;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                    mc:Ignorable="d"
                    x:Class="bonus.app.Core.Pages.Businessman.Popups.SuccessCreateSharesPopupPage">
 
@@ -37,7 +37,15 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Button Text="Мои акции" Style="{StaticResource AppButton}" WidthRequest="260" HorizontalOptions="Center" Command="{Binding CloseModalCommand}"/>
+            <Frame Style="{StaticResource AppButtonGradient}" WidthRequest="260" HorizontalOptions="Center">
+                <Grid>
+                    <graphic:RectangleInProfile/>
+                    <Label Text="МОИ АКЦИИ" Style="{StaticResource TextForAppButton}"/>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseModalCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
         </StackLayout>
     </Frame>
 </core:MvxPopupPage>

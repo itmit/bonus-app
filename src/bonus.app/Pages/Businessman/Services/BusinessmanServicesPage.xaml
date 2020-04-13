@@ -9,7 +9,7 @@
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
                       xmlns:services1="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
-                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.BusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -50,7 +50,16 @@
 
                 <contentViews:MyServicesContentView />
                 <contentViews:ServiceAccrualBonusesContentView/>
-                <Button Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource AppButton}" Command="{Binding AddServiceCommand}" />
+
+                <Frame Style="{StaticResource AppButtonGradient}">
+                    <Grid>
+                        <graphic:RectangleInProfile/>
+                        <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}"/>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddServiceCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

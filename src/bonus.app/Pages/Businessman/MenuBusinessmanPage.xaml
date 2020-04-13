@@ -8,6 +8,7 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:views1="clr-namespace:bonus.app.Core.Views;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.MenuBusinessmanPage">
@@ -22,7 +23,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView Margin="0,0,0,5">
+        <Grid>
+            <graphic:MenuLinearGradientColor/>
+
+            <ScrollView Margin="0,0,0,5">
             <StackLayout Margin="20,0" Spacing="0">
                 <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,45,0,65">
                     <Image Style="{StaticResource ImageBonus}" Margin="0" WidthRequest="65" />
@@ -100,5 +104,6 @@
                 <views1:IconView />
             </StackLayout>
         </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

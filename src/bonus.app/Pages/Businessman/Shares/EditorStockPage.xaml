@@ -7,7 +7,7 @@
                       xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Page.EditorStockPage">
     <NavigationPage.TitleView>
@@ -154,7 +154,15 @@
                             </StackLayout>
                             <BoxView/>
                 </StackLayout>
-                <Button Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource AppButton}"/>
+                <Frame Style="{StaticResource AppButtonGradient}" IsEnabled="{Binding CanCreateShareCommand}">
+                    <Grid>
+                        <graphic:RectangleInProfile/>
+                        <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}"/>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SaveCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
             </StackLayout>
             </Grid>
         </ScrollView>

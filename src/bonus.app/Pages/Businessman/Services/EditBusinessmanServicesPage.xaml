@@ -8,7 +8,7 @@
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-                      xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
+                      xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.EditBusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -46,8 +46,16 @@
                         </DataTemplate>
                     </controls:RepeaterView.ItemTemplate>
                 </controls:RepeaterView>
-                <Button Text="РЕДАКТИРОВАТЬ" Style="{StaticResource AppButton}" Margin="0,20,0,5"
-                        Clicked="Button_OnClicked" />
+
+                <Frame Style="{StaticResource AppButtonGradient}" Margin="0,20,0,5">
+                    <Grid>
+                        <graphic:RectangleInProfile/>
+                        <Label Text="РЕДАКТИРОВАТЬ" Style="{StaticResource TextForAppButton}"/>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Button_OnClicked"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
