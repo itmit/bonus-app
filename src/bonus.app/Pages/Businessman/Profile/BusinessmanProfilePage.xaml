@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <views:MvxContentPage x:TypeArguments="profile:BusinessmanProfileViewModel"
                       xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -28,13 +27,19 @@
             <StackLayout>
                 <Grid HeightRequest="140">
                     <graphic:RectangleInProfile/>
-                    <StackLayout Orientation="Horizontal" Padding="20,20" HorizontalOptions="Center">
-                        <Frame Padding="2" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True"
+                    <Grid Padding="20,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0" Padding="2" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True"
                                VerticalOptions="Center"
                                HorizontalOptions="Center" HasShadow="False">
                                 <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="96"
                                                    HeightRequest="96" VerticalOptions="Center"
-                                                   HorizontalOptions="Center">
+                                                   HorizontalOptions="Center"
+                                                   LoadingPlaceholder="icon_no_photo.png"
+                                                   ErrorPlaceholder="icon_no_photo.png">
                                     <forms:CachedImage.Transformations>
                                         <transformations:CircleTransformation />
                                     </forms:CachedImage.Transformations>
@@ -43,14 +48,14 @@
                                     </forms:CachedImage.GestureRecognizers>
                                 </forms:CachedImage>
                         </Frame>
-                        <StackLayout>
+                        <StackLayout Grid.Column="1">
                             <Label Text="{Binding User.Name}" TextColor="#FFFFFF" FontSize="Body"
                                    FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2"/>
                             <Label
                                 Text="{Binding User.Description}"
                                 TextColor="#FFFFFF" MaxLines="3" />
                         </StackLayout>
-                    </StackLayout>
+                    </Grid>
                 </Grid>
                 <StackLayout Margin="20,0" Spacing="0">
                     <Grid Margin="0,25" RowSpacing="10">

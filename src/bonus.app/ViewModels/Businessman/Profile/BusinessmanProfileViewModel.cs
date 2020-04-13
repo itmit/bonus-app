@@ -48,7 +48,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			{
 				_openChatCommand = _openChatCommand ?? new MvxCommand(() =>
 				{
-					NavigationService.Navigate<ChatViewModel>();
+					NavigationService.Navigate<MessageListViewModel>();
 				});
 				return _openChatCommand;
 			}

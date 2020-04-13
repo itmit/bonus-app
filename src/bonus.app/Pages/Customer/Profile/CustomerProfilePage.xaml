@@ -26,11 +26,13 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <forms:CachedImage Source="{Binding User.PhotoSource}" Grid.Column="0" WidthRequest="100" HeightRequest="100" VerticalOptions="Start">
-                        <forms:CachedImage.Transformations>
-                            <transformations:CircleTransformation />
-                        </forms:CachedImage.Transformations>
-                    </forms:CachedImage>
+                    <Frame IsClippedToBounds="True" HasShadow="False" CornerRadius="50" Padding="1" Grid.Column="0" BorderColor="#505050">
+                        <forms:CachedImage Source="{Binding User.PhotoSource}"  WidthRequest="100" HeightRequest="100" VerticalOptions="Start" LoadingPlaceholder="icon_no_photo.png" ErrorPlaceholder="icon_no_photo.png">
+                            <forms:CachedImage.Transformations>
+                                <transformations:CircleTransformation />
+                            </forms:CachedImage.Transformations>
+                        </forms:CachedImage>
+                    </Frame>
                     <StackLayout Grid.Column="1" VerticalOptions="Start">
                         <Label Style="{StaticResource TitleLabel}" FontSize="Body">
                             <Label.FormattedText>
