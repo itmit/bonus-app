@@ -37,9 +37,7 @@
                                HorizontalOptions="Center" HasShadow="False">
                                 <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="96"
                                                    HeightRequest="96" VerticalOptions="Center"
-                                                   HorizontalOptions="Center"
-                                                   LoadingPlaceholder="icon_no_photo.png"
-                                                   ErrorPlaceholder="icon_no_photo.png">
+                                                   HorizontalOptions="Center">
                                     <forms:CachedImage.Transformations>
                                         <transformations:CircleTransformation />
                                     </forms:CachedImage.Transformations>
