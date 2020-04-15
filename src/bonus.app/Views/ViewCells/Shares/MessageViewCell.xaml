@@ -13,7 +13,7 @@
               <ColumnDefinition Width="4*"/>
               <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
-          <Frame Padding="0" BackgroundColor="#7C736D" VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" CornerRadius="20">
+          <Frame Padding="0" BackgroundColor="#7C736D" VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" CornerRadius="20" HasShadow="False">
               <Label Text="M" TextColor="White" FontSize="Title" FontFamily="Roboto" VerticalOptions="Center" HorizontalOptions="Center"/>
           </Frame>
           <StackLayout Grid.Column="1" Margin="15,0,0,0" HorizontalOptions="Start" VerticalOptions="Start">

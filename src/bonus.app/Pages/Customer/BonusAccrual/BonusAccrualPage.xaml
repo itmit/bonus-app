@@ -9,11 +9,14 @@
              xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#9C938D"
+             xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              x:Class="bonus.app.Core.Pages.Customer.BonusAccrual.BonusAccrualPage">
     <ContentPage.Content>
         <!-- Страница 19.1 Начисление бонусов начальная -->
-        <ScrollView>
+        <Grid>
+            <graphic:GradientForBonusAccrual/>
+
+            <ScrollView>
             <StackLayout Margin="30,0" Spacing="0">
                 <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" Style="{StaticResource TitleLabel}" Margin="0,35,0,5" TextColor="White"/>
                 <Label Text="QR barcode" FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"/>
@@ -35,5 +38,6 @@
                 <Button Text="МОИ БОНУСЫ" Style="{StaticResource AuthAndRegButton}" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

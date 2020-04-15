@@ -8,13 +8,16 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualPage"
-                      BackgroundColor="#9C938D"
                       NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <!-- Страница 7.1 Начисление бонусов начальная -->
-        <ScrollView>
+        <Grid>
+            <graphic:GradientForBonusAccrual/>
+
+            <ScrollView>
             <StackLayout Margin="30,0" Spacing="0">
                 <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large" Margin="{x:Static design:DesignClass.MarginForTitle}"
                        TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratBold}" />
@@ -47,5 +50,6 @@
                 <Button Text="ДАЛЕЕ" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
             </StackLayout>
         </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

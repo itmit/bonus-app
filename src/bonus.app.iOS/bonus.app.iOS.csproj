@@ -448,6 +448,7 @@
     <BundleResource Include="Resources\ic_stock%403x.png" />
     <BundleResource Include="Resources\ic_profile%403x.png" />
     <BundleResource Include="Resources\ic_news%403x.png" />
+    <BundleResource Include="Resources\icon_no_photo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\AppIcons.appiconset\" />

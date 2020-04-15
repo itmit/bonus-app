@@ -10,10 +10,14 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Customer.Shares.CustomerSharesPage">
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Акции" Style="{StaticResource TitleLabel}"/>
-            <ImageButton Source="ic_pref_4x.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"/>
-        </StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Акции" Style="{StaticResource TitleLabel}"/>
+            <ImageButton Grid.Column="1" Source="ic_pref_4x.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"/>
+        </Grid>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

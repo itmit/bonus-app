@@ -17,7 +17,7 @@ namespace bonus.app.Core.Page
         {
             InitializeComponent();
 
-			BackgroundColor = Color.FromRgba(160,150,142,0.3);
+			Grid.BackgroundColor = Color.FromRgba(160,150,142,76);
 		}
 
 		public void OnListTapped(object sender, ItemTappedEventArgs e)

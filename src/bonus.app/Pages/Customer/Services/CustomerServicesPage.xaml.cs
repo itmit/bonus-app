@@ -3,6 +3,7 @@ using bonus.app.Core.ViewModels.Customer.Services;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer.Services

@@ -7,10 +7,11 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
              xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
              xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Customer.Profile;assembly=bonus.app.Core"
-             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage"
-             NavigationPage.HasBackButton="False">
+             x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage">
     <NavigationPage.TitleView>
         <Label Text="Редактор профиля" Style="{StaticResource TitleLabel}"/>
     </NavigationPage.TitleView>
@@ -24,7 +25,7 @@
                         <Style x:Key="Entry" TargetType="Entry">
                             <Setter Property="PlaceholderColor" Value="#505050"/>
                             <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="FontFamily" Value="Lato-Regular.ttf#Lato-Regular"/>
+                            <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}"/>
                             <Setter Property="Keyboard" Value="Chat"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="Visual" Value="Material"/>
@@ -120,13 +121,13 @@
                                 <Label Text="Пол" FontSize="Caption" Margin="15,0"/>
                                 <StackLayout Orientation="Horizontal" HeightRequest="30">
                                     <CheckBox x:Name="IsFemale" Color="#BB8D91" WidthRequest="25" IsChecked="{Binding IsFemale}"/>
-                                    <Label Margin="0" Text="Женский">
+                                    <Label Margin="0" Text="Женский" VerticalOptions="Center">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
                                         </Label.GestureRecognizers>
                                     </Label>
                                     <CheckBox x:Name="IsMale" WidthRequest="25" Color="#BB8D91" IsChecked="{Binding IsMale}"/>
-                                    <Label Margin="0" Text="Мужской">
+                                    <Label Margin="0" Text="Мужской" VerticalOptions="Center">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
                                         </Label.GestureRecognizers>
@@ -140,7 +141,7 @@
                                     TextColor="#505050"
                                     BackgroundColor="Transparent"
                                     FontSize="14"
-                                    FontFamily="Lato-Regular.ttf#Lato-Regular"
+                                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
                                     Visual="Material"/>
 
                             <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent"/>

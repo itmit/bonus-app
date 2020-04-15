@@ -27,7 +27,12 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <Frame IsClippedToBounds="True" HasShadow="False" CornerRadius="50" Padding="1" Grid.Column="0" BorderColor="#505050">
-                        <forms:CachedImage Source="{Binding User.PhotoSource}"  WidthRequest="100" HeightRequest="100" VerticalOptions="Start">
+                        <forms:CachedImage Source="{Binding User.PhotoSource}"
+                                           WidthRequest="100"
+                                           HeightRequest="100"
+                                           VerticalOptions="Start"
+                                           ErrorPlaceholder="icon_no_photo.png"
+                                           LoadingPlaceholder="icon_no_photo.png">
                             <forms:CachedImage.Transformations>
                                 <transformations:CircleTransformation />
                             </forms:CachedImage.Transformations>

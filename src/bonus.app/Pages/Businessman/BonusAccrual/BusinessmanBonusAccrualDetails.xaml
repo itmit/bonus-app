@@ -11,17 +11,20 @@
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                       xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualDetails"
                       NavigationPage.HasBackButton="False"
-                      NavigationPage.HasNavigationBar="False"
-                      BackgroundColor="#9C938D">
+                      NavigationPage.HasNavigationBar="False">
     <views:MvxContentPage.Resources>
         <converters:DoubleConverter x:Key="DoubleConverter" />
     </views:MvxContentPage.Resources>
     <ContentPage.Content>
         <!-- Страница 7.2 Начисление бонусов детальная-->
-        <ScrollView Margin="0,0,0,5">
+        <Grid>
+            <graphic:GradientForBonusAccrual/>
+
+            <ScrollView Margin="0,0,0,5">
             <StackLayout Margin="30,0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
@@ -146,5 +149,6 @@
                 <Button Text="НАЧИСЛИТЬ БОНУСЫ" Style="{StaticResource AuthAndRegButton}" Command="{Binding AccrueAndWriteOffBonusesCommand}"/>
             </StackLayout>
         </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

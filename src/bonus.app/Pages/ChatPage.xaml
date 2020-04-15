@@ -21,16 +21,17 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <!--Страница 10 Техподдержка(предприниматель)-->
-        <Grid RowSpacing="0" 
+        <Grid>
+            <ScrollView>
+                <Grid x:Name="Grid" RowSpacing="0" 
                   ColumnSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <controls:ExtendedListView Grid.Row="0" BackgroundColor="Transparent"
-                                           ItemTemplate="{StaticResource MessageTemplateSelector}" 
-                                           ItemsSource="{Binding Messages}" 
+                                           ItemTemplate="{StaticResource MessageTemplateSelector}"
+                                           ItemsSource="{Binding Messages}"
                                            Margin="0"
                                            IsVisible="{Binding VisibleMessagesList}"
                                            Rotation="180"
@@ -40,8 +41,7 @@
                                            VerticalOptions="FillAndExpand" 
                                            SeparatorColor="Transparent"
                                            ItemAppearingCommand="{Binding MessageAppearingCommand}"
-                                           ItemDisappearingCommand="{Binding MessageDisappearingCommand}">
-            </controls:ExtendedListView>
+                                           ItemDisappearingCommand="{Binding MessageDisappearingCommand}"/>
             <Label Grid.Row="0" Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="True">
                 <Label.FormattedText>
                     <FormattedString>
@@ -54,6 +54,8 @@
             </Label>
             <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
                                            x:Name="ChatInput"/>
+        </Grid>
+            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

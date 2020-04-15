@@ -26,6 +26,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+
             <views:MvxListView SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HasUnevenRows="True" ItemTapped="ListView_OnItemTapped">
                 <views:MvxListView.ItemsSource>
                     <x:String>00</x:String>
