@@ -115,5 +115,5 @@ namespace bonus.app.Core.Views.ViewCells
 				Shape.Rotation = 0;
 			}
 		}
-	}
+    }
 }

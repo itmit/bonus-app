@@ -65,7 +65,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!--Кнопка "сообщения"-->
-                        <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" Padding="0"
+                        <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" Padding="0"
                                WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af" HasShadow="False">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
@@ -81,10 +81,10 @@
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenChatCommand}"/>
                             </Frame.GestureRecognizers>
-                        </Frame>
+                        </design:CustomButton>
 
                         <!--Кнопка "подписчики"-->
-                        <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
+                        <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
                                WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af" HasShadow="False">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
@@ -100,7 +100,7 @@
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}"/>
                             </Frame.GestureRecognizers>
-                        </Frame>
+                        </design:CustomButton>
                     </Grid>
                     <Label Text="{Binding User.Phone}" Margin="10,0" />
                     <BoxView />

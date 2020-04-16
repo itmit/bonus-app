@@ -13,12 +13,6 @@ namespace bonus.app.Core.Page
         public MyBonusPage()
         {
             InitializeComponent();
-
-			var collection = new ObservableCollection<string>();
-            collection.Add("0");
-            collection.Add("0");
-            collection.Add("0");
-			RepeaterView.ItemsSource = collection;
 		}
 
         private void Button_Clicked(object sender, EventArgs e)

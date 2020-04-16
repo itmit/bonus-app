@@ -154,7 +154,7 @@
                             </StackLayout>
                             <BoxView/>
                 </StackLayout>
-                <Frame Style="{StaticResource AppButtonGradient}" IsEnabled="{Binding CanCreateShareCommand}">
+                <design:CustomButton Style="{StaticResource AppButtonGradient}" IsEnabled="{Binding CanCreateShareCommand}">
                     <Grid>
                         <graphic:RectangleInProfile/>
                         <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}"/>
@@ -162,7 +162,7 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SaveCommand}"/>
                     </Frame.GestureRecognizers>
-                </Frame>
+                </design:CustomButton>
             </StackLayout>
             </Grid>
         </ScrollView>

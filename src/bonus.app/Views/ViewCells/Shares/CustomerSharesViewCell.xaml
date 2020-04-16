@@ -5,12 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.Shares.CustomerSharesViewCell">
   <ViewCell.View>
       <!--Ячейка для списка акций в профиле покупателя-->
-      <Frame Padding="20,10" Margin="0,5" BackgroundColor="White" HasShadow="False">
-          <Grid>
+      <Frame Padding="0" Margin="0,5" HasShadow="False">
+              <Grid Padding="20,10">
               <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="Auto"/>
                   <ColumnDefinition Width="Auto"/>

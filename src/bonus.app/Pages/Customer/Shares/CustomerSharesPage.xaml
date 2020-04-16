@@ -22,7 +22,7 @@
 
     <ContentPage.Content>
         <!-- Страница 18.1 акции покупателя -->
-        <Grid>
+        <Grid x:Name="Grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -49,6 +49,7 @@
                                ItemsSource="{Binding Shares}"
                                SelectedItem="{Binding SelectedShare}"
                                IsPullToRefreshEnabled="True"
+                               x:Name="ListView"
                                RefreshCommand="{Binding RefreshCommand}"
                                IsRefreshing="{Binding IsRefreshing}"
                                ItemSelected="ListView_OnItemSelected">

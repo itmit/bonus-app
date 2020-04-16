@@ -148,7 +148,7 @@
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
-                            <Frame Style="{StaticResource AppButtonGradient}">
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
                                     <graphic:RectangleInProfile/>
                                     <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}"/>
@@ -156,7 +156,7 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding EditCommand}"/>
                                 </Frame.GestureRecognizers>
-                            </Frame>
+                            </design:CustomButton>
                         </StackLayout>
                     </Grid>
                 </Grid>

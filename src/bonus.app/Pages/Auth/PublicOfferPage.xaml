@@ -5,7 +5,9 @@
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Auth.PublicOfferPage">
     <NavigationPage.TitleView>
@@ -59,15 +61,15 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <Frame Style="{StaticResource AppButtonGradient}" IsEnabled="{Binding CanRegister, FallbackValue=false}">
-                    <Grid>
-                        <graphic:RectangleInProfile/>
+                <design:CustomButton Style="{StaticResource AppButtonGradient}" IsEnabled="{Binding CanRegister, FallbackValue=false}">
+                     <Grid>
+                        <graphic:RectangleInProfile x:Name="Button"/>
                         <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}"/>
                     </Grid>
-                    <Frame.GestureRecognizers>
+                    <design:CustomButton.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
+                    </design:CustomButton.GestureRecognizers>
+                </design:CustomButton>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

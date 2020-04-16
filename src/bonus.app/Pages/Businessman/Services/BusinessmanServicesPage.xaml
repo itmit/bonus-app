@@ -9,7 +9,9 @@
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
                       xmlns:services1="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
-                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.BusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -46,20 +48,20 @@
                 <BoxView Margin="0,0,0,20" />
 
                 <Label Text="Добавить услугу" Margin="0,0,0,35" FontSize="Body" HorizontalOptions="Center"
-                       FontFamily="Montserrat-Bold.ttf#Montserrat-Bold" />
+                       FontFamily="{x:Static design:DesignClass.MontserratBold}" />
 
                 <contentViews:MyServicesContentView />
                 <contentViews:ServiceAccrualBonusesContentView/>
 
-                <Frame Style="{StaticResource AppButtonGradient}">
+                <design:CustomButton Style="{StaticResource AppButtonGradient}">
                     <Grid>
                         <graphic:RectangleInProfile/>
                         <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}"/>
                     </Grid>
-                    <Frame.GestureRecognizers>
+                    <design:CustomButton.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AddServiceCommand}"/>
-                    </Frame.GestureRecognizers>
-                </Frame>
+                    </design:CustomButton.GestureRecognizers>
+                </design:CustomButton>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

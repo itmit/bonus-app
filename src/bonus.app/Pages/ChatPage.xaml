@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
              xmlns:chat="clr-namespace:bonus.app.Core.Views.ViewCells.Chat;assembly=bonus.app.Core"
+             xmlns:message="clr-namespace:bonus.app.Core.Views.ViewCells.Chat"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              mc:Ignorable="d"
              NavigationPage.BackButtonTitle="False"
@@ -21,9 +22,8 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid>
-            <ScrollView>
-                <Grid x:Name="Grid" RowSpacing="0" 
+        <Grid x:Name="Grid">
+                <Grid RowSpacing="0" 
                   ColumnSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -52,10 +52,9 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
-                                           x:Name="ChatInput"/>
+                    <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
+                                           x:Name="ChatInput" VerticalOptions="EndAndExpand"/>
         </Grid>
-            </ScrollView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

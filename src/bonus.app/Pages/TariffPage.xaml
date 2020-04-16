@@ -72,7 +72,7 @@
                 </Grid>
 
                 <Grid>
-                    <Frame Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="True">
+                    <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="True">
                         <Grid>
                             <graphic:RectangleInProfile/>
                             <Label Text="ПРОДЛИТЬ" Style="{StaticResource TextForAppButton}"/>
@@ -80,8 +80,8 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer/>
                         </Frame.GestureRecognizers>
-                    </Frame>
-                    <Frame Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="False">
+                    </design:CustomButton>
+                    <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="False">
                         <Grid>
                             <graphic:RectangleInProfile/>
                             <Label Text="ПОДКЛЮЧИТЬ" Style="{StaticResource TextForAppButton}"/>
@@ -89,7 +89,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer/>
                         </Frame.GestureRecognizers>
-                    </Frame>
+                    </design:CustomButton>
                 </Grid>
 
                 <Label Text="Доступные тарифы" FontSize="Body" FontFamily="{x:Static design:DesignClass.MontserratBold}" HorizontalOptions="Center" Margin="0,0,0,15"/>

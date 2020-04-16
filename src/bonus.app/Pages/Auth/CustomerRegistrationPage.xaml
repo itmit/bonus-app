@@ -47,7 +47,7 @@
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
                        Placeholder="Код из 4 цифр для быстрого входа" Margin="0,0,0,10" />
 
-                <Frame Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
+                <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
                     <Grid>
                         <graphic:RectangleInProfile/>
                         <Label Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource TextForAppButton}"/>
@@ -55,7 +55,7 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding RegistrationCommand}"/>
                     </Frame.GestureRecognizers>
-                </Frame>
+                </design:CustomButton>
 
                 <Label HorizontalTextAlignment="Center" Text="или создать учетную запись с помощью:" Margin="0,0,0,10" />
                 <Grid ColumnSpacing="10">

@@ -57,7 +57,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                    <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -69,8 +69,8 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenMessageCommand}"/>
                         </Frame.GestureRecognizers>
-                    </Frame>
-                    <Frame Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                    </design:CustomButton>
+                    <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -82,7 +82,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenSubscribesCommand}"/>
                         </Frame.GestureRecognizers>
-                    </Frame>
+                    </design:CustomButton>
                 </Grid>
                 <Label Text="{Binding User.Phone}" TextColor="#505050" Margin="10,0"/>
                 <BoxView/>

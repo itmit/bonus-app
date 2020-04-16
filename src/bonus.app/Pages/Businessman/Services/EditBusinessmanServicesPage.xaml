@@ -8,7 +8,9 @@
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
-                      xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.EditBusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -27,7 +29,7 @@
                             <StackLayout Spacing="0">
                                 <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
                                     <Label Text="Массаж" HorizontalOptions="Start" />
-                                    <Label HorizontalOptions="EndAndExpand" FontFamily="Lato-Bold.ttf#Lato-Bold">
+                                    <Label HorizontalOptions="EndAndExpand" FontFamily="{x:Static design:DesignClass.LatoBold}">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <FormattedString.Spans>
@@ -47,7 +49,7 @@
                     </controls:RepeaterView.ItemTemplate>
                 </controls:RepeaterView>
 
-                <Frame Style="{StaticResource AppButtonGradient}" Margin="0,20,0,5">
+                <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,5">
                     <Grid>
                         <graphic:RectangleInProfile/>
                         <Label Text="РЕДАКТИРОВАТЬ" Style="{StaticResource TextForAppButton}"/>
@@ -55,7 +57,7 @@
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Button_OnClicked"/>
                     </Frame.GestureRecognizers>
-                </Frame>
+                </design:CustomButton>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

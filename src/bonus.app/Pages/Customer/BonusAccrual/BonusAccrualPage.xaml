@@ -18,7 +18,7 @@
 
             <ScrollView>
             <StackLayout Margin="30,0" Spacing="0">
-                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" Style="{StaticResource TitleLabel}" Margin="0,35,0,5" TextColor="White"/>
+                <Label Text="Начисление бонусов" HorizontalTextAlignment="Center" HorizontalOptions="Center" Style="{StaticResource TitleLabel}" Margin="0,35,0,5" TextColor="White"/>
                 <Label Text="QR barcode" FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"/>
 
                 <Frame CornerRadius="60"
