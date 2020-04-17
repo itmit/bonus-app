@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using XF.Material.Forms;
 using Application = Xamarin.Forms.Application;
 
 namespace bonus.app.Core
@@ -10,6 +11,7 @@ namespace bonus.app.Core
         {
             InitializeComponent();
 			On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+			Material.Init(this);
         }
        
         protected override void OnStart()

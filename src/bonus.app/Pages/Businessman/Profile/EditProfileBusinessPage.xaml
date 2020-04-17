@@ -11,6 +11,7 @@
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage"
                       NavigationPage.HasBackButton="False">
@@ -29,6 +30,18 @@
                             <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                             <Setter Property="Keyboard" Value="Chat" />
                             <Setter Property="FontSize" Value="14" />
+                            <Setter Property="Visual" Value="Material" />
+                        </Style>
+                        <Style x:Key="MaterialTextField" TargetType="ui:MaterialTextField">
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                            <Setter Property="InputType" Value="Chat" />
+                            <Setter Property="TextFontSize" Value="14" />
+                            <Setter Property="MaxLength" Value="190" />
+                            <Setter Property="AlwaysShowUnderline" Value="True" />
+                            <Setter Property="UnderlineColor" Value="DarkGray" />
+                            <Setter Property="FloatingPlaceholderColor" Value="DarkGray" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
                             <Setter Property="Visual" Value="Material" />
                         </Style>
                     </ResourceDictionary>
@@ -110,35 +123,36 @@
                         </views:MvxListView>
 
                         <StackLayout Grid.Row="1" x:Name="FieldsLayout" Margin="10,0">
-                            <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес"
-                                   BackgroundColor="Transparent" />
-                            <Label Text="{Binding Errors[address]}"
-                                   IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                            <ui:MaterialTextField Text="{Binding Address.Value}"
+                                                  Style="{StaticResource MaterialTextField}"
+                                                  Placeholder="Адрес"
+                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
-                            <Entry Text="{Binding WorkingMode}"
-                                   Style="{StaticResource Entry}"
-                                   Placeholder="Режим работы"
-                                   BackgroundColor="Transparent">
-                            </Entry>
+                            <ui:MaterialTextField Text="{Binding WorkingMode.Value}"
+                                                  Style="{StaticResource MaterialTextField}"
+                                                  Placeholder="Режим работы"
+                                                  ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
-                            <Entry Style="{StaticResource Entry}"
-                                   Placeholder="Контактное лицо"
-                                   Text="{Binding Contact}"
-                                   BackgroundColor="Transparent" />
-                            <Label Text="{Binding Errors[contact]}"
-                                   IsVisible="{Binding Errors[contact], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                            <ui:MaterialTextField Text="{Binding Contact.Value}"
+                                                  Style="{StaticResource MaterialTextField}"
+                                                  Placeholder="Контактное лицо"
+                                                  ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
-                            <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}"
-                                   Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
-                                <Entry.Behaviors>
-                                    <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
-                                </Entry.Behaviors>
-                            </Entry>
-                            <Label Text="{Binding Errors[phoneNumber]}"
-                                   IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
+                            <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
+                                                  Style="{StaticResource MaterialTextField}"
+                                                  Placeholder="Номер телефона"
+                                                  HelperText="+7 (XXX) XXX-XX-XX"
+                                                  InputType="Telephone"
+                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
+                                <ui:MaterialTextField.Behaviors>
+                                    <behaviors:MaterialTextFieldMaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
+                                </ui:MaterialTextField.Behaviors>
+                            </ui:MaterialTextField>
 
-                            <Label Text="{Binding Errors[description]}"
-                                   IsVisible="{Binding Errors[description], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
                             <Editor Placeholder="Описание услуг&#10;&#10;"
                                     Text="{Binding Description}"
                                     PlaceholderColor="#505050"

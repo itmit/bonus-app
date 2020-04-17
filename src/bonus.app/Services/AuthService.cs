@@ -86,6 +86,8 @@ namespace bonus.app.Core.Services
 				if (data.ErrorDetails != null)
 				{
 					ErrorDetails = data.ErrorDetails;
+					Error = data.ErrorDetails.First().Value.FirstOrDefault();
+					return null;
 				}
 
 				Error = data.Error;

@@ -59,5 +59,7 @@
 	<string>Bonus &amp; Marketing</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

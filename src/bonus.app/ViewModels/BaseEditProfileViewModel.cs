@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Plugin.Media;
@@ -21,7 +22,7 @@ namespace bonus.app.Core.ViewModels
 	{
 		#region Data
 		#region Fields
-		private string _address;
+		private ValidatableObject<string> _address = new ValidatableObject<string>();
 
 		private readonly IAuthService _authService;
 		private MvxObservableCollection<City> _cities = new MvxObservableCollection<City>();
@@ -42,7 +43,7 @@ namespace bonus.app.Core.ViewModels
 		private bool _isBusy;
 		private MvxCommand _loadMoreCitiesCommand;
 		private readonly IPermissionsService _permissionsService;
-		private string _phoneNumber;
+		private ValidatableObject<string> _phoneNumber = new ValidatableObject<string>();
 		private MvxCommand _picPhotoCommand;
 		private City _selectedCity;
 		private Country _selectedCountry;
@@ -66,25 +67,10 @@ namespace bonus.app.Core.ViewModels
 			private set;
 		}
 
-		public string Address
+		public ValidatableObject<string> Address
 		{
 			get => _address;
-			set
-			{
-				SetProperty(ref _address, value);
-				if (string.IsNullOrEmpty(value?.Trim()))
-				{
-					Errors[nameof(Address)
-							   .ToLower()] = "Адрес не может быть пустым.";
-				}
-				else
-				{
-					Errors[nameof(Address)
-							   .ToLower()] = null;
-				}
-
-				RaisePropertyChanged(() => Errors);
-			}
+			set => SetProperty(ref _address, value);
 		}
 
 		public MvxObservableCollection<City> Cities
@@ -154,7 +140,7 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
-		public string PhoneNumber
+		public ValidatableObject<string> PhoneNumber
 		{
 			get => _phoneNumber;
 			set => SetProperty(ref _phoneNumber, value);

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using bonus.app.Core.Converters;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
+using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
@@ -15,13 +18,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 	{
 		#region Data
 		#region Fields
-		private string _contact;
+		private ValidatableObject<string> _contact = new ValidatableObject<string>();
 		private MvxCommand _editCommand;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IProfileService _profileService;
 		private readonly IUserRepository _userRepository;
-		private string _workingMode;
-		private string _description;
+		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
+		private string _description = string.Empty;
 		#endregion
 		#endregion
 
@@ -37,29 +40,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			_navigationService = navigationService;
 			_profileService = profileService;
 			_userRepository = userRepository;
+
+			AddValidations();
 		}
 		#endregion
 
 		#region Properties
-		public string Contact
+		public ValidatableObject<string> Contact
 		{
 			get => _contact;
-			set
-			{
-				SetProperty(ref _contact, value);
-				if (string.IsNullOrEmpty(value?.Trim()))
-				{
-					Errors[nameof(Contact)
-							   .ToLower()] = "Контактное лицо не может быть пустым.";
-				}
-				else
-				{
-					Errors[nameof(Contact)
-							   .ToLower()] = null;
-				}
-
-				RaisePropertyChanged(() => Errors);
-			}
+			set => SetProperty(ref _contact, value);
 		}
 
 		public MvxCommand EditCommand
@@ -71,7 +61,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
-		public string WorkingMode
+		public ValidatableObject<string> WorkingMode
 		{
 			get => _workingMode;
 			set => SetProperty(ref _workingMode, value);
@@ -79,8 +69,22 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region Private
+		private void AddValidations()
+		{
+			WorkingMode.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Введите режим работы." });
+			Contact.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Контактное лицо не может быть пустым." });
+			Address.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Адрес не может быть пустым." });
+			Address.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Адрес не может быть меньше 6 символов." });
+			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule { ValidationMessage = "Не корректный номер телефона." });
+		}
+
 		private async void EditCommandExecute()
 		{
+			if (!WorkingMode.Validate() | !Contact.Validate() | !Address.Validate() | !PhoneNumber.Validate())
+			{
+				return;
+			}
+
 			if (SelectedCountry == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
@@ -99,72 +103,44 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return;
 			}
 
-			var isValid = true;
-			if (string.IsNullOrEmpty(Address?.Trim()))
-			{
-				Errors[nameof(Address)
-						   .ToLower()] = "Адрес не может быть пустым.";
-				isValid = false;
-			}
-			else
-			{
-				Errors[nameof(Address)
-						   .ToLower()] = null;
-			}
-			if (string.IsNullOrEmpty(Contact?.Trim()))
-			{
-				Errors[nameof(Contact)
-						   .ToLower()] = "Контактное лицо не может быть пустым.";
-			}
-			else
-			{
-				Errors[nameof(Contact)
-						   .ToLower()] = null;
-			}
-
-
-			await RaisePropertyChanged(() => Errors);
-			if (!isValid)
-			{
-				return;
-			}
-
 			var arg = new EditBusinessmanDto
 			{
 				Uuid = Parameter.Guid,
 				Country = SelectedCountry.LocalizedNames.Ru,
 				City = SelectedCity.LocalizedNames.Ru,
-				Address = Address,
-				WorkTime = WorkingMode,
-				Contact = Contact,
-				Phone = PhoneNumber,
+				Address = Address.Value,
+				WorkTime = WorkingMode.Value,
+				Contact = Contact.Value,
+				Phone = PhoneNumber.Value,
 				Description = Description,
 				Password = Parameter.Password
 			};
-			User user = null;
 			try
 			{
-				user = await _profileService.Edit(arg, ImageBytes, ImageName);
-				_userRepository.Add(user);
+				var user = await _profileService.Edit(arg, ImageBytes, ImageName);
+
+				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
+				{
+					_userRepository.Add(user);
+					await _navigationService.Navigate<MainBusinessmanViewModel>();
+					return;
+				}
 			}
 			catch (Exception e)
 			{
 				Debug.WriteLine(e);
 			}
 
-			if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
+			var key = _profileService.ErrorDetails.First().Key;
+			if (key.Equals("phone"))
 			{
-				await _navigationService.Navigate<MainBusinessmanViewModel>();
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Ошибка", "Пользователь с таким номером уже существует.", "Ок");
+				});
 				return;
 			}
 
-			var dictionary = new Dictionary<string, string>();
-			foreach (var detail in _profileService.ErrorDetails)
-			{
-				dictionary[detail.Key] = string.Join("&#10;", detail.Value);
-			}
-
-			Errors = dictionary;
 			if (!string.IsNullOrEmpty(_profileService.Error))
 			{
 				Device.BeginInvokeOnMainThread(() =>
@@ -177,22 +153,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		public string Description
 		{
 			get => _description;
-			set
-			{
-				SetProperty(ref _description, value);
-				if (string.IsNullOrEmpty(value?.Trim()))
-				{
-					Errors[nameof(Description)
-							   .ToLower()] = "Описание не может быть пустым.";
-				}
-				else
-				{
-					Errors[nameof(Description)
-							   .ToLower()] = null;
-				}
-
-				RaisePropertyChanged(() => Errors);
-			}
+			set => SetProperty(ref _description, value);
 		}
 		#endregion
 	}

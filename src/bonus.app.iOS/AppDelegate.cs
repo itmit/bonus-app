@@ -26,9 +26,10 @@ namespace bonus.app.iOS
         {
 			ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             Rg.Plugins.Popup.Popup.Init();
-            global::Xamarin.Forms.Forms.Init();
-            global::Xamarin.Forms.FormsMaterial.Init();
+            Xamarin.Forms.Forms.Init();
+            Xamarin.Forms.FormsMaterial.Init();
             CachedImageRenderer.Init();
+			XF.Material.iOS.Material.Init();
 
             return base.FinishedLaunching(app, options);
         }

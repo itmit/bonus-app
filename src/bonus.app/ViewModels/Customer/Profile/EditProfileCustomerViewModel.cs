@@ -101,10 +101,10 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				Uuid = Parameter.Guid,
 				Country = SelectedCountry.LocalizedNames.Ru,
 				City = SelectedCity.LocalizedNames.Ru,
-				Phone = PhoneNumber,
+				Phone = PhoneNumber.Value,
 				Birthday = Birthday.ToString("yyyy-MM-dd"),
 				Car = Car,
-				Address = Address,
+				Address = Address.Value,
 				Password = Parameter.Password
 			};
 			if (IsFemale)

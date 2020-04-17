@@ -36,12 +36,8 @@ namespace bonus.app.Core.Services
 
 		public Task<User> Edit(EditBusinessmanDto arguments, byte[] photo, string imageName)
 		{
-			var byteArrayContent = new ByteArrayContent(photo);
 			MultipartFormDataContent content = new MultipartFormDataContent
 			{
-				{
-					byteArrayContent, "\"photo\"", $"\"{imageName}\""
-				},
 				{
 					new StringContent(arguments.City), "city"
 				},
@@ -70,17 +66,20 @@ namespace bonus.app.Core.Services
 					new StringContent(arguments.Password), "password"
 				}
 			};
+
+			if (photo != null & !string.IsNullOrEmpty(imageName))
+			{
+				var byteArrayContent = new ByteArrayContent(photo);
+				content.Add(byteArrayContent, "\"photo\"", $"\"{imageName}\"");
+			}
+
 			return Edit(content);
 		}
 
 		public Task<User> Edit(EditCustomerDto arguments, byte[] photo, string imageName)
 		{
-			var byteArrayContent = new ByteArrayContent(photo);
 			MultipartFormDataContent content = new MultipartFormDataContent
 			{
-				{
-					byteArrayContent, "\"photo\"", $"\"{imageName}\""
-				},
 				{
 					new StringContent(arguments.City), "city"
 				},
@@ -110,6 +109,11 @@ namespace bonus.app.Core.Services
 				}
 			};
 
+			if (photo != null & !string.IsNullOrEmpty(imageName))
+			{
+				var byteArrayContent = new ByteArrayContent(photo);
+				content.Add(byteArrayContent, "\"photo\"", $"\"{imageName}\"");
+			}
 			return Edit(content);
 		}
 
