@@ -2,18 +2,21 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic" xmlns:design="clr-namespace:bonus.app.Core.Design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+             xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.FilterContentView">
     <ContentView.Content>
         <Grid HeightRequest="240">
                 <StackLayout Spacing="0">
-                    <Grid BackgroundColor="White" ColumnSpacing="0" CompressedLayout.IsHeadless="True">
+                    <Grid BackgroundColor="White" ColumnSpacing="0">
                         <!--Tab-->
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+
                         <Frame HasShadow="False" Grid.Column="0" HorizontalOptions="FillAndExpand" Padding="0,15" VerticalOptions="Center" CornerRadius="0">
                             <StackLayout Spacing="0" VerticalOptions="Center">
                                 <Label x:Name="MyStockLabel" Text="Мои акции" FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,15" HorizontalOptions="Center"/>
@@ -23,6 +26,7 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                             </Frame.GestureRecognizers>
                         </Frame>
+
                         <Frame HasShadow="False" Grid.Column="1" HorizontalOptions="FillAndExpand" Padding="0,15" VerticalOptions="Center" CornerRadius="0">
                             <StackLayout Spacing="0">
                                 <Label x:Name="AllStockLabel" Text="Все акции" FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,15" HorizontalOptions="Center" Scale="1.1"/>
@@ -36,7 +40,10 @@
 
                     <StackLayout Orientation="Horizontal" Padding="20,0,20,20" BackgroundColor="White">
                         <Label Text="Фильтр" FontFamily="{x:Static design:DesignClass.MontserratRegular}" VerticalOptions="Center"/>
-                        <ImageButton Source="ic_pref_4x.png" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" WidthRequest="15" VerticalOptions="Center" Clicked="ImageButton_OnClicked"/>
+                        <ImageButton Source="ic_pref_4x.png" BackgroundColor="White" HorizontalOptions="EndAndExpand" WidthRequest="15" VerticalOptions="Center" Clicked="ImageButton_OnClicked"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ImageButton_OnClicked"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
 
 
@@ -82,15 +89,15 @@
                         </ScrollView>
                     </StackLayout>
 
-                    <Frame Style="{StaticResource AppButtonGradient}" Margin="0" CornerRadius="0">
+                    <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0" CornerRadius="0">
                         <Grid>
-                            <graphic:RectangleInProfile/>
+                            <graphic:RectangleInProfile x:Name="Gradient"/>
                             <Label Text="ПРИМЕНИТЬ" Style="{StaticResource TextForAppButton}"/>
                         </Grid>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer/>
                         </Frame.GestureRecognizers>
-                    </Frame>
+                    </design:CustomButton>
                 </StackLayout>
             </Grid>
     </ContentView.Content>

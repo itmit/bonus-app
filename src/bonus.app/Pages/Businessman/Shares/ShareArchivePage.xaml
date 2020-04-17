@@ -36,7 +36,11 @@
             <!--Затемнение заднего фона-->
             <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False"/>
             <!--Появляющийся фильтр-->
-            <viewCells:FilterContentView x:Name="Filter" TranslationY="-480" />
+            <viewCells:FilterContentView x:Name="Filter">
+                <viewCells:FilterContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </viewCells:FilterContentView.GestureRecognizers>
+            </viewCells:FilterContentView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

@@ -14,6 +14,7 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 		public ShareArchivePage()
 		{
 			InitializeComponent();
+			Filter.TranslationY = Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height;
 		}
 		#endregion
 
@@ -39,7 +40,7 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 			{
 				BlackBackground.FadeTo(0, 500)
 							   .GetAwaiter();
-				Filter.TranslateTo(0, -480, 500)
+				Filter.TranslateTo(0, Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height, 500)
 					  .GetAwaiter();
 				BlackBackground.IsVisible = await GetEndVisible();
 				Filter.IsEnabled = false;
@@ -48,11 +49,26 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 			{
 				BlackBackground.FadeTo(0.7, 500)
 							   .GetAwaiter();
-				Filter.TranslateTo(0, 0, 500)
+				Filter.TranslateTo(0, Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height, 500)
 					  .GetAwaiter();
 				BlackBackground.IsVisible = true;
 				Filter.IsEnabled = true;
 			}
+		}
+
+        /// <summary>
+        /// Скрывает фильтр
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+			BlackBackground.FadeTo(0, 500)
+							   .GetAwaiter();
+			Filter.TranslateTo(0, Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height, 500)
+				  .GetAwaiter();
+			BlackBackground.IsVisible = await GetEndVisible();
+			Filter.IsEnabled = false;
 		}
         #endregion
     }

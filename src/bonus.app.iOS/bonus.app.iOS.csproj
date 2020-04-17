@@ -214,10 +214,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\calendar.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\chika.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -386,14 +382,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\icon_search.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
-    <BundleResource Include="Resources\krest.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\longhair.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -418,19 +406,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\pic_rectangle_4x.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\pic_sub_512w.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
-    <BundleResource Include="Resources\plus.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
-    <BundleResource Include="Resources\qrcode.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
@@ -454,6 +430,7 @@
     <BundleResource Include="Resources\ic_profile%403x.png" />
     <BundleResource Include="Resources\ic_news%403x.png" />
     <BundleResource Include="Resources\icon_no_photo.png" />
+    <BundleResource Include="Resources\qrcode.png" />
   </ItemGroup>
   <ItemGroup />
 </Project>
