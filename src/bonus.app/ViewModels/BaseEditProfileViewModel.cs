@@ -85,22 +85,6 @@ namespace bonus.app.Core.ViewModels
 			private set => SetProperty(ref _countries, value);
 		}
 
-		public Dictionary<string, string> Errors
-		{
-			get => _errors;
-			protected set
-			{
-
-				if (value == null)
-				{
-					SetProperty(ref _errors, new Dictionary<string, string>());
-					return;
-				}
-
-				SetProperty(ref _errors, value);
-			}
-		}
-
 		public string ImageName
 		{
 			get => _imageName;
@@ -177,8 +161,6 @@ namespace bonus.app.Core.ViewModels
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
-
-		public bool HasErrors => throw new NotImplementedException();
 		#endregion
 
 		#region Overrided

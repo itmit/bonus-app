@@ -71,10 +71,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Private
 		private void AddValidations()
 		{
-			WorkingMode.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Введите режим работы." });
-			Contact.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Контактное лицо не может быть пустым." });
-			Address.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Адрес не может быть пустым." });
+			WorkingMode.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите режим работы." });
+			Contact.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите контактное лицо." });
+			Address.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите адрес." });
 			Address.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Адрес не может быть меньше 6 символов." });
+			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите номер телефона." });
 			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule { ValidationMessage = "Не корректный номер телефона." });
 		}
 
@@ -103,20 +104,21 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return;
 			}
 
-			var arg = new EditBusinessmanDto
-			{
-				Uuid = Parameter.Guid,
-				Country = SelectedCountry.LocalizedNames.Ru,
-				City = SelectedCity.LocalizedNames.Ru,
-				Address = Address.Value,
-				WorkTime = WorkingMode.Value,
-				Contact = Contact.Value,
-				Phone = PhoneNumber.Value,
-				Description = Description,
-				Password = Parameter.Password
-			};
 			try
 			{
+				var arg = new EditBusinessmanDto
+				{
+					Uuid = Parameter.Guid,
+					Country = SelectedCountry.LocalizedNames.Ru,
+					City = SelectedCity.LocalizedNames.Ru,
+					Address = Address.Value,
+					WorkTime = WorkingMode.Value,
+					Contact = Contact.Value,
+					Phone = PhoneNumber.Value,
+					Description = Description,
+					Password = Parameter.Password
+				};
+
 				var user = await _profileService.Edit(arg, ImageBytes, ImageName);
 
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
@@ -131,14 +133,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Debug.WriteLine(e);
 			}
 
-			var key = _profileService.ErrorDetails.First().Key;
-			if (key.Equals("phone"))
+			if (_profileService.ErrorDetails != null && _profileService.ErrorDetails.Count > 0)
 			{
-				Device.BeginInvokeOnMainThread(() =>
+				var key = _profileService.ErrorDetails.First().Key;
+				if (key.Equals("phone"))
 				{
-					Application.Current.MainPage.DisplayAlert("Ошибка", "Пользователь с таким номером уже существует.", "Ок");
-				});
-				return;
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Ошибка", "Пользователь с таким номером уже существует.", "Ок");
+					});
+					return;
+				}
+
 			}
 
 			if (!string.IsNullOrEmpty(_profileService.Error))

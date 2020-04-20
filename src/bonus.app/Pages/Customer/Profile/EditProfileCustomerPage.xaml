@@ -10,7 +10,8 @@
              xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
-             mc:Ignorable="d"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage">
     <NavigationPage.TitleView>
         <Label Text="Редактор профиля" Style="{StaticResource TitleLabel}"/>
@@ -29,6 +30,18 @@
                             <Setter Property="Keyboard" Value="Chat"/>
                             <Setter Property="FontSize" Value="14"/>
                             <Setter Property="Visual" Value="Material"/>
+                        </Style>
+                        <Style x:Key="MaterialTextField" TargetType="ui:MaterialTextField">
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                            <Setter Property="InputType" Value="Chat" />
+                            <Setter Property="TextFontSize" Value="14" />
+                            <Setter Property="MaxLength" Value="190" />
+                            <Setter Property="AlwaysShowUnderline" Value="True" />
+                            <Setter Property="UnderlineColor" Value="DarkGray" />
+                            <Setter Property="FloatingPlaceholderColor" Value="DarkGray" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="Visual" Value="Material" />
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
@@ -107,15 +120,24 @@
                         </views:MvxListView>
 
                         <StackLayout Grid.Row="1" x:Name="FieldsLayout" Margin="10,0">
-                            <Entry Text="{Binding Address}" Style="{StaticResource Entry}" Placeholder="Адрес" BackgroundColor="Transparent"/>
-                            <Label Text="{Binding Errors[address]}" IsVisible="{Binding Errors[address], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+                            <ui:MaterialTextField Text="{Binding Address.Value}"
+                                                  Style="{StaticResource MaterialTextField}"
+                                                  Placeholder="Адрес"
+                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
-                            <Entry Text="{Binding PhoneNumber}" Style="{StaticResource Entry}" Placeholder="Номер телефона" Keyboard="Telephone" BackgroundColor="Transparent">
-                                <Entry.Behaviors>
-                                    <behaviors:MaskedBehavior Mask="+7 (XXX) XXX-XX-XX"/>
-                                </Entry.Behaviors>
-                            </Entry>
-                            <Label Text="{Binding Errors[phoneNumber]}" IsVisible="{Binding Errors[phoneNumber], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>
+
+                            <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
+                                                  Style="{StaticResource MaterialTextField}"
+                                                  Placeholder="Номер телефона"
+                                                  HelperText="+7 (XXX) XXX-XX-XX"
+                                                  InputType="Telephone"
+                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
+                                <ui:MaterialTextField.Behaviors>
+                                    <behaviors:MaterialTextFieldMaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
+                                </ui:MaterialTextField.Behaviors>
+                            </ui:MaterialTextField>
 
                             <StackLayout>
                                 <Label Text="Пол" FontSize="Caption" Margin="15,0"/>
@@ -126,7 +148,7 @@
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
                                         </Label.GestureRecognizers>
                                     </Label>
-                                    <CheckBox x:Name="IsMale" WidthRequest="25" Color="#BB8D91" IsChecked="{Binding IsMale}"/>
+                                    <CheckBox WidthRequest="25" Color="#BB8D91" IsChecked="{Binding IsMale}"/>
                                     <Label Margin="0" Text="Мужской" VerticalOptions="Center">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1"/>
@@ -136,13 +158,16 @@
                                 <BoxView/>
                             </StackLayout>
 
-                            <DatePicker Format="dd.MM.yyyy"
-                                    Date="{Binding Birthday}"
-                                    TextColor="#505050"
-                                    BackgroundColor="Transparent"
-                                    FontSize="14"
-                                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
-                                    Visual="Material"/>
+                            <ui:MaterialDateField  Date="{Binding Birthday.Value}"
+                                                   ErrorText="{Binding Birthday.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                   HasError="{Binding Birthday.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                                   TextColor="#505050"
+                                                   BackgroundColor="Transparent"
+                                                   Placeholder="Дата рождения"
+                                                   TextFontSize="14"
+                                                   AlwaysShowUnderline="True"
+                                                   UnderlineColor="DarkGray"
+                                                   TextFontFamily="{x:Static design:DesignClass.LatoRegular}"/>
 
                             <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent"/>
 

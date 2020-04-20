@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 
@@ -8,78 +9,52 @@ namespace bonus.app.Core.ViewModels.Auth
 {
 	public abstract class BaseRegistrationViewModel : MvxViewModel
 	{
-		#region Delegates and events
-		/// <summary>
-		/// Представляет метод при успешной регистрации.
-		/// </summary>
-		public delegate void AfterRegisterEventHandler();
-
-		/// <summary>
-		/// Происходит после успешной регистрации.
-		/// </summary>
-		public event AfterRegisterEventHandler AfterRegister;
-		#endregion
+		public BaseRegistrationViewModel()
+		{
+			AddValidations();
+		}
 
 		#region Data
 		#region Fields
-		private string _confirmPassword;
-		private string _email;
-		private Dictionary<string, string> _errors = new Dictionary<string, string>();
-		private string _login;
-		private string _name;
-		private string _password;
+		private ValidatableObject<string> _confirmPassword = new ValidatableObject<string>();
+		private ValidatableObject<string> _email = new ValidatableObject<string>();
+		private ValidatableObject<string> _login = new ValidatableObject<string>();
+		private ValidatableObject<string> _name = new ValidatableObject<string>();
+		private ValidatableObject<string> _password = new ValidatableObject<string>();
 		private string _pinCode;
 		private IMvxCommand _registrationCommand;
 		#endregion
 		#endregion
 
 		#region Properties
-		public string ConfirmPassword
+		public ValidatableObject<string> ConfirmPassword
 		{
 			get => _confirmPassword;
 			set => SetProperty(ref _confirmPassword, value);
 		}
 
-		public string Email
+		public ValidatableObject<string> Email
 		{
 			get => _email;
 			set => SetProperty(ref _email, value);
 		}
 
-		public Dictionary<string, string> Errors
-		{
-			get => _errors;
-			protected set => SetProperty(ref _errors, value);
-		}
-
-		public string Login
+		public ValidatableObject<string> Login
 		{
 			get => _login;
 			set
 			{
 				SetProperty(ref _login, value);
-				if (string.IsNullOrEmpty(value))
-				{
-					Errors[nameof(Login)
-							   .ToLower()] = "Поле логин не может быть пустым.";
-				}
-				else
-				{
-					Errors[nameof(Login)
-							   .ToLower()] = null;
-				}
-
-				RaisePropertyChanged(() => Errors);
 			}
 		}
 
-		public string Name
+		public ValidatableObject<string> Name
 		{
 			get => _name;
 			set => SetProperty(ref _name, value);
 		}
 
-		public string Password
+		public ValidatableObject<string> Password
 		{
 			get => _password;
 			set => SetProperty(ref _password, value);
@@ -102,64 +77,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		#endregion
 
 		#region Protected
-		protected bool CheckValidFields()
-		{
-			var needRaiseErrorsPropertyChanged = false;
-			var login = Login?.Trim();
-			if (string.IsNullOrEmpty(login))
-			{
-				Errors[nameof(Login)
-						   .ToLower()] = "Поле логин не может быть пустым.";
-				needRaiseErrorsPropertyChanged = true;
-			}
-
-			var name = Name?.Trim();
-			if (string.IsNullOrEmpty(name))
-			{
-				Errors[nameof(Name)
-						   .ToLower()] = "Поле торговое название или имя мастера не может быть пустым.";
-				needRaiseErrorsPropertyChanged = true;
-			}
-
-			var email = Email?.Trim();
-			if (string.IsNullOrEmpty(email))
-			{
-				Errors[nameof(Email)
-						   .ToLower()] = "Поле email не может быть пустым.";
-				needRaiseErrorsPropertyChanged = true;
-			}
-
-			if (!IsValidEmail(email))
-			{
-				Errors[nameof(Email)
-						   .ToLower()] = "Поле email не может быть пустым.";
-				needRaiseErrorsPropertyChanged = true;
-			}
-
-			var password = Password?.Trim();
-			if (string.IsNullOrEmpty(password))
-			{
-				Errors[nameof(Password)
-						   .ToLower()] = "Поле пароль не может быть пустым.";
-				needRaiseErrorsPropertyChanged = true;
-			}
-
-			var confirmPassword = ConfirmPassword?.Trim();
-			if (string.IsNullOrEmpty(confirmPassword))
-			{
-				Errors[nameof(Password)
-						   .ToLower()] = "Поле пароль не может быть пустым.";
-				needRaiseErrorsPropertyChanged = true;
-			}
-
-			if (needRaiseErrorsPropertyChanged)
-			{
-				RaisePropertyChanged(() => Errors);
-				return false;
-			}
-
-			return true;
-		}
+		protected bool CheckValidFields() => Login.Validate() & Name.Validate() & Email.Validate() & Password.Validate() & ConfirmPassword.Validate() & Name.Validate();
 		#endregion
 
 		#region Overridable
@@ -169,24 +87,24 @@ namespace bonus.app.Core.ViewModels.Auth
 		#region Private
 		private async void Execute()
 		{
-			if (CheckValidFields() && await RegistrationCommandExecute())
+			if (CheckValidFields())
 			{
-				AfterRegister?.Invoke();
+				await RegistrationCommandExecute();
 			}
 		}
 
-		private bool IsValidEmail(string email)
+		private void AddValidations()
 		{
-			try
-			{
-				var address = new MailAddress(email);
-				return address.Address == email;
-			}
-			catch
-			{
-				return false;
-			}
+			Email.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите Email адрес." });
+			Email.Validations.Add(new IsValidEmailRule { ValidationMessage = "Не корректно введен Email." });
+			Login.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите логин." });
+			Login.Validations.Add(new MinLengthRule(2) { ValidationMessage = "Логин не может быть меньше 2 символов." });
+			Password.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите пароль." });
+			Password.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Пароль не может быть меньше 6 символов." });
+			ConfirmPassword.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Подтвердите пароль." });
+			ConfirmPassword.Validations.Add(new IsValidConfirmPassword(() => Password.Value) { ValidationMessage = "Пароли не совпадают." });
 		}
+
 		#endregion
 	}
 }

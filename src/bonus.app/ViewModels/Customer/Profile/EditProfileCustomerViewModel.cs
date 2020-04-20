@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Linq;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
+using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Customer.Profile
 {
@@ -13,8 +16,8 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 	{
 		#region Data
 		#region Fields
-		private DateTime _birthday;
-		private string _car = "";
+		private ValidatableObject<DateTime?> _birthday= new ValidatableObject<DateTime?>();
+		private string _car = string.Empty;
 		private readonly IProfileService _customerProfileService;
 
 		private MvxCommand _editCommand;
@@ -38,11 +41,13 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			_customerProfileService = customerProfileService;
 			_userRepository = userRepository;
 			IsFemale = true;
+
+			AddValidations();
 		}
 		#endregion
 
 		#region Properties
-		public DateTime Birthday
+		public ValidatableObject<DateTime?> Birthday
 		{
 			get => _birthday;
 			set => SetProperty(ref _birthday, value);
@@ -94,42 +99,100 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		#endregion
 
 		#region Private
+		private void AddValidations()
+		{
+			Birthday.Validations.Add(new IsValidDateRule(new DateTime(1900, 1, 1), new DateTime(DateTime.Now.Year - 6, 1, 1)) { ValidationMessage = "Не корректная дата." });
+			Address.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "укажите адрес." });
+			Address.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Адрес не может быть меньше 6 символов." });
+			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите номер телефона." });
+			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule { ValidationMessage = "Не корректный номер телефона." });
+		}
+
 		private async void EditCommandExecute()
 		{
-			var arg = new EditCustomerDto
+			if (!Birthday.Validate() | !Address.Validate() | !PhoneNumber.Validate())
 			{
-				Uuid = Parameter.Guid,
-				Country = SelectedCountry.LocalizedNames.Ru,
-				City = SelectedCity.LocalizedNames.Ru,
-				Phone = PhoneNumber.Value,
-				Birthday = Birthday.ToString("yyyy-MM-dd"),
-				Car = Car,
-				Address = Address.Value,
-				Password = Parameter.Password
-			};
-			if (IsFemale)
-			{
-				arg.Sex = "female";
-			}
-			else if (IsMale)
-			{
-				arg.Sex = "male";
+				return;
 			}
 
-			User user = null;
+			if (SelectedCountry == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
+				});
+				return;
+			}
+
+			if (SelectedCity == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
+				});
+				return;
+			}
+
+			if (Birthday.Value == null)
+			{
+				return;
+			}
+
 			try
 			{
-				user = await _customerProfileService.Edit(arg, ImageBytes, ImageName);
-				_userRepository.Add(user);
+				var arg = new EditCustomerDto
+				{
+					Uuid = Parameter.Guid,
+					Country = SelectedCountry.LocalizedNames.Ru,
+					City = SelectedCity.LocalizedNames.Ru,
+					Phone = PhoneNumber.Value,
+					Birthday = Birthday.Value.Value.ToString("yyyy-MM-dd"),
+					Car = Car,
+					Address = Address.Value,
+					Password = Parameter.Password
+				};
+				if (IsFemale)
+				{
+					arg.Sex = "female";
+				}
+				else if (IsMale)
+				{
+					arg.Sex = "male";
+				}
+
+				var user = await _customerProfileService.Edit(arg, ImageBytes, ImageName);
+				
+				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
+				{
+					_userRepository.Add(user);
+					await _navigationService.Navigate<MainCustomerViewModel>();
+				}
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
 
-			if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
+			if (_customerProfileService.ErrorDetails != null && _customerProfileService.ErrorDetails.Count > 0)
 			{
-				await _navigationService.Navigate<MainCustomerViewModel>();
+				var key = _customerProfileService.ErrorDetails.First().Key;
+				if (key.Equals("phone"))
+				{
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Ошибка", "Пользователь с таким номером уже существует.", "Ок");
+					});
+					return;
+				}
+			}
+				
+
+			if (!string.IsNullOrEmpty(_customerProfileService.Error))
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Ошибка", _customerProfileService.Error, "Ок");
+				});
 			}
 		}
 		#endregion

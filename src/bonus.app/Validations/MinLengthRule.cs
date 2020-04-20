@@ -16,7 +16,7 @@
 		}
 
 		public bool Check(string value) =>
-			value.Trim()
+			value?.Trim()
 				 .Length >=
 			_minLength;
 	}

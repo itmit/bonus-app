@@ -95,7 +95,7 @@
     <Compile Update="Pages\SubscribesPage.xaml.cs">
       <DependentUpon>SubscribesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Popups\SuccessRegisterPopupPage.xaml.cs">
+    <Compile Update="Pages\Auth\SuccessRegisterPopupPage.xaml.cs">
       <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml.cs">
@@ -284,7 +284,7 @@
     <EmbeddedResource Update="Views\Popups\SuccessAccrualPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popups\SuccessRegisterPopupPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\SuccessRegisterPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Shares\CountryCityViewCell.xaml">
