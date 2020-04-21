@@ -7,6 +7,7 @@
              xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
              xmlns:contentView="clr-namespace:bonus.app.Core.Views.ViewCells.Shares;assembly=bonus.app.Core"
              xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Customer.Shares;assembly=bonus.app.Core"
+             xmlns:stocks="clr-namespace:bonus.app.Core.Views.ContentViews.Stocks;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Customer.Shares.CustomerSharesPage">
     <NavigationPage.TitleView>
@@ -43,22 +44,22 @@
                 </ScrollView>
             </StackLayout>
 
-            <views:MvxListView Grid.Row="1"
-                               HasUnevenRows="True"
-                               SeparatorVisibility="None"
-                               ItemsSource="{Binding Shares}"
-                               SelectedItem="{Binding SelectedShare}"
-                               IsPullToRefreshEnabled="True"
-                               x:Name="ListView"
-                               RefreshCommand="{Binding RefreshCommand}"
-                               IsRefreshing="{Binding IsRefreshing}"
-                               ItemSelected="ListView_OnItemSelected">
-                <views:MvxListView.ItemTemplate>
-                    <DataTemplate>
-                        <viewCells:CustomerSharesViewCell/>
-                    </DataTemplate>
-                </views:MvxListView.ItemTemplate>
-            </views:MvxListView>
+            <RefreshView Grid.Row="1"
+                         Command="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView VerticalScrollBarVisibility="Never"
+                                Margin="0,5"
+                                x:Name="ListView"
+                                ItemsSource="{Binding Stocks}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedStock}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <stocks:CustomerStockContentView/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

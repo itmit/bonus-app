@@ -32,10 +32,11 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
 				cfg.CreateMap<UserInfoDto, User>()
-				   .ForPath(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo));
+				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo))
+				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday ?? DateTime.MinValue));
 				cfg.CreateMap<UserData, User>()
-				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Uuid))
-				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
+				   .ForMember(m => m.Guid, o => o.MapFrom(q => q.Uuid))
+				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 		}
 

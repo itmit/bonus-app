@@ -49,5 +49,11 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+
+		public DateTime? Birthday
+		{
+			get;
+			set;
+		}
 	}
 }

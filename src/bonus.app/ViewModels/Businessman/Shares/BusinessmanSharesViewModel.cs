@@ -95,11 +95,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			get => _selectedStock;
 			set
 			{
-				SetProperty(ref _selectedStock, value);
-				if (value != null)
+				if (value == null)
 				{
-					NavigationService.Navigate<BusinessmanSharesDetailViewModel, Stock>(value);
+					return;
 				}
+
+				SetProperty(ref _selectedStock, value);
+				NavigationService.Navigate<BusinessmanSharesDetailViewModel, Stock>(value);
+				SetProperty(ref _selectedStock, null);
 			}
 		}
 	}

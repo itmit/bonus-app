@@ -65,6 +65,12 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		public DateTime Birthday
+		{
+			get;
+			set;
+		}
+
 		public string Description
 		{
 			get;

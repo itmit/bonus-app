@@ -1,4 +1,5 @@
-﻿using battery.app.Core.RealmObjects;
+﻿using System;
+using battery.app.Core.RealmObjects;
 using Realms;
 
 namespace bonus.app.Core.RealmObjects
@@ -92,6 +93,12 @@ namespace bonus.app.Core.RealmObjects
 		}
 
 		public int Balance
+		{
+			get;
+			set;
+		}
+
+		public DateTimeOffset Birthday
 		{
 			get;
 			set;

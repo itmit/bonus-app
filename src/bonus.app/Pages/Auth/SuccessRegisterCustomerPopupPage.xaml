@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-                 xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
-                 xmlns:design="clr-namespace:bonus.app.Core.Design"
-             mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.Popups.SuccessRegisterCustomerPopupPage">
+<core:MvxPopupPage x:TypeArguments="auth:SuccessRegisterCustomerPopupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                   xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                   xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                   xmlns:design="clr-namespace:bonus.app.Core.Design"
+                   xmlns:core="clr-namespace:bonus.app.Core;assembly=bonus.app.Core"
+                   xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                   xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                   mc:Ignorable="d"
+                   x:Class="bonus.app.Core.Pages.Auth.SuccessRegisterCustomerPopupPage">
     <!--popup с qr-code после успешной регистрации в профиле покупателя-->
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation
@@ -27,9 +30,21 @@
         <StackLayout Spacing="0">
             <Label Text="Добро пожаловать в&#10;Bonus &amp; Marketing!" FontSize="Medium" HorizontalTextAlignment="Center" Margin="0,0,0,20"/>
             <Label Text="Вы успешно зарегистрировались&#10;в приложении Bonus &amp; Marketing и&#10;получили личный QR-CODE, с помощью&#10;которого вы можете получать бонусы" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-            <Image Source="pic_qr_512w.png" WidthRequest="190" HorizontalOptions="Center" Margin="0,20"/>
+
+            <forms:ZXingBarcodeImageView
+                WidthRequest="190"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                Margin="0,20"
+                AutomationId="zxingBarcodeImageView"
+                BarcodeFormat="QR_CODE"
+                BarcodeValue="{Binding UserUuid}"/>
+
             <design:CustomButton Style="{StaticResource AppButtonGradient}" WidthRequest="260" HorizontalOptions="Center">
                 <Grid>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClosePopupCommand}"/>
+                    </Grid.GestureRecognizers>
                     <graphic:RectangleInProfile/>
                     <Label Text="ОК" Style="{StaticResource TextForAppButton}"/>
                 </Grid>
@@ -39,4 +54,4 @@
             </design:CustomButton>
         </StackLayout>
     </Frame>
-</pages:PopupPage>
+</core:MvxPopupPage>

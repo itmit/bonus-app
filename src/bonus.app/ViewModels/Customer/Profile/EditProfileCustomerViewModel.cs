@@ -165,6 +165,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
 					_userRepository.Add(user);
+					await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();
 					await _navigationService.Navigate<MainCustomerViewModel>();
 				}
 			}

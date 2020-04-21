@@ -8,6 +8,7 @@
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Shares.BusinessmanSharesPage"
                       NavigationPage.HasBackButton="False">
@@ -24,21 +25,21 @@
 
     <views:MvxContentPage.Content>
         <!--5. Мои акции(предприниматель)-->
-        <ListView VerticalScrollBarVisibility="Never"
-                  SeparatorVisibility="None"
-                  HasUnevenRows="True"
-                  Margin="0,5"
-                  ItemsSource="{Binding Stocks}"
-                  IsPullToRefreshEnabled="True"
-                  RefreshCommand="{Binding RefreshCommand}"
-                  IsRefreshing="{Binding IsRefreshing}"
-                  SelectedItem="{Binding SelectedStock}"
-                  ItemTapped="ListView_OnItemTapped">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <viewCells:SharesViewCell />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <RefreshView 
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView VerticalScrollBarVisibility="Never"
+                            Margin="0,5"
+                            ItemsSource="{Binding Stocks}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedStock}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <contentViews:StockContentView />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        
     </views:MvxContentPage.Content>
 </views:MvxContentPage>

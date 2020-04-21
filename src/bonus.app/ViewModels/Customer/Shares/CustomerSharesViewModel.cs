@@ -12,7 +12,7 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 	public class CustomerSharesViewModel : MvxNavigationViewModel
 	{
 		private IStockService _stockService;
-		private MvxObservableCollection<Stock> _shares;
+		private MvxObservableCollection<Stock> _stocks;
 		private Stock _selectedStock;
 		private bool _isRefreshing;
 		private MvxCommand _refreshCommand;
@@ -27,13 +27,13 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 		{
 			await base.Initialize();
 
-			Shares = new MvxObservableCollection<Stock>(await _stockService.GetAll());
+			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
 		}
 
-		public MvxObservableCollection<Stock> Shares
+		public MvxObservableCollection<Stock> Stocks
 		{
-			get => _shares;
-			set => SetProperty(ref _shares, value);
+			get => _stocks;
+			set => SetProperty(ref _stocks, value);
 		}
 
 		public MvxCommand RefreshCommand
@@ -44,7 +44,7 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 								  new MvxCommand(async () =>
 								  {
 									  IsRefreshing = true;
-									  Shares = new MvxObservableCollection<Stock>(await _stockService.GetAll());
+									  Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
 									  IsRefreshing = false;
 								  });
 				return _refreshCommand;
@@ -62,11 +62,14 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 			get => _selectedStock;
 			set
 			{
-				if (value != null)
+				if (value == null)
 				{
-					SetProperty(ref _selectedStock, value);
-					NavigationService.Navigate<CustomerSharesDetailViewModel, Stock>(value);
+					return;
 				}
+
+				SetProperty(ref _selectedStock, value);
+				NavigationService.Navigate<BusinessmanSharesDetailViewModel, Stock>(value);
+				SetProperty(ref _selectedStock, null);
 			}
 		}
 	}

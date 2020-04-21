@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-                 xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
-                 xmlns:design="clr-namespace:bonus.app.Core.Design"
-             mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.Popups.SuccessRegisterBusinessmanPopupPage">
+<core:MvxPopupPage x:TypeArguments="auth:SuccessRegisterBusinessmanPopupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                   xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                   xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                   xmlns:design="clr-namespace:bonus.app.Core.Design"
+                   xmlns:core="clr-namespace:bonus.app.Core;assembly=bonus.app.Core"
+                   xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                   mc:Ignorable="d"
+                   x:Class="bonus.app.Core.Pages.Auth.SuccessRegisterBusinessmanPopupPage">
 
     <!--popup после успешной регистрации в профиле предпринимателя-->
     <pages:PopupPage.Animation>
@@ -30,6 +32,9 @@
             <Label Text="Пользуйтесь приложением&#10;и находите новых клиентов" Margin="0,0,0,30" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
             <design:CustomButton Style="{StaticResource AppButtonGradient}" WidthRequest="260" HorizontalOptions="Center">
                 <Grid>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClosePopupCommand}"/>
+                    </Grid.GestureRecognizers>
                     <graphic:RectangleInProfile/>
                     <Label Text="ОК" Style="{StaticResource TextForAppButton}"/>
                 </Grid>
@@ -39,4 +44,4 @@
             </design:CustomButton>
         </StackLayout>
     </Frame>
-</pages:PopupPage>
+</core:MvxPopupPage>

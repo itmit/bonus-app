@@ -8,6 +8,7 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
+using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
@@ -124,6 +125,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
 					_userRepository.Add(user);
+					await _navigationService.Navigate<SuccessRegisterBusinessmanPopupViewModel>();
 					await _navigationService.Navigate<MainBusinessmanViewModel>();
 					return;
 				}

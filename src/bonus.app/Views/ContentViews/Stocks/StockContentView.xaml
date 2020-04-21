@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.StockContentView">
+  <ContentView.Content>
+      <!--Ячейка для списка мои акции у предпринимателя-->
+      <Frame Padding="10" Margin="0,5">
+          <Grid>
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+
+              <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" VerticalOptions="FillAndExpand" Grid.Column="0" Margin="10,0" WidthRequest="85">
+                  <forms:CachedImage.Transformations>
+                      <transformations:RoundedTransformation Radius="100"/>
+                  </forms:CachedImage.Transformations>
+              </forms:CachedImage>
+
+              <StackLayout Grid.Column="1">
+                  <Label Text="{Binding Name}" MaxLines="1"/>
+                  <Label Text="{Binding Description}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption" TextColor="Gray"/>
+              </StackLayout>
+          </Grid>
+      </Frame>
+    </ContentView.Content>
+</ContentView>

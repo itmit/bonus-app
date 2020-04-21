@@ -25,9 +25,11 @@ namespace bonus.app.Core.Repositories
 				cfg.CreateMap<AccessTokenRealmObject, AccessToken>();
 
 				cfg.CreateMap<User, UserRealmObject>()
+				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday))
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.AccessToken.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.AccessToken.Type));
 				cfg.CreateMap<UserRealmObject, User>()
+				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday.Date))
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.AccessToken.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.AccessToken.Type));
 

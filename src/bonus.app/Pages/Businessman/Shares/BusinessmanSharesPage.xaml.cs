@@ -1,4 +1,5 @@
-﻿using bonus.app.Core.ViewModels.Businessman.Shares;
+﻿using System;
+using bonus.app.Core.ViewModels.Businessman.Shares;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
@@ -15,13 +16,6 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 		{
 			InitializeComponent();
 			BackgroundColor = Color.FromRgba(196, 196, 196, 0.2);
-		}
-		#endregion
-
-		#region Private
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-		{
-			((ListView) sender).SelectedItem = null;
 		}
 		#endregion
 	}
