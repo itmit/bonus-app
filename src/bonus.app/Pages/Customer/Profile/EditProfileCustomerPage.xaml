@@ -33,6 +33,7 @@
                         </Style>
                         <Style x:Key="MaterialTextField" TargetType="ui:MaterialTextField">
                             <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="TintColor" Value="#505050"/>
                             <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                             <Setter Property="InputType" Value="Chat" />
                             <Setter Property="TextFontSize" Value="14" />
@@ -57,7 +58,7 @@
                             <TapGestureRecognizer Tapped="Cell_OnTapped"/>
                         </StackLayout.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
+                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" FontSize="14" Margin="5,0,0,0"/>
                             <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                         <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />
@@ -93,7 +94,7 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
                             </StackLayout.GestureRecognizers>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}"/>
+                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" FontSize="14" Margin="5,0,0,0"/>
                                 <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                             </StackLayout>
                             <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
@@ -167,9 +168,10 @@
                                                    TextFontSize="14"
                                                    AlwaysShowUnderline="True"
                                                    UnderlineColor="DarkGray"
+                                                   TintColor="#505050"
                                                    TextFontFamily="{x:Static design:DesignClass.LatoRegular}"/>
 
-                            <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent"/>
+                            <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent" Visual="Material"/>
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
