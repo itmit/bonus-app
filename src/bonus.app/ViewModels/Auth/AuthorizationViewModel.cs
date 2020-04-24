@@ -190,15 +190,15 @@ namespace bonus.app.Core.ViewModels.Auth
 				return;
 			}
 
-			if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Guid != Guid.Empty)
+			if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Uuid != Guid.Empty)
 			{
 				if (user.Role == UserRole.Businessman)
 				{
-					await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, false, password));
+					await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
 				}
 				else if (user.Role == UserRole.Customer)
 				{
-					await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, false, password));
+					await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
 				}
 
 				return;

@@ -15,7 +15,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		{
 			_navigationService = navigationService;
 
-			UserUuid = authService.User.Guid;
+			UserUuid = authService.User.Uuid;
 		}
 
 		public Guid UserUuid

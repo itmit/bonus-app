@@ -71,7 +71,7 @@ namespace bonus.app.Core.ViewModels.Auth
 					if (await _navigationService.Navigate<SuccessRegisterPopupViewModel, object, bool>(null))
 					{
 						await _navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
-							new EditProfileViewModelArguments(_user.Guid, false, Password.Value));
+							new EditProfileViewModelArguments(_user.Uuid, false, Password.Value));
 					}
 					return true;
 				}

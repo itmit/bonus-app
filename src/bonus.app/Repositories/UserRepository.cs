@@ -72,8 +72,15 @@ namespace bonus.app.Core.Repositories
 			{
 				using (var transaction = realm.BeginWrite())
 				{
-					var userRealm = realm.Find<UserRealmObject>(user.Guid.ToString());
-					realm.Remove(userRealm);
+					var userRealm = realm.Find<UserRealmObject>(user.Uuid.ToString());
+					if (userRealm == null)
+					{
+						realm.RemoveAll();
+					}
+					else
+					{
+						realm.Remove(userRealm);
+					}
 					transaction.Commit();
 				}
 			}

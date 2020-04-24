@@ -16,8 +16,10 @@ namespace bonus.app.Core.Services
 	public class ProfileService : IProfileService
 	{
 		private readonly Mapper _mapper;
+		private readonly bool _isActiveUser;
+		private readonly IAuthService _authService;
 
-		public ProfileService()
+		public ProfileService(IAuthService authService)
 		{
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
@@ -27,12 +29,15 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type))
 				   .ForPath(m => m.Email, o => o.MapFrom(q => q.Email))
-				   .ForPath(m => m.Guid, o => o.MapFrom(q => q.Guid))
+				   .ForPath(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
 				   .ForPath(m => m.Name, o => o.MapFrom(q => q.Name));
 			}));
+			_isActiveUser = authService.Token != null;
+			_authService = authService;
 		}
 
-		private const string EditUri = "http://bonus.itmit-studio.ru/api/fillInfo";
+		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
+		private const string EditUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 
 		public Task<User> Edit(EditBusinessmanDto arguments, byte[] photo, string imageName)
 		{
@@ -61,11 +66,13 @@ namespace bonus.app.Core.Services
 				},
 				{
 					new StringContent(arguments.WorkTime), "worktime"
-				},
-				{
-					new StringContent(arguments.Password), "password"
 				}
 			};
+
+			if (!string.IsNullOrWhiteSpace(arguments.Password))
+			{
+				content.Add(new StringContent(arguments.Password), "password");
+			}
 
 			if (photo != null & !string.IsNullOrEmpty(imageName))
 			{
@@ -103,11 +110,13 @@ namespace bonus.app.Core.Services
 				},
 				{
 					new StringContent(arguments.Sex), "sex"
-				},
-				{
-					new StringContent(arguments.Password), "password"
 				}
 			};
+
+			if (!string.IsNullOrWhiteSpace(arguments.Password))
+			{
+				content.Add(new StringContent(arguments.Password), "password");
+			}
 
 			if (photo != null & !string.IsNullOrEmpty(imageName))
 			{
@@ -134,8 +143,16 @@ namespace bonus.app.Core.Services
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-				var response = await client.PostAsync(EditUri, content);
+				HttpResponseMessage response;
+				if(_isActiveUser)
+				{
+					client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+					response = await client.PutAsync(string.Format(EditUri, _authService.User.Uuid), content);
+				}
+				else
+				{
+					response = await client.PostAsync(FillInfoUri, content);
+				}
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);

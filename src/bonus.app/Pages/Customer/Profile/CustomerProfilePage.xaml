@@ -15,7 +15,7 @@
     </NavigationPage.TitleView>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Command="{Binding OpenEditProfileCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <!-- Страница 16.1.1 - 16.1.2 Профиль покупателя -->

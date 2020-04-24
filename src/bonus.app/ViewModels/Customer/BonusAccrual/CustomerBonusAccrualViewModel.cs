@@ -28,7 +28,7 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 
 		public override Task Initialize()
 		{
-			UserUuid = _authService.User.Guid;
+			UserUuid = _authService.User.Uuid;
 			return base.Initialize();
 		}
 	}

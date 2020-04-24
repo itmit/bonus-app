@@ -18,11 +18,24 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		private User _user;
         private MvxCommand _openMessageCommand;
         private MvxCommand _openSubscribesCommand;
+		private MvxCommand _openEditProfileCommand;
 
-        public User User
+		public User User
 		{
 			get => _user;
 			private set => SetProperty(ref _user, value);
+		}
+
+		public MvxCommand OpenEditProfileCommand
+		{
+			get
+			{
+				_openEditProfileCommand = _openEditProfileCommand ?? new MvxCommand(() =>
+				{
+					NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(User.Uuid, true));
+				});
+				return _openEditProfileCommand;
+			}
 		}
 
 		public MvxCommand OpenMessageCommand

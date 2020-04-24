@@ -142,14 +142,14 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			{
 				var arg = new EditCustomerDto
 				{
-					Uuid = Parameter.Guid,
+					Uuid = Parameters.Guid,
 					Country = SelectedCountry.LocalizedNames.Ru,
 					City = SelectedCity.LocalizedNames.Ru,
 					Phone = PhoneNumber.Value,
 					Birthday = Birthday.Value.Value.ToString("yyyy-MM-dd"),
 					Car = Car,
 					Address = Address.Value,
-					Password = Parameter.Password
+					Password = Parameters.Password
 				};
 				if (IsFemale)
 				{

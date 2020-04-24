@@ -9,6 +9,7 @@ using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
+using MvvmCross.Base;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Plugin.Media;
@@ -61,7 +62,7 @@ namespace bonus.app.Core.ViewModels
 		#endregion
 
 		#region Properties
-		public EditProfileViewModelArguments Parameter
+		public EditProfileViewModelArguments Parameters
 		{
 			get;
 			private set;
@@ -170,6 +171,13 @@ namespace bonus.app.Core.ViewModels
 
 			User = _authService.User;
 			IsAuthorization = User != null;
+			if (Parameters.IsActiveUser)
+			{
+				Address.Value = User?.Address;
+				PhoneNumber.Value = User?.Phone;
+				ImageSource = User?.PhotoSource;
+				ImageName = User?.PhotoSource.Substring(User.PhotoSource.LastIndexOf('/') + 1);
+			}
 
 			try
 			{
@@ -190,7 +198,7 @@ namespace bonus.app.Core.ViewModels
 				Console.WriteLine(e);
 			}
 
-			if (Parameter.IsActiveUser)
+			if (Parameters.IsActiveUser)
 			{
 				SelectedCountry = Countries.Single(c => c.LocalizedNames.Ru.Equals(User.Country));
 			}
@@ -198,7 +206,7 @@ namespace bonus.app.Core.ViewModels
 
 		public override void Prepare(EditProfileViewModelArguments parameter)
 		{
-			Parameter = parameter;
+			Parameters = parameter;
 		}
 		#endregion
 
@@ -243,7 +251,7 @@ namespace bonus.app.Core.ViewModels
 
 			IsBusy = false;
 
-			if (Parameter.IsActiveUser && SelectedCountry != null && SelectedCountry.LocalizedNames.Ru.Equals(User.Country))
+			if (Parameters.IsActiveUser && SelectedCountry != null && SelectedCountry.LocalizedNames.Ru.Equals(User.Country))
 			{
 				SelectedCity = Cities.Single(c => c.LocalizedNames.Ru.Equals(User.City));
 			}
@@ -279,11 +287,6 @@ namespace bonus.app.Core.ViewModels
 					ImageBytes = memoryStream.ToArray();
 				}
 			}
-		}
-
-		public IEnumerable GetErrors(string propertyName)
-		{
-			throw new NotImplementedException();
 		}
 		#endregion
 	}
