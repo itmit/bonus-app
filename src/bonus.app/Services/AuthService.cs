@@ -35,7 +35,7 @@ namespace bonus.app.Core.Services
 				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo))
 				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday ?? DateTime.MinValue));
 				cfg.CreateMap<UserData, User>()
-				   .ForMember(m => m.Guid, o => o.MapFrom(q => q.Uuid))
+				   .ForMember(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
 				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 		}
@@ -60,12 +60,14 @@ namespace bonus.app.Core.Services
 					Password = password,
 					PasswordConfirm = confirmPassword,
 				};
-				if (user.Role == UserRole.Businessman)
+				switch (user.Role)
 				{
-					regDto.Type = "businessman";
-				} else if (user.Role == UserRole.Customer)
-				{
-					regDto.Type = "customer";
+					case UserRole.Businessman:
+						regDto.Type = "businessman";
+						break;
+					case UserRole.Customer:
+						regDto.Type = "customer";
+						break;
 				}
 				var requestBody = JsonConvert.SerializeObject(regDto);
 
@@ -101,18 +103,31 @@ namespace bonus.app.Core.Services
 		{
 			get
 			{
-				if (_userUuid == Guid.Empty)
+				try
 				{
+					if (_userUuid != Guid.Empty)
+					{
+						var user = _userRepository.Find(_userUuid);
+						if (user != null)
+						{
+							return user;
+						}
+					}
 					var u = _userRepository.GetAll()
-										  .SingleOrDefault();
+										   .SingleOrDefault();
 					if (u != null)
 					{
-						_userUuid = u.Guid;
-						return u;
+						_userUuid = u.Uuid;
 					}
+
+					return u;
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
 				}
 
-				return _userRepository.Find(_userUuid);
+				return null;
 			}
 		}
 
@@ -184,7 +199,7 @@ namespace bonus.app.Core.Services
 						var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
 
 						userInfo.Role = user.Role;
-						userInfo.Guid = user.Guid;
+						userInfo.Uuid = user.Uuid;
 						userInfo.Email = user.Email ?? string.Empty;
 						userInfo.Phone = user.Phone ?? string.Empty;
 						userInfo.Name = user.Name ?? string.Empty;
@@ -196,12 +211,12 @@ namespace bonus.app.Core.Services
 							Type = data.Data.Type
 						};
 
-						if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Guid != Guid.Empty)
+						if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
 						{
 							return userInfo;
 						}
 
-						_userUuid = userInfo.Guid;
+						_userUuid = userInfo.Uuid;
 						_userRepository.Add(userInfo);
 
 						return userInfo;

@@ -11,7 +11,7 @@ namespace bonus.app.Core.Models
 		/// <summary>
 		/// Возвращает или устанавливает id пользователя.
 		/// </summary>
-		public Guid Guid
+		public Guid Uuid
 		{
 			get;
 			set;

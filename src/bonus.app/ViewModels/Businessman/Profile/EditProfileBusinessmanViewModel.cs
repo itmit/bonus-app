@@ -109,7 +109,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			{
 				var arg = new EditBusinessmanDto
 				{
-					Uuid = Parameter.Guid,
+					Uuid = Parameters.Guid,
 					Country = SelectedCountry.LocalizedNames.Ru,
 					City = SelectedCity.LocalizedNames.Ru,
 					Address = Address.Value,
@@ -117,7 +117,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					Contact = Contact.Value,
 					Phone = PhoneNumber.Value,
 					Description = Description,
-					Password = Parameter.Password
+					Password = Parameters.Password
 				};
 
 				var user = await _profileService.Edit(arg, ImageBytes, ImageName);

@@ -18,15 +18,5 @@ namespace bonus.app.Core.Pages.Customer.Profile
         {
             InitializeComponent();
         }
-
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new EditProfileCustomerPage());
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new SubscribesPage());
-        }
 	}
 }

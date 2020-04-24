@@ -48,7 +48,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				if (user != null)
 				{
 					await Application.Current.MainPage.Navigation.PopToRootAsync();
-					await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Guid, false, Password.Value));
+					await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, Password.Value));
 					return true;
 				}
 			}

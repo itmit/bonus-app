@@ -36,7 +36,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			{
 				_openEditProfilePageCommand = _openEditProfilePageCommand ?? new MvxCommand(() =>
 				{
-					NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(_authService.User.Guid,  true));
+					NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(_authService.User.Uuid,  true));
 				});
 				return _openEditProfilePageCommand;
 			}

@@ -175,6 +175,12 @@
                                     <TapGestureRecognizer Command="{Binding EditCommand}"/>
                                 </Frame.GestureRecognizers>
                             </design:CustomButton>
+
+                            <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
+                                         IsEnabled="{Binding Parameters.IsActiveUser}">
+
+                            </StackLayout>
+
                         </StackLayout>
                     </Grid>
                 </Grid>

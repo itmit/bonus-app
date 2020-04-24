@@ -7,7 +7,7 @@ namespace bonus.app.Core.Dtos
 	public class UserDto
 	{
 		[JsonProperty("uuid")]
-		public Guid Guid
+		public Guid Uuid
 		{
 			get;
 			set;
