@@ -4,6 +4,7 @@ using bonus.app.Page;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Businessman.Profile
@@ -20,20 +21,6 @@ namespace bonus.app.Core.Pages.Businessman.Profile
 		#endregion
 
 		#region Private
-		private void ImageButton_OnClicked(object sender, EventArgs e)
-		{
-			if (Frame.IsEnabled)
-			{
-				Frame.IsVisible = false;
-				Frame.IsEnabled = false;
-			}
-			else
-			{
-				Frame.IsVisible = true;
-				Frame.IsEnabled = true;
-			}
-		}
-
 		private void Subscribers_OnTapped(object sender, EventArgs e)
 		{
 			Navigation.PushAsync(new SubscribersPage());
