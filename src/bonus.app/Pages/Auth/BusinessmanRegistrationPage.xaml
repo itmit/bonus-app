@@ -31,12 +31,13 @@
                             <Setter Property="Margin" Value="0,10" />
                             <Setter Property="Visual" Value="Material" />
                         </Style>
-                        <Style TargetType="ui:MaterialTextField" x:Key="MaterialTextField">
+                        <Style TargetType="ui:MaterialTextField">
                             <Setter Property="PlaceholderColor" Value="#505050" />
+                            <Setter Property="TintColor" Value="#505050"/>
                             <Setter Property="Visual" Value="Material" />
                             <Setter Property="TextColor" Value="#505050" />
                             <Setter Property="TextFontSize" Value="14" />
-                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="BackgroundColor" Value="Transparent"/>
                             <Setter Property="Margin" Value="0,10" />
                             <Setter Property="AlwaysShowUnderline" Value="True" />
                             <Setter Property="UnderlineColor" Value="DarkGray" />
@@ -46,28 +47,23 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
                 <ui:MaterialTextField Text="{Binding Login.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Логин"
                                       ErrorText="{Binding Login.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Login.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Name.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Торговое название или имя мастера"
                                       ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Email.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="E-mail"
                                       ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Password.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Пароль"
                                       InputType="Password"
                                       ErrorText="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Повторите пароль"
                                       InputType="Password"
                                       ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
@@ -75,7 +71,7 @@
 
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
                        Placeholder="Код из 4 цифр для быстрого входа" />
-                <design:CustomButton Style="{StaticResource AppButtonGradient}">
+                <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,30">
                     <Grid>
                         <graphic:RectangleInProfile/>
                         <Label Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource TextForAppButton}"/>

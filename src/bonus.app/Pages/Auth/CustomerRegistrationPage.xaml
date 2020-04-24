@@ -30,9 +30,10 @@
                             <Setter Property="Margin" Value="0,10" />
                             <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                         </Style>
-                        <Style TargetType="ui:MaterialTextField" x:Key="MaterialTextField">
+                        <Style TargetType="ui:MaterialTextField">
                             <Setter Property="PlaceholderColor" Value="#505050" />
                             <Setter Property="Visual" Value="Material" />
+                            <Setter Property="TintColor" Value="#505050"/>
                             <Setter Property="TextColor" Value="#505050" />
                             <Setter Property="TextFontSize" Value="14" />
                             <Setter Property="BackgroundColor" Value="Transparent" />
@@ -45,28 +46,23 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
                 <ui:MaterialTextField Text="{Binding Login.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Логин"
                                       ErrorText="{Binding Login.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Login.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Name.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Ф.И.О."
                                       ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Email.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="E-mail"
                                       ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Password.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Пароль"
                                       InputType="Password"
                                       ErrorText="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
-                                      Style="{StaticResource MaterialTextField}"
                                       Placeholder="Повторите пароль"
                                       InputType="Password"
                                       ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
@@ -91,7 +87,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Frame Grid.Column="0" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
+                    <design:CustomTransparentButton Grid.Column="0" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
                            CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image Source="ic_face_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
@@ -101,8 +97,8 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />
                         </Frame.GestureRecognizers>
-                    </Frame>
-                    <Frame Grid.Column="1" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
+                    </design:CustomTransparentButton>
+                    <design:CustomTransparentButton Grid.Column="1" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
                            CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image Source="ic_vk_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
@@ -112,7 +108,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />
                         </Frame.GestureRecognizers>
-                    </Frame>
+                    </design:CustomTransparentButton>
                 </Grid>
             </StackLayout>
         </ScrollView>

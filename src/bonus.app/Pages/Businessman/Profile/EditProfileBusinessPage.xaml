@@ -32,8 +32,9 @@
                             <Setter Property="FontSize" Value="14" />
                             <Setter Property="Visual" Value="Material" />
                         </Style>
-                        <Style x:Key="MaterialTextField" TargetType="ui:MaterialTextField">
+                        <Style TargetType="ui:MaterialTextField">
                             <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="TintColor" Value="#505050"/>
                             <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                             <Setter Property="InputType" Value="Chat" />
                             <Setter Property="TextFontSize" Value="14" />
@@ -47,7 +48,7 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
 
-                <Grid>
+                <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -58,11 +59,11 @@
                             <TapGestureRecognizer Tapped="Cell_OnTapped" />
                         </StackLayout.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
+                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" FontSize="14" Margin="5,0,0,0"/>
                             <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center"
                                    HorizontalOptions="EndAndExpand" />
                         </StackLayout>
-                        <views:MvxBoxView BackgroundColor="#ccc" HeightRequest="1" HorizontalOptions="Fill" />
+                        <BoxView/>
                     </StackLayout>
 
                     <views:MvxListView
@@ -95,11 +96,11 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
                             </StackLayout.GestureRecognizers>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" />
+                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" FontSize="14" Margin="5,0,0,0"/>
                                 <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center"
                                        HorizontalOptions="EndAndExpand" />
                             </StackLayout>
-                            <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
+                            <BoxView/>
                         </StackLayout>
 
                         <views:MvxListView
@@ -124,25 +125,21 @@
 
                         <StackLayout Grid.Row="1" x:Name="FieldsLayout" Margin="10,0">
                             <ui:MaterialTextField Text="{Binding Address.Value}"
-                                                  Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Адрес"
                                                   ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                                   HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
                             <ui:MaterialTextField Text="{Binding WorkingMode.Value}"
-                                                  Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Режим работы"
                                                   ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                                   HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
                             <ui:MaterialTextField Text="{Binding Contact.Value}"
-                                                  Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Контактное лицо"
                                                   ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                                   HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
 
                             <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
-                                                  Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Номер телефона"
                                                   HelperText="+7 (XXX) XXX-XX-XX"
                                                   InputType="Telephone"
@@ -153,17 +150,24 @@
                                 </ui:MaterialTextField.Behaviors>
                             </ui:MaterialTextField>
 
-                            <Editor Placeholder="Описание услуг&#10;&#10;"
+                            <Editor Placeholder="   Описание услуг&#10;&#10;"
                                     Text="{Binding Description}"
                                     PlaceholderColor="#505050"
                                     Keyboard="Chat"
                                     TextColor="#505050"
                                     FontSize="14"
-                                    FontFamily="Lato-Regular.ttf#Lato-Regular"
+                                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
                                     AutoSize="TextChanges"
-                                    Margin="0,0,0,20"
+                                    Margin="0,0,0,10"
                                     BackgroundColor="Transparent" />
-
+                            <BoxView Margin="0,0,0,10">
+                                <BoxView.IsVisible>
+                                    <OnPlatform x:TypeArguments="x:Boolean">
+                                        <On Platform="Android" Value="False"/>
+                                        <On Platform="iOS" Value="True"/>
+                                    </OnPlatform>
+                                </BoxView.IsVisible>
+                            </BoxView>
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
                             <design:CustomButton Style="{StaticResource AppButtonGradient}">
