@@ -51,6 +51,7 @@ namespace bonus.app.Core.Views.ContentViews
 				ViewModel.IsBusy = true;
 
 				ViewModel.LoadMoreCitiesCommand.Execute();
+				ViewModel.IsBusy = false;
 			}
 		}
 	}

@@ -19,20 +19,13 @@ using Realms;
 
 namespace bonus.app.Core.ViewModels
 {
-	public abstract class BaseEditProfileViewModel : MvxViewModel<EditProfileViewModelArguments>
+	public abstract class BaseEditProfileViewModel : MvxViewModel<EditProfileViewModelArguments, User>
 	{
 		#region Data
 		#region Fields
 		private ValidatableObject<string> _address = new ValidatableObject<string>();
 
 		private readonly IAuthService _authService;
-
-		protected byte[] ImageBytes
-		{
-			get;
-			private set;
-		}
-
 		private string _imageName;
 		private string _imageSource;
 		private bool _isAuthorization;
@@ -173,14 +166,6 @@ namespace bonus.app.Core.ViewModels
 
 				ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
 				ImageSource = image.Path;
-
-				using (var memoryStream = new MemoryStream())
-				{
-					image.GetStream()
-						 .CopyTo(memoryStream);
-					image.Dispose();
-					ImageBytes = memoryStream.ToArray();
-				}
 			}
 		}
 		#endregion

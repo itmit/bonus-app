@@ -137,10 +137,15 @@ namespace bonus.app.Core.Services
 
 		public async Task<bool> Logout(User user)
 		{
-			_userRepository.Remove(user);
-			_userUuid = Guid.Empty;
-			return true;
+			if (user != null && !user.Uuid.Equals(Guid.Empty) && _userRepository.Remove(user))
+			{
+				_userUuid = Guid.Empty;
+				return true;
+			}
 			
+			_userRepository.RemoveAll();
+			return true;
+
 			// TODO: Сделать выход на сервере.
 			using (var client = new HttpClient())
 			{

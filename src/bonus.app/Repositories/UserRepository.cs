@@ -68,21 +68,38 @@ namespace bonus.app.Core.Repositories
 			}
 		}
 
-		public void Remove(User user)
+		public bool Remove(User user)
 		{
 			using (var realm = Realm.GetInstance())
 			{
 				using (var transaction = realm.BeginWrite())
 				{
-					var userRealm = realm.Find<UserRealmObject>(user.Uuid.ToString());
-					if (userRealm == null)
+					try
 					{
-						realm.RemoveAll();
-					}
-					else
-					{
+						var userRealm = realm.Find<UserRealmObject>(user?.Uuid.ToString());
+
 						realm.Remove(userRealm);
+
 					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+						return false;
+					}
+					transaction.Commit();
+				}
+			}
+
+			return true;
+		}
+
+		public void RemoveAll()
+		{
+			using (var realm = Realm.GetInstance())
+			{
+				using (var transaction = realm.BeginWrite())
+				{
+					realm.RemoveAll<UserRealmObject>();
 					transaction.Commit();
 				}
 			}
@@ -97,7 +114,7 @@ namespace bonus.app.Core.Repositories
 			}
 		}
 
-		public void Update(User user)
+		public bool Update(User user)
 		{
 			using (var realm = Realm.GetInstance())
 			{
@@ -106,26 +123,20 @@ namespace bonus.app.Core.Repositories
 					try
 					{
 						var userRealm = realm.Find<UserRealmObject>(user.Uuid.ToString());
-						if (userRealm == null)
-						{
-							realm.RemoveAll();
-						}
-						else
-						{
-							realm.Remove(userRealm);
-						}
-
-						realm.Add(userRealm, true);
+						realm.Remove(userRealm);
+						realm.Add(_mapper.Map<UserRealmObject>(user), true);
 						transaction.Commit();
 					}
 					catch (Exception e)
 					{
 						transaction.Rollback();
 						Console.WriteLine(e);
-						throw;
+						return false;
 					}
 				}
 			}
+
+			return true;
 		}
 		#endregion
 	}

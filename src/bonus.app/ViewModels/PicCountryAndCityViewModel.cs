@@ -79,7 +79,7 @@ namespace bonus.app.Core.ViewModels
 		{
 			get
 			{
-				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1), () => !IsBusy);
+				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1));
 				return _loadMoreCitiesCommand;
 			}
 		}
@@ -94,6 +94,18 @@ namespace bonus.app.Core.ViewModels
 				IsVisibleSelectedCity = true;
 				_cities = new MvxObservableCollection<City>();
 				LoadCities(value, 1);
+				if (!string.IsNullOrEmpty(User.City))
+				{
+					_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
+									new City
+									{
+										LocalizedNames = new LocalizedName
+										{
+											Ru = User.City
+										}
+									};
+					RaisePropertyChanged(() => SelectedCity);
+				}
 			}
 		}
 
@@ -200,19 +212,6 @@ namespace bonus.app.Core.ViewModels
 			}
 
 			IsBusy = false;
-
-			if (!string.IsNullOrEmpty(User.City))
-			{
-				_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
-							   new City
-				{
-					LocalizedNames = new LocalizedName
-					{
-						Ru = User.City
-					}
-				};
-				await RaisePropertyChanged(() => SelectedCity);
-			}
 		}
 
 		public bool IsBusy

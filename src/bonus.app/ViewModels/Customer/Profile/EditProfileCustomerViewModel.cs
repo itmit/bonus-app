@@ -143,7 +143,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 					Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
 					City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
 					Phone = PhoneNumber.Value,
-					Birthday = Birthday.Value.Value.ToString("yyyy-MM-dd"),
+					Birthday = Birthday.Value.Value,
 					Car = Car,
 					Address = Address.Value,
 					Password = Parameters.Password
@@ -157,7 +157,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 					arg.Sex = "male";
 				}
 
-				var user = await _customerProfileService.Edit(arg, ImageBytes, ImageName);
+				var user = await _customerProfileService.Edit(arg, ImageSource);
 				
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -46,7 +47,7 @@ namespace bonus.app.Core.Services
 		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
 		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 
-		public Task<User> Edit(EditBusinessmanDto arguments, byte[] photo, string imageName)
+		public async Task<User> Edit(EditBusinessmanDto arguments, string imagePath)
 		{
 			MultipartFormDataContent content = new MultipartFormDataContent
 			{
@@ -72,7 +73,10 @@ namespace bonus.app.Core.Services
 					new StringContent(arguments.Phone), "phone"
 				},
 				{
-					new StringContent(arguments.WorkTime), "worktime"
+					new StringContent(arguments.WorkTime), "work_time"
+				},
+				{
+					new StringContent("PUT"), "_method"
 				}
 			};
 
@@ -81,25 +85,39 @@ namespace bonus.app.Core.Services
 				content.Add(new StringContent(arguments.Password), "password");
 			}
 
-			if (photo != null & !string.IsNullOrEmpty(imageName))
+			if (!string.IsNullOrEmpty(imagePath))
 			{
-				var byteArrayContent = new ByteArrayContent(photo);
-				content.Add(byteArrayContent, "\"photo\"", $"\"{imageName}\"");
+				var byteArrayContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+				content.Add(byteArrayContent, "\"photo\"", $"\"{ imagePath.Substring(imagePath.LastIndexOf('/') + 1) }\"");
 			}
 
 			if (_isActiveUser)
 			{
+				if (await Update(content))
+				{
+					var user = _authService.User;
+					user.City = arguments.City;
+					user.Country = arguments.Country;
+					user.Address = arguments.Address;
+					user.Contact = arguments.Contact;
+					user.Description = arguments.Description;
+					user.Phone = arguments.Phone;
+					user.WorkTime = arguments.WorkTime;
+					user.PhotoSource = imagePath;
 
+					_userRepository.Update(user);
+					return user;
+				}
 			}
 			else
 			{
-				return FillInfo(content);
+				return await FillInfo(content);
 			}
 
 			return null;
 		}
 
-		public Task<User> Edit(EditCustomerDto arguments, byte[] photo, string imageName)
+		public async Task<User> Edit(EditCustomerDto arguments, string imagePath)
 		{
 			MultipartFormDataContent content = new MultipartFormDataContent
 			{
@@ -113,7 +131,7 @@ namespace bonus.app.Core.Services
 					new StringContent(arguments.Address), "address"
 				},
 				{
-					new StringContent(arguments.Birthday), "birthday"
+					new StringContent(arguments.Birthday.ToString("yyyy-MM-dd")), "birthday"
 				},
 				{
 					new StringContent(arguments.Car), "car"
@@ -134,12 +152,36 @@ namespace bonus.app.Core.Services
 				content.Add(new StringContent(arguments.Password), "password");
 			}
 
-			if (photo != null & !string.IsNullOrEmpty(imageName))
+			if (!string.IsNullOrEmpty(imagePath))
 			{
-				var byteArrayContent = new ByteArrayContent(photo);
-				content.Add(byteArrayContent, "\"photo\"", $"\"{imageName}\"");
+				var byteArrayContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
+				content.Add(byteArrayContent, "\"photo\"", $"\"{ imagePath.Substring(imagePath.LastIndexOf('/') + 1) }\"");
 			}
-			return FillInfo(content);
+
+			if (_isActiveUser)
+			{
+				if (await Update(content))
+				{
+					var user = _authService.User;
+					user.City = arguments.City;
+					user.Country = arguments.Country;
+					user.Address = arguments.Address;
+					user.Car = arguments.Car;
+					user.Sex = arguments.Sex;
+					user.Phone = arguments.Phone;
+					user.Birthday = arguments.Birthday;
+					user.PhotoSource = imagePath;
+
+					_userRepository.Update(user);
+					return user;
+				}
+			}
+			else
+			{
+				return await FillInfo(content);
+			}
+
+			return null;
 		}
 
 		public string Error
@@ -160,7 +202,7 @@ namespace bonus.app.Core.Services
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
-				var response = await client.PutAsync(string.Format(UpdateUri, _authService.User.Uuid), content);
+				var response = await client.PostAsync(string.Format(UpdateUri, _authService.User.Uuid), content);
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);

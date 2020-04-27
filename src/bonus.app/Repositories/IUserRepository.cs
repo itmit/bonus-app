@@ -10,10 +10,12 @@ namespace bonus.app.Core.Repositories
 
 		IEnumerable<User> GetAll();
 
-		void Remove(User user);
+		bool Remove(User user);
+
+		void RemoveAll();
 
 		User Find(Guid uuid);
 
-		void Update(User user);
+		bool Update(User user);
 	}
 }

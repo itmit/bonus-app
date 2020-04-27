@@ -32,7 +32,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		public User User
 		{
 			get => _user;
-			set => SetProperty(ref _user, value);
+			private set => SetProperty(ref _user, value);
 		}
 		#endregion
 
@@ -40,9 +40,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			get
 			{
-				_openEditProfilePageCommand = _openEditProfilePageCommand ?? new MvxCommand(() =>
+				_openEditProfilePageCommand = _openEditProfilePageCommand ?? new MvxCommand(async () =>
 				{
-					NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(_authService.User.Uuid,  true));
+					var user = await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments, User>(
+								   new EditProfileViewModelArguments(_authService.User.Uuid, true));
+					if (user == null)
+					{
+						return;
+					}
+
+					User = user;
 				});
 				return _openEditProfilePageCommand;
 			}

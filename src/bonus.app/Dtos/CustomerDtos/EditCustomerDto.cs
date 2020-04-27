@@ -35,7 +35,7 @@ namespace bonus.app.Core.Dtos.CustomerDtos
 		}
 
 		[JsonProperty("birthday")]
-		public string Birthday
+		public DateTime Birthday
 		{
 			get;
 			set;

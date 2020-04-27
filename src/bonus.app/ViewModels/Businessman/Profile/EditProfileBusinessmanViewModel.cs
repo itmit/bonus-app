@@ -130,7 +130,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					Password = Parameters.Password
 				};
 
-				var user = await _profileService.Edit(arg, ImageBytes, ImageName);
+				var user = await _profileService.Edit(arg, ImageSource);
+
+				if (Parameters.IsActiveUser)
+				{
+					await _navigationService.Close(this, user);
+					return;
+				}
 
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
@@ -141,7 +147,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine(e);
+				Console.WriteLine(e);
 			}
 
 			if (_profileService.ErrorDetails != null && _profileService.ErrorDetails.Count > 0)

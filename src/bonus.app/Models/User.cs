@@ -121,5 +121,17 @@ namespace bonus.app.Core.Models
 			get;
 			set;
 		}
+
+		public string Car
+		{
+			get;
+			set;
+		}
+
+		public string Sex
+		{
+			get;
+			set;
+		}
 	}
 }
