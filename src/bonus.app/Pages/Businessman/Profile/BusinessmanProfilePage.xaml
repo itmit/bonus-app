@@ -102,9 +102,9 @@
                             </Frame.GestureRecognizers>
                         </design:CustomButton>
                     </Grid>
-                    <Label Text="{Binding User.Phone}" Margin="10,0" />
+                    <Label Text="{Binding User.Phone}" Margin="10,5" />
                     <BoxView />
-                    <Label Margin="10,0" >
+                    <Label Margin="10,5" >
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
@@ -116,9 +116,9 @@
                         </Label.FormattedText>
                     </Label>
                     <BoxView />
-                    <Label Text="{Binding User.WorkTime}" Margin="10,0" />
+                    <Label Text="{Binding User.WorkTime}" Margin="10,5" />
                     <BoxView />
-                    <Label Text="{Binding User.Contact}" Margin="10,0" />
+                    <Label Text="{Binding User.Contact}" Margin="10,5" />
                     <BoxView Margin="0,0,0,40" />
                     <FlexLayout Wrap="Wrap">
                         <BindableLayout.ItemsSource>

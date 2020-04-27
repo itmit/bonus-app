@@ -24,7 +24,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		private bool _isFemale;
 		private bool _isMale;
 		private readonly IMvxNavigationService _navigationService;
-		private readonly IUserRepository _userRepository;
 		#endregion
 		#endregion
 
@@ -33,13 +32,11 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 											IMvxNavigationService navigationService,
 											IGeoHelperService geoHelperService,
 											IProfileService customerProfileService,
-											IUserRepository userRepository,
 											IPermissionsService permissionsService)
 			: base(authService, geoHelperService, permissionsService)
 		{
 			_navigationService = navigationService;
 			_customerProfileService = customerProfileService;
-			_userRepository = userRepository;
 			IsFemale = true;
 
 			AddValidations();
@@ -164,7 +161,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
-					_userRepository.Add(user);
 					await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();
 					await _navigationService.Navigate<MainCustomerViewModel>();
 				}

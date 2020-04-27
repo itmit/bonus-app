@@ -82,7 +82,8 @@
                            HorizontalOptions="EndAndExpand" Margin="0,0,20,0" />
                 </Grid>
 
-                <Frame Style="{StaticResource Frame}" Margin="0,10,0,0">
+                    <Label Text="Начислить бонусов" Margin="0,10,0,0" TextColor="White"/>
+                    <Frame Style="{StaticResource Frame}" >
                     <Grid BackgroundColor="#bab3af" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -103,7 +104,9 @@
                                Visual="Material" VerticalOptions="Center" />
                     </Grid>
                 </Frame>
-                <Frame Style="{StaticResource Frame}" Margin="0,10">
+
+                <Label Text="Списать бонусов" Margin="0,10,0,0" TextColor="White"/>
+                    <Frame Style="{StaticResource Frame}" Margin="0,0,0,10">
                     <Grid BackgroundColor="#bab3af" ColumnSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -140,7 +143,7 @@
                            Visual="Material" />
                 </Frame>
                 <Frame Style="{StaticResource Frame}" Margin="0,10">
-                    <Entry Placeholder="Начислить бонусов" Text="{Binding AccrueBonuses, Converter={StaticResource DoubleConverter}}" Style="{StaticResource Entry}" Visual="Material" />
+                    <Entry Placeholder="Начислить бонусов" Text="{Binding AccrueBonuses}" Style="{StaticResource Entry}" Visual="Material" />
                 </Frame>
                 <Button Text="НАЧИСЛИТЬ БОНУСЫ" Style="{StaticResource AuthAndRegButton}" Command="{Binding AccrueAndWriteOffBonusesCommand}"/>
             </StackLayout>

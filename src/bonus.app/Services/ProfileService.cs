@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,6 +10,7 @@ using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Repositories;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
@@ -18,19 +20,24 @@ namespace bonus.app.Core.Services
 		private readonly Mapper _mapper;
 		private readonly bool _isActiveUser;
 		private readonly IAuthService _authService;
+		private readonly IUserRepository _userRepository;
 
-		public ProfileService(IAuthService authService)
+		public ProfileService(IAuthService authService, IUserRepository userRepository)
 		{
+			_userRepository = userRepository;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<AccessToken, UserDto>();
 
 				cfg.CreateMap<UserDto, User>()
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
-				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type))
-				   .ForPath(m => m.Email, o => o.MapFrom(q => q.Email))
-				   .ForPath(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
-				   .ForPath(m => m.Name, o => o.MapFrom(q => q.Name));
+				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
+				cfg.CreateMap<UserInfoDto, User>()
+				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo))
+				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday ?? DateTime.MinValue));
+				cfg.CreateMap<UserData, User>()
+				   .ForMember(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
+				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 			_isActiveUser = authService.Token != null;
 			_authService = authService;
@@ -161,7 +168,30 @@ namespace bonus.app.Core.Services
 
 				if (data.Success)
 				{
-					return _mapper.Map<User>(data.Data);
+					var user = _mapper.Map<User>(data.Data.Client);
+					var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+
+					userInfo.Role = user.Role;
+					userInfo.Uuid = user.Uuid;
+					userInfo.Email = user.Email ?? string.Empty;
+					userInfo.Phone = user.Phone ?? string.Empty;
+					userInfo.Name = user.Name ?? string.Empty;
+					userInfo.Login = user.Login ?? string.Empty;
+
+					userInfo.AccessToken = new AccessToken
+					{
+						Body = data.Data.Body,
+						Type = data.Data.Type
+					};
+
+					if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
+					{
+						return userInfo;
+					}
+
+					_userRepository.Update(userInfo);
+
+					return userInfo;
 				}
 
 

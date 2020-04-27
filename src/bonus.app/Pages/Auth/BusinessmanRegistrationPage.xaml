@@ -56,6 +56,7 @@
                                       HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Email.Value}"
                                       Placeholder="E-mail"
+                                      InputType="Email"
                                       ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
                 <ui:MaterialTextField Text="{Binding Password.Value}"

@@ -23,7 +23,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private MvxCommand _editCommand;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IProfileService _profileService;
-		private readonly IUserRepository _userRepository;
 		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
 		private string _description = string.Empty;
 		#endregion
@@ -34,13 +33,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 											   IMvxNavigationService navigationService,
 											   IGeoHelperService geoHelperService,
 											   IProfileService profileService,
-											   IUserRepository userRepository,
 											   IPermissionsService permissionsService)
 			: base(authService, geoHelperService, permissionsService)
 		{
 			_navigationService = navigationService;
 			_profileService = profileService;
-			_userRepository = userRepository;
 
 			AddValidations();
 		}
@@ -124,7 +121,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
-					_userRepository.Add(user);
 					await _navigationService.Navigate<SuccessRegisterBusinessmanPopupViewModel>();
 					await _navigationService.Navigate<MainBusinessmanViewModel>();
 					return;
