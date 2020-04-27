@@ -138,12 +138,12 @@
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
                            TextDecorations="Underline" Margin="0,40,0,35" />
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
-                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,10" />
-                    <StackLayout Orientation="Horizontal" Spacing="20" Margin="0,0,0,15">
-                        <Image Source="ic_vk_red_4x.png" WidthRequest="30" />
-                        <Image Source="ic_inst_red_4x.png" WidthRequest="30" />
-                        <Image Source="ic_face_red_4x.png" WidthRequest="30" />
-                        <Image Source="ic_odn_red_4x.png" WidthRequest="30" />
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent" Padding="-5,10,10,15"/>
+                        <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent" Padding="10,10,10,15"/>
+                        <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent" Padding="10,10,10,15"/>
+                        <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent" Padding="10,10,10,15"/>
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"

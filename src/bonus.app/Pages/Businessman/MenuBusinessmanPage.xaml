@@ -74,22 +74,18 @@
                     <StackLayout Grid.Row="3" Orientation="Horizontal">
                         <Image Source="ic_support.png" Style="{StaticResource image}" />
 
-                        <Label Text="Тех. поддержка" TextColor="White">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSupportCommand}" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <Label Text="Тех. поддержка" TextColor="White"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenSupportCommand}" NumberOfTapsRequired="1"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
-
                     <StackLayout Grid.Row="4" Orientation="Horizontal">
                         <Image Source="ic_statistic_4x.png" Style="{StaticResource image}" />
 
-                        <Label Text="Статистика" TextColor="White">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenStatisticsCommand}"
-                                                      NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                        <Label Text="Статистика" TextColor="White"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenStatisticsCommand}"  NumberOfTapsRequired="1"/>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
 
                     <StackLayout Grid.Row="5" Orientation="Horizontal">
