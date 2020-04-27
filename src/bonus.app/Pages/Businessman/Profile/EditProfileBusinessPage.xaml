@@ -48,6 +48,72 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
 
+                <contentViews:PicCountryAndCityContentView x:Name="PicCountryAndCityView">
+                    <contentViews:PicCountryAndCityContentView.Footer>
+                        <StackLayout Grid.Row="1" x:Name="Layout">
+                            <ui:MaterialTextField Text="{Binding Address.Value}"
+                                                  Placeholder="Адрес"
+                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+
+                            <ui:MaterialTextField Text="{Binding WorkingMode.Value}"
+                                                  Placeholder="Режим работы"
+                                                  ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+
+                            <ui:MaterialTextField Text="{Binding Contact.Value}"
+                                                  Placeholder="Контактное лицо"
+                                                  ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+
+                            <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
+                                                  Placeholder="Номер телефона"
+                                                  HelperText="+7 (XXX) XXX-XX-XX"
+                                                  InputType="Telephone"
+                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
+                                <ui:MaterialTextField.Behaviors>
+                                    <behaviors:MaterialTextFieldMaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
+                                </ui:MaterialTextField.Behaviors>
+                            </ui:MaterialTextField>
+
+                            <Editor Placeholder="   Описание услуг&#10;&#10;"
+                                    Text="{Binding Description}"
+                                    PlaceholderColor="#505050"
+                                    Keyboard="Chat"
+                                    TextColor="#505050"
+                                    FontSize="14"
+                                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                    AutoSize="TextChanges"
+                                    Margin="0,0,0,10"
+                                    BackgroundColor="Transparent" />
+                            <BoxView Margin="0,0,0,10">
+                                <BoxView.IsVisible>
+                                    <OnPlatform x:TypeArguments="x:Boolean">
+                                        <On Platform="Android" Value="False"/>
+                                        <On Platform="iOS" Value="True"/>
+                                    </OnPlatform>
+                                </BoxView.IsVisible>
+                            </BoxView>
+                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
+
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}">
+                                <Grid>
+                                    <graphic:RectangleInProfile/>
+                                    <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}"/>
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditCommand}"/>
+                                </Frame.GestureRecognizers>
+                            </design:CustomButton>
+
+                            <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
+                                         IsEnabled="{Binding Parameters.IsActiveUser}">
+                            </StackLayout>
+                        </StackLayout>
+                    </contentViews:PicCountryAndCityContentView.Footer>
+                </contentViews:PicCountryAndCityContentView>
+        <!--
                 <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -66,24 +132,27 @@
                         <BoxView/>
                     </StackLayout>
 
-                    <views:MvxListView
+                    <CollectionView
                         Grid.Row="1"
                         IsVisible="False"
                         IsEnabled="False"
                         x:Name="Countries"
-                        HasUnevenRows="True"
                         ItemsSource="{Binding Countries}"
                         SelectedItem="{Binding SelectedCountry}"
-                        ItemSelected="Countries_OnItemSelected"
+                        SelectionMode="Single"
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="FillAndExpand">
 
-                        <views:MvxListView.ItemTemplate>
+                        <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <viewCells:CountryCityViewCell />
+                                <contentViews:CountryCityContentView >
+                                    <contentViews:CountryCityContentView.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnSelectCountry"/>
+                                    </contentViews:CountryCityContentView.GestureRecognizers>
+                                </contentViews:CountryCityContentView>
                             </DataTemplate>
-                        </views:MvxListView.ItemTemplate>
-                    </views:MvxListView>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
                     <Grid Grid.Row="1" x:Name="Grid">
                         <Grid.RowDefinitions>
@@ -103,25 +172,28 @@
                             <BoxView/>
                         </StackLayout>
 
-                        <views:MvxListView
+                        <CollectionView
                             Grid.Row="1"
                             IsVisible="False"
                             IsEnabled="False"
                             x:Name="Cities"
-                            HasUnevenRows="True"
+                            SelectionMode="Single"
                             ItemsSource="{Binding Cities}"
                             SelectedItem="{Binding SelectedCity}"
-                            ItemAppearing="Cities_OnItemAppearing"
-                            ItemSelected="OnSelectCity"
+                            Scrolled="Cities_OnScrolled"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand">
 
-                            <views:MvxListView.ItemTemplate>
+                            <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <viewCells:CountryCityViewCell />
+                                    <contentViews:CountryCityContentView>
+                                        <contentViews:CountryCityContentView.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnSelectCity"/>
+                                        </contentViews:CountryCityContentView.GestureRecognizers>
+                                    </contentViews:CountryCityContentView>
                                 </DataTemplate>
-                            </views:MvxListView.ItemTemplate>
-                        </views:MvxListView>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
 
                         <StackLayout Grid.Row="1" x:Name="FieldsLayout" Margin="10,0">
                             <ui:MaterialTextField Text="{Binding Address.Value}"
@@ -188,6 +260,7 @@
                         </StackLayout>
                     </Grid>
                 </Grid>
+                -->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

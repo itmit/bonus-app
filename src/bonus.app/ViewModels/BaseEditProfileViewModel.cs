@@ -26,11 +26,6 @@ namespace bonus.app.Core.ViewModels
 		private ValidatableObject<string> _address = new ValidatableObject<string>();
 
 		private readonly IAuthService _authService;
-		private MvxObservableCollection<City> _cities = new MvxObservableCollection<City>();
-		private MvxObservableCollection<Country> _countries;
-		private int _currentPageNumber;
-		private Dictionary<string, string> _errors = new Dictionary<string, string>();
-		private readonly IGeoHelperService _geoHelperService;
 
 		protected byte[] ImageBytes
 		{
@@ -42,13 +37,15 @@ namespace bonus.app.Core.ViewModels
 		private string _imageSource;
 		private bool _isAuthorization;
 		private bool _isBusy;
-		private MvxCommand _loadMoreCitiesCommand;
 		private readonly IPermissionsService _permissionsService;
 		private ValidatableObject<string> _phoneNumber = new ValidatableObject<string>();
 		private MvxCommand _picPhotoCommand;
-		private City _selectedCity;
-		private Country _selectedCountry;
 		private User _user;
+
+		public PicCountryAndCityViewModel CountryAndCityViewModel
+		{
+			get;
+		}
 		#endregion
 		#endregion
 
@@ -56,8 +53,9 @@ namespace bonus.app.Core.ViewModels
 		public BaseEditProfileViewModel(IAuthService authService, IGeoHelperService geoHelperService, IPermissionsService permissionsService)
 		{
 			_authService = authService;
-			_geoHelperService = geoHelperService;
 			_permissionsService = permissionsService;
+
+			CountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
 		}
 		#endregion
 
@@ -72,18 +70,6 @@ namespace bonus.app.Core.ViewModels
 		{
 			get => _address;
 			set => SetProperty(ref _address, value);
-		}
-
-		public MvxObservableCollection<City> Cities
-		{
-			get => _cities;
-			private set => SetProperty(ref _cities, value);
-		}
-
-		public MvxObservableCollection<Country> Countries
-		{
-			get => _countries;
-			private set => SetProperty(ref _countries, value);
 		}
 
 		public string ImageName
@@ -116,15 +102,6 @@ namespace bonus.app.Core.ViewModels
 
 		public bool IsShowDefaultImage => string.IsNullOrEmpty(ImageSource);
 
-		public MvxCommand LoadMoreCitiesCommand
-		{
-			get
-			{
-				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1), () => !IsBusy);
-				return _loadMoreCitiesCommand;
-			}
-		}
-
 		public ValidatableObject<string> PhoneNumber
 		{
 			get => _phoneNumber;
@@ -140,23 +117,6 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
-		public City SelectedCity
-		{
-			get => _selectedCity;
-			set => SetProperty(ref _selectedCity, value);
-		}
-
-		public Country SelectedCountry
-		{
-			get => _selectedCountry;
-			set
-			{
-				SetProperty(ref _selectedCountry, value);
-				_cities = new MvxObservableCollection<City>();
-				LoadCities(value, 1);
-			}
-		}
-
 		public User User
 		{
 			get => _user;
@@ -168,6 +128,7 @@ namespace bonus.app.Core.ViewModels
 		public override async Task Initialize()
 		{
 			await base.Initialize();
+			await CountryAndCityViewModel.Initialize();
 
 			User = _authService.User;
 			IsAuthorization = User != null;
@@ -176,31 +137,10 @@ namespace bonus.app.Core.ViewModels
 				Address.Value = User?.Address;
 				PhoneNumber.Value = User?.Phone;
 				ImageSource = User?.PhotoSource;
-				ImageName = User?.PhotoSource.Substring(User.PhotoSource.LastIndexOf('/') + 1);
-			}
-
-			try
-			{
-				var countries = await _geoHelperService.GetCountries(new LocaleDto
+				if (!string.IsNullOrWhiteSpace(ImageSource))
 				{
-					FallbackLang = "en",
-					Lang = "ru"
-				});
-				countries.Move(countries.Single(c => c.Iso.Equals("RU")), 0);
-				countries.Move(countries.Single(c => c.Iso.Equals("UA")), 1);
-				countries.Move(countries.Single(c => c.Iso.Equals("BY")), 2);
-				countries.Move(countries.Single(c => c.Iso.Equals("KZ")), 3);
-				countries.Move(countries.Single(c => c.Iso.Equals("AZ")), 4);
-				Countries = new MvxObservableCollection<Country>(countries.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
-
-			if (Parameters.IsActiveUser)
-			{
-				SelectedCountry = Countries.Single(c => c.LocalizedNames.Ru.Equals(User.Country));
+					ImageName = ImageSource.Substring(ImageSource.LastIndexOf('/') + 1);
+				}
 			}
 		}
 
@@ -211,52 +151,7 @@ namespace bonus.app.Core.ViewModels
 		#endregion
 
 		#region Private
-		private async void LoadCities(Country country, int pageNumber)
-		{
-			if (country == null)
-			{
-				return;
-			}
-
-			IsBusy = true;
-			_currentPageNumber = pageNumber;
-			try
-			{
-				var cities = await _geoHelperService.GetCities(new LocaleDto
-															   {
-																   FallbackLang = "en",
-																   Lang = "ru"
-															   },
-															   new CityFilterDto
-															   {
-																   CountryIso = country.Iso
-															   },
-															   new PaginationRequestDto
-															   {
-																   Limit = 250,
-																   Page = _currentPageNumber
-															   },
-															   new OrderDto
-															   {
-																   By = "population",
-																   Dir = "desc"
-															   });
-				Cities.AddRange(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
-				await RaisePropertyChanged(() => Cities);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
-
-			IsBusy = false;
-
-			if (Parameters.IsActiveUser && SelectedCountry != null && SelectedCountry.LocalizedNames.Ru.Equals(User.Country))
-			{
-				SelectedCity = Cities.Single(c => c.LocalizedNames.Ru.Equals(User.City));
-			}
-		}
-
+		
 		private async void PicImageCommandExecute()
 		{
 			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))

@@ -112,7 +112,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				return;
 			}
 
-			if (SelectedCountry == null)
+			if (CountryAndCityViewModel.SelectedCountry == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -121,7 +121,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				return;
 			}
 
-			if (SelectedCity == null)
+			if (CountryAndCityViewModel.SelectedCity == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -140,8 +140,8 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				var arg = new EditCustomerDto
 				{
 					Uuid = Parameters.Guid,
-					Country = SelectedCountry.LocalizedNames.Ru,
-					City = SelectedCity.LocalizedNames.Ru,
+					Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
+					City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
 					Phone = PhoneNumber.Value,
 					Birthday = Birthday.Value.Value.ToString("yyyy-MM-dd"),
 					Car = Car,

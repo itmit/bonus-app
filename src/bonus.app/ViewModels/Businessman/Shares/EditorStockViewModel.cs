@@ -41,11 +41,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private MvxCommand _picPhotoCommand;
 		private DateTime _shareTime = DateTime.Today;
 		private Dictionary<string, string> _errors = new Dictionary<string, string>();
-		private string _imageName;
 		private byte[] _imageBytes;
 		private bool _canCreateShareCommand =true;
-		private IPermissionsService _permissionsService;
-		private IMvxNavigationService _navigationService;
+		private readonly IPermissionsService _permissionsService;
+		private readonly IMvxNavigationService _navigationService;
 		private string _imageSource;
 
 		public EditorStockViewModel(IGeoHelperService geoHelperService, IServicesService servicesServices, IStockService stockService, IPermissionsService permissionsService, IMvxNavigationService navigationService)
@@ -130,9 +129,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 															   },
 															   new OrderDto
 															   {
-																   By = "population",
-																   Dir = "desc"
+																   By = "name",
+																   Dir = "asc"
 															   });
+				cities.Insert(0, new City
+				{
+					Name = "Москва",
+					Id = 4995,
+					LocalizedNames = new LocalizedName
+					{
+						En = "Moskva",
+						Ru = "Москва"
+					},
+					RegionId = 55
+				});
+				cities.Insert(1, new City
+				{
+					Name = "Санкт-Петербург",
+					Id = 5000,
+					LocalizedNames = new LocalizedName
+					{
+						En = "Sankt-Peterburg",
+						Ru = "Санкт-Петербург"
+					},
+					RegionId = 48
+				});
 				Cities.AddRange(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
 				await RaisePropertyChanged(() => Cities);
 			}

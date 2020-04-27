@@ -1,4 +1,7 @@
-﻿using bonus.app.Core.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -14,11 +17,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private User _user;
         private MvxCommand _openChatCommand;
         private MvxCommand _openSubscribersCommand;
+		private readonly IServicesService _servicesService;
+		private IEnumerable<Service> _services;
 
-        #region .ctor
-        public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
+		#region .ctor
+        public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IServicesService servicesService)
 			: base(logProvider, navigationService)
 		{
+			_servicesService = servicesService;
 			_authService = authService;
 			User = _authService.User;
 		}
@@ -54,6 +60,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			try
+			{
+				Services = await _servicesService.GetBusinessmenService();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+		}
+
 		public MvxCommand OpenSubscribersCommand
 		{
 			get
@@ -64,6 +84,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				});
 				return _openSubscribersCommand;
 			}
+		}
+
+		public IEnumerable<Service> Services
+		{
+			get => _services;
+			private set => SetProperty(ref _services, value);
 		}
 	}
 }

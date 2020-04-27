@@ -33,7 +33,7 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
 				cfg.CreateMap<UserInfoDto, User>()
-				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo))
+				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => string.IsNullOrWhiteSpace(q.Photo) ? null : BaseService.Domain + q.Photo))
 				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday ?? DateTime.MinValue));
 				cfg.CreateMap<UserData, User>()
 				   .ForMember(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
@@ -44,7 +44,7 @@ namespace bonus.app.Core.Services
 		}
 
 		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
-		private const string EditUri = "http://bonus.itmit-studio.ru/api/client/{0}";
+		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 
 		public Task<User> Edit(EditBusinessmanDto arguments, byte[] photo, string imageName)
 		{
@@ -87,7 +87,16 @@ namespace bonus.app.Core.Services
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imageName}\"");
 			}
 
-			return Edit(content);
+			if (_isActiveUser)
+			{
+
+			}
+			else
+			{
+				return FillInfo(content);
+			}
+
+			return null;
 		}
 
 		public Task<User> Edit(EditCustomerDto arguments, byte[] photo, string imageName)
@@ -130,7 +139,7 @@ namespace bonus.app.Core.Services
 				var byteArrayContent = new ByteArrayContent(photo);
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imageName}\"");
 			}
-			return Edit(content);
+			return FillInfo(content);
 		}
 
 		public string Error
@@ -145,22 +154,30 @@ namespace bonus.app.Core.Services
 			private set;
 		}
 
-		private async Task<User> Edit(HttpContent content)
+		private async Task<bool> Update(HttpContent content)
 		{
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				HttpResponseMessage response;
-				if(_isActiveUser)
-				{
-					client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
-					response = await client.PutAsync(string.Format(EditUri, _authService.User.Uuid), content);
-				}
-				else
-				{
-					response = await client.PostAsync(FillInfoUri, content);
-				}
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+				var response = await client.PutAsync(string.Format(UpdateUri, _authService.User.Uuid), content);
 
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+				return data.Success;
+			}
+		}
+
+		private async Task<User> FillInfo(HttpContent content)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				var response = await client.PostAsync(FillInfoUri, content);
+				
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
 

@@ -98,6 +98,9 @@
     <Compile Update="Pages\Auth\SuccessRegisterPopupPage.xaml.cs">
       <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ContentViews\PicCountryAndCityContentView.xaml.cs">
+      <DependentUpon>PicCountryAndCityContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml.cs">
       <DependentUpon>ServiceTypeViewCell.xaml</DependentUpon>
     </Compile>
@@ -260,7 +263,10 @@
     <EmbeddedResource Update="Pages\Businessman\Statistics\ViewsStockPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ContentViews\CountriesContentView.xaml">
+    <EmbeddedResource Update="Views\ContentViews\PicCountryAndCityContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\CountryCityContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\IconView.xaml">

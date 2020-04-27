@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using bonus.app.Core.Converters;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
@@ -42,6 +43,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			AddValidations();
 		}
 		#endregion
+
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			if (Parameters.IsActiveUser)
+			{
+				WorkingMode.Value = User?.WorkTime;
+				Contact.Value = User?.Contact;
+				Description = User?.Description;
+			}
+		}
 
 		#region Properties
 		public ValidatableObject<string> Contact
@@ -84,7 +97,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return;
 			}
 
-			if (SelectedCountry == null)
+			if (CountryAndCityViewModel.SelectedCountry == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -93,7 +106,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return;
 			}
 
-			if (SelectedCity == null)
+			if (CountryAndCityViewModel.SelectedCity == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -107,8 +120,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				var arg = new EditBusinessmanDto
 				{
 					Uuid = Parameters.Guid,
-					Country = SelectedCountry.LocalizedNames.Ru,
-					City = SelectedCity.LocalizedNames.Ru,
+					Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
+					City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
 					Address = Address.Value,
 					WorkTime = WorkingMode.Value,
 					Contact = Contact.Value,

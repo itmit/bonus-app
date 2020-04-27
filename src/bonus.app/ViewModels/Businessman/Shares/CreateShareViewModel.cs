@@ -485,9 +485,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 															   },
 															   new OrderDto
 															   {
-																   By = "population",
-																   Dir = "desc"
+																   By = "name",
+																   Dir = "asc"
 															   });
+				cities.Insert(0, new City
+				{
+					Name = "Москва",
+					Id = 4995,
+					LocalizedNames = new LocalizedName
+					{
+						En = "Moskva",
+						Ru = "Москва"
+					},
+					RegionId = 55
+				});
+				cities.Insert(1, new City
+				{
+					Name = "Санкт-Петербург",
+					Id = 5000,
+					LocalizedNames = new LocalizedName
+					{
+						En = "Sankt-Peterburg",
+						Ru = "Санкт-Петербург"
+					},
+					RegionId = 48
+				});
 				Cities.AddRange(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
 				await RaisePropertyChanged(() => Cities);
 			}

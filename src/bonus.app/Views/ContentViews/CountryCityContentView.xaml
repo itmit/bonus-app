@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.CountryCityContentView">
+    <ContentView.Content>
+        <StackLayout>
+            <Label Margin="20" Text="{Binding LocalizedNames.Ru}" TextColor="#505050" VerticalOptions="Center"/>
+            <BoxView/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -120,16 +120,13 @@
                     <BoxView />
                     <Label Text="{Binding User.Contact}" Margin="10,5" />
                     <BoxView Margin="0,0,0,40" />
-                    <FlexLayout Wrap="Wrap">
-                        <BindableLayout.ItemsSource>
-                            <x:String>0000000000</x:String>
-                        </BindableLayout.ItemsSource>
+                    <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding Services}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Frame Margin="0,0,5,0" BackgroundColor="Transparent" HeightRequest="25"
                                        CornerRadius="12" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A"
                                        HasShadow="False">
-                                    <Label Text="Кератин" TextColor="#9A9A9A" FontSize="Caption"
+                                    <Label Text="{Binding Name}" TextColor="#9A9A9A" FontSize="Caption"
                                            VerticalOptions="Center" HorizontalOptions="Center" />
                                 </Frame>
                             </DataTemplate>
