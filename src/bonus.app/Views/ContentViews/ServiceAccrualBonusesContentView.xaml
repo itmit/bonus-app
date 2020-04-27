@@ -35,7 +35,14 @@
                            Visual="Material"/>
             </Grid>
 
-            <BoxView Margin="0,0,0,15"/>
+            <BoxView HeightRequest="2">
+                 <BoxView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,-7,0,15"/>
+                        <On Platform="Android" Value="0,-8,0,15"/>
+                    </OnPlatform>
+                </BoxView.Margin>
+            </BoxView>
 
             <Label Text="Списание бонусов" TextColor="#858585" Margin="5,0,0,0"/>
             <Grid>
@@ -62,8 +69,14 @@
                            Keyboard="Numeric"
                            Visual="Material"/>
             </Grid>
-
-            <BoxView Margin="0,0,0,20"/>
+            <BoxView HeightRequest="2">
+                <BoxView.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,-7,0,20"/>
+                        <On Platform="Android" Value="0,-8,0,20"/>
+                    </OnPlatform>
+                </BoxView.Margin>
+            </BoxView>
         </StackLayout>
   </ContentView.Content>
 </ContentView>

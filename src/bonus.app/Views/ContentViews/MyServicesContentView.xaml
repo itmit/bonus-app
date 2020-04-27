@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
              xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
+             xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.MyServicesContentView">
     <!--Содержимое с добавлением услуг-->
@@ -51,11 +52,17 @@
                                    TextColor="#505050"
                                    PlaceholderColor="#505050"
                                    FontSize="14"
-                                   FontFamily="Lato-Regular.ttf#Lato-Regular"
+                                   FontFamily="{x:Static design:DesignClass.LatoRegular}"
                                    VerticalOptions="Center"
                                    Visual="Material"
                                    BackgroundColor="Transparent"/>
-                            <ImageButton Source="ic_close_remove_4x.png" WidthRequest="15" VerticalOptions="Center" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" Clicked="ImageButton_OnClicked"/>
+                            <ImageButton Source="ic_close_remove_4x.png"
+                                         WidthRequest="15"
+                                         VerticalOptions="Center"
+                                         BackgroundColor="Transparent"
+                                         HorizontalOptions="EndAndExpand"
+                                         Margin="0,0,10,0"
+                                         Clicked="ImageButton_OnClicked"/>
                         </Grid>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
@@ -66,7 +73,7 @@
                     <TapGestureRecognizer Tapped="EntryVisible_OnTapped"/>
                 </StackLayout.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                    <Label Text="Добавить свою услугу" FontFamily="Lato-Bold.ttf#Lato-Bold"/>
+                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoRegular}"/>
                     <Image Source="ic_plus_add_4x.png"
                                WidthRequest="24"
                                VerticalOptions="Center"

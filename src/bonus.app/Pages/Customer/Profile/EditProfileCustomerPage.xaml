@@ -100,7 +100,7 @@
                                                    TintColor="#505050"
                                                    TextFontFamily="{x:Static design:DesignClass.LatoRegular}"/>
 
-                            <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent" Visual="Material"/>
+                            <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}" BackgroundColor="Transparent"/>
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
 
