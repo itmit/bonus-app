@@ -57,7 +57,6 @@ namespace bonus.app.Core.ViewModels
 				Console.WriteLine(e);
 			}
 
-
 			if (User != null && !string.IsNullOrEmpty(User.Country))
 			{
 				IsVisibleCities = true;

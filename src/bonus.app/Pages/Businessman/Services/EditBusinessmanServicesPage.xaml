@@ -19,12 +19,13 @@
 
     <ContentPage.Content>
         <!--Страница 4.3 Редактор мои услуги(преприниматель)-->
-        <ScrollView>
             <StackLayout Margin="15,0" Spacing="0">
-                <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body"
-                       HorizontalOptions="Center" Margin="0,20,0,15" />
-                <controls:RepeaterView x:Name="RepeaterView">
-                    <controls:RepeaterView.ItemTemplate>
+                <CollectionView x:Name="RepeaterView">
+                    <CollectionView.Header>
+                        <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body"
+                               HorizontalOptions="Center" Margin="0,20,0,15" />
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Spacing="0">
                                 <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
@@ -46,19 +47,19 @@
                                 </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </DataTemplate>
-                    </controls:RepeaterView.ItemTemplate>
-                </controls:RepeaterView>
-
-                <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,5">
-                    <Grid>
-                        <graphic:RectangleInProfile/>
-                        <Label Text="РЕДАКТИРОВАТЬ" Style="{StaticResource TextForAppButton}"/>
-                    </Grid>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Button_OnClicked"/>
-                    </Frame.GestureRecognizers>
-                </design:CustomButton>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.Footer>
+                        <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,5">
+                            <Grid>
+                                <graphic:RectangleInProfile/>
+                                <Label Text="РЕДАКТИРОВАТЬ" Style="{StaticResource TextForAppButton}"/>
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_OnClicked"/>
+                            </Frame.GestureRecognizers>
+                        </design:CustomButton>
+                    </CollectionView.Footer>
+                </CollectionView>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>

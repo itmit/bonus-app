@@ -11,6 +11,7 @@
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.EditBusinessmanServicesDetailsPage">
     <NavigationPage.TitleView>
@@ -21,7 +22,7 @@
         <!--Страница 4.3.2 редактор мои услуги у предпринимателя-->
         <ScrollView>
             <StackLayout Spacing="0" Margin="15,20">
-                <contentViews:MyServicesContentView />
+                <services1:MyServicesContentView />
                 <contentViews:ServiceAccrualBonusesContentView/>
 
                 <design:CustomButton Style="{StaticResource AppButtonGradient}">

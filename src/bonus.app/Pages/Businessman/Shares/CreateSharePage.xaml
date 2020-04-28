@@ -13,6 +13,7 @@
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Shares.CreateSharePage">
     <NavigationPage.TitleView>
@@ -23,84 +24,11 @@
         <!--Страница 5.3 Создать акцию-->
         <ScrollView Margin="0,0,0,5">
             <StackLayout Margin="15,0" Spacing="0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                <contentViews:PicCountryAndCityContentView x:Name="PicCountryAndCityContentView">
+                    <contentViews:PicCountryAndCityContentView.Footer>
+                        <StackLayout x:Name="Layout">
 
-                    <StackLayout Spacing="0">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Cell_OnTapped" />
-                        </StackLayout.GestureRecognizers>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                            <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
-                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center"
-                                   HorizontalOptions="EndAndExpand" />
-                        </StackLayout>
-                        <BoxView />
-                    </StackLayout>
-
-                    <views:MvxListView
-                        Grid.Row="1"
-                        IsVisible="False"
-                        IsEnabled="False"
-                        x:Name="Countries"
-                        HasUnevenRows="True"
-                        ItemsSource="{Binding Countries}"
-                        SelectedItem="{Binding SelectedCountry}"
-                        ItemSelected="Countries_OnItemSelected"
-                        VerticalOptions="FillAndExpand"
-                        HorizontalOptions="FillAndExpand">
-
-                        <views:MvxListView.ItemTemplate>
-                            <DataTemplate>
-                                <viewCells:CountryCityViewCell />
-                            </DataTemplate>
-                        </views:MvxListView.ItemTemplate>
-                    </views:MvxListView>
-
-                    <Grid Grid.Row="1" x:Name="Grid">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <StackLayout x:Name="City" IsVisible="False">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                            </StackLayout.GestureRecognizers>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                                <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" />
-                                <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center"
-                                       HorizontalOptions="EndAndExpand" />
-                            </StackLayout>
-                            <BoxView />
-                        </StackLayout>
-
-                        <views:MvxListView
-                            Grid.Row="1"
-                            IsVisible="False"
-                            IsEnabled="False"
-                            x:Name="Cities"
-                            HasUnevenRows="True"
-                            ItemsSource="{Binding Cities}"
-                            SelectedItem="{Binding SelectedCity}"
-                            ItemAppearing="Cities_OnItemAppearing"
-                            ItemSelected="OnSelectCity"
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand">
-
-                            <views:MvxListView.ItemTemplate>
-                                <DataTemplate>
-                                    <viewCells:CountryCityViewCell />
-                                </DataTemplate>
-                            </views:MvxListView.ItemTemplate>
-                        </views:MvxListView>
-
-                        <StackLayout Spacing="0" Grid.Row="1" x:Name="FieldsLayout">
-
-                            <contentViews:MyServicesContentView Margin="0,20,0,0"/>
+                            <services1:MyServicesContentView Margin="0,20,0,0"/>
 
                             <Label Text="{Binding Errors[name]}"
                                    IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
@@ -162,8 +90,8 @@
                                 </Frame.GestureRecognizers>
                             </design:CustomButton>
                         </StackLayout>
-                    </Grid>
-                </Grid>
+                    </contentViews:PicCountryAndCityContentView.Footer>
+                </contentViews:PicCountryAndCityContentView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

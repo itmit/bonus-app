@@ -8,6 +8,7 @@
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                       xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Page.EditorStockPage">
     <NavigationPage.TitleView>
@@ -95,7 +96,7 @@
 
                 <StackLayout Spacing="0" Grid.Row="1" x:Name="FieldsLayout">
 
-                <contentViews:MyServicesContentView Margin="0,20,0,0"/>
+                <services:MyServicesContentView Margin="0,20,0,0"/>
 
                 <Label Text="{Binding Errors[name]}"
                        IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}"/>

@@ -284,6 +284,15 @@
     <EmbeddedResource Update="Views\ContentViews\ServiceAccrualBonusesContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Services\CreatedServiceContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Services\ServiceContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Services\ServiceTypeContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Stocks\CustomerStockContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -311,7 +320,7 @@
     <EmbeddedResource Update="Views\ViewCells\Shares\PayViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ContentViews\MyServicesContentView.xaml">
+    <EmbeddedResource Update="Views\ContentViews\Services\MyServicesContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Services\MyServiceViewCell.xaml">

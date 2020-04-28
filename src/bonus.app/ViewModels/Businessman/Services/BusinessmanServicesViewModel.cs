@@ -13,45 +13,37 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
-	public class BusinessmanServicesViewModel : MvxNavigationViewModel, IServiceParentViewModel
+	public class BusinessmanServicesViewModel : MvxNavigationViewModel
 	{
 		private readonly IServicesService _servicesServices;
-		private MvxObservableCollection<ServiceTypeViewModel> _services;
+
+		public MyServicesViewModel MyServicesViewModel { get; }
+
 		private MvxObservableCollection<Service> _myServices;
 		private int? _bonusAmount;
 		private int? _bonusPercentage;
 		private int? _cancellationBonusAmount;
 		private int? _cancellationBonusPercentage;
 		private MvxCommand _addServiceCommand;
-		private readonly Mapper _mapper;
-		private ServiceViewModel _selectedService;
 
 		#region .ctor
-		public BusinessmanServicesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IServicesService servicesServices)
+		public BusinessmanServicesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IServicesService servicesServices, IAuthService authService)
 			: base(logProvider, navigationService)
 		{
 			_servicesServices = servicesServices;
-			_mapper = new Mapper(new MapperConfiguration(cfg =>
-			{
-				cfg.CreateMap<ServiceType, ServiceTypeViewModel>()
-				   .ForMember(vm => vm.Services, m => m.MapFrom(model => model.Services));
-
-				cfg.CreateMap<Service, ServiceViewModel>()
-				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
-			}));
+			MyServicesViewModel = new MyServicesViewModel(servicesServices, authService);
 		}
 		#endregion
 
 		public override async Task Initialize()
 		{
 			await base.Initialize();
+			await MyServicesViewModel.Initialize();
+
 			try
 			{
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(await _servicesServices.GetAll());
-				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
 				MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
 				await RaisePropertyChanged(() => HasServices);
-				await RaisePropertyChanged(() => NoHasServices);
 			}
 			catch (Exception e)
 			{
@@ -60,28 +52,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		}
 
 		public bool HasServices => MyServices != null && MyServices.Count > 0;
-
-		public bool NoHasServices => !HasServices;
-
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-				value.Color = Color.FromHex("#BB8D91");
-				_selectedService = value;
-			}
-		}
-
-		public MvxObservableCollection<ServiceTypeViewModel> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
 
 		public MvxObservableCollection<Service> MyServices
 		{
@@ -128,7 +98,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			{
 				var service = new CreateServiceDto
 				{
-					Uuid = SelectedService.Uuid
+					Uuid = MyServicesViewModel.SelectedService.Uuid
 				};
 				if (BonusAmount != null && BonusAmount > 0)
 				{
@@ -180,7 +150,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 					{
 						MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
 						await RaisePropertyChanged(() => HasServices);
-						await RaisePropertyChanged(() => NoHasServices);
 					}
 					catch (Exception e)
 					{

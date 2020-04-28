@@ -11,6 +11,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private string _name;
 		private Guid _uuid;
 		private MvxObservableCollection<ServiceViewModel> _services;
+		private MvxCommand _showOrHideServicesCommand;
+		private int _rotation;
+		private bool _isVisibleServices;
 
 		public string Name
 		{
@@ -22,6 +25,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			get => _uuid;
 			set => SetProperty(ref _uuid, value);
+		}
+
+		public MvxCommand ShowOrHideServicesCommand
+		{
+			get
+			{
+				_showOrHideServicesCommand = _showOrHideServicesCommand ?? new MvxCommand(() =>
+				{
+					IsVisibleServices = !IsVisibleServices;
+					Rotation = IsVisibleServices ? 180 : 0;
+				});
+				return _showOrHideServicesCommand;
+			}
+		}
+
+		public bool IsVisibleServices
+		{
+			get => _isVisibleServices;
+			set => SetProperty(ref _isVisibleServices, value);
+		}
+
+		public int Rotation
+		{
+			get => _rotation;
+			set => SetProperty(ref _rotation, value);
 		}
 
 		public MvxObservableCollection<ServiceViewModel> Services

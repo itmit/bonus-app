@@ -126,22 +126,22 @@
                         <BoxView/>
                     </StackLayout>
 
-                    <controls:RepeaterView
+                    <StackLayout
                             Grid.Row="1"
                             IsVisible="False"
                             IsEnabled="False"
                             x:Name="ViewServices"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand">
-                        <controls:RepeaterView.ItemTemplate>
+                        <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <viewCells:ServiceTypeViewCell/>
                             </DataTemplate>
-                        </controls:RepeaterView.ItemTemplate>
-                    </controls:RepeaterView>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
                 </Grid>
             </Grid>
-            
+
             <!--Список услуг-->
             <CollectionView Grid.Row="1">
                 <CollectionView.ItemsSource>

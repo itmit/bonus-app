@@ -38,11 +38,15 @@ namespace bonus.app.Core.Pages.Businessman.Services
 		}
 		#endregion
 
-		#region Private
-		private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
+		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		/// <remarks>To be added.</remarks>
+		protected override void OnAppearing()
 		{
+			MyServicesView.ViewModel = ViewModel.MyServicesViewModel;
+			base.OnAppearing();
 		}
 
+		#region Private
 		private void ToolBar1_Clicked(object sender, EventArgs e)
 		{
 			Navigation.PushAsync(new EditBusinessmanServicesPage());

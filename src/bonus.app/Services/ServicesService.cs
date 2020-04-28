@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -47,12 +48,12 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
 				var request = JsonConvert.SerializeObject(createServiceDto);
 
-				var response = await client.PostAsync(ServiceUri, new StringContent(request, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(ServiceUri, new StringContent(request, Encoding.UTF8, ApplicationJson));
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -65,6 +66,42 @@ namespace bonus.app.Core.Services
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
 
 				return data.Success;
+			}
+		}
+
+		public async Task<bool> CreateService(string name, Guid serviceTypeUuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(CreateServiceUri, new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
+
+#if DEBUG
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+#endif
+				return response.IsSuccessStatusCode;
+			}
+		}
+
+		private const string CreateServiceTypeUri = "http://bonus.itmit-studio.ru/api/service/storeServiceType";
+		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/service/storeServiceItem";
+		
+		public async Task<bool> CreateServiceType(string name)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(CreateServiceTypeUri, new StringContent($"{{\"name\":\"{name}\"}}", Encoding.UTF8, ApplicationJson));
+
+#if DEBUG
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+#endif
+				return response.IsSuccessStatusCode;
 			}
 		}
 

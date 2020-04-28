@@ -13,6 +13,8 @@ namespace bonus.app.Core.Services
 {
 	public abstract class BaseService
 	{
+		public static readonly string ApplicationJson = "application/json";
+
 		protected IAuthService AuthService
 		{
 			get;
