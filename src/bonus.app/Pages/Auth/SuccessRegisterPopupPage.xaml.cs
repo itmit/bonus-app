@@ -7,9 +7,11 @@ namespace bonus.app.Core.Pages.Auth
 	[MvxPopupPagePresentation]
 	public partial class SuccessRegisterPopupPage : MvxPopupPage<SuccessRegisterPopupViewModel>
 	{
+		#region .ctor
 		public SuccessRegisterPopupPage()
 		{
 			InitializeComponent();
 		}
+		#endregion
 	}
 }

@@ -2,13 +2,26 @@
 {
 	public class Country
 	{
-		public int Id
+		#region Properties
+		public string Continent
 		{
 			get;
 			set;
 		}
 
-		public string Name
+		public string CurrencyCode
+		{
+			get;
+			set;
+		}
+
+		public string Fips
+		{
+			get;
+			set;
+		}
+
+		public int Id
 		{
 			get;
 			set;
@@ -32,19 +45,19 @@
 			set;
 		}
 
-		public string Fips
+		public string[] Languages
 		{
 			get;
 			set;
 		}
 
-		public string Continent
+		public LocalizedName LocalizedNames
 		{
 			get;
 			set;
 		}
 
-		public string CurrencyCode
+		public string Name
 		{
 			get;
 			set;
@@ -61,17 +74,6 @@
 			get;
 			set;
 		}
-
-		public string[] Languages
-		{
-			get;
-			set;
-		}
-
-		public LocalizedName LocalizedNames
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

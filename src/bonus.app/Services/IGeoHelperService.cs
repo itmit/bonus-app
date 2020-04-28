@@ -7,11 +7,10 @@ namespace bonus.app.Core.Services
 {
 	public interface IGeoHelperService
 	{
-		Task<List<Country>> GetCountries(LocaleDto locale);
+		#region Overridable
+		Task<List<City>> GetCities(LocaleDto locale, CityFilterDto filter = null, PaginationRequestDto pagination = null, OrderDto order = null);
 
-		Task<List<City>> GetCities(LocaleDto locale, 
-								 CityFilterDto filter = null, 
-								 PaginationRequestDto pagination = null,
-								 OrderDto order = null);
+		Task<List<Country>> GetCountries(LocaleDto locale);
+		#endregion
 	}
 }

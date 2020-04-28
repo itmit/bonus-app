@@ -12,18 +12,66 @@ namespace bonus.app.Core.Page
 	[MvxModalPresentation(Animated = true, WrapInNavigationPage = false)]
 	public class ScannerPage : ZXingScannerPage, IMvxPage<ScannerViewModel>
 	{
-		private IMvxBindingContext _bindingContext;
+		#region Data
+		#region Static
+		public static readonly BindableProperty ViewModelProperty =
+			BindableProperty.Create(nameof(ViewModel), typeof(IMvxViewModel), typeof(IMvxElement), default(MvxViewModel), BindingMode.Default, null, ViewModelChanged);
+		#endregion
 
-		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
-		/// <returns>To be added.</returns>
-		/// <remarks>To be added.</remarks>
-		protected override bool OnBackButtonPressed()
+		#region Fields
+		#endregion
+		#endregion
+
+		#region Overridable
+		protected virtual void OnViewModelSet()
 		{
-			Navigation.PopModalAsync();
-			return true;
+			ViewModel?.ViewCreated();
 		}
+		#endregion
 
-		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		#region IMvxBindingContextOwner members
+		public new IMvxBindingContext BindingContext
+		{
+			get;
+			set;
+		}
+		#endregion
+
+		#region IMvxDataConsumer members
+		public object DataContext
+		{
+			get => BindingContext.DataContext;
+			set
+			{
+				if (value != null && !(BindingContext != null && ReferenceEquals(DataContext, value)))
+				{
+					BindingContext = new MvxBindingContext(value);
+				}
+			}
+		}
+		#endregion
+
+		#region IMvxView members
+		IMvxViewModel IMvxView.ViewModel
+		{
+			get => ViewModel;
+			set => ViewModel = value as ScannerViewModel;
+		}
+		#endregion
+
+		#region IMvxView<ScannerViewModel> members
+		public ScannerViewModel ViewModel
+		{
+			get;
+			set;
+		}
+		#endregion
+
+		#region Overrided
+		/// <summary>
+		/// When overridden, allows application developers to customize behavior immediately prior to the
+		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+		/// </summary>
 		/// <remarks>To be added.</remarks>
 		protected override void OnAppearing()
 		{
@@ -39,6 +87,17 @@ namespace bonus.app.Core.Page
 			}
 		}
 
+		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
+		/// <returns>To be added.</returns>
+		/// <remarks>To be added.</remarks>
+		protected override bool OnBackButtonPressed()
+		{
+			Navigation.PopModalAsync();
+			return true;
+		}
+		#endregion
+
+		#region Private
 		private static void ViewModelChanged(BindableObject bindable, object oldvalue, object newvalue)
 		{
 			if (newvalue != null)
@@ -53,41 +112,6 @@ namespace bonus.app.Core.Page
 				}
 			}
 		}
-
-		public static readonly BindableProperty ViewModelProperty = BindableProperty.Create(nameof(ViewModel), typeof(IMvxViewModel), typeof(IMvxElement), default(MvxViewModel), BindingMode.Default, null, ViewModelChanged, null, null);
-
-		public object DataContext
-		{
-			get => BindingContext.DataContext;
-			set
-			{
-				if (value != null && !(_bindingContext != null && ReferenceEquals(DataContext, value)))
-				{
-					BindingContext = new MvxBindingContext(value);
-				}
-			}
-		}
-		protected virtual void OnViewModelSet()
-		{
-			ViewModel?.ViewCreated();
-		}
-
-		IMvxViewModel IMvxView.ViewModel
-		{
-			get => ViewModel;
-			set => ViewModel = value as ScannerViewModel;
-		}
-
-		public new IMvxBindingContext BindingContext
-		{
-			get => _bindingContext;
-			set => _bindingContext = value;
-		}
-
-		public ScannerViewModel ViewModel
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

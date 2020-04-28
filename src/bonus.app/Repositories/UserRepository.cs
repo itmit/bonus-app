@@ -34,12 +34,11 @@ namespace bonus.app.Core.Repositories
 				   .ForMember(m => m.Uuid, o => o.MapFrom(q => Guid.Parse(q.Guid)))
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.AccessToken.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.AccessToken.Type));
-
 			}));
 		}
 		#endregion
 
-		#region Public
+		#region IUserRepository members
 		public void Add(User user)
 		{
 			using (var realm = Realm.GetInstance())
@@ -47,9 +46,18 @@ namespace bonus.app.Core.Repositories
 				var userRealm = _mapper.Map<UserRealmObject>(user);
 				using (var transaction = realm.BeginWrite())
 				{
-					realm.Add(userRealm, true);
+					realm.Add((RealmObject) userRealm, true);
 					transaction.Commit();
 				}
+			}
+		}
+
+		public User Find(Guid uuid)
+		{
+			using (var realm = Realm.GetInstance())
+			{
+				var user = realm.Find<UserRealmObject>(uuid.ToString());
+				return _mapper.Map<User>(user);
 			}
 		}
 
@@ -79,13 +87,13 @@ namespace bonus.app.Core.Repositories
 						var userRealm = realm.Find<UserRealmObject>(user?.Uuid.ToString());
 
 						realm.Remove(userRealm);
-
 					}
 					catch (Exception e)
 					{
 						Console.WriteLine(e);
 						return false;
 					}
+
 					transaction.Commit();
 				}
 			}
@@ -105,15 +113,6 @@ namespace bonus.app.Core.Repositories
 			}
 		}
 
-		public User Find(Guid uuid)
-		{
-			using (var realm = Realm.GetInstance())
-			{
-				var user = realm.Find<UserRealmObject>(uuid.ToString());
-				return _mapper.Map<User>(user);
-			}
-		}
-
 		public bool Update(User user)
 		{
 			using (var realm = Realm.GetInstance())
@@ -124,7 +123,7 @@ namespace bonus.app.Core.Repositories
 					{
 						var userRealm = realm.Find<UserRealmObject>(user.Uuid.ToString());
 						realm.Remove(userRealm);
-						realm.Add(_mapper.Map<UserRealmObject>(user), true);
+						realm.Add((RealmObject) _mapper.Map<UserRealmObject>(user), true);
 						transaction.Commit();
 					}
 					catch (Exception e)

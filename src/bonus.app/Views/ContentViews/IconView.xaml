@@ -1,38 +1,47 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:design="clr-namespace:bonus.app.Core.Design"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.IconView">
-  <ContentView.Content>
+    <ContentView.Content>
         <!--Представление с иконками внизу в меню пользователя и предпринимателя-->
         <StackLayout Spacing="0">
-            <Label Text = "Поделись с друзьями:"
+            <Label Text="Поделись с друзьями:"
                    FontSize="Body"
                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
                    TextColor="#FFFFFF"
-                   Margin="0,0,0,15"/>
+                   Margin="0,0,0,15" />
             <Grid ColumnSpacing="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <ImageButton Source="ic_fb_w.png" Grid.Row="0" Grid.Column="0" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_tw_w.png" Grid.Row="0" Grid.Column="1" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_wp_w.png" Grid.Row="0" Grid.Column="2" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_inst_w.png" Grid.Row="0" Grid.Column="3" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_skp_w.png" Grid.Row="1" Grid.Column="0" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_crcl_w.png" Grid.Row="1" Grid.Column="1" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_in_w.png" Grid.Row="1" Grid.Column="2" WidthRequest="24" BackgroundColor="Transparent"/>
-                <ImageButton Source="ic_be_w.png" Grid.Row="1" Grid.Column="3" WidthRequest="24" BackgroundColor="Transparent"/>
+                <ImageButton Source="ic_fb_w.png" Grid.Row="0" Grid.Column="0" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_tw_w.png" Grid.Row="0" Grid.Column="1" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_wp_w.png" Grid.Row="0" Grid.Column="2" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_inst_w.png" Grid.Row="0" Grid.Column="3" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_skp_w.png" Grid.Row="1" Grid.Column="0" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_crcl_w.png" Grid.Row="1" Grid.Column="1" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_in_w.png" Grid.Row="1" Grid.Column="2" WidthRequest="24"
+                             BackgroundColor="Transparent" />
+                <ImageButton Source="ic_be_w.png" Grid.Row="1" Grid.Column="3" WidthRequest="24"
+                             BackgroundColor="Transparent" />
             </Grid>
         </StackLayout>
     </ContentView.Content>

@@ -7,16 +7,18 @@ using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = false)]
 	[MvxTabbedPagePresentation(TabbedPosition.Root)]
-    public partial class CustomerTabbedPage : MvxTabbedPage<MainTabbedCustomerViewModel>
-    {
-        public CustomerTabbedPage()
-        {
-            InitializeComponent();
+	public partial class CustomerTabbedPage : MvxTabbedPage<MainTabbedCustomerViewModel>
+	{
+		#region .ctor
+		public CustomerTabbedPage()
+		{
+			InitializeComponent();
 			On<Android>()
 				.SetToolbarPlacement(ToolbarPlacement.Bottom);
 		}
-    }
+		#endregion
+	}
 }

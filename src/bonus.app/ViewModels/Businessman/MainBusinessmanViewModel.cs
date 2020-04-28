@@ -13,11 +13,13 @@ namespace bonus.app.Core.ViewModels.Businessman
 		}
 		#endregion
 
+		#region Overrided
 		public override async void ViewAppearing()
 		{
 			base.ViewAppearing();
 			await NavigationService.Navigate<MenuBusinessmanViewModel>();
 			await NavigationService.Navigate<MainTabbedBusinessmanViewModel>();
 		}
+		#endregion
 	}
 }

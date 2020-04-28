@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
@@ -15,7 +14,6 @@ namespace bonus.app.Core.Services
 	public class StockService : BaseService, IStockService
 	{
 		#region Delegates and events
-
 		public delegate void EditedStockEventHandler(Stock stock);
 
 		public event EventHandler CreatedStockEventHandler;
@@ -26,13 +24,13 @@ namespace bonus.app.Core.Services
 		#region Data
 		#region Consts
 		private const string CreateUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
-		private const string GetStockForEditUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}/edit";
-		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
 		private const string EditStockUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
-		private const string GetMyStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
 		private const string GetArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive";
-		private const string GetMyFilterStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
 		private const string GetFilterArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive";
+		private const string GetMyFilterStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+		private const string GetMyStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+		private const string GetStockForEditUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}/edit";
 		#endregion
 		#endregion
 
@@ -44,30 +42,6 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region IStockService members
-		public async Task<Stock> GetStockForEdit(Guid uuid)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.GetAsync(new Uri(string.Format(GetStockForEditUri, uuid)));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Stock>>(json);
-				data.Data.ImageSource = Domain + data.Data.ImageSource;
-				return data.Data;
-			}
-		}
-
-		public Task<IEnumerable<Stock>> GetArchiveStock() => GetArchiveStock(null, null);
-
 		public async Task<bool> CreateStock(Stock stock, byte[] imageBytes)
 		{
 			using (var client = new HttpClient())
@@ -126,65 +100,6 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<IEnumerable<Stock>> GetAll()
-		{
-			var shares = (await GetAsync<IEnumerable<Stock>>(GetAllUri))?.ToList();
-			if (shares == null)
-			{
-				return new List<Stock>();
-			}
-
-			foreach (var share in shares)
-			{
-				if (string.IsNullOrEmpty(share.ImageSource))
-				{
-					share.ImageSource = string.Empty;
-					continue;
-				}
-
-				share.ImageSource = Domain + share.ImageSource;
-			}
-
-			return shares;
-		}
-
-		public async Task<IEnumerable<Stock>> GetArchiveStock(Guid? serviceUuid, string city)
-		{
-			List<Stock> stocks;
-			if (serviceUuid == null && string.IsNullOrEmpty(city))
-			{
-				stocks = (await GetAsync<IEnumerable<Stock>>(GetArchiveStockUri))?.ToList();
-			}
-			else
-			{
-				Guid uuid = Guid.Empty;
-				if (serviceUuid != null)
-				{
-					uuid = serviceUuid.Value;
-				}
-
-				stocks = (await GetAsync<IEnumerable<Stock>>(GetFilterArchiveStockUri, $"{{\"uuid\":\"{uuid}\",\"city\":\"{city}\"}}"))?.ToList();
-			}
-
-			if (stocks == null)
-			{
-				return new List<Stock>();
-			}
-
-			foreach (var stock in stocks)
-			{
-				if (string.IsNullOrEmpty(stock.ImageSource))
-				{
-					stock.ImageSource = string.Empty;
-					continue;
-				}
-
-				stock.ImageSource = Domain + stock.ImageSource;
-			}
-
-			return stocks;
-		}
-
 		public async Task<bool> EditStock(Stock stock, byte[] imageBytes = null)
 		{
 			using (var client = new HttpClient())
@@ -213,14 +128,12 @@ namespace bonus.app.Core.Services
 						new StringContent(stock.Service.ToString()), "service_uuid"
 					}
 				};
-				
+
 				if (imageBytes != null)
 				{
 					var byteArrayContent = new ByteArrayContent(imageBytes);
 					byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-					content.Add(byteArrayContent,
-								"\"photo\"",
-								$"\"{stock.ImageSource}\"");
+					content.Add(byteArrayContent, "\"photo\"", $"\"{stock.ImageSource}\"");
 				}
 
 				var response = await client.PostAsync(new Uri(string.Format(EditStockUri, stock.Uuid)), content);
@@ -238,8 +151,70 @@ namespace bonus.app.Core.Services
 				{
 					EditedStock?.Invoke(stock);
 				}
+
 				return data.Success;
 			}
+		}
+
+		public async Task<IEnumerable<Stock>> GetAll()
+		{
+			var shares = (await GetAsync<IEnumerable<Stock>>(GetAllUri))?.ToList();
+			if (shares == null)
+			{
+				return new List<Stock>();
+			}
+
+			foreach (var share in shares)
+			{
+				if (string.IsNullOrEmpty(share.ImageSource))
+				{
+					share.ImageSource = string.Empty;
+					continue;
+				}
+
+				share.ImageSource = Domain + share.ImageSource;
+			}
+
+			return shares;
+		}
+
+		public Task<IEnumerable<Stock>> GetArchiveStock() => GetArchiveStock(null, null);
+
+		public async Task<IEnumerable<Stock>> GetArchiveStock(Guid? serviceUuid, string city)
+		{
+			List<Stock> stocks;
+			if (serviceUuid == null && string.IsNullOrEmpty(city))
+			{
+				stocks = (await GetAsync<IEnumerable<Stock>>(GetArchiveStockUri))?.ToList();
+			}
+			else
+			{
+				var uuid = Guid.Empty;
+				if (serviceUuid != null)
+				{
+					uuid = serviceUuid.Value;
+				}
+
+				stocks = (await GetAsync<IEnumerable<Stock>>(GetFilterArchiveStockUri, $"{{\"uuid\":\"{uuid}\",\"city\":\"{city}\"}}"))?.ToList();
+			}
+
+			if (stocks == null)
+			{
+				return new List<Stock>();
+			}
+
+			foreach (var stock in stocks)
+			{
+				if (string.IsNullOrEmpty(stock.ImageSource))
+				{
+					stock.ImageSource = string.Empty;
+					continue;
+				}
+
+				stock.ImageSource = Domain + stock.ImageSource;
+			}
+
+			return stocks;
 		}
 
 		public Task<IEnumerable<Stock>> GetMyStock() => GetMyStock(null, null);
@@ -253,7 +228,7 @@ namespace bonus.app.Core.Services
 			}
 			else
 			{
-				Guid uuid = Guid.Empty;
+				var uuid = Guid.Empty;
 				if (serviceUuid != null)
 				{
 					uuid = serviceUuid.Value;
@@ -279,6 +254,28 @@ namespace bonus.app.Core.Services
 			}
 
 			return stocks;
+		}
+
+		public async Task<Stock> GetStockForEdit(Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.GetAsync(new Uri(string.Format(GetStockForEditUri, uuid)));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<Stock>>(json);
+				data.Data.ImageSource = Domain + data.Data.ImageSource;
+				return data.Data;
+			}
 		}
 		#endregion
 	}

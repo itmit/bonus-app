@@ -2,6 +2,12 @@
 {
 	public interface IValidity
 	{
-		bool IsValid { get; set; }
+		#region Properties
+		bool IsValid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

@@ -50,16 +50,16 @@
                 <Label Text="Добавить услугу" Margin="0,0,0,35" FontSize="Body" HorizontalOptions="Center"
                        FontFamily="{x:Static design:DesignClass.MontserratBold}" />
 
-                <services2:MyServicesContentView x:Name="MyServicesView"/>
-                <contentViews:ServiceAccrualBonusesContentView/>
+                <services2:MyServicesContentView x:Name="MyServicesView" />
+                <contentViews:ServiceAccrualBonusesContentView />
 
                 <design:CustomButton Style="{StaticResource AppButtonGradient}">
                     <Grid>
-                        <graphic:RectangleInProfile/>
-                        <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}"/>
+                        <graphic:RectangleInProfile />
+                        <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}" />
                     </Grid>
                     <design:CustomButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddServiceCommand}"/>
+                        <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
                     </design:CustomButton.GestureRecognizers>
                 </design:CustomButton>
             </StackLayout>

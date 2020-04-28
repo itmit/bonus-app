@@ -13,17 +13,26 @@ namespace bonus.app.Core.Services
 {
 	public abstract class BaseService
 	{
+		#region Data
+		#region Static
 		public static readonly string ApplicationJson = "application/json";
 
+		public static readonly string Domain = "http://bonus.itmit-studio.ru/";
+		#endregion
+		#endregion
+
+		#region .ctor
+		public BaseService(IAuthService authService) => AuthService = authService;
+		#endregion
+
+		#region Properties
 		protected IAuthService AuthService
 		{
 			get;
 		}
+		#endregion
 
-		public static readonly string Domain = "http://bonus.itmit-studio.ru/";
-
-		public BaseService(IAuthService authService) => AuthService = authService;
-
+		#region Protected
 		protected async Task<T> GetAsync<T>(string url, int days = 1, bool forceRefresh = true)
 		{
 			var json = string.Empty;
@@ -45,13 +54,14 @@ namespace bonus.app.Core.Services
 				//skip web request because we are using cached data
 				if (string.IsNullOrWhiteSpace(json))
 				{
-					using (var  client = new HttpClient())
+					using (var client = new HttpClient())
 					{
 						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
 						json = await client.GetStringAsync(new Uri(url));
 					}
+
 					Debug.WriteLine(json);
 					response = JsonConvert.DeserializeObject<ResponseDto<T>>(json);
 					if (response.Success)
@@ -73,7 +83,7 @@ namespace bonus.app.Core.Services
 
 			return default;
 		}
-		
+
 		protected async Task<T> GetAsync<T>(string url, string jsonData, int days = 1, bool forceRefresh = true)
 		{
 			var json = string.Empty;
@@ -96,7 +106,7 @@ namespace bonus.app.Core.Services
 				//skip web request because we are using cached data
 				if (string.IsNullOrWhiteSpace(json))
 				{
-					using (var  client = new HttpClient())
+					using (var client = new HttpClient())
 					{
 						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
@@ -104,6 +114,7 @@ namespace bonus.app.Core.Services
 						var res = await client.PostAsync(new Uri(url), new StringContent(jsonData, Encoding.UTF8, "application/json"));
 						json = await res.Content.ReadAsStringAsync();
 					}
+
 					Debug.WriteLine(json);
 					response = JsonConvert.DeserializeObject<ResponseDto<T>>(json);
 					if (response.Success)
@@ -125,5 +136,6 @@ namespace bonus.app.Core.Services
 
 			return default;
 		}
+		#endregion
 	}
 }

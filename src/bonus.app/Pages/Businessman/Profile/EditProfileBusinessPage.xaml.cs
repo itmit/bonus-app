@@ -1,8 +1,5 @@
-﻿using System;
-using bonus.app.Core.Models;
-using bonus.app.Core.ViewModels.Businessman.Profile;
+﻿using bonus.app.Core.ViewModels.Businessman.Profile;
 using MvvmCross.Forms.Views;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Businessman.Profile
@@ -17,7 +14,11 @@ namespace bonus.app.Core.Pages.Businessman.Profile
 		}
 		#endregion
 
-		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		#region Overrided
+		/// <summary>
+		/// When overridden, allows application developers to customize behavior immediately prior to the
+		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+		/// </summary>
 		/// <remarks>To be added.</remarks>
 		protected override void OnAppearing()
 		{
@@ -26,5 +27,6 @@ namespace bonus.app.Core.Pages.Businessman.Profile
 
 			base.OnAppearing();
 		}
+		#endregion
 	}
 }

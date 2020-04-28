@@ -4,18 +4,20 @@ namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class LocaleDto
 	{
-		[JsonProperty("lang")]
-		public string Lang
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		[JsonProperty("fallbackLang")]
 		public string FallbackLang
 		{
 			get;
 			set;
 		}
+
+		[JsonProperty("lang")]
+		public string Lang
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

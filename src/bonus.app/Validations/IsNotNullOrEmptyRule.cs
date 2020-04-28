@@ -2,8 +2,14 @@
 {
 	public class IsNotNullOrEmptyRule : IValidationRule<string>
 	{
-		public string ValidationMessage { get; set; }
-
+		#region IValidationRule<string> members
 		public bool Check(string value) => !string.IsNullOrWhiteSpace(value);
+
+		public string ValidationMessage
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

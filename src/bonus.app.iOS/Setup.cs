@@ -10,6 +10,7 @@ namespace bonus.app.iOS
 {
 	public class Setup : MvxFormsIosSetup<CoreApp, App>
 	{
+		#region Overrided
 		protected override IMvxApplication CreateApp() => new CoreApp();
 
 		protected override Xamarin.Forms.Application CreateFormsApplication() => new App();
@@ -21,5 +22,6 @@ namespace bonus.app.iOS
 			Mvx.IoCProvider.RegisterSingleton<ISettingsHelper>(new SettingsHelper());
 			return formsPagePresenter;
 		}
+		#endregion
 	}
 }

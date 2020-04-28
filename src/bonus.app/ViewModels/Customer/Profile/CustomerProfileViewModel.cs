@@ -9,31 +9,33 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 {
 	public class CustomerProfileViewModel : MvxNavigationViewModel
 	{
-		public CustomerProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
-			: base(logProvider, navigationService)
-		{
-			User = authService.User;
-		}
+		#region Data
+		#region Fields
+		private MvxCommand _openEditProfileCommand;
+		private MvxCommand _openMessageCommand;
+		private MvxCommand _openSubscribesCommand;
 
 		private User _user;
-        private MvxCommand _openMessageCommand;
-        private MvxCommand _openSubscribesCommand;
-		private MvxCommand _openEditProfileCommand;
+		#endregion
+		#endregion
 
-		public User User
-		{
-			get => _user;
-			private set => SetProperty(ref _user, value);
-		}
+		#region .ctor
+		public CustomerProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
+			: base(logProvider, navigationService) =>
+			User = authService.User;
+		#endregion
 
+		#region Properties
 		public MvxCommand OpenEditProfileCommand
 		{
 			get
 			{
-				_openEditProfileCommand = _openEditProfileCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(User.Uuid, true));
-				});
+				_openEditProfileCommand = _openEditProfileCommand ??
+										  new MvxCommand(() =>
+										  {
+											  NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
+												  new EditProfileViewModelArguments(User.Uuid, true));
+										  });
 				return _openEditProfileCommand;
 			}
 		}
@@ -42,10 +44,11 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		{
 			get
 			{
-				_openMessageCommand = _openMessageCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<MessageListViewModel>();
-				});
+				_openMessageCommand = _openMessageCommand ??
+									  new MvxCommand(() =>
+									  {
+										  NavigationService.Navigate<MessageListViewModel>();
+									  });
 				return _openMessageCommand;
 			}
 		}
@@ -54,12 +57,20 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		{
 			get
 			{
-				_openSubscribesCommand = _openSubscribesCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<SubscribesViewModel>();
-				});
+				_openSubscribesCommand = _openSubscribesCommand ??
+										 new MvxCommand(() =>
+										 {
+											 NavigationService.Navigate<SubscribesViewModel>();
+										 });
 				return _openSubscribesCommand;
 			}
 		}
+
+		public User User
+		{
+			get => _user;
+			private set => SetProperty(ref _user, value);
+		}
+		#endregion
 	}
 }

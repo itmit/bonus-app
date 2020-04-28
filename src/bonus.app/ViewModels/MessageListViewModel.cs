@@ -6,9 +6,11 @@ namespace bonus.app.Core.ViewModels
 {
 	public class MessageListViewModel : MvxNavigationViewModel
 	{
+		#region .ctor
 		public MessageListViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 	}
 }

@@ -6,28 +6,31 @@ namespace bonus.app.Core.Controls
 {
 	public class HideableTabbedPage : MvxTabbedPage
 	{
-		public static readonly BindableProperty IsHiddenProperty =
-			BindableProperty.Create(nameof(IsHidden), typeof(bool), typeof(HideableTabbedPage), false);
+		#region Data
+		#region Static
+		public static readonly BindableProperty IsHiddenProperty = BindableProperty.Create(nameof(IsHidden), typeof(bool), typeof(HideableTabbedPage), false);
+		#endregion
+		#endregion
 
+		#region Properties
 		public bool IsHidden
 		{
-			get { return (bool)GetValue(IsHiddenProperty); }
-			set { SetValue(IsHiddenProperty, value); }
+			get => (bool) GetValue(IsHiddenProperty);
+			set => SetValue(IsHiddenProperty, value);
 		}
+		#endregion
 	}
 
-	public class HideableTabbedPage<TViewModel>
-		: HideableTabbedPage
-		  , IMvxPage<TViewModel> where TViewModel : class, IMvxViewModel
+	public class HideableTabbedPage<TViewModel> : HideableTabbedPage, IMvxPage<TViewModel> where TViewModel : class, IMvxViewModel
 	{
-		public new static readonly BindableProperty ViewModelProperty = BindableProperty.Create(nameof(ViewModel), typeof(TViewModel), typeof(IMvxElement<TViewModel>), default(TViewModel), BindingMode.Default, null, ViewModelChanged, null, null);
+		#region Data
+		#region Static
+		public new static readonly BindableProperty ViewModelProperty =
+			BindableProperty.Create(nameof(ViewModel), typeof(TViewModel), typeof(IMvxElement<TViewModel>), default(TViewModel), BindingMode.Default, null, ViewModelChanged);
+		#endregion
+		#endregion
 
-		public new TViewModel ViewModel
-		{
-			get => (TViewModel)base.ViewModel;
-			set => base.ViewModel = value;
-		}
-
+		#region Public
 		public static void ViewModelChanged(BindableObject bindable, object oldvalue, object newvalue)
 		{
 			if (newvalue != null)
@@ -42,5 +45,14 @@ namespace bonus.app.Core.Controls
 				}
 			}
 		}
+		#endregion
+
+		#region IMvxView<TViewModel> members
+		public new TViewModel ViewModel
+		{
+			get => (TViewModel) base.ViewModel;
+			set => base.ViewModel = value;
+		}
+		#endregion
 	}
 }

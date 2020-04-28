@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -16,13 +17,13 @@
                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
                    VerticalOptions="Center"
                    Visual="Material"
-                   BackgroundColor="Transparent"/>
+                   BackgroundColor="Transparent" />
 
             <ui:MaterialTextField Text="{Binding Name.Value}"
                                   Placeholder="Ваши услуги"
                                   FocusCommand="{Binding CreateServiceCommand}"
                                   ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                  HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                  HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
 
             <ImageButton Source="ic_close_remove_4x.png"
@@ -30,7 +31,7 @@
                          VerticalOptions="Center"
                          BackgroundColor="Transparent"
                          HorizontalOptions="EndAndExpand"
-                         Margin="0,0,10,0"/>
+                         Margin="0,0,10,0" />
         </Grid>
     </ContentView.Content>
 </ContentView>

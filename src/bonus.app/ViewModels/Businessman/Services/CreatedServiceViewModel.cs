@@ -1,7 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
-using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
@@ -9,30 +8,37 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class CreatedServiceViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
 		private Command<bool> _createServiceCommand;
-		private readonly IServicesService _servicesService;
 		private ValidatableObject<string> _name = new ValidatableObject<string>();
+		private readonly IServicesService _servicesService;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public CreatedServiceViewModel(IServicesService servicesService)
 		{
 			_servicesService = servicesService;
-			Name.Validations.Add(new IsNotNullOrEmptyRule{ValidationMessage = "Заполните название вида услуги."});
-			Name.Validations.Add(new MinLengthRule(2){ValidationMessage = "Название вида услуги не может быть меньше 3 символов."});
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Заполните название вида услуги."
+			});
+			Name.Validations.Add(new MinLengthRule(2)
+			{
+				ValidationMessage = "Название вида услуги не может быть меньше 3 символов."
+			});
 		}
+		#endregion
 
-		public ValidatableObject<string> Name
-		{
-			get => _name;
-			set => SetProperty(ref _name, value);
-		}
-
-		public MyServicesViewModel ParentViewModel
+		#region Properties
+		public bool IsCreated
 		{
 			get;
 			set;
 		}
 
-		public bool IsCreated
+		public MyServicesViewModel ParentViewModel
 		{
 			get;
 			set;
@@ -82,5 +88,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				return _createServiceCommand;
 			}
 		}
+
+		public ValidatableObject<string> Name
+		{
+			get => _name;
+			set => SetProperty(ref _name, value);
+		}
+		#endregion
 	}
 }

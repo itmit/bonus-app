@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
@@ -18,11 +17,21 @@ namespace bonus.app.Core.Services
 {
 	public class ProfileService : IProfileService
 	{
-		private readonly Mapper _mapper;
-		private readonly bool _isActiveUser;
-		private readonly IAuthService _authService;
-		private readonly IUserRepository _userRepository;
+		#region Data
+		#region Consts
+		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
+		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
+		#endregion
 
+		#region Fields
+		private readonly IAuthService _authService;
+		private readonly bool _isActiveUser;
+		private readonly Mapper _mapper;
+		private readonly IUserRepository _userRepository;
+		#endregion
+		#endregion
+
+		#region .ctor
 		public ProfileService(IAuthService authService, IUserRepository userRepository)
 		{
 			_userRepository = userRepository;
@@ -43,13 +52,12 @@ namespace bonus.app.Core.Services
 			_isActiveUser = authService.Token != null;
 			_authService = authService;
 		}
+		#endregion
 
-		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
-		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
-
+		#region IProfileService members
 		public async Task<User> Edit(EditBusinessmanDto arguments, string imagePath)
 		{
-			MultipartFormDataContent content = new MultipartFormDataContent
+			var content = new MultipartFormDataContent
 			{
 				{
 					new StringContent(arguments.City), "city"
@@ -88,7 +96,7 @@ namespace bonus.app.Core.Services
 			if (!string.IsNullOrEmpty(imagePath))
 			{
 				var byteArrayContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
-				content.Add(byteArrayContent, "\"photo\"", $"\"{ imagePath.Substring(imagePath.LastIndexOf('/') + 1) }\"");
+				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
 			if (_isActiveUser)
@@ -119,7 +127,7 @@ namespace bonus.app.Core.Services
 
 		public async Task<User> Edit(EditCustomerDto arguments, string imagePath)
 		{
-			MultipartFormDataContent content = new MultipartFormDataContent
+			var content = new MultipartFormDataContent
 			{
 				{
 					new StringContent(arguments.City), "city"
@@ -155,7 +163,7 @@ namespace bonus.app.Core.Services
 			if (!string.IsNullOrEmpty(imagePath))
 			{
 				var byteArrayContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
-				content.Add(byteArrayContent, "\"photo\"", $"\"{ imagePath.Substring(imagePath.LastIndexOf('/') + 1) }\"");
+				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
 			if (_isActiveUser)
@@ -195,31 +203,16 @@ namespace bonus.app.Core.Services
 			get;
 			private set;
 		}
+		#endregion
 
-		private async Task<bool> Update(HttpContent content)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
-				var response = await client.PostAsync(string.Format(UpdateUri, _authService.User.Uuid), content);
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
-				return data.Success;
-			}
-		}
-
+		#region Private
 		private async Task<User> FillInfo(HttpContent content)
 		{
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				var response = await client.PostAsync(FillInfoUri, content);
-				
+
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
 
@@ -253,7 +246,6 @@ namespace bonus.app.Core.Services
 					return userInfo;
 				}
 
-
 				if (data.ErrorDetails != null)
 				{
 					ErrorDetails = data.ErrorDetails;
@@ -264,5 +256,23 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
+
+		private async Task<bool> Update(HttpContent content)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+				var response = await client.PostAsync(string.Format(UpdateUri, _authService.User.Uuid), content);
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+				return data.Success;
+			}
+		}
+		#endregion
 	}
 }

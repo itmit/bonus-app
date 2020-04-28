@@ -4,6 +4,14 @@ namespace bonus.app.Core.Dtos
 {
 	public class AuthDto
 	{
+		#region Properties
+		[JsonProperty("device_token")]
+		public string DeviceToken
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("login")]
 		public string Login
 		{
@@ -17,12 +25,6 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
-
-		[JsonProperty("device_token")]
-		public string DeviceToken
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

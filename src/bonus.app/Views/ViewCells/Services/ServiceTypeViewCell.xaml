@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
-             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
-             xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
-             mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.ViewCells.Services.ServiceTypeViewCell">
-  <ViewCell.View>
-        <services1:ServiceTypeContentView/>
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
+          xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+          xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
+          mc:Ignorable="d"
+          x:Class="bonus.app.Core.Views.ViewCells.Services.ServiceTypeViewCell">
+    <ViewCell.View>
+        <services1:ServiceTypeContentView />
     </ViewCell.View>
 </ViewCell>

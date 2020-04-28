@@ -4,7 +4,8 @@ namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class GeoHelperResponseDto<T>
 	{
-		public bool Success
+		#region Properties
+		public ErrorDto Error
 		{
 			get;
 			set;
@@ -16,22 +17,23 @@ namespace bonus.app.Core.Dtos.GeoHelper
 			set;
 		}
 
-		public List<T> Result
-		{
-			get;
-			set;
-		}
-
 		public PaginationResponseDto Pagination
 		{
 			get;
 			set;
 		}
 
-		public ErrorDto Error
+		public List<T> Result
 		{
 			get;
 			set;
 		}
+
+		public bool Success
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

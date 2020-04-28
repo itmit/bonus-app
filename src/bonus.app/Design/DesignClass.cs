@@ -1,161 +1,143 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace bonus.app.Core.Design
 {
-    static class DesignClass
-    {
-        #region Fields
-        private static string _latoBold,
-                              _latoRegular,
-                              _montserratBold,
-                              _montserratLight,
-                              _montserratMedium,
-                              _montserratRegular;
+	internal static class DesignClass
+	{
+		#region Data
+		#region Static
+		#endregion
+		#endregion
 
-        private static double _heightFrame;
+		#region .ctor
+		static DesignClass()
+		{
+			if (Device.iOS == Device.RuntimePlatform)
+			{
+				LatoBold = "Lato-Bold";
+				LatoRegular = "Lato-Regular";
+				MontserratBold = "Montserrat-Bold";
+				MontserratRegular = "Montserrat-Regular";
+				MontserratMedium = "Montserrat-Medium";
+				MontserratLight = "Montserrat-Light";
+				HeightFrame = 45;
+				Radius = 22;
+				Horizontal = LayoutOptions.Center;
+				BorderColor = Color.FromHex("#9A9A9A");
+				Shadow = false;
+				Margin = new Thickness(25, 25, 5, 10);
+				MarginForTitle = new Thickness(0, 50, 0, 10);
+				MarginForImage = new Thickness(0, 45, 0, 55);
+			}
+			else if (Device.Android == Device.RuntimePlatform)
+			{
+				LatoBold = "Lato-Bold.ttf#Lato-Bold";
+				LatoRegular = "Lato-Regular.ttf#Lato-Regular";
+				MontserratBold = "Montserrat-Bold.ttf#Montserrat-Bold";
+				MontserratRegular = "Montserrat-Regular.ttf#Montserrat-Regular";
+				MontserratMedium = "Montserrat-Medium.ttf#Montserrat-Medium";
+				MontserratLight = "Montserrat-Light.ttf#Montserrat-Light";
+				HeightFrame = 55;
+				Radius = 27;
+				Horizontal = LayoutOptions.Start;
+				Shadow = true;
+				Margin = new Thickness(5, 25, 5, 10);
+				MarginForTitle = new Thickness(0, 35, 0, 10);
+				MarginForImage = new Thickness(0, 35, 0, 55);
+			}
+		}
+		#endregion
 
-        private static float _radius;
+		#region Properties
+		public static Color BorderColor
+		{
+			get;
+			set;
+		}
 
-        private static LayoutOptions _horizontal;
+		public static Color ColorButtom
+		{
+			get;
+			set;
+		} = Color.FromRgba(255, 255, 255, 0.3);
 
-        private static Color _borderColor;
+		public static double HeightFrame
+		{
+			get;
+			set;
+		}
 
-        private static bool _shadow;
-        private static Thickness _margin;
-        private static Thickness _marginForTitle;
-        private static Thickness _marginForImage;
-        private static Color _colorButtom = Color.FromRgba(255, 255, 255, 0.3);
+		public static LayoutOptions Horizontal
+		{
+			get;
+			set;
+		}
 
-        #endregion
+		public static string LatoBold
+		{
+			get;
+			set;
+		}
 
-        static DesignClass()
-        {
-            if(Device.iOS == Device.RuntimePlatform)
-            {
-                LatoBold = "Lato-Bold";
-                LatoRegular = "Lato-Regular";
-                MontserratBold = "Montserrat-Bold";
-                MontserratRegular = "Montserrat-Regular";
-                MontserratMedium = "Montserrat-Medium";
-                MontserratLight = "Montserrat-Light";
-                HeightFrame = 45;
-                Radius = 22;
-                Horizontal = LayoutOptions.Center;
-                BorderColor = Color.FromHex("#9A9A9A");
-                Shadow = false;
-                Margin = new Thickness(25, 25, 5, 10);
-                MarginForTitle = new Thickness(0, 50, 0, 10);
-                MarginForImage = new Thickness(0, 45, 0, 55);
-            }
-            else if(Device.Android == Device.RuntimePlatform)
-            {
-                LatoBold = "Lato-Bold.ttf#Lato-Bold";
-                LatoRegular = "Lato-Regular.ttf#Lato-Regular";
-                MontserratBold = "Montserrat-Bold.ttf#Montserrat-Bold";
-                MontserratRegular = "Montserrat-Regular.ttf#Montserrat-Regular";
-                MontserratMedium = "Montserrat-Medium.ttf#Montserrat-Medium";
-                MontserratLight = "Montserrat-Light.ttf#Montserrat-Light";
-                HeightFrame = 55;
-                Radius = 27;
-                Horizontal = LayoutOptions.Start;
-                Shadow = true;
-                Margin = new Thickness(5, 25, 5, 10);
-                MarginForTitle = new Thickness(0, 35, 0, 10);
-                MarginForImage = new Thickness(0, 35, 0, 55);
-            }
-        }
+		public static string LatoRegular
+		{
+			get;
+			set;
+		}
 
-        #region Properties
-        public static string LatoBold
-        {
-            get => _latoBold;
-            set => _latoBold = value;
-        }
+		public static Thickness Margin
+		{
+			get;
+			set;
+		}
 
-        public static string LatoRegular
-        {
-            get => _latoRegular;
-            set => _latoRegular = value;
-        }
+		public static Thickness MarginForImage
+		{
+			get;
+			set;
+		}
 
-        public static string MontserratBold
-        {
-            get => _montserratBold;
-            set => _montserratBold = value;
-        }
+		public static Thickness MarginForTitle
+		{
+			get;
+			set;
+		}
 
-        public static string MontserratRegular
-        {
-            get => _montserratRegular;
-            set => _montserratRegular = value;
-        }
+		public static string MontserratBold
+		{
+			get;
+			set;
+		}
 
-        public static string MontserratMedium
-        {
-            get => _montserratMedium;
-            set => _montserratMedium = value;
-        }
+		public static string MontserratLight
+		{
+			get;
+			set;
+		}
 
-        public static string MontserratLight
-        {
-            get => _montserratLight;
-            set => _montserratLight = value;
-        }
+		public static string MontserratMedium
+		{
+			get;
+			set;
+		}
 
-        public static double HeightFrame
-        {
-            get => _heightFrame;
-            set => _heightFrame = value;
-        }
+		public static string MontserratRegular
+		{
+			get;
+			set;
+		}
 
-        public static float Radius
-        {
-            get => _radius;
-            set => _radius = value;
-        }
+		public static float Radius
+		{
+			get;
+			set;
+		}
 
-        public static LayoutOptions Horizontal
-        {
-            get => _horizontal;
-            set => _horizontal = value;
-        }
-
-        public static Color BorderColor
-        {
-            get => _borderColor;
-            set => _borderColor = value;
-        }
-
-        public static bool Shadow
-        {
-            get => _shadow;
-            set => _shadow = value;
-        }
-
-        public static Thickness Margin
-        {
-            get => _margin;
-            set => _margin = value;
-        }
-
-        public static Thickness MarginForTitle
-        {
-            get => _marginForTitle;
-            set => _marginForTitle = value;
-        }
-
-        public static Thickness MarginForImage
-        {
-            get => _marginForImage;
-            set => _marginForImage = value;
-        }
-
-        public static Color ColorButtom
-        {
-            get => _colorButtom;
-            set => _colorButtom = value;
-        }
-        #endregion
-    }
+		public static bool Shadow
+		{
+			get;
+			set;
+		}
+		#endregion
+	}
 }

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using bonus.app.Core.Converters;
 using bonus.app.Core.Dtos.BusinessmanDtos;
-using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
@@ -21,11 +16,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Data
 		#region Fields
 		private ValidatableObject<string> _contact = new ValidatableObject<string>();
+		private string _description = string.Empty;
 		private MvxCommand _editCommand;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IProfileService _profileService;
 		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
-		private string _description = string.Empty;
 		#endregion
 		#endregion
 
@@ -44,23 +39,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 		#endregion
 
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-
-			if (Parameters.IsActiveUser)
-			{
-				WorkingMode.Value = User?.WorkTime;
-				Contact.Value = User?.Contact;
-				Description = User?.Description;
-			}
-		}
-
 		#region Properties
 		public ValidatableObject<string> Contact
 		{
 			get => _contact;
 			set => SetProperty(ref _contact, value);
+		}
+
+		public string Description
+		{
+			get => _description;
+			set => SetProperty(ref _description, value);
 		}
 
 		public MvxCommand EditCommand
@@ -79,15 +68,47 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 		#endregion
 
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			if (Parameters.IsActiveUser)
+			{
+				WorkingMode.Value = User?.WorkTime;
+				Contact.Value = User?.Contact;
+				Description = User?.Description;
+			}
+		}
+		#endregion
+
 		#region Private
 		private void AddValidations()
 		{
-			WorkingMode.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите режим работы." });
-			Contact.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите контактное лицо." });
-			Address.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите адрес." });
-			Address.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Адрес не может быть меньше 6 символов." });
-			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите номер телефона." });
-			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule { ValidationMessage = "Не корректный номер телефона." });
+			WorkingMode.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите режим работы."
+			});
+			Contact.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите контактное лицо."
+			});
+			Address.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите адрес."
+			});
+			Address.Validations.Add(new MinLengthRule(6)
+			{
+				ValidationMessage = "Адрес не может быть меньше 6 символов."
+			});
+			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите номер телефона."
+			});
+			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule
+			{
+				ValidationMessage = "Не корректный номер телефона."
+			});
 		}
 
 		private async void EditCommandExecute()
@@ -152,7 +173,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 			if (_profileService.ErrorDetails != null && _profileService.ErrorDetails.Count > 0)
 			{
-				var key = _profileService.ErrorDetails.First().Key;
+				var key = _profileService.ErrorDetails.First()
+										 .Key;
 				if (key.Equals("phone"))
 				{
 					Device.BeginInvokeOnMainThread(() =>
@@ -161,7 +183,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					});
 					return;
 				}
-
 			}
 
 			if (!string.IsNullOrEmpty(_profileService.Error))
@@ -171,12 +192,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					Application.Current.MainPage.DisplayAlert("Ошибка", _profileService.Error, "Ок");
 				});
 			}
-		}
-
-		public string Description
-		{
-			get => _description;
-			set => SetProperty(ref _description, value);
 		}
 		#endregion
 	}

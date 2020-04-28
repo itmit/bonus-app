@@ -3,23 +3,26 @@ using bonus.app.Core.Page;
 using bonus.app.Core.ViewModels.Customer;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Master, WrapInNavigationPage = false, Title = "Меню")]
-    public partial class MenuCustomerPage : MvxContentPage<MenuCustomerViewModel>
-    {
-        public MenuCustomerPage()
-        {
-            InitializeComponent();
-        }
+	public partial class MenuCustomerPage : MvxContentPage<MenuCustomerViewModel>
+	{
+		#region .ctor
+		public MenuCustomerPage()
+		{
+			InitializeComponent();
+		}
+		#endregion
 
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new ChatPage());
-        }
-    }
+		#region Private
+		private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new ChatPage());
+		}
+		#endregion
+	}
 }

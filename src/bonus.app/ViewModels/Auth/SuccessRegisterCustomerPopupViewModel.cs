@@ -8,16 +8,23 @@ namespace bonus.app.Core.ViewModels.Auth
 {
 	public class SuccessRegisterCustomerPopupViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
 		private MvxCommand _closePopupCommand;
 		private readonly IMvxNavigationService _navigationService;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public SuccessRegisterCustomerPopupViewModel(IMvxNavigationService navigationService, IAuthService authService)
 		{
 			_navigationService = navigationService;
 
 			UserUuid = authService.User.Uuid;
 		}
+		#endregion
 
+		#region Properties
 		public Guid UserUuid
 		{
 			get;
@@ -35,5 +42,6 @@ namespace bonus.app.Core.ViewModels.Auth
 				return _closePopupCommand;
 			}
 		}
+		#endregion
 	}
 }

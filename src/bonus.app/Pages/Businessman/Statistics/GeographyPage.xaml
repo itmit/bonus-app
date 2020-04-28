@@ -15,10 +15,10 @@
     <ContentPage.Content>
         <!--Страница 11.3 География-->
         <StackLayout Margin="15,0" Spacing="0">
-            <Label Text="Страны" Padding="5,20,5,15"/>
-            <BoxView/>
-            <Label Text="Города" Padding="5,20,5,15"/>
-            <BoxView/>
+            <Label Text="Страны" Padding="5,20,5,15" />
+            <BoxView />
+            <Label Text="Города" Padding="5,20,5,15" />
+            <BoxView />
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

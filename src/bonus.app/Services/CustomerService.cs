@@ -1,25 +1,32 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
 	public class CustomerService : ICustomerService
 	{
-		private readonly Mapper _mapper;
-		private readonly IAuthService _authService;
+		#region Data
+		#region Consts
+		private const string GetCustomerByLoginUri = "http://bonus.itmit-studio.ru/api/service/searchCustomer";
 
+		private const string GetCustomerByUuidUri = "http://bonus.itmit-studio.ru/api/service/getCustomerByUUID";
+		#endregion
+
+		#region Fields
+		private readonly IAuthService _authService;
+		private readonly Mapper _mapper;
+		#endregion
+		#endregion
+
+		#region .ctor
 		public CustomerService(IAuthService authService)
 		{
 			_authService = authService;
@@ -36,8 +43,45 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 		}
+		#endregion
 
-		private const string GetCustomerByUuidUri = "http://bonus.itmit-studio.ru/api/service/getCustomerByUUID";
+		#region ICustomerService members
+		public async Task<User> GetCustomerByLogin(string login)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+
+				var response = await client.PostAsync(GetCustomerByLoginUri,
+													  new FormUrlEncodedContent(new Dictionary<string, string>
+													  {
+														  {
+															  "login", login
+														  }
+													  }));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				if (string.IsNullOrEmpty(jsonString))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+				if (response.IsSuccessStatusCode)
+				{
+					var user = _mapper.Map<User>(data.Data);
+					var userInfo = _mapper.Map<User>(data.Data.Client);
+					userInfo.Balance = user.Balance / 100;
+					return userInfo;
+				}
+
+				return null;
+			}
+		}
 
 		public async Task<User> GetCustomerByUuid(Guid uuid)
 		{
@@ -46,10 +90,13 @@ namespace bonus.app.Core.Services
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
 
-				var response = await client.PostAsync(GetCustomerByUuidUri, new FormUrlEncodedContent(new Dictionary<string, string>
-				{
-					{"uuid", uuid.ToString()}
-				}));
+				var response = await client.PostAsync(GetCustomerByUuidUri,
+													  new FormUrlEncodedContent(new Dictionary<string, string>
+													  {
+														  {
+															  "uuid", uuid.ToString()
+														  }
+													  }));
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);
@@ -58,6 +105,7 @@ namespace bonus.app.Core.Services
 				{
 					return null;
 				}
+
 				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
 
 				if (response.IsSuccessStatusCode)
@@ -71,40 +119,6 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
-
-		private const string GetCustomerByLoginUri = "http://bonus.itmit-studio.ru/api/service/searchCustomer";
-
-		public async Task<User> GetCustomerByLogin(string login)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
-
-				var response = await client.PostAsync(GetCustomerByLoginUri, new FormUrlEncodedContent(new Dictionary<string, string>
-				{
-					{"login", login}
-				}));
-
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
-
-				if (string.IsNullOrEmpty(jsonString))
-				{
-					return null;
-				}
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (response.IsSuccessStatusCode)
-				{
-					var user = _mapper.Map<User>(data.Data);
-					var userInfo = _mapper.Map<User>(data.Data.Client);
-					userInfo.Balance = user.Balance / 100;
-					return userInfo;
-				}
-
-				return null;
-			}
-		}
+		#endregion
 	}
 }

@@ -4,11 +4,13 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
-	public class SalesTypesViewModel :MvxNavigationViewModel
+	public class SalesTypesViewModel : MvxNavigationViewModel
 	{
+		#region .ctor
 		public SalesTypesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 	}
 }

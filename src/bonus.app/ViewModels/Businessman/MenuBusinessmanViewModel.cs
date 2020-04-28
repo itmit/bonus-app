@@ -64,39 +64,8 @@ namespace bonus.app.Core.ViewModels.Businessman
 		{
 			get
 			{
-				_openProfileCommand = _openProfileCommand ??
-									  new MvxCommand(OpenProfileCommandExecute);
+				_openProfileCommand = _openProfileCommand ?? new MvxCommand(OpenProfileCommandExecute);
 				return _openProfileCommand;
-			}
-		}
-
-		private void OpenProfileCommandExecute()
-		{
-			if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
-			{
-				if (masterDetailPage.Detail is TabbedPage tabbedPage)
-				{
-					var profilePage =
-						tabbedPage.Children.Single(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
-														(p as IMvxPage)?.ViewModel is BusinessmanProfileViewModel);
-					tabbedPage.CurrentPage = profilePage;
-					if (profilePage is NavigationPage profileNavigationPage && profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
-					{
-						foreach (var page in profileNavigationPage.Navigation.NavigationStack)
-						{
-							if (profileNavigationPage.RootPage == profileNavigationPage.CurrentPage)
-							{
-								break;
-							}
-
-							_navigationService.Close(((IMvxPage)page).ViewModel);
-						}
-					}
-
-					tabbedPage.CurrentPage = profilePage;
-				}
-
-				masterDetailPage.IsPresented = false;
 			}
 		}
 
@@ -148,6 +117,37 @@ namespace bonus.app.Core.ViewModels.Businessman
 		{
 			await _authService.Logout(_authService.User);
 			await _navigationService.Navigate<AuthorizationViewModel>();
+		}
+		#endregion
+
+		#region Private
+		private void OpenProfileCommandExecute()
+		{
+			if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
+			{
+				if (masterDetailPage.Detail is TabbedPage tabbedPage)
+				{
+					var profilePage = tabbedPage.Children.Single(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
+																	  (p as IMvxPage)?.ViewModel is BusinessmanProfileViewModel);
+					tabbedPage.CurrentPage = profilePage;
+					if (profilePage is NavigationPage profileNavigationPage && profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
+					{
+						foreach (var page in profileNavigationPage.Navigation.NavigationStack)
+						{
+							if (profileNavigationPage.RootPage == profileNavigationPage.CurrentPage)
+							{
+								break;
+							}
+
+							_navigationService.Close(((IMvxPage) page).ViewModel);
+						}
+					}
+
+					tabbedPage.CurrentPage = profilePage;
+				}
+
+				masterDetailPage.IsPresented = false;
+			}
 		}
 		#endregion
 	}

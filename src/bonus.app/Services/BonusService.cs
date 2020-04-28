@@ -1,29 +1,31 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
-using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
 	public class BonusService : IBonusService
 	{
-		private readonly IAuthService _authService;
-
-		public BonusService(IAuthService authService)
-		{
-			_authService = authService;
-		}
-
+		#region Data
+		#region Consts
 		private const string AccrueAndWriteOffBonusesUri = "http://bonus.itmit-studio.ru/api/service";
+		#endregion
 
-		public async Task<bool> AccrueAndWriteOffBonuses(AccrueAndWriteOffBonusesDto requestDto) 
+		#region Fields
+		private readonly IAuthService _authService;
+		#endregion
+		#endregion
+
+		#region .ctor
+		public BonusService(IAuthService authService) => _authService = authService;
+		#endregion
+
+		#region IBonusService members
+		public async Task<bool> AccrueAndWriteOffBonuses(AccrueAndWriteOffBonusesDto requestDto)
 		{
 			using (var client = new HttpClient())
 			{
@@ -40,5 +42,6 @@ namespace bonus.app.Core.Services
 				return response.IsSuccessStatusCode;
 			}
 		}
+		#endregion
 	}
 }

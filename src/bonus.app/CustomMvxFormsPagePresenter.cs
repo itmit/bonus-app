@@ -5,7 +5,6 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
@@ -16,6 +15,7 @@ namespace bonus.app.Core
 {
 	public class CustomMvxFormsPagePresenter : MvxFormsPagePresenter
 	{
+		#region .ctor
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:MvvmCross.Forms.Views.MvxFormsPagePresenter" /> class.
 		/// </summary>
@@ -23,6 +23,18 @@ namespace bonus.app.Core
 		public CustomMvxFormsPagePresenter(IMvxFormsViewPresenter platformPresenter)
 			: base(platformPresenter)
 		{
+		}
+		#endregion
+
+		#region Overrided
+		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute)
+		{
+			if ((FormsApplication.MainPage as TabbedPage)?.CurrentPage is NavigationPage root)
+			{
+				return FindAndCloseViewFromViewModel(viewModel, root, attribute);
+			}
+
+			return base.CloseContentPage(viewModel, attribute);
 		}
 
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)
@@ -46,65 +58,10 @@ namespace bonus.app.Core
 			return base.GetPageOfType<TPage>(rootPage);
 		}
 
-		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute) 
-		{
-			if ((FormsApplication.MainPage as TabbedPage)?.CurrentPage is NavigationPage root)
-			{
-				return FindAndCloseViewFromViewModel(viewModel, root, attribute);
-			}
-			return base.CloseContentPage(viewModel, attribute);
-		}
-
-		public override NavigationPage TopNavigationPage(Xamarin.Forms.Page rootPage = null)
-		{
-			if (rootPage == null)
-			{
-				rootPage = FormsApplication.MainPage;
-			}
-
-			if (rootPage is TabbedPage tabbedPage)
-			{
-				if (tabbedPage.CurrentPage != null)
-				{
-					var navTabbedPage = TopNavigationPage(tabbedPage.CurrentPage);
-					if (navTabbedPage != null)
-					{
-						return navTabbedPage;
-					}
-				}
-			}
-
-			return base.TopNavigationPage(rootPage);
-		}
-
 		public override void RegisterAttributeTypes()
 		{
 			base.RegisterAttributeTypes();
 			AttributeTypesToActionsDictionary.Register<MvxPopupPagePresentationAttribute>(ShowPopupPage, ClosePopupPage);
-		}
-
-		private async Task<bool> ClosePopupPage(IMvxViewModel viewModel, MvxPopupPagePresentationAttribute attribute)
-		{
-			var page = PopupNavigation.Instance.PopupStack?.OfType<IMvxPage>()
-						   .FirstOrDefault(x => x.ViewModel == viewModel) as PopupPage;
-
-			if (page == null)
-			{
-				await FormsApplication.MainPage.Navigation.PopPopupAsync(attribute.Animated);
-				return true;
-			}
-
-			await FormsApplication.MainPage.Navigation.RemovePopupPageAsync(page, attribute.Animated);
-			return true;
-		}
-
-		private async Task<bool> ShowPopupPage(Type view, MvxPopupPagePresentationAttribute attribute, MvxViewModelRequest request)
-		{
-			var page = CreatePage(view, request, attribute) as PopupPage;     
-
-			await FormsApplication.MainPage.Navigation.PushPopupAsync(page, attribute.Animated);
-
-			return true;
 		}
 
 		public override async Task<bool> ShowTabbedPage(Type view, MvxTabbedPagePresentationAttribute attribute, MvxViewModelRequest request)
@@ -140,5 +97,54 @@ namespace bonus.app.Core
 
 			return await base.ShowTabbedPage(view, attribute, request);
 		}
+
+		public override NavigationPage TopNavigationPage(Xamarin.Forms.Page rootPage = null)
+		{
+			if (rootPage == null)
+			{
+				rootPage = FormsApplication.MainPage;
+			}
+
+			if (rootPage is TabbedPage tabbedPage)
+			{
+				if (tabbedPage.CurrentPage != null)
+				{
+					var navTabbedPage = TopNavigationPage(tabbedPage.CurrentPage);
+					if (navTabbedPage != null)
+					{
+						return navTabbedPage;
+					}
+				}
+			}
+
+			return base.TopNavigationPage(rootPage);
+		}
+		#endregion
+
+		#region Private
+		private async Task<bool> ClosePopupPage(IMvxViewModel viewModel, MvxPopupPagePresentationAttribute attribute)
+		{
+			var page = PopupNavigation.Instance.PopupStack?.OfType<IMvxPage>()
+									  .FirstOrDefault(x => x.ViewModel == viewModel) as PopupPage;
+
+			if (page == null)
+			{
+				await FormsApplication.MainPage.Navigation.PopPopupAsync(attribute.Animated);
+				return true;
+			}
+
+			await FormsApplication.MainPage.Navigation.RemovePopupPageAsync(page, attribute.Animated);
+			return true;
+		}
+
+		private async Task<bool> ShowPopupPage(Type view, MvxPopupPagePresentationAttribute attribute, MvxViewModelRequest request)
+		{
+			var page = CreatePage(view, request, attribute) as PopupPage;
+
+			await FormsApplication.MainPage.Navigation.PushPopupAsync(page, attribute.Animated);
+
+			return true;
+		}
+		#endregion
 	}
 }

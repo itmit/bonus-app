@@ -7,14 +7,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class ServiceViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
+		private Color _color = Color.Transparent;
 		private string _name;
 		private MvxCommand _selectService;
-		private Color _color = Color.Transparent;
+		#endregion
+		#endregion
+
+		#region Properties
+		public IServiceParentViewModel ParentViewModel
+		{
+			get;
+			set;
+		}
 
 		public Guid Uuid
 		{
 			get;
 			set;
+		}
+
+		public Color Color
+		{
+			get => _color;
+			set => SetProperty(ref _color, value);
 		}
 
 		public string Name
@@ -31,22 +48,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				return _selectService;
 			}
 		}
+		#endregion
 
-		public IServiceParentViewModel ParentViewModel
-		{
-			get;
-			set;
-		}
-
-		public Color Color
-		{
-			get => _color;
-			set => SetProperty(ref _color, value);
-		}
-
+		#region Private
 		private void Execute()
 		{
 			ParentViewModel.SelectedService = this;
 		}
+		#endregion
 	}
 }

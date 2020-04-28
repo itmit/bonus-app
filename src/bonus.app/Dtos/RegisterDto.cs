@@ -1,19 +1,12 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace bonus.app.Core.Dtos
 {
 	public class RegisterDto
 	{
+		#region Properties
 		[JsonProperty("email")]
 		public string Email
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("name")]
-		public string Name
 		{
 			get;
 			set;
@@ -26,15 +19,15 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("password")]
-		public string Password
+		[JsonProperty("name")]
+		public string Name
 		{
 			get;
 			set;
 		}
 
-		[JsonProperty("type")]
-		public string Type
+		[JsonProperty("password")]
+		public string Password
 		{
 			get;
 			set;
@@ -46,5 +39,13 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+
+		[JsonProperty("type")]
+		public string Type
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

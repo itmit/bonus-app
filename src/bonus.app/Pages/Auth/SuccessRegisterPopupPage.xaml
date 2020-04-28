@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <core:MvxPopupPage
     x:TypeArguments="auth:SuccessRegisterPopupViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -12,7 +13,7 @@
     <!--You can set an animation in the xaml file or in the csharp code behind-->
     <!--Popup при успешной регистрации в профиле покупателя-->
     <pages:PopupPage.Animation>
-        <animations:ScaleAnimation 
+        <animations:ScaleAnimation
             PositionIn="Center"
             PositionOut="Center"
             ScaleIn="1.2"
@@ -21,33 +22,34 @@
             DurationOut="300"
             EasingIn="SinOut"
             EasingOut="SinIn"
-            HasBackgroundAnimation="True"/>
+            HasBackgroundAnimation="True" />
     </pages:PopupPage.Animation>
     <!--You can use any elements here which are extended from Xamarin.Forms.View-->
 
     <Frame CornerRadius="10"
-           VerticalOptions="Center" 
+           VerticalOptions="Center"
            HorizontalOptions="Center"
            Padding="20, 40, 20, 20"
            Margin="20,0">
         <StackLayout
-                BackgroundColor="#FFF"
-                HeightRequest="270">
+            BackgroundColor="#FFF"
+            HeightRequest="270">
             <Label Text="Вы успешно&#10;зарегистрировались!"
-                       HorizontalTextAlignment="Center"
-                       FontSize="Medium"/>
-
-            <Label Text="Просим заполнить статистическую&#10;&#10;информацию, чтобы мы сделали сервис&#10;&#10;ориентированным на Вас"
                    HorizontalTextAlignment="Center"
-                   Margin="0,15"/>
+                   FontSize="Medium" />
+
+            <Label
+                Text="Просим заполнить статистическую&#10;&#10;информацию, чтобы мы сделали сервис&#10;&#10;ориентированным на Вас"
+                HorizontalTextAlignment="Center"
+                Margin="0,15" />
 
             <design:CustomButton Style="{StaticResource AppButtonGradient}">
                 <Grid>
-                    <graphic:RectangleInProfile/>
-                    <Label Text="Ок" Style="{StaticResource TextForAppButton}"/>
+                    <graphic:RectangleInProfile />
+                    <Label Text="Ок" Style="{StaticResource TextForAppButton}" />
                 </Grid>
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenEditPageCommand}"/>
+                    <TapGestureRecognizer Command="{Binding OpenEditPageCommand}" />
                 </Frame.GestureRecognizers>
             </design:CustomButton>
         </StackLayout>

@@ -4,6 +4,7 @@ namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class OrderDto
 	{
+		#region Properties
 		[JsonProperty("by")]
 		public string By
 		{
@@ -17,5 +18,6 @@ namespace bonus.app.Core.Dtos.GeoHelper
 			get;
 			set;
 		}
+		#endregion
 	}
 }

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Page
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecoveryDetailPage : ContentPage
-    {
-        public RecoveryDetailPage()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class RecoveryDetailPage : ContentPage
+	{
+		#region .ctor
+		public RecoveryDetailPage()
+		{
+			InitializeComponent();
+		}
+		#endregion
+	}
 }

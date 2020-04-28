@@ -10,7 +10,8 @@
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
-                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
@@ -35,7 +36,7 @@
                         </Style>
                         <Style TargetType="ui:MaterialTextField">
                             <Setter Property="TextColor" Value="#505050" />
-                            <Setter Property="TintColor" Value="#505050"/>
+                            <Setter Property="TintColor" Value="#505050" />
                             <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                             <Setter Property="InputType" Value="Chat" />
                             <Setter Property="TextFontSize" Value="14" />
@@ -55,17 +56,17 @@
                             <ui:MaterialTextField Text="{Binding Address.Value}"
                                                   Placeholder="Адрес"
                                                   ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                                  HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                                  HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding WorkingMode.Value}"
                                                   Placeholder="Режим работы"
                                                   ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                                  HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                                  HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding Contact.Value}"
                                                   Placeholder="Контактное лицо"
                                                   ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                                  HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                                  HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
                                                   Placeholder="Номер телефона"
@@ -91,21 +92,21 @@
                             <BoxView Margin="0,0,0,10">
                                 <BoxView.IsVisible>
                                     <OnPlatform x:TypeArguments="x:Boolean">
-                                        <On Platform="Android" Value="False"/>
-                                        <On Platform="iOS" Value="True"/>
+                                        <On Platform="Android" Value="False" />
+                                        <On Platform="iOS" Value="True" />
                                     </OnPlatform>
                                 </BoxView.IsVisible>
                             </BoxView>
 
-                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"/>
+                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
 
-                            <design:CustomButton Style="{StaticResource AppButtonGradient}" >
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
-                                    <graphic:RectangleInProfile/>
-                                    <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}"/>
+                                    <graphic:RectangleInProfile />
+                                    <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}" />
                                 </Grid>
                                 <design:CustomButton.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding EditCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding EditCommand}" />
                                 </design:CustomButton.GestureRecognizers>
                             </design:CustomButton>
 

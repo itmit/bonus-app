@@ -11,29 +11,27 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 {
 	public class CustomerSharesViewModel : MvxNavigationViewModel
 	{
-		private IStockService _stockService;
-		private MvxObservableCollection<Stock> _stocks;
-		private Stock _selectedStock;
+		#region Data
+		#region Fields
 		private bool _isRefreshing;
 		private MvxCommand _refreshCommand;
+		private Stock _selectedStock;
+		private MvxObservableCollection<Stock> _stocks;
+		private readonly IStockService _stockService;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public CustomerSharesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IStockService stockService)
-			: base(logProvider, navigationService)
-		{
+			: base(logProvider, navigationService) =>
 			_stockService = stockService;
-		}
+		#endregion
 
-		public override async Task Initialize()
+		#region Properties
+		public bool IsRefreshing
 		{
-			await base.Initialize();
-
-			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
-		}
-
-		public MvxObservableCollection<Stock> Stocks
-		{
-			get => _stocks;
-			set => SetProperty(ref _stocks, value);
+			get => _isRefreshing;
+			private set => SetProperty(ref _isRefreshing, value);
 		}
 
 		public MvxCommand RefreshCommand
@@ -51,12 +49,6 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 			}
 		}
 
-		public bool IsRefreshing
-		{
-			get => _isRefreshing;
-			private set => SetProperty(ref _isRefreshing, value);
-		}
-
 		public Stock SelectedStock
 		{
 			get => _selectedStock;
@@ -72,5 +64,21 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 				SetProperty(ref _selectedStock, null);
 			}
 		}
+
+		public MvxObservableCollection<Stock> Stocks
+		{
+			get => _stocks;
+			set => SetProperty(ref _stocks, value);
+		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
+		}
+		#endregion
 	}
 }

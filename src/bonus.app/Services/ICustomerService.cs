@@ -6,8 +6,10 @@ namespace bonus.app.Core.Services
 {
 	public interface ICustomerService
 	{
-		Task<User> GetCustomerByUuid(Guid uuid);
-
+		#region Overridable
 		Task<User> GetCustomerByLogin(string login);
+
+		Task<User> GetCustomerByUuid(Guid uuid);
+		#endregion
 	}
 }

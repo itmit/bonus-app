@@ -12,21 +12,21 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class MyServicesViewModel : MvxViewModel, IServiceParentViewModel
 	{
-		private readonly IServicesService _servicesServices;
-		private readonly Mapper _mapper;
-		private MvxObservableCollection<ServiceTypeViewModel> _services;
-		private ServiceViewModel _selectedService;
-		private int _shapeRotation;
-		private MvxCommand _showOrHideTypesServicesCommand;
+		#region Data
+		#region Fields
 		private bool _isVisibleServices;
+		private readonly Mapper _mapper;
 		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes = new MvxObservableCollection<CreatedServiceViewModel>();
+		private ServiceViewModel _selectedService;
+		private MvxObservableCollection<ServiceTypeViewModel> _services;
+		private readonly IServicesService _servicesServices;
+		private int _shapeRotation;
 		private MvxCommand _showMyServiceTypesCommand;
+		private MvxCommand _showOrHideTypesServicesCommand;
+		#endregion
+		#endregion
 
-		public Guid UserUuid
-		{
-			get;
-		}
-
+		#region .ctor
 		public MyServicesViewModel(IServicesService servicesServices, IAuthService authService)
 		{
 			UserUuid = authService.User.Uuid;
@@ -40,18 +40,34 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
 			}));
 		}
+		#endregion
 
-		public MvxCommand ShowOrHideTypesServicesCommand
+		#region Properties
+		public ServiceType UserServiceType
+		{
+			get;
+			private set;
+		}
+
+		public Guid UserUuid
+		{
+			get;
+		}
+
+		public MvxCommand AddServiceCommand
 		{
 			get
 			{
-				_showOrHideTypesServicesCommand = _showOrHideTypesServicesCommand ?? new MvxCommand(() =>
-				{
-					IsVisibleServices = !IsVisibleServices;
-					ShapeRotation = IsVisibleServices ? 180 : 0;
-				});
-				return _showOrHideTypesServicesCommand;
-
+				_showMyServiceTypesCommand = _showMyServiceTypesCommand ??
+											 new MvxCommand(() =>
+											 {
+												 MyServiceTypes.Add(new CreatedServiceViewModel(_servicesServices)
+												 {
+													 ParentViewModel = this
+												 });
+												 RaisePropertyChanged(() => MyServiceTypes);
+											 });
+				return _showMyServiceTypesCommand;
 			}
 		}
 
@@ -61,18 +77,40 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set => SetProperty(ref _isVisibleServices, value);
 		}
 
-		public int ShapeRotation
-		{
-			get => _shapeRotation;
-			set => SetProperty(ref _shapeRotation, value);
-		}
-
 		public MvxObservableCollection<CreatedServiceViewModel> MyServiceTypes
 		{
 			get => _myServiceTypes;
 			set => SetProperty(ref _myServiceTypes, value);
 		}
 
+		public MvxObservableCollection<ServiceTypeViewModel> Services
+		{
+			get => _services;
+			private set => SetProperty(ref _services, value);
+		}
+
+		public int ShapeRotation
+		{
+			get => _shapeRotation;
+			set => SetProperty(ref _shapeRotation, value);
+		}
+
+		public MvxCommand ShowOrHideTypesServicesCommand
+		{
+			get
+			{
+				_showOrHideTypesServicesCommand = _showOrHideTypesServicesCommand ??
+												  new MvxCommand(() =>
+												  {
+													  IsVisibleServices = !IsVisibleServices;
+													  ShapeRotation = IsVisibleServices ? 180 : 0;
+												  });
+				return _showOrHideTypesServicesCommand;
+			}
+		}
+		#endregion
+
+		#region Public
 		public async Task<bool> ReloadServices()
 		{
 			try
@@ -95,24 +133,26 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 			return true;
 		}
+		#endregion
 
-		public MvxCommand AddServiceCommand
+		#region IServiceParentViewModel members
+		public ServiceViewModel SelectedService
 		{
-			get
+			get => _selectedService;
+			set
 			{
-				_showMyServiceTypesCommand = _showMyServiceTypesCommand ??
-											 new MvxCommand(() =>
-											 {
-												 MyServiceTypes.Add(new CreatedServiceViewModel(_servicesServices)
-												 {
-													 ParentViewModel = this
-												 });
-												 RaisePropertyChanged(() => MyServiceTypes);
-											 });
-				return _showMyServiceTypesCommand;
+				if (_selectedService != null)
+				{
+					_selectedService.Color = Color.Transparent;
+				}
+
+				value.Color = Color.FromHex("#BB8D91");
+				_selectedService = value;
 			}
 		}
+		#endregion
 
+		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
@@ -134,32 +174,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				}
 			}
 		}
-
-		public ServiceType UserServiceType
-		{
-			get;
-			private set;
-		}
-
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-				value.Color = Color.FromHex("#BB8D91");
-				_selectedService = value;
-			}
-		}
-
-		public MvxObservableCollection<ServiceTypeViewModel> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
-
+		#endregion
 	}
 }

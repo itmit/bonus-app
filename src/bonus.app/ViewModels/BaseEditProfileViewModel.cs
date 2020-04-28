@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
-using MvvmCross.Base;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions.Abstractions;
-using Realms;
 
 namespace bonus.app.Core.ViewModels
 {
@@ -34,11 +26,6 @@ namespace bonus.app.Core.ViewModels
 		private ValidatableObject<string> _phoneNumber = new ValidatableObject<string>();
 		private MvxCommand _picPhotoCommand;
 		private User _user;
-
-		public PicCountryAndCityViewModel CountryAndCityViewModel
-		{
-			get;
-		}
 		#endregion
 		#endregion
 
@@ -53,6 +40,11 @@ namespace bonus.app.Core.ViewModels
 		#endregion
 
 		#region Properties
+		public PicCountryAndCityViewModel CountryAndCityViewModel
+		{
+			get;
+		}
+
 		public EditProfileViewModelArguments Parameters
 		{
 			get;
@@ -144,7 +136,6 @@ namespace bonus.app.Core.ViewModels
 		#endregion
 
 		#region Private
-		
 		private async void PicImageCommandExecute()
 		{
 			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))

@@ -30,7 +30,7 @@
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
                     </Grid.GestureRecognizers>
                 </Grid>
-                <BoxView/>
+                <BoxView />
 
                 <Entry Placeholder="За период"
                        PlaceholderColor="#505050"

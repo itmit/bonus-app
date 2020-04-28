@@ -11,22 +11,13 @@ namespace bonus.app.Core.Controls
 		#region Data
 		#region Static
 		public static readonly BindableProperty ItemAppearingCommandProperty =
-			BindableProperty.Create(nameof(ItemAppearingCommand),
-									typeof(ICommand),
-									typeof(ExtendedListView),
-									default(ICommand));
+			BindableProperty.Create(nameof(ItemAppearingCommand), typeof(ICommand), typeof(ExtendedListView), default(ICommand));
 
 		public static readonly BindableProperty ItemDisappearingCommandProperty =
-			BindableProperty.Create(nameof(ItemDisappearingCommand),
-									typeof(ICommand),
-									typeof(ExtendedListView),
-									default(ICommand));
+			BindableProperty.Create(nameof(ItemDisappearingCommand), typeof(ICommand), typeof(ExtendedListView), default(ICommand));
 
 		public static readonly BindableProperty TappedCommandProperty =
-			BindableProperty.Create(nameof(TappedCommand),
-									typeof(ICommand),
-									typeof(ExtendedListView),
-									default(ICommand));
+			BindableProperty.Create(nameof(TappedCommand), typeof(ICommand), typeof(ExtendedListView), default(ICommand));
 		#endregion
 		#endregion
 
@@ -49,19 +40,19 @@ namespace bonus.app.Core.Controls
 		#region Properties
 		public ICommand ItemAppearingCommand
 		{
-			get => (ICommand)GetValue(ItemAppearingCommandProperty);
+			get => (ICommand) GetValue(ItemAppearingCommandProperty);
 			set => SetValue(ItemAppearingCommandProperty, value);
 		}
 
 		public ICommand ItemDisappearingCommand
 		{
-			get => (ICommand)GetValue(ItemDisappearingCommandProperty);
+			get => (ICommand) GetValue(ItemDisappearingCommandProperty);
 			set => SetValue(ItemDisappearingCommandProperty, value);
 		}
 
 		public ICommand TappedCommand
 		{
-			get => (ICommand)GetValue(TappedCommandProperty);
+			get => (ICommand) GetValue(TappedCommandProperty);
 			set => SetValue(TappedCommandProperty, value);
 		}
 		#endregion
@@ -74,7 +65,8 @@ namespace bonus.app.Core.Controls
 				try
 				{
 					if (ItemsSource != null &&
-						ItemsSource.Cast<object>().Any())
+						ItemsSource.Cast<object>()
+								   .Any())
 					{
 						var msg = ItemsSource.Cast<object>()
 											 .FirstOrDefault();
@@ -98,7 +90,8 @@ namespace bonus.app.Core.Controls
 				try
 				{
 					if (ItemsSource != null &&
-						ItemsSource.Cast<object>().Any())
+						ItemsSource.Cast<object>()
+								   .Any())
 					{
 						var msg = ItemsSource.Cast<object>()
 											 .LastOrDefault();
@@ -117,15 +110,13 @@ namespace bonus.app.Core.Controls
 		#endregion
 
 		#region Private
-		private void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
-			=>ItemAppearingCommand?.Execute(e.Item);
+		private void OnItemAppearing(object sender, ItemVisibilityEventArgs e) => ItemAppearingCommand?.Execute(e.Item);
 
-		private void OnItemDisappering(object sender, ItemVisibilityEventArgs e)
-			=>ItemDisappearingCommand?.Execute(e.Item);
+		private void OnItemDisappering(object sender, ItemVisibilityEventArgs e) => ItemDisappearingCommand?.Execute(e.Item);
 
 		private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
-			var listView = (ExtendedListView)sender;
+			var listView = (ExtendedListView) sender;
 			if (e == null)
 			{
 				return;

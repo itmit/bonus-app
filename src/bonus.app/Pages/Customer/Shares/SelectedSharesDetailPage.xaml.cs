@@ -7,9 +7,11 @@ namespace bonus.app.Core.Pages.Customer.Shares
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SelectedSharesDetailPage : MvxContentPage<SelectedSharesDetailViewModel>
 	{
+		#region .ctor
 		public SelectedSharesDetailPage()
 		{
 			InitializeComponent();
 		}
+		#endregion
 	}
 }

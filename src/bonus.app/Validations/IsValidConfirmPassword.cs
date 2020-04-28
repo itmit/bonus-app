@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Linq.Expressions;
-using MvvmCross.Base;
 
 namespace bonus.app.Core.Validations
 {
 	public class IsValidConfirmPassword : IValidationRule<string>
 	{
-		private Func<string> _prop;
+		#region Data
+		#region Fields
+		private readonly Func<string> _prop;
+		#endregion
+		#endregion
 
-		public IsValidConfirmPassword(Func<string> property)
-		{
-			_prop = property;
-		}
+		#region .ctor
+		public IsValidConfirmPassword(Func<string> property) => _prop = property;
+		#endregion
 
-		public string ValidationMessage
-		{
-			get;
-			set;
-		}
-
+		#region IValidationRule<string> members
 		public bool Check(string value)
 		{
 			var str = _prop.Invoke();
@@ -29,5 +25,12 @@ namespace bonus.app.Core.Validations
 
 			return str.Equals(value);
 		}
+
+		public string ValidationMessage
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

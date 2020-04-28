@@ -11,11 +11,14 @@ namespace bonus.app.Core.ViewModels.Customer
 {
 	public class MainTabbedCustomerViewModel : MvxNavigationViewModel
 	{
+		#region .ctor
 		public MainTabbedCustomerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 
+		#region Overrided
 		public override void ViewAppearing()
 		{
 			base.ViewAppearing();
@@ -26,5 +29,6 @@ namespace bonus.app.Core.ViewModels.Customer
 			NavigationService.Navigate<CustomerNewsViewModel>();
 			NavigationService.Navigate<CustomerBonusAccrualViewModel>();
 		}
+		#endregion
 	}
 }

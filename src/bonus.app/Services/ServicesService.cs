@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -18,6 +17,8 @@ namespace bonus.app.Core.Services
 	{
 		#region Data
 		#region Consts
+		private const string CreateServiceTypeUri = "http://bonus.itmit-studio.ru/api/service/storeServiceType";
+		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/service/storeServiceItem";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/service";
 
 		private const string ServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
@@ -75,7 +76,8 @@ namespace bonus.app.Core.Services
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(CreateServiceUri, new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
+				var response = await client.PostAsync(CreateServiceUri,
+													  new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
 
 #if DEBUG
 				var json = await response.Content.ReadAsStringAsync();
@@ -85,9 +87,6 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		private const string CreateServiceTypeUri = "http://bonus.itmit-studio.ru/api/service/storeServiceType";
-		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/service/storeServiceItem";
-		
 		public async Task<bool> CreateServiceType(string name)
 		{
 			using (var client = new HttpClient())

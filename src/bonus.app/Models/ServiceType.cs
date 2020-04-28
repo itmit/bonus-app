@@ -5,19 +5,14 @@ namespace bonus.app.Core.Models
 {
 	public class ServiceType
 	{
-		public string Name
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		public int Id
 		{
 			get;
 			set;
 		}
 
-		public Guid Uuid
+		public string Name
 		{
 			get;
 			set;
@@ -28,5 +23,12 @@ namespace bonus.app.Core.Models
 			get;
 			set;
 		}
+
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

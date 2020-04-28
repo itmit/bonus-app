@@ -6,9 +6,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
 	public class ViewsProfileViewModel : MvxNavigationViewModel
 	{
+		#region .ctor
 		public ViewsProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 	}
 }

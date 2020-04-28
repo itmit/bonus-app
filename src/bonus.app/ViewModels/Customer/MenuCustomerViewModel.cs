@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
-using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Commands;
@@ -19,9 +18,9 @@ namespace bonus.app.Core.ViewModels.Customer
 		private readonly IAuthService _authService;
 		private MvxCommand _logOutCommand;
 		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openBonusAccrualCommand;
 		private MvxCommand _openProfileCommand;
 		private MvxCommand _openSupportCommand;
-		private MvxCommand _openBonusAccrualCommand;
 		#endregion
 		#endregion
 

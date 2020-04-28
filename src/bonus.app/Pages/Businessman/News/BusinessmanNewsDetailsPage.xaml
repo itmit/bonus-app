@@ -29,7 +29,8 @@
                         </BindableLayout.ItemsSource>
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Frame IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="10" HorizontalOptions="Start"
+                                <Frame IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="10"
+                                       HorizontalOptions="Start"
                                        Margin="0,0,7,0">
                                     <Image Source="chika.png" WidthRequest="70" />
                                 </Frame>

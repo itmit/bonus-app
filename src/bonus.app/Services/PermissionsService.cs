@@ -6,16 +6,20 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.Services
 {
-	public class PermissionsService: IPermissionsService
+	public class PermissionsService : IPermissionsService
 	{
+		#region Data
+		#region Fields
 		private readonly ISettingsHelper _settingsHelper;
+		#endregion
+		#endregion
 
-		public PermissionsService(ISettingsHelper settingsHelper)
-		{
-			_settingsHelper = settingsHelper;
-		}
+		#region .ctor
+		public PermissionsService(ISettingsHelper settingsHelper) => _settingsHelper = settingsHelper;
+		#endregion
 
-		public async Task<bool> CheckPermission(Permission permission,  string message)
+		#region IPermissionsService members
+		public async Task<bool> CheckPermission(Permission permission, string message)
 		{
 			try
 			{
@@ -24,9 +28,10 @@ namespace bonus.app.Core.Services
 				{
 					return true;
 				}
+
 				await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(permission);
 				await CrossPermissions.Current.RequestPermissionsAsync(permission);
-				
+
 				status = await CrossPermissions.Current.CheckPermissionStatusAsync(permission);
 
 				if (status == PermissionStatus.Granted)
@@ -36,10 +41,7 @@ namespace bonus.app.Core.Services
 
 				Device.BeginInvokeOnMainThread(async () =>
 				{
-					var answer = await Application.Current.MainPage.DisplayAlert("Внимание",
-																				 message,
-																				 "Ок",
-																				 "Отмена");
+					var answer = await Application.Current.MainPage.DisplayAlert("Внимание", message, "Ок", "Отмена");
 
 					if (answer)
 					{
@@ -54,5 +56,6 @@ namespace bonus.app.Core.Services
 
 			return false;
 		}
+		#endregion
 	}
 }

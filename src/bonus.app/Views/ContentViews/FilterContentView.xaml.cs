@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,11 +7,34 @@ namespace bonus.app.Core.Views.ViewCells
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FilterContentView : ContentView
 	{
+		#region .ctor
 		public FilterContentView()
 		{
 			InitializeComponent();
 			MyStockLabel.TextColor = Color.Gray;
 		}
+		#endregion
+
+		#region Private
+		/// <summary>
+		/// Управляет видимостью двух аккордионов
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ImageButton_OnClicked(object sender, EventArgs e)
+		{
+			if (StackLayout.IsEnabled)
+			{
+				StackLayout.IsVisible = false;
+				StackLayout.IsEnabled = false;
+			}
+			else
+			{
+				StackLayout.IsVisible = true;
+				StackLayout.IsEnabled = true;
+			}
+		}
+
 		/// <summary>
 		/// Событие при нажатии на левый таб
 		/// </summary>
@@ -47,25 +65,6 @@ namespace bonus.app.Core.Views.ViewCells
 			AllStockLabel.Scale = 1.1;
 			AllStockLabel.TextColor = Color.FromHex("#505050");
 			StackLayout.IsVisible = false;
-		}
-
-		/// <summary>
-		/// Управляет видимостью двух аккордионов
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void ImageButton_OnClicked(object sender, EventArgs e)
-		{
-			if (StackLayout.IsEnabled)
-			{
-				StackLayout.IsVisible = false;
-				StackLayout.IsEnabled = false;
-			}
-			else
-			{
-				StackLayout.IsVisible = true;
-				StackLayout.IsEnabled = true;
-			}
 		}
 
 		/// <summary>
@@ -115,5 +114,6 @@ namespace bonus.app.Core.Views.ViewCells
 				Shape.Rotation = 0;
 			}
 		}
-    }
+		#endregion
+	}
 }

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -14,21 +15,21 @@
                 <StackLayout.Resources>
                     <ResourceDictionary>
                         <Style TargetType="Entry">
-                            <Setter Property="TextColor" Value="#505050"/>
-                            <Setter Property="PlaceholderColor" Value="#505050"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="PlaceholderColor" Value="#505050" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
-                <Entry Placeholder="Страна" Completed="Entry_Completed"/>
-                <Entry x:Name="City" Placeholder="Город" IsVisible="False"/>
-                <Entry Placeholder="Номер телефона"/>
-                <Entry Placeholder="Пол"/>
-                <Entry Placeholder="Дата рождения"/>
-                <Entry Placeholder="Марка автомобиля"/>
-                <Entry Placeholder="Установите фотографию профиля" Margin="0,0,0,105"/>
-                <Button Text="Сохранить" Style="{StaticResource AppButton}" Clicked="Button_Clicked"/>
+                <Entry Placeholder="Страна" Completed="Entry_Completed" />
+                <Entry x:Name="City" Placeholder="Город" IsVisible="False" />
+                <Entry Placeholder="Номер телефона" />
+                <Entry Placeholder="Пол" />
+                <Entry Placeholder="Дата рождения" />
+                <Entry Placeholder="Марка автомобиля" />
+                <Entry Placeholder="Установите фотографию профиля" Margin="0,0,0,105" />
+                <Button Text="Сохранить" Style="{StaticResource AppButton}" Clicked="Button_Clicked" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

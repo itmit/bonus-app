@@ -4,33 +4,37 @@ namespace bonus.app.Core.Controls
 {
 	public class ExtendedEditorControl : Editor
 	{
-		public static readonly BindableProperty HasRoundedCornerProperty
-			= BindableProperty.Create(nameof(HasRoundedCorner), 
-				typeof(bool), 
-				typeof(ExtendedEditorControl), 
-				false);
+		#region Data
+		#region Static
+		public static readonly BindableProperty HasRoundedCornerProperty = BindableProperty.Create(nameof(HasRoundedCorner), typeof(bool), typeof(ExtendedEditorControl), false);
 
-		public static readonly BindableProperty IsExpandableProperty
-			= BindableProperty.Create(nameof(IsExpandable), 
-									  typeof(bool), 
-									  typeof(ExtendedEditorControl), 
-									  false);
+		public static readonly BindableProperty IsExpandableProperty = BindableProperty.Create(nameof(IsExpandable), typeof(bool), typeof(ExtendedEditorControl), false);
+		#endregion
+		#endregion
 
-		public bool IsExpandable
-		{
-			get => (bool)GetValue(IsExpandableProperty);
-			set => SetValue(IsExpandableProperty, value);
-		}
+		#region .ctor
+		public ExtendedEditorControl() => TextChanged += OnTextChanged;
+		#endregion
+
+		#region .dtor
+		~ExtendedEditorControl() => TextChanged -= OnTextChanged;
+		#endregion
+
+		#region Properties
 		public bool HasRoundedCorner
 		{
-			get => (bool)GetValue(HasRoundedCornerProperty);
+			get => (bool) GetValue(HasRoundedCornerProperty);
 			set => SetValue(HasRoundedCornerProperty, value);
 		}
 
-		public ExtendedEditorControl() => TextChanged += OnTextChanged;
+		public bool IsExpandable
+		{
+			get => (bool) GetValue(IsExpandableProperty);
+			set => SetValue(IsExpandableProperty, value);
+		}
+		#endregion
 
-		~ExtendedEditorControl() => TextChanged -= OnTextChanged;
-
+		#region Private
 		private void OnTextChanged(object sender, TextChangedEventArgs e)
 		{
 			if (IsExpandable)
@@ -38,5 +42,6 @@ namespace bonus.app.Core.Controls
 				InvalidateMeasure();
 			}
 		}
+		#endregion
 	}
 }

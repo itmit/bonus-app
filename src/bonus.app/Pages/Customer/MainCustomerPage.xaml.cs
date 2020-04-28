@@ -5,13 +5,15 @@ using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxMasterDetailPagePresentation(MasterDetailPosition.Root, WrapInNavigationPage = false, Title = "Главная")]
-    public partial class MainCustomerPage : MvxMasterDetailPage<MainCustomerViewModel>
-    {
-        public MainCustomerPage()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class MainCustomerPage : MvxMasterDetailPage<MainCustomerViewModel>
+	{
+		#region .ctor
+		public MainCustomerPage()
+		{
+			InitializeComponent();
+		}
+		#endregion
+	}
 }

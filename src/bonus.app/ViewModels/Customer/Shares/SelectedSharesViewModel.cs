@@ -6,9 +6,11 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 {
 	public class SelectedSharesViewModel : MvxNavigationViewModel
 	{
+		#region .ctor
 		public SelectedSharesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 	}
 }

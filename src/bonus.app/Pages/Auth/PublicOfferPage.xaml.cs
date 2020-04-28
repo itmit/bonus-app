@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms.Xaml;
@@ -26,6 +25,6 @@ namespace bonus.app.Core.Pages.Auth
 		{
 			Ch2.IsChecked = !Ch2.IsChecked;
 		}
-        #endregion
-    }
+		#endregion
+	}
 }

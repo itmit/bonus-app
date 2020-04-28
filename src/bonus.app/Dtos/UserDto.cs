@@ -6,8 +6,19 @@ namespace bonus.app.Core.Dtos
 {
 	public class UserDto
 	{
-		[JsonProperty("uuid")]
-		public Guid Uuid
+		#region Properties
+		[JsonProperty("balance")]
+		public int Balance
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Возвращает или устанавливает токен для авторизации.
+		/// </summary>
+		[JsonProperty("access_token")]
+		public string Body
 		{
 			get;
 			set;
@@ -27,15 +38,6 @@ namespace bonus.app.Core.Dtos
 		}
 
 		/// <summary>
-		/// Возвращает или устанавливает имя, фамилию и отчество пользователя.
-		/// </summary>
-		public string Name
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
 		/// Возвращает или устанавливает почтовый адрес пользователя.
 		/// </summary>
 		public string Email
@@ -44,18 +46,17 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("type")]
-		public UserRole Role
+		/// <summary>
+		/// Возвращает или устанавливает имя, фамилию и отчество пользователя.
+		/// </summary>
+		public string Name
 		{
 			get;
 			set;
 		}
 
-		/// <summary>
-		/// Возвращает или устанавливает токен для авторизации.
-		/// </summary>
-		[JsonProperty("access_token")]
-		public string Body
+		[JsonProperty("type")]
+		public UserRole Role
 		{
 			get;
 			set;
@@ -81,11 +82,12 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("balance")]
-		public int Balance
+		[JsonProperty("uuid")]
+		public Guid Uuid
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

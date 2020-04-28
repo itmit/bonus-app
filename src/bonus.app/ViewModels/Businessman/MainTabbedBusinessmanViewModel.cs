@@ -1,9 +1,7 @@
 ﻿using bonus.app.Core.ViewModels.Businessman.BonusAccrual;
 using bonus.app.Core.ViewModels.Businessman.News;
-using bonus.app.Core.ViewModels.Businessman.Pay;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Businessman.Services;
-using bonus.app.Core.ViewModels.Businessman.Statistics;
 using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -20,6 +18,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 		}
 		#endregion
 
+		#region Overrided
 		public override void ViewAppearing()
 		{
 			base.ViewAppearing();
@@ -31,5 +30,6 @@ namespace bonus.app.Core.ViewModels.Businessman
 			//NavigationService.Navigate<>();
 			NavigationService.Navigate<BusinessmanBonusAccrualViewModel>();
 		}
+		#endregion
 	}
 }

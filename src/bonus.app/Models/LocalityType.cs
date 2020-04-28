@@ -2,13 +2,8 @@
 {
 	public class LocalityType
 	{
+		#region Properties
 		public string Code
-		{
-			get;
-			set;
-		}
-
-		public string Name
 		{
 			get;
 			set;
@@ -25,5 +20,12 @@
 			get;
 			set;
 		}
+
+		public string Name
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

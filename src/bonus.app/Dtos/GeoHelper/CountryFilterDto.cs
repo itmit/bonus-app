@@ -4,8 +4,9 @@ namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class CountryFilterDto
 	{
-		[JsonProperty("name")]
-		public string Name
+		#region Properties
+		[JsonProperty("fips")]
+		public string Fips
 		{
 			get;
 			set;
@@ -24,12 +25,13 @@ namespace bonus.app.Core.Dtos.GeoHelper
 			get;
 			set;
 		}
-		
-		[JsonProperty("fips")]
-		public string Fips
+
+		[JsonProperty("name")]
+		public string Name
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

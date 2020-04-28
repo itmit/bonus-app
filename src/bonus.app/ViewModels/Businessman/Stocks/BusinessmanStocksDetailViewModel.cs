@@ -9,27 +9,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
 	public class BusinessmanStocksDetailViewModel : MvxViewModel<Stock>
 	{
-		private Stock _stock;
-		private User _user;
-		private Color _shareColor;
+		#region Data
+		#region Fields
 		private readonly IMvxNavigationService _navigationService;
-		private MvxCommand _openCreateStockPageCommand;
 		private MvxCommand _openCreateStockArchivePageCommand;
+		private MvxCommand _openCreateStockPageCommand;
 		private MvxCommand _openEditStockArchivePageCommand;
-		private IStockService _stockService;
+		private Color _shareColor;
+		private Stock _stock;
+		private readonly IStockService _stockService;
+		private User _user;
+		#endregion
+		#endregion
 
-		public User User
-		{
-			get => _user;
-			private set => SetProperty(ref _user, value);
-		}
-
-		public Color ShareColor
-		{
-			get => _shareColor;
-			private set => SetProperty(ref _shareColor, value);
-		}
-
+		#region .ctor
 		public BusinessmanStocksDetailViewModel(IAuthService authService, IMvxNavigationService navigationService, IStockService stockService)
 		{
 			User = authService.User;
@@ -37,13 +30,19 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			_stockService = stockService;
 			_stockService.EditedStock += StockServiceOnEditedStock;
 		}
+		#endregion
 
-		private void StockServiceOnEditedStock(Stock stock)
+		#region Properties
+		public MvxCommand OpenArchivePageCommand
 		{
-			if (stock != null)
+			get
 			{
-				Stock = stock;
-				RaiseAllPropertiesChanged();
+				_openCreateStockArchivePageCommand = _openCreateStockArchivePageCommand ??
+													 new MvxCommand(() =>
+													 {
+														 _navigationService.Navigate<StockArchiveViewModel>();
+													 });
+				return _openCreateStockArchivePageCommand;
 			}
 		}
 
@@ -60,19 +59,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
-		public MvxCommand OpenArchivePageCommand
-		{
-			get
-			{
-				_openCreateStockArchivePageCommand = _openCreateStockArchivePageCommand ??
-													 new MvxCommand(() =>
-													 {
-														 _navigationService.Navigate<StockArchiveViewModel>();
-													 });
-				return _openCreateStockArchivePageCommand;
-			}
-		}
-
 		public MvxCommand OpenEditStockArchivePageCommand
 		{
 			get
@@ -86,12 +72,26 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
+		public Color ShareColor
+		{
+			get => _shareColor;
+			private set => SetProperty(ref _shareColor, value);
+		}
+
 		public Stock Stock
 		{
 			get => _stock;
 			private set => SetProperty(ref _stock, value);
 		}
 
+		public User User
+		{
+			get => _user;
+			private set => SetProperty(ref _user, value);
+		}
+		#endregion
+
+		#region Overrided
 		public override void Prepare(Stock parameter)
 		{
 			Stock = parameter;
@@ -110,5 +110,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				ShareColor = Color.FromHex("#80BB8D91");
 			}
 		}
+		#endregion
+
+		#region Private
+		private void StockServiceOnEditedStock(Stock stock)
+		{
+			if (stock != null)
+			{
+				Stock = stock;
+				RaiseAllPropertiesChanged();
+			}
+		}
+		#endregion
 	}
 }

@@ -10,17 +10,28 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
-using MvvmCross;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
 	public class AuthService : IAuthService
 	{
+		#region Data
+		#region Consts
+		private const string LoginUri = "http://bonus.itmit-studio.ru/api/login";
+
+		private const string LogOutUri = "http://bonus.itmit-studio.ru/api/logout";
+		private const string RegisterUri = "http://bonus.itmit-studio.ru/api/register";
+		#endregion
+
+		#region Fields
 		private readonly Mapper _mapper;
 		private readonly IUserRepository _userRepository;
 		private Guid _userUuid = Guid.Empty;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public AuthService(IUserRepository userRepository)
 		{
 			_userRepository = userRepository;
@@ -39,142 +50,20 @@ namespace bonus.app.Core.Services
 				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 		}
+		#endregion
 
-		public Dictionary<string, string[]> ErrorDetails
-		{
-			get;
-			private set;
-		} = new Dictionary<string, string[]>();
-
-		public async Task<User> Register(User user, string password, string confirmPassword)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-				var regDto = new RegisterDto
-				{
-					Email = user.Email,
-					Name = user.Name,
-					Login = user.Login,
-					Password = password,
-					PasswordConfirm = confirmPassword,
-				};
-				switch (user.Role)
-				{
-					case UserRole.Businessman:
-						regDto.Type = "businessman";
-						break;
-					case UserRole.Customer:
-						regDto.Type = "customer";
-						break;
-				}
-				var requestBody = JsonConvert.SerializeObject(regDto);
-
-				Debug.WriteLine(requestBody);
-
-				var response = await client.PostAsync(RegisterUri, new StringContent(requestBody, Encoding.UTF8, "application/json"));
-
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (data.Success)
-				{
-					user = await Task.FromResult(_mapper.Map<User>(data.Data));
-					return user;
-				}
-
-				if (data.ErrorDetails != null)
-				{
-					ErrorDetails = data.ErrorDetails;
-					Error = data.ErrorDetails.First().Value.FirstOrDefault();
-					return null;
-				}
-
-				Error = data.Error;
-
-				return null;
-			}
-		}
-
-		public User User
-		{
-			get
-			{
-				try
-				{
-					if (_userUuid != Guid.Empty)
-					{
-						var user = _userRepository.Find(_userUuid);
-						if (user != null)
-						{
-							return user;
-						}
-					}
-					var u = _userRepository.GetAll()
-										   .SingleOrDefault();
-					if (u != null)
-					{
-						_userUuid = u.Uuid;
-					}
-
-					return u;
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-				}
-
-				return null;
-			}
-		}
-
-		public AccessToken Token => User?.AccessToken;
-
-		private const string LogOutUri = "http://bonus.itmit-studio.ru/api/logout";
-
-		public async Task<bool> Logout(User user)
-		{
-			if (user != null && !user.Uuid.Equals(Guid.Empty) && _userRepository.Remove(user))
-			{
-				_userUuid = Guid.Empty;
-				return true;
-			}
-			
-			_userRepository.RemoveAll();
-			return true;
-
-			// TODO: Сделать выход на сервере.
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
-
-				var response = await client.PostAsync(LogOutUri, null);
-
-				var json = await response.Content.ReadAsStringAsync();
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				if (data.Success)
-				{
-					_userUuid = Guid.Empty;
-					_userRepository.Remove(user);
-				}
-
-				return data.Success;
-			}
-		}
-
+		#region IAuthService members
 		public string Error
 		{
 			get;
 			private set;
 		}
 
-		private const string LoginUri = "http://bonus.itmit-studio.ru/api/login";
-		private const string RegisterUri = "http://bonus.itmit-studio.ru/api/register";
+		public Dictionary<string, string[]> ErrorDetails
+		{
+			get;
+			private set;
+		} = new Dictionary<string, string[]>();
 
 		public async Task<User> Login(AuthDto authData)
 		{
@@ -194,6 +83,7 @@ namespace bonus.app.Core.Services
 					Error = "Нет ответа от сервера";
 					return null;
 				}
+
 				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
 
 				if (response.IsSuccessStatusCode)
@@ -239,5 +129,128 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
+
+		public async Task<bool> Logout(User user)
+		{
+			if (user != null && !user.Uuid.Equals(Guid.Empty) && _userRepository.Remove(user))
+			{
+				_userUuid = Guid.Empty;
+				return true;
+			}
+
+			_userRepository.RemoveAll();
+			return true;
+
+			// TODO: Сделать выход на сервере.
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
+
+				var response = await client.PostAsync(LogOutUri, null);
+
+				var json = await response.Content.ReadAsStringAsync();
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+				if (data.Success)
+				{
+					_userUuid = Guid.Empty;
+					_userRepository.Remove(user);
+				}
+
+				return data.Success;
+			}
+		}
+
+		public async Task<User> Register(User user, string password, string confirmPassword)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+				var regDto = new RegisterDto
+				{
+					Email = user.Email,
+					Name = user.Name,
+					Login = user.Login,
+					Password = password,
+					PasswordConfirm = confirmPassword
+				};
+				switch (user.Role)
+				{
+					case UserRole.Businessman:
+						regDto.Type = "businessman";
+						break;
+					case UserRole.Customer:
+						regDto.Type = "customer";
+						break;
+				}
+
+				var requestBody = JsonConvert.SerializeObject(regDto);
+
+				Debug.WriteLine(requestBody);
+
+				var response = await client.PostAsync(RegisterUri, new StringContent(requestBody, Encoding.UTF8, "application/json"));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+				if (data.Success)
+				{
+					user = await Task.FromResult(_mapper.Map<User>(data.Data));
+					return user;
+				}
+
+				if (data.ErrorDetails != null)
+				{
+					ErrorDetails = data.ErrorDetails;
+					Error = data.ErrorDetails.First()
+								.Value.FirstOrDefault();
+					return null;
+				}
+
+				Error = data.Error;
+
+				return null;
+			}
+		}
+
+		public AccessToken Token => User?.AccessToken;
+
+		public User User
+		{
+			get
+			{
+				try
+				{
+					if (_userUuid != Guid.Empty)
+					{
+						var user = _userRepository.Find(_userUuid);
+						if (user != null)
+						{
+							return user;
+						}
+					}
+
+					var u = _userRepository.GetAll()
+										   .SingleOrDefault();
+					if (u != null)
+					{
+						_userUuid = u.Uuid;
+					}
+
+					return u;
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+
+				return null;
+			}
+		}
+		#endregion
 	}
 }

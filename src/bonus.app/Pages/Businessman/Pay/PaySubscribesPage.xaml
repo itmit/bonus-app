@@ -6,7 +6,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:pay="clr-namespace:bonus.app.Core.ViewModels.Businessman.Pay;assembly=bonus.app.Core"
-                      xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core" xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
+                      xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+                      xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Pay.PaySubscribesPage">
     <NavigationPage.TitleView>
@@ -21,7 +22,7 @@
             </CollectionView.ItemsSource>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <contentviews:PayContentView/>
+                    <contentviews:PayContentView />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

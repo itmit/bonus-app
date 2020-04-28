@@ -5,16 +5,18 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 {
 	public class ServicesDto
 	{
-		public ServiceType Type
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		public List<Service> Items
 		{
 			get;
 			set;
 		}
+
+		public ServiceType Type
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

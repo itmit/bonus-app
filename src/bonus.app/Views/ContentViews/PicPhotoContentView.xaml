@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,18 +12,19 @@
         <StackLayout>
             <Grid Margin="15,0,0,0">
                 <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PicImageCommand}"/>
+                    <TapGestureRecognizer Command="{Binding PicImageCommand}" />
                 </Grid.GestureRecognizers>
                 <StackLayout>
-                    <Label x:Name="PlaceholderLabel" FontSize="14"/>
-                    <Label Text="{Binding ImageName}" Margin="0,5" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                    <Label x:Name="PlaceholderLabel" FontSize="14" />
+                    <Label Text="{Binding ImageName}" Margin="0,5" VerticalOptions="Center"
+                           VerticalTextAlignment="Center" />
                 </StackLayout>
                 <Image Source="icon_photo"
                        WidthRequest="70"
                        HeightRequest="40"
                        VerticalOptions="CenterAndExpand"
                        IsVisible="{Binding IsShowDefaultImage}"
-                       HorizontalOptions="EndAndExpand" Margin="0,10,0,10"/>
+                       HorizontalOptions="EndAndExpand" Margin="0,10,0,10" />
 
                 <forms:CachedImage
                     Source="{Binding ImageSource}"
@@ -34,11 +36,11 @@
                     Margin="0,10,0,10">
 
                     <forms:CachedImage.Transformations>
-                        <transformations:RoundedTransformation Radius="100"/>
+                        <transformations:RoundedTransformation Radius="100" />
                     </forms:CachedImage.Transformations>
                 </forms:CachedImage>
             </Grid>
-            <BoxView Margin="0,0,0,5"/>
+            <BoxView Margin="0,0,0,5" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

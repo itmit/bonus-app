@@ -2,16 +2,18 @@
 {
 	public class PaginationRequestDto
 	{
-		public int Page
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		public int Limit
 		{
 			get;
 			set;
 		}
+
+		public int Page
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

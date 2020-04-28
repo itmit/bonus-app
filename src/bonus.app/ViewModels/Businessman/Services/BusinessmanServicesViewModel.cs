@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
@@ -15,16 +13,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class BusinessmanServicesViewModel : MvxNavigationViewModel
 	{
-		private readonly IServicesService _servicesServices;
-
-		public MyServicesViewModel MyServicesViewModel { get; }
-
-		private MvxObservableCollection<Service> _myServices;
+		#region Data
+		#region Fields
+		private MvxCommand _addServiceCommand;
 		private int? _bonusAmount;
 		private int? _bonusPercentage;
 		private int? _cancellationBonusAmount;
 		private int? _cancellationBonusPercentage;
-		private MvxCommand _addServiceCommand;
+
+		private MvxObservableCollection<Service> _myServices;
+		private readonly IServicesService _servicesServices;
+		#endregion
+		#endregion
 
 		#region .ctor
 		public BusinessmanServicesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IServicesService servicesServices, IAuthService authService)
@@ -35,28 +35,19 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		}
 		#endregion
 
-		public override async Task Initialize()
+		#region Properties
+		public MyServicesViewModel MyServicesViewModel
 		{
-			await base.Initialize();
-			await MyServicesViewModel.Initialize();
-
-			try
-			{
-				MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
-				await RaisePropertyChanged(() => HasServices);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+			get;
 		}
 
-		public bool HasServices => MyServices != null && MyServices.Count > 0;
-
-		public MvxObservableCollection<Service> MyServices
+		public MvxCommand AddServiceCommand
 		{
-			get => _myServices;
-			private set => SetProperty(ref _myServices, value);
+			get
+			{
+				_addServiceCommand = _addServiceCommand ?? new MvxCommand(AddServiceCommandExecute);
+				return _addServiceCommand;
+			}
 		}
 
 		public int? BonusAmount
@@ -83,15 +74,34 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set => SetProperty(ref _cancellationBonusPercentage, value);
 		}
 
-		public MvxCommand AddServiceCommand 
-		{ 
-			get
+		public bool HasServices => MyServices != null && MyServices.Count > 0;
+
+		public MvxObservableCollection<Service> MyServices
+		{
+			get => _myServices;
+			private set => SetProperty(ref _myServices, value);
+		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+			await MyServicesViewModel.Initialize();
+
+			try
 			{
-				_addServiceCommand = _addServiceCommand ?? new MvxCommand(AddServiceCommandExecute);
-				return _addServiceCommand;
+				MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
+				await RaisePropertyChanged(() => HasServices);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
 			}
 		}
+		#endregion
 
+		#region Private
 		private async void AddServiceCommandExecute()
 		{
 			try
@@ -102,12 +112,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				};
 				if (BonusAmount != null && BonusAmount > 0)
 				{
-					service.AccrualMethod = BonusValueType.Points.ToString().ToLower();
+					service.AccrualMethod = BonusValueType.Points.ToString()
+														  .ToLower();
 					service.AccrualValue = BonusAmount.Value;
-				} 
+				}
 				else if (BonusPercentage != null && BonusPercentage > 0)
 				{
-					service.AccrualMethod = BonusValueType.Percent.ToString().ToLower();
+					service.AccrualMethod = BonusValueType.Percent.ToString()
+														  .ToLower();
 					service.AccrualValue = BonusPercentage.Value;
 				}
 				else
@@ -118,15 +130,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 					});
 					return;
 				}
-				
+
 				if (CancellationBonusAmount != null && CancellationBonusAmount > 0)
 				{
-					service.WriteOffMethod = BonusValueType.Points.ToString().ToLower();
+					service.WriteOffMethod = BonusValueType.Points.ToString()
+														   .ToLower();
 					service.WriteOffValue = CancellationBonusAmount.Value;
-				} 
+				}
 				else if (CancellationBonusPercentage != null && CancellationBonusPercentage > 0)
 				{
-					service.WriteOffMethod = BonusValueType.Percent.ToString().ToLower();
+					service.WriteOffMethod = BonusValueType.Percent.ToString()
+														   .ToLower();
 					service.WriteOffValue = CancellationBonusPercentage.Value;
 				}
 				else
@@ -137,6 +151,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 					});
 					return;
 				}
+
 				var result = await _servicesServices.CreateService(service);
 
 				if (result)
@@ -162,5 +177,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				Console.WriteLine(e);
 			}
 		}
+		#endregion
 	}
 }

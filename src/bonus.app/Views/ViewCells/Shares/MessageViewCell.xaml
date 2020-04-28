@@ -1,26 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.ViewCells.MessageViewCell">
+
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          mc:Ignorable="d"
+          x:Class="bonus.app.Core.Views.ViewCells.MessageViewCell">
     <!--Ячейка для списка сообщений в предпринимателе-->
     <ViewCell.View>
-      <Grid Padding="15,10,15,20" BackgroundColor="White">
-          <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="4*"/>
-              <ColumnDefinition Width="*"/>
-          </Grid.ColumnDefinitions>
-          <Frame Padding="0" BackgroundColor="#7C736D" VerticalOptions="Start" HorizontalOptions="Center" WidthRequest="40" HeightRequest="40" CornerRadius="20" HasShadow="False">
-              <Label Text="M" TextColor="White" FontSize="Title" FontFamily="Roboto" VerticalOptions="Center" HorizontalOptions="Center"/>
-          </Frame>
-          <StackLayout Grid.Column="1" Margin="15,0,0,0" HorizontalOptions="Start" VerticalOptions="Start">
-                <Label Text="Марина Миллер" TextColor="Black" MaxLines="1" LineBreakMode="TailTruncation"/>
-                <Label Text="Thank you for purchasing! When you arrive prepared to negotiate" TextColor="#858585" MaxLines="2" LineBreakMode="TailTruncation"/>
-          </StackLayout>
-          <Label Grid.Column="2" Text="08.10" TextColor="Black" HorizontalOptions="EndAndExpand"/>
-      </Grid>
-  </ViewCell.View>
+        <Grid Padding="15,10,15,20" BackgroundColor="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Frame Padding="0" BackgroundColor="#7C736D" VerticalOptions="Start" HorizontalOptions="Center"
+                   WidthRequest="40" HeightRequest="40" CornerRadius="20" HasShadow="False">
+                <Label Text="M" TextColor="White" FontSize="Title" FontFamily="Roboto" VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+            </Frame>
+            <StackLayout Grid.Column="1" Margin="15,0,0,0" HorizontalOptions="Start" VerticalOptions="Start">
+                <Label Text="Марина Миллер" TextColor="Black" MaxLines="1" LineBreakMode="TailTruncation" />
+                <Label Text="Thank you for purchasing! When you arrive prepared to negotiate" TextColor="#858585"
+                       MaxLines="2" LineBreakMode="TailTruncation" />
+            </StackLayout>
+            <Label Grid.Column="2" Text="08.10" TextColor="Black" HorizontalOptions="EndAndExpand" />
+        </Grid>
+    </ViewCell.View>
 </ViewCell>

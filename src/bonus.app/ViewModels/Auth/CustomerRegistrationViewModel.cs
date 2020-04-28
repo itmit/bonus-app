@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
@@ -30,8 +29,14 @@ namespace bonus.app.Core.ViewModels.Auth
 			_authService = authService;
 			_navigationService = navigationService;
 
-			Name.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите Ф.И.О." });
-			Name.Validations.Add(new MinLengthRule(2) { ValidationMessage = "Ф.И.О. быть меньше 2 символов." });
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите Ф.И.О."
+			});
+			Name.Validations.Add(new MinLengthRule(2)
+			{
+				ValidationMessage = "Ф.И.О. быть меньше 2 символов."
+			});
 		}
 		#endregion
 
@@ -73,9 +78,9 @@ namespace bonus.app.Core.ViewModels.Auth
 						await _navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
 							new EditProfileViewModelArguments(_user.Uuid, false, Password.Value));
 					}
+
 					return true;
 				}
-
 			}
 			catch (Exception e)
 			{
@@ -84,7 +89,8 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (_authService.ErrorDetails != null && _authService.ErrorDetails.Count > 0)
 			{
-				var key = _authService.ErrorDetails.First().Key;
+				var key = _authService.ErrorDetails.First()
+									  .Key;
 				if (key.Equals("email"))
 				{
 					Device.BeginInvokeOnMainThread(() =>

@@ -38,13 +38,18 @@ namespace bonus.app.Core.Pages.Businessman.Services
 		}
 		#endregion
 
-		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		#region Overrided
+		/// <summary>
+		/// When overridden, allows application developers to customize behavior immediately prior to the
+		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+		/// </summary>
 		/// <remarks>To be added.</remarks>
 		protected override void OnAppearing()
 		{
 			MyServicesView.ViewModel = ViewModel.MyServicesViewModel;
 			base.OnAppearing();
 		}
+		#endregion
 
 		#region Private
 		private void ToolBar1_Clicked(object sender, EventArgs e)

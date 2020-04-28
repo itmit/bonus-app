@@ -2,10 +2,12 @@
 {
 	public interface IServiceParentViewModel
 	{
+		#region Properties
 		ServiceViewModel SelectedService
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

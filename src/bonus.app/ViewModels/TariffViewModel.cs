@@ -1,17 +1,18 @@
-﻿using MvvmCross.Logging;
-using MvvmCross.Navigation;
+﻿using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels
 {
 	public class TariffViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
 		private IMvxNavigationService _navigationService;
+		#endregion
+		#endregion
 
-		public TariffViewModel(IMvxNavigationService navigationService)
-		{
-			_navigationService = navigationService;
-		}
+		#region .ctor
+		public TariffViewModel(IMvxNavigationService navigationService) => _navigationService = navigationService;
+		#endregion
 	}
 }

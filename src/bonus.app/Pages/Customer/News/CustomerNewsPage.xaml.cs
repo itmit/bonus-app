@@ -6,20 +6,22 @@ using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer.News
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
-		Icon = "ic_news",
-		Title = "Новости")]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_news", Title = "Новости")]
 	public partial class CustomerNewsPage : MvxContentPage<CustomerNewsViewModel>
-    {
-        public CustomerNewsPage()
-        {
-            InitializeComponent();
-        }
+	{
+		#region .ctor
+		public CustomerNewsPage()
+		{
+			InitializeComponent();
+		}
+		#endregion
 
+		#region Private
 		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			Navigation.PushAsync(new CustomerNewsDetailsPage());
 		}
+		#endregion
 	}
 }

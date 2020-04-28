@@ -61,13 +61,14 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Grid>
-                <design:CustomButton Style="{StaticResource AppButtonGradient}" IsEnabled="{Binding CanRegister, FallbackValue=false}">
-                     <Grid>
-                        <graphic:RectangleInProfile x:Name="Button"/>
-                        <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}"/>
+                <design:CustomButton Style="{StaticResource AppButtonGradient}"
+                                     IsEnabled="{Binding CanRegister, FallbackValue=false}">
+                    <Grid>
+                        <graphic:RectangleInProfile x:Name="Button" />
+                        <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}" />
                     </Grid>
                     <design:CustomButton.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}"/>
+                        <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}" />
                     </design:CustomButton.GestureRecognizers>
                 </design:CustomButton>
             </StackLayout>

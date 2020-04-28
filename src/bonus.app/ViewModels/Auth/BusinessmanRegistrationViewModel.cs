@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
@@ -26,8 +25,14 @@ namespace bonus.app.Core.ViewModels.Auth
 			_navigationService = navigationService;
 			_authService = authService;
 
-			Name.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите торговое название или имя мастера." });
-			Name.Validations.Add(new MinLengthRule(2) { ValidationMessage = "Торговое название или имя мастера не может быть меньше 2 символов." });
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите торговое название или имя мастера."
+			});
+			Name.Validations.Add(new MinLengthRule(2)
+			{
+				ValidationMessage = "Торговое название или имя мастера не может быть меньше 2 символов."
+			});
 		}
 		#endregion
 
@@ -48,7 +53,8 @@ namespace bonus.app.Core.ViewModels.Auth
 				if (user != null)
 				{
 					await Application.Current.MainPage.Navigation.PopToRootAsync();
-					await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, Password.Value));
+					await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(
+						new EditProfileViewModelArguments(user.Uuid, false, Password.Value));
 					return true;
 				}
 			}
@@ -59,7 +65,8 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (_authService.ErrorDetails != null && _authService.ErrorDetails.Count > 0)
 			{
-				var key = _authService.ErrorDetails.First().Key;
+				var key = _authService.ErrorDetails.First()
+									  .Key;
 				if (key.Equals("email"))
 				{
 					Device.BeginInvokeOnMainThread(() =>
@@ -79,7 +86,6 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 
 			return false;
-				
 		}
 		#endregion
 	}

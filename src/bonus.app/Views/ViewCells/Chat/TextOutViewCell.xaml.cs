@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Views.ViewCells.Chat
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TextOutViewCell : ViewCell
-    {
-        public TextOutViewCell()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class TextOutViewCell : ViewCell
+	{
+		#region .ctor
+		public TextOutViewCell()
+		{
+			InitializeComponent();
+		}
+		#endregion
+	}
 }

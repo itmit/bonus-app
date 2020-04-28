@@ -2,6 +2,7 @@
 {
 	public class LocalizedName
 	{
+		#region Properties
 		public string En
 		{
 			get;
@@ -13,5 +14,6 @@
 			get;
 			set;
 		}
+		#endregion
 	}
 }

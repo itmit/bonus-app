@@ -7,57 +7,60 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
 	public class StatisticsViewModel : MvxNavigationViewModel
 	{
-        
-
-        public StatisticsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
+		#region .ctor
+		public StatisticsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 
-        #region Command
-        #region Sales
-        private MvxCommand _openSalesTypesPageCommand;
-        public IMvxCommand OpenSalesTypesPageCommand
+		#region Command
+		#region Sales
+		private MvxCommand _openSalesTypesPageCommand;
+
+		public IMvxCommand OpenSalesTypesPageCommand
 		{
 			get
 			{
 				_openSalesTypesPageCommand = _openSalesTypesPageCommand ??
-										new MvxCommand(() =>
-										{
-											NavigationService.Navigate<SalesTypesViewModel>();
-										});
+											 new MvxCommand(() =>
+											 {
+												 NavigationService.Navigate<SalesTypesViewModel>();
+											 });
 				return _openSalesTypesPageCommand;
 			}
 		}
-        #endregion
+		#endregion
 
-        #region Gender
-        private MvxCommand _openGenderAgePageCommand;
-        public IMvxCommand OpenGenderAgePageCommand
+		#region Gender
+		private MvxCommand _openGenderAgePageCommand;
+
+		public IMvxCommand OpenGenderAgePageCommand
 		{
 			get
 			{
 				_openGenderAgePageCommand = _openGenderAgePageCommand ??
-										new MvxCommand(() =>
-										{
-											NavigationService.Navigate<GenderAgeViewModel>();
-										});
+											new MvxCommand(() =>
+											{
+												NavigationService.Navigate<GenderAgeViewModel>();
+											});
 				return _openGenderAgePageCommand;
 			}
 		}
-        #endregion
+		#endregion
 
-        #region Geography
-        private MvxCommand _openGeographyPageCommand;
-        public IMvxCommand OpenGeographyPageCommand
+		#region Geography
+		private MvxCommand _openGeographyPageCommand;
+
+		public IMvxCommand OpenGeographyPageCommand
 		{
 			get
 			{
 				_openGeographyPageCommand = _openGeographyPageCommand ??
-										new MvxCommand(() =>
-										{
-											NavigationService.Navigate<GeographyViewModel>();
-										});
+											new MvxCommand(() =>
+											{
+												NavigationService.Navigate<GeographyViewModel>();
+											});
 				return _openGeographyPageCommand;
 			}
 		}
@@ -65,15 +68,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 		#region Stock
 		private MvxCommand _openViewsStockPageCommand;
-        public IMvxCommand OpenViewsStockPageCommand
+
+		public IMvxCommand OpenViewsStockPageCommand
 		{
 			get
 			{
 				_openViewsStockPageCommand = _openViewsStockPageCommand ??
-										new MvxCommand(() =>
-										{
-											NavigationService.Navigate<ViewsStockViewModel>();
-										});
+											 new MvxCommand(() =>
+											 {
+												 NavigationService.Navigate<ViewsStockViewModel>();
+											 });
 				return _openViewsStockPageCommand;
 			}
 		}
@@ -81,15 +85,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 		#region Profile
 		private MvxCommand _openViewsProfilePageCommand;
-        public IMvxCommand OpenViewsProfilePageCommand
+
+		public IMvxCommand OpenViewsProfilePageCommand
 		{
 			get
 			{
 				_openViewsProfilePageCommand = _openViewsProfilePageCommand ??
-										new MvxCommand(() =>
-										{
-											NavigationService.Navigate<ViewsProfileViewModel>();
-										});
+											   new MvxCommand(() =>
+											   {
+												   NavigationService.Navigate<ViewsProfileViewModel>();
+											   });
 				return _openViewsProfilePageCommand;
 			}
 		}
@@ -97,15 +102,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 		#region Transitions
 		private MvxCommand _openTransitionsProfilePageCommand;
+
 		public IMvxCommand OpenTransitionsProfilePageCommand
 		{
 			get
 			{
 				_openTransitionsProfilePageCommand = _openTransitionsProfilePageCommand ??
-										new MvxCommand(() =>
-										{
-											NavigationService.Navigate<TransitionsProfileViewModel>();
-										});
+													 new MvxCommand(() =>
+													 {
+														 NavigationService.Navigate<TransitionsProfileViewModel>();
+													 });
 				return _openTransitionsProfilePageCommand;
 			}
 		}

@@ -1,17 +1,10 @@
-﻿using System;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
+﻿using System.Net.Mail;
 
 namespace bonus.app.Core.Validations
 {
 	public class IsValidEmailRule : IValidationRule<string>
 	{
-		public string ValidationMessage
-		{
-			get;
-			set;
-		}
-
+		#region IValidationRule<string> members
 		public bool Check(string value)
 		{
 			try
@@ -24,5 +17,12 @@ namespace bonus.app.Core.Validations
 				return false;
 			}
 		}
+
+		public string ValidationMessage
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

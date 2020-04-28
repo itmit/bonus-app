@@ -7,7 +7,6 @@ using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
@@ -18,30 +17,30 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public EventHandler AccrueAndWriteOffBonusesEventHandler;
 
 		private MvxCommand _accrueAndWriteOffBonusesCommand;
+		private double _accrueBonuses;
+		private string _accrueBonusesString;
+		private double _bonusAmount;
 		private string _bonusAmountString;
+		private double _bonusesForAccrual;
 		private string _bonusesForAccrualString;
+		private double _bonusesForWriteOff;
 		private string _bonusesForWriteOffString;
+		private double _bonusPercentage;
 		private string _bonusPercentageString;
 		private readonly IBonusService _bonusService;
+		private double _bonusWhiteOffAmount;
 		private string _bonusWhiteOffAmountString;
+		private double _bonusWhiteOffPercentage;
 		private string _bonusWhiteOffPercentageString;
 		private readonly ICustomerService _customerService;
 		private Guid _guid;
 		private readonly IMvxNavigationService _navigationService;
 		private Service _selectedService;
+		private double _servicePrice;
 		private string _servicePriceString;
 		private MvxObservableCollection<Service> _services;
 		private readonly IServicesService _servicesServices;
 		private User _user;
-		private double _bonusAmount;
-		private double _bonusesForAccrual;
-		private double _bonusesForWriteOff;
-		private double _bonusPercentage;
-		private double _bonusWhiteOffAmount;
-		private double _bonusWhiteOffPercentage;
-		private double _servicePrice;
-		private string _accrueBonusesString;
-		private double _accrueBonuses;
 		#endregion
 		#endregion
 
@@ -59,153 +58,28 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		#endregion
 
 		#region Properties
-		public double BonusAmount
-		{
-			get => _bonusAmount;
-			private set
-			{
-				_bonusAmount = value;
-				_bonusAmountString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => BonusAmountString);
-			}
-		}
-
-		public double BonusesForAccrual
-		{
-			get => _bonusesForAccrual;
-			private set
-			{
-				_bonusesForAccrual = value;
-				_bonusesForAccrualString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => BonusesForAccrualString);
-			}
-		}
-
-		public double BonusesForWriteOff
-		{
-			get => _bonusesForWriteOff;
-			private set
-			{
-				_bonusesForWriteOff = value;
-				_bonusesForWriteOffString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => BonusesForWriteOffString);
-			}
-		}
-
-		public double BonusPercentage
-		{
-			get => _bonusPercentage;
-			private set
-			{
-				_bonusPercentage = value;
-				_bonusPercentageString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => BonusPercentageString);
-			}
-		}
-
-		public double BonusWhiteOffAmount
-		{
-			get => _bonusWhiteOffAmount;
-			private set
-			{
-				_bonusWhiteOffAmount = value;
-				_bonusWhiteOffAmountString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => BonusWhiteOffAmountString);
-			}
-		}
-
-		public double BonusWhiteOffPercentage
-		{
-			get => _bonusWhiteOffPercentage;
-			private set
-			{
-				_bonusWhiteOffPercentage = value;
-				_bonusWhiteOffPercentageString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => BonusWhiteOffPercentageString);
-			}
-		}
-
 		public MvxCommand AccrueAndWriteOffBonusesCommand
 		{
 			get
 			{
-				_accrueAndWriteOffBonusesCommand = _accrueAndWriteOffBonusesCommand ??
-												   new MvxCommand(AccrueAndWriteOffBonusesCommandExecute);
+				_accrueAndWriteOffBonusesCommand = _accrueAndWriteOffBonusesCommand ?? new MvxCommand(AccrueAndWriteOffBonusesCommandExecute);
 				return _accrueAndWriteOffBonusesCommand;
 			}
 		}
 
-		private async void AccrueAndWriteOffBonusesCommandExecute()
+		public double AccrueBonuses
 		{
-			if (ServicePrice < 1)
+			get => _accrueBonuses;
+			private set
 			{
-				return;
-			}
-
-			var res = await _bonusService.AccrueAndWriteOffBonuses(new AccrueAndWriteOffBonusesDto
-			{
-				AccrualMethod = SelectedService.AccrualMethod,
-				AccrualValue = AccrueBonuses,
-				ClientUuid = _guid,
-				Price = ServicePrice,
-				ServiceUuid = SelectedService.Uuid,
-				WriteOffMethod = SelectedService.WhiteOffMethod,
-				WriteOffValue = BonusesForWriteOff
-			});
-
-			if (res)
-			{
-				if (await _navigationService.Close(this))
+				if (value.Equals(_accrueBonuses))
 				{
-					AccrueAndWriteOffBonusesEventHandler?.Invoke(this, EventArgs.Empty);
-				}
-			}
-		}
-		
-		public string BonusAmountString
-		{
-			get => _bonusAmountString;
-			set
-			{
-				if (string.IsNullOrEmpty(value))
-				{
-					_bonusAmount = 0;
-					SetProperty(ref _bonusAmountString, string.Empty);
 					return;
 				}
 
-				if (double.TryParse(value, out var val))
-				{
-					_bonusAmount = val;
-					SetProperty(ref _bonusAmountString, Math.Round(val, 2).ToString());
-					return;
-				}
-
-				RaisePropertyChanged(() => BonusAmountString);
-			}
-		}
-
-		public string BonusesForAccrualString
-		{
-			get => _bonusesForAccrualString;
-			set
-			{
-				if (string.IsNullOrEmpty(value))
-				{
-					_bonusesForAccrual = 0;
-					SetProperty(ref _bonusesForAccrualString, string.Empty);
-
-					return;
-				}
-
-				if (double.TryParse(value, out var val))
-				{
-					_bonusesForAccrual = val;
-					SetProperty(ref _bonusesForAccrualString, Math.Round(val, 2).ToString(CultureInfo.InvariantCulture));
-					return;
-				}
-
-				RaisePropertyChanged(() => BonusesForAccrualString);
+				_accrueBonuses = value;
+				_accrueBonusesString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => AccrueBonuses);
 			}
 		}
 
@@ -225,7 +99,9 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_accrueBonuses = val;
-					SetProperty(ref _accrueBonusesString, Math.Round(val, 2).ToString(CultureInfo.InvariantCulture));
+					SetProperty(ref _accrueBonusesString,
+								Math.Round(val, 2)
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -233,18 +109,87 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 		}
 
-		public double AccrueBonuses
+		public double BonusAmount
 		{
-			get => _accrueBonuses;
+			get => _bonusAmount;
 			private set
 			{
-				if (value.Equals(_accrueBonuses))
+				_bonusAmount = value;
+				_bonusAmountString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => BonusAmountString);
+			}
+		}
+
+		public string BonusAmountString
+		{
+			get => _bonusAmountString;
+			set
+			{
+				if (string.IsNullOrEmpty(value))
 				{
+					_bonusAmount = 0;
+					SetProperty(ref _bonusAmountString, string.Empty);
 					return;
 				}
-				_accrueBonuses = value;
-				_accrueBonusesString = value.ToString(CultureInfo.CurrentCulture);
-				RaisePropertyChanged(() => AccrueBonuses);
+
+				if (double.TryParse(value, out var val))
+				{
+					_bonusAmount = val;
+					SetProperty(ref _bonusAmountString,
+								Math.Round(val, 2)
+									.ToString());
+					return;
+				}
+
+				RaisePropertyChanged(() => BonusAmountString);
+			}
+		}
+
+		public double BonusesForAccrual
+		{
+			get => _bonusesForAccrual;
+			private set
+			{
+				_bonusesForAccrual = value;
+				_bonusesForAccrualString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => BonusesForAccrualString);
+			}
+		}
+
+		public string BonusesForAccrualString
+		{
+			get => _bonusesForAccrualString;
+			set
+			{
+				if (string.IsNullOrEmpty(value))
+				{
+					_bonusesForAccrual = 0;
+					SetProperty(ref _bonusesForAccrualString, string.Empty);
+
+					return;
+				}
+
+				if (double.TryParse(value, out var val))
+				{
+					_bonusesForAccrual = val;
+					SetProperty(ref _bonusesForAccrualString,
+								Math.Round(val, 2)
+									.ToString(CultureInfo.InvariantCulture));
+					return;
+				}
+
+				RaisePropertyChanged(() => BonusesForAccrualString);
+			}
+		}
+
+		public double BonusesForWriteOff
+		{
+			get => _bonusesForWriteOff;
+			private set
+			{
+				_bonusesForWriteOff = value;
+				_bonusesForWriteOffString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => BonusesForWriteOffString);
 			}
 		}
 
@@ -263,11 +208,24 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusesForWriteOff = val;
-					SetProperty(ref _bonusesForWriteOffString, Math.Round(val, 2).ToString(CultureInfo.InvariantCulture));
+					SetProperty(ref _bonusesForWriteOffString,
+								Math.Round(val, 2)
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
 				RaisePropertyChanged(() => BonusesForWriteOffString);
+			}
+		}
+
+		public double BonusPercentage
+		{
+			get => _bonusPercentage;
+			private set
+			{
+				_bonusPercentage = value;
+				_bonusPercentageString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => BonusPercentageString);
 			}
 		}
 
@@ -286,11 +244,24 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusPercentage = val;
-					SetProperty(ref _bonusPercentageString, Math.Round(val, 2).ToString());
+					SetProperty(ref _bonusPercentageString,
+								Math.Round(val, 2)
+									.ToString());
 					return;
 				}
 
 				RaisePropertyChanged(() => BonusPercentageString);
+			}
+		}
+
+		public double BonusWhiteOffAmount
+		{
+			get => _bonusWhiteOffAmount;
+			private set
+			{
+				_bonusWhiteOffAmount = value;
+				_bonusWhiteOffAmountString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => BonusWhiteOffAmountString);
 			}
 		}
 
@@ -309,11 +280,24 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusWhiteOffAmount = val;
-					SetProperty(ref _bonusWhiteOffAmountString, Math.Round(val, 2).ToString());
+					SetProperty(ref _bonusWhiteOffAmountString,
+								Math.Round(val, 2)
+									.ToString());
 					return;
 				}
 
 				RaisePropertyChanged(() => BonusWhiteOffAmountString);
+			}
+		}
+
+		public double BonusWhiteOffPercentage
+		{
+			get => _bonusWhiteOffPercentage;
+			private set
+			{
+				_bonusWhiteOffPercentage = value;
+				_bonusWhiteOffPercentageString = value.ToString(CultureInfo.CurrentCulture);
+				RaisePropertyChanged(() => BonusWhiteOffPercentageString);
 			}
 		}
 
@@ -332,14 +316,16 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_bonusWhiteOffPercentage = val;
-					SetProperty(ref _bonusWhiteOffPercentageString, Math.Round(val, 2).ToString());
+					SetProperty(ref _bonusWhiteOffPercentageString,
+								Math.Round(val, 2)
+									.ToString());
 					return;
 				}
 
 				RaisePropertyChanged(() => BonusWhiteOffPercentageString);
 			}
 		}
-		
+
 		public Service SelectedService
 		{
 			get => _selectedService;
@@ -413,7 +399,9 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				if (double.TryParse(value, out var val))
 				{
 					_servicePrice = val;
-					SetProperty(ref _servicePriceString, Math.Round(val, 2).ToString());
+					SetProperty(ref _servicePriceString,
+								Math.Round(val, 2)
+									.ToString());
 					return;
 				}
 
@@ -507,6 +495,35 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public override void Prepare(User parameter)
 		{
 			User = parameter;
+		}
+		#endregion
+
+		#region Private
+		private async void AccrueAndWriteOffBonusesCommandExecute()
+		{
+			if (ServicePrice < 1)
+			{
+				return;
+			}
+
+			var res = await _bonusService.AccrueAndWriteOffBonuses(new AccrueAndWriteOffBonusesDto
+			{
+				AccrualMethod = SelectedService.AccrualMethod,
+				AccrualValue = AccrueBonuses,
+				ClientUuid = _guid,
+				Price = ServicePrice,
+				ServiceUuid = SelectedService.Uuid,
+				WriteOffMethod = SelectedService.WhiteOffMethod,
+				WriteOffValue = BonusesForWriteOff
+			});
+
+			if (res)
+			{
+				if (await _navigationService.Close(this))
+				{
+					AccrueAndWriteOffBonusesEventHandler?.Invoke(this, EventArgs.Empty);
+				}
+			}
 		}
 		#endregion
 	}

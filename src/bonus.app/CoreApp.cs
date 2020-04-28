@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
+﻿using bonus.app.Core.Models;
 using bonus.app.Core.Services;
-using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Customer;
@@ -16,6 +13,7 @@ namespace bonus.app.Core
 {
 	public class CoreApp : MvxApplication
 	{
+		#region Overrided
 		public override void Initialize()
 		{
 			CreatableTypes()
@@ -39,21 +37,25 @@ namespace bonus.app.Core
 				return;
 			}
 
-			User user = Mvx.IoCProvider.Resolve<IAuthService>().User;
+			var user = Mvx.IoCProvider.Resolve<IAuthService>()
+						  .User;
 
 			if (user?.AccessToken == null)
 			{
 				RegisterAppStart<AuthorizationViewModel>();
 				return;
 			}
+
 			if (user.Role == UserRole.Businessman)
 			{
 				RegisterAppStart<MainBusinessmanViewModel>();
 			}
+
 			if (user.Role == UserRole.Customer)
 			{
 				RegisterAppStart<MainCustomerViewModel>();
 			}
 		}
+		#endregion
 	}
 }

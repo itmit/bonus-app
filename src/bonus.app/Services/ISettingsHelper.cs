@@ -2,6 +2,8 @@
 {
 	public interface ISettingsHelper
 	{
+		#region Overridable
 		void OpenAppSettings();
+		#endregion
 	}
 }

@@ -5,27 +5,32 @@ using Application = Xamarin.Forms.Application;
 
 namespace bonus.app.Core
 {
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
-			On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+	public partial class App : Application
+	{
+		#region .ctor
+		public App()
+		{
+			InitializeComponent();
+			On<Android>()
+				.UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
 			Material.Init(this);
-        }
-       
-        protected override void OnStart()
-        {
-        }
+		}
+		#endregion
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
+		#region Overrided
+		protected override void OnResume()
+		{
+			// Handle when your app resumes
+		}
 
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
-    }
+		protected override void OnSleep()
+		{
+			// Handle when your app sleeps
+		}
+
+		protected override void OnStart()
+		{
+		}
+		#endregion
+	}
 }

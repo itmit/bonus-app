@@ -21,8 +21,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 	{
 		#region Data
 		#region Fields
+		private bool _canCreateShareCommand = true;
+		private MvxCommand _createShareCommand;
 		private string _description;
 		private Dictionary<string, string> _errors = new Dictionary<string, string>();
+		private byte[] _imageBytes;
 		private string _imageName;
 		private string _imageSource;
 		private bool _isSubscriberOnly;
@@ -34,12 +37,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		private ServiceViewModel _selectedService;
 		private MvxObservableCollection<ServiceTypeViewModel> _services;
 		private readonly IServicesService _servicesServices;
-		private readonly IStockService _stockService;
 		private DateTime _shareTime = DateTime.Today;
 		private MvxCommand _showShareCommand;
-		private MvxCommand _createShareCommand;
-		private byte[] _imageBytes;
-		private bool _canCreateShareCommand = true;
+		private readonly IStockService _stockService;
 		#endregion
 		#endregion
 
@@ -68,6 +68,26 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		#endregion
 
 		#region Properties
+		public PicCountryAndCityViewModel PicCountryAndCityViewModel
+		{
+			get;
+		}
+
+		public bool CanCreateShareCommand
+		{
+			get => _canCreateShareCommand;
+			set => SetProperty(ref _canCreateShareCommand, value);
+		}
+
+		public MvxCommand CreateShareCommand
+		{
+			get
+			{
+				_createShareCommand = _createShareCommand ?? new MvxCommand(CreateShareCommandExecute);
+				return _createShareCommand;
+			}
+		}
+
 		public string Description
 		{
 			get => _description;
@@ -120,6 +140,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
+		public bool IsShowDefaultImage => string.IsNullOrEmpty(ImageSource);
+
 		public bool IsSubscriberOnly
 		{
 			get => _isSubscriberOnly;
@@ -168,65 +190,85 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			private set => SetProperty(ref _services, value);
 		}
 
-		public bool IsShowDefaultImage => string.IsNullOrEmpty(ImageSource);
-
-		public MvxCommand CreateShareCommand
+		public DateTime ShareTime
 		{
-			get
+			get => _shareTime;
+			set
 			{
-				_createShareCommand = _createShareCommand ?? new MvxCommand(CreateShareCommandExecute);
-				return _createShareCommand;
+				SetProperty(ref _shareTime, value);
+				if (value <= DateTime.Today)
+				{
+					Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
+				}
+				else
+				{
+					Errors["share_time"] = null;
+				}
+
+				RaisePropertyChanged(() => Errors);
 			}
 		}
 
-		private async void CreateShareCommandExecute()
+		public MvxCommand ShowShareCommand
 		{
-			if (!CheckValidFields())
+			get
 			{
-				return;
+				_showShareCommand = _showShareCommand ??
+									new MvxCommand(() =>
+									{
+										_navigationService.Navigate<SharePopupViewModel, Stock>(new Stock
+										{
+											ImageSource = ImageSource,
+											Description = Description,
+											Name = Name,
+											ShareTime = ShareTime
+										});
+									});
+				return _showShareCommand;
 			}
+		}
+		#endregion
 
-			bool res = false;
+		#region IServiceParentViewModel members
+		public ServiceViewModel SelectedService
+		{
+			get => _selectedService;
+			set
+			{
+				if (_selectedService != null)
+				{
+					_selectedService.Color = Color.Transparent;
+				}
+
+				value.Color = Color.FromHex("#BB8D91");
+				SetProperty(ref _selectedService, value);
+			}
+		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
 			try
 			{
-				res = await _stockService.CreateStock(new Stock
-				{
-					Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
-					City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
-					Service = SelectedService.Uuid,
-					Description = Description.Trim(),
-					ImageSource = ImageName,
-					Name = Name.Trim(),
-					ShareTime = ShareTime,
-					IsSubscriberOnly = IsSubscriberOnly
-				}, _imageBytes);
+				var a = await _servicesServices.GetAll();
+				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(a);
+				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
-
-			CanCreateShareCommand = !res;
-			if (res)
-			{
-				var vmRes = await _navigationService.Navigate<SuccessCreateSharesPopupViewModel, object, bool>(null);
-				if (vmRes)
-				{
-					await _navigationService.Close(this);
-				}
-				return;
-			}
-
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка попробуйте повторить запрос позже.", "Ок");
-			});
 		}
+		#endregion
 
+		#region Private
 		private bool CheckValidFields()
 		{
 			CanCreateShareCommand = false;
-			bool result = true;
+			var result = true;
 			if (PicCountryAndCityViewModel.SelectedCountry == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
@@ -311,92 +353,52 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			return result;
 		}
 
-		public bool CanCreateShareCommand
+		private async void CreateShareCommandExecute()
 		{
-			get => _canCreateShareCommand;
-			set => SetProperty(ref _canCreateShareCommand, value);
-		}
-
-		public DateTime ShareTime
-		{
-			get => _shareTime;
-			set
+			if (!CheckValidFields())
 			{
-				SetProperty(ref _shareTime, value);
-				if (value <= DateTime.Today)
-				{
-					Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
-				}
-				else
-				{
-					Errors["share_time"] = null;
-				}
-
-				RaisePropertyChanged(() => Errors);
+				return;
 			}
-		}
 
-		public MvxCommand ShowShareCommand
-		{
-			get
-			{
-				_showShareCommand = _showShareCommand ??
-									new MvxCommand(() =>
-									{
-										_navigationService.Navigate<SharePopupViewModel, Stock>(new Stock
-										{
-											ImageSource = ImageSource,
-											Description = Description,
-											Name = Name,
-											ShareTime = ShareTime
-										});
-									});
-				return _showShareCommand;
-			}
-		}
-		#endregion
-
-		#region IServiceParentViewModel members
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-
-				value.Color = Color.FromHex("#BB8D91");
-				SetProperty(ref _selectedService, value);
-			}
-		}
-
-		public PicCountryAndCityViewModel PicCountryAndCityViewModel
-		{
-			get;
-		}
-		#endregion
-
-		#region Overrided
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-
+			var res = false;
 			try
 			{
-				var a = await _servicesServices.GetAll();
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(a);
-				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
+				res = await _stockService.CreateStock(new Stock
+													  {
+														  Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
+														  City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
+														  Service = SelectedService.Uuid,
+														  Description = Description.Trim(),
+														  ImageSource = ImageName,
+														  Name = Name.Trim(),
+														  ShareTime = ShareTime,
+														  IsSubscriberOnly = IsSubscriberOnly
+													  },
+													  _imageBytes);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
-		}
-		#endregion
 
-		#region Private
+			CanCreateShareCommand = !res;
+			if (res)
+			{
+				var vmRes = await _navigationService.Navigate<SuccessCreateSharesPopupViewModel, object, bool>(null);
+				if (vmRes)
+				{
+					await _navigationService.Close(this);
+				}
+
+				return;
+			}
+
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка попробуйте повторить запрос позже.", "Ок");
+			});
+		}
+
 		private async void PicImageCommandExecute()
 		{
 			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
@@ -422,7 +424,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				using (var memoryStream = new MemoryStream())
 				{
 					image.GetStream()
-								  .CopyTo(memoryStream);
+						 .CopyTo(memoryStream);
 					image.Dispose();
 					_imageBytes = memoryStream.ToArray();
 				}

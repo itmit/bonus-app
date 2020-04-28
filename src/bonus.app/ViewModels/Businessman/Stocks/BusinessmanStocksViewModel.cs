@@ -11,37 +11,45 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
 	public class BusinessmanStocksViewModel : MvxNavigationViewModel
 	{
-		private MvxObservableCollection<Stock> _stocks;
-		private Stock _selectedStock;
-		private readonly IStockService _stockService;
-		private MvxCommand _openCreateSharePageCommand;
-		private MvxCommand _openCreateShareArchivePageCommand;
-		private MvxCommand _refreshCommand;
+		#region Data
+		#region Fields
 		private bool _isRefreshing;
+		private MvxCommand _openCreateShareArchivePageCommand;
+		private MvxCommand _openCreateSharePageCommand;
+		private MvxCommand _refreshCommand;
+		private Stock _selectedStock;
+		private MvxObservableCollection<Stock> _stocks;
+		private readonly IStockService _stockService;
+		#endregion
+		#endregion
 
-		public BusinessmanStocksViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService,  IStockService stockService)
+		#region .ctor
+		public BusinessmanStocksViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IStockService stockService)
 			: base(logProvider, navigationService)
 		{
 			_stockService = stockService;
 			_stockService.CreatedStockEventHandler += StockServiceOnCreatedStockEventHandler;
 		}
+		#endregion
 
-		private void StockServiceOnCreatedStockEventHandler(object sender, EventArgs e)
+		#region Properties
+		public bool IsRefreshing
 		{
-			RefreshCommand.Execute();
+			get => _isRefreshing;
+			private set => SetProperty(ref _isRefreshing, value);
 		}
 
-		public MvxObservableCollection<Stock> Stocks
+		public MvxCommand OpenCreateShareArchivePageCommand
 		{
-			get => _stocks;
-			set => SetProperty(ref _stocks, value);
-		}
-		
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-
-			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStock());
+			get
+			{
+				_openCreateShareArchivePageCommand = _openCreateShareArchivePageCommand ??
+													 new MvxCommand(() =>
+													 {
+														 NavigationService.Navigate<StockArchiveViewModel>();
+													 });
+				return _openCreateShareArchivePageCommand;
+			}
 		}
 
 		public MvxCommand OpenCreateSharePageCommand
@@ -57,18 +65,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
-		public MvxCommand OpenCreateShareArchivePageCommand
-		{
-			get
-			{
-				_openCreateShareArchivePageCommand = _openCreateShareArchivePageCommand ??
-													 new MvxCommand(() =>
-													 {
-														 NavigationService.Navigate<StockArchiveViewModel>();
-													 });
-				return _openCreateShareArchivePageCommand;
-			}
-		}
 		public MvxCommand RefreshCommand
 		{
 			get
@@ -82,12 +78,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 								  });
 				return _refreshCommand;
 			}
-		}
-
-		public bool IsRefreshing
-		{
-			get => _isRefreshing;
-			 private set => SetProperty(ref _isRefreshing, value);
 		}
 
 		public Stock SelectedStock
@@ -105,5 +95,28 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				SetProperty(ref _selectedStock, null);
 			}
 		}
+
+		public MvxObservableCollection<Stock> Stocks
+		{
+			get => _stocks;
+			set => SetProperty(ref _stocks, value);
+		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStock());
+		}
+		#endregion
+
+		#region Private
+		private void StockServiceOnCreatedStockEventHandler(object sender, EventArgs e)
+		{
+			RefreshCommand.Execute();
+		}
+		#endregion
 	}
 }

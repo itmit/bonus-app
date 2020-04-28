@@ -5,21 +5,26 @@ using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer.News
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CustomerNewsDetailsPage : MvxContentPage<CustomerNewsDetailsViewModel>
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class CustomerNewsDetailsPage : MvxContentPage<CustomerNewsDetailsViewModel>
 	{
+		#region Data
 		#region Fields
 		private int _top = 20;
 		#endregion
+		#endregion
 
+		#region .ctor
 		public CustomerNewsDetailsPage()
-        {
-            InitializeComponent();
+		{
+			InitializeComponent();
 			FrameImage.IsVisible = true;
 			CarouselViewImages.IsVisible = false;
 			ControlVisible(FrameImage.IsVisible, CarouselViewImages.IsVisible);
 		}
+		#endregion
 
+		#region Private
 		/// <summary>
 		/// Управляет видимостью картинок
 		/// </summary>
@@ -43,5 +48,6 @@ namespace bonus.app.Core.Pages.Customer.News
 				LabelNew.Margin = new Thickness(0, 25, 0, 5);
 			}
 		}
+		#endregion
 	}
 }

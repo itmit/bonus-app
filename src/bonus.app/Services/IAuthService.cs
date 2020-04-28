@@ -7,16 +7,13 @@ namespace bonus.app.Core.Services
 {
 	public interface IAuthService
 	{
-		Task<User> Login(AuthDto authData);
-
-		Dictionary<string, string[]> ErrorDetails
+		#region Properties
+		string Error
 		{
 			get;
 		}
 
-		Task<User> Register(User user, string password, string confirmPassword);
-
-		User User
+		Dictionary<string, string[]> ErrorDetails
 		{
 			get;
 		}
@@ -26,11 +23,18 @@ namespace bonus.app.Core.Services
 			get;
 		}
 
-		Task<bool> Logout(User user);
-
-		string Error
+		User User
 		{
 			get;
 		}
+		#endregion
+
+		#region Overridable
+		Task<User> Login(AuthDto authData);
+
+		Task<bool> Logout(User user);
+
+		Task<User> Register(User user, string password, string confirmPassword);
+		#endregion
 	}
 }

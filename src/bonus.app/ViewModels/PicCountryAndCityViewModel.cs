@@ -12,28 +12,163 @@ namespace bonus.app.Core.ViewModels
 {
 	public class PicCountryAndCityViewModel : MvxViewModel
 	{
-		private readonly IGeoHelperService _geoHelperService;
-		private Country _selectedCountry;
-		private MvxObservableCollection<Country> _countries;
-		private int _currentPageNumber;
-		private MvxObservableCollection<City> _cities;
-		private MvxCommand _loadMoreCitiesCommand;
+		#region Data
+		#region Fields
 		private readonly IAuthService _authService;
-		private bool _isVisibleCountries;
-		private MvxCommand _showOrHideCountriesCommand;
-		private int _countryShapeRotation;
-		private bool _isVisibleSelectedCity;
-		private MvxCommand _showOrHideCitiesCommand;
+		private MvxObservableCollection<City> _cities;
 		private int _cityShapeRotation;
+		private MvxObservableCollection<Country> _countries;
+		private int _countryShapeRotation;
+		private int _currentPageNumber;
+		private readonly IGeoHelperService _geoHelperService;
 		private bool _isVisibleCities;
+		private bool _isVisibleCountries;
+		private bool _isVisibleSelectedCity;
+		private MvxCommand _loadMoreCitiesCommand;
 		private City _selectedCity;
+		private Country _selectedCountry;
+		private MvxCommand _showOrHideCitiesCommand;
+		private MvxCommand _showOrHideCountriesCommand;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService, IAuthService authService)
 		{
 			_geoHelperService = geoHelperService;
 			_authService = authService;
 		}
+		#endregion
 
+		#region Properties
+		public bool IsBusy
+		{
+			get;
+			set;
+		}
+
+		public User User
+		{
+			get;
+			private set;
+		}
+
+		public MvxObservableCollection<City> Cities
+		{
+			get => _cities;
+			set => SetProperty(ref _cities, value);
+		}
+
+		public int CityShapeRotation
+		{
+			get => _cityShapeRotation;
+			set => SetProperty(ref _cityShapeRotation, value);
+		}
+
+		public MvxObservableCollection<Country> Countries
+		{
+			get => _countries;
+			set => SetProperty(ref _countries, value);
+		}
+
+		public int CountryShapeRotation
+		{
+			get => _countryShapeRotation;
+			set => SetProperty(ref _countryShapeRotation, value);
+		}
+
+		public bool IsVisibleCities
+		{
+			get => _isVisibleCities;
+			set => SetProperty(ref _isVisibleCities, value);
+		}
+
+		public bool IsVisibleCountries
+		{
+			get => _isVisibleCountries;
+			set => SetProperty(ref _isVisibleCountries, value);
+		}
+
+		public bool IsVisibleSelectedCity
+		{
+			get => _isVisibleSelectedCity;
+			set => SetProperty(ref _isVisibleSelectedCity, value);
+		}
+
+		public MvxCommand LoadMoreCitiesCommand
+		{
+			get
+			{
+				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1));
+				return _loadMoreCitiesCommand;
+			}
+		}
+
+		public City SelectedCity
+		{
+			get => _selectedCity;
+			set
+			{
+				SetProperty(ref _selectedCity, value);
+				ShowOrHideCitiesCommand.Execute();
+			}
+		}
+
+		public Country SelectedCountry
+		{
+			get => _selectedCountry;
+			set
+			{
+				SetProperty(ref _selectedCountry, value);
+				ShowOrHideCountriesCommand.Execute();
+				IsVisibleSelectedCity = true;
+				_cities = new MvxObservableCollection<City>();
+				LoadCities(value, 1);
+				if (User != null && !string.IsNullOrEmpty(User.City))
+				{
+					_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
+									new City
+									{
+										LocalizedNames = new LocalizedName
+										{
+											Ru = User.City
+										}
+									};
+					RaisePropertyChanged(() => SelectedCity);
+				}
+			}
+		}
+
+		public MvxCommand ShowOrHideCitiesCommand
+		{
+			get
+			{
+				_showOrHideCitiesCommand = _showOrHideCitiesCommand ??
+										   new MvxCommand(() =>
+										   {
+											   CityShapeRotation = IsVisibleCities ? 0 : 180;
+											   IsVisibleCities = !IsVisibleCities;
+										   });
+				return _showOrHideCitiesCommand;
+			}
+		}
+
+		public MvxCommand ShowOrHideCountriesCommand
+		{
+			get
+			{
+				_showOrHideCountriesCommand = _showOrHideCountriesCommand ??
+											  new MvxCommand(() =>
+											  {
+												  CountryShapeRotation = IsVisibleCountries ? 0 : 180;
+												  IsVisibleCountries = !IsVisibleCountries;
+											  });
+				return _showOrHideCountriesCommand;
+			}
+		}
+		#endregion
+
+		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
@@ -65,115 +200,9 @@ namespace bonus.app.Core.ViewModels
 				await RaisePropertyChanged(() => SelectedCountry);
 			}
 		}
+		#endregion
 
-		public City SelectedCity
-		{
-			get => _selectedCity;
-			set 
-			{
-				SetProperty(ref _selectedCity, value);
-				ShowOrHideCitiesCommand.Execute();
-			}
-		}
-
-		public MvxCommand LoadMoreCitiesCommand
-		{
-			get
-			{
-				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1));
-				return _loadMoreCitiesCommand;
-			}
-		}
-
-		public Country SelectedCountry
-		{
-			get => _selectedCountry;
-			set
-			{
-				SetProperty(ref _selectedCountry, value);
-				ShowOrHideCountriesCommand.Execute();
-				IsVisibleSelectedCity = true;
-				_cities = new MvxObservableCollection<City>();
-				LoadCities(value, 1);
-				if (User != null && !string.IsNullOrEmpty(User.City))
-				{
-					_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
-									new City
-									{
-										LocalizedNames = new LocalizedName
-										{
-											Ru = User.City
-										}
-									};
-					RaisePropertyChanged(() => SelectedCity);
-				}
-			}
-		}
-
-		public int CountryShapeRotation
-		{
-			get => _countryShapeRotation;
-			set => SetProperty(ref _countryShapeRotation, value);
-		}
-
-		public MvxCommand ShowOrHideCountriesCommand
-		{
-			get
-			{
-				_showOrHideCountriesCommand = _showOrHideCountriesCommand ??
-										new MvxCommand(() =>
-										{
-											CountryShapeRotation = IsVisibleCountries ? 0 : 180;
-											IsVisibleCountries = !IsVisibleCountries;
-										});
-				return _showOrHideCountriesCommand;
-			}
-		}
-
-		public int CityShapeRotation
-		{
-			get => _cityShapeRotation;
-			set => SetProperty(ref _cityShapeRotation, value);
-		}
-
-		public MvxCommand ShowOrHideCitiesCommand
-		{
-			get
-			{
-				_showOrHideCitiesCommand = _showOrHideCitiesCommand ??
-										   new MvxCommand(() =>
-										   {
-											   CityShapeRotation = IsVisibleCities ? 0 : 180;
-											   IsVisibleCities= !IsVisibleCities;
-										   });
-				return _showOrHideCitiesCommand;
-			}
-		}
-
-		public bool IsVisibleSelectedCity
-		{
-			get => _isVisibleSelectedCity;
-			set => SetProperty(ref _isVisibleSelectedCity, value);
-		}
-
-		public bool IsVisibleCountries
-		{
-			get => _isVisibleCountries;
-			set => SetProperty(ref _isVisibleCountries, value);
-		}
-
-		public bool IsVisibleCities
-		{
-			get => _isVisibleCities;
-			set => SetProperty(ref _isVisibleCities, value);
-		}
-
-		public MvxObservableCollection<Country> Countries
-		{
-			get => _countries;
-			set => SetProperty(ref _countries, value);
-		}
-
+		#region Private
 		private async void LoadCities(Country country, int pageNumber)
 		{
 			if (country == null)
@@ -189,10 +218,10 @@ namespace bonus.app.Core.ViewModels
 															   {
 																   FallbackLang = "en",
 																   Lang = "ru"
-															   }, 
+															   },
 															   new CityFilterDto
 															   {
-																   CountryIso = country.Iso,
+																   CountryIso = country.Iso
 															   },
 															   new PaginationRequestDto
 															   {
@@ -214,19 +243,6 @@ namespace bonus.app.Core.ViewModels
 
 			IsBusy = false;
 		}
-
-		public bool IsBusy
-		{
-			get;
-			set;
-		}
-
-		public MvxObservableCollection<City> Cities
-		{
-			get => _cities;
-			set => SetProperty(ref _cities, value);
-		}
-
-		public User User { get; private set; }
+		#endregion
 	}
 }

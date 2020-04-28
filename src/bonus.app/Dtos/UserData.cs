@@ -6,21 +6,22 @@ namespace bonus.app.Core.Dtos
 {
 	public class UserData
 	{
-		[JsonProperty("type")]
-		public UserRole Role
-		{
-			get;
-			set;
-		}
-
-		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		[JsonProperty("email")]
 		public string Email
+		{
+			get;
+			set;
+		}
+
+		public string Login
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("name")]
+		public string Name
 		{
 			get;
 			set;
@@ -39,17 +40,18 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("name")]
-		public string Name
+		[JsonProperty("type")]
+		public UserRole Role
 		{
 			get;
 			set;
 		}
 
-		public string Login
+		public Guid Uuid
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using bonus.app.Core.Dtos.CustomerDtos;
-using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
@@ -16,7 +14,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 	{
 		#region Data
 		#region Fields
-		private ValidatableObject<DateTime?> _birthday= new ValidatableObject<DateTime?>();
+		private ValidatableObject<DateTime?> _birthday = new ValidatableObject<DateTime?>();
 		private string _car = string.Empty;
 		private readonly IProfileService _customerProfileService;
 
@@ -98,11 +96,26 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		#region Private
 		private void AddValidations()
 		{
-			Birthday.Validations.Add(new IsValidDateRule(new DateTime(1900, 1, 1), new DateTime(DateTime.Now.Year - 6, 1, 1)) { ValidationMessage = "Не корректная дата." });
-			Address.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "укажите адрес." });
-			Address.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Адрес не может быть меньше 6 символов." });
-			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите номер телефона." });
-			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule { ValidationMessage = "Не корректный номер телефона." });
+			Birthday.Validations.Add(new IsValidDateRule(new DateTime(1900, 1, 1), new DateTime(DateTime.Now.Year - 6, 1, 1))
+			{
+				ValidationMessage = "Не корректная дата."
+			});
+			Address.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "укажите адрес."
+			});
+			Address.Validations.Add(new MinLengthRule(6)
+			{
+				ValidationMessage = "Адрес не может быть меньше 6 символов."
+			});
+			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите номер телефона."
+			});
+			PhoneNumber.Validations.Add(new IsValidPhoneNumberRule
+			{
+				ValidationMessage = "Не корректный номер телефона."
+			});
 		}
 
 		private async void EditCommandExecute()
@@ -158,7 +171,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				}
 
 				var user = await _customerProfileService.Edit(arg, ImageSource);
-				
+
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
 					await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();
@@ -172,7 +185,8 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 
 			if (_customerProfileService.ErrorDetails != null && _customerProfileService.ErrorDetails.Count > 0)
 			{
-				var key = _customerProfileService.ErrorDetails.First().Key;
+				var key = _customerProfileService.ErrorDetails.First()
+												 .Key;
 				if (key.Equals("phone"))
 				{
 					Device.BeginInvokeOnMainThread(() =>
@@ -182,7 +196,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 					return;
 				}
 			}
-				
 
 			if (!string.IsNullOrEmpty(_customerProfileService.Error))
 			{

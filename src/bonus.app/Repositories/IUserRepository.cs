@@ -6,7 +6,10 @@ namespace bonus.app.Core.Repositories
 {
 	public interface IUserRepository
 	{
+		#region Overridable
 		void Add(User user);
+
+		User Find(Guid uuid);
 
 		IEnumerable<User> GetAll();
 
@@ -14,8 +17,7 @@ namespace bonus.app.Core.Repositories
 
 		void RemoveAll();
 
-		User Find(Guid uuid);
-
 		bool Update(User user);
+		#endregion
 	}
 }

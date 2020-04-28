@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="profile:BusinessmanProfileViewModel"
                       xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,7 +10,8 @@
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-                      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.BusinessmanProfilePage">
 
@@ -26,31 +28,32 @@
         <ScrollView>
             <StackLayout>
                 <Grid HeightRequest="140">
-                    <graphic:RectangleInProfile/>
+                    <graphic:RectangleInProfile />
                     <Grid Padding="20,20">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Frame Grid.Column="0" Padding="2" BackgroundColor="#7E756F" CornerRadius="50" IsClippedToBounds="True"
+                        <Frame Grid.Column="0" Padding="2" BackgroundColor="#7E756F" CornerRadius="50"
+                               IsClippedToBounds="True"
                                VerticalOptions="Center"
                                HorizontalOptions="Center" HasShadow="False">
-                                <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="96"
-                                                   HeightRequest="96" VerticalOptions="Center"
-                                                   HorizontalOptions="Center"
-                                                   LoadingPlaceholder="icon_no_photo.png"
-                                                   ErrorPlaceholder="icon_no_photo.png">
-                                    <forms:CachedImage.Transformations>
-                                        <transformations:CircleTransformation />
-                                    </forms:CachedImage.Transformations>
-                                    <forms:CachedImage.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                                    </forms:CachedImage.GestureRecognizers>
-                                </forms:CachedImage>
+                            <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="96"
+                                               HeightRequest="96" VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               LoadingPlaceholder="icon_no_photo.png"
+                                               ErrorPlaceholder="icon_no_photo.png">
+                                <forms:CachedImage.Transformations>
+                                    <transformations:CircleTransformation />
+                                </forms:CachedImage.Transformations>
+                                <forms:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                                </forms:CachedImage.GestureRecognizers>
+                            </forms:CachedImage>
                         </Frame>
                         <StackLayout Grid.Column="1">
                             <Label Text="{Binding User.Name}" TextColor="#FFFFFF" FontSize="Body"
-                                   FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2"/>
+                                   FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2" />
                             <Label
                                 Text="{Binding User.Description}"
                                 TextColor="#FFFFFF" MaxLines="3" />
@@ -66,7 +69,8 @@
 
                         <!--Кнопка "сообщения"-->
                         <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" Padding="0"
-                               WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af" HasShadow="False">
+                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
+                                             HasShadow="False">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -79,13 +83,14 @@
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenChatCommand}"/>
+                                <TapGestureRecognizer Command="{Binding OpenChatCommand}" />
                             </Frame.GestureRecognizers>
                         </design:CustomButton>
 
                         <!--Кнопка "подписчики"-->
                         <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
-                               WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af" HasShadow="False">
+                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
+                                             HasShadow="False">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -98,19 +103,19 @@
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}"/>
+                                <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}" />
                             </Frame.GestureRecognizers>
                         </design:CustomButton>
                     </Grid>
                     <Label Text="{Binding User.Phone}" Margin="10,5" />
                     <BoxView />
-                    <Label Margin="10,5" >
+                    <Label Margin="10,5">
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="{Binding User.City}"/>
-                                    <Span Text=", "/>
-                                    <Span Text="{Binding User.Address}"/>
+                                    <Span Text="{Binding User.City}" />
+                                    <Span Text=", " />
+                                    <Span Text="{Binding User.Address}" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
@@ -135,67 +140,76 @@
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
                            TextDecorations="Underline" Margin="0,40,0,35" />
                     <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
-                           FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent" Padding="-5,10,10,15"/>
-                        <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent" Padding="10,10,10,15"/>
-                        <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent" Padding="10,10,10,15"/>
-                        <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent" Padding="10,10,10,15"/>
+                        <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent"
+                                     Padding="-5,10,10,15" />
+                        <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
+                                     Padding="10,10,10,15" />
+                        <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
+                                     Padding="10,10,10,15" />
+                        <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
+                                     Padding="10,10,10,15" />
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"
-                       HasShadow="{x:Static design:DesignClass.Shadow}" BorderColor="{x:Static design:DesignClass.BorderColor}">
-                        <StackLayout Spacing="0">
-                            <Grid Margin="0,0,0,15">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Портфолио" TextColor="#000000" FontSize="Body" FontFamily="Roboto"
-                                       HorizontalOptions="Start"/>
-                                <ui:MaterialMenuButton Grid.Column="1" MenuBackgroundColor="White"
-                                                       MenuCornerRadius="5"
-                                                       MenuTextColor="Black"
-                                                       HorizontalOptions="EndAndExpand"
-                                                       Image="ic_more_4x.png"
-                                                       BackgroundColor="Transparent"
-                                                       WidthRequest="12"
-                                                       HeightRequest="24"
-                                                       Padding="10,0,10,10"
-                                                       VerticalOptions="Center">
-                                    <ui:MaterialMenuButton.Choices>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>Добавить</x:String>
-                                            <x:String>Удалить</x:String>
-                                        </x:Array>
-                                    </ui:MaterialMenuButton.Choices>
-                                </ui:MaterialMenuButton>
-                            </Grid>
-                            <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem">
-                                <CollectionView.EmptyView>
-                                    <Label Text="Добавьте изображение&#10;для портфолио"
-                                           HorizontalOptions="Center"
-                                           HorizontalTextAlignment="Center"
-                                           TextColor="Black"
-                                           VerticalOptions="Center"/>
-                                </CollectionView.EmptyView>
-                                <CollectionView.ItemsLayout>
-                                    <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="2" VerticalItemSpacing="5"/>
-                                </CollectionView.ItemsLayout>
-                                <CollectionView.ItemsSource>
-                                    <x:String>00000000000</x:String>
-                                </CollectionView.ItemsSource>
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <forms:CachedImage Source="longhair.png" Aspect="AspectFit" HeightRequest="60" WidthRequest="100">
-                                             <forms:CachedImage.Transformations>
-                                                <transformations:RoundedTransformation Radius="10" CropHeightRatio="60" CropWidthRatio="100"/>
-                                             </forms:CachedImage.Transformations>
-                                        </forms:CachedImage>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </StackLayout>
+                       HasShadow="{x:Static design:DesignClass.Shadow}"
+                       BorderColor="{x:Static design:DesignClass.BorderColor}">
+                    <StackLayout Spacing="0">
+                        <Grid Margin="0,0,0,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Портфолио" TextColor="#000000" FontSize="Body"
+                                   FontFamily="Roboto"
+                                   HorizontalOptions="Start" />
+                            <ui:MaterialMenuButton Grid.Column="1" MenuBackgroundColor="White"
+                                                   MenuCornerRadius="5"
+                                                   MenuTextColor="Black"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   Image="ic_more_4x.png"
+                                                   BackgroundColor="Transparent"
+                                                   WidthRequest="12"
+                                                   HeightRequest="24"
+                                                   Padding="10,0,10,10"
+                                                   VerticalOptions="Center">
+                                <ui:MaterialMenuButton.Choices>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Добавить</x:String>
+                                        <x:String>Удалить</x:String>
+                                    </x:Array>
+                                </ui:MaterialMenuButton.Choices>
+                            </ui:MaterialMenuButton>
+                        </Grid>
+                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem">
+                            <CollectionView.EmptyView>
+                                <Label Text="Добавьте изображение&#10;для портфолио"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="Black"
+                                       VerticalOptions="Center" />
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="2"
+                                                 VerticalItemSpacing="5" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemsSource>
+                                <x:String>00000000000</x:String>
+                            </CollectionView.ItemsSource>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <forms:CachedImage Source="longhair.png" Aspect="AspectFit" HeightRequest="60"
+                                                       WidthRequest="100">
+                                        <forms:CachedImage.Transformations>
+                                            <transformations:RoundedTransformation Radius="10" CropHeightRatio="60"
+                                                                                   CropWidthRatio="100" />
+                                        </forms:CachedImage.Transformations>
+                                    </forms:CachedImage>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>

@@ -1,14 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="news:CustomerNewsDetailsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Customer.News;assembly=bonus.app.Core"
-             mc:Ignorable="d"
-             x:Class="bonus.app.Core.Pages.Customer.News.CustomerNewsDetailsPage">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Customer.News;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Customer.News.CustomerNewsDetailsPage">
     <NavigationPage.TitleView>
-        <Label Text="Новости" Style="{StaticResource TitleLabel}"/>
+        <Label Text="Новости" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
@@ -16,11 +17,12 @@
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,0" Spacing="0">
                 <Frame x:Name="FrameImage" Padding="0" IsClippedToBounds="True" CornerRadius="5" HasShadow="False">
-                    <Image Source="chika.png" Aspect="AspectFill" WidthRequest="300"/>
+                    <Image Source="chika.png" Aspect="AspectFill" WidthRequest="300" />
                 </Frame>
                 <CarouselView x:Name="CarouselViewImages" Margin="0,0,0,20" HeightRequest="60" WidthRequest="70">
                     <CarouselView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="240" SnapPointsAlignment="Start" SnapPointsType="Mandatory"/>
+                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="240" SnapPointsAlignment="Start"
+                                           SnapPointsType="Mandatory" />
                     </CarouselView.ItemsLayout>
                     <CarouselView.ItemsSource>
                         <x:String>000000000</x:String>
@@ -28,16 +30,19 @@
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Frame IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="10" HorizontalOptions="Start">
-                                    <Image Source="chika.png" WidthRequest="70"/>
+                                <Frame IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="10"
+                                       HorizontalOptions="Start">
+                                    <Image Source="chika.png" WidthRequest="70" />
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
-                <Label x:Name="LabelNew" Text="Важная новость" TextColor="#505050" FontSize="Body" Margin="0,0,0,5"/>
-                <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" Margin="0,0,0,10"/>
-                <Label Text="Акция на пакет XL, при покупке до конца &#10;недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь &#10;Акция на пакет XL, при покупке до конца недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь!" TextColor="#110000" Opacity="0.7"/>
+                <Label x:Name="LabelNew" Text="Важная новость" TextColor="#505050" FontSize="Body" Margin="0,0,0,5" />
+                <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" Margin="0,0,0,10" />
+                <Label
+                    Text="Акция на пакет XL, при покупке до конца &#10;недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь &#10;Акция на пакет XL, при покупке до конца недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь!"
+                    TextColor="#110000" Opacity="0.7" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

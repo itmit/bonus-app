@@ -5,18 +5,7 @@ namespace bonus.app.Core.Models
 {
 	public class Service
 	{
-		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
-		public string Name
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		[JsonProperty("accrual_method")]
 		public BonusValueType AccrualMethod
 		{
@@ -31,16 +20,16 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public double AccrualFloatValue
+		public string Name
 		{
-			get => AccrualMethod == BonusValueType.Points ? AccrualValue / 100 : AccrualValue;
-			set => AccrualValue = (int)(AccrualMethod == BonusValueType.Points ? value * 100 : value);
+			get;
+			set;
 		}
 
-		public float WhiteOffFloatValue
+		public Guid Uuid
 		{
-			get => WhiteOffMethod == BonusValueType.Points ? WhiteOffValue / 100 : WhiteOffValue;
-			set => WhiteOffValue = (int)(WhiteOffMethod == BonusValueType.Points ? value * 100 : value);
+			get;
+			set;
 		}
 
 		[JsonProperty("writeoff_method")]
@@ -55,6 +44,12 @@ namespace bonus.app.Core.Models
 		{
 			get;
 			set;
+		}
+
+		public double AccrualFloatValue
+		{
+			get => AccrualMethod == BonusValueType.Points ? AccrualValue / 100 : AccrualValue;
+			set => AccrualValue = (int) (AccrualMethod == BonusValueType.Points ? value * 100 : value);
 		}
 
 		public string AccrualValueString
@@ -72,5 +67,12 @@ namespace bonus.app.Core.Models
 				}
 			}
 		}
+
+		public float WhiteOffFloatValue
+		{
+			get => WhiteOffMethod == BonusValueType.Points ? WhiteOffValue / 100 : WhiteOffValue;
+			set => WhiteOffValue = (int) (WhiteOffMethod == BonusValueType.Points ? value * 100 : value);
+		}
+		#endregion
 	}
 }

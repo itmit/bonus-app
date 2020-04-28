@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Mail;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
@@ -9,11 +7,6 @@ namespace bonus.app.Core.ViewModels.Auth
 {
 	public abstract class BaseRegistrationViewModel : MvxViewModel
 	{
-		public BaseRegistrationViewModel()
-		{
-			AddValidations();
-		}
-
 		#region Data
 		#region Fields
 		private ValidatableObject<string> _confirmPassword = new ValidatableObject<string>();
@@ -24,6 +17,13 @@ namespace bonus.app.Core.ViewModels.Auth
 		private string _pinCode;
 		private IMvxCommand _registrationCommand;
 		#endregion
+		#endregion
+
+		#region .ctor
+		public BaseRegistrationViewModel()
+		{
+			AddValidations();
+		}
 		#endregion
 
 		#region Properties
@@ -42,10 +42,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		public ValidatableObject<string> Login
 		{
 			get => _login;
-			set
-			{
-				SetProperty(ref _login, value);
-			}
+			set => SetProperty(ref _login, value);
 		}
 
 		public ValidatableObject<string> Name
@@ -85,6 +82,42 @@ namespace bonus.app.Core.ViewModels.Auth
 		#endregion
 
 		#region Private
+		private void AddValidations()
+		{
+			Email.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите Email адрес."
+			});
+			Email.Validations.Add(new IsValidEmailRule
+			{
+				ValidationMessage = "Не корректно введен Email."
+			});
+			Login.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите логин."
+			});
+			Login.Validations.Add(new MinLengthRule(2)
+			{
+				ValidationMessage = "Логин не может быть меньше 2 символов."
+			});
+			Password.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите пароль."
+			});
+			Password.Validations.Add(new MinLengthRule(6)
+			{
+				ValidationMessage = "Пароль не может быть меньше 6 символов."
+			});
+			ConfirmPassword.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Подтвердите пароль."
+			});
+			ConfirmPassword.Validations.Add(new IsValidConfirmPassword(() => Password.Value)
+			{
+				ValidationMessage = "Пароли не совпадают."
+			});
+		}
+
 		private async void Execute()
 		{
 			if (CheckValidFields())
@@ -92,19 +125,6 @@ namespace bonus.app.Core.ViewModels.Auth
 				await RegistrationCommandExecute();
 			}
 		}
-
-		private void AddValidations()
-		{
-			Email.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите Email адрес." });
-			Email.Validations.Add(new IsValidEmailRule { ValidationMessage = "Не корректно введен Email." });
-			Login.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите логин." });
-			Login.Validations.Add(new MinLengthRule(2) { ValidationMessage = "Логин не может быть меньше 2 символов." });
-			Password.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Укажите пароль." });
-			Password.Validations.Add(new MinLengthRule(6) { ValidationMessage = "Пароль не может быть меньше 6 символов." });
-			ConfirmPassword.Validations.Add(new IsNotNullOrEmptyRule { ValidationMessage = "Подтвердите пароль." });
-			ConfirmPassword.Validations.Add(new IsValidConfirmPassword(() => Password.Value) { ValidationMessage = "Пароли не совпадают." });
-		}
-
 		#endregion
 	}
 }

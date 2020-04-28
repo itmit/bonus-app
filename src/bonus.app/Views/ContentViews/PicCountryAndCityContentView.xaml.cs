@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bonus.app.Core.Dtos.GeoHelper;
-using bonus.app.Core.Models;
-using bonus.app.Core.Services;
-using bonus.app.Core.ViewModels;
-using MvvmCross;
-using MvvmCross.Commands;
+﻿using bonus.app.Core.ViewModels;
 using MvvmCross.Forms.Views;
-using MvvmCross.ViewModels;
-using Realms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,13 +8,20 @@ namespace bonus.app.Core.Views.ContentViews
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PicCountryAndCityContentView : MvxContentView<PicCountryAndCityViewModel>
 	{
+		#region Data
+		#region Fields
 		private View _footer;
+		#endregion
+		#endregion
 
+		#region .ctor
 		public PicCountryAndCityContentView()
 		{
 			InitializeComponent();
 		}
+		#endregion
 
+		#region Properties
 		public View Footer
 		{
 			get => _footer;
@@ -37,14 +32,15 @@ namespace bonus.app.Core.Views.ContentViews
 				FieldsLayout.Children.Add(value);
 			}
 		}
+		#endregion
 
+		#region Private
 		private void Cities_OnScrolled(object sender, ItemsViewScrolledEventArgs e)
 		{
 			if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
 			{
 				return;
 			}
-
 
 			if (e.LastVisibleItemIndex == ViewModel.Cities.Count - 1)
 			{
@@ -54,5 +50,6 @@ namespace bonus.app.Core.Views.ContentViews
 				ViewModel.IsBusy = false;
 			}
 		}
+		#endregion
 	}
 }

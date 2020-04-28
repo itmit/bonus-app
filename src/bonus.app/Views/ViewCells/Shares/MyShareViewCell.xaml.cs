@@ -3,12 +3,14 @@ using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Views.ViewCells.Shares
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyShareViewCell : ViewCell
-    {
-        public MyShareViewCell()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class MyShareViewCell : ViewCell
+	{
+		#region .ctor
+		public MyShareViewCell()
+		{
+			InitializeComponent();
+		}
+		#endregion
+	}
 }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
-using bonus.app.Core.Repositories;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Businessman.Profile;
@@ -58,13 +56,9 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
 		/// <param name="authService">Сервис для авторизации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider,
-									  IMvxNavigationService navigationService,
-									  IAuthService authService)
-			: base(logProvider, navigationService)
-		{
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
+			: base(logProvider, navigationService) =>
 			_authService = authService;
-		}
 		#endregion
 
 		#region Properties

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
-using ZXing;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
@@ -17,16 +14,19 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 	{
 		#region Data
 		#region Fields
+		private readonly ICustomerService _customerService;
 		private IMvxCommand _furetherCommand;
 		private MvxCommand _openScannerCommand;
 		private readonly IPermissionsService _permissionsService;
-		private readonly ICustomerService _customerService;
 		private string _userLogin;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BusinessmanBonusAccrualViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IPermissionsService permissionsService, ICustomerService customerService)
+		public BusinessmanBonusAccrualViewModel(IMvxLogProvider logProvider,
+												IMvxNavigationService navigationService,
+												IPermissionsService permissionsService,
+												ICustomerService customerService)
 			: base(logProvider, navigationService)
 		{
 			_permissionsService = permissionsService;
@@ -49,7 +49,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 										   {
 											   Application.Current.MainPage.DisplayAlert("Ошибка", "Заполните поле логин (не менее 3 символов).", "Ок");
 										   });
-									   } 
+									   }
 
 									   User user = null;
 									   try
@@ -76,46 +76,48 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 		}
 
+		public MvxCommand OpenScannerCommand
+		{
+			get
+			{
+				_openScannerCommand = _openScannerCommand ??
+									  new MvxCommand(async () =>
+									  {
+										  if (await _permissionsService.CheckPermission(Permission.Camera,
+																						"Для сканирования QR-кода необходимо разрешение на использование камеры."))
+										  {
+											  var result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
+											  User user = null;
+											  try
+											  {
+												  user = await _customerService.GetCustomerByUuid(result);
+											  }
+											  catch (Exception e)
+											  {
+												  Console.WriteLine(e);
+											  }
+
+											  if (user == null)
+											  {
+												  Device.BeginInvokeOnMainThread(() =>
+												  {
+													  Application.Current.MainPage.DisplayAlert("Ошибка", "Покупатель не найден.", "Ок");
+												  });
+												  return;
+											  }
+
+											  await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, User>(user);
+										  }
+									  });
+				return _openScannerCommand;
+			}
+		}
+
 		public string UserLogin
 		{
 			get => _userLogin;
 			set => SetProperty(ref _userLogin, value);
 		}
 		#endregion
-
-		public MvxCommand OpenScannerCommand
-		{
-			get
-			{
-				_openScannerCommand = _openScannerCommand ?? new MvxCommand(async () =>
-				{
-					if (await _permissionsService.CheckPermission(Permission.Camera, "Для сканирования QR-кода необходимо разрешение на использование камеры."))
-					{
-						Guid result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
-						User user = null;
-						try
-						{
-							user = await _customerService.GetCustomerByUuid(result);
-						}
-						catch (Exception e)
-						{
-							Console.WriteLine(e);
-						}
-
-						if (user == null)
-						{
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								Application.Current.MainPage.DisplayAlert("Ошибка", "Покупатель не найден.", "Ок");
-							});
-							return;
-						}
-
-						await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, User>(user);
-					}
-				});
-				return _openScannerCommand;
-			}
-		}
 	}
 }

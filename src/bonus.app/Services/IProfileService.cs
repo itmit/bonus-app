@@ -8,10 +8,7 @@ namespace bonus.app.Core.Services
 {
 	public interface IProfileService
 	{
-		Task<User> Edit(EditBusinessmanDto arguments, string imagePath);
-
-		Task<User> Edit(EditCustomerDto arguments, string imagePath);
-
+		#region Properties
 		string Error
 		{
 			get;
@@ -21,5 +18,12 @@ namespace bonus.app.Core.Services
 		{
 			get;
 		}
+		#endregion
+
+		#region Overridable
+		Task<User> Edit(EditBusinessmanDto arguments, string imagePath);
+
+		Task<User> Edit(EditCustomerDto arguments, string imagePath);
+		#endregion
 	}
 }

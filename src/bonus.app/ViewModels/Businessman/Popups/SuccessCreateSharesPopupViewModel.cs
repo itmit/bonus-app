@@ -6,14 +6,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Popups
 {
 	public class SuccessCreateSharesPopupViewModel : MvxViewModel<object, bool>
 	{
-		private readonly IMvxNavigationService _navigationService;
+		#region Data
+		#region Fields
 		private MvxCommand _closeModalCommand;
+		private readonly IMvxNavigationService _navigationService;
+		#endregion
+		#endregion
 
-		public SuccessCreateSharesPopupViewModel(IMvxNavigationService navigationService)
-		{
-			_navigationService = navigationService;
-		}
+		#region .ctor
+		public SuccessCreateSharesPopupViewModel(IMvxNavigationService navigationService) => _navigationService = navigationService;
+		#endregion
 
+		#region Properties
 		public MvxCommand CloseModalCommand
 		{
 			get
@@ -21,13 +25,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Popups
 				_closeModalCommand = _closeModalCommand ??
 									 new MvxCommand(() =>
 									 {
-										 _navigationService.Close(this,true);
+										 _navigationService.Close(this, true);
 									 });
 				return _closeModalCommand;
 			}
 		}
+		#endregion
 
+		#region Overrided
 		public override void Prepare(object parameter)
-		{ }
+		{
+		}
+		#endregion
 	}
 }

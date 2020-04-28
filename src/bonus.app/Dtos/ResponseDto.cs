@@ -5,10 +5,24 @@ namespace bonus.app.Core.Dtos
 {
 	public class ResponseDto<T>
 	{
+		#region Properties
 		/// <summary>
 		/// Возвращает или устанавливает данные возвращаемые от сервиса.
 		/// </summary>
 		public T Data
+		{
+			get;
+			set;
+		}
+
+		public string Error
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("errors")]
+		public Dictionary<string, string[]> ErrorDetails
 		{
 			get;
 			set;
@@ -31,18 +45,6 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		} = false;
-
-		[JsonProperty("errors")]
-		public Dictionary<string, string[]> ErrorDetails
-		{
-			get;
-			set;
-		}
-
-		public string Error
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }

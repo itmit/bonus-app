@@ -4,6 +4,7 @@ namespace bonus.app.Core.Dtos.GeoHelper
 {
 	public class CityFilterDto
 	{
+		#region Properties
 		[JsonProperty("countryIso")]
 		public string CountryIso
 		{
@@ -39,18 +40,19 @@ namespace bonus.app.Core.Dtos.GeoHelper
 			set;
 		}
 
-		[JsonProperty("regionId")]
-		public int RegionId
-		{
-			get;
-			set;
-		}
-
 		[JsonProperty("regionCodes")]
 		public string[] RegionCodes
 		{
 			get;
 			set;
 		}
+
+		[JsonProperty("regionId")]
+		public int RegionId
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

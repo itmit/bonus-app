@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,23 +12,24 @@
         <StackLayout Spacing="0">
             <Grid Margin="5,25,15,20" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Column="0" Spacing="0">
                     <Label FontSize="Body">
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="Подписка на "/>
-                                    <Span Text="12"/>
-                                    <Span Text=" месяц"/>
-                                    <Span Text="ев"/>
+                                    <Span Text="Подписка на " />
+                                    <Span Text="12" />
+                                    <Span Text=" месяц" />
+                                    <Span Text="ев" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Text="Ожидание оплаты&#10;Ожидание оплаты Ожидание оплаты Ожидание оплаты Ожидание оплаты" TextColor="Gray"/>
+                    <Label Text="Ожидание оплаты&#10;Ожидание оплаты Ожидание оплаты Ожидание оплаты Ожидание оплаты"
+                           TextColor="Gray" />
                 </StackLayout>
                 <xf:MaterialButton Grid.Column="1"
                                    ButtonType="Outlined"
@@ -40,7 +42,7 @@
                                    AllCaps="False"
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}"
                                    CornerRadius="18"
-                                   IsVisible="True"/>
+                                   IsVisible="True" />
                 <xf:MaterialButton Grid.Column="1"
                                    ButtonType="Flat"
                                    BackgroundColor="#BB8D91"
@@ -52,9 +54,9 @@
                                    AllCaps="False"
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}"
                                    CornerRadius="18"
-                                   IsVisible="false"/>
+                                   IsVisible="false" />
             </Grid>
-            <BoxView/>
+            <BoxView />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

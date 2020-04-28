@@ -5,7 +5,9 @@ namespace bonus.app.Core.Models
 {
 	public class Stock
 	{
-		public Guid Uuid
+		#region Properties
+		[JsonProperty("city")]
+		public string City
 		{
 			get;
 			set;
@@ -18,15 +20,8 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		[JsonProperty("city")]
-		public string City
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("service_uuid")]
-		public Guid Service
+		[JsonProperty("description")]
+		public string Description
 		{
 			get;
 			set;
@@ -39,6 +34,13 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		[JsonProperty("sub_only")]
+		public bool IsSubscriberOnly
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("name")]
 		public string Name
 		{
@@ -46,14 +48,8 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		[JsonProperty("description")]
-		public string Description
-		{
-			get;
-			set;
-		}
-
-		public string Status
+		[JsonProperty("service_uuid")]
+		public Guid Service
 		{
 			get;
 			set;
@@ -66,11 +62,17 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		[JsonProperty("sub_only")]
-		public bool IsSubscriberOnly
+		public string Status
 		{
 			get;
 			set;
 		}
+
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

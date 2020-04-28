@@ -5,6 +5,8 @@ namespace bonus.app.Core.Services
 {
 	public interface IPermissionsService
 	{
-		Task<bool> CheckPermission(Permission permission, string  message);
+		#region Overridable
+		Task<bool> CheckPermission(Permission permission, string message);
+		#endregion
 	}
 }

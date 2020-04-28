@@ -6,9 +6,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class EditBusinessmanServicesViewModel : MvxNavigationViewModel
 	{
+		#region .ctor
 		public EditBusinessmanServicesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
 		{
 		}
+		#endregion
 	}
 }

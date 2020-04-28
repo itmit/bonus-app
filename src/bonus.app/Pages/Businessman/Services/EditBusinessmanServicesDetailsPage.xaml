@@ -23,15 +23,15 @@
         <ScrollView>
             <StackLayout Spacing="0" Margin="15,20">
                 <services1:MyServicesContentView />
-                <contentViews:ServiceAccrualBonusesContentView/>
+                <contentViews:ServiceAccrualBonusesContentView />
 
                 <design:CustomButton Style="{StaticResource AppButtonGradient}">
                     <Grid>
-                        <graphic:RectangleInProfile/>
-                        <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}"/>
+                        <graphic:RectangleInProfile />
+                        <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}" />
                     </Grid>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Button_OnClicked"/>
+                        <TapGestureRecognizer Tapped="Button_OnClicked" />
                     </Frame.GestureRecognizers>
                 </design:CustomButton>
             </StackLayout>

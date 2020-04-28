@@ -3,27 +3,22 @@ using bonus.app.Core.ViewModels.Customer.Services;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer.Services
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
-		Icon = "ic_star",
-		Title = "Услуги")]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_star", Title = "Услуги")]
 	public partial class CustomerServicesPage : MvxContentPage<CustomerServicesViewModel>
-    {
-        public CustomerServicesPage()
-        {
-            InitializeComponent();
-        }
-
-		private void MenuItem_OnClicked(object sender, EventArgs e)
+	{
+		#region .ctor
+		public CustomerServicesPage()
 		{
-			
+			InitializeComponent();
 		}
+		#endregion
 
+		#region Private
 		private void Cell_OnTapped(object sender, EventArgs e)
 		{
 			if (Countries.IsEnabled)
@@ -52,6 +47,19 @@ namespace bonus.app.Core.Pages.Customer.Services
 			}
 		}
 
+		private void Cities_OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+		{
+			//if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
+			//{
+			//	return;
+			//}
+
+			//if (e.Item is City city && city.Id == ViewModel.Cities[ViewModel.Cities.Count - 1].Id)
+			//{
+			//	ViewModel.LoadMoreCitiesCommand.Execute();
+			//}
+		}
+
 		private void Countries_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
 			if (e.SelectedItem != null)
@@ -62,6 +70,34 @@ namespace bonus.app.Core.Pages.Customer.Services
 				City.IsEnabled = true;
 				City.IsVisible = true;
 				Shape.Rotation = 0;
+			}
+		}
+
+		private void ImageButton_OnClicked(object sender, EventArgs e)
+		{
+			if (GridHeader.IsEnabled)
+			{
+				GridHeader.IsEnabled = false;
+				GridHeader.IsVisible = false;
+			}
+			else
+			{
+				GridHeader.IsEnabled = true;
+				GridHeader.IsVisible = true;
+			}
+		}
+
+		private void MenuItem_OnClicked(object sender, EventArgs e)
+		{
+		}
+
+		private void OnSelectCity(object sender, SelectedItemChangedEventArgs e)
+		{
+			if (e.SelectedItem != null)
+			{
+				Cities.IsEnabled = false;
+				Cities.IsVisible = false;
+				Shape1.Rotation = 0;
 			}
 		}
 
@@ -81,43 +117,6 @@ namespace bonus.app.Core.Pages.Customer.Services
 			}
 		}
 
-		private void Cities_OnItemAppearing(object sender, ItemVisibilityEventArgs e)
-		{
-			//if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
-			//{
-			//	return;
-			//}
-
-			//if (e.Item is City city && city.Id == ViewModel.Cities[ViewModel.Cities.Count - 1].Id)
-			//{
-			//	ViewModel.LoadMoreCitiesCommand.Execute();
-			//}
-		}
-
-		private void OnSelectCity(object sender, SelectedItemChangedEventArgs e)
-		{
-			if (e.SelectedItem != null)
-			{
-				Cities.IsEnabled = false;
-				Cities.IsVisible = false;
-				Shape1.Rotation = 0;
-			}
-		}
-
-		private void ImageButton_OnClicked(object sender, EventArgs e)
-		{
-			if (GridHeader.IsEnabled)
-			{
-				GridHeader.IsEnabled = false;
-				GridHeader.IsVisible = false;
-			}
-			else
-			{
-				GridHeader.IsEnabled = true;
-				GridHeader.IsVisible = true;
-			}
-		}
-
 		private void TapServices_OnTapped(object sender, EventArgs e)
 		{
 			if (ViewServices.IsEnabled)
@@ -133,5 +132,6 @@ namespace bonus.app.Core.Pages.Customer.Services
 				ViewServices.IsVisible = true;
 			}
 		}
+		#endregion
 	}
 }

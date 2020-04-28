@@ -2,12 +2,7 @@
 {
 	public class ErrorDto
 	{
-		public string Message
-		{
-			get;
-			set;
-		}
-
+		#region Properties
 		public int Code
 		{
 			get;
@@ -19,5 +14,12 @@
 			get;
 			set;
 		}
+
+		public string Message
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

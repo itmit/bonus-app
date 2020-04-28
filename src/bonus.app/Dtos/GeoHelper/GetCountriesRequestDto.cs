@@ -2,13 +2,8 @@
 {
 	public class GetCountriesRequestDto
 	{
+		#region Properties
 		public string ApiKey
-		{
-			get;
-			set;
-		}
-
-		public LocaleDto Locale
 		{
 			get;
 			set;
@@ -20,7 +15,7 @@
 			set;
 		}
 
-		public PaginationRequestDto Pagination
+		public LocaleDto Locale
 		{
 			get;
 			set;
@@ -31,5 +26,12 @@
 			get;
 			set;
 		}
+
+		public PaginationRequestDto Pagination
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

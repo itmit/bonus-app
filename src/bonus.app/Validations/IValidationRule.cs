@@ -2,8 +2,16 @@
 {
 	public interface IValidationRule<in T>
 	{
-		string ValidationMessage { get; set; }
+		#region Properties
+		string ValidationMessage
+		{
+			get;
+			set;
+		}
+		#endregion
 
+		#region Overridable
 		bool Check(T value);
+		#endregion
 	}
 }

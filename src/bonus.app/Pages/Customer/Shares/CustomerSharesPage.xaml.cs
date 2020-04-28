@@ -8,18 +8,17 @@ using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer.Shares
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab,
-		Icon = "ic_stock",
-		Title = "Акции")]
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_stock", Title = "Акции")]
 	public partial class CustomerSharesPage : MvxContentPage<CustomerSharesViewModel>
-    {
-        public CustomerSharesPage()
-        {
-            InitializeComponent();
+	{
+		#region .ctor
+		public CustomerSharesPage()
+		{
+			InitializeComponent();
 
-            Grid.BackgroundColor = Color.FromRgba(196, 196, 196, 51);
-            ListView.BackgroundColor = Color.FromRgba(196, 196, 196, 51);
+			Grid.BackgroundColor = Color.FromRgba(196, 196, 196, 51);
+			ListView.BackgroundColor = Color.FromRgba(196, 196, 196, 51);
 
 			var oneItem = new ToolbarItem
 			{
@@ -41,17 +40,9 @@ namespace bonus.app.Core.Pages.Customer.Shares
 			ToolbarItems.Add(oneItem);
 			ToolbarItems.Add(twoItem);
 		}
+		#endregion
 
-		private void TwoItem_Clicked(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new StockArchivePage());
-		}
-
-		private void OneItem_Clicked(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new SelectedSharesPage());
-		}
-
+		#region Private
 		private void ImageButton_OnClicked(object sender, EventArgs e)
 		{
 			if (StackLayout.IsEnabled)
@@ -70,5 +61,16 @@ namespace bonus.app.Core.Pages.Customer.Shares
 		{
 			((ListView) sender).SelectedItem = null;
 		}
+
+		private void OneItem_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new SelectedSharesPage());
+		}
+
+		private void TwoItem_Clicked(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new StockArchivePage());
+		}
+		#endregion
 	}
 }

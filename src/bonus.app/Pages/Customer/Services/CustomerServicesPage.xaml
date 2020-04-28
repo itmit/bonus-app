@@ -1,23 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="services:CustomerServicesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-             xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
-             xmlns:viewCells1="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
-             xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
-             xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Customer.Services;assembly=bonus.app.Core"
-             mc:Ignorable="d"
-             x:Class="bonus.app.Core.Pages.Customer.Services.CustomerServicesPage">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="services:CustomerServicesViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
+                      xmlns:viewCells1="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+                      xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+                      xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Customer.Services;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Customer.Services.CustomerServicesPage">
     <NavigationPage.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Услуги" Style="{StaticResource TitleLabel}"/>
-            <ImageButton Grid.Column="1" Source="ic_pref_4x.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked" Margin="0,0,25,0"/>
+            <Label Grid.Column="0" Text="Услуги" Style="{StaticResource TitleLabel}" />
+            <ImageButton Grid.Column="1" Source="ic_pref_4x.png" WidthRequest="15" HeightRequest="15"
+                         HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"
+                         Margin="0,0,25,0" />
         </Grid>
     </NavigationPage.TitleView>
 
@@ -25,60 +29,62 @@
         <!-- Страница 17 - 17.1 услуг -->
         <Grid Margin="15,0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" x:Name="GridHeader" IsVisible="False">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <!--Выбор стран-->
                 <StackLayout>
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Cell_OnTapped"/>
+                        <TapGestureRecognizer Tapped="Cell_OnTapped" />
                     </StackLayout.GestureRecognizers>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}"/>
-                        <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" />
+                        <Image Source="Shape.png" WidthRequest="15" x:Name="Shape" VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand" />
                     </StackLayout>
-                    <BoxView/>
+                    <BoxView />
                 </StackLayout>
 
                 <views:MvxListView
-                        Grid.Row="1"
-                        IsVisible="False"
-                        IsEnabled="False"
-                        x:Name="Countries"
-                        HasUnevenRows="True"
-                        ItemsSource="{Binding Countries}"
-                        SelectedItem="{Binding SelectedCountry}"
-                        ItemSelected="Countries_OnItemSelected"
-                        VerticalOptions="FillAndExpand"
-                        HorizontalOptions="FillAndExpand">
+                    Grid.Row="1"
+                    IsVisible="False"
+                    IsEnabled="False"
+                    x:Name="Countries"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Countries}"
+                    SelectedItem="{Binding SelectedCountry}"
+                    ItemSelected="Countries_OnItemSelected"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
 
                     <views:MvxListView.ItemTemplate>
                         <DataTemplate>
-                            <viewCells1:CountryCityViewCell/>
+                            <viewCells1:CountryCityViewCell />
                         </DataTemplate>
                     </views:MvxListView.ItemTemplate>
                 </views:MvxListView>
 
                 <Grid Grid.Row="1" x:Name="Grid">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <!--Выбор городов-->
                     <StackLayout x:Name="City" IsVisible="False" Margin="10,0">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
                         </StackLayout.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
-                            <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}"/>
-                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                            <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" />
+                            <Image Source="Shape.png" WidthRequest="15" x:Name="Shape1" VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand" />
                         </StackLayout>
                         <BoxView BackgroundColor="#CCC" HeightRequest="1" HorizontalOptions="Fill" />
                     </StackLayout>
@@ -98,7 +104,7 @@
 
                         <views:MvxListView.ItemTemplate>
                             <DataTemplate>
-                                <viewCells1:CountryCityViewCell/>
+                                <viewCells1:CountryCityViewCell />
                             </DataTemplate>
                         </views:MvxListView.ItemTemplate>
                     </views:MvxListView>
@@ -106,36 +112,36 @@
 
                 <Grid Grid.Row="2">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <!--Выбор услуг-->
                     <StackLayout Grid.Row="0" Margin="0,20,0,15" Spacing="0">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapServices_OnTapped"/>
+                            <TapGestureRecognizer Tapped="TapServices_OnTapped" />
                         </StackLayout.GestureRecognizers>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
-                            <Label Text="Вид услуги"/>
+                            <Label Text="Вид услуги" />
                             <Image Source="Shape.png"
-                                       WidthRequest="15"
-                                       x:Name="Shape2"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="EndAndExpand"
-                                       Rotation="0"/>
+                                   WidthRequest="15"
+                                   x:Name="Shape2"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"
+                                   Rotation="0" />
                         </StackLayout>
-                        <BoxView/>
+                        <BoxView />
                     </StackLayout>
 
                     <StackLayout
-                            Grid.Row="1"
-                            IsVisible="False"
-                            IsEnabled="False"
-                            x:Name="ViewServices"
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand">
+                        Grid.Row="1"
+                        IsVisible="False"
+                        IsEnabled="False"
+                        x:Name="ViewServices"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <viewCells:ServiceTypeViewCell/>
+                                <viewCells:ServiceTypeViewCell />
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
@@ -149,7 +155,7 @@
                 </CollectionView.ItemsSource>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <viewCells:CustomerServicesContentView/>
+                        <viewCells:CustomerServicesContentView />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

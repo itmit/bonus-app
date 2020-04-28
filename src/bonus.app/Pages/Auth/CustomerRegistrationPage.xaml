@@ -7,7 +7,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
-                      xmlns:design="clr-namespace:bonus.app.Core.Design" xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Auth.CustomerRegistrationPage">
@@ -33,7 +34,7 @@
                         <Style TargetType="ui:MaterialTextField">
                             <Setter Property="PlaceholderColor" Value="#505050" />
                             <Setter Property="Visual" Value="Material" />
-                            <Setter Property="TintColor" Value="#505050"/>
+                            <Setter Property="TintColor" Value="#505050" />
                             <Setter Property="TextColor" Value="#505050" />
                             <Setter Property="TextFontSize" Value="14" />
                             <Setter Property="BackgroundColor" Value="Transparent" />
@@ -48,37 +49,37 @@
                 <ui:MaterialTextField Text="{Binding Login.Value}"
                                       Placeholder="Логин"
                                       ErrorText="{Binding Login.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                      HasError="{Binding Login.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                      HasError="{Binding Login.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding Name.Value}"
                                       Placeholder="Ф.И.О."
                                       ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                      HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                      HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding Email.Value}"
                                       Placeholder="E-mail"
                                       InputType="Email"
                                       ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                      HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                      HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding Password.Value}"
                                       Placeholder="Пароль"
                                       InputType="Password"
                                       ErrorText="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                      HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                      HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
                                       Placeholder="Повторите пароль"
                                       InputType="Password"
                                       ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                      HasError="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                                      HasError="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
                        Placeholder="Код из 4 цифр для быстрого входа" Margin="0,0,0,10" />
 
                 <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
                     <Grid>
-                        <graphic:RectangleInProfile/>
-                        <Label Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource TextForAppButton}"/>
+                        <graphic:RectangleInProfile />
+                        <Label Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource TextForAppButton}" />
                     </Grid>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RegistrationCommand}"/>
+                        <TapGestureRecognizer Command="{Binding RegistrationCommand}" />
                     </Frame.GestureRecognizers>
                 </design:CustomButton>
 
@@ -88,23 +89,29 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <design:CustomTransparentButton Grid.Column="0" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
-                           CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
+                    <design:CustomTransparentButton Grid.Column="0" IsClippedToBounds="True" HasShadow="False"
+                                                    Padding="0" WidthRequest="155" HeightRequest="40"
+                                                    CornerRadius="20" BackgroundColor="Transparent"
+                                                    BorderColor="#bab3af">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image Source="ic_face_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
                             <Label Text="Facebook" FontSize="Body" TextColor="#A0968E"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" VerticalOptions="Center" />
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                                   VerticalOptions="Center" />
                         </StackLayout>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />
                         </Frame.GestureRecognizers>
                     </design:CustomTransparentButton>
-                    <design:CustomTransparentButton Grid.Column="1" IsClippedToBounds="True" HasShadow="False" Padding="0" WidthRequest="155" HeightRequest="40"
-                           CornerRadius="20" BackgroundColor="Transparent" BorderColor="#bab3af">
+                    <design:CustomTransparentButton Grid.Column="1" IsClippedToBounds="True" HasShadow="False"
+                                                    Padding="0" WidthRequest="155" HeightRequest="40"
+                                                    CornerRadius="20" BackgroundColor="Transparent"
+                                                    BorderColor="#bab3af">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                             <Image Source="ic_vk_brown_4x.png" WidthRequest="15" VerticalOptions="Center" />
                             <Label Text="Вконтакте" FontSize="Body" TextColor="#A0968E"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" VerticalOptions="Center" />
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                                   VerticalOptions="Center" />
                         </StackLayout>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenAuthVkOrFc}" />

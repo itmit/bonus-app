@@ -6,6 +6,7 @@ namespace bonus.app.Core.Converters
 {
 	public class InverseBoolConverter : IValueConverter
 	{
+		#region IValueConverter members
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (!(value is bool))
@@ -13,12 +14,10 @@ namespace bonus.app.Core.Converters
 				throw new InvalidOperationException("The target must be a boolean");
 			}
 
-			return !(bool)value;
+			return !(bool) value;
 		}
 
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			return null;
-		}
+		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => null;
+		#endregion
 	}
 }

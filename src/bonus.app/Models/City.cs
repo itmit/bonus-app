@@ -2,19 +2,26 @@
 {
 	public class City
 	{
+		#region Properties
+		public string Area
+		{
+			get;
+			set;
+		}
+
 		public int Id
 		{
 			get;
 			set;
 		}
 
-		public string Name
+		public LocalizedName LocalizedNames
 		{
 			get;
 			set;
 		}
 
-		public string Area
+		public string Name
 		{
 			get;
 			set;
@@ -31,11 +38,6 @@
 			get;
 			set;
 		}
-
-		public LocalizedName LocalizedNames
-		{
-			get;
-			set;
-		}
+		#endregion
 	}
 }
