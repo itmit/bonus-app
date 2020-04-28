@@ -19,13 +19,13 @@ namespace bonus.app.Core.ViewModels
 		private MvxObservableCollection<City> _cities;
 		private MvxCommand _loadMoreCitiesCommand;
 		private readonly IAuthService _authService;
-		private bool _isVisibleCountries = true;
+		private bool _isVisibleCountries;
 		private MvxCommand _showOrHideCountriesCommand;
 		private int _countryShapeRotation;
 		private bool _isVisibleSelectedCity;
 		private MvxCommand _showOrHideCitiesCommand;
 		private int _cityShapeRotation;
-		private bool _isVisibleCities = true;
+		private bool _isVisibleCities;
 		private City _selectedCity;
 
 		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService, IAuthService authService)
@@ -58,8 +58,10 @@ namespace bonus.app.Core.ViewModels
 			}
 
 
-			if (!string.IsNullOrEmpty(User.Country))
+			if (User != null && !string.IsNullOrEmpty(User.Country))
 			{
+				IsVisibleCities = true;
+				IsVisibleCountries = true;
 				_selectedCountry = Countries.Single(c => c.LocalizedNames.Ru.Equals(User.Country));
 				await RaisePropertyChanged(() => SelectedCountry);
 			}
@@ -94,7 +96,7 @@ namespace bonus.app.Core.ViewModels
 				IsVisibleSelectedCity = true;
 				_cities = new MvxObservableCollection<City>();
 				LoadCities(value, 1);
-				if (!string.IsNullOrEmpty(User.City))
+				if (User != null && !string.IsNullOrEmpty(User.City))
 				{
 					_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
 									new City
