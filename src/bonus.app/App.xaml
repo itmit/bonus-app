@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
              xmlns:design="clr-namespace:bonus.app.Core.Design"
+             xmlns:xf="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.App">
     <Application.Resources>
@@ -51,15 +52,14 @@
                 <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}"/>
             </Style>
             <!--Стиль для кнопок в разделе статистики-->
-            <Style x:Key="StatisticsButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Style x:Key="StatisticButton" TargetType="xf:MaterialButton">
+                <Setter Property="ButtonType" Value="Outlined"/>
                 <Setter Property="Text" Value="СФОРМИРОВАТЬ"/>
-                <Setter Property="BorderColor" Value="#A0968E"/>
                 <Setter Property="TextColor" Value="#A0968E"/>
-                <Setter Property="BorderWidth" Value="1"/>
                 <Setter Property="FontSize" Value="Body"/>
                 <Setter Property="FontFamily" Value="{x:Static design:DesignClass.MontserratRegular}"/>
                 <Setter Property="CornerRadius" Value="22"/>
+                <Setter Property="PressedBackgroundColor" Value="#A0968E"/>
             </Style>
             <Style x:Key="AuthAndRegEntry" TargetType="Entry">
                 <Setter Property="PlaceholderColor" Value="#d5d1cf"/>
