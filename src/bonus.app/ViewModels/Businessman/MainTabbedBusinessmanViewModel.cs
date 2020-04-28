@@ -3,8 +3,8 @@ using bonus.app.Core.ViewModels.Businessman.News;
 using bonus.app.Core.ViewModels.Businessman.Pay;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Businessman.Services;
-using bonus.app.Core.ViewModels.Businessman.Shares;
 using bonus.app.Core.ViewModels.Businessman.Statistics;
+using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -26,7 +26,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 
 			NavigationService.Navigate<BusinessmanProfileViewModel>();
 			NavigationService.Navigate<BusinessmanServicesViewModel>();
-			NavigationService.Navigate<BusinessmanSharesViewModel>();
+			NavigationService.Navigate<BusinessmanStocksViewModel>();
 			NavigationService.Navigate<BusinessmanNewsViewModel>();
 			//NavigationService.Navigate<>();
 			NavigationService.Navigate<BusinessmanBonusAccrualViewModel>();

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
-using bonus.app.Core.ViewModels.Businessman.Shares;
+using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Pages.Businessman.Shares
+namespace bonus.app.Core.Pages.Businessman.Stocks
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ShareArchivePage : MvxContentPage<ShareArchiveViewModel>
+	public partial class StockArchivePage : MvxContentPage<StockArchiveViewModel>
 	{
 		#region .ctor
-		public ShareArchivePage()
+		public StockArchivePage()
 		{
 			InitializeComponent();
 			Filter.TranslationY = Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height;
@@ -56,20 +56,20 @@ namespace bonus.app.Core.Pages.Businessman.Shares
 			}
 		}
 
-        /// <summary>
-        /// Скрывает фильтр
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
+		/// <summary>
+		/// Скрывает фильтр
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+		{
 			BlackBackground.FadeTo(0, 500)
-							   .GetAwaiter();
+						   .GetAwaiter();
 			Filter.TranslateTo(0, Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height, 500)
 				  .GetAwaiter();
 			BlackBackground.IsVisible = await GetEndVisible();
 			Filter.IsEnabled = false;
 		}
-        #endregion
-    }
+		#endregion
+	}
 }

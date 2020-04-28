@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
-using bonus.app.Core.ViewModels.Businessman.Shares;
+using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -68,7 +68,7 @@ namespace bonus.app.Core.ViewModels.Customer.Shares
 				}
 
 				SetProperty(ref _selectedStock, value);
-				NavigationService.Navigate<BusinessmanSharesDetailViewModel, Stock>(value);
+				NavigationService.Navigate<BusinessmanStocksDetailViewModel, Stock>(value);
 				SetProperty(ref _selectedStock, null);
 			}
 		}

@@ -1,14 +1,13 @@
-﻿using System;
-using bonus.app.Core.Models;
+﻿using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
-namespace bonus.app.Core.ViewModels.Businessman.Shares
+namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
-	public class BusinessmanSharesDetailViewModel : MvxViewModel<Stock>
+	public class BusinessmanStocksDetailViewModel : MvxViewModel<Stock>
 	{
 		private Stock _stock;
 		private User _user;
@@ -31,7 +30,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 			private set => SetProperty(ref _shareColor, value);
 		}
 
-		public BusinessmanSharesDetailViewModel(IAuthService authService, IMvxNavigationService navigationService, IStockService stockService)
+		public BusinessmanStocksDetailViewModel(IAuthService authService, IMvxNavigationService navigationService, IStockService stockService)
 		{
 			User = authService.User;
 			_navigationService = navigationService;
@@ -55,7 +54,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				_openCreateStockPageCommand = _openCreateStockPageCommand ??
 											  new MvxCommand(() =>
 											  {
-												  _navigationService.Navigate<CreateShareViewModel>();
+												  _navigationService.Navigate<CreateStockViewModel>();
 											  });
 				return _openCreateStockPageCommand;
 			}
@@ -68,7 +67,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				_openCreateStockArchivePageCommand = _openCreateStockArchivePageCommand ??
 													 new MvxCommand(() =>
 													 {
-														 _navigationService.Navigate<ShareArchiveViewModel>();
+														 _navigationService.Navigate<StockArchiveViewModel>();
 													 });
 				return _openCreateStockArchivePageCommand;
 			}

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<views:MvxContentPage x:TypeArguments="shares:CreateShareViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<views:MvxContentPage x:TypeArguments="stocks:CreateStockViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,14 +8,14 @@
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
-                      xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Shares;assembly=bonus.app.Core"
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
+                      xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
                       mc:Ignorable="d"
-                      x:Class="bonus.app.Core.Pages.Businessman.Shares.CreateSharePage">
+                      x:Class="bonus.app.Core.Pages.Businessman.Stocks.CreateStockPage">
     <NavigationPage.TitleView>
         <Label Text="Создать акцию" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
@@ -28,7 +28,7 @@
                     <contentViews:PicCountryAndCityContentView.Footer>
                         <StackLayout x:Name="Layout">
 
-                            <services1:MyServicesContentView Margin="0,20,0,0"/>
+                            <services1:MyServicesContentView Margin="0,20,0,0" />
 
                             <Label Text="{Binding Errors[name]}"
                                    IsVisible="{Binding Errors[name], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
@@ -55,7 +55,8 @@
                                     Margin="0,0,0,20"
                                     BackgroundColor="Transparent" />
 
-                            <contentViews:PicPhotoContentView Placeholder="Загрузите изображение акции" Margin="0,0,0,20"/>
+                            <contentViews:PicPhotoContentView Placeholder="Загрузите изображение акции"
+                                                              Margin="0,0,0,20" />
 
                             <Label Text="{Binding Errors[share_time]}"
                                    IsVisible="{Binding Errors[share_time], Converter={StaticResource NullToBoolConverter}, FallbackValue=false}" />
@@ -78,15 +79,17 @@
                                         VerticalOptions="Center" />
                             </StackLayout>
                             <BoxView Margin="0,15,0,20" />
-                            <Button Text="ПРОСМОТР" Style="{StaticResource StatisticsButton}" Command="{Binding ShowShareCommand}" 
+                            <Button Text="ПРОСМОТР" Style="{StaticResource StatisticsButton}"
+                                    Command="{Binding ShowShareCommand}"
                                     Margin="0,10" />
                             <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
-                                    <graphic:RectangleInProfile/>
-                                    <Label Text="СОЗДАТЬ АКЦИЮ" Style="{StaticResource TextForAppButton}" IsEnabled="{Binding CanCreateShareCommand}"/>
+                                    <graphic:RectangleInProfile />
+                                    <Label Text="СОЗДАТЬ АКЦИЮ" Style="{StaticResource TextForAppButton}"
+                                           IsEnabled="{Binding CanCreateShareCommand}" />
                                 </Grid>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CreateShareCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding CreateShareCommand}" />
                                 </Frame.GestureRecognizers>
                             </design:CustomButton>
                         </StackLayout>

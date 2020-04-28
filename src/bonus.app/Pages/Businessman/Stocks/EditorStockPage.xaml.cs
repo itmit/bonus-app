@@ -1,19 +1,21 @@
 ﻿using System;
 using bonus.app.Core.Models;
-using bonus.app.Core.ViewModels.Businessman.Shares;
+using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Pages.Businessman.Stocks
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditorStockPage : MvxContentPage<EditorStockViewModel>
-    {
-        public EditorStockPage()
-        {
-            InitializeComponent();
-        }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class EditorStockPage : MvxContentPage<EditorStockViewModel>
+	{
+		#region .ctor
+		public EditorStockPage()
+		{
+			InitializeComponent();
+		}
+		#endregion
 
 		#region Private
 		private void Cell_OnTapped(object sender, EventArgs e)

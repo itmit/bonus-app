@@ -17,7 +17,7 @@ using Plugin.Permissions.Abstractions;
 using Realms;
 using Xamarin.Forms;
 
-namespace bonus.app.Core.ViewModels.Businessman.Shares
+namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
 	public class EditorStockViewModel : MvxViewModel<Stock, Stock>, IServiceParentViewModel
 	{

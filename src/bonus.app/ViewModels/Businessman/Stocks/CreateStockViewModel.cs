@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Popups;
@@ -15,12 +13,11 @@ using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions.Abstractions;
-using Realms;
 using Xamarin.Forms;
 
-namespace bonus.app.Core.ViewModels.Businessman.Shares
+namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
-	public class CreateShareViewModel : MvxViewModel, IServiceParentViewModel
+	public class CreateStockViewModel : MvxViewModel, IServiceParentViewModel
 	{
 		#region Data
 		#region Fields
@@ -47,7 +44,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		#endregion
 
 		#region .ctor
-		public CreateShareViewModel(IStockService stockService,
+		public CreateStockViewModel(IStockService stockService,
 									IGeoHelperService geoHelperService,
 									IPermissionsService permissionsService,
 									IServicesService servicesServices,

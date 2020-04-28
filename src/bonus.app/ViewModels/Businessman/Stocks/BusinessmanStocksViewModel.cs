@@ -7,9 +7,9 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels.Businessman.Shares
+namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
-	public class BusinessmanSharesViewModel : MvxNavigationViewModel
+	public class BusinessmanStocksViewModel : MvxNavigationViewModel
 	{
 		private MvxObservableCollection<Stock> _stocks;
 		private Stock _selectedStock;
@@ -19,7 +19,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 		private MvxCommand _refreshCommand;
 		private bool _isRefreshing;
 
-		public BusinessmanSharesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService,  IStockService stockService)
+		public BusinessmanStocksViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService,  IStockService stockService)
 			: base(logProvider, navigationService)
 		{
 			_stockService = stockService;
@@ -51,7 +51,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				_openCreateSharePageCommand = _openCreateSharePageCommand ??
 											  new MvxCommand(() =>
 											  {
-												  NavigationService.Navigate<CreateShareViewModel>();
+												  NavigationService.Navigate<CreateStockViewModel>();
 											  });
 				return _openCreateSharePageCommand;
 			}
@@ -64,7 +64,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				_openCreateShareArchivePageCommand = _openCreateShareArchivePageCommand ??
 													 new MvxCommand(() =>
 													 {
-														 NavigationService.Navigate<ShareArchiveViewModel>();
+														 NavigationService.Navigate<StockArchiveViewModel>();
 													 });
 				return _openCreateShareArchivePageCommand;
 			}
@@ -101,7 +101,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Shares
 				}
 
 				SetProperty(ref _selectedStock, value);
-				NavigationService.Navigate<BusinessmanSharesDetailViewModel, Stock>(value);
+				NavigationService.Navigate<BusinessmanStocksDetailViewModel, Stock>(value);
 				SetProperty(ref _selectedStock, null);
 			}
 		}
