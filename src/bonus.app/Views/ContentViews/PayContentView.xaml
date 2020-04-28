@@ -4,11 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:design="clr-namespace:bonus.app.Core.Design"
+             xmlns:xf="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.PayContentView">
     <ContentView.Content>
         <StackLayout Spacing="0">
-            <Grid Margin="5,25,5,20">
+            <Grid Margin="5,25,15,20" ColumnSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -28,18 +29,30 @@
                     </Label>
                     <Label Text="Ожидание оплаты&#10;Ожидание оплаты Ожидание оплаты Ожидание оплаты Ожидание оплаты" TextColor="Gray"/>
                 </StackLayout>
-                <Frame Grid.Column="1" BackgroundColor="#BB8D91" CornerRadius="17.5" Padding="15,10" Margin="0,0,25,0" HasShadow="False" IsVisible="False" VerticalOptions="Center" HorizontalOptions="Center">
-                    <Label Text="Оплатить" TextColor="White" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer/>
-                    </Frame.GestureRecognizers>
-                </Frame>
-                <Frame Grid.Column="1" BackgroundColor="Transparent" BorderColor="#BB8D91" Padding="15,10" CornerRadius="17.5" Margin="0,0,25,0" HasShadow="False" IsVisible="True" VerticalOptions="Center" HorizontalOptions="Center">
-                    <Label Text="Продлить" TextColor="#BB8D91" FontSize="Caption" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="{x:Static design:DesignClass.MontserratRegular}"/>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer/>
-                    </Frame.GestureRecognizers>
-                </Frame>
+                <xf:MaterialButton Grid.Column="1"
+                                   ButtonType="Outlined"
+                                   Text="Продлить"
+                                   PressedBackgroundColor="#BB8D91"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BorderColor="#BB8D91"
+                                   TextColor="#BB8D91"
+                                   AllCaps="False"
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                                   CornerRadius="18"
+                                   IsVisible="True"/>
+                <xf:MaterialButton Grid.Column="1"
+                                   ButtonType="Flat"
+                                   BackgroundColor="#BB8D91"
+                                   Text="Оплатить"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BorderColor="#BB8D91"
+                                   TextColor="White"
+                                   AllCaps="False"
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                                   CornerRadius="18"
+                                   IsVisible="false"/>
             </Grid>
             <BoxView/>
         </StackLayout>

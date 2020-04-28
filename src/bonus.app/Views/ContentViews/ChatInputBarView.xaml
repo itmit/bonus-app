@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.Chat.ChatInputBarView">
   <ContentView.Content>
-      <Frame x:Name="Frame" HasShadow="False" BorderColor="#505050" Padding="5">
-          <Grid ColumnSpacing="20" Padding="20,0">
+      <Frame x:Name="Frame" HasShadow="False" BorderColor="#505050" Padding="20,5" BackgroundColor="White">
+          <Grid ColumnSpacing="20">
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="3*" />
+              <ColumnDefinition Width="*" />
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="Auto" />
           </Grid.ColumnDefinitions>
@@ -19,15 +19,28 @@
                                           Text="{Binding TextToSend}" 
                                           Margin="1"  
                                           TextColor="Black" 
-                                          Keyboard="Chat"  
+                                          Keyboard="Chat"
                                           IsExpandable="true"
                                           HorizontalOptions="FillAndExpand"
                                           PlaceholderColor="Black"
-                                          Placeholder="Напишите сообщение"
-                                          />
+                                          Placeholder="Напишите сообщение"/>
           </Frame>
-            <ImageButton Grid.Column="1" Source="ic_attach_4x.png" WidthRequest="40" CornerRadius="20" BackgroundColor="White" VerticalOptions="EndAndExpand" Padding="5"/>
-            <ImageButton Grid.Column="2" Source="ic_send_4x.png" WidthRequest="40" HeightRequest="40" CornerRadius="20" Command="{Binding SendCommand}" BackgroundColor="White" VerticalOptions="EndAndExpand" Padding="5"/>
+          <ImageButton Grid.Column="1"
+                         Source="ic_attach_4x.png"
+                         WidthRequest="40"
+                         CornerRadius="20"
+                         BackgroundColor="White"
+                         VerticalOptions="EndAndExpand"
+                         Padding="5"/>
+          <ImageButton Grid.Column="2"
+                         Source="ic_send_4x.png"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         CornerRadius="20"
+                         Command="{Binding SendCommand}"
+                         BackgroundColor="White"
+                         VerticalOptions="EndAndExpand"
+                         Padding="5"/>
       </Grid>
       </Frame>
     </ContentView.Content>

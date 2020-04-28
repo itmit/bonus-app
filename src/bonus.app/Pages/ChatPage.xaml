@@ -52,7 +52,7 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-                    <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
+            <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
                                            x:Name="ChatInput" VerticalOptions="EndAndExpand"/>
         </Grid>
         </Grid>

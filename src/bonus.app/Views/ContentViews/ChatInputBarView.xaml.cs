@@ -15,8 +15,6 @@ namespace bonus.app.Core.Views.ViewCells.Chat
         public ChatInputBarView()
         {
             InitializeComponent();
-
-            Frame.BackgroundColor = Color.FromRgba(160, 150, 142, 76);
         }
 
 		public void UnFocusEntry()
