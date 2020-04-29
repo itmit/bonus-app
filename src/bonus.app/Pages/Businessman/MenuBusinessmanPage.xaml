@@ -93,7 +93,6 @@
                             <TapGestureRecognizer Command="{Binding LogOutCommand}" />
                         </StackLayout.GestureRecognizers>
                         <Image Source="ic_input.png" Style="{StaticResource image}" />
-
                         <Label Text="Выход" TextColor="White" />
                     </StackLayout>
                 </Grid>

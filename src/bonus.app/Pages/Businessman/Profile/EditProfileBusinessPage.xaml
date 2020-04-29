@@ -86,7 +86,13 @@
                                     FontFamily="{x:Static design:DesignClass.LatoRegular}"
                                     AutoSize="TextChanges"
                                     Margin="0,0,0,10"
-                                    BackgroundColor="Transparent" />
+                                    BackgroundColor="Transparent">
+                                <Editor.Triggers>
+                                    <Trigger TargetType="Editor" Property="IsFocused" Value="True">
+                                        <Setter Property="Placeholder" Value="{x:Null}"/>
+                                    </Trigger>
+                                </Editor.Triggers>
+                            </Editor>
                             <BoxView Margin="0,0,0,10">
                                 <BoxView.IsVisible>
                                     <OnPlatform x:TypeArguments="x:Boolean">
