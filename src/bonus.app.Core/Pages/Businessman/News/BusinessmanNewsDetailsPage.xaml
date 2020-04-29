@@ -8,6 +8,8 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Businessman.News;assembly=bonus.app.Core"
+                      xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.News.BusinessmanNewsDetailsPage">
     <NavigationPage.TitleView>
@@ -18,8 +20,16 @@
         <!--6.2 Детальная страница новостей(предприниматель)-->
         <ScrollView VerticalScrollBarVisibility="Never">
             <StackLayout Margin="20,0" Spacing="0">
-                <Frame x:Name="FrameImage" Padding="0" IsClippedToBounds="True" CornerRadius="5" HasShadow="False">
-                    <Image Source="chika.png" Aspect="AspectFill" WidthRequest="300" />
+                <Frame x:Name="FrameImage"
+                       Padding="0"
+                       CornerRadius="20"
+                       HasShadow="False">
+                    <forms:CachedImage  Source="chika.png"
+                                    WidthRequest="300"
+                                    HeightRequest="255"
+                                    IsVisible="True"
+                                    IsEnabled="True"
+                                    Aspect="AspectFill"/>
                 </Frame>
                 <!--Горизонтальный список с картинками-->
                 <ScrollView Orientation="Horizontal" Margin="0,0,0,20">
@@ -29,10 +39,9 @@
                         </BindableLayout.ItemsSource>
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Frame IsClippedToBounds="True" HasShadow="False" Padding="0" CornerRadius="10"
-                                       HorizontalOptions="Start"
-                                       Margin="0,0,7,0">
-                                    <Image Source="chika.png" WidthRequest="70" />
+                                <Frame Padding="0" CornerRadius="10" HasShadow="False" Opacity="0.8">
+                                    <forms:CachedImage Source="chika.png"
+                                                       WidthRequest="70"/>
                                 </Frame>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>

@@ -18,7 +18,7 @@
                 <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" VerticalOptions="FillAndExpand"
                                    Grid.Column="0" Margin="10,0" WidthRequest="85">
                     <forms:CachedImage.Transformations>
-                        <transformations:RoundedTransformation Radius="100" />
+                        <transformations:RoundedTransformation Radius="100" CropHeightRatio="70" CropWidthRatio="85"/>
                     </forms:CachedImage.Transformations>
                 </forms:CachedImage>
 

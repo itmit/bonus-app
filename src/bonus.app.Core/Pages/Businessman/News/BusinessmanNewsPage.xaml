@@ -6,7 +6,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
-                      xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Businessman.News;assembly=bonus.app.Core"
+                      xmlns:news="clr-namespace:bonus.app.Core.ViewModels.Businessman.News;assembly=bonus.app.Core" xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.News.BusinessmanNewsPage"
                       NavigationPage.HasBackButton="False">
@@ -14,18 +14,34 @@
         <Label Text="Новости" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
 
+    <views:MvxContentPage.Resources>
+        <Style TargetType="contentviews:NewsContentView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#bb8d91"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </views:MvxContentPage.Resources>
+
     <ContentPage.Content>
         <!--6. Новости(предприниматель)-->
-        <ListView Margin="15,0,0,0" HasUnevenRows="True" VerticalScrollBarVisibility="Never"
-                  ItemTapped="ListView_OnItemTapped">
-            <ListView.ItemsSource>
-                <x:String>000000000</x:String>
-            </ListView.ItemsSource>
-            <ListView.ItemTemplate>
+        <CollectionView Margin="15,0,0,0" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
+            <CollectionView.ItemsSource>
+                <x:String>0000</x:String>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <viewCells:NewsViewCell />
+                    <contentviews:NewsContentView/>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentPage.Content>
 </views:MvxContentPage>

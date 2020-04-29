@@ -18,10 +18,10 @@ namespace bonus.app.Core.Pages.Businessman.News
 		#endregion
 
 		#region Private
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-		{
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 			ViewModel.OpenDetail();
 		}
-		#endregion
-	}
+        #endregion
+    }
 }

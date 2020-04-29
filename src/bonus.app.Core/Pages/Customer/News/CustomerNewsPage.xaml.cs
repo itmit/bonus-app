@@ -18,10 +18,10 @@ namespace bonus.app.Core.Pages.Customer.News
 		#endregion
 
 		#region Private
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
-		{
+        private void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        {
 			Navigation.PushAsync(new CustomerNewsDetailsPage());
 		}
-		#endregion
-	}
+        #endregion
+    }
 }

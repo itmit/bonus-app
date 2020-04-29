@@ -13,7 +13,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Grid.Column="0">
+                <Frame Padding="0" IsClippedToBounds="True" CornerRadius="10" Grid.Column="0" HasShadow="False">
                     <Image Source="chika.png" Aspect="AspectFill" WidthRequest="85" />
                 </Frame>
                 <StackLayout Grid.Column="1">
