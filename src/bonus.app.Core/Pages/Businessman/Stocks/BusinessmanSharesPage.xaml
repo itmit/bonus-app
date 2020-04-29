@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="stocks:BusinessmanStocksViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                      xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.Stocks.BusinessmanSharesPage"
+                      NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <Label Text="Мои акции" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <views:MvxContentPage.ToolbarItems>
+        <ToolbarItem Text="Создать новую акцию" Order="Secondary" Priority="0"
+                     Command="{Binding OpenCreateSharePageCommand}" />
+        <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
+                     Command="{Binding OpenCreateShareArchivePageCommand}" />
+    </views:MvxContentPage.ToolbarItems>
+
+    <views:MvxContentPage.Content>
+        <!--5. Мои акции(предприниматель)-->
+        <RefreshView
+            Command="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView VerticalScrollBarVisibility="Never"
+                            Margin="0,5"
+                            ItemsSource="{Binding Stocks}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedStock}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <contentViews:StockContentView />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+    </views:MvxContentPage.Content>
+</views:MvxContentPage>

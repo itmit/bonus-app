@@ -11,6 +11,7 @@ namespace bonus.app.Droid
 {
 	public class Setup : MvxFormsAndroidSetup<CoreApp, App>
 	{
+		#region Overrided
 		protected override IMvxApplication CreateApp() => new CoreApp();
 
 		protected override Application CreateFormsApplication() => new App();
@@ -22,5 +23,6 @@ namespace bonus.app.Droid
 			Mvx.IoCProvider.RegisterSingleton<ISettingsHelper>(new SettingsHelper());
 			return formsPagePresenter;
 		}
+		#endregion
 	}
 }

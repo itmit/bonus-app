@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:design="clr-namespace:bonus.app.Core.Design"
+                 xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                 mc:Ignorable="d"
+                 x:Class="bonus.app.Core.Views.Popups.SuccessSharesPopupPage">
+    <!--еще одна popup после успешного создания акции в профиле предпринимателя-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <Frame CornerRadius="10" Padding="0,50" WidthRequest="320" BackgroundColor="White" VerticalOptions="Center"
+           HorizontalOptions="Center">
+        <StackLayout Spacing="0">
+            <Label Text="Акция успешно создана" FontSize="Medium" HorizontalTextAlignment="Center" Margin="0,0,0,20" />
+            <Label Margin="0,0,0,30" HorizontalOptions="Center" HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span
+                                Text="Акция находится на модерации, у Вас&#10;есть 24 часа для оплаты размещения&#10;акции, в случае не оплаты акция&#10;перейдет в архив, после модерации&#10;Вы можете увидеть ее последней&#10;в разделе " />
+                            <Span Text="Мои акции" FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <design:CustomButton Style="{StaticResource AppButtonGradient}" WidthRequest="260"
+                                 HorizontalOptions="Center">
+                <Grid>
+                    <graphic:RectangleInProfile />
+                    <Label Text="МОИ АКЦИИ" Style="{StaticResource TextForAppButton}" />
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </Frame.GestureRecognizers>
+            </design:CustomButton>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

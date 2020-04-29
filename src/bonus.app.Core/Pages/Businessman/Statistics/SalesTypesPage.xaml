@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="statistics:SalesTypesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
+                      xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.Statistics.SalesTypesPage">
+    <NavigationPage.TitleView>
+        <Label Text="Продажи по видам" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!--Страница 11.1 Продажи по видам-->
+        <ScrollView>
+            <StackLayout Margin="15,0" Spacing="0">
+                <Grid Margin="5,20,5,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Добавить услугу" VerticalOptions="Center" />
+                    <Image Grid.Column="1" Source="ic_plusbrown_4x.png" HorizontalOptions="EndAndExpand"
+                           VerticalOptions="Center" WidthRequest="10" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <BoxView />
+
+                <Entry Placeholder="За период"
+                       PlaceholderColor="#505050"
+                       TextColor="#505050"
+                       Keyboard="Numeric"
+                       Visual="Material"
+                       FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                       Margin="0,0,0,20"
+                       BackgroundColor="Transparent">
+                    <Entry.Behaviors>
+                        <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Button Style="{StaticResource StatisticsButton}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

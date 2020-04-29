@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="shares:StockArchiveViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                      xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
+                      xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
+                      xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.Stocks.StockArchivePage">
+    <NavigationPage.TitleView>
+        <Label Text="Архив акций" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Фильтр" Order="Secondary" Clicked="MenuItem_OnClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <!--5.5 Архив акций-->
+        <Grid>
+            <CollectionView Margin="10,0,0,0">
+                <CollectionView.ItemsSource>
+                    <x:String>000000000000</x:String>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <contentviews:ArchiveStockContentView />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--Затемнение заднего фона-->
+            <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False" />
+            <!--Появляющийся фильтр-->
+            <viewCells:FilterContentView x:Name="Filter">
+                <viewCells:FilterContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </viewCells:FilterContentView.GestureRecognizers>
+            </viewCells:FilterContentView>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>

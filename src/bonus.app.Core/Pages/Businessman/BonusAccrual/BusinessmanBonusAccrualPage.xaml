@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="bonusAccrual:BusinessmanBonusAccrualViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualPage"
+                      NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <!-- Страница 7.1 Начисление бонусов начальная -->
+        <Grid>
+            <graphic:GradientForBonusAccrual />
+
+            <ScrollView>
+                <StackLayout Margin="30,0" Spacing="0">
+                    <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large"
+                           Margin="{x:Static design:DesignClass.MarginForTitle}"
+                           TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratBold}" />
+                    <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+
+                    <Label Text="Для сканирования нажмите на QR-код"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,30"
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+
+                    <Image Source="qrcode.png" WidthRequest="225" HorizontalOptions="Center" Margin="0,0,0,25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenScannerCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Frame Margin="0,0,0,20" CornerRadius="23" IsClippedToBounds="True" Padding="0,-2"
+                           HasShadow="False"
+                           HeightRequest="50" BackgroundColor="#bab3af">
+                        <SearchBar Placeholder="Поиск"
+                                   PlaceholderColor="White"
+                                   TextColor="White"
+                                   WidthRequest="300"
+                                   Text="{Binding UserLogin}"
+                                   BackgroundColor="#bab3af"
+                                   FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                   CancelButtonColor="#D5D1CF" />
+                    </Frame>
+                    <Button Text="ДАЛЕЕ" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>

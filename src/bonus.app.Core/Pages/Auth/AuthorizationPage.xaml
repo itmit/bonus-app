@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:AuthorizationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      mc:Ignorable="d"
+                      NavigationPage.HasNavigationBar="False"
+                      x:Class="bonus.app.Core.Pages.Auth.AuthorizationPage">
+    <ContentPage.Content>
+        <!-- Страница авторизации -->
+        <Grid>
+            <graphic:RectangleForContentPage />
+
+            <ScrollView>
+                <StackLayout Margin="30,0" Spacing="0">
+                    <Image Style="{StaticResource ImageBonus}" />
+                    <Label Text="Для входа введите телефон или&#10;E-mail и пароль" HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center" Margin="0,0,0,20" TextColor="White" />
+                    <Frame Margin="0,0,0,15" Style="{StaticResource AuthAndRegFrame}">
+                        <Entry
+                            x:Name="Login"
+                            Style="{StaticResource AuthAndRegEntry}"
+                            Text="{Binding Login}"
+                            Placeholder="Телефон или E-mail" />
+                    </Frame>
+                    <Grid>
+                        <Frame Style="{StaticResource AuthAndRegFrame}">
+                            <Entry
+                                x:Name="Password"
+                                Text="{Binding Password}"
+                                Style="{StaticResource AuthAndRegEntry}"
+                                Placeholder="Пароль"
+                                IsPassword="True" />
+                        </Frame>
+                        <Image Source="ic_eye.png" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"
+                               WidthRequest="24">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" Spacing="0" Margin="0,0,0,20">
+                        <CheckBox x:Name="IsRemember" VerticalOptions="Center" HorizontalOptions="Start"
+                                  Color="#DADADA" />
+                        <Label Text="Запомнить" FontSize="Caption" TextColor="White" HorizontalOptions="Start"
+                               VerticalOptions="Center" Margin="10,0,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="Забыли пароль?" TextColor="White" HorizontalOptions="EndAndExpand"
+                               VerticalOptions="Center" FontSize="Caption">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"
+                                                      NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Button Text="ВОЙТИ" Margin="0,0,0,20" Command="{Binding LoginCommand}"
+                            Style="{StaticResource AuthAndRegButton}" />
+                    <StackLayout Margin="0,0,0,25" Spacing="0">
+                        <Label Text="Войти с помощью Facebook" HorizontalTextAlignment="Center" TextColor="White">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenAuthVkFcPage}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="Войти с помощью Vkontakte" HorizontalTextAlignment="Center" TextColor="White">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenAuthVkFcPage}" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Label Text="Создать аккаунт" TextColor="White" Margin="0,0,0,15" HorizontalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CreateAccountCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Справочный центр" TextColor="White" HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>

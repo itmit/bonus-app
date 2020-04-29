@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:BusinessmanRegistrationViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Auth.BusinessmanRegistrationPage">
+    <NavigationPage.TitleView>
+        <Label Text="Регистрация" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!--Страница 1.1 Регистрация предпринимателя-->
+        <ScrollView Margin="0,0,0,5">
+            <StackLayout Margin="15,0" Spacing="0">
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Entry">
+                            <Setter Property="PlaceholderColor" Value="#505050" />
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="FontSize" Value="14" />
+                            <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="Margin" Value="0,10" />
+                            <Setter Property="Visual" Value="Material" />
+                        </Style>
+                        <Style TargetType="ui:MaterialTextField">
+                            <Setter Property="PlaceholderColor" Value="#505050" />
+                            <Setter Property="TintColor" Value="#505050" />
+                            <Setter Property="Visual" Value="Material" />
+                            <Setter Property="TextColor" Value="#505050" />
+                            <Setter Property="TextFontSize" Value="14" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="Margin" Value="0,10" />
+                            <Setter Property="AlwaysShowUnderline" Value="True" />
+                            <Setter Property="UnderlineColor" Value="DarkGray" />
+                            <Setter Property="FloatingPlaceholderColor" Value="DarkGray" />
+                            <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <ui:MaterialTextField Text="{Binding Login.Value}"
+                                      Placeholder="Логин"
+                                      ErrorText="{Binding Login.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      HasError="{Binding Login.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                <ui:MaterialTextField Text="{Binding Name.Value}"
+                                      Placeholder="Торговое название или имя мастера"
+                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                <ui:MaterialTextField Text="{Binding Email.Value}"
+                                      Placeholder="E-mail"
+                                      InputType="Email"
+                                      ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                <ui:MaterialTextField Text="{Binding Password.Value}"
+                                      Placeholder="Пароль"
+                                      InputType="Password"
+                                      ErrorText="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
+                                      Placeholder="Повторите пароль"
+                                      InputType="Password"
+                                      ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      HasError="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+                <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
+                       Placeholder="Код из 4 цифр для быстрого входа" />
+                <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,30">
+                    <Grid>
+                        <graphic:RectangleInProfile />
+                        <Label Text="ЗАРЕГИСТРИРОВАТЬСЯ" Style="{StaticResource TextForAppButton}" />
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegistrationCommand}" />
+                    </Frame.GestureRecognizers>
+                </design:CustomButton>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

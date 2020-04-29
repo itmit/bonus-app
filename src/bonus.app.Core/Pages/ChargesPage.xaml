@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#9c938d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="bonus.app.Core.Page.ChargesPage">
+    <ContentPage.Content>
+        <!-- Страница 19.1 Начислений бонусов -->
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" FontSize="16"
+                   Margin="0,0,0,10" />
+            <Image Source="qrcode" HorizontalOptions="Center" />
+            <Picker Title="Выберите категорию" TitleColor="White" BackgroundColor="#bab3af"
+                    HorizontalOptions="CenterAndExpand">
+                <Picker.Items>
+                    <x:String>Стрижка</x:String>
+                    <x:String>Маникюр</x:String>
+                    <x:String>Покраска</x:String>
+                </Picker.Items>
+            </Picker>
+            <SearchBar Placeholder="Имя" TextColor="White" HorizontalOptions="CenterAndExpand" />
+            <Button Text="Начислить" BackgroundColor="#bab3af" TextColor="White" CornerRadius="30" Padding="20,10"
+                    Margin="30,10" WidthRequest="250" HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

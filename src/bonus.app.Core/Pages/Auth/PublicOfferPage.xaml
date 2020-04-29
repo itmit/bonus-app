@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:PublicOfferViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Auth.PublicOfferPage">
+    <NavigationPage.TitleView>
+        <Label Text="Публичная оферта" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!--Страница 15.3 - 15.4 Публичная оферта-->
+        <ScrollView>
+            <StackLayout Margin="20,20" Spacing="0">
+                <Label Margin="0,0,0,15" FontSize="Caption" TextColor="#505050"
+                       Text="Магазин «Bonus System» предлагает физическим лицам&#10;заключить договор на условиях оферты.&#10;Предмет договора: продажа товаров через&#10;сайт www.bonussystem.ru. Описание услуг, тарифы&#10;и способы оплаты доступны в&#10;соответствующих разделах «Услуги», «Тарифы»,&#10;«Способы оплаты», Договор считается заключенным с&#10;момента оплаты услуги покупателем." />
+                <Label Margin="0,0,0,15" FontSize="Caption" TextColor="#505050"
+                       Text="Покупатель согласен предоставить&#10;продавцу следующие персональные данные: &#10;-имя;&#10; -контактный номер телефона;&#10; -адрес электронной почты;&#10; -адрес доставки.&#10; При оплате с помощью банковской карты, клиент&#10;направляется на платежный сервис Яндекс.Касса,&#10;который отвечает за обработку и сохранность данных&#10;банковской карты клиента." />
+                <Label Margin="0,0,0,25" FontSize="Caption" TextColor="#505050"
+                       Text="Данные клиента используются для оплаты заказа.&#10;Компания «Bonus System»,&#10;вправе изменить оферту по&#10;своему усмотрению. Изменения вступают в силу с&#10;момента публикации на сайте." />
+                <Grid RowSpacing="10" Margin="0,0,0,15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="Ch1" Grid.Row="0" Grid.Column="0" Color="#BB8D91"
+                              IsChecked="{Binding IsCheckedPrivatePolicy, FallbackValue=false}" VerticalOptions="Start" />
+                    <Label Grid.Row="0" Grid.Column="1" FontSize="Micro" VerticalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span
+                                        Text="Я даю добровольное согласие на обработку своих&#10;персональных данных и соглашаюсь с "
+                                        TextColor="#505050">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                    <Span Text="политикой конфиденциальности." TextDecorations="Underline"
+                                          TextColor="#BB8D91" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <CheckBox x:Name="Ch2" Grid.Row="1" Grid.Column="0" Color="#BB8D91"
+                              IsChecked="{Binding IsCheckedPublicOffer, FallbackValue=false}" VerticalOptions="Center" />
+                    <Label Grid.Row="1" Grid.Column="1" Text="С условиями публичной оферты согласен" FontSize="Micro"
+                           TextColor="#505050" VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <design:CustomButton Style="{StaticResource AppButtonGradient}"
+                                     IsEnabled="{Binding CanRegister, FallbackValue=false}">
+                    <Grid>
+                        <graphic:RectangleInProfile x:Name="Button" />
+                        <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}" />
+                    </Grid>
+                    <design:CustomButton.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenRegistrationCommand}" />
+                    </design:CustomButton.GestureRecognizers>
+                </design:CustomButton>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

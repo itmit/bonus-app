@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<core:MvxPopupPage x:TypeArguments="auth:SuccessRegisterBusinessmanPopupViewModel"
+                   xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                   xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                   xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                   xmlns:design="clr-namespace:bonus.app.Core.Design"
+                   xmlns:core="clr-namespace:bonus.app.Core;assembly=bonus.app.Core"
+                   xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+                   mc:Ignorable="d"
+                   x:Class="bonus.app.Core.Pages.Auth.SuccessRegisterBusinessmanPopupPage">
+
+    <!--popup после успешной регистрации в профиле предпринимателя-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <Frame CornerRadius="10" Padding="0,50" WidthRequest="320" BackgroundColor="White" VerticalOptions="Center"
+           HorizontalOptions="Center">
+        <StackLayout Spacing="0">
+            <Label Text="Вы успешно&#10;зарегистрировались!" FontSize="Medium" HorizontalTextAlignment="Center"
+                   Margin="0,0,0,20" />
+            <Label Text="Пользуйтесь приложением&#10;и находите новых клиентов" Margin="0,0,0,30"
+                   HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+            <design:CustomButton Style="{StaticResource AppButtonGradient}" WidthRequest="260"
+                                 HorizontalOptions="Center">
+                <Grid>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ClosePopupCommand}" />
+                    </Grid.GestureRecognizers>
+                    <graphic:RectangleInProfile />
+                    <Label Text="ОК" Style="{StaticResource TextForAppButton}" />
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </Frame.GestureRecognizers>
+            </design:CustomButton>
+        </StackLayout>
+    </Frame>
+</core:MvxPopupPage>

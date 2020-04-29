@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ViewCells.SubscribersContentView">
+    <ContentView.Content>
+        <Grid Margin="25,5,20,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Column="0" BackgroundColor="#7B726C" CornerRadius="20" Padding="1" VerticalOptions="Center"
+                   HorizontalOptions="Center" HasShadow="False">
+                <Frame IsClippedToBounds="True" Padding="0" HasShadow="False" CornerRadius="20"
+                       VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image Source="pic_avatar_512w.png" WidthRequest="40" Aspect="AspectFill" />
+                </Frame>
+            </Frame>
+            <Label Grid.Column="1" Text="Андрей Макаров" MaxLines="1" VerticalOptions="Center" FontFamily="Roboto" />
+            <Label Grid.Column="2" Text="2000" VerticalOptions="Center" HorizontalOptions="EndAndExpand"
+                   FontFamily="Roboto" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

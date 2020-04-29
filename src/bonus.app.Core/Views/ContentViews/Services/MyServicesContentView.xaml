@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<views:MvxContentView x:TypeArguments="services1:MyServicesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:services1="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
+                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Views.ContentViews.Services.MyServicesContentView">
+    <!--Содержимое с добавлением услуг-->
+    <ContentView.Content>
+        <StackLayout Spacing="0">
+            <StackLayout Margin="0,0,0,15" Spacing="0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
+                    <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" />
+                    <Image Source="Shape.png"
+                           WidthRequest="15"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand"
+                           Rotation="{Binding ShapeRotation}" />
+                </StackLayout>
+                <BoxView />
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsVisibleServices}"
+                         IsEnabled="{Binding IsVisibleServices}"
+                         BindableLayout.ItemsSource="{Binding Services}"
+                         VerticalOptions="FillAndExpand"
+                         HorizontalOptions="FillAndExpand">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <services:ServiceTypeContentView />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <StackLayout BindableLayout.ItemsSource="{Binding MyServiceTypes}"
+                         IsVisible="{Binding IsVisibleServices}"
+                         IsEnabled="{Binding IsVisibleServices}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <services:CreatedServiceContentView />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <StackLayout Margin="0,0,0,15" Spacing="0" IsVisible="{Binding IsVisibleServices}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,5,15">
+                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoRegular}" />
+                    <Image Source="ic_plus_add_4x.png"
+                           WidthRequest="24"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand" />
+                </StackLayout>
+                <BoxView />
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</views:MvxContentView>

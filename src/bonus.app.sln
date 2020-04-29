@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app.Android", "bonus.app.Android\bonus.app.Android.csproj", "{506504D0-DA3C-4818-A30B-A740428C1B97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app.Core", "bonus.app\bonus.app.Core.csproj", "{636E7A11-5041-453E-BB6F-C666F03109C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app.Core", "bonus.app.Core\bonus.app.Core.csproj", "{636E7A11-5041-453E-BB6F-C666F03109C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bonus.app.iOS", "bonus.app.iOS\bonus.app.iOS.csproj", "{A43CE2E6-20F0-4AA9-9C12-3E3B6701C344}"
 EndProject
