@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="bonus.app.Core.Views.ViewCells.Services.CustomerServicesContentView">
     <ContentView.Content>
         <StackLayout>
@@ -10,9 +12,15 @@
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" CornerRadius="10" VerticalOptions="Center"
-                       HorizontalOptions="Center" WidthRequest="50" HeightRequest="40" HasShadow="False">
-                    <Image Source="chika.png" Aspect="AspectFill" />
+                <Frame Grid.Column="0"
+                       Padding="0"
+                       CornerRadius="10"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       WidthRequest="50"
+                       HeightRequest="40"
+                       HasShadow="False">
+                    <forms:CachedImage Source="chika.png" Aspect="AspectFill"/>
                 </Frame>
                 <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
                     <Label Text="Массаж" />

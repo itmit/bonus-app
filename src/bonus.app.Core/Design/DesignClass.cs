@@ -4,11 +4,6 @@ namespace bonus.app.Core.Design
 {
 	internal static class DesignClass
 	{
-		#region Data
-		#region Static
-		#endregion
-		#endregion
-
 		#region .ctor
 		static DesignClass()
 		{
