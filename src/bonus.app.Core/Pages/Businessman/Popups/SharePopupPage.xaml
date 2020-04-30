@@ -33,17 +33,17 @@
                 <ImageButton Source="ic_close_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="10"
                              Margin="0,0,20,15" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked" />
 
-                <forms:CachedImage
-                    Source="{Binding Stock.ImageSource}"
-                    WidthRequest="290"
-                    Aspect="AspectFill"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="Center" Margin="0,0,0,20">
-
-                    <forms:CachedImage.Transformations>
-                        <transformations:RoundedTransformation Radius="100" />
-                    </forms:CachedImage.Transformations>
-                </forms:CachedImage>
+                <StackLayout Margin="20">
+                    <Frame Padding="0"
+                           CornerRadius="10"
+                           HasShadow="False">
+                        <forms:CachedImage
+                            Source="{Binding Stock.ImageSource}"
+                            Aspect="AspectFill"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"/>
+                    </Frame>
+                </StackLayout>
 
                 <Label Text="{Binding User.Name}" TextColor="#858585" Margin="15,0,0,10" />
                 <Label Text="{Binding Stock.Name}" Margin="15,0,0,10" />
