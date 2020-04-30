@@ -34,7 +34,7 @@
                              Margin="0,0,20,15" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked" />
 
                 <forms:CachedImage
-                    Source="{Binding Share.ImageSource}"
+                    Source="{Binding Stock.ImageSource}"
                     WidthRequest="290"
                     Aspect="AspectFill"
                     VerticalOptions="FillAndExpand"
@@ -46,8 +46,8 @@
                 </forms:CachedImage>
 
                 <Label Text="{Binding User.Name}" TextColor="#858585" Margin="15,0,0,10" />
-                <Label Text="{Binding Share.Name}" Margin="15,0,0,10" />
-                <Label Text="{Binding Share.Description}" Margin="15,0,0,0" />
+                <Label Text="{Binding Stock.Name}" Margin="15,0,0,10" />
+                <Label Text="{Binding Stock.Description}" Margin="15,0,0,0" />
             </StackLayout>
         </ScrollView>
     </Frame>

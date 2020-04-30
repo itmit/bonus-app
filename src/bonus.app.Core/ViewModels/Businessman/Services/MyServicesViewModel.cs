@@ -147,7 +147,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				}
 
 				value.Color = Color.FromHex("#BB8D91");
-				_selectedService = value;
+				SetProperty(ref _selectedService, value);
 			}
 		}
 		#endregion

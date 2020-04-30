@@ -24,6 +24,7 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 		{
 			Layout.BindingContext = ViewModel;
 			PicCountryAndCityContentView.ViewModel = ViewModel.PicCountryAndCityViewModel;
+			MyServicesContentView.ViewModel = ViewModel.MyServicesViewModel;
 
 			base.OnAppearing();
 		}

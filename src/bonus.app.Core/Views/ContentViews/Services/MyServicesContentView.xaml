@@ -7,8 +7,6 @@
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:services1="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
-                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
-                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Views.ContentViews.Services.MyServicesContentView">
