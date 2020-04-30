@@ -32,6 +32,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region Properties
+		public bool IsBusy
+		{
+			get;
+			private set;
+		}
+
 		public bool IsCreated
 		{
 			get;
@@ -58,31 +64,46 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 													return;
 												}
 
-												if (ParentViewModel.UserServiceType == null)
+												if (IsBusy&& IsCreated)
 												{
-													if (!await _servicesService.CreateServiceType(ParentViewModel.UserUuid.ToString()) || !await ParentViewModel.ReloadServices())
+													return;
+												}
+
+												IsBusy = true;
+												try
+												{
+													if (ParentViewModel.UserServiceType == null)
+													{
+														if (!await _servicesService.CreateServiceType(ParentViewModel.UserUuid.ToString()) || !await ParentViewModel.ReloadServices())
+														{
+															throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+														}
+													}
+
+													if (ParentViewModel.UserServiceType == null)
 													{
 														throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
 													}
-												}
 
-												if (ParentViewModel.UserServiceType == null)
-												{
-													throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-												}
-
-												if (await _servicesService.CreateService(Name.Value, ParentViewModel.UserServiceType.Uuid))
-												{
-													IsCreated = true;
-													await ParentViewModel.ReloadServices();
-												}
-												else
-												{
-													Device.BeginInvokeOnMainThread(() =>
+													if (await _servicesService.CreateService(Name.Value, ParentViewModel.UserServiceType.Uuid))
 													{
-														Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{Name.Value}\"", "");
-													});
+														IsCreated = true;
+														await ParentViewModel.ReloadServices();
+													}
+													else
+													{
+														Device.BeginInvokeOnMainThread(() =>
+														{
+															Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{Name.Value}\"", "");
+														});
+													}
 												}
+												catch (Exception e)
+												{
+													Console.WriteLine(e);
+												}
+
+												IsBusy = false;
 											}
 										});
 				return _createServiceCommand;
