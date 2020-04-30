@@ -44,7 +44,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set;
 		}
 
-		public MyServicesViewModel ParentViewModel
+		public ICreatedServiceParentViewModel ParentViewModel
 		{
 			get;
 			set;
@@ -55,58 +55,65 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			get
 			{
 				_createServiceCommand = _createServiceCommand ??
-										new Command<bool>(async isFocused =>
-										{
-											if (!isFocused)
-											{
-												if (!Name.Validate())
-												{
-													return;
-												}
-
-												if (IsBusy&& IsCreated)
-												{
-													return;
-												}
-
-												IsBusy = true;
-												try
-												{
-													if (ParentViewModel.UserServiceType == null)
-													{
-														if (!await _servicesService.CreateServiceType(ParentViewModel.UserUuid.ToString()) || !await ParentViewModel.ReloadServices())
-														{
-															throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-														}
-													}
-
-													if (ParentViewModel.UserServiceType == null)
-													{
-														throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-													}
-
-													if (await _servicesService.CreateService(Name.Value, ParentViewModel.UserServiceType.Uuid))
-													{
-														IsCreated = true;
-														await ParentViewModel.ReloadServices();
-													}
-													else
-													{
-														Device.BeginInvokeOnMainThread(() =>
-														{
-															Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{Name.Value}\"", "");
-														});
-													}
-												}
-												catch (Exception e)
-												{
-													Console.WriteLine(e);
-												}
-
-												IsBusy = false;
-											}
-										});
+										new Command<bool>(Execute);
 				return _createServiceCommand;
+			}
+		}
+
+		private async void Execute(bool isFocused)
+		{
+			if (!isFocused)
+			{
+				if (!Name.Validate())
+				{
+					return;
+				}
+
+				if (IsBusy || IsCreated)
+				{
+					return;
+				}
+
+				IsBusy = true;
+				try
+				{
+					if (ParentViewModel.UserServiceType == null)
+					{
+						if (!await _servicesService.CreateServiceType(ParentViewModel.UserUuid.ToString()) || !await ParentViewModel.ReloadServices())
+						{
+							throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+						}
+					}
+
+					if (ParentViewModel.UserServiceType == null)
+					{
+						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+					}
+
+					if (await _servicesService.CreateService(Name.Value, ParentViewModel.UserServiceType.Uuid))
+					{
+						IsCreated = true;
+						await ParentViewModel.ReloadServices();
+					}
+					else
+					{
+						Device.BeginInvokeOnMainThread(() =>
+						{
+							Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{Name.Value}\"", "");
+						});
+					}
+				}
+				catch (InvalidOperationException e)
+				{
+					Console.WriteLine(e);
+					throw;
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+
+				IsBusy = false;
 			}
 		}
 

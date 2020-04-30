@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentView x:TypeArguments="services1:CreateServiceViewModel" xmlns="http://xamarin.com/schemas/2014/forms" 
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:services1="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Views.ContentViews.Services.CreateServiceContentView">
+    <ContentView.Content>
+        <StackLayout>
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,5,15">
+                    <Label Text="Добавить свою услугу" FontSize="14"
+                           Margin="5,0,0,0" />
+                    <Image Source="ic_plusbrown_4x"
+                           WidthRequest="15"
+                           VerticalOptions="Center"
+                           BackgroundColor="Transparent"
+                           HorizontalOptions="EndAndExpand"
+                           Margin="0,0,10,0" />
+                </StackLayout>
+                <BoxView />
+            </StackLayout>
+
+            <StackLayout BindableLayout.ItemsSource="{Binding MyServiceTypes}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <services:CreatedServiceContentView />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</views:MvxContentView>

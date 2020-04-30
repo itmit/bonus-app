@@ -5,6 +5,8 @@ using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
+using bonus.app.Core.ViewModels.Businessman.Services;
+using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
@@ -21,6 +23,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IProfileService _profileService;
 		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
+		private ValidatableObject<string> _email = new ValidatableObject<string>();
+		private ValidatableObject<string> _name = new ValidatableObject<string>();
+		private ValidatableObject<string> _vkLink = new ValidatableObject<string>();
+		private ValidatableObject<string> _instagrammLink = new ValidatableObject<string>();
+		private ValidatableObject<string> _facebookLink = new ValidatableObject<string>();
+		private ValidatableObject<string> _classmatesLink = new ValidatableObject<string>();
 		#endregion
 		#endregion
 
@@ -52,6 +60,30 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			set => SetProperty(ref _description, value);
 		}
 
+		public ValidatableObject<string> VkLink
+		{
+			get => _vkLink;
+			set => SetProperty(ref _vkLink, value);
+		}
+
+		public ValidatableObject<string> InstagramLink
+		{
+			get => _instagrammLink;
+			set => SetProperty(ref _instagrammLink, value);
+		}
+
+		public ValidatableObject<string> FacebookLink
+		{
+			get => _facebookLink;
+			set => SetProperty(ref _facebookLink, value);
+		}
+
+		public ValidatableObject<string> ClassmatesLink
+		{
+			get => _classmatesLink;
+			set => SetProperty(ref _classmatesLink, value);
+		}
+
 		public MvxCommand EditCommand
 		{
 			get
@@ -66,6 +98,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			get => _workingMode;
 			set => SetProperty(ref _workingMode, value);
 		}
+
+		public CreateServiceViewModel CreateServiceViewModel
+		{
+			get;
+			private set;
+		}
 		#endregion
 
 		#region Overrided
@@ -73,14 +111,60 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			await base.Initialize();
 
-			if (Parameters.IsActiveUser)
+			if (Parameters.IsActiveUser && User != null)
 			{
-				WorkingMode.Value = User?.WorkTime;
-				Contact.Value = User?.Contact;
-				Description = User?.Description;
+				await CreateServiceViewModel.Initialize();
+				WorkingMode.Value = User.WorkTime;
+				Contact.Value = User.Contact;
+				Description = User.Description;
+				Email.Value = User.Email;
+				Name.Value = User.Name;
 			}
 		}
 		#endregion
+
+		public override void Prepare(EditProfileViewModelArguments parameter)
+		{
+			base.Prepare(parameter);
+			if (Parameters.IsActiveUser)
+			{
+				CreateServiceViewModel = new CreateServiceViewModel(Mvx.IoCProvider.Resolve<IServicesService>(), AuthService);
+			
+				Email.Validations.Add(new IsNotNullOrEmptyRule
+				{
+					ValidationMessage = "Укажите Email адрес."
+				});
+				Email.Validations.Add(new IsValidEmailRule
+				{
+					ValidationMessage = "Не корректно введен Email."
+				});
+				Name.Validations.Add(new IsNotNullOrEmptyRule
+				{
+					ValidationMessage = "Укажите торговое название или имя мастера."
+				});
+				Name.Validations.Add(new MinLengthRule(2)
+				{
+					ValidationMessage = "Торговое название или имя мастера не может быть меньше 2 символов."
+				});
+				VkLink.Validations.Add(new IsValidUriRule
+				{
+					ValidationMessage = "Не корректная ссылка."
+				});
+				InstagramLink.Validations.Add(new IsValidUriRule
+				{
+					ValidationMessage = "Не корректная ссылка."
+				});
+				FacebookLink.Validations.Add(new IsValidUriRule
+				{
+					ValidationMessage = "Не корректная ссылка."
+				});
+				ClassmatesLink
+					.Validations.Add(new IsValidUriRule
+				{
+					ValidationMessage = "Не корректная ссылка."
+				});
+			}
+		}
 
 		#region Private
 		private void AddValidations()
@@ -111,28 +195,22 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			});
 		}
 
+		public ValidatableObject<string> Name
+		{
+			get => _name;
+			set => SetProperty(ref _name, value);
+		}
+
+		public ValidatableObject<string> Email
+		{
+			get => _email;
+			set => SetProperty(ref _email, value);
+		}
+
 		private async void EditCommandExecute()
 		{
-			if (!WorkingMode.Validate() | !Contact.Validate() | !Address.Validate() | !PhoneNumber.Validate())
+			if (!Validate())
 			{
-				return;
-			}
-
-			if (CountryAndCityViewModel.SelectedCountry == null)
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
-				});
-				return;
-			}
-
-			if (CountryAndCityViewModel.SelectedCity == null)
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
-				});
 				return;
 			}
 
@@ -146,10 +224,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					Address = Address.Value,
 					WorkTime = WorkingMode.Value,
 					Contact = Contact.Value,
-					Phone = PhoneNumber.Value,
 					Description = Description,
+					Phone = PhoneNumber.Value,
 					Password = Parameters.Password
 				};
+
+				if (User != null && Parameters.IsActiveUser)
+				{
+					arg.Phone = !PhoneNumber.Value.Equals(User.Phone) ? PhoneNumber.Value : string.Empty;
+
+					if (!PhoneNumber.Value.Equals(User.Email))
+					{
+						arg.Email = Email.Value;
+					}
+				}
 
 				var user = await _profileService.Edit(arg, ImageSource);
 
@@ -192,6 +280,59 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					Application.Current.MainPage.DisplayAlert("Ошибка", _profileService.Error, "Ок");
 				});
 			}
+		}
+
+		private bool Validate()
+		{
+			if (!WorkingMode.Validate() | !Contact.Validate() | !Address.Validate() | !PhoneNumber.Validate())
+			{
+				return false;
+			}
+
+			if (CountryAndCityViewModel.SelectedCountry == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
+				});
+				return false;
+			}
+
+			if (CountryAndCityViewModel.SelectedCity == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
+				});
+				return false;
+			}
+
+			if (Parameters.IsActiveUser)
+			{
+				if (!string.IsNullOrEmpty(VkLink.Value) & !VkLink.Validate())
+				{
+					return false;
+				}
+				if (!string.IsNullOrEmpty(InstagramLink.Value) & !InstagramLink.Validate())
+				{
+					return false;
+				}
+				if (!string.IsNullOrEmpty(FacebookLink.Value) & !FacebookLink.Validate())
+				{
+					return false;
+				}
+				if (!string.IsNullOrEmpty(ClassmatesLink.Value) & !ClassmatesLink.Validate())
+				{
+					return false;
+				}
+			}
+
+			if (Parameters.IsActiveUser & !Email.Validate() & !Name.Validate())
+			{
+				return false;
+			}
+
+			return true;
 		}
 		#endregion
 	}

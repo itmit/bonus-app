@@ -1,44 +1,28 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
-	public class MyServicesViewModel : MvxViewModel, IServiceParentViewModel, ICreatedServiceParentViewModel
+	public class CreateServiceViewModel : MvxViewModel, ICreatedServiceParentViewModel
 	{
 		#region Data
 		#region Fields
-		private bool _isVisibleServices;
-		private readonly Mapper _mapper;
 		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes = new MvxObservableCollection<CreatedServiceViewModel>();
-		private ServiceViewModel _selectedService;
-		private MvxObservableCollection<ServiceTypeViewModel> _services;
 		private readonly IServicesService _servicesServices;
-		private int _shapeRotation;
 		private MvxCommand _showMyServiceTypesCommand;
-		private MvxCommand _showOrHideTypesServicesCommand;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public MyServicesViewModel(IServicesService servicesServices, IAuthService authService)
+		public CreateServiceViewModel(IServicesService servicesServices, IAuthService authService)
 		{
 			UserUuid = authService.User.Uuid;
 			_servicesServices = servicesServices;
-			_mapper = new Mapper(new MapperConfiguration(cfg =>
-			{
-				cfg.CreateMap<ServiceType, ServiceTypeViewModel>()
-				   .ForMember(vm => vm.Services, m => m.MapFrom(model => model.Services));
-
-				cfg.CreateMap<Service, ServiceViewModel>()
-				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
-			}));
 		}
 		#endregion
 
@@ -49,10 +33,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			private set;
 		}
 
-		public Guid UserUuid
-		{
-			get;
-		}
 
 		public MvxCommand AddServiceCommand
 		{
@@ -71,42 +51,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 		}
 
-		public bool IsVisibleServices
+
+		public Guid UserUuid
 		{
-			get => _isVisibleServices;
-			set => SetProperty(ref _isVisibleServices, value);
+			get;
 		}
 
 		public MvxObservableCollection<CreatedServiceViewModel> MyServiceTypes
 		{
 			get => _myServiceTypes;
 			set => SetProperty(ref _myServiceTypes, value);
-		}
-
-		public MvxObservableCollection<ServiceTypeViewModel> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
-
-		public int ShapeRotation
-		{
-			get => _shapeRotation;
-			set => SetProperty(ref _shapeRotation, value);
-		}
-
-		public MvxCommand ShowOrHideTypesServicesCommand
-		{
-			get
-			{
-				_showOrHideTypesServicesCommand = _showOrHideTypesServicesCommand ??
-												  new MvxCommand(() =>
-												  {
-													  IsVisibleServices = !IsVisibleServices;
-													  ShapeRotation = IsVisibleServices ? 180 : 0;
-												  });
-				return _showOrHideTypesServicesCommand;
-			}
 		}
 		#endregion
 
@@ -121,9 +75,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				{
 					UserServiceType.Name = "Ваши услуги";
 				}
-
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(types);
-				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
 			}
 			catch (Exception e)
 			{
@@ -132,23 +83,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 
 			return true;
-		}
-		#endregion
-
-		#region IServiceParentViewModel members
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-
-				value.Color = Color.FromHex("#BB8D91");
-				_selectedService = value;
-			}
 		}
 		#endregion
 

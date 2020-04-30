@@ -31,6 +31,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			_servicesService = servicesService;
 			_authService = authService;
 			User = _authService.User;
+			PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
+		}
+
+		public string PhotoSource
+		{
+			get;
 		}
 		#endregion
 

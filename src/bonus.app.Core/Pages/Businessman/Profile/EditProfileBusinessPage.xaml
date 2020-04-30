@@ -6,7 +6,6 @@
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
@@ -15,6 +14,7 @@
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
+                      Title="{Binding Title}"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage"
                       NavigationPage.HasBackButton="False">
     <NavigationPage.TitleView>
@@ -45,7 +45,6 @@
                             <Setter Property="UnderlineColor" Value="DarkGray" />
                             <Setter Property="FloatingPlaceholderColor" Value="DarkGray" />
                             <Setter Property="BackgroundColor" Value="Transparent" />
-                            <Setter Property="Visual" Value="Material" />
                         </Style>
                     </ResourceDictionary>
                 </StackLayout.Resources>
@@ -79,6 +78,45 @@
                                 </ui:MaterialTextField.Behaviors>
                             </ui:MaterialTextField>
 
+
+                            <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
+                                         IsEnabled="{Binding Parameters.IsActiveUser}">
+
+                                <ui:MaterialTextField Text="{Binding Name.Value}"
+                                                      Placeholder="Торговое название или имя мастера"
+                                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                                <ui:MaterialTextField Text="{Binding Email.Value}"
+                                                      Placeholder="E-mail"
+                                                      InputType="Email"
+                                                      ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+                                <ui:MaterialTextField Text="{Binding VkLink.Value}"
+                                                      Placeholder="Ссылка на аккаунт в VKontakte"
+                                                      InputType="Email"
+                                                      ErrorText="{Binding VkLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      HasError="{Binding VkLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+                                <ui:MaterialTextField Text="{Binding InstagramLink.Value}"
+                                                      Placeholder="Ссылка на аккаунт в Instagram"
+                                                      InputType="Email"
+                                                      ErrorText="{Binding InstagramLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      HasError="{Binding InstagramLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+                                <ui:MaterialTextField Text="{Binding FacebookLink.Value}"
+                                                      Placeholder="Ссылка на аккаунт в Facebook"
+                                                      InputType="Email"
+                                                      ErrorText="{Binding FacebookLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      HasError="{Binding FacebookLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+                                <ui:MaterialTextField Text="{Binding ClassmatesLink.Value}"
+                                                      Placeholder="Ссылка на аккаунт в Однокласниках"
+                                                      InputType="Email"
+                                                      ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                            </StackLayout>
+
                             <Editor Placeholder="   Описание услуг&#10;&#10;"
                                     Text="{Binding Description}"
                                     PlaceholderColor="#505050"
@@ -106,6 +144,12 @@
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
 
+                            <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
+                                         IsEnabled="{Binding Parameters.IsActiveUser}">
+
+                                <services:CreateServiceContentView x:Name="CreateServiceContentView"/>
+                            </StackLayout>
+
                             <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
                                     <graphic:RectangleInProfile />
@@ -115,12 +159,6 @@
                                     <TapGestureRecognizer Command="{Binding EditCommand}" />
                                 </design:CustomButton.GestureRecognizers>
                             </design:CustomButton>
-
-                            <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
-                                         IsEnabled="{Binding Parameters.IsActiveUser}">
-
-                                <services:MyServicesContentView />
-                            </StackLayout>
                         </StackLayout>
                     </contentViews:PicCountryAndCityContentView.Footer>
                 </contentViews:PicCountryAndCityContentView>
