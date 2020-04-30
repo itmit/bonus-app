@@ -14,7 +14,7 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 		public BusinessmanSharesPage()
 		{
 			InitializeComponent();
-			BackgroundColor = Color.FromRgba(196, 196, 196, 0.2);
+			BackgroundColor = Color.FromRgba(196, 196, 196, 51);
 		}
 		#endregion
 	}

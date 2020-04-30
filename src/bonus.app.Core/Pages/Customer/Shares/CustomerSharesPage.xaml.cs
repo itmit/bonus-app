@@ -17,8 +17,7 @@ namespace bonus.app.Core.Pages.Customer.Shares
 		{
 			InitializeComponent();
 
-			Grid.BackgroundColor = Color.FromRgba(196, 196, 196, 51);
-			ListView.BackgroundColor = Color.FromRgba(196, 196, 196, 51);
+			BackgroundColor = Color.FromRgba(196, 196, 196, 51);
 
 			var oneItem = new ToolbarItem
 			{

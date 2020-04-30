@@ -19,9 +19,26 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Text="Акции" Style="{StaticResource TitleLabel}" />
             <ImageButton Grid.Column="1" Source="ic_pref_4x.png" WidthRequest="15" HeightRequest="15"
-                         HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked" />
+                         HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"/>
         </Grid>
     </NavigationPage.TitleView>
+
+     <views:MvxContentPage.Resources>
+        <Style TargetType="stocks:CustomerStockContentView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#bb8d91"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </views:MvxContentPage.Resources>
 
     <ContentPage.Content>
         <!-- Страница 18.1 акции покупателя -->
@@ -52,13 +69,15 @@
                          IsRefreshing="{Binding IsRefreshing}">
                 <CollectionView VerticalScrollBarVisibility="Never"
                                 Margin="0,5"
-                                x:Name="ListView"
                                 ItemsSource="{Binding Stocks}"
                                 SelectionMode="Single"
                                 SelectedItem="{Binding SelectedStock}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <stocks:CustomerStockContentView />
+                                <stocks:CustomerStockContentView BackgroundColor="White"/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

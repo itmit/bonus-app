@@ -24,7 +24,7 @@
         <Grid>
             <CollectionView Margin="10,0,0,0">
                 <CollectionView.ItemsSource>
-                    <x:String>000000000000</x:String>
+                    <x:String>0000</x:String>
                 </CollectionView.ItemsSource>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

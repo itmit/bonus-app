@@ -342,7 +342,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\ic_startwocolor_4x.png">
+    <BundleResource Include="Resources\ic_star_two_color_4x.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>

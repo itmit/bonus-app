@@ -10,19 +10,21 @@
              x:Class="bonus.app.Core.Views.ContentViews.StockContentView">
     <ContentView.Content>
         <!--Ячейка для списка мои акции у предпринимателя-->
-        <Frame Padding="10" Margin="0,5">
-            <Grid>
+            <Grid Padding="20,10" ColumnSpacing="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFill" VerticalOptions="FillAndExpand"
-                                   Grid.Column="0" Margin="10,0" WidthRequest="85">
-                    <forms:CachedImage.Transformations>
-                        <transformations:RoundedTransformation Radius="100" CropHeightRatio="70" CropWidthRatio="85"/>
-                    </forms:CachedImage.Transformations>
-                </forms:CachedImage>
+                 <Frame Grid.Column="0"
+                       Padding="0"
+                       CornerRadius="10"
+                       HasShadow="False"
+                       WidthRequest="85"
+                       HeightRequest="70">
+                    <forms:CachedImage Source="{Binding ImageSource}"
+                                       Aspect="AspectFill"/>
+                </Frame>
 
                 <StackLayout Grid.Column="1">
                     <Label Text="{Binding Name}" MaxLines="1" />
@@ -30,6 +32,5 @@
                            TextColor="Gray" />
                 </StackLayout>
             </Grid>
-        </Frame>
     </ContentView.Content>
 </ContentView>
