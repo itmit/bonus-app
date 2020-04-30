@@ -38,7 +38,7 @@
                                IsClippedToBounds="True"
                                VerticalOptions="Center"
                                HorizontalOptions="Center" HasShadow="False">
-                            <forms:CachedImage Source="{Binding User.PhotoSource}" WidthRequest="96"
+                            <forms:CachedImage Source="{Binding PhotoSource}" WidthRequest="96"
                                                HeightRequest="96" VerticalOptions="Center"
                                                HorizontalOptions="Center"
                                                LoadingPlaceholder="icon_no_photo.png"

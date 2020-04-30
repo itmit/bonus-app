@@ -17,7 +17,11 @@ namespace bonus.app.Core.ViewModels
 		#region Fields
 		private ValidatableObject<string> _address = new ValidatableObject<string>();
 
-		private readonly IAuthService _authService;
+		protected IAuthService AuthService
+		{
+			get;
+		}
+
 		private string _imageName;
 		private string _imageSource;
 		private bool _isAuthorization;
@@ -26,13 +30,14 @@ namespace bonus.app.Core.ViewModels
 		private ValidatableObject<string> _phoneNumber = new ValidatableObject<string>();
 		private MvxCommand _picPhotoCommand;
 		private User _user;
+		private string _title;
 		#endregion
 		#endregion
 
 		#region .ctor
 		public BaseEditProfileViewModel(IAuthService authService, IGeoHelperService geoHelperService, IPermissionsService permissionsService)
 		{
-			_authService = authService;
+			AuthService = authService;
 			_permissionsService = permissionsService;
 
 			CountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
@@ -115,13 +120,13 @@ namespace bonus.app.Core.ViewModels
 			await base.Initialize();
 			await CountryAndCityViewModel.Initialize();
 
-			User = _authService.User;
+			User = AuthService.User;
 			IsAuthorization = User != null;
-			if (Parameters.IsActiveUser)
+			if (Parameters.IsActiveUser & User != null)
 			{
-				Address.Value = User?.Address;
-				PhoneNumber.Value = User?.Phone;
-				ImageSource = User?.PhotoSource;
+				Address.Value = User.Address;
+				PhoneNumber.Value = User.Phone;
+				ImageSource = User.PhotoSource;
 				if (!string.IsNullOrWhiteSpace(ImageSource))
 				{
 					ImageName = ImageSource.Substring(ImageSource.LastIndexOf('/') + 1);
@@ -129,9 +134,16 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
+		public string Title
+		{
+			get => _title;
+			private set => SetProperty(ref _title, value);
+		}
+
 		public override void Prepare(EditProfileViewModelArguments parameter)
 		{
 			Parameters = parameter;
+			Title = parameter.IsActiveUser ? "Редактор профиля" : "Заполните данные";
 		}
 		#endregion
 

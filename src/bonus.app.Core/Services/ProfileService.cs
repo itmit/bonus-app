@@ -79,12 +79,6 @@ namespace bonus.app.Core.Services
 				},
 				{
 					new StringContent(arguments.Phone), "phone"
-				},
-				{
-					new StringContent(arguments.WorkTime), "work_time"
-				},
-				{
-					new StringContent("PUT"), "_method"
 				}
 			};
 
@@ -101,6 +95,8 @@ namespace bonus.app.Core.Services
 
 			if (_isActiveUser)
 			{
+				content.Add(new StringContent("PUT"), "_method");
+				content.Add(new StringContent(arguments.WorkTime), "work_time");
 				if (await Update(content))
 				{
 					var user = _authService.User;
@@ -119,6 +115,7 @@ namespace bonus.app.Core.Services
 			}
 			else
 			{
+				content.Add(new StringContent(arguments.WorkTime), "worktime");
 				return await FillInfo(content);
 			}
 
@@ -168,6 +165,7 @@ namespace bonus.app.Core.Services
 
 			if (_isActiveUser)
 			{
+				content.Add(new StringContent("PUT"), "_method");
 				if (await Update(content))
 				{
 					var user = _authService.User;
@@ -241,7 +239,7 @@ namespace bonus.app.Core.Services
 						return userInfo;
 					}
 
-					_userRepository.Update(userInfo);
+					_userRepository.Add(userInfo);
 
 					return userInfo;
 				}

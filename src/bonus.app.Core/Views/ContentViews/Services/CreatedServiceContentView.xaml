@@ -8,18 +8,26 @@
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.Services.CreatedServiceContentView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ui:MaterialTextField">
+                <Setter Property="TextColor" Value="#505050" />
+                <Setter Property="TintColor" Value="#505050" />
+                <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                <Setter Property="InputType" Value="Chat" />
+                <Setter Property="TextFontSize" Value="14" />
+                <Setter Property="MaxLength" Value="190" />
+                <Setter Property="AlwaysShowUnderline" Value="True" />
+                <Setter Property="UnderlineColor" Value="DarkGray" />
+                <Setter Property="FloatingPlaceholderColor" Value="DarkGray" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
-        <Grid Margin="0,0,0,20" x:Name="Grid">
-            <Entry Placeholder="Ваши услуги"
-                   TextColor="#505050"
-                   PlaceholderColor="#505050"
-                   FontSize="14"
-                   FontFamily="{x:Static design:DesignClass.LatoRegular}"
-                   VerticalOptions="Center"
-                   Visual="Material"
-                   BackgroundColor="Transparent" />
-
-            <ui:MaterialTextField Text="{Binding Name.Value}"
+        <Grid >
+            <ui:MaterialTextField Text="{Binding Name.Value, FallbackValue='', TargetNullValue=''}"
                                   Placeholder="Ваши услуги"
                                   FocusCommand="{Binding CreateServiceCommand}"
                                   ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
