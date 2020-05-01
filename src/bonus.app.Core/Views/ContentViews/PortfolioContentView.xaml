@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="bonus.app.Core.Views.ContentViews.PortfolioContentView">
+    <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Column="0"
+                   Padding="0"
+                   HasShadow="False"
+                   WidthRequest="45"
+                   HeightRequest="25"
+                   CornerRadius="5"
+                   VerticalOptions="Center">
+                <forms:CachedImage Source="chika.png"
+                                   Aspect="AspectFill"/>
+            </Frame>
+            <Label  Grid.Column="1"
+                    Text="Фото 1"
+                    VerticalOptions="Center"
+                    FontSize="14"/>
+            <ImageButton Grid.Column="2"
+                         Source="ic_close_4x.png"
+                         VerticalOptions="Center"
+                         WidthRequest="45"
+                         HorizontalOptions="EndAndExpand"
+                         Padding="10,10,20,10"
+                         BackgroundColor="Transparent"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

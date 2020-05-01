@@ -39,7 +39,7 @@
                          VerticalOptions="Center"
                          BackgroundColor="Transparent"
                          HorizontalOptions="EndAndExpand"
-                         Margin="0,0,10,0" />
+                         Margin="0,0,20,0" />
         </Grid>
     </ContentView.Content>
 </ContentView>

@@ -15,8 +15,7 @@
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       Title="{Binding Title}"
-                      x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage"
-                      NavigationPage.HasBackButton="False">
+                      x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage">
     <NavigationPage.TitleView>
         <Label Text="Редактор профиля" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
@@ -144,13 +143,49 @@
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
 
-                            <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
-                                         IsEnabled="{Binding Parameters.IsActiveUser}">
+                            <services:CreateServiceContentView x:Name="CreateServiceContentView"
+                                                               IsVisible="{Binding Parameters.IsActiveUser}"
+                                                               IsEnabled="{Binding Parameters.IsActiveUser}"/>
+                         
 
-                                <services:CreateServiceContentView x:Name="CreateServiceContentView"/>
+                            <StackLayout Orientation="Horizontal"
+                                         Spacing="0"
+                                         Margin="10,15,20,15"
+                                         IsVisible="{Binding Parameters.IsActiveUser}"
+                                         IsEnabled="{Binding Parameters.IsActiveUser}">
+                                <Label Text="Портфолио"
+                                       FontSize="14"/>
+                                <Image Source="ic_add_image_4x.png"
+                                       HeightRequest="16"
+                                       WidthRequest="18"
+                                       HorizontalOptions="EndAndExpand"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer/>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <BoxView/>
+
+                            <StackLayout IsVisible="True">
+                                <BindableLayout.ItemsSource>
+                                    <x:String>000</x:String>
+                                </BindableLayout.ItemsSource>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <contentViews:PortfolioContentView Grid.Row="0"
+                                                                               Margin="10,0,0,0"/>
+                                            <BoxView Grid.Row="1"
+                                                     Margin="0,10,0,0"/> 
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
                             </StackLayout>
 
-                            <design:CustomButton Style="{StaticResource AppButtonGradient}">
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,10,0,0">
                                 <Grid>
                                     <graphic:RectangleInProfile />
                                     <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}" />
