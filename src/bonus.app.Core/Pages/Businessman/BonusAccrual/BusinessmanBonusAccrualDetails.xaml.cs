@@ -46,5 +46,27 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 			}
 		}
 		#endregion
+
+		private void VisualElement_OnUnfocused1(object sender, FocusEventArgs e)
+		{
+			if (!e.IsFocused)
+			{
+				Task.Run(() =>
+				{
+					ViewModel.UpdateBonusesForAccrual(ViewModel.SelectedService, ViewModel.ServicePrice);
+				});
+			}
+		}
+
+		private void VisualElement_OnUnfocused2(object sender, FocusEventArgs e)
+		{
+			if (!e.IsFocused)
+			{
+				Task.Run(() =>
+				{
+					ViewModel.UpdateAccrueBonuses(ViewModel.SelectedService);
+				});
+			}
+		}
 	}
 }

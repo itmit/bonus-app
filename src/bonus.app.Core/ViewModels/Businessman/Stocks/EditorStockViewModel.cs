@@ -7,6 +7,7 @@ using AutoMapper;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Businessman.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -19,35 +20,25 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
-	public class EditorStockViewModel : MvxViewModel<Stock, Stock>, IServiceParentViewModel
+	public class EditorStockViewModel : MvxViewModel<Stock, Stock>
 	{
 		#region Data
 		#region Fields
 		private bool _canCreateShareCommand = true;
-		private MvxObservableCollection<City> _cities;
-		private MvxObservableCollection<Country> _countries;
-		private int _currentPageNumber;
-		private Dictionary<string, string> _errors = new Dictionary<string, string>();
-		private readonly IGeoHelperService _geoHelperService;
 		private byte[] _imageBytes;
 		private string _imageSource;
-		private bool _isBusy;
-		private bool _isFirstCall = true;
-		private bool _isVisibleCity;
-		private MvxCommand _loadMoreCitiesCommand;
-		private readonly Mapper _mapper;
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IPermissionsService _permissionsService;
 		private MvxCommand _picPhotoCommand;
 		private MvxCommand _saveCommand;
-		private City _selectedCity;
-		private Country _selectedCountry;
-		private ServiceViewModel _selectedService;
-		private MvxObservableCollection<ServiceTypeViewModel> _services;
-		private readonly IServicesService _servicesServices;
-		private DateTime _shareTime = DateTime.Today;
+		private ValidatableObject<DateTime?> _shareTime = new ValidatableObject<DateTime?>()
+		{
+			Value = DateTime.Today
+		};
 		private Stock _stock;
 		private readonly IStockService _stockService;
+		private ValidatableObject<string> _name = new ValidatableObject<string>();
+		private ValidatableObject<string> _description = new ValidatableObject<string>();
 		#endregion
 		#endregion
 
@@ -56,21 +47,37 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 									IServicesService servicesServices,
 									IStockService stockService,
 									IPermissionsService permissionsService,
-									IMvxNavigationService navigationService)
+									IMvxNavigationService navigationService,
+									IAuthService authService)
 		{
 			_navigationService = navigationService;
 			_permissionsService = permissionsService;
-			_geoHelperService = geoHelperService;
-			_servicesServices = servicesServices;
 			_stockService = stockService;
-			_mapper = new Mapper(new MapperConfiguration(cfg =>
-			{
-				cfg.CreateMap<ServiceType, ServiceTypeViewModel>()
-				   .ForMember(vm => vm.Services, m => m.MapFrom(model => model.Services));
 
-				cfg.CreateMap<Service, ServiceViewModel>()
-				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
-			}));
+			PicCountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
+			MyServicesViewModel = new MyServicesViewModel(servicesServices, authService);
+
+			AddValidations();
+		}
+
+		private void AddValidations()
+		{
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите название акции."
+			});
+			Name.Validations.Add(new MinLengthRule(3)
+			{
+				ValidationMessage = "Название акции не может содержать меньше 4 символов."
+			});
+			Description.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Описание не может быть пустым."
+			});
+			ShareTime.Validations.Add(new IsValidDateRule(DateTime.Now, new DateTime(2099, 1, 1))
+			{
+				ValidationMessage = "Срок размещения акции должен быть актуальным."
+			});
 		}
 		#endregion
 
@@ -81,41 +88,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			set => SetProperty(ref _canCreateShareCommand, value);
 		}
 
-		public MvxObservableCollection<City> Cities
+		public ValidatableObject<string> Description
 		{
-			get => _cities;
-			private set => SetProperty(ref _cities, value);
-		}
-
-		public MvxObservableCollection<Country> Countries
-		{
-			get => _countries;
-			private set => SetProperty(ref _countries, value);
-		}
-
-		public string Description
-		{
-			get => Stock.Description;
-			set
-			{
-				Stock.Description = value;
-				RaisePropertyChanged(() => Description);
-			}
-		}
-
-		public Dictionary<string, string> Errors
-		{
-			get => _errors;
-			set
-			{
-				if (value == null)
-				{
-					SetProperty(ref _errors, new Dictionary<string, string>());
-					return;
-				}
-
-				SetProperty(ref _errors, value);
-			}
+			get => _description;
+			set => SetProperty(ref _description, value);
 		}
 
 		public string ImageName
@@ -134,35 +110,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			set => SetProperty(ref _imageSource, value);
 		}
 
-		public bool IsBusy
+		public ValidatableObject<string> Name
 		{
-			get => _isBusy;
-			set => SetProperty(ref _isBusy, value);
-		}
-
-		public bool IsVisibleCity
-		{
-			get => _isVisibleCity;
-			set => SetProperty(ref _isVisibleCity, value);
-		}
-
-		public MvxCommand LoadMoreCitiesCommand
-		{
-			get
-			{
-				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1), () => !IsBusy);
-				return _loadMoreCitiesCommand;
-			}
-		}
-
-		public string Name
-		{
-			get => Stock.Name;
-			set
-			{
-				Stock.Name = value;
-				RaisePropertyChanged(() => Name);
-			}
+			get => _name;
+			set => SetProperty(ref _name, value);
+			
 		}
 
 		public MvxCommand PicImageCommand
@@ -183,46 +135,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
-		public City SelectedCity
-		{
-			get => _selectedCity;
-			set => SetProperty(ref _selectedCity, value);
-		}
-
-		public Country SelectedCountry
-		{
-			get => _selectedCountry;
-			set
-			{
-				SetProperty(ref _selectedCountry, value);
-				_cities = new MvxObservableCollection<City>();
-				LoadCities(value, 1);
-			}
-		}
-
-		public MvxObservableCollection<ServiceTypeViewModel> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
-
-		public DateTime ShareTime
+		public ValidatableObject<DateTime?> ShareTime
 		{
 			get => _shareTime;
-			set
+			set 
 			{
 				SetProperty(ref _shareTime, value);
-				if (value <= DateTime.Today)
+				if (value.Value != null)
 				{
-					Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
+					Stock.ShareTime = value.Value.Value;
 				}
-				else
-				{
-					Errors["share_time"] = null;
-					Stock.ShareTime = value;
-				}
-
-				RaisePropertyChanged(() => Errors);
 			}
 		}
 
@@ -233,76 +155,34 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		}
 		#endregion
 
-		#region IServiceParentViewModel members
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-
-				Stock.Service = value.Uuid;
-				value.Color = Color.FromHex("#BB8D91");
-				SetProperty(ref _selectedService, value);
-			}
-		}
-		#endregion
-
 		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
+			await MyServicesViewModel.Initialize();
+			await PicCountryAndCityViewModel.Initialize();
 
 			try
 			{
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(await _servicesServices.GetAll());
-				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
-				var countries = await _geoHelperService.GetCountries(new LocaleDto
-				{
-					FallbackLang = "en",
-					Lang = "ru"
-				});
-				countries.Move(countries.Single(c => c.Iso.Equals("RU")), 0);
-				countries.Move(countries.Single(c => c.Iso.Equals("UA")), 1);
-				countries.Move(countries.Single(c => c.Iso.Equals("BY")), 2);
-				countries.Move(countries.Single(c => c.Iso.Equals("KZ")), 3);
-				countries.Move(countries.Single(c => c.Iso.Equals("AZ")), 4);
-				Countries = new MvxObservableCollection<Country>(countries.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
+				Stock = await _stockService.GetStockForEdit(Stock.Uuid);
+				
+				ImageSource = Stock.ImageSource;
+
+				_name.Value = Stock.Name;
+				_description.Value = Stock.Description;
+				_shareTime.Value = Stock.ShareTime;
+				await RaisePropertyChanged(() => ShareTime);
+				await RaisePropertyChanged(() => Name);
+				await RaisePropertyChanged(() => Description);
+				
+				var temp = MyServicesViewModel.Services.SingleOrDefault(model => model.Services.Any(service => service.Uuid == Stock.Service));
+				var ser = temp?.Services.SingleOrDefault(service => service.Uuid == Stock.Service);
+				MyServicesViewModel.SelectedService = ser;
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
-
-			await Task.Run(async () =>
-			{
-				try
-				{
-					Stock = await _stockService.GetStockForEdit(Stock.Uuid);
-					_shareTime = Stock.ShareTime;
-					ImageSource = Stock.ImageSource;
-					await RaisePropertyChanged(() => ShareTime);
-
-					_selectedCountry = Countries.SingleOrDefault(country => country.LocalizedNames.Ru.Equals(Stock.Country));
-					await RaisePropertyChanged(() => SelectedCountry);
-
-					_cities = new MvxObservableCollection<City>();
-					LoadCities(_selectedCountry, 1);
-					SelectedCity = Cities.SingleOrDefault(city => city.LocalizedNames.Ru.Equals(Stock.City));
-					IsVisibleCity = SelectedCity != null;
-
-					var temp = Services.SingleOrDefault(model => model.Services.Any(service => service.Uuid == Stock.Service));
-					var ser = temp?.Services.SingleOrDefault(service => service.Uuid == Stock.Service);
-					SelectedService = ser;
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-				}
-			});
 		}
 
 		public override void Prepare(Stock parameter)
@@ -316,7 +196,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			CanCreateShareCommand = false;
 			var result = true;
-			if (SelectedCountry == null)
+			if (PicCountryAndCityViewModel.SelectedCountry == null)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -325,7 +205,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				result = false;
 			}
 
-			if (SelectedCity == null && result)
+			if (PicCountryAndCityViewModel.SelectedCity == null && result)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -334,7 +214,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				result = false;
 			}
 
-			if (SelectedService == null && result)
+			if (MyServicesViewModel.SelectedService == null && result)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -343,117 +223,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				result = false;
 			}
 
-			var name = Name?.Trim();
-			if (string.IsNullOrEmpty(name))
+			if (!Name.Validate() | !Description.Validate() | !ShareTime.Validate())
 			{
-				Errors[nameof(Name)
-						   .ToLower()] = "Название акции не может быть пустым.";
-
 				result = false;
-			}
-			else if (name.Length < 4)
-			{
-				Errors[nameof(Name)
-						   .ToLower()] = "Название акции не может содержать меньше 4 символов.";
-
-				result = false;
-			}
-			else
-			{
-				Errors[nameof(Name)
-						   .ToLower()] = null;
-			}
-
-			if (string.IsNullOrEmpty(Description?.Trim()))
-			{
-				Errors[nameof(Description)
-						   .ToLower()] = "Описание не может быть пустым.";
-				result = false;
-			}
-			else
-			{
-				Errors[nameof(Description)
-						   .ToLower()] = null;
-			}
-
-			if (ShareTime <= DateTime.Today)
-			{
-				Errors["share_time"] = "Срок размещения акции должен быть актуальным.";
-				result = false;
-			}
-			else
-			{
-				Errors["share_time"] = null;
 			}
 
 			CanCreateShareCommand = !result;
-			RaisePropertyChanged(() => Errors);
 			return result;
-		}
-
-		private async void LoadCities(Country country, int pageNumber)
-		{
-			if (country == null)
-			{
-				return;
-			}
-
-			IsBusy = true;
-			_currentPageNumber = pageNumber;
-			try
-			{
-				var cities = await _geoHelperService.GetCities(new LocaleDto
-															   {
-																   FallbackLang = "en",
-																   Lang = "ru"
-															   },
-															   new CityFilterDto
-															   {
-																   CountryIso = country.Iso
-															   },
-															   new PaginationRequestDto
-															   {
-																   Limit = 250,
-																   Page = _currentPageNumber
-															   },
-															   new OrderDto
-															   {
-																   By = "name",
-																   Dir = "asc"
-															   });
-				cities.Insert(0,
-							  new City
-							  {
-								  Name = "Москва",
-								  Id = 4995,
-								  LocalizedNames = new LocalizedName
-								  {
-									  En = "Moskva",
-									  Ru = "Москва"
-								  },
-								  RegionId = 55
-							  });
-				cities.Insert(1,
-							  new City
-							  {
-								  Name = "Санкт-Петербург",
-								  Id = 5000,
-								  LocalizedNames = new LocalizedName
-								  {
-									  En = "Sankt-Peterburg",
-									  Ru = "Санкт-Петербург"
-								  },
-								  RegionId = 48
-							  });
-				Cities.AddRange(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
-				await RaisePropertyChanged(() => Cities);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
-
-			IsBusy = false;
 		}
 
 		private async void PicImageCommandExecute()
@@ -495,6 +271,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				return;
 			}
 
+			Stock.Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru;
+			Stock.City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru;
+			Stock.Service = MyServicesViewModel.SelectedService.Uuid;
+			Stock.Name = Name.Value;
+			Stock.Description = Description.Value;
+
 			var res = false;
 			try
 			{
@@ -519,5 +301,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 		#endregion
+
+		public PicCountryAndCityViewModel PicCountryAndCityViewModel
+		{
+			get;
+			set;
+		}
+
+		public MyServicesViewModel MyServicesViewModel
+		{
+			get;
+			set;
+		}
 	}
 }

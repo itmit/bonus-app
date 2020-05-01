@@ -23,6 +23,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 		private MvxObservableCollection<Service> _myServices;
 		private readonly IServicesService _servicesServices;
+		private MvxCommand _openEditCommand;
 		#endregion
 		#endregion
 
@@ -36,6 +37,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region Properties
+		public MvxCommand OpenEditCommand
+		{
+			get
+			{
+				_openEditCommand = _openEditCommand ?? new MvxCommand(() =>
+				{
+					NavigationService.Navigate<EditBusinessmanServicesViewModel>();
+				});
+				return _openEditCommand;
+			}
+		}
+
 		public MyServicesViewModel MyServicesViewModel
 		{
 			get;

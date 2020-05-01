@@ -44,6 +44,9 @@
     <Compile Update="Pages\Businessman\Popups\SharePopupPage.xaml.cs">
       <DependentUpon>SharePopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Businessman\Stocks\BusinessmanStocksPage.xaml.cs">
+      <DependentUpon>BusinessmanStocksPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Businessman\Stocks\StockArchivePage.xaml.cs">
       <DependentUpon>StockArchivePage.xaml</DependentUpon>
     </Compile>
@@ -152,7 +155,7 @@
     <EmbeddedResource Update="Pages\Businessman\Services\BusinessmanServicesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Businessman\Stocks\BusinessmanSharesPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Stocks\BusinessmanStocksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\BusinessmanTabbedPage.xaml">

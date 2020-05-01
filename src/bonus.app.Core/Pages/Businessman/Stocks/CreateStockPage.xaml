@@ -60,26 +60,18 @@
                                 <Label Text="Срок размещения, до" VerticalOptions="Center" />
                                 <DatePicker VerticalOptions="Center"
                                             HorizontalOptions="EndAndExpand"
-                                            Date="{Binding ShareTime}"
+                                            Date="{Binding ShareTime.Value}"
                                             MaximumDate="2099-01-01"
                                             MinimumDate="2000-01-01"
                                             FontFamily="{x:Static design:DesignClass.LatoRegular}" />
                                 <Image Source="ic_calendar_4x.png" VerticalOptions="Center" WidthRequest="18" />
                             </StackLayout>
-
-                            <ui:MaterialDateField Date="{Binding ShareTime.Value}"
-                                                  ErrorText="{Binding ShareTime.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                                  HasError="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                                                  TextColor="#505050"
-                                                  BackgroundColor="Transparent"
-                                                  Placeholder="Дата рождения"
-                                                  TextFontSize="14"
-                                                  AlwaysShowUnderline="True"
-                                                  UnderlineColor="DarkGray"
-                                                  TintColor="#505050"
-                                                  TextFontFamily="{x:Static design:DesignClass.LatoRegular}" />
-
-                            <BoxView Margin="0,0,0,20" />
+                            <BoxView />
+                            <Label Text="{Binding ShareTime.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                   IsVisible="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}" 
+                                   Margin="0,0,0,20"
+                                   TextColor="DarkRed"/>
+                            
                             <StackLayout Orientation="Horizontal" Margin="5,0">
                                 <Label Text="Только для подписчиков, до" VerticalOptions="Center" />
                                 <Switch HorizontalOptions="EndAndExpand"
@@ -88,8 +80,15 @@
                             </StackLayout>
                             <BoxView Margin="0,15,0,20" />
                             <ui:MaterialButton Text="ПРОСМОТР"
-                                    Command="{Binding ShowShareCommand}"
-                                    Margin="0,10" />
+                                               Command="{Binding ShowShareCommand}"
+                                               TextColor="#A0968E"
+                                               CornerRadius="40"
+                                               Margin="0,10"
+                                               BorderColor="#A0968E"
+                                               BorderWidth="1"
+                                               FontSize="Body"
+                                               FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                               BackgroundColor="White"/>
                             <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
                                     <graphic:RectangleInProfile />

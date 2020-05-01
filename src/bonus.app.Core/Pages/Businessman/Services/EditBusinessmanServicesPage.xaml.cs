@@ -13,14 +13,6 @@ namespace bonus.app.Core.Pages.Businessman.Services
 		public EditBusinessmanServicesPage()
 		{
 			InitializeComponent();
-
-			var source = new ObservableCollection<string>
-			{
-				"0",
-				"0",
-				"0"
-			};
-			RepeaterView.ItemsSource = source;
 		}
 		#endregion
 
@@ -28,10 +20,6 @@ namespace bonus.app.Core.Pages.Businessman.Services
 		private void Button_OnClicked(object sender, EventArgs e)
 		{
 			Navigation.PushAsync(new EditBusinessmanServicesDetailsPage());
-		}
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
 		}
 		#endregion
 	}

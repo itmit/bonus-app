@@ -450,10 +450,21 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 
 			BonusesForWriteOff = whiteOff > User.Balance ? User.Balance : whiteOff;
+
+			UpdateBonusesForAccrual(selectedService, price);
+		}
+
+		public void UpdateBonusesForAccrual(Service selectedService, double price)
+		{
+			if (selectedService == null || price < 1)
+			{
+				BonusesForAccrual = 0;
+				AccrueBonuses = 0;
+				return;
+			}
+
 			var sub = price - BonusesForWriteOff;
 
-			var bonusPercentage = BonusPercentage;
-			var bonusPoints = BonusAmount;
 			if (sub < 0)
 			{
 				BonusesForAccrual = 0;
@@ -461,14 +472,25 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 
 			BonusesForAccrual = sub;
+
+			UpdateAccrueBonuses(selectedService);
+		}
+
+		public void UpdateAccrueBonuses(Service selectedService)
+		{
+			if (selectedService == null)
+			{
+				AccrueBonuses = 0;
+				return;
+			}
 			switch (selectedService.AccrualMethod)
 			{
 				case BonusValueType.Percent:
-					var maxBonuses = Math.Round(BonusesForAccrual / 100 * bonusPercentage, 2);
-					AccrueBonuses = sub > maxBonuses ? maxBonuses : sub;
+					var maxBonuses = Math.Round(BonusesForAccrual / 100 * BonusPercentage, 2);
+					AccrueBonuses = BonusesForAccrual > maxBonuses ? maxBonuses : BonusesForAccrual;
 					break;
 				case BonusValueType.Points:
-					AccrueBonuses = sub > bonusPoints ? bonusPoints : sub;
+					AccrueBonuses = BonusesForAccrual > BonusAmount ? BonusAmount : BonusesForAccrual;
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(selectedService.AccrualMethod),

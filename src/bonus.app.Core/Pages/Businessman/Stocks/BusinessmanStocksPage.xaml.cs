@@ -8,10 +8,10 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_stock", Title = "Акции")]
-	public partial class BusinessmanSharesPage : MvxContentPage<BusinessmanStocksViewModel>
+	public partial class BusinessmanStocksPage : MvxContentPage<BusinessmanStocksViewModel>
 	{
 		#region .ctor
-		public BusinessmanSharesPage()
+		public BusinessmanStocksPage()
 		{
 			InitializeComponent();
 			BackgroundColor = Color.FromRgba(196, 196, 196, 51);

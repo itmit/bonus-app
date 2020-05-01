@@ -5,12 +5,11 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.EditBusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -20,33 +19,15 @@
     <ContentPage.Content>
         <!--Страница 4.3 Редактор мои услуги(преприниматель)-->
         <StackLayout Margin="15,0" Spacing="0">
-            <CollectionView x:Name="RepeaterView">
+            <CollectionView SelectionMode="Single" ItemsSource="{Binding MyServices}">
                 <CollectionView.Header>
-                    <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body"
-                           HorizontalOptions="Center" Margin="0,20,0,15" />
+                        <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="FillAndExpand" Margin="0,20,0,15" />
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Spacing="0">
-                            <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
-                                <Label Text="Массаж" HorizontalOptions="Start" />
-                                <Label HorizontalOptions="EndAndExpand"
-                                       FontFamily="{x:Static design:DesignClass.LatoBold}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <FormattedString.Spans>
-                                                <Span Text="10" />
-                                                <Span Text=" %" />
-                                            </FormattedString.Spans>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </StackLayout>
-                            <BoxView />
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
+                        <services1:ServiceAccrualValueContentView />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.Footer>
@@ -61,6 +42,9 @@
                     </design:CustomButton>
                 </CollectionView.Footer>
             </CollectionView>
+
+
+
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>
