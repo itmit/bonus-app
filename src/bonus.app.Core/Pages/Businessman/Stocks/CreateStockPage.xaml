@@ -56,7 +56,7 @@
                             <contentViews:PicPhotoContentView Placeholder="Загрузите изображение акции"
                                                               Margin="0,0,0,20" />
 
-                            <StackLayout Orientation="Horizontal" Margin="5,0" Spacing="0">
+                            <StackLayout Orientation="Horizontal" Margin="10,0,5,0" Spacing="0">
                                 <Label Text="Срок размещения, до" VerticalOptions="Center" />
                                 <DatePicker VerticalOptions="Center"
                                             HorizontalOptions="EndAndExpand"
@@ -72,7 +72,7 @@
                                    Margin="0,0,0,20"
                                    TextColor="DarkRed"/>
                             
-                            <StackLayout Orientation="Horizontal" Margin="5,0">
+                            <StackLayout Orientation="Horizontal" Margin="10,0,5,0">
                                 <Label Text="Только для подписчиков, до" VerticalOptions="Center" />
                                 <Switch HorizontalOptions="EndAndExpand"
                                         IsToggled="{Binding IsSubscriberOnly}"
@@ -80,15 +80,15 @@
                             </StackLayout>
                             <BoxView Margin="0,15,0,20" />
                             <ui:MaterialButton Text="ПРОСМОТР"
-                                               Command="{Binding ShowShareCommand}"
-                                               TextColor="#A0968E"
-                                               CornerRadius="40"
-                                               Margin="0,10"
-                                               BorderColor="#A0968E"
-                                               BorderWidth="1"
+                                               ButtonType="Outlined"
+                                               HeightRequest="55"
+                                               CornerRadius="27"
+                                               TextColor="#a0968e"
+                                               BorderColor="#a0968e"
                                                FontSize="Body"
-                                               FontFamily="{x:Static design:DesignClass.LatoRegular}"
-                                               BackgroundColor="White"/>
+                                               PressedBackgroundColor="#a0968e"
+                                               FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                                               Command="{Binding ShowShareCommand}"/>
                             <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
                                     <graphic:RectangleInProfile />
