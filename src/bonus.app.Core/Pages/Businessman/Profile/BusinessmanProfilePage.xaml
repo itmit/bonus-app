@@ -182,7 +182,7 @@
                                 </ui:MaterialMenuButton.Choices>
                             </ui:MaterialMenuButton>
                         </Grid>
-                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem">
+                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding PortfolioImages}">
                             <CollectionView.EmptyView>
                                 <Label Text="Добавьте изображение&#10;для портфолио"
                                        HorizontalOptions="Center"
@@ -194,12 +194,9 @@
                                 <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="2"
                                                  VerticalItemSpacing="5" />
                             </CollectionView.ItemsLayout>
-                            <CollectionView.ItemsSource>
-                                <x:String>00000000000</x:String>
-                            </CollectionView.ItemsSource>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <forms:CachedImage Source="longhair.png" Aspect="AspectFit" HeightRequest="60"
+                                    <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFit" HeightRequest="60"
                                                        WidthRequest="100">
                                         <forms:CachedImage.Transformations>
                                             <transformations:RoundedTransformation Radius="10" CropHeightRatio="60"

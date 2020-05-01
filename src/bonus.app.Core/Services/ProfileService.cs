@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
-	public class ProfileService : IProfileService
+	public class ProfileService : BaseService, IProfileService
 	{
 		#region Data
 		#region Consts
@@ -24,7 +25,6 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Fields
-		private readonly IAuthService _authService;
 		private readonly bool _isActiveUser;
 		private readonly Mapper _mapper;
 		private readonly IUserRepository _userRepository;
@@ -33,6 +33,7 @@ namespace bonus.app.Core.Services
 
 		#region .ctor
 		public ProfileService(IAuthService authService, IUserRepository userRepository)
+		:base(authService)
 		{
 			_userRepository = userRepository;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
@@ -50,7 +51,6 @@ namespace bonus.app.Core.Services
 				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 			_isActiveUser = authService.Token != null;
-			_authService = authService;
 		}
 		#endregion
 
@@ -97,9 +97,13 @@ namespace bonus.app.Core.Services
 			{
 				content.Add(new StringContent("PUT"), "_method");
 				content.Add(new StringContent(arguments.WorkTime), "work_time");
+				content.Add(new StringContent(arguments.VkLink), "vk");
+				content.Add(new StringContent(arguments.FacebookLink), "facebook");
+				content.Add(new StringContent(arguments.InstagramLink), "instagram");
+				content.Add(new StringContent(arguments.Odnoklassniki), "odnoklassniki");
 				if (await Update(content))
 				{
-					var user = _authService.User;
+					var user = AuthService.User;
 					user.City = arguments.City;
 					user.Country = arguments.Country;
 					user.Address = arguments.Address;
@@ -168,7 +172,7 @@ namespace bonus.app.Core.Services
 				content.Add(new StringContent("PUT"), "_method");
 				if (await Update(content))
 				{
-					var user = _authService.User;
+					var user = AuthService.User;
 					user.City = arguments.City;
 					user.Country = arguments.Country;
 					user.Address = arguments.Address;
@@ -189,6 +193,54 @@ namespace bonus.app.Core.Services
 
 			return null;
 		}
+
+		private const string PortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
+
+		public async Task<bool> AddImageToPortfolio(string imageSource)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(PortfolioUri, new MultipartFormDataContent
+				{
+					{
+						new ByteArrayContent(File.ReadAllBytes(imageSource)), "\"photo\"", $"\"{imageSource.Substring(imageSource.LastIndexOf('/') + 1)}\""
+					}
+				});
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+				return data.Success;
+			}
+		}
+
+		public async Task<List<PortfolioImage>> GetPortfolio()
+		{
+			var images = (await GetAsync<IEnumerable<PortfolioImage>>(PortfolioUri))?.ToList();
+			if (images == null)
+			{
+				return new List<PortfolioImage>();
+			}
+
+			foreach (var portfolioImage in images)
+			{
+				if (string.IsNullOrEmpty(portfolioImage.ImageSource))
+				{
+					portfolioImage.ImageSource = string.Empty;
+					continue;
+				}
+
+				portfolioImage.ImageSource = Domain + portfolioImage.ImageSource;
+			}
+
+			return images;
+		}
+
+		public Task<bool> RemoveImageFromPortfolio() => throw new NotImplementedException();
 
 		public string Error
 		{
@@ -260,8 +312,8 @@ namespace bonus.app.Core.Services
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
-				var response = await client.PostAsync(string.Format(UpdateUri, _authService.User.Uuid), content);
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(string.Format(UpdateUri, AuthService.User.Uuid), content);
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);

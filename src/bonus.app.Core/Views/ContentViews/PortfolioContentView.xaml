@@ -17,11 +17,11 @@
                    HeightRequest="25"
                    CornerRadius="5"
                    VerticalOptions="Center">
-                <forms:CachedImage Source="chika.png"
+                <forms:CachedImage Source="{Binding ImageSource}"
                                    Aspect="AspectFill"/>
             </Frame>
             <Label  Grid.Column="1"
-                    Text="Фото 1"
+                    Text="{Binding ImageName}"
                     VerticalOptions="Center"
                     FontSize="14"/>
             <ImageButton Grid.Column="2"

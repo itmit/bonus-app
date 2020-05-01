@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
+using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
@@ -9,6 +10,10 @@ using bonus.app.Core.ViewModels.Businessman.Services;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
@@ -17,18 +22,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 	{
 		#region Data
 		#region Fields
+		private MvxCommand _addPortfolioImageCommand;
+		private ValidatableObject<string> _classmatesLink = new ValidatableObject<string>();
 		private ValidatableObject<string> _contact = new ValidatableObject<string>();
 		private string _description = string.Empty;
 		private MvxCommand _editCommand;
-		private readonly IMvxNavigationService _navigationService;
-		private readonly IProfileService _profileService;
-		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
 		private ValidatableObject<string> _email = new ValidatableObject<string>();
-		private ValidatableObject<string> _name = new ValidatableObject<string>();
-		private ValidatableObject<string> _vkLink = new ValidatableObject<string>();
-		private ValidatableObject<string> _instagrammLink = new ValidatableObject<string>();
 		private ValidatableObject<string> _facebookLink = new ValidatableObject<string>();
-		private ValidatableObject<string> _classmatesLink = new ValidatableObject<string>();
+		private ValidatableObject<string> _instagrammLink = new ValidatableObject<string>();
+		private ValidatableObject<string> _name = new ValidatableObject<string>();
+		private readonly IMvxNavigationService _navigationService;
+		private MvxObservableCollection<PortfolioImage> _portfolioImages = new MvxObservableCollection<PortfolioImage>();
+		private readonly IProfileService _profileService;
+		private ValidatableObject<string> _vkLink = new ValidatableObject<string>();
+		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
 		#endregion
 		#endregion
 
@@ -48,6 +55,56 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region Properties
+		public CreateServiceViewModel CreateServiceViewModel
+		{
+			get;
+			private set;
+		}
+
+		public MvxCommand AddPortfolioImageCommand
+		{
+			get
+			{
+				_addPortfolioImageCommand = _addPortfolioImageCommand ??
+											new MvxCommand(async () =>
+											{
+												if (await PermissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+												{
+													if (!CrossMedia.Current.IsPickPhotoSupported)
+													{
+														return;
+													}
+
+													var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+													{
+														PhotoSize = PhotoSize.Medium
+													});
+
+													if (image == null)
+													{
+														return;
+													}
+
+													if (await _profileService.AddImageToPortfolio(image.Path))
+													{
+														PortfolioImages.Add(new PortfolioImage
+														{
+															ImageSource = image.Path
+														});
+														await RaisePropertyChanged(() => PortfolioImages);
+													}
+												}
+											});
+				return _addPortfolioImageCommand;
+			}
+		}
+
+		public ValidatableObject<string> ClassmatesLink
+		{
+			get => _classmatesLink;
+			set => SetProperty(ref _classmatesLink, value);
+		}
+
 		public ValidatableObject<string> Contact
 		{
 			get => _contact;
@@ -60,30 +117,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			set => SetProperty(ref _description, value);
 		}
 
-		public ValidatableObject<string> VkLink
-		{
-			get => _vkLink;
-			set => SetProperty(ref _vkLink, value);
-		}
-
-		public ValidatableObject<string> InstagramLink
-		{
-			get => _instagrammLink;
-			set => SetProperty(ref _instagrammLink, value);
-		}
-
-		public ValidatableObject<string> FacebookLink
-		{
-			get => _facebookLink;
-			set => SetProperty(ref _facebookLink, value);
-		}
-
-		public ValidatableObject<string> ClassmatesLink
-		{
-			get => _classmatesLink;
-			set => SetProperty(ref _classmatesLink, value);
-		}
-
 		public MvxCommand EditCommand
 		{
 			get
@@ -93,16 +126,46 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
+		public ValidatableObject<string> Email
+		{
+			get => _email;
+			set => SetProperty(ref _email, value);
+		}
+
+		public ValidatableObject<string> FacebookLink
+		{
+			get => _facebookLink;
+			set => SetProperty(ref _facebookLink, value);
+		}
+
+		public ValidatableObject<string> InstagramLink
+		{
+			get => _instagrammLink;
+			set => SetProperty(ref _instagrammLink, value);
+		}
+
+		public ValidatableObject<string> Name
+		{
+			get => _name;
+			set => SetProperty(ref _name, value);
+		}
+
+		public MvxObservableCollection<PortfolioImage> PortfolioImages
+		{
+			get => _portfolioImages;
+			set => SetProperty(ref _portfolioImages, value);
+		}
+
+		public ValidatableObject<string> VkLink
+		{
+			get => _vkLink;
+			set => SetProperty(ref _vkLink, value);
+		}
+
 		public ValidatableObject<string> WorkingMode
 		{
 			get => _workingMode;
 			set => SetProperty(ref _workingMode, value);
-		}
-
-		public CreateServiceViewModel CreateServiceViewModel
-		{
-			get;
-			private set;
 		}
 		#endregion
 
@@ -119,9 +182,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Description = User.Description;
 				Email.Value = User.Email;
 				Name.Value = User.Name;
+
+				try
+				{
+					PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
 			}
 		}
-		#endregion
 
 		public override void Prepare(EditProfileViewModelArguments parameter)
 		{
@@ -129,7 +200,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			if (Parameters.IsActiveUser)
 			{
 				CreateServiceViewModel = new CreateServiceViewModel(Mvx.IoCProvider.Resolve<IServicesService>(), AuthService);
-			
+
 				Email.Validations.Add(new IsNotNullOrEmptyRule
 				{
 					ValidationMessage = "Укажите Email адрес."
@@ -158,13 +229,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				{
 					ValidationMessage = "Не корректная ссылка."
 				});
-				ClassmatesLink
-					.Validations.Add(new IsValidUriRule
+				ClassmatesLink.Validations.Add(new IsValidUriRule
 				{
 					ValidationMessage = "Не корректная ссылка."
 				});
 			}
 		}
+		#endregion
 
 		#region Private
 		private void AddValidations()
@@ -195,18 +266,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			});
 		}
 
-		public ValidatableObject<string> Name
-		{
-			get => _name;
-			set => SetProperty(ref _name, value);
-		}
-
-		public ValidatableObject<string> Email
-		{
-			get => _email;
-			set => SetProperty(ref _email, value);
-		}
-
 		private async void EditCommandExecute()
 		{
 			if (!Validate())
@@ -231,12 +290,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (User != null && Parameters.IsActiveUser)
 				{
-					arg.Phone = !PhoneNumber.Value.Equals(User.Phone) ? PhoneNumber.Value : string.Empty;
+					arg.Phone = User.Phone;
+					arg.Email = Email.Value;
+					
 
-					if (!PhoneNumber.Value.Equals(User.Email))
-					{
-						arg.Email = Email.Value;
-					}
+					arg.VkLink = VkLink.Value;
+					arg.InstagramLink = InstagramLink.Value;
+					arg.FacebookLink = FacebookLink.Value;
+					arg.Odnoklassniki = ClassmatesLink.Value;
 				}
 
 				var user = await _profileService.Edit(arg, ImageSource);
@@ -309,21 +370,36 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 			if (Parameters.IsActiveUser)
 			{
-				if (!string.IsNullOrEmpty(VkLink.Value) & !VkLink.Validate())
+				if (!string.IsNullOrEmpty(VkLink.Value))
 				{
-					return false;
+					if (!VkLink.Validate())
+					{
+						return false;
+					}
 				}
-				if (!string.IsNullOrEmpty(InstagramLink.Value) & !InstagramLink.Validate())
+
+				if (!string.IsNullOrEmpty(InstagramLink.Value))
 				{
-					return false;
+					if (!InstagramLink.Validate())
+					{
+						return false;
+					}
 				}
-				if (!string.IsNullOrEmpty(FacebookLink.Value) & !FacebookLink.Validate())
+
+				if (!string.IsNullOrEmpty(FacebookLink.Value))
 				{
-					return false;
+					if (!FacebookLink.Validate())
+					{
+						return false;
+					}
 				}
-				if (!string.IsNullOrEmpty(ClassmatesLink.Value) & !ClassmatesLink.Validate())
+
+				if (!string.IsNullOrEmpty(ClassmatesLink.Value))
 				{
-					return false;
+					if (!ClassmatesLink.Validate())
+					{
+						return false;
+					}
 				}
 			}
 

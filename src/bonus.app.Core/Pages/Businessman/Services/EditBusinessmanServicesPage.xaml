@@ -42,9 +42,6 @@
                     </design:CustomButton>
                 </CollectionView.Footer>
             </CollectionView>
-
-
-
         </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

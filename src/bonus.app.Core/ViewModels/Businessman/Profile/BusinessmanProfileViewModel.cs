@@ -21,14 +21,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private IEnumerable<Service> _services;
 		private readonly IServicesService _servicesService;
 		private User _user;
+		private readonly IProfileService _profileService;
+		private MvxObservableCollection<PortfolioImage> _portfolioImages;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IServicesService servicesService)
+		public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IServicesService servicesService, IProfileService profileService)
 			: base(logProvider, navigationService)
 		{
 			_servicesService = servicesService;
+			_profileService = profileService;
 			_authService = authService;
 			User = _authService.User;
 			PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
@@ -41,6 +44,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region Properties
+		public MvxObservableCollection<PortfolioImage> PortfolioImages
+		{
+			get => _portfolioImages;
+			private set => SetProperty(ref _portfolioImages, value);
+		}
+
 		public MvxCommand OpenChatCommand
 		{
 			get
@@ -108,6 +117,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			try
 			{
 				Services = await _servicesService.GetBusinessmenService();
+				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
 			}
 			catch (Exception e)
 			{

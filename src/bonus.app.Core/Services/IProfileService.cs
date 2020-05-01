@@ -24,6 +24,12 @@ namespace bonus.app.Core.Services
 		Task<User> Edit(EditBusinessmanDto arguments, string imagePath);
 
 		Task<User> Edit(EditCustomerDto arguments, string imagePath);
+
+		Task<bool> AddImageToPortfolio(string imageSource);
+
+		Task<List<PortfolioImage>> GetPortfolio();
+
+		Task<bool> RemoveImageFromPortfolio();
 		#endregion
 	}
 }
