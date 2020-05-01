@@ -137,6 +137,10 @@
       <Generator>
       </Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\ic_add_image_4x.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bonus.app.Core\bonus.app.Core.csproj">
@@ -164,9 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\plus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Frame.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\krest.png" />

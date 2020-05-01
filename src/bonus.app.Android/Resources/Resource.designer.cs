@@ -25677,9 +25677,6 @@ namespace bonus.app.Droid
 			// aapt resource value: 0x7F07007A
 			public const int drawable_shape_with_icon = 2131165306;
 			
-			// aapt resource value: 0x7F07007B
-			public const int Frame = 2131165307;
-			
 			// aapt resource value: 0x7F070160
 			public const int icon_no_photo = 2131165536;
 			
@@ -25688,6 +25685,9 @@ namespace bonus.app.Droid
 			
 			// aapt resource value: 0x7F070162
 			public const int icon_search = 2131165538;
+			
+			// aapt resource value: 0x7F07007B
+			public const int ic_add_image_4x = 2131165307;
 			
 			// aapt resource value: 0x7F07007C
 			public const int ic_attach_4x = 2131165308;

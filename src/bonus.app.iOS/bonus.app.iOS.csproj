@@ -218,10 +218,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </BundleResource>
-    <BundleResource Include="Resources\Frame.png">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </BundleResource>
     <BundleResource Include="Resources\ic_attach_4x.png">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -431,6 +427,7 @@
     <BundleResource Include="Resources\ic_news%403x.png" />
     <BundleResource Include="Resources\icon_no_photo.png" />
     <BundleResource Include="Resources\qrcode.png" />
+    <BundleResource Include="Resources\ic_add_image_4x.png" />
   </ItemGroup>
   <ItemGroup />
 </Project>
