@@ -82,6 +82,30 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			get;
 			set;
 		}
+
+		public string InstagramLink
+		{
+			get;
+			set;
+		}
+
+		public string VkLink
+		{
+			get;
+			set;
+		}
+
+		public string Odnoklassniki
+		{
+			get;
+			set;
+		}
+
+		public string FacebookLink
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

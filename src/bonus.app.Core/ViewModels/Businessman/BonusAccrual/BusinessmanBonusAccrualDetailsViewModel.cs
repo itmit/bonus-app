@@ -517,6 +517,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public override void Prepare(User parameter)
 		{
 			User = parameter;
+			_guid = parameter.Uuid;
 		}
 		#endregion
 

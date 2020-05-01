@@ -26,7 +26,12 @@ namespace bonus.app.Core.ViewModels
 		private string _imageSource;
 		private bool _isAuthorization;
 		private bool _isBusy;
-		private readonly IPermissionsService _permissionsService;
+
+		protected IPermissionsService PermissionsService
+		{
+			get;
+		}
+
 		private ValidatableObject<string> _phoneNumber = new ValidatableObject<string>();
 		private MvxCommand _picPhotoCommand;
 		private User _user;
@@ -38,7 +43,7 @@ namespace bonus.app.Core.ViewModels
 		public BaseEditProfileViewModel(IAuthService authService, IGeoHelperService geoHelperService, IPermissionsService permissionsService)
 		{
 			AuthService = authService;
-			_permissionsService = permissionsService;
+			PermissionsService = permissionsService;
 
 			CountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
 		}
@@ -150,7 +155,7 @@ namespace bonus.app.Core.ViewModels
 		#region Private
 		private async void PicImageCommandExecute()
 		{
-			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			if (await PermissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
 			{
 				if (!CrossMedia.Current.IsPickPhotoSupported)
 				{
