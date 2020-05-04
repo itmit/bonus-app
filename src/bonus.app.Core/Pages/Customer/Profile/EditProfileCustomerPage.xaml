@@ -51,7 +51,7 @@
 
                 <contentViews:PicCountryAndCityContentView x:Name="PicCountryAndCityView">
                     <contentViews:PicCountryAndCityContentView.Footer>
-                        <StackLayout Grid.Row="1" Margin="10,0">
+                        <StackLayout>
                             <ui:MaterialTextField Text="{Binding Address.Value}"
                                                   Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Адрес"
@@ -73,7 +73,7 @@
 
                             <StackLayout>
                                 <Label Text="Пол" FontSize="Caption" Margin="15,0" />
-                                <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                <StackLayout Orientation="Horizontal" HeightRequest="30" Margin="5,0,0,0">
                                     <CheckBox x:Name="IsFemale" Color="#BB8D91" WidthRequest="25"
                                               IsChecked="{Binding IsFemale}" />
                                     <Label Margin="0" Text="Женский" VerticalOptions="Center">
@@ -101,14 +101,14 @@
                                                   AlwaysShowUnderline="True"
                                                   UnderlineColor="DarkGray"
                                                   TintColor="#505050"
-                                                  TextFontFamily="{x:Static design:DesignClass.LatoRegular}" />
+                                                  TextFontFamily="{x:Static design:DesignClass.LatoRegular}"/>
 
                             <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}"
-                                   BackgroundColor="Transparent" />
+                                   BackgroundColor="Transparent"/>
 
-                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
+                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" Margin="5,0,0,0"/>
 
-                            <design:CustomButton Style="{StaticResource AppButtonGradient}">
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,10,0,0">
                                 <Grid>
                                     <graphic:RectangleInProfile />
                                     <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}" />
