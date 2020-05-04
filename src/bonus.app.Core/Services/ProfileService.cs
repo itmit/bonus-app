@@ -25,7 +25,6 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Fields
-		private readonly bool _isActiveUser;
 		private readonly Mapper _mapper;
 		private readonly IUserRepository _userRepository;
 		#endregion
@@ -50,7 +49,6 @@ namespace bonus.app.Core.Services
 				   .ForMember(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
 				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
-			_isActiveUser = authService.Token != null;
 		}
 		#endregion
 
@@ -93,7 +91,7 @@ namespace bonus.app.Core.Services
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (_isActiveUser)
+			if (AuthService.Token != null)
 			{
 				content.Add(new StringContent("PUT"), "_method");
 				content.Add(new StringContent(arguments.WorkTime), "work_time");
@@ -187,7 +185,7 @@ namespace bonus.app.Core.Services
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (_isActiveUser)
+			if (AuthService.Token != null)
 			{
 				content.Add(new StringContent("PUT"), "_method");
 				if (await Update(content))
