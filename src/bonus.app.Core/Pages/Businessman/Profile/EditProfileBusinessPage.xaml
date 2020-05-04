@@ -114,32 +114,9 @@
                                                       InputType="Email"
                                                       ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                                       HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                                <ui:MaterialTextField Placeholder="Описание услуг&#10;&#10;"
+                                                      Text="{Binding Description}"/>
                             </StackLayout>
-
-                            <Editor Placeholder="   Описание услуг&#10;&#10;"
-                                    Text="{Binding Description}"
-                                    PlaceholderColor="#505050"
-                                    Keyboard="Chat"
-                                    TextColor="#505050"
-                                    FontSize="14"
-                                    FontFamily="{x:Static design:DesignClass.LatoRegular}"
-                                    AutoSize="TextChanges"
-                                    Margin="0,0,0,10"
-                                    BackgroundColor="Transparent">
-                                <Editor.Triggers>
-                                    <Trigger TargetType="Editor" Property="IsFocused" Value="True"> 
-                                        <Setter Property="Placeholder" Value="{x:Null}"/>
-                                    </Trigger>
-                                </Editor.Triggers>
-                            </Editor>
-                            <BoxView Margin="0,0,0,10">
-                                <BoxView.IsVisible>
-                                    <OnPlatform x:TypeArguments="x:Boolean">
-                                        <On Platform="Android" Value="False" />
-                                        <On Platform="iOS" Value="True" />
-                                    </OnPlatform>
-                                </BoxView.IsVisible>
-                            </BoxView>
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
 
