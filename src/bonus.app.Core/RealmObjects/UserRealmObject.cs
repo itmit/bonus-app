@@ -110,6 +110,30 @@ namespace bonus.app.Core.RealmObjects
 			get;
 			set;
 		}
+
+		public string InstagramLink
+		{
+			get;
+			set;
+		}
+
+		public string VkLink
+		{
+			get;
+			set;
+		}
+
+		public string ClassmatesLink
+		{
+			get;
+			set;
+		}
+
+		public string FacebookLink
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

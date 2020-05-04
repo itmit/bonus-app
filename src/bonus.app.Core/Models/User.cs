@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace bonus.app.Core.Models
 {
@@ -129,6 +130,35 @@ namespace bonus.app.Core.Models
 		}
 
 		public string WorkTime
+		{
+			get;
+			set;
+		}
+
+
+		[JsonProperty("instagram")]
+		public string InstagramLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("vk")]
+		public string VkLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("odnoklassniki")]
+		public string ClassmatesLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("facebook")]
+		public string FacebookLink
 		{
 			get;
 			set;

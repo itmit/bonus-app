@@ -97,10 +97,24 @@ namespace bonus.app.Core.Services
 			{
 				content.Add(new StringContent("PUT"), "_method");
 				content.Add(new StringContent(arguments.WorkTime), "work_time");
-				content.Add(new StringContent(arguments.VkLink), "vk");
-				content.Add(new StringContent(arguments.FacebookLink), "facebook");
-				content.Add(new StringContent(arguments.InstagramLink), "instagram");
-				content.Add(new StringContent(arguments.Odnoklassniki), "odnoklassniki");
+
+				if (!string.IsNullOrEmpty(arguments.VkLink))
+				{
+					content.Add(new StringContent(arguments.VkLink), "vk");
+				}
+				if (!string.IsNullOrEmpty(arguments.InstagramLink))
+				{
+					content.Add(new StringContent(arguments.InstagramLink), "instagram");
+				}
+				if (!string.IsNullOrEmpty(arguments.FacebookLink))
+				{
+					content.Add(new StringContent(arguments.FacebookLink), "facebook");
+				}
+				if (!string.IsNullOrEmpty(arguments.Odnoklassniki))
+				{
+					content.Add(new StringContent(arguments.Odnoklassniki), "odnoklassniki");
+				}
+
 				if (await Update(content))
 				{
 					var user = AuthService.User;
@@ -109,9 +123,15 @@ namespace bonus.app.Core.Services
 					user.Address = arguments.Address;
 					user.Contact = arguments.Contact;
 					user.Description = arguments.Description;
-					user.Phone = arguments.Phone;
+					user.Phone = string.IsNullOrEmpty(arguments.Phone) ? user.Phone : arguments.Phone;
+					user.Email = string.IsNullOrEmpty(arguments.Email) ? user.Email : arguments.Email;
 					user.WorkTime = arguments.WorkTime;
-					user.PhotoSource = imagePath;
+					user.PhotoSource = string.IsNullOrEmpty(imagePath) ? user.PhotoSource : imagePath;
+
+					user.FacebookLink = arguments.FacebookLink;
+					user.VkLink = arguments.VkLink;
+					user.InstagramLink = arguments.InstagramLink;
+					user.ClassmatesLink = arguments.Odnoklassniki;
 
 					_userRepository.Update(user);
 					return user;

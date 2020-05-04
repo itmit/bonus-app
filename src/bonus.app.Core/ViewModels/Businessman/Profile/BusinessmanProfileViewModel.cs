@@ -7,6 +7,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Essentials;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
@@ -23,6 +24,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private User _user;
 		private readonly IProfileService _profileService;
 		private MvxObservableCollection<PortfolioImage> _portfolioImages;
+		private MvxCommand _openVkCommand;
+		private MvxCommand _openClassmatesCommand;
+		private MvxCommand _openFacebookCommand;
+		private MvxCommand _openInstagramCommand;
 		#endregion
 		#endregion
 
@@ -106,6 +111,59 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			get => _user;
 			private set => SetProperty(ref _user, value);
+		}
+
+		public MvxCommand OpenVkCommand
+		{
+			get
+			{
+				_openVkCommand = _openVkCommand ?? new MvxCommand(async () =>
+				{
+					await OpenBrowser(User.VkLink);
+				});
+				return _openVkCommand;
+			}
+		}
+		public MvxCommand OpenInstagramCommand
+		{
+			get
+			{
+				_openInstagramCommand = _openInstagramCommand ?? new MvxCommand(async () =>
+				{
+					await OpenBrowser(User.InstagramLink);
+				});
+				return _openInstagramCommand;
+			}
+		}
+		public MvxCommand OpenFacebookCommand
+		{
+			get
+			{
+				_openFacebookCommand = _openFacebookCommand ?? new MvxCommand(async () =>
+				{
+					await OpenBrowser(User.FacebookLink);
+				});
+				return _openFacebookCommand;
+			}
+		}
+		public MvxCommand OpenClassmatesCommand
+		{
+			get
+			{
+				_openClassmatesCommand = _openClassmatesCommand ?? new MvxCommand(async () =>
+				{
+					await OpenBrowser(User.ClassmatesLink);
+				});
+				return _openClassmatesCommand;
+			}
+		}
+
+		private async Task OpenBrowser(string link)
+		{
+			if (Uri.TryCreate(link, UriKind.Absolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+			{
+				await Browser.OpenAsync(uriResult, BrowserLaunchMode.SystemPreferred);
+			}
 		}
 		#endregion
 

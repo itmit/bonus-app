@@ -15,5 +15,10 @@ namespace bonus.app.Core.Pages.Businessman
 			InitializeComponent();
 		}
 		#endregion
+
+		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
+		/// <returns>To be added.</returns>
+		/// <remarks>To be added.</remarks>
+		protected override bool OnBackButtonPressed() => base.OnBackButtonPressed();
 	}
 }

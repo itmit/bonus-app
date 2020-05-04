@@ -143,13 +143,25 @@
                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent"
-                                     Padding="-5,10,10,15" />
+                                     Padding="-5,10,10,15" 
+                                     IsVisible="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenVkCommand}"/>
                         <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" />
+                                     Padding="10,10,10,15" 
+                                     IsVisible="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenInstagramCommand}"/>
                         <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" />
+                                     Padding="10,10,10,15" 
+                                     IsVisible="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenFacebookCommand}"/>
                         <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" />
+                                     Padding="10,10,10,15" 
+                                     IsVisible="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenClassmatesCommand}"/>
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"

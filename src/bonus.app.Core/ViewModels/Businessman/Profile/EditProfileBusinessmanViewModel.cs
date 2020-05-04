@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
@@ -23,19 +24,43 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Data
 		#region Fields
 		private MvxCommand _addPortfolioImageCommand;
-		private ValidatableObject<string> _classmatesLink = new ValidatableObject<string>();
-		private ValidatableObject<string> _contact = new ValidatableObject<string>();
+		private ValidatableObject<string> _classmatesLink = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
+		private ValidatableObject<string> _contact = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
 		private string _description = string.Empty;
 		private MvxCommand _editCommand;
-		private ValidatableObject<string> _email = new ValidatableObject<string>();
-		private ValidatableObject<string> _facebookLink = new ValidatableObject<string>();
-		private ValidatableObject<string> _instagrammLink = new ValidatableObject<string>();
-		private ValidatableObject<string> _name = new ValidatableObject<string>();
+		private ValidatableObject<string> _email = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
+		private ValidatableObject<string> _facebookLink = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
+		private ValidatableObject<string> _instagrammLink = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
+		private ValidatableObject<string> _name = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
 		private readonly IMvxNavigationService _navigationService;
 		private MvxObservableCollection<PortfolioImage> _portfolioImages = new MvxObservableCollection<PortfolioImage>();
 		private readonly IProfileService _profileService;
-		private ValidatableObject<string> _vkLink = new ValidatableObject<string>();
-		private ValidatableObject<string> _workingMode = new ValidatableObject<string>();
+		private ValidatableObject<string> _vkLink = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
+		private ValidatableObject<string> _workingMode = new ValidatableObject<string>
+		{
+			Value = string.Empty
+		};
 		#endregion
 		#endregion
 
@@ -68,7 +93,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				_addPortfolioImageCommand = _addPortfolioImageCommand ??
 											new MvxCommand(async () =>
 											{
-												if (await PermissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+												if (await PermissionsService.CheckPermission(Permission.Storage,
+																							 "Для загрузки аватара необходимо разрешение на использование хранилища."))
 												{
 													if (!CrossMedia.Current.IsPickPhotoSupported)
 													{
@@ -182,6 +208,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Description = User.Description;
 				Email.Value = User.Email;
 				Name.Value = User.Name;
+				VkLink.Value = User.VkLink;
+				InstagramLink.Value = User.InstagramLink;
+				FacebookLink.Value = User.FacebookLink;
+				ClassmatesLink.Value = User.ClassmatesLink;
 
 				try
 				{
@@ -290,10 +320,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (User != null && Parameters.IsActiveUser)
 				{
-					arg.Phone = User.Phone;
-					arg.Email = Email.Value;
-					
+					var p = Regex.Replace(User.Phone, "[@,\\ \\(\\)\\-]", string.Empty);
+					if (User.Phone.Equals(p))
+					{
+						arg.Phone = string.Empty;
+					}
+					if (User.Email.Equals(p))
+					{
+						arg.Email = string.Empty;
+					}
 
+					arg.Name = Name.Value;
 					arg.VkLink = VkLink.Value;
 					arg.InstagramLink = InstagramLink.Value;
 					arg.FacebookLink = FacebookLink.Value;

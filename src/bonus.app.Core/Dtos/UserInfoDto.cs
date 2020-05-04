@@ -55,6 +55,34 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+
+		[JsonProperty("instagram")]
+		public string InstagramLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("vk")]
+		public string VkLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("odnoklassniki")]
+		public string ClassmatesLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("facebook")]
+		public string FacebookLink
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }
