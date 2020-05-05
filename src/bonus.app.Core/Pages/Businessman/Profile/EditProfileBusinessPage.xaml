@@ -77,6 +77,8 @@
                                 </ui:MaterialTextField.Behaviors>
                             </ui:MaterialTextField>
 
+                            <ui:MaterialTextField Placeholder="Описание (расскажите об услугах)&#10;&#10;"
+                                                      Text="{Binding Description}"/>
 
                             <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
                                          IsEnabled="{Binding Parameters.IsActiveUser}">
@@ -113,9 +115,7 @@
                                                       Placeholder="Ссылка на аккаунт в Однокласниках"
                                                       InputType="Email"
                                                       ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                                      HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-                                <ui:MaterialTextField Placeholder="Описание услуг&#10;&#10;"
-                                                      Text="{Binding Description}"/>
+                                                      HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}"/> 
                             </StackLayout>
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />

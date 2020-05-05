@@ -203,18 +203,19 @@
                                        VerticalOptions="Center" />
                             </CollectionView.EmptyView>
                             <CollectionView.ItemsLayout>
-                                <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="2"
+                                <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
                                                  VerticalItemSpacing="5" />
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <forms:CachedImage Source="{Binding ImageSource}" Aspect="AspectFit" HeightRequest="60"
-                                                       WidthRequest="100">
-                                        <forms:CachedImage.Transformations>
-                                            <transformations:RoundedTransformation Radius="10" CropHeightRatio="60"
-                                                                                   CropWidthRatio="100" />
-                                        </forms:CachedImage.Transformations>
-                                    </forms:CachedImage>
+                                    <Frame Padding="0"
+                                           WidthRequest="100"
+                                           HeightRequest="60"
+                                           CornerRadius="10"
+                                           HasShadow="False">
+                                         <forms:CachedImage Source="{Binding ImageSource}"
+                                                            Aspect="AspectFill"/>
+                                    </Frame>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
