@@ -26,6 +26,7 @@ namespace bonus.app.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microcharts.Droid.Resource.String.library_name = global::bonus.app.Droid.Resource.String.library_name;
 			global::MvvmCross.Resource.Attribute.MvxBind = global::bonus.app.Droid.Resource.Attribute.MvxBind;
 			global::MvvmCross.Resource.Attribute.MvxDropDownItemTemplate = global::bonus.app.Droid.Resource.Attribute.MvxDropDownItemTemplate;
 			global::MvvmCross.Resource.Attribute.MvxGroupItemTemplate = global::bonus.app.Droid.Resource.Attribute.MvxGroupItemTemplate;

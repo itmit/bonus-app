@@ -15,9 +15,17 @@
     <ContentPage.Content>
         <!--Страница 11.3 География-->
         <StackLayout Margin="15,0" Spacing="0">
-            <Label Text="Страны" Padding="5,20,5,15" />
+            <Label Text="Страны" Padding="10,20,5,15">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenGeographyDetailPageCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
             <BoxView />
-            <Label Text="Города" Padding="5,20,5,15" />
+            <Label Text="Города" Padding="10,20,5,15">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenGeographyDetailPageCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
             <BoxView />
         </StackLayout>
     </ContentPage.Content>

@@ -9,6 +9,8 @@
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+                      xmlns:st="clr-namespace:bonus.app.Core.Views.ContentViews.Statistics;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Statistics.GenderAgePage">
     <NavigationPage.TitleView>
@@ -18,30 +20,78 @@
     <ContentPage.Content>
         <!--Страница 11.2 Пол и возраст-->
         <ScrollView>
-            <StackLayout Margin="15,0" Spacing="0">
-                <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
-                    <Label Text="Мужчины" />
-                    <Image Source="ic_coloorblue_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
+            <StackLayout Spacing="0">
+                <StackLayout Margin="15,0" Spacing="0">
+                    <StackLayout Orientation="Horizontal" Margin="10,20,5,15">
+                        <Label Text="Мужчины" />
+                        <Image Source="ic_coloorblue_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
+                    </StackLayout>
+                    <BoxView />
+                    <StackLayout Orientation="Horizontal" Margin="10,20,5,15">
+                        <Label Text="Женщины" />
+                        <Image Source="ic_coloorpink_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
+                    </StackLayout>
+                    <BoxView />
+                    <Entry Placeholder="За период"
+                           PlaceholderColor="#505050"
+                           TextColor="#505050"
+                           Keyboard="Numeric"
+                           Visual="Material"
+                           FontFamily="{x:Static design:DesignClass.LatoRegular}"
+                           Margin="0,0,0,20"
+                           BackgroundColor="Transparent">
+                        <Entry.Behaviors>
+                            <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <ui:MaterialButton Style="{StaticResource StatisticButton}"/>
                 </StackLayout>
-                <BoxView />
-                <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
-                    <Label Text="Женщины" />
-                    <Image Source="ic_coloorpink_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="15" />
-                </StackLayout>
-                <BoxView />
-                <Entry Placeholder="За период"
-                       PlaceholderColor="#505050"
-                       TextColor="#505050"
-                       Keyboard="Numeric"
-                       Visual="Material"
-                       FontFamily="{x:Static design:DesignClass.LatoRegular}"
-                       Margin="0,0,0,20"
-                       BackgroundColor="Transparent">
-                    <Entry.Behaviors>
-                        <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
-                    </Entry.Behaviors>
-                </Entry>
-                <ui:MaterialButton Style="{StaticResource StatisticButton}"/>
+               
+
+                <Grid Padding="0,30,0,50" Margin="5,0,15,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <st:OYContentView Grid.Column="0"/>
+                    <Frame Grid.Column="1"
+                           Padding="0"
+                           CornerRadius="0"
+                           HeightRequest="280"
+                           HasShadow="False"
+                           BackgroundColor="Transparent"
+                           VerticalOptions="Start">
+                        <Grid>
+                            <st:LineContentView VerticalOptions="Start"/>
+                            <Grid Margin="10,0" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="250"/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <forms:ChartView Grid.Column="0" Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="ChartView1"/>
+                                <Label Grid.Column="0" Grid.Row="1" FontSize="Micro" HorizontalOptions="Center" Text="•до 18"/>
+                                <forms:ChartView Grid.Column="1" Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="ChartView2"/>
+                                <Label Grid.Column="1" Grid.Row="1" FontSize="Micro" HorizontalOptions="Center" Text="•18-21"/>
+                                <forms:ChartView Grid.Column="2" Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="ChartView3"/>
+                                <Label Grid.Column="2" Grid.Row="1" FontSize="Micro" HorizontalOptions="Center" Text="•21-30"/>
+                                <forms:ChartView Grid.Column="3" Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="ChartView4"/>
+                                <Label Grid.Column="3" Grid.Row="1" FontSize="Micro" HorizontalOptions="Center" Text="•30-40"/>
+                                <forms:ChartView Grid.Column="4" Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="ChartView5"/>
+                                <Label Grid.Column="4" Grid.Row="1" FontSize="Micro" HorizontalOptions="Center" Text="•40-50"/>
+                                <forms:ChartView Grid.Column="5" Grid.Row="0" VerticalOptions="FillAndExpand" x:Name="ChartView6"/>
+                                <Label Grid.Column="5" Grid.Row="1" FontSize="Micro" HorizontalOptions="Center" Text="•от 50•"/>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
