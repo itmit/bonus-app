@@ -26,50 +26,50 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Spacing="0" Grid.Row="0">
-                    <Label Text="Продажи по видам услуг" Margin="5,20,5,15" />
+                    <Label Text="Продажи по видам услуг" Margin="10,20,5,15" />
                     <BoxView />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenSalesTypesPageCommand}" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenSalesTypesPageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <StackLayout Spacing="0" Grid.Row="1">
-                    <Label Text="Пол и возраст" Margin="5,20,5,15" />
+                    <Label Text="Пол и возраст" Margin="10,20,5,15" />
                     <BoxView />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenGenderAgePageCommand}" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenGenderAgePageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <StackLayout Spacing="0" Grid.Row="2">
-                    <Label Text="География" Margin="5,20,5,15" />
+                    <Label Text="География" Margin="10,20,5,15" />
                     <BoxView />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenGeographyPageCommand}" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenGeographyPageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <StackLayout Spacing="0" Grid.Row="3">
-                    <Label Text="Просмотры акций" Margin="5,20,5,15" />
+                    <Label Text="Просмотры акций" Margin="10,20,5,15" />
                     <BoxView />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenViewsStockPageCommand}" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenViewsStockPageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <StackLayout Spacing="0" Grid.Row="4">
-                    <Label Text="Просмотры профиля" Margin="5,20,5,15" />
+                    <Label Text="Просмотры профиля" Margin="10,20,5,15" />
                     <BoxView />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenViewsProfilePageCommand}" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenViewsProfilePageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <StackLayout Spacing="0" Grid.Row="5">
-                    <Label Text="Переходы в профиль" Margin="5,20,5,15" />
+                    <Label Text="Переходы в профиль" Margin="10,20,5,15" />
                     <BoxView />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OpenTransitionsProfilePageCommand}" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenTransitionsProfilePageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Grid>
