@@ -1,15 +1,19 @@
-﻿namespace bonus.app.Core.Models
+﻿using Newtonsoft.Json;
+
+namespace bonus.app.Core.Models
 {
 	public class News
 	{
 		#region Properties
-		public string Date
+		[JsonProperty("created_at")]
+		public string CreatedAt
 		{
 			get;
 			set;
 		}
 
-		public string Imgsource
+		[JsonProperty("preview_image")]
+		public string ImageSource
 		{
 			get;
 			set;
@@ -21,6 +25,7 @@
 			set;
 		}
 
+		[JsonProperty("description")]
 		public string Text
 		{
 			get;

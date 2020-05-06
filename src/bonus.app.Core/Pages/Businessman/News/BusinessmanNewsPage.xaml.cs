@@ -16,12 +16,5 @@ namespace bonus.app.Core.Pages.Businessman.News
 			InitializeComponent();
 		}
 		#endregion
-
-		#region Private
-        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-			ViewModel.OpenDetail();
-		}
-        #endregion
-    }
+	}
 }

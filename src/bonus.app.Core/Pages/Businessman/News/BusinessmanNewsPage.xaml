@@ -33,10 +33,10 @@
 
     <ContentPage.Content>
         <!--6. Новости(предприниматель)-->
-        <CollectionView Margin="15,0,0,0" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
-            <CollectionView.ItemsSource>
-                <x:String>0000</x:String>
-            </CollectionView.ItemsSource>
+        <CollectionView Margin="15,0,0,0"
+                        SelectionMode="Single"
+                        ItemsSource="{Binding News}"
+                        SelectedItem="{Binding SelectedNews}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <contentviews:NewsContentView/>

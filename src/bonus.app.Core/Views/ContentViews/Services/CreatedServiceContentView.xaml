@@ -33,12 +33,12 @@
                                   ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                                   HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
-
             <ImageButton Source="ic_close_remove_4x.png"
                          WidthRequest="15"
                          VerticalOptions="Center"
                          BackgroundColor="Transparent"
                          HorizontalOptions="EndAndExpand"
+                         Command="{Binding RemoveServiceCommand}"
                          Margin="0,0,20,0" />
         </Grid>
     </ContentView.Content>

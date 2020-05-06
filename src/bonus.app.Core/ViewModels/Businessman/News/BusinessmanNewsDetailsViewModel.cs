@@ -4,13 +4,19 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.News
 {
-	public class BusinessmanNewsDetailsViewModel : MvxNavigationViewModel
+	public class BusinessmanNewsDetailsViewModel : MvxViewModel<Models.News>
 	{
-		#region .ctor
-		public BusinessmanNewsDetailsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-			: base(logProvider, navigationService)
+		private Models.News _news;
+
+		public Models.News News
 		{
+			get => _news;
+			private set => SetProperty(ref _news, value);
 		}
-		#endregion
+
+		public override void Prepare(Models.News parameter)
+		{
+			News = parameter;
+		}
 	}
 }

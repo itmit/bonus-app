@@ -24,7 +24,7 @@
                        Padding="0"
                        CornerRadius="20"
                        HasShadow="False">
-                    <forms:CachedImage  Source="chika.png"
+                    <forms:CachedImage  Source="{Binding News.ImageSource}"
                                     WidthRequest="300"
                                     HeightRequest="255"
                                     IsVisible="True"
@@ -48,10 +48,10 @@
                     </StackLayout>
                 </ScrollView>
 
-                <Label x:Name="LabelNew" Text="Важная новость" TextColor="#505050" FontSize="Body" Margin="0,0,0,5" />
+                <Label x:Name="LabelNew" Text="{Binding News.Name}" TextColor="#505050" FontSize="Body" Margin="0,0,0,5" />
                 <Label Text="27.09.2019" TextColor="#505050" Opacity="0.7" Margin="0,0,0,10" />
                 <Label
-                    Text="Акция на пакет XL, при покупке до конца &#10;недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь &#10;Акция на пакет XL, при покупке до конца недели, (даже при действующем пакете услуг) &#10;на последующием месяца, торопитесь!"
+                    Text="{Binding News.Text}"
                     TextColor="#110000" Opacity="0.7" />
             </StackLayout>
         </ScrollView>
