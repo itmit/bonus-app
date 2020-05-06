@@ -33,14 +33,11 @@
                 </Frame>
                 <!--Горизонтальный список с картинками-->
                 <ScrollView Orientation="Horizontal" Margin="0,0,0,20">
-                    <StackLayout x:Name="CarouselViewImages" Orientation="Horizontal">
-                        <BindableLayout.ItemsSource>
-                            <x:String>0000000</x:String>
-                        </BindableLayout.ItemsSource>
+                    <StackLayout x:Name="CarouselViewImages" Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Images}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Frame Padding="0" CornerRadius="10" HasShadow="False" Opacity="0.8">
-                                    <forms:CachedImage Source="chika.png"
+                                    <forms:CachedImage Source="{Binding .}"
                                                        WidthRequest="70"/>
                                 </Frame>
                             </DataTemplate>

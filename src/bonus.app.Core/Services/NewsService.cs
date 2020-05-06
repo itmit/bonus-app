@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 
 namespace bonus.app.Core.Services
@@ -24,6 +25,19 @@ namespace bonus.app.Core.Services
 			}
 
 			return news;
+		}
+		private const string GetNewsImagesSourcesUri = "http://bonus.itmit-studio.ru/api/news/{0}";
+
+		public async Task<List<string>> GetNewsImagesSources(Guid uuid)
+		{
+			var images = await GetAsync<List<NewsImage>>(string.Format(GetNewsImagesSourcesUri, uuid));
+			List<string> result = new List<string>();
+			foreach (var image in images)
+			{
+				result.Add(Domain + image.Image);
+			}
+
+			return result;
 		}
 	}
 }

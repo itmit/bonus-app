@@ -1,10 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace bonus.app.Core.Models
 {
 	public class News
 	{
 		#region Properties
+
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("created_at")]
 		public string CreatedAt
 		{
