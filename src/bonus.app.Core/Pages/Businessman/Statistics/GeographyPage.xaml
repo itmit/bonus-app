@@ -17,13 +17,13 @@
         <StackLayout Margin="15,0" Spacing="0">
             <Label Text="Страны" Padding="10,20,5,15">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenGeographyDetailPageCommand}"/>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenGeographyDetailPageCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
             <BoxView />
             <Label Text="Города" Padding="10,20,5,15">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenGeographyDetailPageCommand}"/>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" Command="{Binding OpenGeographyDetailPageCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
             <BoxView />

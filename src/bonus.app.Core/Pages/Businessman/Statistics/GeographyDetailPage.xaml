@@ -5,11 +5,67 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
              xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
+             xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Pages.Businessman.Statistics.GeographyDetailPage">
+
+    <views:MvxNavigationPage.TitleView>
+        <Label Text="География" Style="{StaticResource TitleLabel}"/>
+    </views:MvxNavigationPage.TitleView>
+
     <ContentPage.Content>
-        <StackLayout>
-           
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Spacing="0" Margin="15,0">
+                <Label Text="Страны" Padding="10,20,5,15"/>
+                <BoxView/>
+                <Label Text="За период" FontSize="Micro" Margin="10,5"/>
+                <Grid Margin="0,-15,5,-20" ColumnSpacing="0" BackgroundColor="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ui:MaterialDateField Grid.Column="0"
+                                          VerticalOptions="Center"
+                                          BackgroundColor="Transparent"
+                                          TextFontSize="14"
+                                          TextFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                          Placeholder="__.__.____"
+                                          TextColor="#505050"
+                                          TintColor="#505050"
+                                          PlaceholderColor="#505050"
+                                          WidthRequest="130"
+                                          FloatingPlaceholderEnabled="False"
+                                          PlaceholderFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                          HorizontalPadding="10"
+                                          ShouldAnimateUnderline="False"/>
+                    <Label Text="—" Grid.Column="1" VerticalOptions="Start" Margin="0,10,0,0"/>
+                    <ui:MaterialDateField Grid.Column="2"
+                                          VerticalOptions="Center"
+                                          BackgroundColor="Transparent"
+                                          TextFontSize="14"
+                                          TextFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                          Placeholder="__.__.____"
+                                          TextColor="#505050"
+                                          TintColor="#505050"
+                                          PlaceholderColor="#505050"
+                                          WidthRequest="130"
+                                          FloatingPlaceholderEnabled="False"
+                                          PlaceholderFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                          HorizontalPadding="10"
+                                          ShouldAnimateUnderline="False"/>
+                </Grid>
+                <BoxView Margin="0,0,0,20" HeightRequest="1"/>
+                <ui:MaterialButton Style="{StaticResource StatisticButton}" Margin="0,0,0,20"/>
+                <forms:ChartView x:Name="donut"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="240"
+                                 HeightRequest="240"
+                                 Rotation="90"/>
+                
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </views:MvxContentPage>
