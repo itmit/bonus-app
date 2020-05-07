@@ -29,12 +29,12 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
 
 				var json = JsonConvert.SerializeObject(requestDto);
 				Debug.WriteLine(json);
-				var response = await client.PostAsync(AccrueAndWriteOffBonusesUri, new StringContent(json, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(AccrueAndWriteOffBonusesUri, new StringContent(json, Encoding.UTF8, BaseService.ApplicationJson));
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);

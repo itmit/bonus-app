@@ -56,7 +56,7 @@ namespace bonus.app.Core.Services
 				{
 					using (var client = new HttpClient())
 					{
-						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
 						json = await client.GetStringAsync(new Uri(url));
@@ -108,10 +108,10 @@ namespace bonus.app.Core.Services
 				{
 					using (var client = new HttpClient())
 					{
-						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
-						var res = await client.PostAsync(new Uri(url), new StringContent(jsonData, Encoding.UTF8, "application/json"));
+						var res = await client.PostAsync(new Uri(url), new StringContent(jsonData, Encoding.UTF8, ApplicationJson));
 						json = await res.Content.ReadAsStringAsync();
 					}
 

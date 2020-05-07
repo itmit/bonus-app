@@ -41,6 +41,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private MvxObservableCollection<Service> _services;
 		private readonly IServicesService _servicesServices;
 		private User _user;
+		private MvxCommand _openClientProfileCommand;
 		#endregion
 		#endregion
 
@@ -64,6 +65,18 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			{
 				_accrueAndWriteOffBonusesCommand = _accrueAndWriteOffBonusesCommand ?? new MvxCommand(AccrueAndWriteOffBonusesCommandExecute);
 				return _accrueAndWriteOffBonusesCommand;
+			}
+		}
+
+		public MvxCommand OpenClientProfileCommand
+		{
+			get
+			{
+				_openClientProfileCommand = _openClientProfileCommand ?? new MvxCommand(() =>
+				{
+
+				});
+				return _openClientProfileCommand;
 			}
 		}
 
@@ -137,7 +150,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					_bonusAmount = val;
 					SetProperty(ref _bonusAmountString,
 								Math.Round(val, 2)
-									.ToString());
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -246,7 +259,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					_bonusPercentage = val;
 					SetProperty(ref _bonusPercentageString,
 								Math.Round(val, 2)
-									.ToString());
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -282,7 +295,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					_bonusWhiteOffAmount = val;
 					SetProperty(ref _bonusWhiteOffAmountString,
 								Math.Round(val, 2)
-									.ToString());
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -318,7 +331,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					_bonusWhiteOffPercentage = val;
 					SetProperty(ref _bonusWhiteOffPercentageString,
 								Math.Round(val, 2)
-									.ToString());
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -401,7 +414,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 					_servicePrice = val;
 					SetProperty(ref _servicePriceString,
 								Math.Round(val, 2)
-									.ToString());
+									.ToString(CultureInfo.InvariantCulture));
 					return;
 				}
 
@@ -517,6 +530,10 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public override void Prepare(User parameter)
 		{
 			User = parameter;
+			if (string.IsNullOrEmpty(parameter.PhotoSource))
+			{
+				parameter.PhotoSource = "about:blank";
+			}
 			_guid = parameter.Uuid;
 		}
 		#endregion

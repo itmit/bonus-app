@@ -69,11 +69,11 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 
 				var json = JsonConvert.SerializeObject(authData);
 				Debug.WriteLine(json);
-				var response = await client.PostAsync(LoginUri, new StringContent(json, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(LoginUri, new StringContent(json, Encoding.UTF8, BaseService.ApplicationJson));
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);
@@ -144,7 +144,7 @@ namespace bonus.app.Core.Services
 			// TODO: Сделать выход на сервере.
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
 
 				var response = await client.PostAsync(LogOutUri, null);
@@ -166,7 +166,7 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 
 				var regDto = new RegisterDto
 				{
@@ -190,7 +190,7 @@ namespace bonus.app.Core.Services
 
 				Debug.WriteLine(requestBody);
 
-				var response = await client.PostAsync(RegisterUri, new StringContent(requestBody, Encoding.UTF8, "application/json"));
+				var response = await client.PostAsync(RegisterUri, new StringContent(requestBody, Encoding.UTF8, BaseService.ApplicationJson));
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);

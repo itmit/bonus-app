@@ -22,6 +22,7 @@ namespace bonus.app.Core.Services
 		#region Consts
 		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
 		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
+		private const string GetUserUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 		#endregion
 
 		#region Fields
@@ -218,7 +219,7 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 				var response = await client.PostAsync(PortfolioUri, new MultipartFormDataContent
 				{
@@ -258,6 +259,54 @@ namespace bonus.app.Core.Services
 			return images;
 		}
 
+		public async Task<User> GetUser(Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+
+				var response = await client.GetAsync(string.Format(GetUserUri, uuid));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				if (string.IsNullOrEmpty(jsonString))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+				if (response.IsSuccessStatusCode)
+				{
+					if (data.Success)
+					{
+						var user = _mapper.Map<User>(data.Data.Client);
+						var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+
+						userInfo.Role = user.Role;
+						userInfo.Uuid = user.Uuid;
+						userInfo.Email = user.Email ?? string.Empty;
+						userInfo.Phone = user.Phone ?? string.Empty;
+						userInfo.Name = user.Name ?? string.Empty;
+						userInfo.Login = user.Login ?? string.Empty;
+
+						userInfo.AccessToken = new AccessToken
+						{
+							Body = data.Data.Body,
+							Type = data.Data.Type
+						};
+
+						return userInfo;
+					}
+
+					return _mapper.Map<User>(data.Data);
+				}
+				return null;
+			}
+		}
+
 		public Task<bool> RemoveImageFromPortfolio() => throw new NotImplementedException();
 
 		public string Error
@@ -278,7 +327,7 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				var response = await client.PostAsync(FillInfoUri, content);
 
 				var json = await response.Content.ReadAsStringAsync();
@@ -329,7 +378,7 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 				var response = await client.PostAsync(string.Format(UpdateUri, AuthService.User.Uuid), content);
 

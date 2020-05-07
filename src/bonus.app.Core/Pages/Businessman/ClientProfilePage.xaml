@@ -1,25 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<views:MvxContentPage x:TypeArguments="profile:CustomerProfileViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="businessman:ClientProfileViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:profile="clr-namespace:bonus.app.Core.ViewModels.Customer.Profile;assembly=bonus.app.Core"
-                      xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
                       mc:Ignorable="d"
-                      x:Class="bonus.app.Core.Pages.Customer.Profile.CustomerProfilePage">
-    <NavigationPage.TitleView>
-        <Label Text="Профиль" Style="{StaticResource TitleLabel}" />
-    </NavigationPage.TitleView>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Редактировать профиль" Order="Secondary" Command="{Binding OpenEditProfileCommand}" />
-    </ContentPage.ToolbarItems>
+                      x:Class="bonus.app.Core.Pages.Businessman.ClientProfilePage">
     <ContentPage.Content>
-        <!-- Страница 16.1.1 - 16.1.2 Профиль покупателя -->
         <ScrollView>
             <StackLayout Margin="25,0">
                 <Grid ColumnSpacing="15" Margin="0,15,0,25">
@@ -67,29 +58,12 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
+                            <Label Grid.Column="1" Text="Написать сообщение" FontSize="Body"
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                    VerticalTextAlignment="Center" />
                         </Grid>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenMessageCommand}" />
-                        </Frame.GestureRecognizers>
-                    </design:CustomButton>
-                    <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
-                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
-                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
-                                   VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Подписки" FontSize="Body"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenSubscribesCommand}" />
                         </Frame.GestureRecognizers>
                     </design:CustomButton>
                 </Grid>

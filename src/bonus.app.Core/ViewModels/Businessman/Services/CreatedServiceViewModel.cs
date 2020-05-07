@@ -1,6 +1,7 @@
 ﻿using System;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
@@ -13,6 +14,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private Command<bool> _createServiceCommand;
 		private ValidatableObject<string> _name = new ValidatableObject<string>();
 		private readonly IServicesService _servicesService;
+		private MvxCommand _removeServiceCommand;
 		#endregion
 		#endregion
 
@@ -60,6 +62,25 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 		}
 
+		public MvxCommand RemoveServiceCommand
+		{
+			get
+			{
+				_removeServiceCommand = _removeServiceCommand ?? new MvxCommand(async () =>
+				{
+					try
+					{
+						//_servicesService.RemoveServiceTypeItem()
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+				});
+				return _removeServiceCommand;
+			}
+		}
+
 		private async void Execute(bool isFocused)
 		{
 			if (!isFocused)
@@ -90,7 +111,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
 					}
 
-					if (await _servicesService.CreateService(Name.Value, ParentViewModel.UserServiceType.Uuid))
+					if (await _servicesService.CreateServiceTypeItem(Name.Value, ParentViewModel.UserServiceType.Uuid))
 					{
 						IsCreated = true;
 						await ParentViewModel.ReloadServices();

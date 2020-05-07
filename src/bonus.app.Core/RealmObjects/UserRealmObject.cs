@@ -99,6 +99,12 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		}
 
+		public string Car
+		{
+			get;
+			set;
+		}
+
 		public string Role
 		{
 			get;

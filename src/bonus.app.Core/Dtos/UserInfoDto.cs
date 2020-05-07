@@ -24,6 +24,12 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
+		public string Car
+		{
+			get;
+			set;
+		}
+
 		public string Contact
 		{
 			get;

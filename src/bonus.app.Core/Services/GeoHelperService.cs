@@ -162,7 +162,7 @@ namespace bonus.app.Core.Services
 				{
 					using (var client = new HttpClient())
 					{
-						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 
 						json = await client.GetStringAsync(url);
 					}

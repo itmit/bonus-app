@@ -52,6 +52,9 @@
                             <forms:CachedImage.Transformations>
                                 <transformations:CircleTransformation />
                             </forms:CachedImage.Transformations>
+                            <forms:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenClientProfileCommand}"/>
+                            </forms:CachedImage.GestureRecognizers>
                         </forms:CachedImage>
                         <StackLayout>
                             <Label Text="{Binding User.Name}" TextColor="White" FontSize="Body"
