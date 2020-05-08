@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
+using bonus.app.Core.ViewModels.Chats;
 using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Commands;

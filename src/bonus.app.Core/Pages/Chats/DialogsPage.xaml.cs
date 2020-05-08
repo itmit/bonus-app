@@ -1,15 +1,16 @@
 ﻿using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Pages.Chats
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MessageListPage : MvxContentPage<MessageListViewModel>
+	public partial class DialogsPage : MvxContentPage<DialogsViewModel>
 	{
 		#region .ctor
-		public MessageListPage()
+		public DialogsPage()
 		{
 			InitializeComponent();
 		}

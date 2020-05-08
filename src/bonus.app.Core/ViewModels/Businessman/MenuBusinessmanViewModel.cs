@@ -4,6 +4,7 @@ using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman.Pay;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Businessman.Statistics;
+using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Views;
 using MvvmCross.Navigation;

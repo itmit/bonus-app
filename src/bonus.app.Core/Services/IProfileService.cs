@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Dtos.CustomerDtos;
@@ -26,6 +27,8 @@ namespace bonus.app.Core.Services
 		Task<User> Edit(EditCustomerDto arguments, string imagePath);
 
 		Task<bool> AddImageToPortfolio(string imageSource);
+
+		Task<User> GetUser(Guid uuid);
 
 		Task<List<PortfolioImage>> GetPortfolio();
 

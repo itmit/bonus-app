@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="chats:ChatViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:chat="clr-namespace:bonus.app.Core.Views.ViewCells.Chat;assembly=bonus.app.Core"
+                      xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+                      xmlns:chats="clr-namespace:bonus.app.Core.ViewModels.Chats;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      NavigationPage.BackButtonTitle="False"
+                      x:Class="bonus.app.Core.Pages.Chats.ChatPage">
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Recipient.Name}" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <chat:SelectorDataTemplate x:Key="MessageTemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid x:Name="Grid">
+            <Grid RowSpacing="0"
+                  ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <CollectionView Grid.Row="0" BackgroundColor="Transparent"
+                                           ItemTemplate="{StaticResource MessageTemplateSelector}"
+                                           ItemsSource="{Binding Messages}"
+                                           Margin="0"
+                                           Rotation="180"
+                                           FlowDirection="RightToLeft"
+                                           VerticalOptions="FillAndExpand">
+                    <CollectionView.EmptyView>
+                        <Label Grid.Row="0" Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                               Rotation="180">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="У вас пока нет сообщений&#10;&#10;" TextColor="Black" />
+                                        <Span Text="Для того чтобы написать сообщение&#10;необходимо перейти в профиль"
+                                              TextColor="#858585" FontSize="Caption" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                
+                <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
+                                       x:Name="ChatInput" VerticalOptions="EndAndExpand" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>

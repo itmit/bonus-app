@@ -1,4 +1,5 @@
 ﻿using bonus.app.Core.Models;
+using bonus.app.Core.Views.ContentViews.Chats;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.Views.ViewCells.Chat
@@ -13,13 +14,11 @@ namespace bonus.app.Core.Views.ViewCells.Chat
 		#endregion
 
 		#region .ctor
-		#region Ctor
 		public SelectorDataTemplate()
 		{
-			_textInDataTemplate = new DataTemplate(typeof(TextInViewCell));
-			_textOutDataTemplate = new DataTemplate(typeof(TextOutViewCell));
+			_textInDataTemplate = new DataTemplate(typeof(TextInContentView));
+			_textOutDataTemplate = new DataTemplate(typeof(TextOutContentView));
 		}
-		#endregion
 		#endregion
 
 		#region Overrided

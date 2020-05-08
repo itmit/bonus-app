@@ -1,4 +1,6 @@
-﻿namespace bonus.app.Core.Models
+﻿using System;
+
+namespace bonus.app.Core.Models
 {
 	public class Message
 	{
@@ -10,6 +12,18 @@
 		}
 
 		public bool IsTextOut
+		{
+			get;
+			set;
+		}
+
+		public DateTime? CreatedAt
+		{
+			get;
+			set;
+		}
+
+		public DateTime? UpdatedAt
 		{
 			get;
 			set;

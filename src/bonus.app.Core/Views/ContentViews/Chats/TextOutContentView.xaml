@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.Chats.TextOutContentView">
+    <ContentView.Content>
+        <StackLayout Margin="10" Rotation="180" HorizontalOptions="StartAndExpand">
+            <Frame BackgroundColor="White"
+                   FlowDirection="LeftToRight"
+                   Padding="15,10"
+                   HasShadow="False"
+                   CornerRadius="20">
+                <StackLayout>
+                    <Label Text="{Binding Text}" TextColor="Black" />
+                </StackLayout>
+            </Frame>
+            <Label Text="{Binding CreatedAt, StringFormat='{0:dddd HH:mm}'}" HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

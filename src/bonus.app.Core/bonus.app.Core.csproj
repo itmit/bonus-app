@@ -73,6 +73,9 @@
     <Compile Update="Pages\Businessman\Stocks\CreateStockPage.xaml.cs">
       <DependentUpon>CreateStockPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Chats\DialogsPage.xaml.cs">
+      <DependentUpon>DialogsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Customer\News\CustomerNewsDetailsPage.xaml.cs">
       <DependentUpon>CustomerNewsDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -226,7 +229,7 @@
     <EmbeddedResource Update="Pages\Customer\MainCustomerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\MessageListPage.xaml">
+    <EmbeddedResource Update="Pages\Chats\DialogsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MyBonusPage.xaml">
@@ -272,6 +275,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Statistics\ViewsStockPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Chats\DialogContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Chats\TextInContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Chats\TextOutContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Services\CreateServiceContentView.xaml">

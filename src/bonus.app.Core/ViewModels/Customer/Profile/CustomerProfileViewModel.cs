@@ -1,5 +1,6 @@
 ﻿using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -47,7 +48,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				_openMessageCommand = _openMessageCommand ??
 									  new MvxCommand(() =>
 									  {
-										  NavigationService.Navigate<MessageListViewModel>();
+										  NavigationService.Navigate<DialogsViewModel>();
 									  });
 				return _openMessageCommand;
 			}

@@ -9,6 +9,7 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
                       mc:Ignorable="d"
+                      Title="{Binding User.Login}"
                       x:Class="bonus.app.Core.Pages.Businessman.ClientProfilePage">
     <ContentPage.Content>
         <ScrollView>
@@ -45,28 +46,28 @@
                         <Label Text="{Binding User.Name}" Style="{StaticResource TitleLabel}" FontSize="Body" />
                     </StackLayout>
                 </Grid>
-                <Grid ColumnSpacing="10" Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
-                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
-                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Написать сообщение" FontSize="Body"
+                <design:CustomButton IsClippedToBounds="True"
+                                     CornerRadius="20"
+                                     HasShadow="False"
+                                     Padding="0"
+                                     WidthRequest="300"
+                                     HeightRequest="40"
+                                     Margin="0,0,0,20"
+                                     BackgroundColor="#bab3af">
+                    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Написать сообщение" FontSize="Body"
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                    VerticalTextAlignment="Center" />
-                        </Grid>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenMessageCommand}" />
-                        </Frame.GestureRecognizers>
-                    </design:CustomButton>
-                </Grid>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenChatCommand}" />
+                    </Frame.GestureRecognizers>
+                </design:CustomButton>
                 <Label Text="{Binding User.Phone}" TextColor="#505050" Margin="10,0" />
                 <BoxView />
                 <Label TextColor="#505050" Margin="10,0">

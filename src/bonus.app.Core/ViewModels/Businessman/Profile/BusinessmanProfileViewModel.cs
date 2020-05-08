@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -62,7 +63,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				_openChatCommand = _openChatCommand ??
 								   new MvxCommand(() =>
 								   {
-									   NavigationService.Navigate<MessageListViewModel>();
+									   NavigationService.Navigate<DialogsViewModel>();
 								   });
 				return _openChatCommand;
 			}

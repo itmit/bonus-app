@@ -79,10 +79,9 @@ namespace bonus.app.Core.Services
 				var response = await client.PostAsync(CreateServiceUri,
 													  new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
 
-#if DEBUG
+
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
-#endif
 				if (string.IsNullOrEmpty(json))
 				{
 					return null;

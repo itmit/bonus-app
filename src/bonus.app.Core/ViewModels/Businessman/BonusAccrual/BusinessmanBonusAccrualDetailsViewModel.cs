@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -72,9 +73,10 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		{
 			get
 			{
-				_openClientProfileCommand = _openClientProfileCommand ?? new MvxCommand(() =>
+				_openClientProfileCommand = _openClientProfileCommand ?? new MvxCommand(async () =>
 				{
-
+					await _navigationService.Navigate<ClientProfileViewModel, User>(await Mvx.IoCProvider.Resolve<IProfileService>()
+																				 .GetUser(_guid));
 				});
 				return _openClientProfileCommand;
 			}

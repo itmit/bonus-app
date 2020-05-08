@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-          mc:Ignorable="d"
-          x:Class="bonus.app.Core.Views.ViewCells.MessageViewCell">
-    <!--Ячейка для списка сообщений в предпринимателе-->
-    <ViewCell.View>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.Chats.DialogContentView">
+    <ContentView.Content>
         <Grid Padding="15,10,15,20" BackgroundColor="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -26,5 +24,5 @@
             </StackLayout>
             <Label Grid.Column="2" Text="08.10" TextColor="Black" HorizontalOptions="EndAndExpand" />
         </Grid>
-    </ViewCell.View>
-</ViewCell>
+    </ContentView.Content>
+</ContentView>
