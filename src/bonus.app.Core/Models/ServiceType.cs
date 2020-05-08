@@ -18,7 +18,7 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public List<Service> Services
+		public List<ServiceTypeItem> Services
 		{
 			get;
 			set;

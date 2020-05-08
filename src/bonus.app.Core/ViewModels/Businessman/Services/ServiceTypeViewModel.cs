@@ -11,7 +11,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private bool _isVisibleServices;
 		private string _name;
 		private int _rotation;
-		private MvxObservableCollection<ServiceViewModel> _services;
+		private MvxObservableCollection<ServiceViewModel> _services = new MvxObservableCollection<ServiceViewModel>();
 		private MvxCommand _showOrHideServicesCommand;
 		private Guid _uuid;
 		#endregion

@@ -70,7 +70,7 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<bool> CreateServiceTypeItem(string name, Guid serviceTypeUuid)
+		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid)
 		{
 			using (var client = new HttpClient())
 			{
@@ -83,7 +83,14 @@ namespace bonus.app.Core.Services
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
 #endif
-				return response.IsSuccessStatusCode;
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<ServiceTypeItem>>(json);
+
+				return data.Data;
 			}
 		}
 
@@ -95,7 +102,7 @@ namespace bonus.app.Core.Services
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(CreateServiceUri,
+				var response = await client.PostAsync(RemoveServiceTypeItemUri,
 													  new StringContent($"{{\"uuid\":\"{uuid}\"}}", Encoding.UTF8, ApplicationJson));
 
 #if DEBUG
@@ -106,7 +113,7 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<bool> CreateServiceType(string name)
+		public async Task<ServiceType> CreateServiceType(string name)
 		{
 			using (var client = new HttpClient())
 			{
@@ -114,12 +121,16 @@ namespace bonus.app.Core.Services
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 				var response = await client.PostAsync(CreateServiceTypeUri, new StringContent($"{{\"name\":\"{name}\"}}", Encoding.UTF8, ApplicationJson));
 
-#if DEBUG
-
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
-#endif
-				return response.IsSuccessStatusCode;
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<ServiceType>>(json);
+
+				return data.Data;
 			}
 		}
 

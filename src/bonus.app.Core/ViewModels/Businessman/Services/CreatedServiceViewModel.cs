@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
@@ -13,15 +15,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#region Fields
 		private Command<bool> _createServiceCommand;
 		private ValidatableObject<string> _name = new ValidatableObject<string>();
-		private readonly IServicesService _servicesService;
 		private MvxCommand _removeServiceCommand;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CreatedServiceViewModel(IServicesService servicesService)
+		public CreatedServiceViewModel()
 		{
-			_servicesService = servicesService;
 			Name.Validations.Add(new IsNotNullOrEmptyRule
 			{
 				ValidationMessage = "Заполните название вида услуги."
@@ -46,7 +46,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set;
 		}
 
-		public ICreatedServiceParentViewModel ParentViewModel
+		public ICreateServiceViewModel ViewModel
 		{
 			get;
 			set;
@@ -68,9 +68,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			{
 				_removeServiceCommand = _removeServiceCommand ?? new MvxCommand(async () =>
 				{
+					if (IsBusy)
+					{
+						return;
+					}
+					if (!IsCreated)
+					{
+						Device.BeginInvokeOnMainThread(() =>
+						{
+							Application.Current.MainPage.DisplayAlert("Внимание", $"Услуга {Name.Value} не создана.", "Ок");
+						});
+					}
+
 					try
 					{
-						//_servicesService.RemoveServiceTypeItem()
+						if (await ViewModel.RemoveServiceTypeItem(ServiceTypeItem.Uuid))
+						{
+							IsBusy = false;
+						}
+						else
+						{
+							Device.BeginInvokeOnMainThread(() =>
+							{
+								Application.Current.MainPage.DisplayAlert("Внимание", "Не удалось удалить услугу.", "Ок");
+							});
+						}
 					}
 					catch (Exception e)
 					{
@@ -98,31 +120,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				IsBusy = true;
 				try
 				{
-					if (ParentViewModel.UserServiceType == null)
-					{
-						if (!await _servicesService.CreateServiceType(ParentViewModel.UserUuid.ToString()) || !await ParentViewModel.ReloadServices())
-						{
-							throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-						}
-					}
+					ServiceTypeItem = await ViewModel.CreateServiceTypeItem(Name.Value);
+					IsCreated = ServiceTypeItem != null;
 
-					if (ParentViewModel.UserServiceType == null)
-					{
-						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-					}
-
-					if (await _servicesService.CreateServiceTypeItem(Name.Value, ParentViewModel.UserServiceType.Uuid))
-					{
-						IsCreated = true;
-						await ParentViewModel.ReloadServices();
-					}
-					else
-					{
-						Device.BeginInvokeOnMainThread(() =>
-						{
-							Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{Name.Value}\"", "");
-						});
-					}
 				}
 				catch (InvalidOperationException e)
 				{
@@ -136,6 +136,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 				IsBusy = false;
 			}
+		}
+
+		public ServiceTypeItem ServiceTypeItem
+		{
+			get;
+			set;
 		}
 
 		public ValidatableObject<string> Name

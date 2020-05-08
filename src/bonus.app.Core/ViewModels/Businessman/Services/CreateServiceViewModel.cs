@@ -5,23 +5,25 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
-	public class CreateServiceViewModel : MvxViewModel, ICreatedServiceParentViewModel
+	public class CreateServiceViewModel : MvxViewModel, ICreateServiceViewModel
 	{
 		#region Data
 		#region Fields
 		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes = new MvxObservableCollection<CreatedServiceViewModel>();
 		private readonly IServicesService _servicesServices;
 		private MvxCommand _showMyServiceTypesCommand;
+		private IAuthService _authService;
 		#endregion
 		#endregion
 
 		#region .ctor
 		public CreateServiceViewModel(IServicesService servicesServices, IAuthService authService)
 		{
-			UserUuid = authService.User.Uuid;
+			_authService = authService;
 			_servicesServices = servicesServices;
 		}
 		#endregion
@@ -30,7 +32,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		public ServiceType UserServiceType
 		{
 			get;
-			private set;
+			set;
 		}
 
 
@@ -41,20 +43,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				_showMyServiceTypesCommand = _showMyServiceTypesCommand ??
 											 new MvxCommand(() =>
 											 {
-												 MyServiceTypes.Add(new CreatedServiceViewModel(_servicesServices)
+												 MyServiceTypes.Add(new CreatedServiceViewModel
 												 {
-													 ParentViewModel = this
+													 ViewModel = this
 												 });
 												 RaisePropertyChanged(() => MyServiceTypes);
 											 });
 				return _showMyServiceTypesCommand;
 			}
-		}
-
-
-		public Guid UserUuid
-		{
-			get;
 		}
 
 		public MvxObservableCollection<CreatedServiceViewModel> MyServiceTypes
@@ -70,7 +66,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			try
 			{
 				var types = await _servicesServices.GetAll();
-				UserServiceType = types.SingleOrDefault(t => t.Name.Equals(UserUuid.ToString()));
+				UserServiceType = types.SingleOrDefault(t => t.Name.Equals(_authService.User.Uuid.ToString()));
 				if (UserServiceType != null)
 				{
 					UserServiceType.Name = "Ваши услуги";
@@ -95,10 +91,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			{
 				foreach (var service in UserServiceType.Services)
 				{
-					var type = new CreatedServiceViewModel(_servicesServices)
+					var type = new CreatedServiceViewModel
 					{
 						IsCreated = true,
-						ParentViewModel = this,
+						ViewModel = this,
+						ServiceTypeItem = service,
 						Name =
 						{
 							Value = service.Name
@@ -109,5 +106,61 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 		}
 		#endregion
+
+		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name)
+		{
+			if (UserServiceType == null)
+			{
+				var type = await _servicesServices.CreateServiceType(_authService.User.Uuid.ToString());
+				if (type == null)
+				{
+					throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+				}
+
+				type.Name = "Ваши услуги";
+				UserServiceType = type;
+			}
+
+			if (UserServiceType == null)
+			{
+				throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+			}
+
+			var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
+			if (item == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
+				});
+			}
+
+			return item;
+		}
+
+		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
+		{
+			bool res = false;
+			try
+			{
+				res = await _servicesServices.RemoveServiceTypeItem(uuid);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			if (res)
+			{
+				MyServiceTypes.Remove(MyServiceTypes.Single(t => t.ServiceTypeItem.Uuid.Equals(uuid)));
+				await RaisePropertyChanged(() => MyServiceTypes);
+			}
+			else
+			{
+				return false;
+			}
+			return true;
+
+		}
 	}
 }

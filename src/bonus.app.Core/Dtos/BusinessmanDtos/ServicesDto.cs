@@ -6,7 +6,7 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 	public class ServicesDto
 	{
 		#region Properties
-		public List<Service> Items
+		public List<ServiceTypeItem> Items
 		{
 			get;
 			set;
