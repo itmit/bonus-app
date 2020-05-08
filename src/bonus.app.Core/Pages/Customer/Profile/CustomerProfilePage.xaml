@@ -71,9 +71,9 @@
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                    VerticalTextAlignment="Center" />
                         </Grid>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenMessageCommand}" />
-                        </Frame.GestureRecognizers>
+                        <design:CustomButton.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
+                        </design:CustomButton.GestureRecognizers>
                     </design:CustomButton>
                     <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
                                          Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">

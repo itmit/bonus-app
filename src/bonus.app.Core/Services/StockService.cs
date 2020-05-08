@@ -158,7 +158,7 @@ namespace bonus.app.Core.Services
 
 		public async Task<IEnumerable<Stock>> GetAll()
 		{
-			var shares = (await GetAsync<IEnumerable<Stock>>(GetAllUri))?.ToList();
+			var shares = await GetAsync<List<Stock>>(GetAllUri);
 			if (shares == null)
 			{
 				return new List<Stock>();
@@ -185,7 +185,7 @@ namespace bonus.app.Core.Services
 			List<Stock> stocks;
 			if (serviceUuid == null && string.IsNullOrEmpty(city))
 			{
-				stocks = (await GetAsync<IEnumerable<Stock>>(GetArchiveStockUri))?.ToList();
+				stocks = await GetAsync<List<Stock>>(GetArchiveStockUri);
 			}
 			else
 			{
@@ -224,7 +224,7 @@ namespace bonus.app.Core.Services
 			List<Stock> stocks;
 			if (serviceUuid == null && string.IsNullOrEmpty(city))
 			{
-				stocks = (await GetAsync<IEnumerable<Stock>>(GetMyStocksUri))?.ToList();
+				stocks = await GetAsync<List<Stock>>(GetMyStocksUri);
 			}
 			else
 			{

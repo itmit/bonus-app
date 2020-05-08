@@ -88,7 +88,7 @@
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
-            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+            <converters:FirstElementConverter x:Key="FirstElementConverter" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>

@@ -13,10 +13,10 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		#region Data
 		#region Fields
 		private MvxCommand _openEditProfileCommand;
-		private MvxCommand _openMessageCommand;
 		private MvxCommand _openSubscribesCommand;
 
 		private User _user;
+		private MvxCommand _openDialogsCommand;
 		#endregion
 		#endregion
 
@@ -41,16 +41,17 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			}
 		}
 
-		public MvxCommand OpenMessageCommand
+
+		public MvxCommand OpenDialogsCommand
 		{
 			get
 			{
-				_openMessageCommand = _openMessageCommand ??
+				_openDialogsCommand = _openDialogsCommand ??
 									  new MvxCommand(() =>
 									  {
 										  NavigationService.Navigate<DialogsViewModel>();
 									  });
-				return _openMessageCommand;
+				return _openDialogsCommand;
 			}
 		}
 

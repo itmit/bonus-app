@@ -239,7 +239,7 @@ namespace bonus.app.Core.Services
 
 		public async Task<List<PortfolioImage>> GetPortfolio()
 		{
-			var images = (await GetAsync<IEnumerable<PortfolioImage>>(PortfolioUri))?.ToList();
+			var images = await GetAsync<List<PortfolioImage>>(PortfolioUri);
 			if (images == null)
 			{
 				return new List<PortfolioImage>();

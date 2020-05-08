@@ -48,26 +48,26 @@
                 </StackLayout.Resources>
                 <ui:MaterialTextField Text="{Binding Login.Value}"
                                       Placeholder="Логин"
-                                      ErrorText="{Binding Login.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      ErrorText="{Binding Login.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding Login.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding Name.Value}"
                                       Placeholder="Торговое название или имя мастера"
-                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding Email.Value}"
                                       Placeholder="E-mail"
                                       InputType="Email"
-                                      ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      ErrorText="{Binding Email.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding Password.Value}"
                                       Placeholder="Пароль"
                                       InputType="Password"
-                                      ErrorText="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      ErrorText="{Binding Password.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                 <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
                                       Placeholder="Повторите пароль"
                                       InputType="Password"
-                                      ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                      ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"

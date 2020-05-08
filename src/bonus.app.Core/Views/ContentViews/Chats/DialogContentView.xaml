@@ -3,8 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.Chats.DialogContentView">
+
+    <ContentView.Resources>
+        <converters:CombiningConverter x:Key="CombiningConverter" Converter1="{StaticResource NullToBoolConverter}" Converter2="{StaticResource InverseBoolConverter}" />
+    </ContentView.Resources>
+
     <ContentView.Content>
         <Grid Padding="15,10,15,20" BackgroundColor="White">
             <Grid.ColumnDefinitions>
@@ -12,17 +20,24 @@
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Frame Padding="0" BackgroundColor="#7C736D" VerticalOptions="Start" HorizontalOptions="Center"
+            <Frame IsVisible="{Binding UserTo.PhotoSource, Converter={StaticResource CombiningConverter}}" Padding="0" BackgroundColor="#7C736D" VerticalOptions="Start" HorizontalOptions="Center"
                    WidthRequest="40" HeightRequest="40" CornerRadius="20" HasShadow="False">
-                <Label Text="M" TextColor="White" FontSize="Title" FontFamily="Roboto" VerticalOptions="Center"
+                <Label Text="{Binding UserTo.Login, Converter={StaticResource FirstElementConverter}}" TextColor="White" FontSize="Title" FontFamily="Roboto" VerticalOptions="Center"
                        HorizontalOptions="Center" />
             </Frame>
+
+            <forms:CachedImage Grid.Column="0" Source="{Binding UserTo.PhotoSource}" WidthRequest="40" HeightRequest="40">
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation/>
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
+
             <StackLayout Grid.Column="1" Margin="15,0,0,0" HorizontalOptions="Start" VerticalOptions="Start">
-                <Label Text="Марина Миллер" TextColor="Black" MaxLines="1" LineBreakMode="TailTruncation" />
-                <Label Text="Thank you for purchasing! When you arrive prepared to negotiate" TextColor="#858585"
+                <Label Text="{Binding UserTo.Name}" TextColor="Black" MaxLines="1" LineBreakMode="TailTruncation" />
+                <Label Text="{Binding LastMessage.Text}" TextColor="#858585"
                        MaxLines="2" LineBreakMode="TailTruncation" />
             </StackLayout>
-            <Label Grid.Column="2" Text="08.10" TextColor="Black" HorizontalOptions="EndAndExpand" />
+            <Label Grid.Column="2" Text="{Binding CreatedAt, StringFormat='{0:MM.dd}'}" TextColor="Black" HorizontalOptions="EndAndExpand" />
         </Grid>
     </ContentView.Content>
 </ContentView>

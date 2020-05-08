@@ -16,26 +16,31 @@
 
     <ContentPage.Content>
         <!--Страница 12.1 Сообщения-->
-        <Grid>
-            <Label Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center" IsVisible="True">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span Text="У вас пока нет сообщений&#10;&#10;" TextColor="Black" />
-                            <Span Text="Для того чтобы написать сообщение&#10;необходимо перейти в профиль"
-                                  TextColor="#858585" FontSize="Caption" />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-
-            <CollectionView VerticalScrollBarVisibility="Never">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <CollectionView VerticalScrollBarVisibility="Never"
+                            ItemsSource="{Binding Dialogs}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedDialog}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <chats1:DialogContentView />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="У вас пока нет сообщений&#10;&#10;" TextColor="Black" />
+                                    <Span Text="Для того чтобы написать сообщение&#10;необходимо перейти в профиль"
+                                          TextColor="#858585" FontSize="Caption" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </CollectionView.EmptyView>
             </CollectionView>
-        </Grid>
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

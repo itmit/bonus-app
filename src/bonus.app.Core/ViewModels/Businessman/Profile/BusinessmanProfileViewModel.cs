@@ -17,7 +17,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Data
 		#region Fields
 		private readonly IAuthService _authService;
-		private MvxCommand _openChatCommand;
+		private MvxCommand _openDialogsCommand;
 		private MvxCommand _openEditProfilePageCommand;
 		private MvxCommand _openSubscribersCommand;
 		private IEnumerable<Service> _services;
@@ -56,16 +56,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			private set => SetProperty(ref _portfolioImages, value);
 		}
 
-		public MvxCommand OpenChatCommand
+		public MvxCommand OpenDialogsCommand
 		{
 			get
 			{
-				_openChatCommand = _openChatCommand ??
+				_openDialogsCommand = _openDialogsCommand ??
 								   new MvxCommand(() =>
 								   {
 									   NavigationService.Navigate<DialogsViewModel>();
 								   });
-				return _openChatCommand;
+				return _openDialogsCommand;
 			}
 		}
 

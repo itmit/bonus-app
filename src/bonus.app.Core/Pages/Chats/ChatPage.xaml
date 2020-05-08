@@ -8,6 +8,7 @@
                       xmlns:chat="clr-namespace:bonus.app.Core.Views.ViewCells.Chat;assembly=bonus.app.Core"
                       xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:chats="clr-namespace:bonus.app.Core.ViewModels.Chats;assembly=bonus.app.Core"
+                      xmlns:dataTemplateSelectors="clr-namespace:bonus.app.Core.DataTemplateSelectors;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       NavigationPage.BackButtonTitle="False"
                       x:Class="bonus.app.Core.Pages.Chats.ChatPage">
@@ -17,7 +18,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <chat:SelectorDataTemplate x:Key="MessageTemplateSelector" />
+            <dataTemplateSelectors:SelectorDataTemplate x:Key="MessageTemplateSelector" />
         </ResourceDictionary>
     </ContentPage.Resources>
 

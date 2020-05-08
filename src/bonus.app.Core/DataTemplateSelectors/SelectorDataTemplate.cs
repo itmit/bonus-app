@@ -2,7 +2,7 @@
 using bonus.app.Core.Views.ContentViews.Chats;
 using Xamarin.Forms;
 
-namespace bonus.app.Core.Views.ViewCells.Chat
+namespace bonus.app.Core.DataTemplateSelectors
 {
 	public class SelectorDataTemplate : DataTemplateSelector
 	{
@@ -51,7 +51,7 @@ namespace bonus.app.Core.Views.ViewCells.Chat
 				return null;
 			}
 
-			return messageVm.IsTextOut ? _textOutDataTemplate : _textInDataTemplate;
+			return messageVm.IsTextIn ? _textOutDataTemplate : _textInDataTemplate ;
 		}
 		#endregion
 	}

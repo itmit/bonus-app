@@ -53,24 +53,24 @@
                         <StackLayout Grid.Row="1" x:Name="Layout">
                             <ui:MaterialTextField Text="{Binding Address.Value}"
                                                   Placeholder="Адрес"
-                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding WorkingMode.Value}"
                                                   Placeholder="Режим работы"
-                                                  ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding Contact.Value}"
                                                   Placeholder="Контактное лицо"
-                                                  ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
                                                   Placeholder="Номер телефона"
                                                   HelperText="+7 (XXX) XXX-XX-XX"
                                                   InputType="Telephone"
-                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
                                 <ui:MaterialTextField.Behaviors>
                                     <behaviors:MaterialTextFieldMaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
@@ -85,36 +85,36 @@
 
                                 <ui:MaterialTextField Text="{Binding Name.Value}"
                                                       Placeholder="Торговое название или имя мастера"
-                                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                                 <ui:MaterialTextField Text="{Binding Email.Value}"
                                                       Placeholder="E-mail"
                                                       InputType="Email"
-                                                      ErrorText="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      ErrorText="{Binding Email.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding VkLink.Value}"
                                                       Placeholder="Ссылка на аккаунт в VKontakte"
                                                       InputType="Email"
-                                                      ErrorText="{Binding VkLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      ErrorText="{Binding VkLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding VkLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding InstagramLink.Value}"
                                                       Placeholder="Ссылка на аккаунт в Instagram"
                                                       InputType="Email"
-                                                      ErrorText="{Binding InstagramLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      ErrorText="{Binding InstagramLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding InstagramLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding FacebookLink.Value}"
                                                       Placeholder="Ссылка на аккаунт в Facebook"
                                                       InputType="Email"
-                                                      ErrorText="{Binding FacebookLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      ErrorText="{Binding FacebookLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding FacebookLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding ClassmatesLink.Value}"
                                                       Placeholder="Ссылка на аккаунт в Однокласниках"
                                                       InputType="Email"
-                                                      ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                      ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}"/> 
                             </StackLayout>
 

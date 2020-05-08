@@ -47,12 +47,12 @@
 
                         <ui:MaterialTextField Text="{Binding Name.Value}"
                                               Placeholder="Название акции"
-                                              ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                              ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
                                               HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                         <ui:MaterialTextField Text="{Binding Description.Value}"
                                               Placeholder="Описание акции&#10;&#10;"
-                                              ErrorText="{Binding Description.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                              ErrorText="{Binding Description.Errors, Converter={StaticResource FirstElementConverter}}"
                                               HasError="{Binding Description.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                         <StackLayout Margin="0,0,0,15">
@@ -82,7 +82,7 @@
                                 <Image Source="ic_calendar_4x.png" VerticalOptions="Center" WidthRequest="18" />
                             </StackLayout>
                             <BoxView />
-                            <Label Text="{Binding ShareTime.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                            <Label Text="{Binding ShareTime.Errors, Converter={StaticResource FirstElementConverter}}"
                                    IsVisible="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}" 
                                    Margin="0,0,0,20"
                                    TextColor="DarkRed"/>
