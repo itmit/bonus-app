@@ -33,15 +33,17 @@
 
     <ContentPage.Content>
         <!--6. Новости(предприниматель)-->
-        <CollectionView Margin="15,0,0,0"
-                        SelectionMode="Single"
-                        ItemsSource="{Binding News}"
-                        SelectedItem="{Binding SelectedNews}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <contentviews:NewsContentView/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <CollectionView Margin="15,0,0,0"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding News}"
+                            SelectedItem="{Binding SelectedNews}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <contentviews:NewsContentView/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

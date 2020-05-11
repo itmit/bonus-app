@@ -113,6 +113,14 @@ namespace bonus.app.Core.Services
 				{
 					content.Add(new StringContent(arguments.Odnoklassniki), "odnoklassniki");
 				}
+				if (!string.IsNullOrEmpty(arguments.Email))
+				{
+					content.Add(new StringContent(arguments.Email), "email");
+				}
+				if (!string.IsNullOrEmpty(arguments.Name))
+				{
+					content.Add(new StringContent(arguments.Name), "name");
+				}
 
 				if (await Update(content))
 				{

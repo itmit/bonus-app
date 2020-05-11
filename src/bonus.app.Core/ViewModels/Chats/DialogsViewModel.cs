@@ -39,7 +39,14 @@ namespace bonus.app.Core.ViewModels.Chats
 				_refreshCommand = _refreshCommand ?? new MvxCommand(async () =>
 				{
 					IsRefreshing = true;
-					Dialogs = new MvxObservableCollection<Dialog>(await _chatsService.GetDialogs());
+					try
+					{
+						Dialogs = new MvxObservableCollection<Dialog>(await _chatsService.GetDialogs());
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
 					IsRefreshing = false;
 				});
 				return _refreshCommand;
@@ -61,7 +68,14 @@ namespace bonus.app.Core.ViewModels.Chats
 				var dialogs = _chatsService.SavedDialogs;
 				if (dialogs.Count == 0)
 				{
-					dialogs = await _chatsService.GetDialogs();
+					try
+					{
+						dialogs = await _chatsService.GetDialogs();
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
 				}
 				Dialogs = new MvxObservableCollection<Dialog>(dialogs);
 			}

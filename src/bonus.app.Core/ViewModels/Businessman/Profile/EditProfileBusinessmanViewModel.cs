@@ -320,12 +320,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (User != null && Parameters.IsActiveUser)
 				{
-					var p = Regex.Replace(User.Phone, "[@,\\ \\(\\)\\-]", string.Empty);
+					var p = Regex.Replace(PhoneNumber.Value, "[@,\\ \\(\\)\\-]", string.Empty);
 					if (User.Phone.Equals(p))
 					{
 						arg.Phone = string.Empty;
 					}
-					if (User.Email.Equals(p))
+					if (User.Email.Equals(Email.Value))
 					{
 						arg.Email = string.Empty;
 					}

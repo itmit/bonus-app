@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -12,6 +13,8 @@ namespace bonus.app.Core.ViewModels.Businessman.News
 		private MvxObservableCollection<Models.News> _news;
 		private Models.News _selectedNews;
 		private readonly INewsService _newsService;
+		private bool _isRefreshing;
+		private MvxCommand _refreshCommand;
 
 		#region .ctor
 		public BusinessmanNewsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, INewsService newsService)
@@ -36,6 +39,32 @@ namespace bonus.app.Core.ViewModels.Businessman.News
 		}
 
 		#region Public
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
+		public MvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ?? new MvxCommand(async () =>
+				{
+					IsRefreshing = true; try
+					{
+						News = new MvxObservableCollection<Models.News>(await _newsService.GetNews());
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+					IsRefreshing = false;
+				});
+				return _refreshCommand;
+			}
+		}
+
 		public MvxObservableCollection<Models.News> News
 		{
 			get => _news;
