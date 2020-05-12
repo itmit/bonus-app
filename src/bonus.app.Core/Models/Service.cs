@@ -32,6 +32,12 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		public User Client
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("writeoff_method")]
 		public BonusValueType WhiteOffMethod
 		{

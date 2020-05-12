@@ -19,9 +19,9 @@ namespace bonus.app.Core.Services
 		#region Consts
 		private const string CreateServiceTypeUri = "http://bonus.itmit-studio.ru/api/service/storeServiceType";
 		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/service/storeServiceItem";
-		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/service";
-
+		private const string ServicesUri = "http://bonus.itmit-studio.ru/api/service";
 		private const string ServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/getAllServices";
 		#endregion
 
 		#region Fields
@@ -133,9 +133,24 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<IEnumerable<ServiceType>> GetAll()
+		public async Task<List<Service>> GetAllServices()
 		{
-			var dtos = await GetAsync<IEnumerable<ServicesDto>>(GetAllUri);
+			var services = await GetAsync<List<Service>>(GetAllUri);
+			if (services == null)
+			{
+				return new List<Service>();
+			}
+
+			foreach (var service in services)
+			{
+				service.Client.PhotoSource = Domain + service.Client.PhotoSource;
+			}
+			return services;
+		}
+
+		public async Task<IEnumerable<ServiceType>> GetMyServices()
+		{
+			var dtos = await GetAsync<IEnumerable<ServicesDto>>(ServicesUri);
 			if (dtos == null)
 			{
 				return new List<ServiceType>();

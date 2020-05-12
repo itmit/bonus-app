@@ -221,9 +221,10 @@ namespace bonus.app.Core.Services
 			return null;
 		}
 
-		private const string PortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
+		private const string GetPortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
+		private const string PortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio/{0}";
 
-		public async Task<bool> AddImageToPortfolio(string imageSource)
+		public async Task<PortfolioImage> AddImageToPortfolio(string imageSource)
 		{
 			using (var client = new HttpClient())
 			{
@@ -238,16 +239,26 @@ namespace bonus.app.Core.Services
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
+				
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
 
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+				var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
 
-				return data.Success;
+				if (data.Success)
+				{
+					return data.Data;
+				}
+
+				return null;
 			}
 		}
 
 		public async Task<List<PortfolioImage>> GetPortfolio()
 		{
-			var images = await GetAsync<List<PortfolioImage>>(PortfolioUri);
+			var images = await GetAsync<List<PortfolioImage>>(GetPortfolioUri);
 			if (images == null)
 			{
 				return new List<PortfolioImage>();
@@ -315,7 +326,18 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public Task<bool> RemoveImageFromPortfolio() => throw new NotImplementedException();
+		public async Task<bool> RemoveImageFromPortfolio(Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+
+				var response = await client.DeleteAsync(string.Format(GetUserUri, uuid));
+
+				return response.IsSuccessStatusCode;
+			}
+		}
 
 		public string Error
 		{

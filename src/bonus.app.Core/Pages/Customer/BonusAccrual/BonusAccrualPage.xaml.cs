@@ -20,12 +20,5 @@ namespace bonus.app.Core.Pages.Customer.BonusAccrual
 			BarcodeImageView.BarcodeOptions.Height = 225;
 		}
 		#endregion
-
-		#region Private
-		private void Button_Clicked(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new MyBonusPage());
-		}
-		#endregion
 	}
 }

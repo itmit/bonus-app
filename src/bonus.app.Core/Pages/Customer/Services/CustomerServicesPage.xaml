@@ -149,10 +149,7 @@
             </Grid>
 
             <!--Список услуг-->
-            <CollectionView Grid.Row="1">
-                <CollectionView.ItemsSource>
-                    <x:String>000000</x:String>
-                </CollectionView.ItemsSource>
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Services}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <viewCells:CustomerServicesContentView />

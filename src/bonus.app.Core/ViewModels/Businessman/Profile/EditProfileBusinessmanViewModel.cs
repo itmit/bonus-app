@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using AutoMapper;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
@@ -19,7 +21,7 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
-	public class EditProfileBusinessmanViewModel : BaseEditProfileViewModel
+	public class EditProfileBusinessmanViewModel : BaseEditProfileViewModel, IPortfolioParentViewModel
 	{
 		#region Data
 		#region Fields
@@ -51,7 +53,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			Value = string.Empty
 		};
 		private readonly IMvxNavigationService _navigationService;
-		private MvxObservableCollection<PortfolioImage> _portfolioImages = new MvxObservableCollection<PortfolioImage>();
+		private MvxObservableCollection<PortfolioViewModel> _portfolioImages = new MvxObservableCollection<PortfolioViewModel>();
 		private readonly IProfileService _profileService;
 		private ValidatableObject<string> _vkLink = new ValidatableObject<string>
 		{
@@ -61,6 +63,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			Value = string.Empty
 		};
+		private Mapper _mapper;
 		#endregion
 		#endregion
 
@@ -74,6 +77,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			_navigationService = navigationService;
 			_profileService = profileService;
+			_mapper = new Mapper(new MapperConfiguration(cfg =>
+			{
+				cfg.CreateMap<PortfolioImage, PortfolioViewModel>()
+				   .ConstructUsing(m => new PortfolioViewModel(profileService)
+				   {
+					   ImageSource = m.ImageSource,
+					   ImageName = m.ImageName,
+					   ParentViewModel = this,
+					   PortfolioImage = m
+				   });
+			}));
 
 			AddValidations();
 		}
@@ -111,12 +125,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 														return;
 													}
 
-													if (await _profileService.AddImageToPortfolio(image.Path))
+													var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
+
+													if (portfolioImage != null)
 													{
-														PortfolioImages.Add(new PortfolioImage
-														{
-															ImageSource = image.Path
-														});
+														PortfolioImages.Add(_mapper.Map<PortfolioViewModel>(portfolioImage));
 														await RaisePropertyChanged(() => PortfolioImages);
 													}
 												}
@@ -176,7 +189,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			set => SetProperty(ref _name, value);
 		}
 
-		public MvxObservableCollection<PortfolioImage> PortfolioImages
+		public MvxObservableCollection<PortfolioViewModel> PortfolioImages
 		{
 			get => _portfolioImages;
 			set => SetProperty(ref _portfolioImages, value);
@@ -215,7 +228,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				try
 				{
-					PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
+					PortfolioImages = new MvxObservableCollection<PortfolioViewModel>(_mapper.Map<List<PortfolioViewModel>>(await _profileService.GetPortfolio()));
 				}
 				catch (Exception e)
 				{
@@ -448,5 +461,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			return true;
 		}
 		#endregion
+
+		public void RemovedPortfolioImage(PortfolioViewModel portfolioViewModel)
+		{
+			PortfolioImages.Remove(portfolioViewModel);
+			RaisePropertyChanged(() => PortfolioImages);
+		}
 	}
 }

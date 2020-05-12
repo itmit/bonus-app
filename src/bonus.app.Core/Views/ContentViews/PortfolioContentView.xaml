@@ -26,6 +26,7 @@
                     FontSize="14"/>
             <ImageButton Grid.Column="2"
                          Source="ic_close_4x.png"
+                         Command="{Binding RemoveImageCommand}"
                          VerticalOptions="Center"
                          WidthRequest="45"
                          HorizontalOptions="EndAndExpand"

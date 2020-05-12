@@ -20,18 +20,20 @@
                        WidthRequest="50"
                        HeightRequest="40"
                        HasShadow="False">
-                    <forms:CachedImage Source="chika.png" Aspect="AspectFill"/>
+                    <forms:CachedImage Source="{Binding Client.PhotoSource}" Aspect="AspectFill" 
+                                       ErrorPlaceholder="icon_no_photo.png"
+                                       LoadingPlaceholder="icon_no_photo.png"/>
                 </Frame>
                 <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
-                    <Label Text="Массаж" />
-                    <Label Text="Салон Бигуди" FontSize="Caption" TextColor="Gray" />
+                    <Label Text="{Binding Name}" />
+                    <Label Text="{Binding Client.Name}" FontSize="Caption" TextColor="Gray" />
                 </StackLayout>
                 <Label Grid.Column="2" VerticalOptions="Start" HorizontalOptions="EndAndExpand">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="10" />
-                                <Span Text=" %" />
+                                <Span Text="{Binding AccrualValueString}" />
+                                <Span Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

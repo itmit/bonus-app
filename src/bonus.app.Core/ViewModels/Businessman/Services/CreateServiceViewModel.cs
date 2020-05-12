@@ -65,7 +65,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			try
 			{
-				var types = await _servicesServices.GetAll();
+				var types = await _servicesServices.GetMyServices();
 				UserServiceType = types.SingleOrDefault(t => t.Name.Equals(_authService.User.Uuid.ToString()));
 				if (UserServiceType != null)
 				{

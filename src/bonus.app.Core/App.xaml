@@ -90,6 +90,7 @@
             <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
             <converters:FirstElementConverter x:Key="FirstElementConverter" />
             <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converters:BonusValueTypeConverter x:Key="BonusValueTypeConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

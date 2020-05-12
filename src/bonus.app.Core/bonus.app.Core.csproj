@@ -232,7 +232,7 @@
     <EmbeddedResource Update="Pages\Chats\DialogsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\MyBonusPage.xaml">
+    <EmbeddedResource Update="Pages\Customer\BonusAccrual\MyBonusPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Pay\PaySubscribesPage.xaml">

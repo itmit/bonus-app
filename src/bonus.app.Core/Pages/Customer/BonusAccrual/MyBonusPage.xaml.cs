@@ -1,10 +1,11 @@
 ﻿using System;
 using bonus.app.Core.ViewModels;
+using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Pages.Customer.BonusAccrual
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MyBonusPage : MvxContentPage<MyBonusViewModel>

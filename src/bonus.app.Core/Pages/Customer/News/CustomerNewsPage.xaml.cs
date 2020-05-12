@@ -19,8 +19,8 @@ namespace bonus.app.Core.Pages.Customer.News
 
 		#region Private
         private void CollectionView_SelectionChanged(System.Object sender, Xamarin.Forms.SelectionChangedEventArgs e)
-        {
-			Navigation.PushAsync(new CustomerNewsDetailsPage());
+		{
+			((CollectionView) sender).SelectedItem = null;
 		}
         #endregion
     }

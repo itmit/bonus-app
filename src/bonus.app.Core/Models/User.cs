@@ -93,6 +93,7 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		[JsonProperty("photo")]
 		public string PhotoSource
 		{
 			get;

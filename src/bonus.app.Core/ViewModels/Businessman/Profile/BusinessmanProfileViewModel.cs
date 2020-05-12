@@ -29,6 +29,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private MvxCommand _openClassmatesCommand;
 		private MvxCommand _openFacebookCommand;
 		private MvxCommand _openInstagramCommand;
+		private MvxCommand _showBonusDetailsCommand;
+		private bool _isShowedDetails;
 		#endregion
 		#endregion
 
@@ -125,6 +127,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return _openVkCommand;
 			}
 		}
+
 		public MvxCommand OpenInstagramCommand
 		{
 			get
@@ -136,6 +139,25 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return _openInstagramCommand;
 			}
 		}
+
+		public MvxCommand ShowBonusDetailsCommand
+		{
+			get
+			{
+				_showBonusDetailsCommand = _showBonusDetailsCommand ?? new MvxCommand(() =>
+				{
+					IsShowedDetails = !IsShowedDetails;
+				});
+				return _showBonusDetailsCommand;
+			}
+		}
+
+		public bool IsShowedDetails
+		{
+			get => _isShowedDetails;
+			set => SetProperty(ref _isShowedDetails, value);
+		}
+
 		public MvxCommand OpenFacebookCommand
 		{
 			get

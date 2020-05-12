@@ -12,6 +12,7 @@
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.BusinessmanProfilePage">
 
@@ -22,6 +23,11 @@
     <NavigationPage.TitleView>
         <Label Text="Профиль" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
+
+
+    <views:MvxContentPage.Resources>
+        <converters:BonusValueTypeConverter x:Key="BonusValueTypeConverter" />
+    </views:MvxContentPage.Resources>
 
     <ContentPage.Content>
         <!--Страница 3. Профиль предпринимателя-->
@@ -138,9 +144,32 @@
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
-                           TextDecorations="Underline" Margin="0,40,0,35" />
-                    <Label Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
-                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+                           TextDecorations="Underline" Margin="0,40,0,10" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowBonusDetailsCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <StackLayout BindableLayout.ItemsSource="{Binding Services}" IsVisible="{Binding IsShowedDetails}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span Text="{Binding Name}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding AccrualValueString}" />
+                                                <Span
+                                                    Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}" />
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <Label Margin="0,35,0,0" Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
+                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent"
                                      Padding="-5,10,10,15" 

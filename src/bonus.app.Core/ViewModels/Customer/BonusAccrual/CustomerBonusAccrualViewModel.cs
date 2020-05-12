@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 {
-	public class CustomerBonusAccrualViewModel : MvxViewModel
+	public class CustomerBonusAccrualViewModel : MvxNavigationViewModel
 	{
 		#region Data
 		#region Fields
 		private readonly IAuthService _authService;
-		private IMvxNavigationService _navigationService;
 		private Guid _userUuid;
+		private MvxCommand _openMyBonusesCommand;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CustomerBonusAccrualViewModel(IAuthService authService, IMvxNavigationService navigationService)
+		public CustomerBonusAccrualViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
+			: base(logProvider, navigationService)
 		{
 			_authService = authService;
-			_navigationService = navigationService;
 		}
 		#endregion
 
@@ -29,6 +31,18 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 		{
 			get => _userUuid;
 			set => SetProperty(ref _userUuid, value);
+		}
+
+		public MvxCommand OpenMyBonusesCommand
+		{
+			get
+			{
+				_openMyBonusesCommand = _openMyBonusesCommand ?? new MvxCommand(() =>
+				{
+					NavigationService.Navigate<MyBonusViewModel>();
+				});
+				return _openMyBonusesCommand;
+			}
 		}
 		#endregion
 

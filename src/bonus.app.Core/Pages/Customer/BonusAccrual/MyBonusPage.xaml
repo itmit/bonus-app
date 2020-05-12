@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="bonusAccrual:MyBonusViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                      xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Customer.BonusAccrual;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Customer.BonusAccrual.MyBonusPage">
+    <NavigationPage.TitleView>
+        <Label Text="Мои бонусы" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+    <!--Страница 19.2.1 Начисления-->
+    <ContentPage.Content>
+        <CollectionView Margin="15,0" ItemsSource="{Binding MyBonuses}">
+                <CollectionView.Header>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="5,20,5,15">
+                            <Label Text="Продавец" HorizontalOptions="StartAndExpand"
+                                   FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                            <Label Text="Мои Бонусы" HorizontalOptions="EndAndExpand"
+                                   FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                        </StackLayout>
+                        <BoxView Margin="0,0,0,20" />
+                </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="0">
+                            <StackLayout Orientation="Horizontal" Margin="5,0,5,15">
+                                <Label HorizontalOptions="StartAndExpand" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Client.Name}"/>
+                                            <Span Text=", "/>
+                                            <Span Text="{Binding Name}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Text="{Binding AccrualValueString}" HorizontalOptions="EndAndExpand"
+                                       FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                            </StackLayout>
+                            <BoxView Margin="0,0,0,20" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="5,0,5,15">
+                        <Label Text="Итого" HorizontalOptions="StartAndExpand"
+                               FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                        <Label Text="45" HorizontalOptions="EndAndExpand" FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                    </StackLayout>
+                    <BoxView />
+                </StackLayout>
+            </CollectionView.Footer>
+            </CollectionView>
+            <!--<design:CustomButton Style="{StaticResource AppButtonGradient}">
+                <Grid>
+                    <graphic:RectangleInProfile/>
+                    <Label Text="ПОЛУЧИТЬ БОНУСЫ" Style="{StaticResource TextForAppButton}"/>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer/>
+                </Frame.GestureRecognizers>
+            </design:CustomButton>-->
+    </ContentPage.Content>
+</views:MvxContentPage>

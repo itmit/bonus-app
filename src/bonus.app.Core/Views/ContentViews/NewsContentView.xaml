@@ -11,7 +11,7 @@
                     <forms:CachedImage Source="{Binding ImageSource}" WidthRequest="60" IsVisible="True" IsEnabled="True"/>
                 </Frame>
                 <StackLayout>
-                    <Label Text="{Binding News}" TextColor="#505050" FontSize="Body" MaxLines="1" />
+                    <Label Text="{Binding Name}" TextColor="#505050" FontSize="Body" MaxLines="1" />
                     <Label Text="{Binding CreatedAt, StringFormat='{0:dd.MM.yyyy}'}" TextColor="Gray" />
                 </StackLayout>
             </StackLayout>
