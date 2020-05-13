@@ -3,7 +3,6 @@ using Android.Content.PM;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
 using MvvmCross.Forms.Platforms.Android.Views;
-using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
@@ -43,7 +42,6 @@ namespace bonus.app.Droid
 		protected override void OnCreate(Bundle bundle)
 		{
 			AppPackageName = ApplicationContext.PackageName;
-			CrossCurrentActivity.Current.Init(this, bundle);
 			Platform.Init();
 			Popup.Init(this, bundle);
 
