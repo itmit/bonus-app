@@ -39,7 +39,7 @@
                 </StackLayout.Resources>
                 <contentViews:PicCountryAndCityContentView x:Name="PicCountryAndCityContentView">
                     <contentViews:PicCountryAndCityContentView.Footer>
-                        <StackLayout x:Name="Layout">
+                        <StackLayout x:Name="Content">
 
                             <services1:MyServicesContentView Margin="0,20,0,0" x:Name="MyServicesContentView"/>
 

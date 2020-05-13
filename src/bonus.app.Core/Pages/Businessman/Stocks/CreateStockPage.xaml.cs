@@ -22,7 +22,7 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 		/// <remarks>To be added.</remarks>
 		protected override void OnAppearing()
 		{
-			Layout.BindingContext = ViewModel;
+			Content.BindingContext = ViewModel;
 			PicCountryAndCityContentView.ViewModel = ViewModel.PicCountryAndCityViewModel;
 			MyServicesContentView.ViewModel = ViewModel.MyServicesViewModel;
 
