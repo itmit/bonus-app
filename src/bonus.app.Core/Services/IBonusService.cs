@@ -10,7 +10,7 @@ namespace bonus.app.Core.Services
 		#region Overridable
 		Task<bool> AccrueAndWriteOffBonuses(AccrueAndWriteOffBonusesDto requestDto);
 
-		Task<List<Service>> GetMyBonuses();
+		Task<List<AccrualBonuses>> GetMyBonuses();
 		#endregion
 	}
 }

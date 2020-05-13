@@ -40,12 +40,12 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<List<Service>> GetMyBonuses()
+		public async Task<List<AccrualBonuses>> GetMyBonuses()
 		{
-			var services = await GetAsync<List<Service>>(GetMyBonusesUri);
+			var services = await GetAsync<List<AccrualBonuses>>(GetMyBonusesUri);
 			if (services == null)
 			{
-				return new List<Service>();
+				return new List<AccrualBonuses>();
 			}
 			return services;
 		}

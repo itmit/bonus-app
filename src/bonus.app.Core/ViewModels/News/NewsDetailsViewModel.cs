@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
-using MvvmCross.Logging;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels.Businessman.News
+namespace bonus.app.Core.ViewModels.News
 {
-	public class BusinessmanNewsDetailsViewModel : MvxViewModel<Models.News>
+	public class NewsDetailsViewModel : MvxViewModel<Models.News>
 	{
 		private Models.News _news;
 		private readonly INewsService _newsService;
 		private MvxObservableCollection<string> _images;
 
-		public BusinessmanNewsDetailsViewModel(INewsService newsService)
+		public NewsDetailsViewModel(INewsService newsService)
 		{
 			_newsService = newsService;
 		}

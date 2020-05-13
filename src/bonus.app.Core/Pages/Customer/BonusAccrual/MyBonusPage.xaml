@@ -54,7 +54,7 @@
                     <StackLayout Orientation="Horizontal" Margin="5,0,5,15">
                         <Label Text="Итого" HorizontalOptions="StartAndExpand"
                                FontFamily="{x:Static design:DesignClass.LatoBold}" />
-                        <Label Text="45" HorizontalOptions="EndAndExpand" FontFamily="{x:Static design:DesignClass.LatoBold}" />
+                        <Label Text="{Binding Sum}" HorizontalOptions="EndAndExpand" FontFamily="{x:Static design:DesignClass.LatoBold}" />
                     </StackLayout>
                     <BoxView />
                 </StackLayout>

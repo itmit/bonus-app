@@ -6,9 +6,9 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
-namespace bonus.app.Core.ViewModels.Businessman.News
+namespace bonus.app.Core.ViewModels.News
 {
-	public class BusinessmanNewsViewModel : MvxNavigationViewModel
+	public class NewsViewModel : MvxNavigationViewModel
 	{
 		private MvxObservableCollection<Models.News> _news;
 		private Models.News _selectedNews;
@@ -17,7 +17,7 @@ namespace bonus.app.Core.ViewModels.Businessman.News
 		private MvxCommand _refreshCommand;
 
 		#region .ctor
-		public BusinessmanNewsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, INewsService newsService)
+		public NewsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, INewsService newsService)
 			: base(logProvider, navigationService)
 		{
 			_newsService = newsService;
@@ -83,7 +83,7 @@ namespace bonus.app.Core.ViewModels.Businessman.News
 
 				SetProperty(ref _selectedNews, value);
 
-				NavigationService.Navigate<BusinessmanNewsDetailsViewModel, Models.News>(value);
+				NavigationService.Navigate<NewsDetailsViewModel, Models.News>(value);
 
 				SetProperty(ref _selectedNews, null);
 			}

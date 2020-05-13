@@ -1,12 +1,12 @@
-﻿using bonus.app.Core.ViewModels.Customer.News;
+﻿using bonus.app.Core.ViewModels.News;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Pages.Customer.News
+namespace bonus.app.Core.Pages.News
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CustomerNewsDetailsPage : MvxContentPage<CustomerNewsDetailsViewModel>
+	public partial class NewsDetailsPage : MvxContentPage<NewsDetailsViewModel>
 	{
 		#region Data
 		#region Fields
@@ -15,12 +15,25 @@ namespace bonus.app.Core.Pages.Customer.News
 		#endregion
 
 		#region .ctor
-		public CustomerNewsDetailsPage()
+		public NewsDetailsPage()
 		{
 			InitializeComponent();
 			FrameImage.IsVisible = true;
-			CarouselViewImages.IsVisible = false;
+			CarouselViewImages.IsVisible = true;
 			ControlVisible(FrameImage.IsVisible, CarouselViewImages.IsVisible);
+		}
+		#endregion
+
+		#region Overrided
+		/// <summary>
+		/// When overridden, allows application developers to customize behavior immediately prior to the
+		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+		/// </summary>
+		/// <remarks>To be added.</remarks>
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			var app = Application.Current.MainPage.Navigation.NavigationStack;
 		}
 		#endregion
 

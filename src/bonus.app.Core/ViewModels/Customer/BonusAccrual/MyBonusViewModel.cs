@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
@@ -11,7 +12,8 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 	public class MyBonusViewModel : MvxViewModel
 	{
 		private IBonusService _bonusService;
-		private MvxObservableCollection<Service> _myBonuses;
+		private MvxObservableCollection<AccrualBonuses> _myBonuses;
+		private double _sum;
 
 		#region .ctor
 		public MyBonusViewModel(IBonusService bonusService)
@@ -26,18 +28,28 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 
 			try
 			{
-				MyBonuses = new MvxObservableCollection<Service>(await _bonusService.GetMyBonuses());
+				MyBonuses = new MvxObservableCollection<AccrualBonuses>(await _bonusService.GetMyBonuses());
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
+
+			_sum = 0;
+			foreach (var bonus in MyBonuses)
+			{
+				_sum += (double)bonus.AccrualValue / 100;
+			}
+
+			await RaisePropertyChanged(() => Sum);
 		}
 
-		public MvxObservableCollection<Service> MyBonuses
+		public MvxObservableCollection<AccrualBonuses> MyBonuses
 		{
 			get => _myBonuses;
 			private set => SetProperty(ref _myBonuses, value);
 		}
+
+		public string Sum => _sum.ToString(CultureInfo.InvariantCulture);
 	}
 }

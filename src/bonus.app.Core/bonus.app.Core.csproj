@@ -76,12 +76,6 @@
     <Compile Update="Pages\Chats\DialogsPage.xaml.cs">
       <DependentUpon>DialogsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Customer\News\CustomerNewsDetailsPage.xaml.cs">
-      <DependentUpon>CustomerNewsDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Customer\News\CustomerNewsPage.xaml.cs">
-      <DependentUpon>CustomerNewsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Pages\Customer\Services\CustomerServicesPage.xaml.cs">
       <DependentUpon>CustomerServicesPage.xaml</DependentUpon>
     </Compile>
@@ -99,6 +93,12 @@
     </Compile>
     <Compile Update="Pages\Customer\Shares\CustomerSharesPage.xaml.cs">
       <DependentUpon>CustomerSharesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\News\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\News\NewsDetailsPage.xaml.cs">
+      <DependentUpon>NewsDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\SubscribesPage.xaml.cs">
       <DependentUpon>SubscribesPage.xaml</DependentUpon>
@@ -148,10 +148,10 @@
     <EmbeddedResource Update="Pages\Businessman\BonusAccrual\BusinessmanBonusAccrualPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Businessman\News\BusinessmanNewsDetailsPage.xaml">
+    <EmbeddedResource Update="Pages\News\NewsDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Businessman\News\BusinessmanNewsPage.xaml">
+    <EmbeddedResource Update="Pages\News\NewsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Auth\CustomerRegistrationPage.xaml">
