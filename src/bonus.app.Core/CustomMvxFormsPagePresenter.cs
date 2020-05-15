@@ -5,6 +5,7 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using MvvmCross.Presenters;
+using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
@@ -35,6 +36,11 @@ namespace bonus.app.Core
 			}
 
 			return base.CloseContentPage(viewModel, attribute);
+		}
+
+		public override Xamarin.Forms.Page CreatePage(Type viewType, MvxViewModelRequest request, MvxBasePresentationAttribute attribute)
+		{
+			return base.CreatePage(viewType, request, attribute);
 		}
 
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)

@@ -7,6 +7,7 @@ using MonkeyCache.FileStore;
 using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using Realms;
 using Xamarin.Essentials;
 
 namespace bonus.app.Core
@@ -28,6 +29,7 @@ namespace bonus.app.Core
 				.RegisterAsDynamic();
 
 			Barrel.ApplicationId = "itmit.bonus.app";
+			RealmConfiguration.DefaultConfiguration.SchemaVersion = 2;
 
 			var firstRun = Preferences.Get("FirstRun", "true");
 			if (firstRun.Equals("true"))
