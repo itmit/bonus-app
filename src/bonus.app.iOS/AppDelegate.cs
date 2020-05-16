@@ -1,5 +1,11 @@
-﻿using FFImageLoading.Forms.Platform;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using FFImageLoading.Forms.Platform;
 using Foundation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using MvvmCross.Platforms.Ios.Core;
 using Rg.Plugins.Popup;
 using UIKit;
@@ -25,6 +31,11 @@ namespace bonus.app.iOS
 		//
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
+			AppCenter.Start("654ba5c1-5011-4899-ad27-179fb54321e4",
+							typeof(Analytics), typeof(Crashes));
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+			TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+
 			Platform.Init();
 			Popup.Init();
 			Forms.Init();
@@ -33,6 +44,20 @@ namespace bonus.app.iOS
 			Material.Init();
 
 			return base.FinishedLaunching(app, options);
+		}
+
+		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+		{
+			Crashes.TrackError(e.Exception, new Dictionary<string, string> {
+				{ "Sender", sender.GetType().FullName }
+			});
+		}
+
+		private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			Crashes.TrackError(e.ExceptionObject as Exception, new Dictionary<string, string> {
+				{ "Sender", sender.GetType().FullName }
+			});
 		}
 		#endregion
 	}

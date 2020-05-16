@@ -55,7 +55,7 @@
                             <ui:MaterialTextField Text="{Binding Address.Value}"
                                                   Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Адрес"
-                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
 
@@ -64,7 +64,7 @@
                                                   Placeholder="Номер телефона"
                                                   HelperText="+7 (XXX) XXX-XX-XX"
                                                   InputType="Telephone"
-                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
                                 <ui:MaterialTextField.Behaviors>
                                     <behaviors:MaterialTextFieldMaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
@@ -92,7 +92,7 @@
                             </StackLayout>
 
                             <ui:MaterialDateField Date="{Binding Birthday.Value}"
-                                                  ErrorText="{Binding Birthday.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                                  ErrorText="{Binding Birthday.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Birthday.IsValid, Converter={StaticResource InverseBoolConverter}}"
                                                   TextColor="#505050"
                                                   BackgroundColor="Transparent"
