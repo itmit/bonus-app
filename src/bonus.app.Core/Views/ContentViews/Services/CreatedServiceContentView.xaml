@@ -30,7 +30,7 @@
             <ui:MaterialTextField Text="{Binding Name.Value, FallbackValue='', TargetNullValue=''}"
                                   Placeholder="Ваши услуги"
                                   FocusCommand="{Binding CreateServiceCommand}"
-                                  ErrorText="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                  ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
                                   HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
             <ImageButton Source="ic_close_remove_4x.png"

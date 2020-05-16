@@ -1,11 +1,15 @@
-﻿using Xamarin.Forms.PlatformConfiguration;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using MvvmCross.Forms.Core;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using XF.Material.Forms;
 using Application = Xamarin.Forms.Application;
 
 namespace bonus.app.Core
 {
-	public partial class App : Application
+	public partial class App : MvxFormsApplication
 	{
 		#region .ctor
 		public App()
@@ -30,6 +34,9 @@ namespace bonus.app.Core
 
 		protected override void OnStart()
 		{
+			AppCenter.Start("ios=654ba5c1-5011-4899-ad27-179fb54321e4;" + "android=db598eca-83b6-46d8-9748-68abcdea9a02;",
+							typeof(Analytics),
+							typeof(Crashes));
 		}
 		#endregion
 	}

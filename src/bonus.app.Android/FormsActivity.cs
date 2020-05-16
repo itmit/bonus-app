@@ -1,7 +1,11 @@
-﻿using Android.App;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
+using Microsoft.AppCenter.Crashes;
 using MvvmCross.Forms.Platforms.Android.Views;
 using Plugin.Permissions;
 using Rg.Plugins.Popup;
@@ -41,19 +45,36 @@ namespace bonus.app.Droid
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+			TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+
 			AppPackageName = ApplicationContext.PackageName;
 			Platform.Init();
 			Popup.Init(this, bundle);
 
 			Forms.Init(this, bundle);
 			FormsMaterial.Init(this, bundle);
+			
 			base.OnCreate(bundle);
-
 			Material.Init(this, bundle);
 
 			CachedImageRenderer.Init(true);
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
+		}
+
+		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+		{
+			Crashes.TrackError(e.Exception, new Dictionary<string, string> {
+				{ "Sender", sender.GetType().FullName }
+			});
+		}
+
+		private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			Crashes.TrackError(e.ExceptionObject as Exception, new Dictionary<string, string> {
+				{ "Sender", sender.GetType().FullName }
+			});
 		}
 		#endregion
 	}
