@@ -67,7 +67,6 @@
     <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
     <MtouchLink>Full</MtouchLink>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type --optimize=+force-rejected-types-removal</MtouchExtraArgs>
-    <MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
