@@ -34,9 +34,6 @@ namespace bonus.app.Core
 
 		protected override void OnStart()
 		{
-			AppCenter.Start("ios=654ba5c1-5011-4899-ad27-179fb54321e4;" + "android=db598eca-83b6-46d8-9748-68abcdea9a02;",
-							typeof(Analytics),
-							typeof(Crashes));
 		}
 		#endregion
 	}

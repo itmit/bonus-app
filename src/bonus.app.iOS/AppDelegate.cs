@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FFImageLoading.Forms.Platform;
 using Foundation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross.Platforms.Ios.Core;
 using Rg.Plugins.Popup;
@@ -29,6 +31,8 @@ namespace bonus.app.iOS
 		//
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
+			AppCenter.Start("654ba5c1-5011-4899-ad27-179fb54321e4",
+							typeof(Analytics), typeof(Crashes));
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
 			TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
 

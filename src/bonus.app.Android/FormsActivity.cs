@@ -5,6 +5,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross.Forms.Platforms.Android.Views;
 using Plugin.Permissions;
@@ -45,6 +47,8 @@ namespace bonus.app.Droid
 
 		protected override void OnCreate(Bundle bundle)
 		{
+			AppCenter.Start("db598eca-83b6-46d8-9748-68abcdea9a02",
+							typeof(Analytics), typeof(Crashes));
 			AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
 			TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
 
