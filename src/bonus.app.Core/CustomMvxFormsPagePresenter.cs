@@ -38,9 +38,18 @@ namespace bonus.app.Core
 			return base.CloseContentPage(viewModel, attribute);
 		}
 
-		public override Xamarin.Forms.Page CreatePage(Type viewType, MvxViewModelRequest request, MvxBasePresentationAttribute attribute)
+		public override void ReplacePageRoot(Xamarin.Forms.Page existingPage, Xamarin.Forms.Page page, MvxPagePresentationAttribute attribute)
 		{
-			return base.CreatePage(viewType, request, attribute);
+			// If the existing page is the current main page of the forms
+			// app, then simply replace it
+			if (existingPage == FormsApplication.MainPage)
+			{
+				FormsApplication.MainPage = page;
+				var p = Application.Current.MainPage;
+				return;
+			}
+
+			base.ReplacePageRoot(existingPage, page, attribute);
 		}
 
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)
