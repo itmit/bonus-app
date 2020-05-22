@@ -20,7 +20,8 @@ namespace bonus.app.Core.Services
 		private const string CreateServiceTypeUri = "http://bonus.itmit-studio.ru/api/service/storeServiceType";
 		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/service/storeServiceItem";
 		private const string ServicesUri = "http://bonus.itmit-studio.ru/api/service";
-		private const string ServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+		private const string BusinessmanServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice/{0}";
+		private const string BusinessmanServicesUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/getAllServices";
 		#endregion
 
@@ -54,7 +55,7 @@ namespace bonus.app.Core.Services
 
 				var request = JsonConvert.SerializeObject(createServiceDto);
 
-				var response = await client.PostAsync(ServiceUri, new StringContent(request, Encoding.UTF8, ApplicationJson));
+				var response = await client.PostAsync(BusinessmanServicesUri, new StringContent(request, Encoding.UTF8, ApplicationJson));
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -159,7 +160,23 @@ namespace bonus.app.Core.Services
 			return _mapper.Map<ServiceType[]>(dtos);
 		}
 
-		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(ServiceUri);
+		public async Task<bool> UpdateService(CreateServiceDto service, Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var request = JsonConvert.SerializeObject(service);
+				var response = await client.PutAsync(string.Format(BusinessmanServiceUri, uuid), new StringContent(request, Encoding.UTF8, ApplicationJson));
+#if DEBUG
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+#endif       
+				return response.IsSuccessStatusCode;
+			}
+		}
+
+		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(BusinessmanServicesUri);
 		#endregion
 	}
 }

@@ -27,7 +27,9 @@ namespace bonus.app.Core.Services
 		private const string EditStockUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
 		private const string GetArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive";
-		private const string GetFilterArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive";
+		private const string GetFilterArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive/filtered";
+		private const string GetMyArchiveStockUri = "http://bonus.itmit-studio.ru/api/businessmanstockarchive";
+		private const string GetMyFilterArchiveStockUri = "http://bonus.itmit-studio.ru/api/businessmanstockarchive/filtered";
 		private const string GetMyFilterStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
 		private const string GetMyStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
 		private const string GetStockForEditUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}/edit";
@@ -246,7 +248,7 @@ namespace bonus.app.Core.Services
 			{
 				if (string.IsNullOrEmpty(stock.ImageSource))
 				{
-					stock.ImageSource = string.Empty;
+					stock.ImageSource = "about:blank";
 					continue;
 				}
 

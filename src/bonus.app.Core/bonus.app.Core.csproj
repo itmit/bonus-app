@@ -348,7 +348,7 @@
     <EmbeddedResource Update="Views\ViewCells\Shares\CountryCityViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ContentViews\FilterContentView.xaml">
+    <EmbeddedResource Update="Views\ContentViews\Stocks\FilterContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Shares\NewsViewCell.xaml">

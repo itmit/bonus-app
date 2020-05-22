@@ -18,12 +18,16 @@
 
     <ContentPage.Content>
         <!--Страница 4.3 Редактор мои услуги(преприниматель)-->
-        <StackLayout Margin="15,0" Spacing="0">
-            <CollectionView SelectionMode="Single" ItemsSource="{Binding MyServices}">
+        <RefreshView Margin="15,20"
+                     Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView SelectionMode="Single"
+                            SelectedItem="{Binding SelectedService}"
+                            ItemsSource="{Binding MyServices}">
                 <CollectionView.Header>
                         <Label Text="Выберите услугу" Style="{StaticResource TitleLabel}" FontSize="Body"
                                HorizontalTextAlignment="Center"
-                               HorizontalOptions="FillAndExpand" Margin="0,20,0,15" />
+                               HorizontalOptions="FillAndExpand" />
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -31,17 +35,19 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.Footer>
-                    <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,5">
-                        <Grid>
-                            <graphic:RectangleInProfile />
-                            <Label Text="РЕДАКТИРОВАТЬ" Style="{StaticResource TextForAppButton}" />
-                        </Grid>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Button_OnClicked" />
-                        </Frame.GestureRecognizers>
-                    </design:CustomButton>
+                    <StackLayout Padding="0,20,0,5">
+                        <design:CustomButton Style="{StaticResource AppButtonGradient}" >
+                            <Grid>
+                                <graphic:RectangleInProfile />
+                                <Label Text="РЕДАКТИРОВАТЬ" Style="{StaticResource TextForAppButton}" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EditServiceCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </design:CustomButton>
+                    </StackLayout>
                 </CollectionView.Footer>
             </CollectionView>
-        </StackLayout>
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

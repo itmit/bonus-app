@@ -20,6 +20,13 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		[JsonProperty("service_item_uuid")]
+		public Guid ServiceItemUuid
+		{
+			get;
+			set;
+		}
+
 		public string Name
 		{
 			get;

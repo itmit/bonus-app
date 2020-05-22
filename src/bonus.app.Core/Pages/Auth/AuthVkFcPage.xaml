@@ -36,7 +36,7 @@
                         </Image>
                     </Grid>
                     <StackLayout Orientation="Horizontal" Spacing="0" Margin="0,0,0,30">
-                        <CheckBox x:Name="remember" VerticalOptions="Center" HorizontalOptions="Start" Color="#DADADA" />
+                        <CheckBox VerticalOptions="Center" HorizontalOptions="Start" Color="#DADADA" />
                         <Label Text="Запомнить" FontSize="12" TextColor="White" HorizontalOptions="Start"
                                Margin="15,0,0,0"
                                VerticalOptions="Center" />
@@ -47,7 +47,9 @@
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
-                    <Button Text="ВОЙТИ" Style="{StaticResource AppButton}" Margin="0,0,0,30" />
+                    <Button Text="ВОЙТИ"
+                            Margin="0,0,0,20"
+                            Style="{StaticResource AuthAndRegButton}" />
                     <Label Text="Создать аккаунт" TextColor="White" HorizontalTextAlignment="Center" Margin="0,0,0,10">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1" />

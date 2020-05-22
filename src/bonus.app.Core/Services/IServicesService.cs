@@ -17,9 +17,12 @@ namespace bonus.app.Core.Services
 
 		Task<ServiceType> CreateServiceType(string name);
 
+		Task<bool> UpdateService(CreateServiceDto service, Guid uuid);
+
 		Task<IEnumerable<ServiceType>> GetMyServices();
 
 		Task<List<Service>> GetAllServices();
+		
 		Task<IEnumerable<Service>> GetBusinessmenService();
 		#endregion
 	}

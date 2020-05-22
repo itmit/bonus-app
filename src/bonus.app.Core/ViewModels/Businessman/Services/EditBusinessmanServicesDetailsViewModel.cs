@@ -1,16 +1,204 @@
-﻿using MvvmCross.Logging;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using bonus.app.Core.Dtos.BusinessmanDtos;
+using bonus.app.Core.Models;
+using bonus.app.Core.Services;
+using MvvmCross.Commands;
+using MvvmCross.Forms.Presenters;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
-	public class EditBusinessmanServicesDetailsViewModel : MvxNavigationViewModel
+	public class EditBusinessmanServicesDetailsViewModel : MvxViewModel<Service, Service>
 	{
+		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _updateCommand;
+		private IServicesService _servicesService;
+		private int? _cancellationBonusAmount;
+		private int? _bonusPercentage;
+		private int? _bonusAmount;
+		private int? _cancellationBonusPercentage;
+
 		#region .ctor
-		public EditBusinessmanServicesDetailsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-			: base(logProvider, navigationService)
+		public EditBusinessmanServicesDetailsViewModel(IMvxNavigationService navigationService, IServicesService servicesService, IAuthService authService, IMvxFormsViewPresenter platformPresenter)
 		{
+			_servicesService = servicesService;
+			PlatformPresenter = platformPresenter;
+			_navigationService = navigationService;
+			MyServicesViewModel = new MyServicesViewModel(servicesService, authService);
 		}
 		#endregion
+
+
+		private IMvxFormsViewPresenter PlatformPresenter { get; }
+
+		private Application _formsApplication;
+
+		public Application FormsApplication
+		{
+			get => _formsApplication ?? (_formsApplication = PlatformPresenter.FormsApplication);
+			set => _formsApplication = value;
+		}
+
+
+		private Service _service;
+
+		public MyServicesViewModel MyServicesViewModel
+		{
+			get;
+		}
+
+
+		public int? BonusAmount
+		{
+			get => _bonusAmount;
+			set => SetProperty(ref _bonusAmount, value);
+		}
+
+		public int? BonusPercentage
+		{
+			get => _bonusPercentage;
+			set => SetProperty(ref _bonusPercentage, value);
+		}
+
+		public int? CancellationBonusAmount
+		{
+			get => _cancellationBonusAmount;
+			set => SetProperty(ref _cancellationBonusAmount, value);
+		}
+
+		public int? CancellationBonusPercentage
+		{
+			get => _cancellationBonusPercentage;
+			set => SetProperty(ref _cancellationBonusPercentage, value);
+		}
+
+
+		public override void Prepare(Service parameter)
+		{
+			_service = parameter;
+		}
+
+		public override async Task Initialize()
+		{
+			await MyServicesViewModel.Initialize();
+			await base.Initialize();
+
+			var temp = MyServicesViewModel.Services.Single(model => model.Services.Any(service => service.Uuid == _service.ServiceItemUuid));
+			MyServicesViewModel.SelectedService = temp.Services.SingleOrDefault(service => service.Uuid == _service.ServiceItemUuid);
+
+			if (_service.AccrualMethod == BonusValueType.Points)
+			{
+				BonusAmount = _service.AccrualValue / 100;
+			}
+			else
+			{
+				BonusPercentage = _service.AccrualValue;
+			}
+
+			if (_service.WhiteOffMethod == BonusValueType.Points)
+			{
+				CancellationBonusAmount = _service.WhiteOffValue / 100;
+			}
+			else
+			{
+				CancellationBonusPercentage = _service.WhiteOffValue;
+			}
+		}
+
+		public MvxCommand UpdateCommand
+		{
+			get
+			{
+				_updateCommand = _updateCommand ?? new MvxCommand(UpdateCommandExecute);
+				return _updateCommand;
+			}
+		}
+
+		private async void UpdateCommandExecute()
+		{
+			var service = new CreateServiceDto
+			{
+				Uuid = MyServicesViewModel.SelectedService.Uuid
+			};
+
+			BonusValueType accrualMethod;
+			BonusValueType writeOffMethod;
+			int accrualValue;
+			int writeOffValue;
+			if (BonusAmount != null && BonusAmount > 0)
+			{
+				service.AccrualMethod = BonusValueType.Points.ToString()
+													  .ToLower();
+				service.AccrualValue = BonusAmount.Value * 100;
+				accrualValue = BonusAmount.Value;
+				accrualMethod = BonusValueType.Points;
+			}
+			else if (BonusPercentage != null && BonusPercentage > 0)
+			{
+				service.AccrualMethod = BonusValueType.Percent.ToString()
+													  .ToLower();
+				service.AccrualValue = BonusPercentage.Value;
+				accrualValue = BonusPercentage.Value;
+				accrualMethod = BonusValueType.Percent;
+			}
+			else
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					FormsApplication.MainPage.DisplayAlert("Внимание", "Укажите количество или процент начисляемых бонусов.", "Ок");
+				});
+				return;
+			}
+
+			if (CancellationBonusAmount != null && CancellationBonusAmount > 0)
+			{
+				service.WriteOffMethod = BonusValueType.Points.ToString()
+													   .ToLower();
+				service.WriteOffValue = CancellationBonusAmount.Value * 100;
+				writeOffValue = CancellationBonusAmount.Value;
+				writeOffMethod = BonusValueType.Points;
+			}
+			else if (CancellationBonusPercentage != null && CancellationBonusPercentage > 0)
+			{
+				service.WriteOffMethod = BonusValueType.Percent.ToString()
+													   .ToLower();
+				service.WriteOffValue = CancellationBonusPercentage.Value;
+				writeOffValue = CancellationBonusPercentage.Value;
+				writeOffMethod = BonusValueType.Percent;
+			}
+			else
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					FormsApplication.MainPage.DisplayAlert("Внимание", "Укажите количество или процент списываемых бонусов.", "Ок");
+				});
+				return;
+			}
+
+			var result = await _servicesService.UpdateService(service, _service.Uuid);
+
+			if (!result)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось обновить услугу.", "Ок");
+				});
+				return;
+			}
+
+			_service.Name = MyServicesViewModel.SelectedService.Name;
+			_service.ServiceItemUuid = MyServicesViewModel.SelectedService.Uuid;
+			_service.AccrualMethod = accrualMethod;
+			_service.WhiteOffMethod = writeOffMethod;
+			_service.AccrualValue = accrualValue;
+			_service.WhiteOffValue = writeOffValue;
+
+			await _navigationService.Close(this, _service);
+		}
 	}
 }

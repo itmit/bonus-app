@@ -24,6 +24,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private MvxObservableCollection<Service> _myServices;
 		private readonly IServicesService _servicesServices;
 		private MvxCommand _openEditCommand;
+		private MvxCommand _refreshCommand;
+		private bool _isRefreshing;
 		#endregion
 		#endregion
 
@@ -47,6 +49,37 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				});
 				return _openEditCommand;
 			}
+		}
+
+		public MvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ?? new MvxCommand(async () =>
+				{
+					
+					IsRefreshing = true;
+					await MyServicesViewModel.Initialize();
+
+					try
+					{
+						MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
+						await RaisePropertyChanged(() => HasServices);
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+					IsRefreshing = false;
+				});
+				return _refreshCommand;
+			}
+		}
+
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
 		}
 
 		public MyServicesViewModel MyServicesViewModel

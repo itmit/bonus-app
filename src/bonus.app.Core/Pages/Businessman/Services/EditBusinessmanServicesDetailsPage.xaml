@@ -21,7 +21,7 @@
         <!--Страница 4.3.2 редактор мои услуги у предпринимателя-->
         <ScrollView>
             <StackLayout Spacing="0" Margin="15,20">
-                <services1:MyServicesContentView />
+                <services1:MyServicesContentView x:Name="MyServicesView" />
                 <contentViews:ServiceAccrualBonusesContentView />
 
                 <design:CustomButton Style="{StaticResource AppButtonGradient}">
@@ -30,7 +30,7 @@
                         <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}" />
                     </Grid>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Button_OnClicked" />
+                        <TapGestureRecognizer Command="{Binding UpdateCommand}"/>
                     </Frame.GestureRecognizers>
                 </design:CustomButton>
             </StackLayout>

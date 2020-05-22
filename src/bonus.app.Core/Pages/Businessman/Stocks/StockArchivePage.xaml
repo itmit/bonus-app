@@ -22,10 +22,11 @@
     <ContentPage.Content>
         <!--5.5 Архив акций-->
         <Grid>
-            <CollectionView Margin="10,0,0,0">
-                <CollectionView.ItemsSource>
-                    <x:String>0000</x:String>
-                </CollectionView.ItemsSource>
+            <CollectionView Margin="10,0,0,0"
+                            ItemsSource="{Binding Stocks}"
+                            SelectedItem="{Binding SelectedStock}"
+                            SelectionMode="Single"
+                            SelectionChanged="SelectableItemsView_OnSelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <contentviews:ArchiveStockContentView />

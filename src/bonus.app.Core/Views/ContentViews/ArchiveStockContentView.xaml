@@ -16,14 +16,14 @@
                    Margin="10,0"
                    VerticalOptions="Start"
                    HasShadow="False">
-                <forms:CachedImage Source="chika.png"
-                                   Aspect="AspectFill"
+                <forms:CachedImage Source="{Binding ImageSource}"
                                    WidthRequest="60"
-                                   HeightRequest="50"/>
+                                   HeightRequest="50"
+                                   Aspect="AspectFill"/>
             </Frame>
             <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Start">
-                <Label Text="Салон Бигуди" FontSize="Body" />
-                <Label Text="Всю неделю до 12.00 на загар в&#10;солярии предоставляем бонус 25%" Opacity="0.7"
+                <Label Text="{Binding Name}" FontSize="Body" />
+                <Label Text="{Binding Description}" Opacity="0.7"
                        Margin="0,0,0,15" MaxLines="2" />
                 <BoxView />
             </StackLayout>

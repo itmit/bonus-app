@@ -157,11 +157,11 @@
                                         <FormattedString>
                                             <FormattedString.Spans>
                                                 <Span Text="{Binding Name}" />
-                                                <Span Text=" - бонусов к начислению" />
+                                                <Span Text=" - бонусов к начислению: " />
                                                 <Span Text="{Binding AccrualValueString}" />
                                                 <Span
                                                     Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}" />
-                                                <Span Text="; бонусов к списанию" />
+                                                <Span Text="; бонусов к списанию: " />
 
                                                 <Span Text="{Binding WhiteOffFloatValue}" />
                                                 <Span
