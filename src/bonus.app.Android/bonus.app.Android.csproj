@@ -140,12 +140,6 @@
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\qrcode.png">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable\ic_add_image_4x.png">
       <SubType>
       </SubType>
@@ -307,9 +301,6 @@
     <AndroidResource Include="Resources\drawable\ic_vk_brown_4x.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\pic_qr_512w.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_pref_4x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +342,8 @@
   <ItemGroup>
     <AndroidEnvironment Include="Environment.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_heart_filled_4x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

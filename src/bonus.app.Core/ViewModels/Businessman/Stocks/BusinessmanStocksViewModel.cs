@@ -39,7 +39,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			private set => SetProperty(ref _isRefreshing, value);
 		}
 
-		public MvxCommand OpenCreateShareArchivePageCommand
+		public MvxCommand OpenArchivePageCommand
 		{
 			get
 			{
@@ -52,7 +52,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
-		public MvxCommand OpenCreateSharePageCommand
+		public MvxCommand OpenCreateStockPageCommand
 		{
 			get
 			{

@@ -445,5 +445,7 @@
     <BundleResource Include="Resources\qrcode.png" />
     <BundleResource Include="Resources\ic_add_image_4x.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_heart_filled_4x.png" />
+  </ItemGroup>
 </Project>

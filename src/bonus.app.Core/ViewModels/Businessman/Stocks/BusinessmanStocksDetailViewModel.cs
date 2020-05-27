@@ -12,7 +12,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		#region Data
 		#region Fields
 		private readonly IMvxNavigationService _navigationService;
-		private MvxCommand _openCreateStockArchivePageCommand;
+		private MvxCommand _openArchivePageCommand;
 		private MvxCommand _openCreateStockPageCommand;
 		private MvxCommand _openEditStockArchivePageCommand;
 		private Color _shareColor;
@@ -37,12 +37,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			get
 			{
-				_openCreateStockArchivePageCommand = _openCreateStockArchivePageCommand ??
+				_openArchivePageCommand = _openArchivePageCommand ??
 													 new MvxCommand(() =>
 													 {
 														 _navigationService.Navigate<StockArchiveViewModel>();
 													 });
-				return _openCreateStockArchivePageCommand;
+				return _openArchivePageCommand;
 			}
 		}
 

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="stocks:CustomerStocksDetailViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                      xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Customer.Stocks;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Customer.Stocks.CustomerStocksDetailPage">
+    <NavigationPage.TitleView>
+        <Label Text="Мои акции" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <views:MvxContentPage.ToolbarItems>
+        <ToolbarItem Text="Избранные акции" Order="Secondary" Priority="0"
+                     Command="{Binding OpenFavoriteStocksCommand}" />
+        <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
+                     Command="{Binding OpenArchivePageCommand}" />
+    </views:MvxContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <!--5.1 Мои акции(предприниматель)-->
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Margin="20,0" Spacing="0">
+                <Frame Padding="0"
+                       HasShadow="False"
+                       CornerRadius="10" 
+                       WidthRequest="320"
+                       HeightRequest="265"
+                       Margin="0,20">
+                    <forms:CachedImage Source="{Binding Stock.ImageSource}"
+                                       Aspect="AspectFill"/>
+                </Frame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout>
+                        <Label Text="{Binding User.Name}" TextColor="#858585" />
+                        <Label Text="{Binding Stock.Name}" FontSize="Body" Margin="0,0,0,5" />
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Padding="15">
+                        <Image Source="ic_heart_4x" WidthRequest="17" HorizontalOptions="EndAndExpand"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddToFavoriteCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+                <Label Text="{Binding Stock.Description}" TextColor="#505050" Margin="0,0,0,10" />
+                <StackLayout Orientation="Horizontal">
+                    <Label TextColor="#505050" FontSize="Caption" HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Статус: " />
+                                    <Span Text="{Binding Stock.Status}" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label TextColor="#505050" FontSize="Caption" HorizontalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="до " />
+                                    <Span Text="{Binding Stock.ShareTime, StringFormat='{0:dd.MM.yyyy}'}" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

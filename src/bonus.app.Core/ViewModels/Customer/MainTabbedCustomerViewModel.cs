@@ -1,7 +1,7 @@
 ﻿using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using bonus.app.Core.ViewModels.Customer.Services;
-using bonus.app.Core.ViewModels.Customer.Shares;
+using bonus.app.Core.ViewModels.Customer.Stocks;
 using bonus.app.Core.ViewModels.News;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -25,7 +25,7 @@ namespace bonus.app.Core.ViewModels.Customer
 
 			NavigationService.Navigate<CustomerProfileViewModel>();
 			NavigationService.Navigate<CustomerServicesViewModel>();
-			NavigationService.Navigate<CustomerSharesViewModel>();
+			NavigationService.Navigate<CustomerStocksViewModel>();
 			NavigationService.Navigate<NewsViewModel>();
 			NavigationService.Navigate<CustomerBonusAccrualViewModel>();
 		}

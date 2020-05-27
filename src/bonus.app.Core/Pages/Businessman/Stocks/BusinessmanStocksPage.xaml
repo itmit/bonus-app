@@ -16,9 +16,9 @@
 
     <views:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Создать новую акцию" Order="Secondary" Priority="0"
-                     Command="{Binding OpenCreateSharePageCommand}" />
+                     Command="{Binding OpenCreateStockPageCommand}" />
         <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
-                     Command="{Binding OpenCreateShareArchivePageCommand}" />
+                     Command="{Binding OpenArchivePageCommand}" />
     </views:MvxContentPage.ToolbarItems>
 
     <views:MvxContentPage.Resources>

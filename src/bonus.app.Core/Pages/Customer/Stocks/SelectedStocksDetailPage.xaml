@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="stocks:SelectedStocksDetailViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Customer.Stocks;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Customer.Stocks.SelectedStocksDetailPage">
+    <NavigationPage.TitleView>
+        <Label Text="Избранные акции" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <!--Страница 18.4.1 Избранные акции-->
+        <ScrollView>
+            <StackLayout Margin="20,0" Spacing="0">
+                <Frame CornerRadius="5" IsClippedToBounds="True" Padding="0" Margin="0,15,0,20"
+                       HorizontalOptions="Center" HasShadow="False">
+                    <Image Source="slider_devuska1.png" WidthRequest="320" />
+                </Frame>
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,5">
+                    <Label Text="Салон Бигуди" HorizontalOptions="StartAndExpand" TextColor="#858585" />
+                    <Image Source="ic_staryellow_4x.png" HorizontalOptions="EndAndExpand" WidthRequest="17"
+                           HeightRequest="17" />
+                </StackLayout>
+                <Label Text="Супер загар" FontSize="Body" Margin="0,0,0,5" />
+                <Label
+                    Text="Всю неделю до 12.00 на загар в солярии&#10;предоставляем бонус 25% Метеорный дождь&#10;меняет поперечник. Фаза, сублимируя кометы,&#10;ничтожно иллюстрирует возмущающий фактор." />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

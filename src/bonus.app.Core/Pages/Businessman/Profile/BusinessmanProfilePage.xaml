@@ -12,7 +12,7 @@
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                       xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-                      xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
+                      xmlns:profile1="clr-namespace:bonus.app.Core.Views.ContentViews.Profile;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.BusinessmanProfilePage">
 
@@ -23,11 +23,6 @@
     <NavigationPage.TitleView>
         <Label Text="Профиль" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
-
-
-    <views:MvxContentPage.Resources>
-        <converters:BonusValueTypeConverter x:Key="BonusValueTypeConverter" />
-    </views:MvxContentPage.Resources>
 
     <ContentPage.Content>
         <!--Страница 3. Профиль предпринимателя-->
@@ -134,12 +129,7 @@
                     <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding Services}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Frame Margin="0,0,5,0" BackgroundColor="Transparent" HeightRequest="25"
-                                       CornerRadius="12" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A"
-                                       HasShadow="False">
-                                    <Label Text="{Binding Name}" TextColor="#9A9A9A" FontSize="Caption"
-                                           VerticalOptions="Center" HorizontalOptions="Center" />
-                                </Frame>
+                                <profile1:ServiceContentView/>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
@@ -152,24 +142,7 @@
                     <StackLayout BindableLayout.ItemsSource="{Binding Services}" IsVisible="{Binding IsShowedDetails}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Label>
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <FormattedString.Spans>
-                                                <Span Text="{Binding Name}" />
-                                                <Span Text=" - бонусов к начислению: " />
-                                                <Span Text="{Binding AccrualValueString}" />
-                                                <Span
-                                                    Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}" />
-                                                <Span Text="; бонусов к списанию: " />
-
-                                                <Span Text="{Binding WhiteOffFloatValue}" />
-                                                <Span
-                                                    Text="{Binding WhiteOffMethod, Converter={StaticResource BonusValueTypeConverter}}" />
-                                            </FormattedString.Spans>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
+                                <profile1:BonusDescriptionContentView/>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
@@ -242,14 +215,7 @@
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame Padding="0"
-                                           WidthRequest="100"
-                                           HeightRequest="60"
-                                           CornerRadius="10"
-                                           HasShadow="False">
-                                         <forms:CachedImage Source="{Binding ImageSource}"
-                                                            Aspect="AspectFill"/>
-                                    </Frame>
+                                    <profile1:PortfolioContentView/>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>

@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
 {
-	public class CustomerService : ICustomerService
+	public class CustomerService : BaseService, ICustomerService
 	{
 		#region Data
 		#region Consts
@@ -21,15 +21,14 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Fields
-		private readonly IAuthService _authService;
 		private readonly Mapper _mapper;
 		#endregion
 		#endregion
 
 		#region .ctor
 		public CustomerService(IAuthService authService)
+			: base(authService)
 		{
-			_authService = authService;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<AccessToken, UserDto>();
@@ -50,8 +49,8 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
 				var response = await client.PostAsync(GetCustomerByLoginUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>
@@ -88,8 +87,8 @@ namespace bonus.app.Core.Services
 		{
 			using (var client = new HttpClient())
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(_authService.Token.ToString());
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
 				var response = await client.PostAsync(GetCustomerByUuidUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>
