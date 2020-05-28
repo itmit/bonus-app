@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.Profile.CustomerSubscriberContentView">
+    <ContentView.Content>
+        <Grid Margin="25,5,20,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <forms:CachedImage Source="{Binding PhotoSource}" WidthRequest="40" Aspect="AspectFill" 
+                               LoadingPlaceholder="icon_no_photo.png"
+                               ErrorPlaceholder="icon_no_photo.png">
+                <forms:CachedImage.Transformations>
+                    <transformations:CircleTransformation BorderSize="10" BorderHexColor="#FFFFFF"/>
+                </forms:CachedImage.Transformations>
+            </forms:CachedImage>
+            <Label Grid.Column="1" Text="{Binding Name}" MaxLines="1" VerticalOptions="Center" FontFamily="Roboto" />
+            <Label Grid.Column="2" Text="{Binding Amount}" VerticalOptions="Center" HorizontalOptions="EndAndExpand"
+                   FontFamily="Roboto" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -177,6 +177,8 @@ namespace bonus.app.Core.Services
 		}
 
 		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(BusinessmanServicesUri);
+
+		public async Task<IEnumerable<Service>> GetBusinessmenService(Guid businessmenUuid) => await GetAsync<IEnumerable<Service>>(string.Format(BusinessmanServiceUri, businessmenUuid));
 		#endregion
 	}
 }

@@ -53,7 +53,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 			{
 				_openFavoriteStocksCommand = _openFavoriteStocksCommand ?? new MvxCommand(() =>
 				{
-					_navigationService.Navigate<CustomerStocksViewModel, bool>(true);
+					_navigationService.Navigate<FavoriteStocksViewModel>();
 				});
 				return _openFavoriteStocksCommand;
 			}
@@ -74,7 +74,11 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 			{
 				_addToFavoriteCommand = _addToFavoriteCommand ?? new MvxCommand(async () =>
 				{
-					if (!await _stockService.AddToFavorite(Stock.Uuid))
+					if (await _stockService.AddToFavorite(Stock.Uuid))
+					{
+						await FormsApplication.MainPage.DisplayAlert("Внимание", "Акция добавлена в избранное.", "Ок");
+					}
+					else
 					{
 						await FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось добавить акцию избранное.", "Ок");
 					}

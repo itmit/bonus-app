@@ -1,13 +1,13 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Views.ViewCells
+namespace bonus.app.Core.Views.ContentViews.Profile
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SubscribersContentView : ContentView
+	public partial class CustomerSubscriberContentView : ContentView
 	{
 		#region .ctor
-		public SubscribersContentView()
+		public CustomerSubscriberContentView()
 		{
 			InitializeComponent();
 		}

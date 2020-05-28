@@ -98,7 +98,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				_openSubscribersCommand = _openSubscribersCommand ??
 										  new MvxCommand(() =>
 										  {
-											  NavigationService.Navigate<SubscribersViewModel>();
+											  NavigationService.Navigate<BusinessmanSubscribersViewModel>();
 										  });
 				return _openSubscribersCommand;
 			}

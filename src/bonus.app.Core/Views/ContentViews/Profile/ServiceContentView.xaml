@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.Profile.ServiceContentView">
   <ContentView.Content>
-      <Frame Margin="0,0,5,0" BackgroundColor="Transparent" HeightRequest="25"
+      <Frame Margin="5" BackgroundColor="Transparent" HeightRequest="25"
              CornerRadius="12" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A"
              HasShadow="False">
           <Label Text="{Binding Name}" TextColor="#9A9A9A" FontSize="Caption"

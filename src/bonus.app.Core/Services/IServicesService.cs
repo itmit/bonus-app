@@ -24,6 +24,8 @@ namespace bonus.app.Core.Services
 		Task<List<Service>> GetAllServices();
 		
 		Task<IEnumerable<Service>> GetBusinessmenService();
+
+		Task<IEnumerable<Service>> GetBusinessmenService(Guid businessmenUuid);
 		#endregion
 	}
 }

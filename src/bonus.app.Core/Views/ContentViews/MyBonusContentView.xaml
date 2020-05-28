@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.MyBonusContentView">
+  <ContentView.Content>
+      <StackLayout Spacing="0">
+          <StackLayout Orientation="Horizontal" Margin="5,0,5,15">
+              <Label HorizontalOptions="StartAndExpand" >
+                  <Label.FormattedText>
+                      <FormattedString>
+                          <Span Text="{Binding Client.Name}"/>
+                          <Span Text=", "/>
+                          <Span Text="{Binding Name}"/>
+                      </FormattedString>
+                  </Label.FormattedText>
+              </Label>
+              <Label Text="{Binding AccrualValueString}" HorizontalOptions="EndAndExpand"
+                     FontFamily="{x:Static design:DesignClass.LatoBold}" />
+          </StackLayout>
+          <BoxView Margin="0,0,0,20" />
+      </StackLayout>
+    </ContentView.Content>
+</ContentView>

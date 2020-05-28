@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="viewModels1:BusinessmanSubscribersViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:profile="clr-namespace:bonus.app.Core.Views.ContentViews.Profile;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+                      xmlns:viewModels1="clr-namespace:bonus.app.Core.ViewModels.Businessman.Profile;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.Profile.BusinessmanSubscribersPage">
+    <NavigationPage.TitleView>
+        <Label Text="Подписки" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <!--Страница 20. Подписки-->
+    <ContentPage.Content>
+        <RefreshView Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <StackLayout Spacing="0">
+                <BoxView />
+                <SearchBar Placeholder="Поиск" PlaceholderColor="#505050" TextColor="#505050" CancelButtonColor="#505050"
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+                <BoxView />
+                <CollectionView ItemsSource="{Binding Subscriptions}" Margin="20,0,0,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <profile:CustomerSubscriberContentView />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+</views:MvxContentPage>

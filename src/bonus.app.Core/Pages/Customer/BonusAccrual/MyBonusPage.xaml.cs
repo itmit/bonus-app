@@ -24,5 +24,10 @@ namespace bonus.app.Core.Pages.Customer.BonusAccrual
 			Navigation.PopAsync();
 		}
 		#endregion
+
+		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			((CollectionView) sender).SelectedItem = null;
+		}
 	}
 }

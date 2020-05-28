@@ -256,9 +256,20 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<List<PortfolioImage>> GetPortfolio()
+		public Task<List<PortfolioImage>> GetPortfolio() => GetPortfolio(Guid.Empty);
+
+		public async Task<List<PortfolioImage>> GetPortfolio(Guid uuid)
 		{
-			var images = await GetAsync<List<PortfolioImage>>(GetPortfolioUri);
+			List<PortfolioImage> images;
+			if (uuid == Guid.Empty)
+			{
+				images = await GetAsync<List<PortfolioImage>>(GetPortfolioUri);
+			}
+			else
+			{
+				images = await GetAsync<List<PortfolioImage>>(string.Format(PortfolioUri, uuid));
+			}
+
 			if (images == null)
 			{
 				return new List<PortfolioImage>();

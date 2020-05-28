@@ -47,9 +47,6 @@
                                 <forms:CachedImage.Transformations>
                                     <transformations:CircleTransformation />
                                 </forms:CachedImage.Transformations>
-                                <forms:CachedImage.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                                </forms:CachedImage.GestureRecognizers>
                             </forms:CachedImage>
                         </Frame>
                         <StackLayout Grid.Column="1">

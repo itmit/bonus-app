@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Resources;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
@@ -13,18 +15,12 @@ using Xamarin.Essentials;
 
 namespace bonus.app.Core.ViewModels.Customer
 {
-	public class BusinessmanProfileViewModel : MvxNavigationViewModel
+	public class BusinessmanProfileViewModel : MvxViewModel<Guid>
 	{
 		#region Data
 		#region Fields
-		private readonly IAuthService _authService;
-		private MvxCommand _openDialogsCommand;
-		private MvxCommand _openEditProfilePageCommand;
-		private MvxCommand _openSubscribersCommand;
-		private IEnumerable<Service> _services;
-		private readonly IServicesService _servicesService;
+		private MvxObservableCollection<Service> _services;
 		private User _user;
-		private readonly IProfileService _profileService;
 		private MvxObservableCollection<PortfolioImage> _portfolioImages;
 		private MvxCommand _openVkCommand;
 		private MvxCommand _openClassmatesCommand;
@@ -32,23 +28,32 @@ namespace bonus.app.Core.ViewModels.Customer
 		private MvxCommand _openInstagramCommand;
 		private MvxCommand _showBonusDetailsCommand;
 		private bool _isShowedDetails;
+		private readonly IMvxNavigationService _navigationService;
+		private Guid _guid;
+		private readonly IProfileService _profileService;
+		private string _photoSource;
+		private MvxCommand _openChatCommand;
+		private ISubscribeService _subscribeService;
+		private bool _isSubscribe;
+		private MvxCommand _subscribeCommand;
+		private MvxCommand _unsubscribeCommand;
+		private IServicesService _servicesService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BusinessmanProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IServicesService servicesService, IProfileService profileService)
-			: base(logProvider, navigationService)
+		public BusinessmanProfileViewModel(IMvxNavigationService navigationService, IProfileService profileService, ISubscribeService subscribeService, IServicesService servicesService)
 		{
-			_servicesService = servicesService;
+			_navigationService = navigationService;
 			_profileService = profileService;
-			_authService = authService;
-			User = _authService.User;
-			PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
+			_subscribeService = subscribeService;
+			_servicesService = servicesService;
 		}
 
 		public string PhotoSource
 		{
-			get;
+			get => _photoSource;
+			private set => SetProperty(ref _photoSource, value);
 		}
 		#endregion
 
@@ -58,54 +63,19 @@ namespace bonus.app.Core.ViewModels.Customer
 			get => _portfolioImages;
 			private set => SetProperty(ref _portfolioImages, value);
 		}
-
-		public MvxCommand OpenDialogsCommand
+		public MvxCommand OpenChatCommand
 		{
 			get
 			{
-				_openDialogsCommand = _openDialogsCommand ??
-								   new MvxCommand(() =>
-								   {
-									   NavigationService.Navigate<DialogsViewModel>();
-								   });
-				return _openDialogsCommand;
+				_openChatCommand = _openChatCommand ?? new MvxCommand(() =>
+				{
+					_navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(User, null));
+				});
+				return _openChatCommand;
 			}
 		}
 
-		public MvxCommand OpenEditProfilePageCommand
-		{
-			get
-			{
-				_openEditProfilePageCommand = _openEditProfilePageCommand ??
-											  new MvxCommand(async () =>
-											  {
-												  var user = await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments, User>(
-																 new EditProfileViewModelArguments(_authService.User.Uuid, true));
-												  if (user == null)
-												  {
-													  return;
-												  }
-
-												  User = user;
-											  });
-				return _openEditProfilePageCommand;
-			}
-		}
-
-		public MvxCommand OpenSubscribersCommand
-		{
-			get
-			{
-				_openSubscribersCommand = _openSubscribersCommand ??
-										  new MvxCommand(() =>
-										  {
-											  NavigationService.Navigate<SubscribersViewModel>();
-										  });
-				return _openSubscribersCommand;
-			}
-		}
-
-		public IEnumerable<Service> Services
+		public MvxObservableCollection<Service> Services
 		{
 			get => _services;
 			private set => SetProperty(ref _services, value);
@@ -192,19 +162,57 @@ namespace bonus.app.Core.ViewModels.Customer
 		#endregion
 
 		#region Overrided
+		public override void Prepare(Guid parameter)
+		{
+			_guid = parameter;
+		}
+
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
 			try
 			{
-				Services = await _servicesService.GetBusinessmenService();
-				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
+				User = await _profileService.GetUser(_guid);
+				PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
+				IsSubscribe = (await _subscribeService.GetSubscriptions()).Any(s => s.Uuid.Equals(_guid));
+				Services = new MvxObservableCollection<Service>(await _servicesService.GetBusinessmenService(_guid));
+				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio(_guid));
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
+		}
+
+		public MvxCommand SubscribeCommand
+		{
+			get
+			{
+				_subscribeCommand = _subscribeCommand ?? new MvxCommand(async () =>
+				{
+					IsSubscribe = await _subscribeService.SubscribeToBusinessman(_guid);
+				});
+				return _subscribeCommand;
+			}
+		}
+
+		public MvxCommand UnsubscribeCommand
+		{
+			get
+			{
+				_unsubscribeCommand = _unsubscribeCommand ?? new MvxCommand(async () =>
+				{
+					IsSubscribe = !await _subscribeService.UnsubscribeToBusinessman(_guid);
+				});
+				return _unsubscribeCommand;
+			}
+		}
+
+		public bool IsSubscribe
+		{
+			get => _isSubscribe;
+			private set => SetProperty(ref _isSubscribe, value);
 		}
 		#endregion
 	}

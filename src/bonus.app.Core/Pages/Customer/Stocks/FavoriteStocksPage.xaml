@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="stocks1:FavoriteStocksViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:stocks="clr-namespace:bonus.app.Core.Views.ContentViews.Stocks;assembly=bonus.app.Core"
+                      xmlns:stocks1="clr-namespace:bonus.app.Core.ViewModels.Customer.Stocks;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Customer.Stocks.FavoriteStocksPage">
+    <views:MvxContentPage.ToolbarItems>
+        <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
+                     Command="{Binding OpenArchivePageCommand}" />
+    </views:MvxContentPage.ToolbarItems>
+
+    <views:MvxContentPage.Resources>
+        <Style TargetType="stocks:CustomerStockContentView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#bb8d91"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </views:MvxContentPage.Resources>
+
+    <ContentPage.Content>
+        <!-- Страница 18.1 акции покупателя -->
+        <RefreshView Grid.Row="1"
+                     Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView VerticalScrollBarVisibility="Never"
+                                Margin="0,5"
+                                ItemsSource="{Binding Stocks}"
+                                SelectionMode="Single"
+                                SelectionChanged="SelectableItemsView_OnSelectionChanged"
+                                SelectedItem="{Binding SelectedStock}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <stocks:CustomerStockContentView BackgroundColor="White"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</views:MvxContentPage>

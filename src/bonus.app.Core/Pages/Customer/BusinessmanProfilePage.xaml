@@ -42,9 +42,6 @@
                                 <forms:CachedImage.Transformations>
                                     <transformations:CircleTransformation />
                                 </forms:CachedImage.Transformations>
-                                <forms:CachedImage.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                                </forms:CachedImage.GestureRecognizers>
                             </forms:CachedImage>
                         </Frame>
                         <StackLayout Grid.Column="1">
@@ -74,19 +71,26 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15"
                                        VerticalOptions="Center" />
-                                <Label Grid.Column="1" Text="Написать сообщение" FontSize="Body"
+                                <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
                                        FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <design:CustomButton.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
+                                <TapGestureRecognizer Command="{Binding OpenChatCommand}" />
                             </design:CustomButton.GestureRecognizers>
                         </design:CustomButton>
 
                         <!--Кнопка "Подписаться"-->
-                        <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
-                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
-                                             HasShadow="False">
+                        <design:CustomButton Grid.Column="1"
+                                             IsClippedToBounds="True"
+                                             CornerRadius="20"
+                                             Padding="0"
+                                             WidthRequest="155"
+                                             HeightRequest="40"
+                                             BackgroundColor="#bab3af"
+                                             HasShadow="False"
+                                             IsVisible="{Binding IsSubscribe, Converter={StaticResource InverseBoolConverter}}"
+                                             IsEnabled="{Binding IsSubscribe, Converter={StaticResource InverseBoolConverter}}">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -99,14 +103,21 @@
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}" />
+                                <TapGestureRecognizer Command="{Binding SubscribeCommand}" />
                             </Frame.GestureRecognizers>
                         </design:CustomButton>
 
                         <!--Кнопка "Отписаться"-->
-                        <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
-                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
-                                             HasShadow="False">
+                        <design:CustomButton Grid.Column="1"
+                                             IsClippedToBounds="True"
+                                             CornerRadius="20"
+                                             Padding="0"
+                                             WidthRequest="155"
+                                             HeightRequest="40" 
+                                             BackgroundColor="#bab3af"
+                                             HasShadow="False"
+                                             IsVisible="{Binding IsSubscribe}"
+                                             IsEnabled="{Binding IsSubscribe}">
                             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -119,7 +130,7 @@
                                        VerticalTextAlignment="Center" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}" />
+                                <TapGestureRecognizer Command="{Binding UnsubscribeCommand}" />
                             </Frame.GestureRecognizers>
                         </design:CustomButton>
 
@@ -201,13 +212,6 @@
                                    HorizontalOptions="Start" />
                         </Grid>
                         <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding PortfolioImages}">
-                            <CollectionView.EmptyView>
-                                <Label Text="Добавьте изображение&#10;для портфолио"
-                                       HorizontalOptions="Center"
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="Black"
-                                       VerticalOptions="Center" />
-                            </CollectionView.EmptyView>
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
                                                  VerticalItemSpacing="5" />

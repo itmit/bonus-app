@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
@@ -11,16 +10,33 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 {
 	public class MyBonusViewModel : MvxViewModel
 	{
-		private IBonusService _bonusService;
+		private readonly IBonusService _bonusService;
 		private MvxObservableCollection<AccrualBonuses> _myBonuses;
 		private double _sum;
+		private AccrualBonuses _selectedBusinessman;
+		private readonly IMvxNavigationService _navigationService;
 
 		#region .ctor
-		public MyBonusViewModel(IBonusService bonusService)
+		public MyBonusViewModel(IBonusService bonusService, IMvxNavigationService navigationService)
 		{
+			_navigationService = navigationService;
 			_bonusService = bonusService;
 		}
 		#endregion
+
+		public AccrualBonuses SelectedBusinessman
+		{
+			get => _selectedBusinessman;
+			set
+			{
+				if (value == null)
+				{
+					return;
+				}
+				SetProperty(ref _selectedBusinessman, value);
+				_navigationService.Navigate<BusinessmanProfileViewModel, Guid>(value.Uuid);
+			}
+		}
 
 		public override async Task Initialize() 
 		{

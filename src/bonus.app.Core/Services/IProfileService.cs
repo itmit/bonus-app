@@ -32,6 +32,7 @@ namespace bonus.app.Core.Services
 
 		Task<List<PortfolioImage>> GetPortfolio();
 
+		Task<List<PortfolioImage>> GetPortfolio(Guid uuid);
 		Task<bool> RemoveImageFromPortfolio(Guid uuid);
 		#endregion
 	}

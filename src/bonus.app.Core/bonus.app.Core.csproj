@@ -114,14 +114,17 @@
     <Compile Update="Pages\News\NewsDetailsPage.xaml.cs">
       <DependentUpon>NewsDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\SubscribesPage.xaml.cs">
-      <DependentUpon>SubscribesPage.xaml</DependentUpon>
+    <Compile Update="Pages\Businessman\Profile\BusinessmanSubscribersPage.xaml.cs">
+      <DependentUpon>BusinessmanSubscribersPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\Auth\SuccessRegisterPopupPage.xaml.cs">
       <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ContentViews\PicCountryAndCityContentView.xaml.cs">
       <DependentUpon>PicCountryAndCityContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ContentViews\Profile\CustomerSubscriberContentView.xaml.cs">
+      <DependentUpon>CustomerSubscriberContentView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml.cs">
       <DependentUpon>ServiceTypeViewCell.xaml</DependentUpon>
@@ -160,6 +163,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\BonusAccrual\BusinessmanBonusAccrualPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Customer\Profile\CustomerSubscribersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Customer\Stocks\FavoriteStocksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\News\NewsDetailsPage.xaml">
@@ -270,10 +279,7 @@
     <EmbeddedResource Update="Pages\Businessman\Statistics\StatisticsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SubscribesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SubscribersPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\Profile\BusinessmanSubscribersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Page\SupportPage.xaml">
@@ -300,7 +306,13 @@
     <EmbeddedResource Update="Views\ContentViews\Chats\TextOutContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\MyBonusContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Profile\BonusDescriptionContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\Profile\BusinessmanSubscriberContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Profile\PortfolioContentView.xaml">
@@ -397,9 +409,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ViewCells\Shares\SelectedSharesViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\SubscribesViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

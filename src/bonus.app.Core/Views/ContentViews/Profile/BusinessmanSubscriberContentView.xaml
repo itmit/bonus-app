@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.Profile.BusinessmanSubscriberContentView">
+  <ContentView.Content>
+      <Grid >
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="60" />
+              <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          
+          <Frame Grid.Column="0" IsClippedToBounds="True" Padding="0" CornerRadius="10"
+                 HeightRequest="50" HasShadow="False" VerticalOptions="Center" HorizontalOptions="Center">
+                <forms:CachedImage Source="{Binding PhotoSource}"
+                                   Aspect="AspectFill"
+                                   LoadingPlaceholder="icon_no_photo.png"
+                                   ErrorPlaceholder="icon_no_photo.png"/>
+          </Frame>
+
+          <StackLayout Grid.Column="1" Spacing="0" Margin="0,25,0,0">
+              <Label Text="{Binding Name}"
+                     FontSize="Body" VerticalOptions="Center"/>
+              <FlexLayout BindableLayout.ItemsSource="{Binding Services}" AlignItems="Start" Wrap="Wrap" Margin="0,0,5,10" >
+                  <BindableLayout.ItemTemplate>
+                      <DataTemplate>
+                          <Label Text="{Binding .}" TextColor="Gray" Margin="5,0,0,0" Padding="0"
+                                  />
+                        </DataTemplate>
+                  </BindableLayout.ItemTemplate>
+              </FlexLayout>
+              <BoxView />
+          </StackLayout>
+      </Grid>
+    </ContentView.Content>
+</ContentView>

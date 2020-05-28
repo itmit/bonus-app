@@ -18,21 +18,5 @@ namespace bonus.app.Core.Pages.Businessman.Profile
 			InitializeComponent();
 		}
 		#endregion
-
-		#region Private
-		private void Subscribers_OnTapped(object sender, EventArgs e)
-		{
-			Navigation.PushAsync(new SubscribersPage());
-		}
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			var app = Application.Current.MainPage.Navigation.NavigationStack;
-		}
-
-		private void TapGestureRecognizer_OnTapped1(object sender, EventArgs e)
-		{
-		}
-		#endregion
 	}
 }

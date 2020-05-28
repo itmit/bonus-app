@@ -9,7 +9,7 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Customer.Stocks
 {
-	public class CustomerStocksViewModel : MvxNavigationViewModel
+	public class FavoriteStocksViewModel: MvxViewModel
 	{
 		#region Data
 		#region Fields
@@ -18,16 +18,18 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		private Stock _selectedStock;
 		private MvxObservableCollection<Stock> _stocks;
 		private readonly IStockService _stockService;
-		private bool _isFavoriteStocks;
 		private MvxCommand _openFavoriteStocksCommand;
 		private MvxCommand _openCreateShareArchivePageCommand;
+		private readonly IMvxNavigationService _navigationService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CustomerStocksViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IStockService stockService)
-			: base(logProvider, navigationService) =>
+		public FavoriteStocksViewModel(IMvxNavigationService navigationService, IStockService stockService)
+		{
 			_stockService = stockService;
+			_navigationService = navigationService;
+		}
 		#endregion
 
 		#region Properties
@@ -44,7 +46,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 				_openCreateShareArchivePageCommand = _openCreateShareArchivePageCommand ??
 													 new MvxCommand(() =>
 													 {
-														 NavigationService.Navigate<StockArchiveViewModel>();
+														 _navigationService.Navigate<StockArchiveViewModel>();
 													 });
 				return _openCreateShareArchivePageCommand;
 			}
@@ -57,7 +59,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 			{
 				_openFavoriteStocksCommand = _openFavoriteStocksCommand ?? new MvxCommand(() =>
 				{
-					NavigationService.Navigate<FavoriteStocksViewModel>();
+					_navigationService.Navigate<FavoriteStocksViewModel>();
 				});
 				return _openFavoriteStocksCommand;
 			}
@@ -89,7 +91,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 				}
 
 				SetProperty(ref _selectedStock, value);
-				NavigationService.Navigate<CustomerStocksDetailViewModel, Stock>(value);
+				_navigationService.Navigate<CustomerStocksDetailViewModel, Stock>(value);
 			}
 		}
 
@@ -100,13 +102,11 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		}
 		#endregion
 
-		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
-			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
+			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetFavoriteStocks());
 		}
-		#endregion
 	}
 }
