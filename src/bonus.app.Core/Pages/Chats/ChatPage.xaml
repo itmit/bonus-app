@@ -6,7 +6,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:chat="clr-namespace:bonus.app.Core.Views.ViewCells.Chat;assembly=bonus.app.Core"
-                      xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
                       xmlns:chats="clr-namespace:bonus.app.Core.ViewModels.Chats;assembly=bonus.app.Core"
                       xmlns:dataTemplateSelectors="clr-namespace:bonus.app.Core.DataTemplateSelectors;assembly=bonus.app.Core"
                       mc:Ignorable="d"

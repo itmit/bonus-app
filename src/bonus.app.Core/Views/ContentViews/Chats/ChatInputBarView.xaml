@@ -17,15 +17,19 @@
                 </Grid.ColumnDefinitions>
                 <Frame Grid.Row="0" Grid.Column="0" Padding="0" IsClippedToBounds="True" CornerRadius="20"
                        HasShadow="False">
-                    <controls:ExtendedEditorControl x:Name="ChatTextInput"
-                                                    Text="{Binding TextToSend}"
-                                                    Margin="1"
-                                                    TextColor="Black"
-                                                    Keyboard="Chat"
-                                                    IsExpandable="true"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    PlaceholderColor="Black"
-                                                    Placeholder="Напишите сообщение" />
+                    <StackLayout>
+                        <Image Source="{Binding ImagePath}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill"/>
+
+                        <controls:ExtendedEditorControl x:Name="ChatTextInput"
+                                                        Text="{Binding TextToSend}"
+                                                        Margin="1"
+                                                        TextColor="Black"
+                                                        Keyboard="Chat"
+                                                        IsExpandable="true"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        PlaceholderColor="Black"
+                                                        Placeholder="Напишите сообщение" />
+                    </StackLayout>
                 </Frame>
                 <ImageButton Grid.Column="1"
                              Source="ic_attach_4x.png"
@@ -33,6 +37,7 @@
                              CornerRadius="20"
                              BackgroundColor="White"
                              VerticalOptions="EndAndExpand"
+                             Command="{Binding AttachImageCommand}"
                              Padding="5" />
                 <ImageButton Grid.Column="2"
                              Source="ic_send_4x.png"

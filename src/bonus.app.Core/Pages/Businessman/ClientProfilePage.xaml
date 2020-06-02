@@ -9,8 +9,10 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
                       mc:Ignorable="d"
-                      Title="{Binding User.Login}"
                       x:Class="bonus.app.Core.Pages.Businessman.ClientProfilePage">
+    <NavigationPage.TitleView>
+        <Label Text="{Binding User.Login}" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="25,0">

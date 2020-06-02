@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
@@ -15,12 +16,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private MvxObservableCollection<Subscription> _subscriptions;
 		private bool _isRefreshing;
 		private MvxCommand _refreshCommand;
+		private string _searchQuery;
+		private MvxCommand _searchCommand;
+		private Subscription _selectedSubscription;
+		private IProfileService _profileService;
 
 		#region .ctor
-		public BusinessmanSubscribersViewModel(IMvxNavigationService navigationService, ISubscribeService subscribeService)
+		public BusinessmanSubscribersViewModel(IMvxNavigationService navigationService, ISubscribeService subscribeService, IProfileService profileService)
 		{
 			_navigationService = navigationService;
 			_subscribeService = subscribeService;
+			_profileService = profileService;
 		}
 
 		public MvxObservableCollection<Subscription> Subscriptions
@@ -43,10 +49,52 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				_refreshCommand = _refreshCommand ?? new MvxCommand(async () =>
 				{
 					IsRefreshing = true;
-					Subscriptions = new MvxObservableCollection<Subscription>(await _subscribeService.GetSubscriptions());
+					await Initialize();
 					IsRefreshing = false;
 				});
 				return _refreshCommand;
+			}
+		}
+
+		public Subscription SelectedSubscription
+		{
+			get => _selectedSubscription;
+			set
+			{
+				if (value == null)
+				{
+					return;
+				}
+
+				SetProperty(ref _selectedSubscription, value);
+				Task.Run(async () =>
+				{
+					await _navigationService.Navigate<ClientProfileViewModel, User>(await _profileService.GetUser(value.Uuid));
+				});
+			}
+		}
+
+		public string SearchQuery
+		{
+			get => _searchQuery;
+			set => SetProperty(ref _searchQuery, value);
+		}
+
+		public MvxCommand SearchCommand
+		{
+			get
+			{
+				_searchCommand = _searchCommand ?? new MvxCommand(async () =>
+				{
+					var subscriptions = await _subscribeService.GetSubscriptions();
+					if (string.IsNullOrWhiteSpace(SearchQuery))
+					{
+						Subscriptions = new MvxObservableCollection<Subscription>(subscriptions);
+						return;
+					}
+					Subscriptions = new MvxObservableCollection<Subscription>(subscriptions.Where(sub => sub.Login.Contains(SearchQuery)));
+				});
+				return _searchCommand;
 			}
 		}
 
@@ -56,7 +104,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			try
 			{
 				Subscriptions = new MvxObservableCollection<Subscription>(await _subscribeService.GetSubscriptions());
-
+				SearchCommand.Execute();
 			}
 			catch (Exception e)
 			{

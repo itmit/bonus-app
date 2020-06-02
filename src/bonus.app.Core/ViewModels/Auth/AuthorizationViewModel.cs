@@ -198,13 +198,14 @@ namespace bonus.app.Core.ViewModels.Auth
 				return;
 			}
 
-			if (user.Role == UserRole.Businessman)
+			switch (user.Role)
 			{
-				await NavigationService.Navigate<MainBusinessmanViewModel>();
-			}
-			else if (user.Role == UserRole.Customer)
-			{
-				await NavigationService.Navigate<MainCustomerViewModel>();
+				case UserRole.Businessman:
+					await NavigationService.Navigate<MainBusinessmanViewModel>();
+					break;
+				case UserRole.Customer:
+					await NavigationService.Navigate<MainCustomerViewModel>();
+					break;
 			}
 		}
 

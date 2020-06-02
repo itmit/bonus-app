@@ -5,6 +5,9 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Plugin.Permissions.Abstractions;
 
 namespace bonus.app.Core.ViewModels.Chats
 {
@@ -15,16 +18,56 @@ namespace bonus.app.Core.ViewModels.Chats
 		private MvxObservableCollection<Message> _messages = new MvxObservableCollection<Message>();
 		private string _textToSend;
 		private readonly IChatsService _chatsService;
-
-		public ChatViewModel(IChatsService chatsService)
+		private string _imagePath = string.Empty;
+		private MvxCommand _attachImageCommand;
+		private readonly IPermissionsService _permissionsService;
+		public ChatViewModel(IChatsService chatsService, IPermissionsService permissionsService)
 		{
 			_chatsService = chatsService;
+			_permissionsService = permissionsService;
 		}
 
 		public User Recipient
 		{
 			get => _recipient;
 			private set => SetProperty(ref _recipient, value);
+		}
+
+		public MvxCommand AttachImageCommand
+		{
+			get
+			{
+				_attachImageCommand = _attachImageCommand ?? new MvxCommand(async () => {
+					if (!await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+					{
+						return;
+					}
+
+					if (!CrossMedia.Current.IsPickPhotoSupported)
+					{
+						return;
+					}
+
+					var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+					{
+						PhotoSize = PhotoSize.Medium
+					});
+
+					if (image == null)
+					{
+						return;
+					}
+
+					ImagePath = image.Path;
+				});
+				return _attachImageCommand;
+			}
+		}
+
+		public string ImagePath
+		{
+			get => _imagePath;
+			set => SetProperty(ref _imagePath, value);
 		}
 
 		public override void Prepare(ChatViewModelArguments parameter)
@@ -62,7 +105,7 @@ namespace bonus.app.Core.ViewModels.Chats
 
 			if (DialogId == null)
 			{
-				
+
 				if (_chatsService.SavedDialogs.Count == 0)
 				{
 					await _chatsService.GetDialogs();
@@ -120,7 +163,7 @@ namespace bonus.app.Core.ViewModels.Chats
 
 					try
 					{
-						var message = await _chatsService.SendMessage(DialogId.Value, TextToSend, string.Empty);
+						var message = await _chatsService.SendMessage(DialogId.Value, TextToSend, ImagePath);
 						Messages.Insert(0, message);
 						await RaisePropertyChanged(() => Messages);
 
@@ -135,6 +178,7 @@ namespace bonus.app.Core.ViewModels.Chats
 					}
 
 					TextToSend = string.Empty;
+					ImagePath = string.Empty;
 				});
 				return _sendCommand;
 			}

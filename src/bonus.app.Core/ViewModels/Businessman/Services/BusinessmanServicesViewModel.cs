@@ -59,17 +59,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				{
 					
 					IsRefreshing = true;
-					await MyServicesViewModel.Initialize();
-
-					try
-					{
-						MyServices = new MvxObservableCollection<Service>(await _servicesServices.GetBusinessmenService());
-						await RaisePropertyChanged(() => HasServices);
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e);
-					}
+					MyServicesViewModel.MyServiceTypes.Clear();
+					MyServicesViewModel.Services.Clear();
+					await Initialize();
 					IsRefreshing = false;
 				});
 				return _refreshCommand;
