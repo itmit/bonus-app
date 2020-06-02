@@ -26,199 +26,207 @@
 
     <ContentPage.Content>
         <!--Страница 3. Профиль предпринимателя-->
-        <ScrollView>
-            <StackLayout>
-                <Grid HeightRequest="140">
-                    <graphic:RectangleInProfile />
-                    <Grid Padding="20,20">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Frame Grid.Column="0" Padding="2" BackgroundColor="#7E756F" CornerRadius="50"
-                               IsClippedToBounds="True"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center" HasShadow="False">
-                            <forms:CachedImage Source="{Binding PhotoSource}" WidthRequest="96"
-                                               HeightRequest="96" VerticalOptions="Center"
-                                               HorizontalOptions="Center"
-                                               LoadingPlaceholder="icon_no_photo.png"
-                                               ErrorPlaceholder="icon_no_photo.png">
-                                <forms:CachedImage.Transformations>
-                                    <transformations:CircleTransformation />
-                                </forms:CachedImage.Transformations>
-                            </forms:CachedImage>
-                        </Frame>
-                        <StackLayout Grid.Column="1">
-                            <Label Text="{Binding User.Name}" TextColor="#FFFFFF" FontSize="Body"
-                                   FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2" />
-                            <Label
-                                Text="{Binding User.Description}"
-                                TextColor="#FFFFFF" MaxLines="3" />
-                        </StackLayout>
-                    </Grid>
-                </Grid>
-                <StackLayout Margin="20,0" Spacing="0">
-                    <Grid Margin="0,25" RowSpacing="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--Кнопка "сообщения"-->
-                        <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" Padding="0"
-                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
-                                             HasShadow="False">
-                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15"
-                                       VerticalOptions="Center" />
-                                <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
-                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
-                                       VerticalTextAlignment="Center" />
-                            </Grid>
-                            <design:CustomButton.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
-                            </design:CustomButton.GestureRecognizers>
-                        </design:CustomButton>
-
-                        <!--Кнопка "подписчики"-->
-                        <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
-                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
-                                             HasShadow="False">
-                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
-                                       VerticalOptions="Center" />
-                                <Label Text="Подписчики" Grid.Column="1" FontSize="Body"
-                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
-                                       VerticalTextAlignment="Center" />
-                            </Grid>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}" />
-                            </Frame.GestureRecognizers>
-                        </design:CustomButton>
-                    </Grid>
-                    <Label Text="{Binding User.Phone}" Margin="10,5" />
-                    <BoxView />
-                    <Label Margin="10,5">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="{Binding User.City}" />
-                                    <Span Text=", " />
-                                    <Span Text="{Binding User.Address}" />
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <BoxView />
-                    <Label Text="{Binding User.WorkTime}" Margin="10,5" />
-                    <BoxView />
-                    <Label Text="{Binding User.Contact}" Margin="10,5" />
-                    <BoxView Margin="0,0,0,40" />
-                    <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding Services}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <profile1:ServiceContentView/>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </FlexLayout>
-                    <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
-                           TextDecorations="Underline" Margin="0,40,0,10" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ShowBonusDetailsCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <StackLayout BindableLayout.ItemsSource="{Binding Services}" IsVisible="{Binding IsShowedDetails}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <profile1:BonusDescriptionContentView/>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                    <Label Margin="0,35,0,0" Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
-                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent"
-                                     Padding="-5,10,10,15" 
-                                     IsVisible="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
-                                     IsEnabled="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenVkCommand}"/>
-                        <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" 
-                                     IsVisible="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
-                                     IsEnabled="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenInstagramCommand}"/>
-                        <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" 
-                                     IsVisible="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
-                                     IsEnabled="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenFacebookCommand}"/>
-                        <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" 
-                                     IsVisible="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
-                                     IsEnabled="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenClassmatesCommand}"/>
-                    </StackLayout>
-                </StackLayout>
-                <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"
-                       HasShadow="{x:Static design:DesignClass.Shadow}"
-                       BorderColor="{x:Static design:DesignClass.BorderColor}">
-                    <StackLayout Spacing="0">
-                        <Grid Margin="0,0,0,15">
+        <RefreshView Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <StackLayout>
+                    <Grid HeightRequest="140">
+                        <graphic:RectangleInProfile />
+                        <Grid Padding="20,20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" Text="Портфолио" TextColor="#000000" FontSize="Body"
+                            <Frame Grid.Column="0" Padding="2" BackgroundColor="#7E756F" CornerRadius="50"
+                               IsClippedToBounds="True"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center" HasShadow="False">
+                                <forms:CachedImage Source="{Binding PhotoSource}" WidthRequest="96"
+                                               HeightRequest="96" VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               LoadingPlaceholder="icon_no_photo.png"
+                                               ErrorPlaceholder="icon_no_photo.png">
+                                    <forms:CachedImage.Transformations>
+                                        <transformations:CircleTransformation />
+                                    </forms:CachedImage.Transformations>
+                                </forms:CachedImage>
+                            </Frame>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding User.Name}" TextColor="#FFFFFF" FontSize="Body"
+                                   FontFamily="{x:Static design:DesignClass.MontserratBold}" MaxLines="2" />
+                                <Label
+                                Text="{Binding User.Description}"
+                                TextColor="#FFFFFF" MaxLines="3" />
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                    <StackLayout Margin="20,0" Spacing="0">
+                        <Grid Margin="0,25" RowSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--Кнопка "сообщения"-->
+                            <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" Padding="0"
+                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
+                                             HasShadow="False">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15"
+                                       VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
+                                       VerticalTextAlignment="Center" />
+                                </Grid>
+                                <design:CustomButton.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
+                                </design:CustomButton.GestureRecognizers>
+                            </design:CustomButton>
+
+                            <!--Кнопка "подписчики"-->
+                            <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" Padding="0"
+                                             WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af"
+                                             HasShadow="False">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
+                                       VerticalOptions="Center" />
+                                    <Label Text="Подписчики" Grid.Column="1" FontSize="Body"
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
+                                       VerticalTextAlignment="Center" />
+                                </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenSubscribersCommand}" />
+                                </Frame.GestureRecognizers>
+                            </design:CustomButton>
+                        </Grid>
+                        <Label Text="{Binding User.Phone}" Margin="10,5" />
+                        <BoxView />
+                        <Label Margin="10,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="{Binding User.City}" />
+                                        <Span Text=", " />
+                                        <Span Text="{Binding User.Address}" />
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <BoxView />
+                        <Label Text="{Binding User.WorkTime}" Margin="10,5" />
+                        <BoxView />
+                        <Label Text="{Binding User.Contact}" Margin="10,5" />
+                        <BoxView Margin="0,0,0,40" />
+                        <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding Services}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <profile1:ServiceContentView/>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                        <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
+                           TextDecorations="Underline" Margin="0,40,0,10" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowBonusDetailsCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Services}" IsVisible="{Binding IsShowedDetails}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <profile1:BonusDescriptionContentView/>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <Label Margin="0,35,0,0" Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
+                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent"
+                                     Padding="-5,10,10,15" 
+                                     IsVisible="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenVkCommand}"/>
+                            <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
+                                     Padding="10,10,10,15" 
+                                     IsVisible="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenInstagramCommand}"/>
+                            <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
+                                     Padding="10,10,10,15" 
+                                     IsVisible="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenFacebookCommand}"/>
+                            <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
+                                     Padding="10,10,10,15" 
+                                     IsVisible="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
+                                     IsEnabled="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
+                                     Command="{Binding OpenClassmatesCommand}"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"
+                       HasShadow="{x:Static design:DesignClass.Shadow}"
+                       BorderColor="{x:Static design:DesignClass.BorderColor}">
+                        <StackLayout Spacing="0">
+                            <Grid Margin="0,0,0,15">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Портфолио" TextColor="#000000" FontSize="Body"
                                    FontFamily="Roboto"
                                    HorizontalOptions="Start" />
-                            <ui:MaterialMenuButton Grid.Column="1" MenuBackgroundColor="White"
+                                <ui:MaterialMenuButton Grid.Column="1" MenuBackgroundColor="White"
                                                    MenuCornerRadius="5"
                                                    MenuTextColor="Black"
                                                    HorizontalOptions="EndAndExpand"
                                                    Image="ic_more_4x.png"
                                                    BackgroundColor="Transparent"
-                                                   WidthRequest="12"
+                                                   WidthRequest="24"
+                                                   Command="{Binding PortfolioActionCommand}"
                                                    HeightRequest="24"
                                                    Padding="10,0,10,10"
                                                    VerticalOptions="Center">
-                                <ui:MaterialMenuButton.Choices>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>Добавить</x:String>
-                                        <x:String>Удалить</x:String>
-                                    </x:Array>
-                                </ui:MaterialMenuButton.Choices>
-                            </ui:MaterialMenuButton>
-                        </Grid>
-                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding PortfolioImages}">
-                            <CollectionView.EmptyView>
-                                <Label Text="Добавьте изображение&#10;для портфолио"
+                                    <ui:MaterialMenuButton.Choices>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Добавить</x:String>
+                                            <x:String>Удалить</x:String>
+                                        </x:Array>
+                                    </ui:MaterialMenuButton.Choices>
+                                </ui:MaterialMenuButton>
+                            </Grid>
+                            <CollectionView HeightRequest="250"
+                                            ItemSizingStrategy="MeasureFirstItem"
+                                            ItemsSource="{Binding PortfolioImages}" 
+                                            SelectedItem="{Binding SelectedPortfolioImage}"
+                                            SelectionMode="{Binding SelectionModePortfolio}">
+                                <CollectionView.EmptyView>
+                                    <Label Text="Добавьте изображение&#10;для портфолио"
                                        HorizontalOptions="Center"
                                        HorizontalTextAlignment="Center"
                                        TextColor="Black"
                                        VerticalOptions="Center" />
-                            </CollectionView.EmptyView>
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
+                                </CollectionView.EmptyView>
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
                                                  VerticalItemSpacing="5" />
-                            </CollectionView.ItemsLayout>
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <profile1:PortfolioContentView/>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-        </ScrollView>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <profile1:PortfolioContentView/>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

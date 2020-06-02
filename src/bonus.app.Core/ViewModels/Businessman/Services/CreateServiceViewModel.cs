@@ -138,6 +138,41 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			return item;
 		}
 
+		public async Task<bool> EditServiceTypeItem(Guid uuid, string name)
+		{
+			try
+			{
+				var res = await _servicesServices.RemoveServiceTypeItem(uuid);
+				if (res)
+				{
+					if (UserServiceType == null)
+					{
+						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+					}
+
+					var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
+
+					if (item != null)
+					{
+						return true;
+					}
+
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
+					});
+					return false;
+
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			return false;
+		}
+
 		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
 		{
 			bool res = false;

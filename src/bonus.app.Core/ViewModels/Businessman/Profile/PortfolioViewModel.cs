@@ -56,7 +56,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					catch (Exception e)
 					{
 						Console.WriteLine(e);
-						throw;
 					}
 				});
 				return _removeImageCommand;

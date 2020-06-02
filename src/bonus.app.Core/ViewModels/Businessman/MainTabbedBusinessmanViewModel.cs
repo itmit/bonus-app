@@ -27,7 +27,6 @@ namespace bonus.app.Core.ViewModels.Businessman
 			NavigationService.Navigate<BusinessmanServicesViewModel>();
 			NavigationService.Navigate<BusinessmanStocksViewModel>();
 			NavigationService.Navigate<NewsViewModel>();
-			//NavigationService.Navigate<>();
 			NavigationService.Navigate<BusinessmanBonusAccrualViewModel>();
 		}
 		#endregion

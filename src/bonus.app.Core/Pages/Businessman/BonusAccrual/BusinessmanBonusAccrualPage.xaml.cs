@@ -11,6 +11,9 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 		public BusinessmanBonusAccrualPage()
 		{
 			InitializeComponent();
+
+			BarcodeImageView.BarcodeOptions.Width = 225;
+			BarcodeImageView.BarcodeOptions.Height = 225;
 		}
 		#endregion
 

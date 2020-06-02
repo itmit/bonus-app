@@ -19,6 +19,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private MvxCommand _openScannerCommand;
 		private readonly IPermissionsService _permissionsService;
 		private string _userLogin;
+		private Guid _userUuid;
 		#endregion
 		#endregion
 
@@ -26,11 +27,13 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public BusinessmanBonusAccrualViewModel(IMvxLogProvider logProvider,
 												IMvxNavigationService navigationService,
 												IPermissionsService permissionsService,
-												ICustomerService customerService)
+												ICustomerService customerService,
+												IAuthService authService)
 			: base(logProvider, navigationService)
 		{
 			_permissionsService = permissionsService;
 			_customerService = customerService;
+			UserUuid = authService.User.Uuid;
 		}
 		#endregion
 
@@ -74,6 +77,11 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 								   });
 				return _furetherCommand;
 			}
+		}
+		public Guid UserUuid
+		{
+			get => _userUuid;
+			set => SetProperty(ref _userUuid, value);
 		}
 
 		public MvxCommand OpenScannerCommand

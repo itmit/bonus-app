@@ -230,7 +230,7 @@ namespace bonus.app.Core.Services
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(PortfolioUri, new MultipartFormDataContent
+				var response = await client.PostAsync(GetPortfolioUri, new MultipartFormDataContent
 				{
 					{
 						new ByteArrayContent(File.ReadAllBytes(imageSource)), "\"photo\"", $"\"{imageSource.Substring(imageSource.LastIndexOf('/') + 1)}\""
@@ -344,7 +344,7 @@ namespace bonus.app.Core.Services
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
-				var response = await client.DeleteAsync(string.Format(GetUserUri, uuid));
+				var response = await client.DeleteAsync(string.Format(PortfolioUri, uuid));
 
 				return response.IsSuccessStatusCode;
 			}

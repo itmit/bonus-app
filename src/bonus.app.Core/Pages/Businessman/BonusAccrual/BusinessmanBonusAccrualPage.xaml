@@ -9,6 +9,7 @@
                       xmlns:bonusAccrual="clr-namespace:bonus.app.Core.ViewModels.Businessman.BonusAccrual;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.BonusAccrual.BusinessmanBonusAccrualPage"
                       NavigationPage.HasNavigationBar="False">
@@ -31,11 +32,21 @@
                            Margin="0,0,0,30"
                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
 
-                    <Image Source="qrcode.png" WidthRequest="225" HorizontalOptions="Center" Margin="0,0,0,25">
-                        <Image.GestureRecognizers>
+                    <Frame CornerRadius="60"
+                           WidthRequest="225"
+                           HeightRequest="225"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,40"
+                           HasShadow="False">
+                        <forms:ZXingBarcodeImageView
+                            x:Name="BarcodeImageView"
+                            AutomationId="zxingBarcodeImageView"
+                            BarcodeFormat="QR_CODE"
+                            BarcodeValue="{Binding UserUuid}" />
+                        <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OpenScannerCommand}" />
-                        </Image.GestureRecognizers>
-                    </Image>
+                        </Frame.GestureRecognizers>
+                    </Frame>
 
                     <Frame Margin="0,0,0,20" CornerRadius="23" IsClippedToBounds="True" Padding="0,-2"
                            HasShadow="False"

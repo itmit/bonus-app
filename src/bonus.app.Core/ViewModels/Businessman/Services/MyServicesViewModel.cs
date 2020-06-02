@@ -155,18 +155,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			await ReloadServices();
 			if (UserServiceType != null)
 			{
-				foreach (var service in UserServiceType.Services)
+				foreach (var type in UserServiceType.Services.Select(service => new CreatedServiceViewModel
 				{
-					var type = new CreatedServiceViewModel
+					IsCreated = true,
+					ViewModel = this,
+					ServiceTypeItem = service,
+					Name =
 					{
-						IsCreated = true,
-						ViewModel = this,
-						ServiceTypeItem = service,
-						Name =
-						{
-							Value = service.Name
-						}
-					};
+						Value = service.Name
+					}
+				}))
+				{
 					MyServiceTypes.Add(type);
 				}
 
@@ -248,6 +247,41 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				return false;
 			}
 			return true;
+		}
+
+		public async Task<bool> EditServiceTypeItem(Guid uuid, string name)
+		{
+			try
+			{
+				var res = await _servicesServices.RemoveServiceTypeItem(uuid);
+				if (res)
+				{
+					if (UserServiceType == null)
+					{
+						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+					}
+
+					var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
+
+					if (item != null)
+					{
+						return true;
+					}
+
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
+					});
+					return false;
+
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			return false;
 		}
 	}
 }

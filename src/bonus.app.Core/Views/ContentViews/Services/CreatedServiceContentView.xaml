@@ -26,14 +26,22 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid >
-            <ui:MaterialTextField Text="{Binding Name.Value, FallbackValue='', TargetNullValue=''}"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ui:MaterialTextField Grid.Column="0" Text="{Binding Name.Value, FallbackValue='', TargetNullValue=''}"
                                   Placeholder="Ваши услуги"
                                   FocusCommand="{Binding CreateServiceCommand}"
                                   ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
-                                  HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+                                  HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"
+            />
 
-            <ImageButton Source="ic_close_remove_4x.png"
+            <ImageButton Grid.Column="1"
+                         Source="ic_close_remove_4x.png"
                          WidthRequest="15"
                          VerticalOptions="Center"
                          BackgroundColor="Transparent"

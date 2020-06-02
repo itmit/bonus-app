@@ -10,5 +10,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		Task<ServiceTypeItem> CreateServiceTypeItem(string name);
 
 		Task<bool> RemoveServiceTypeItem(Guid uuid);
+
+		Task<bool> EditServiceTypeItem(Guid uuid, string name);
 	}
 }

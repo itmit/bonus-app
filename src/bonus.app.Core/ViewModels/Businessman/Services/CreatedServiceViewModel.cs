@@ -112,7 +112,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 					return;
 				}
 
-				if (IsBusy || IsCreated)
+				if (IsBusy)
 				{
 					return;
 				}
@@ -120,9 +120,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				IsBusy = true;
 				try
 				{
-					ServiceTypeItem = await ViewModel.CreateServiceTypeItem(Name.Value);
-					IsCreated = ServiceTypeItem != null;
-
+					if (IsCreated)
+					{
+						if (!ServiceTypeItem.Name.Equals(Name.Value))
+						{
+							IsCreated = await ViewModel.EditServiceTypeItem(ServiceTypeItem.Uuid, Name.Value);
+						}
+					}
+					else
+					{
+						ServiceTypeItem = await ViewModel.CreateServiceTypeItem(Name.Value);
+						IsCreated = ServiceTypeItem != null;
+					}
 				}
 				catch (InvalidOperationException e)
 				{
