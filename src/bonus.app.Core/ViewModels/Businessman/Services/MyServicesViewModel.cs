@@ -107,7 +107,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region Public
-		public async Task<bool> ReloadServices()
+		private async Task ReloadServices()
 		{
 			try
 			{
@@ -124,10 +124,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
-				return false;
 			}
-
-			return true;
 		}
 		#endregion
 

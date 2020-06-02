@@ -59,9 +59,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				{
 					
 					IsRefreshing = true;
-					MyServicesViewModel.Services.Clear();
 					MyServicesViewModel.MyServiceTypes.Clear();
-					await MyServicesViewModel.Initialize();
+					MyServicesViewModel.Services.Clear();
 					await Initialize();
 					IsRefreshing = false;
 				});

@@ -39,6 +39,13 @@ namespace bonus.app.Core.Models
 			get;
 			set;
 		}
+
+		[JsonProperty("file")]
+		public string ImageSource
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

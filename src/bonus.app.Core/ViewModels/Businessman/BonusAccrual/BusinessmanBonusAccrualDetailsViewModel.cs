@@ -43,6 +43,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private readonly IServicesService _servicesServices;
 		private User _user;
 		private MvxCommand _openClientProfileCommand;
+		private IProfileService _profileService;
 		#endregion
 		#endregion
 
@@ -50,12 +51,14 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		public BusinessmanBonusAccrualDetailsViewModel(IMvxNavigationService navigationService,
 													   ICustomerService customerService,
 													   IServicesService servicesServices,
-													   IBonusService bonusService)
+													   IBonusService bonusService,
+													   IProfileService profileService)
 		{
 			_navigationService = navigationService;
 			_customerService = customerService;
 			_servicesServices = servicesServices;
 			_bonusService = bonusService;
+			_profileService = profileService;
 		}
 		#endregion
 
@@ -75,8 +78,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			{
 				_openClientProfileCommand = _openClientProfileCommand ?? new MvxCommand(async () =>
 				{
-					await _navigationService.Navigate<ClientProfileViewModel, User>(await Mvx.IoCProvider.Resolve<IProfileService>()
-																				 .GetUser(_guid));
+					await _navigationService.Navigate<ClientProfileViewModel, User>(await _profileService.GetUser(_guid));
 				});
 				return _openClientProfileCommand;
 			}

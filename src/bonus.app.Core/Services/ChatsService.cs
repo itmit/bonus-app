@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
-using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace bonus.app.Core.Services
 {
@@ -18,7 +18,7 @@ namespace bonus.app.Core.Services
 	{
 		private List<Dialog> _userDialogs = new List<Dialog>();
 		private Guid _guid;
-		private Mapper _mapper;
+		private readonly Mapper _mapper;
 
 		public ChatsService(IAuthService authService)
 			: base(authService)
@@ -80,7 +80,15 @@ namespace bonus.app.Core.Services
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
-				var response = await client.PostAsync(new Uri(SendMessageUri), new StringContent($"{{\"dialog_id\":\"{dialogId}\",\"content\":\"{content}\"}}", Encoding.UTF8, ApplicationJson));
+				var base64 = string.Empty;
+				if (!string.IsNullOrWhiteSpace(file))
+				{
+					base64 = Convert.ToBase64String(File.ReadAllBytes(file));
+				}
+
+				var response = await client.PostAsync(new Uri(SendMessageUri), new StringContent(new JObject(new JProperty("dialog_id", dialogId),
+																					  new JProperty("content", content),
+																					  new JProperty("file", base64)).ToString(), Encoding.UTF8, ApplicationJson));
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -91,12 +99,16 @@ namespace bonus.app.Core.Services
 				}
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<Message>>(json);
-				if (data.Success)
+				if (!data.Success)
 				{
-					return data.Data;
+					return null;
 				}
 
-				return null;
+				if (!string.IsNullOrWhiteSpace(data.Data.ImageSource))
+				{
+					data.Data.ImageSource = Domain + data.Data.ImageSource;
+				}
+				return data.Data;
 			}
 		}
 
@@ -110,6 +122,13 @@ namespace bonus.app.Core.Services
 				return new List<Message>();
 			}
 
+			foreach (var message in messages)
+			{
+				if (!string.IsNullOrWhiteSpace(message.ImageSource))
+				{
+					message.ImageSource = Domain + message.ImageSource;
+				}
+			}
 			return messages;
 		}
 
@@ -117,11 +136,13 @@ namespace bonus.app.Core.Services
 		{
 			get
 			{
-				if (!_guid.Equals(AuthService.User.Uuid))
+				if (_guid.Equals(AuthService.User.Uuid))
 				{
-					_userDialogs = new List<Dialog>();
-					_guid = AuthService.User.Uuid;
+					return _userDialogs;
 				}
+
+				_userDialogs = new List<Dialog>();
+				_guid = AuthService.User.Uuid;
 
 				return _userDialogs;
 			}

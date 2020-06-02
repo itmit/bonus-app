@@ -20,6 +20,13 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		[JsonProperty("is_favorite")]
+		public bool IsFavorite
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("description")]
 		public string Description
 		{

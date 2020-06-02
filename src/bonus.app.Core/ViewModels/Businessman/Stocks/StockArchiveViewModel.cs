@@ -54,6 +54,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}));
 		}
 		#endregion
+
 		public Stock SelectedStock
 		{
 			get => _selectedStock;
@@ -68,6 +69,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				_navigationService.Navigate<BusinessmanStocksDetailViewModel, Stock>(value);
 			}
 		}
+
 		#region Overrided
 		public override async Task Initialize()
 		{

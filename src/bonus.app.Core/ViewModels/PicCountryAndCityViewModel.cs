@@ -38,6 +38,10 @@ namespace bonus.app.Core.ViewModels
 			_geoHelperService = geoHelperService;
 			_authService = authService;
 		}
+		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService)
+		{
+			_geoHelperService = geoHelperService;
+		}
 		#endregion
 
 		#region Properties
@@ -172,7 +176,7 @@ namespace bonus.app.Core.ViewModels
 		public override async Task Initialize()
 		{
 			await base.Initialize();
-			User = _authService.User;
+			User = _authService?.User;
 			try
 			{
 				var countries = await _geoHelperService.GetCountries(new LocaleDto

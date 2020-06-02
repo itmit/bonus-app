@@ -20,10 +20,19 @@
                      IsRefreshing="{Binding IsRefreshing}">
             <StackLayout Spacing="0">
                 <BoxView />
-                <SearchBar Placeholder="Поиск" PlaceholderColor="#505050" TextColor="#505050" CancelButtonColor="#505050"
+                <SearchBar Placeholder="Поиск"
+                           PlaceholderColor="#505050"
+                           SearchCommand="{Binding SearchCommand}"
+                           Text="{Binding SearchQuery}"
+                           TextColor="#505050"
+                           CancelButtonColor="#505050"
                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
                 <BoxView />
-                <CollectionView ItemsSource="{Binding Subscriptions}" Margin="20,0,0,0">
+                <CollectionView ItemsSource="{Binding Subscriptions}"
+                                Margin="20,0,0,0"
+                                SelectedItem="{Binding SelectedSubscription}"
+                                SelectionMode="Single"
+                                SelectionChanged="SelectableItemsView_OnSelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <profile:CustomerSubscriberContentView />
