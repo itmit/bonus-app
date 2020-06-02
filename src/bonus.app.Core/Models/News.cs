@@ -6,13 +6,6 @@ namespace bonus.app.Core.Models
 	public class News
 	{
 		#region Properties
-
-		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
 		[JsonProperty("created_at")]
 		public string CreatedAt
 		{
@@ -35,6 +28,12 @@ namespace bonus.app.Core.Models
 
 		[JsonProperty("description")]
 		public string Text
+		{
+			get;
+			set;
+		}
+
+		public Guid Uuid
 		{
 			get;
 			set;

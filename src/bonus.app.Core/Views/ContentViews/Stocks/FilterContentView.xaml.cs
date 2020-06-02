@@ -68,7 +68,6 @@ namespace bonus.app.Core.Views.ViewCells
 			AllStockLabel.TextColor = Color.FromHex("#505050");
 			StackLayout.IsVisible = false;
 			((IFilterViewModel) BindingContext).IsMyStocks = false;
-
 		}
 		#endregion
 	}

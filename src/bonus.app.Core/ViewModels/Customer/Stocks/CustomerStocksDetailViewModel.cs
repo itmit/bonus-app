@@ -13,18 +13,24 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 	{
 		#region Data
 		#region Fields
+		private MvxCommand _addToFavoriteCommand;
+		private Application _formsApplication;
 		private readonly IMvxNavigationService _navigationService;
 		private MvxCommand _openArchivePageCommand;
+		private MvxCommand _openFavoriteStocksCommand;
+		private readonly IMvxFormsViewPresenter _platformPresenter;
 		private Color _shareColor;
 		private Stock _stock;
+		private readonly IStockService _stockService;
 		private User _user;
-		private MvxCommand _addToFavoriteCommand;
-		private IStockService _stockService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CustomerStocksDetailViewModel(IAuthService authService, IMvxNavigationService navigationService, IStockService stockService, IMvxFormsViewPresenter platformPresenter)
+		public CustomerStocksDetailViewModel(IAuthService authService,
+											 IMvxNavigationService navigationService,
+											 IStockService stockService,
+											 IMvxFormsViewPresenter platformPresenter)
 		{
 			User = authService.User;
 			_navigationService = navigationService;
@@ -34,15 +40,41 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		#endregion
 
 		#region Properties
+		public MvxCommand AddToFavoriteCommand
+		{
+			get
+			{
+				_addToFavoriteCommand = _addToFavoriteCommand ??
+										new MvxCommand(async () =>
+										{
+											if (await _stockService.AddToFavorite(Stock.Uuid))
+											{
+												await FormsApplication.MainPage.DisplayAlert("Внимание", "Акция добавлена в избранное.", "Ок");
+											}
+											else
+											{
+												await FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось добавить акцию избранное.", "Ок");
+											}
+										});
+				return _addToFavoriteCommand;
+			}
+		}
+
+		public Application FormsApplication
+		{
+			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
+			set => _formsApplication = value;
+		}
+
 		public MvxCommand OpenArchivePageCommand
 		{
 			get
 			{
 				_openArchivePageCommand = _openArchivePageCommand ??
-													 new MvxCommand(() =>
-													 {
-														 _navigationService.Navigate<StockArchiveViewModel>();
-													 });
+										  new MvxCommand(() =>
+										  {
+											  _navigationService.Navigate<StockArchiveViewModel>();
+										  });
 				return _openArchivePageCommand;
 			}
 		}
@@ -51,39 +83,12 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		{
 			get
 			{
-				_openFavoriteStocksCommand = _openFavoriteStocksCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<FavoriteStocksViewModel>();
-				});
+				_openFavoriteStocksCommand = _openFavoriteStocksCommand ??
+											 new MvxCommand(() =>
+											 {
+												 _navigationService.Navigate<FavoriteStocksViewModel>();
+											 });
 				return _openFavoriteStocksCommand;
-			}
-		}
-		private Application _formsApplication;
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-		private MvxCommand _openFavoriteStocksCommand;
-
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-			set => _formsApplication = value;
-		}
-
-		public MvxCommand AddToFavoriteCommand
-		{
-			get
-			{
-				_addToFavoriteCommand = _addToFavoriteCommand ?? new MvxCommand(async () =>
-				{
-					if (await _stockService.AddToFavorite(Stock.Uuid))
-					{
-						await FormsApplication.MainPage.DisplayAlert("Внимание", "Акция добавлена в избранное.", "Ок");
-					}
-					else
-					{
-						await FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось добавить акцию избранное.", "Ок");
-					}
-				});
-				return _addToFavoriteCommand;
 			}
 		}
 

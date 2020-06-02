@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
@@ -15,7 +12,6 @@ using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions.Abstractions;
-using Realms;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Stocks
@@ -25,20 +21,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		#region Data
 		#region Fields
 		private bool _canCreateShareCommand = true;
+		private ValidatableObject<string> _description = new ValidatableObject<string>();
 		private byte[] _imageBytes;
 		private string _imageSource;
+		private ValidatableObject<string> _name = new ValidatableObject<string>();
 		private readonly IMvxNavigationService _navigationService;
 		private readonly IPermissionsService _permissionsService;
 		private MvxCommand _picPhotoCommand;
 		private MvxCommand _saveCommand;
-		private ValidatableObject<DateTime?> _shareTime = new ValidatableObject<DateTime?>()
+		private ValidatableObject<DateTime?> _shareTime = new ValidatableObject<DateTime?>
 		{
 			Value = DateTime.Today
 		};
 		private Stock _stock;
 		private readonly IStockService _stockService;
-		private ValidatableObject<string> _name = new ValidatableObject<string>();
-		private ValidatableObject<string> _description = new ValidatableObject<string>();
 		#endregion
 		#endregion
 
@@ -59,29 +55,21 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 
 			AddValidations();
 		}
-
-		private void AddValidations()
-		{
-			Name.Validations.Add(new IsNotNullOrEmptyRule
-			{
-				ValidationMessage = "Укажите название акции."
-			});
-			Name.Validations.Add(new MinLengthRule(3)
-			{
-				ValidationMessage = "Название акции не может содержать меньше 4 символов."
-			});
-			Description.Validations.Add(new IsNotNullOrEmptyRule
-			{
-				ValidationMessage = "Описание не может быть пустым."
-			});
-			ShareTime.Validations.Add(new IsValidDateRule(DateTime.Now, new DateTime(2099, 1, 1))
-			{
-				ValidationMessage = "Срок размещения акции должен быть актуальным."
-			});
-		}
 		#endregion
 
 		#region Properties
+		public MyServicesViewModel MyServicesViewModel
+		{
+			get;
+			set;
+		}
+
+		public PicCountryAndCityViewModel PicCountryAndCityViewModel
+		{
+			get;
+			set;
+		}
+
 		public bool CanCreateShareCommand
 		{
 			get => _canCreateShareCommand;
@@ -114,7 +102,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			get => _name;
 			set => SetProperty(ref _name, value);
-			
 		}
 
 		public MvxCommand PicImageCommand
@@ -138,7 +125,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		public ValidatableObject<DateTime?> ShareTime
 		{
 			get => _shareTime;
-			set 
+			set
 			{
 				SetProperty(ref _shareTime, value);
 				if (value.Value != null)
@@ -165,7 +152,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			try
 			{
 				Stock = await _stockService.GetStockForEdit(Stock.Uuid);
-				
+
 				ImageSource = Stock.ImageSource;
 
 				_name.Value = Stock.Name;
@@ -174,7 +161,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				await RaisePropertyChanged(() => ShareTime);
 				await RaisePropertyChanged(() => Name);
 				await RaisePropertyChanged(() => Description);
-				
+
 				var temp = MyServicesViewModel.Services.SingleOrDefault(model => model.Services.Any(service => service.Uuid == Stock.Service));
 				var ser = temp?.Services.SingleOrDefault(service => service.Uuid == Stock.Service);
 				MyServicesViewModel.SelectedService = ser;
@@ -192,6 +179,26 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		#endregion
 
 		#region Private
+		private void AddValidations()
+		{
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите название акции."
+			});
+			Name.Validations.Add(new MinLengthRule(3)
+			{
+				ValidationMessage = "Название акции не может содержать меньше 4 символов."
+			});
+			Description.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Описание не может быть пустым."
+			});
+			ShareTime.Validations.Add(new IsValidDateRule(DateTime.Now, new DateTime(2099, 1, 1))
+			{
+				ValidationMessage = "Срок размещения акции должен быть актуальным."
+			});
+		}
+
 		private bool IsValid()
 		{
 			CanCreateShareCommand = false;
@@ -301,17 +308,5 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 		#endregion
-
-		public PicCountryAndCityViewModel PicCountryAndCityViewModel
-		{
-			get;
-			set;
-		}
-
-		public MyServicesViewModel MyServicesViewModel
-		{
-			get;
-			set;
-		}
 	}
 }

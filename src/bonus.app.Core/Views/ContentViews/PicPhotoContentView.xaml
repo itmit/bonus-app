@@ -12,8 +12,8 @@
         <StackLayout>
             <Grid Margin="10,10,20,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding PicImageCommand}" />
@@ -25,9 +25,9 @@
                     <Label Text="{Binding ImageName}"
                            Margin="0,5"
                            VerticalOptions="Center"
-                           VerticalTextAlignment="Center" FontSize="14"/>
+                           VerticalTextAlignment="Center" FontSize="14" />
                 </StackLayout>
-               
+
 
                 <Frame Grid.Column="1"
                        Padding="0"
@@ -38,19 +38,19 @@
                        VerticalOptions="Start"
                        HorizontalOptions="EndAndExpand">
                     <Grid>
-                         <forms:CachedImage Source="{Binding ImageSource}"
-                                        IsVisible="{Binding ImageSource, Converter={StaticResource NullToBoolConverter}}"
-                                        Aspect="AspectFill"/>
-                         <Image Source="icon_photo"
-                                WidthRequest="70"
+                        <forms:CachedImage Source="{Binding ImageSource}"
+                                           IsVisible="{Binding ImageSource, Converter={StaticResource NullToBoolConverter}}"
+                                           Aspect="AspectFill" />
+                        <Image Source="icon_photo"
+                               WidthRequest="70"
                                HeightRequest="40"
                                VerticalOptions="Start"
                                IsVisible="{Binding IsShowDefaultImage}"
-                               HorizontalOptions="EndAndExpand"/>
+                               HorizontalOptions="EndAndExpand" />
                     </Grid>
                 </Frame>
             </Grid>
-            <BoxView/>
+            <BoxView />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -8,12 +8,22 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
 	public class PortfolioViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
+		private readonly IProfileService _profileService;
 		private MvxCommand _removeImageCommand;
-		private IProfileService _profileService;
+		#endregion
+		#endregion
 
-		public PortfolioViewModel(IProfileService profileService)
+		#region .ctor
+		public PortfolioViewModel(IProfileService profileService) => _profileService = profileService;
+		#endregion
+
+		#region Properties
+		public string ImageName
 		{
-			_profileService = profileService;
+			get;
+			set;
 		}
 
 		public string ImageSource
@@ -23,12 +33,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 
 		public IPortfolioParentViewModel ParentViewModel
-		{
-			get;
-			set;
-		}
-
-		public string ImageName
 		{
 			get;
 			set;
@@ -44,22 +48,24 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			get
 			{
-				_removeImageCommand = _removeImageCommand ?? new MvxCommand(async () =>
-				{
-					try
-					{
-						if (await _profileService.RemoveImageFromPortfolio(PortfolioImage.Uuid))
-						{
-							ParentViewModel.RemovedPortfolioImage(this);
-						}
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e);
-					}
-				});
+				_removeImageCommand = _removeImageCommand ??
+									  new MvxCommand(async () =>
+									  {
+										  try
+										  {
+											  if (await _profileService.RemoveImageFromPortfolio(PortfolioImage.Uuid))
+											  {
+												  ParentViewModel.RemovedPortfolioImage(this);
+											  }
+										  }
+										  catch (Exception e)
+										  {
+											  Console.WriteLine(e);
+										  }
+									  });
 				return _removeImageCommand;
 			}
 		}
+		#endregion
 	}
 }

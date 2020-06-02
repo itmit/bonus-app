@@ -30,14 +30,15 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <CollectionView Grid.Row="0" BackgroundColor="Transparent"
-                                           ItemTemplate="{StaticResource MessageTemplateSelector}"
-                                           ItemsSource="{Binding Messages}"
-                                           Margin="0"
-                                           Rotation="180"
-                                           FlowDirection="RightToLeft"
-                                           VerticalOptions="FillAndExpand">
+                                ItemTemplate="{StaticResource MessageTemplateSelector}"
+                                ItemsSource="{Binding Messages}"
+                                Margin="0"
+                                Rotation="180"
+                                FlowDirection="RightToLeft"
+                                VerticalOptions="FillAndExpand">
                     <CollectionView.EmptyView>
-                        <Label Grid.Row="0" Margin="0,30,0,0" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                        <Label Grid.Row="0" Margin="0,30,0,0" HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
                                Rotation="180">
                             <Label.FormattedText>
                                 <FormattedString>
@@ -51,7 +52,7 @@
                         </Label>
                     </CollectionView.EmptyView>
                 </CollectionView>
-                
+
                 <chat:ChatInputBarView Grid.Row="1" BackgroundColor="White"
                                        x:Name="ChatInput" VerticalOptions="EndAndExpand" />
             </Grid>

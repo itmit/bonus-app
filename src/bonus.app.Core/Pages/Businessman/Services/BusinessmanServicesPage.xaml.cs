@@ -31,9 +31,11 @@ namespace bonus.app.Core.Pages.Businessman.Services
 		}
 		#endregion
 
+		#region Private
 		private void MenuItem_OnClicked(object sender, EventArgs e)
 		{
 			Scroll.ScrollToAsync(AddServiceLabel, ScrollToPosition.Start, false);
 		}
+		#endregion
 	}
 }

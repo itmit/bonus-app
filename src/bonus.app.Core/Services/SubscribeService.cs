@@ -13,34 +13,22 @@ namespace bonus.app.Core.Services
 {
 	public class SubscribeService : BaseService, ISubscribeService
 	{
-		private const string SubscribeToBusinessmanUri  = "http://bonus.itmit-studio.ru/api/subscribeToBusinessman";
+		#region Data
+		#region Consts
 		private const string GetSubscriptionsUri = "http://bonus.itmit-studio.ru/api/getSubscriptuions";
+		private const string SubscribeToBusinessmanUri = "http://bonus.itmit-studio.ru/api/subscribeToBusinessman";
 		private const string UnsubscribeToBusinessmanUri = "http://bonus.itmit-studio.ru/api/unsubscribeToBusinessman";
+		#endregion
+		#endregion
 
-		public async Task<bool> SubscribeToBusinessman(Guid businessmanUuid)
+		#region .ctor
+		public SubscribeService(IAuthService authService)
+			: base(authService)
 		{
-			using (var client = new HttpClient())
-			{
-
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var resp = await client.PostAsync(new Uri(SubscribeToBusinessmanUri), new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
-				return data.Success;
-			}
 		}
+		#endregion
 
+		#region ISubscribeService members
 		public async Task<List<Subscription>> GetSubscriptions()
 		{
 			var subs = await GetAsync<List<Subscription>>(GetSubscriptionsUri);
@@ -48,6 +36,7 @@ namespace bonus.app.Core.Services
 			{
 				return new List<Subscription>();
 			}
+
 			foreach (var subscription in subs)
 			{
 				if (string.IsNullOrEmpty(subscription.PhotoSource))
@@ -62,15 +51,15 @@ namespace bonus.app.Core.Services
 			return subs;
 		}
 
-		public async Task<bool> UnsubscribeToBusinessman(Guid businessmanUuid)
+		public async Task<bool> SubscribeToBusinessman(Guid businessmanUuid)
 		{
 			using (var client = new HttpClient())
 			{
-
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
-				var resp = await client.PostAsync(new Uri(UnsubscribeToBusinessmanUri), new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
+				var resp = await client.PostAsync(new Uri(SubscribeToBusinessmanUri),
+												  new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
 
 				var json = await resp.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -86,9 +75,29 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public SubscribeService(IAuthService authService)
-			: base(authService)
+		public async Task<bool> UnsubscribeToBusinessman(Guid businessmanUuid)
 		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+
+				var resp = await client.PostAsync(new Uri(UnsubscribeToBusinessmanUri),
+												  new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
+
+				var json = await resp.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return false;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+				return data.Success;
+			}
 		}
+		#endregion
 	}
 }

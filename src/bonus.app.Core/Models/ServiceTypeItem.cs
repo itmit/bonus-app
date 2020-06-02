@@ -4,6 +4,7 @@ namespace bonus.app.Core.Models
 {
 	public class ServiceTypeItem
 	{
+		#region Properties
 		public string Name
 		{
 			get;
@@ -15,5 +16,6 @@ namespace bonus.app.Core.Models
 			get;
 			set;
 		}
+		#endregion
 	}
 }

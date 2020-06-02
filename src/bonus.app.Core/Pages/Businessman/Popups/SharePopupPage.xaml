@@ -41,7 +41,7 @@
                             Source="{Binding Stock.ImageSource}"
                             Aspect="AspectFill"
                             VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand"/>
+                            HorizontalOptions="FillAndExpand" />
                     </Frame>
                 </StackLayout>
 

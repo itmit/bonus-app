@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.Statistics.OYContentView">
-  <ContentView.Content>
-      <!--Данные по оси Y в графике-->
-      <Grid>
-          <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="-7" Text="100%"/>
-          <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="42" Text="80%"/>
-          <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="92" Text="60%"/>
-          <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="142" Text="40%"/>
-          <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="192" Text="20%"/>
-          <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="242" Text="0%"/>
-      </Grid>
+    <ContentView.Content>
+        <!--Данные по оси Y в графике-->
+        <Grid>
+            <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="-7" Text="100%" />
+            <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="42" Text="80%" />
+            <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="92" Text="60%" />
+            <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="142" Text="40%" />
+            <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="192" Text="20%" />
+            <Label HorizontalOptions="EndAndExpand" FontSize="Micro" TranslationY="242" Text="0%" />
+        </Grid>
     </ContentView.Content>
 </ContentView>

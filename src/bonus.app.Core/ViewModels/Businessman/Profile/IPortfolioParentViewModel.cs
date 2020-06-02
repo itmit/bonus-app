@@ -2,6 +2,8 @@
 {
 	public interface IPortfolioParentViewModel
 	{
+		#region Overridable
 		void RemovedPortfolioImage(PortfolioViewModel portfolioViewModel);
+		#endregion
 	}
 }

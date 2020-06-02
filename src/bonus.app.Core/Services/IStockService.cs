@@ -14,6 +14,8 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Overridable
+		Task<bool> AddToFavorite(Guid stockUuid);
+
 		Task<bool> CreateStock(Stock stock, byte[] imageBytes);
 
 		Task<bool> EditStock(Stock stock, byte[] imageBytes);
@@ -24,15 +26,13 @@ namespace bonus.app.Core.Services
 
 		Task<IEnumerable<Stock>> GetArchiveStock();
 
+		Task<List<Stock>> GetFavoriteStocks();
+
 		Task<IEnumerable<Stock>> GetMyStock(Guid? serviceUuid, string city);
 
 		Task<IEnumerable<Stock>> GetMyStock();
 
 		Task<Stock> GetStockForEdit(Guid uuid);
-
-		Task<bool> AddToFavorite(Guid stockUuid);
-
-		Task<List<Stock>> GetFavoriteStocks();
 		#endregion
 	}
 }

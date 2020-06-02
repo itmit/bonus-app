@@ -1,11 +1,7 @@
-﻿using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using MvvmCross.Forms.Core;
+﻿using MvvmCross.Forms.Core;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using XF.Material.Forms;
-using Application = Xamarin.Forms.Application;
 
 namespace bonus.app.Core
 {

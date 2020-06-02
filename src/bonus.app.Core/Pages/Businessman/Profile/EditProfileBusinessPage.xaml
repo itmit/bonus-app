@@ -78,7 +78,7 @@
                             </ui:MaterialTextField>
 
                             <ui:MaterialTextField Placeholder="Описание (расскажите об услугах)&#10;&#10;"
-                                                      Text="{Binding Description}"/>
+                                                  Text="{Binding Description}" />
 
                             <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
                                          IsEnabled="{Binding Parameters.IsActiveUser}">
@@ -115,14 +115,14 @@
                                                       Placeholder="Ссылка на аккаунт в Однокласниках"
                                                       InputType="Email"
                                                       ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstElementConverter}}"
-                                                      HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}"/> 
+                                                      HasError="{Binding ClassmatesLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                             </StackLayout>
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
 
                             <services:CreateServiceContentView x:Name="CreateServiceContentView"
                                                                IsVisible="{Binding Parameters.IsActiveUser}"
-                                                               IsEnabled="{Binding Parameters.IsActiveUser}"/>
+                                                               IsEnabled="{Binding Parameters.IsActiveUser}" />
 
                             <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
                                          IsEnabled="{Binding Parameters.IsActiveUser}">
@@ -131,29 +131,29 @@
                                              Spacing="0"
                                              Margin="10,15,20,15">
                                     <Label Text="Портфолио"
-                                           FontSize="14"/>
+                                           FontSize="14" />
                                     <Image Source="ic_add_image_4x.png"
                                            HeightRequest="16"
                                            WidthRequest="18"
-                                           HorizontalOptions="EndAndExpand"/>
+                                           HorizontalOptions="EndAndExpand" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding AddPortfolioImageCommand}"/>
+                                        <TapGestureRecognizer Command="{Binding AddPortfolioImageCommand}" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
-                                <BoxView/>
+                                <BoxView />
 
                                 <StackLayout IsVisible="True" BindableLayout.ItemsSource="{Binding PortfolioImages}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
                                             <Grid RowSpacing="0">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
                                                 </Grid.RowDefinitions>
                                                 <contentViews:PortfolioContentView Grid.Row="0"
-                                                                                   Margin="10,0,0,0"/>
+                                                                                   Margin="10,0,0,0" />
                                                 <BoxView Grid.Row="1"
-                                                         Margin="0,10,0,0"/>
+                                                         Margin="0,10,0,0" />
                                             </Grid>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>

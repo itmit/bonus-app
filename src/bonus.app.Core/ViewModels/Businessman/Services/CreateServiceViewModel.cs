@@ -13,10 +13,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 	{
 		#region Data
 		#region Fields
+		private readonly IAuthService _authService;
 		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes = new MvxObservableCollection<CreatedServiceViewModel>();
 		private readonly IServicesService _servicesServices;
 		private MvxCommand _showMyServiceTypesCommand;
-		private IAuthService _authService;
 		#endregion
 		#endregion
 
@@ -34,7 +34,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			get;
 			set;
 		}
-
 
 		public MvxCommand AddServiceCommand
 		{
@@ -82,31 +81,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		}
 		#endregion
 
-		#region Overrided
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-			await ReloadServices();
-			if (UserServiceType != null)
-			{
-				foreach (var service in UserServiceType.Services)
-				{
-					var type = new CreatedServiceViewModel
-					{
-						IsCreated = true,
-						ViewModel = this,
-						ServiceTypeItem = service,
-						Name =
-						{
-							Value = service.Name
-						}
-					};
-					MyServiceTypes.Add(type);
-				}
-			}
-		}
-		#endregion
-
+		#region ICreateServiceViewModel members
 		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name)
 		{
 			if (UserServiceType == null)
@@ -162,7 +137,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 						Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
 					});
 					return false;
-
 				}
 			}
 			catch (Exception e)
@@ -175,7 +149,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
 		{
-			bool res = false;
+			var res = false;
 			try
 			{
 				res = await _servicesServices.RemoveServiceTypeItem(uuid);
@@ -194,8 +168,34 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			{
 				return false;
 			}
-			return true;
 
+			return true;
 		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+			await ReloadServices();
+			if (UserServiceType != null)
+			{
+				foreach (var service in UserServiceType.Services)
+				{
+					var type = new CreatedServiceViewModel
+					{
+						IsCreated = true,
+						ViewModel = this,
+						ServiceTypeItem = service,
+						Name =
+						{
+							Value = service.Name
+						}
+					};
+					MyServiceTypes.Add(type);
+				}
+			}
+		}
+		#endregion
 	}
 }

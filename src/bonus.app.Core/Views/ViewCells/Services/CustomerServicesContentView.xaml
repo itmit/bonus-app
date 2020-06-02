@@ -20,9 +20,9 @@
                        WidthRequest="50"
                        HeightRequest="40"
                        HasShadow="False">
-                    <forms:CachedImage Source="{Binding Client.PhotoSource}" Aspect="AspectFill" 
+                    <forms:CachedImage Source="{Binding Client.PhotoSource}" Aspect="AspectFill"
                                        ErrorPlaceholder="icon_no_photo.png"
-                                       LoadingPlaceholder="icon_no_photo.png"/>
+                                       LoadingPlaceholder="icon_no_photo.png" />
                 </Frame>
                 <StackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
                     <Label Text="{Binding Name}" />
@@ -33,7 +33,8 @@
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="{Binding AccrualValueString}" />
-                                <Span Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}" />
+                                <Span
+                                    Text="{Binding AccrualMethod, Converter={StaticResource BonusValueTypeConverter}}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

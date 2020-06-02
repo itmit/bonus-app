@@ -51,7 +51,7 @@ namespace bonus.app.Core.DataTemplateSelectors
 				return null;
 			}
 
-			return messageVm.IsTextIn ? _textOutDataTemplate : _textInDataTemplate ;
+			return messageVm.IsTextIn ? _textOutDataTemplate : _textInDataTemplate;
 		}
 		#endregion
 	}

@@ -22,17 +22,18 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Overridable
+		Task<PortfolioImage> AddImageToPortfolio(string imageSource);
+
 		Task<User> Edit(EditBusinessmanDto arguments, string imagePath);
 
 		Task<User> Edit(EditCustomerDto arguments, string imagePath);
 
-		Task<PortfolioImage> AddImageToPortfolio(string imageSource);
-
-		Task<User> GetUser(Guid uuid);
-
 		Task<List<PortfolioImage>> GetPortfolio();
 
 		Task<List<PortfolioImage>> GetPortfolio(Guid uuid);
+
+		Task<User> GetUser(Guid uuid);
+
 		Task<bool> RemoveImageFromPortfolio(Guid uuid);
 		#endregion
 	}

@@ -2,10 +2,12 @@
 {
 	public interface IFilterViewModel
 	{
+		#region Properties
 		bool IsMyStocks
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

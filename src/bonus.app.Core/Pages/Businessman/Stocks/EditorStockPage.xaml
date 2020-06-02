@@ -42,7 +42,7 @@
                 <contentViews:PicCountryAndCityContentView.Footer>
                     <StackLayout x:Name="Layout">
 
-                        <services:MyServicesContentView Margin="0,20,0,0" x:Name="MyServicesContentView"/>
+                        <services:MyServicesContentView Margin="0,20,0,0" x:Name="MyServicesContentView" />
 
 
                         <ui:MaterialTextField Text="{Binding Name.Value}"
@@ -58,10 +58,10 @@
                         <StackLayout Margin="0,0,0,15">
 
                             <forms:CachedImage Source="{Binding ImageSource}"
-                                           Margin="0,15"
-                                           Aspect="AspectFill"
-                                           WidthRequest="320"
-                                           HeightRequest="270">
+                                               Margin="0,15"
+                                               Aspect="AspectFill"
+                                               WidthRequest="320"
+                                               HeightRequest="270">
                                 <forms:CachedImage.Transformations>
                                     <transformations:RoundedTransformation Radius="100" />
                                 </forms:CachedImage.Transformations>
@@ -70,33 +70,33 @@
                                 </forms:CachedImage.GestureRecognizers>
                             </forms:CachedImage>
 
-                            
+
                             <StackLayout Orientation="Horizontal" Margin="5,0" Spacing="0">
                                 <Label Text="Срок размещения, до" VerticalOptions="Center" />
                                 <DatePicker VerticalOptions="Center"
-                                        HorizontalOptions="EndAndExpand"
-                                        Date="{Binding ShareTime.Value}"
-                                        MaximumDate="2099-01-01"
-                                        MinimumDate="2000-01-01"
-                                        FontFamily="{x:Static design:DesignClass.LatoRegular}" />
+                                            HorizontalOptions="EndAndExpand"
+                                            Date="{Binding ShareTime.Value}"
+                                            MaximumDate="2099-01-01"
+                                            MinimumDate="2000-01-01"
+                                            FontFamily="{x:Static design:DesignClass.LatoRegular}" />
                                 <Image Source="ic_calendar_4x.png" VerticalOptions="Center" WidthRequest="18" />
                             </StackLayout>
                             <BoxView />
                             <Label Text="{Binding ShareTime.Errors, Converter={StaticResource FirstElementConverter}}"
-                                   IsVisible="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}" 
+                                   IsVisible="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}"
                                    Margin="0,0,0,20"
-                                   TextColor="DarkRed"/>
+                                   TextColor="DarkRed" />
 
                             <StackLayout Orientation="Horizontal" Margin="5,0">
                                 <Label Text="Только для подписчиков, до" VerticalOptions="Center" />
                                 <Switch HorizontalOptions="EndAndExpand"
-                                    IsToggled="{Binding IsSubscriberOnly}"
-                                    VerticalOptions="Center" />
+                                        IsToggled="{Binding IsSubscriberOnly}"
+                                        VerticalOptions="Center" />
                             </StackLayout>
                             <BoxView />
                         </StackLayout>
                         <design:CustomButton Style="{StaticResource AppButtonGradient}"
-                                         IsEnabled="{Binding CanCreateShareCommand}">
+                                             IsEnabled="{Binding CanCreateShareCommand}">
                             <Grid>
                                 <graphic:RectangleInProfile />
                                 <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}" />

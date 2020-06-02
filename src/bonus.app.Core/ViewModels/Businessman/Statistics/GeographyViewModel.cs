@@ -7,8 +7,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
 	public class GeographyViewModel : MvxNavigationViewModel
 	{
-		
-
 		#region .ctor
 		public GeographyViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
 			: base(logProvider, navigationService)
@@ -18,15 +16,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 		#region .prop
 		private MvxCommand _openGeographyDetailPageCommand;
+
 		public IMvxCommand OpenGeographyDetailPageCommand
 		{
 			get
 			{
 				_openGeographyDetailPageCommand = _openGeographyDetailPageCommand ??
-											new MvxCommand(() =>
-											{
-												NavigationService.Navigate<GeographyDetailViewModel>();
-											});
+												  new MvxCommand(() =>
+												  {
+													  NavigationService.Navigate<GeographyDetailViewModel>();
+												  });
 				return _openGeographyDetailPageCommand;
 			}
 		}

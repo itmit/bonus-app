@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <views:MvxContentPage x:TypeArguments="stocks1:FavoriteStocksViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -18,10 +19,10 @@
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Normal" />
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#bb8d91"/>
+                                <Setter Property="BackgroundColor" Value="#bb8d91" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -36,17 +37,17 @@
                      Command="{Binding RefreshCommand}"
                      IsRefreshing="{Binding IsRefreshing}">
             <CollectionView VerticalScrollBarVisibility="Never"
-                                Margin="0,5"
-                                ItemsSource="{Binding Stocks}"
-                                SelectionMode="Single"
-                                SelectionChanged="SelectableItemsView_OnSelectionChanged"
-                                SelectedItem="{Binding SelectedStock}">
+                            Margin="0,5"
+                            ItemsSource="{Binding Stocks}"
+                            SelectionMode="Single"
+                            SelectionChanged="SelectableItemsView_OnSelectionChanged"
+                            SelectedItem="{Binding SelectedStock}">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <stocks:CustomerStockContentView BackgroundColor="White"/>
+                        <stocks:CustomerStockContentView BackgroundColor="White" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

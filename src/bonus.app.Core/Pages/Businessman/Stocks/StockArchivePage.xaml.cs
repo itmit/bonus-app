@@ -56,6 +56,11 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 			}
 		}
 
+		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			((CollectionView) sender).SelectedItem = null;
+		}
+
 		/// <summary>
 		/// Скрывает фильтр
 		/// </summary>
@@ -71,10 +76,5 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 			Filter.IsEnabled = false;
 		}
 		#endregion
-
-		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			((CollectionView) sender).SelectedItem = null;
-		}
 	}
 }

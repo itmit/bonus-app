@@ -2,10 +2,12 @@
 {
 	public class NewsImage
 	{
+		#region Properties
 		public string Image
 		{
 			get;
 			set;
 		}
+		#endregion
 	}
 }

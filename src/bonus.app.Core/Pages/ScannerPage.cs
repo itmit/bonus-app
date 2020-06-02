@@ -17,9 +17,6 @@ namespace bonus.app.Core.Page
 		public static readonly BindableProperty ViewModelProperty =
 			BindableProperty.Create(nameof(ViewModel), typeof(IMvxViewModel), typeof(IMvxElement), default(MvxViewModel), BindingMode.Default, null, ViewModelChanged);
 		#endregion
-
-		#region Fields
-		#endregion
 		#endregion
 
 		#region Overridable

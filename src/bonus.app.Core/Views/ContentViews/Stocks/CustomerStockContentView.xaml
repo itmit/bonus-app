@@ -9,33 +9,35 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.Stocks.CustomerStockContentView">
     <ContentView.Content>
-             <Grid Padding="20,10" ColumnSpacing="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0"
-                       Padding="0"
-                       CornerRadius="10"
-                       HasShadow="False"
-                       WidthRequest="85"
-                       HeightRequest="70">
-                    <forms:CachedImage Source="{Binding ImageSource}"
-                                       Aspect="AspectFill"/>
-                </Frame>
-                
-                <StackLayout Grid.Column="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Text="{Binding Name}" MaxLines="1" VerticalOptions="Center" />
-                        <Image Grid.Column="1" Source="ic_heart_4x" WidthRequest="17" HorizontalOptions="EndAndExpand" IsVisible="{Binding IsFavorites, Converter={StaticResource InverseBoolConverter}}"/>
-                    <Image Grid.Column="1" Source="ic_heart_filled_4x" WidthRequest="17" HorizontalOptions="EndAndExpand" IsVisible="{Binding IsFavorites}"/>
-                    </Grid>
-                    <Label Text="{Binding Description}" MaxLines="3" FontSize="Caption" TextColor="Gray" />
-                </StackLayout>
-            </Grid>
+        <Grid Padding="20,10" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Column="0"
+                   Padding="0"
+                   CornerRadius="10"
+                   HasShadow="False"
+                   WidthRequest="85"
+                   HeightRequest="70">
+                <forms:CachedImage Source="{Binding ImageSource}"
+                                   Aspect="AspectFill" />
+            </Frame>
+
+            <StackLayout Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="{Binding Name}" MaxLines="1" VerticalOptions="Center" />
+                    <Image Grid.Column="1" Source="ic_heart_4x" WidthRequest="17" HorizontalOptions="EndAndExpand"
+                           IsVisible="{Binding IsFavorites, Converter={StaticResource InverseBoolConverter}}" />
+                    <Image Grid.Column="1" Source="ic_heart_filled_4x" WidthRequest="17"
+                           HorizontalOptions="EndAndExpand" IsVisible="{Binding IsFavorites}" />
+                </Grid>
+                <Label Text="{Binding Description}" MaxLines="3" FontSize="Caption" TextColor="Gray" />
+            </StackLayout>
+        </Grid>
     </ContentView.Content>
 </ContentView>

@@ -101,12 +101,13 @@
                                                   AlwaysShowUnderline="True"
                                                   UnderlineColor="DarkGray"
                                                   TintColor="#505050"
-                                                  TextFontFamily="{x:Static design:DesignClass.LatoRegular}"/>
+                                                  TextFontFamily="{x:Static design:DesignClass.LatoRegular}" />
 
                             <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}"
-                                   BackgroundColor="Transparent"/>
+                                   BackgroundColor="Transparent" />
 
-                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" Margin="5,0,0,0"/>
+                            <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"
+                                                              Margin="5,0,0,0" />
 
                             <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,10,0,0">
                                 <Grid>

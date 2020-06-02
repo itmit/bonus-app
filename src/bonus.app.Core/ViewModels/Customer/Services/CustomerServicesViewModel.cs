@@ -14,17 +14,19 @@ namespace bonus.app.Core.ViewModels.Customer.Services
 {
 	public class CustomerServicesViewModel : MvxNavigationViewModel, IServiceParentViewModel
 	{
-		private readonly IServicesService _servicesService;
-
-		public PicCountryAndCityViewModel PicCountryAndCityViewModel { get; }
+		#region Data
+		#region Fields
+		private bool _isVisibleServices;
+		private readonly Mapper _mapper;
+		private ServiceViewModel _selectedService;
 
 		private MvxObservableCollection<Service> _services;
-		private Mapper _mapper;
-		private ServiceViewModel _selectedService;
-		private MvxCommand _showOrHideTypesServicesCommand;
-		private bool _isVisibleServices;
-		private int _shapeRotation;
+		private readonly IServicesService _servicesService;
 		private MvxObservableCollection<ServiceTypeViewModel> _servicesTypes;
+		private int _shapeRotation;
+		private MvxCommand _showOrHideTypesServicesCommand;
+		#endregion
+		#endregion
 
 		#region .ctor
 		public CustomerServicesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IServicesService servicesService, IGeoHelperService geoHelperService)
@@ -41,36 +43,30 @@ namespace bonus.app.Core.ViewModels.Customer.Services
 				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
 			}));
 		}
-
-		public MvxObservableCollection<Service> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
 		#endregion
 
-		public override async Task Initialize()
+		#region Properties
+		public PicCountryAndCityViewModel PicCountryAndCityViewModel
 		{
-			await PicCountryAndCityViewModel.Initialize();
-			await base.Initialize();
-
-			try
-			{
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(await _servicesService.GetMyServices());
-				ServiceTypes = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
-
-				Services = new MvxObservableCollection<Service>(await _servicesService.GetAllServices());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+			get;
 		}
 
 		public bool IsVisibleServices
 		{
 			get => _isVisibleServices;
 			set => SetProperty(ref _isVisibleServices, value);
+		}
+
+		public MvxObservableCollection<Service> Services
+		{
+			get => _services;
+			private set => SetProperty(ref _services, value);
+		}
+
+		public MvxObservableCollection<ServiceTypeViewModel> ServiceTypes
+		{
+			get => _servicesTypes;
+			private set => SetProperty(ref _servicesTypes, value);
 		}
 
 		public int ShapeRotation
@@ -92,12 +88,9 @@ namespace bonus.app.Core.ViewModels.Customer.Services
 				return _showOrHideTypesServicesCommand;
 			}
 		}
-		public MvxObservableCollection<ServiceTypeViewModel> ServiceTypes
-		{
-			get => _servicesTypes;
-			private set => SetProperty(ref _servicesTypes, value);
-		}
+		#endregion
 
+		#region IServiceParentViewModel members
 		public ServiceViewModel SelectedService
 		{
 			get => _selectedService;
@@ -112,5 +105,26 @@ namespace bonus.app.Core.ViewModels.Customer.Services
 				SetProperty(ref _selectedService, value);
 			}
 		}
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await PicCountryAndCityViewModel.Initialize();
+			await base.Initialize();
+
+			try
+			{
+				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(await _servicesService.GetMyServices());
+				ServiceTypes = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
+
+				Services = new MvxObservableCollection<Service>(await _servicesService.GetAllServices());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+		}
+		#endregion
 	}
 }

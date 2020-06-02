@@ -1,19 +1,17 @@
 ﻿using System;
-using bonus.app.Core.ViewModels.Chats;
-using MvvmCross.ViewModels;
-using Newtonsoft.Json;
 
 namespace bonus.app.Core.Models
 {
 	public class Dialog
 	{
-		public int Id
+		#region Properties
+		public DateTime? CreatedAt
 		{
 			get;
 			set;
 		}
 
-		public User UserTo
+		public int Id
 		{
 			get;
 			set;
@@ -25,17 +23,17 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-
-		public DateTime? CreatedAt
-		{
-			get;
-			set;
-		}
-
 		public DateTime? UpdatedAt
 		{
 			get;
 			set;
 		}
+
+		public User UserTo
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

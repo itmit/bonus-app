@@ -20,8 +20,7 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		[JsonProperty("service_item_uuid")]
-		public Guid ServiceItemUuid
+		public User Client
 		{
 			get;
 			set;
@@ -33,13 +32,14 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public Guid Uuid
+		[JsonProperty("service_item_uuid")]
+		public Guid ServiceItemUuid
 		{
 			get;
 			set;
 		}
 
-		public User Client
+		public Guid Uuid
 		{
 			get;
 			set;

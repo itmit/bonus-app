@@ -113,7 +113,7 @@
                                              CornerRadius="20"
                                              Padding="0"
                                              WidthRequest="155"
-                                             HeightRequest="40" 
+                                             HeightRequest="40"
                                              BackgroundColor="#bab3af"
                                              HasShadow="False"
                                              IsVisible="{Binding IsSubscribe}"
@@ -156,46 +156,46 @@
                     <FlexLayout Wrap="Wrap" BindableLayout.ItemsSource="{Binding Services}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <profile1:ServiceContentView/>
+                                <profile1:ServiceContentView />
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
                     <Label Text="Подробнее об условиях бонусной программы" TextColor="#BB8D91"
-                           TextDecorations="Underline" Margin="0,40,0,10" >
+                           TextDecorations="Underline" Margin="0,40,0,10">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ShowBonusDetailsCommand}"/>
+                            <TapGestureRecognizer Command="{Binding ShowBonusDetailsCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                     <StackLayout BindableLayout.ItemsSource="{Binding Services}" IsVisible="{Binding IsShowedDetails}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <profile1:BonusDescriptionContentView/>
+                                <profile1:BonusDescriptionContentView />
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>
                     <Label Margin="0,35,0,0" Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
-                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
+                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <ImageButton Source="ic_vk_red_4x.png" WidthRequest="48" BackgroundColor="Transparent"
-                                     Padding="-5,10,10,15" 
+                                     Padding="-5,10,10,15"
                                      IsVisible="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
                                      IsEnabled="{Binding User.VkLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenVkCommand}"/>
+                                     Command="{Binding OpenVkCommand}" />
                         <ImageButton Source="ic_inst_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" 
+                                     Padding="10,10,10,15"
                                      IsVisible="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
                                      IsEnabled="{Binding User.InstagramLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenInstagramCommand}"/>
+                                     Command="{Binding OpenInstagramCommand}" />
                         <ImageButton Source="ic_face_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" 
+                                     Padding="10,10,10,15"
                                      IsVisible="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
                                      IsEnabled="{Binding User.FacebookLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenFacebookCommand}"/>
+                                     Command="{Binding OpenFacebookCommand}" />
                         <ImageButton Source="ic_odn_red_4x.png" WidthRequest="50" BackgroundColor="Transparent"
-                                     Padding="10,10,10,15" 
+                                     Padding="10,10,10,15"
                                      IsVisible="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
                                      IsEnabled="{Binding User.ClassmatesLink, Converter={StaticResource NullToBoolConverter}}"
-                                     Command="{Binding OpenClassmatesCommand}"/>
+                                     Command="{Binding OpenClassmatesCommand}" />
                     </StackLayout>
                 </StackLayout>
                 <Frame Margin="10,10" BackgroundColor="#FFFFFF" CornerRadius="10" Padding="10,25"
@@ -211,14 +211,15 @@
                                    FontFamily="Roboto"
                                    HorizontalOptions="Start" />
                         </Grid>
-                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem" ItemsSource="{Binding PortfolioImages}">
+                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem"
+                                        ItemsSource="{Binding PortfolioImages}">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
                                                  VerticalItemSpacing="5" />
                             </CollectionView.ItemsLayout>
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <profile1:PortfolioContentView/>
+                                    <profile1:PortfolioContentView />
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>

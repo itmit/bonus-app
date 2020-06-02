@@ -1,5 +1,4 @@
 ﻿using System;
-using bonus.app.Core.Pages.Businessman.Stocks;
 using bonus.app.Core.ViewModels.Customer.Stocks;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
@@ -36,11 +35,10 @@ namespace bonus.app.Core.Pages.Customer.Stocks
 			}
 		}
 
-		#endregion
-
 		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			((CollectionView) sender).SelectedItem = null;
 		}
+		#endregion
 	}
 }

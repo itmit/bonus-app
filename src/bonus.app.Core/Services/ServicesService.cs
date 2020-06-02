@@ -17,12 +17,14 @@ namespace bonus.app.Core.Services
 	{
 		#region Data
 		#region Consts
+		private const string BusinessmanServicesUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
+		private const string BusinessmanServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice/{0}";
 		private const string CreateServiceTypeUri = "http://bonus.itmit-studio.ru/api/service/storeServiceType";
 		private const string CreateServiceUri = "http://bonus.itmit-studio.ru/api/service/storeServiceItem";
-		private const string ServicesUri = "http://bonus.itmit-studio.ru/api/service";
-		private const string BusinessmanServiceUri = "http://bonus.itmit-studio.ru/api/businessmanservice/{0}";
-		private const string BusinessmanServicesUri = "http://bonus.itmit-studio.ru/api/businessmanservice";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/getAllServices";
+
+		private const string RemoveServiceTypeItemUri = "http://bonus.itmit-studio.ru/api/service/removeServiceItem";
+		private const string ServicesUri = "http://bonus.itmit-studio.ru/api/service";
 		#endregion
 
 		#region Fields
@@ -71,48 +73,6 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(CreateServiceUri,
-													  new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<ServiceTypeItem>>(json);
-
-				return data.Data;
-			}
-		}
-
-		private const string RemoveServiceTypeItemUri = "http://bonus.itmit-studio.ru/api/service/removeServiceItem";
-
-		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(RemoveServiceTypeItemUri,
-													  new StringContent($"{{\"uuid\":\"{uuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-#if DEBUG
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-#endif
-				return response.IsSuccessStatusCode;
-			}
-		}
-
 		public async Task<ServiceType> CreateServiceType(string name)
 		{
 			using (var client = new HttpClient())
@@ -134,6 +94,28 @@ namespace bonus.app.Core.Services
 			}
 		}
 
+		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(CreateServiceUri,
+													  new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<ServiceTypeItem>>(json);
+
+				return data.Data;
+			}
+		}
+
 		public async Task<List<Service>> GetAllServices()
 		{
 			var services = await GetAsync<List<Service>>(GetAllUri);
@@ -146,8 +128,14 @@ namespace bonus.app.Core.Services
 			{
 				service.Client.PhotoSource = Domain + service.Client.PhotoSource;
 			}
+
 			return services;
 		}
+
+		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(BusinessmanServicesUri);
+
+		public async Task<IEnumerable<Service>> GetBusinessmenService(Guid businessmenUuid) =>
+			await GetAsync<IEnumerable<Service>>(string.Format(BusinessmanServiceUri, businessmenUuid));
 
 		public async Task<IEnumerable<ServiceType>> GetMyServices()
 		{
@@ -158,6 +146,22 @@ namespace bonus.app.Core.Services
 			}
 
 			return _mapper.Map<ServiceType[]>(dtos);
+		}
+
+		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(RemoveServiceTypeItemUri, new StringContent($"{{\"uuid\":\"{uuid}\"}}", Encoding.UTF8, ApplicationJson));
+
+#if DEBUG
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+#endif
+				return response.IsSuccessStatusCode;
+			}
 		}
 
 		public async Task<bool> UpdateService(CreateServiceDto service, Guid uuid)
@@ -171,14 +175,10 @@ namespace bonus.app.Core.Services
 #if DEBUG
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
-#endif       
+#endif
 				return response.IsSuccessStatusCode;
 			}
 		}
-
-		public async Task<IEnumerable<Service>> GetBusinessmenService() => await GetAsync<IEnumerable<Service>>(BusinessmanServicesUri);
-
-		public async Task<IEnumerable<Service>> GetBusinessmenService(Guid businessmenUuid) => await GetAsync<IEnumerable<Service>>(string.Format(BusinessmanServiceUri, businessmenUuid));
 		#endregion
 	}
 }

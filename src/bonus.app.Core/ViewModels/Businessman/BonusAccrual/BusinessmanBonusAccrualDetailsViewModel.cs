@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
-using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -36,14 +35,14 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		private readonly ICustomerService _customerService;
 		private Guid _guid;
 		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openClientProfileCommand;
+		private readonly IProfileService _profileService;
 		private Service _selectedService;
 		private double _servicePrice;
 		private string _servicePriceString;
 		private MvxObservableCollection<Service> _services;
 		private readonly IServicesService _servicesServices;
 		private User _user;
-		private MvxCommand _openClientProfileCommand;
-		private IProfileService _profileService;
 		#endregion
 		#endregion
 
@@ -69,18 +68,6 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			{
 				_accrueAndWriteOffBonusesCommand = _accrueAndWriteOffBonusesCommand ?? new MvxCommand(AccrueAndWriteOffBonusesCommandExecute);
 				return _accrueAndWriteOffBonusesCommand;
-			}
-		}
-
-		public MvxCommand OpenClientProfileCommand
-		{
-			get
-			{
-				_openClientProfileCommand = _openClientProfileCommand ?? new MvxCommand(async () =>
-				{
-					await _navigationService.Navigate<ClientProfileViewModel, User>(await _profileService.GetUser(_guid));
-				});
-				return _openClientProfileCommand;
 			}
 		}
 
@@ -343,6 +330,19 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			}
 		}
 
+		public MvxCommand OpenClientProfileCommand
+		{
+			get
+			{
+				_openClientProfileCommand = _openClientProfileCommand ??
+											new MvxCommand(async () =>
+											{
+												await _navigationService.Navigate<ClientProfileViewModel, User>(await _profileService.GetUser(_guid));
+											});
+				return _openClientProfileCommand;
+			}
+		}
+
 		public Service SelectedService
 		{
 			get => _selectedService;
@@ -440,6 +440,29 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		#endregion
 
 		#region Public
+		public void UpdateAccrueBonuses(Service selectedService)
+		{
+			if (selectedService == null)
+			{
+				AccrueBonuses = 0;
+				return;
+			}
+
+			switch (selectedService.AccrualMethod)
+			{
+				case BonusValueType.Percent:
+					var maxBonuses = Math.Round(BonusesForAccrual / 100 * BonusPercentage, 2);
+					AccrueBonuses = BonusesForAccrual > maxBonuses ? maxBonuses : BonusesForAccrual;
+					break;
+				case BonusValueType.Points:
+					AccrueBonuses = BonusesForAccrual > BonusAmount ? BonusAmount : BonusesForAccrual;
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(selectedService.AccrualMethod),
+														  "Метод начисления/списания бонусов должен быть либо в процентном соотношении, либо в абсолютном.");
+			}
+		}
+
 		public void UpdateBonuses(Service selectedService, double price)
 		{
 			var whiteOffPercentage = BonusWhiteOffPercentage;
@@ -492,28 +515,6 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 
 			UpdateAccrueBonuses(selectedService);
 		}
-
-		public void UpdateAccrueBonuses(Service selectedService)
-		{
-			if (selectedService == null)
-			{
-				AccrueBonuses = 0;
-				return;
-			}
-			switch (selectedService.AccrualMethod)
-			{
-				case BonusValueType.Percent:
-					var maxBonuses = Math.Round(BonusesForAccrual / 100 * BonusPercentage, 2);
-					AccrueBonuses = BonusesForAccrual > maxBonuses ? maxBonuses : BonusesForAccrual;
-					break;
-				case BonusValueType.Points:
-					AccrueBonuses = BonusesForAccrual > BonusAmount ? BonusAmount : BonusesForAccrual;
-					break;
-				default:
-					throw new ArgumentOutOfRangeException(nameof(selectedService.AccrualMethod),
-														  "Метод начисления/списания бонусов должен быть либо в процентном соотношении, либо в абсолютном.");
-			}
-		}
 		#endregion
 
 		#region Overrided
@@ -538,6 +539,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 			{
 				parameter.PhotoSource = "about:blank";
 			}
+
 			_guid = parameter.Uuid;
 		}
 		#endregion

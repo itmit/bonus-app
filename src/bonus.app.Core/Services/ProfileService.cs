@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -21,8 +20,11 @@ namespace bonus.app.Core.Services
 		#region Data
 		#region Consts
 		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
-		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
+
+		private const string GetPortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
 		private const string GetUserUri = "http://bonus.itmit-studio.ru/api/client/{0}";
+		private const string PortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio/{0}";
+		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 		#endregion
 
 		#region Fields
@@ -33,7 +35,7 @@ namespace bonus.app.Core.Services
 
 		#region .ctor
 		public ProfileService(IAuthService authService, IUserRepository userRepository)
-		:base(authService)
+			: base(authService)
 		{
 			_userRepository = userRepository;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
@@ -44,7 +46,7 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
 				cfg.CreateMap<UserInfoDto, User>()
-				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => string.IsNullOrWhiteSpace(q.Photo) ? null : BaseService.Domain + q.Photo))
+				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => string.IsNullOrWhiteSpace(q.Photo) ? null : Domain + q.Photo))
 				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday ?? DateTime.MinValue));
 				cfg.CreateMap<UserData, User>()
 				   .ForMember(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
@@ -54,6 +56,40 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region IProfileService members
+		public async Task<PortfolioImage> AddImageToPortfolio(string imageSource)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				var response = await client.PostAsync(GetPortfolioUri,
+													  new MultipartFormDataContent
+													  {
+														  {
+															  new ByteArrayContent(File.ReadAllBytes(imageSource)), "\"photo\"",
+															  $"\"{imageSource.Substring(imageSource.LastIndexOf('/') + 1)}\""
+														  }
+													  });
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
+
+				if (data.Success)
+				{
+					return data.Data;
+				}
+
+				return null;
+			}
+		}
+
 		public async Task<User> Edit(EditBusinessmanDto arguments, string imagePath)
 		{
 			var content = new MultipartFormDataContent
@@ -101,22 +137,27 @@ namespace bonus.app.Core.Services
 				{
 					content.Add(new StringContent(arguments.VkLink), "vk");
 				}
+
 				if (!string.IsNullOrEmpty(arguments.InstagramLink))
 				{
 					content.Add(new StringContent(arguments.InstagramLink), "instagram");
 				}
+
 				if (!string.IsNullOrEmpty(arguments.FacebookLink))
 				{
 					content.Add(new StringContent(arguments.FacebookLink), "facebook");
 				}
+
 				if (!string.IsNullOrEmpty(arguments.Odnoklassniki))
 				{
 					content.Add(new StringContent(arguments.Odnoklassniki), "odnoklassniki");
 				}
+
 				if (!string.IsNullOrEmpty(arguments.Email))
 				{
 					content.Add(new StringContent(arguments.Email), "email");
 				}
+
 				if (!string.IsNullOrEmpty(arguments.Name))
 				{
 					content.Add(new StringContent(arguments.Name), "name");
@@ -221,39 +262,16 @@ namespace bonus.app.Core.Services
 			return null;
 		}
 
-		private const string GetPortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
-		private const string PortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio/{0}";
-
-		public async Task<PortfolioImage> AddImageToPortfolio(string imageSource)
+		public string Error
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(GetPortfolioUri, new MultipartFormDataContent
-				{
-					{
-						new ByteArrayContent(File.ReadAllBytes(imageSource)), "\"photo\"", $"\"{imageSource.Substring(imageSource.LastIndexOf('/') + 1)}\""
-					}
-				});
+			get;
+			private set;
+		}
 
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-				
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
-
-				if (data.Success)
-				{
-					return data.Data;
-				}
-
-				return null;
-			}
+		public Dictionary<string, string[]> ErrorDetails
+		{
+			get;
+			private set;
 		}
 
 		public Task<List<PortfolioImage>> GetPortfolio() => GetPortfolio(Guid.Empty);
@@ -333,6 +351,7 @@ namespace bonus.app.Core.Services
 
 					return _mapper.Map<User>(data.Data);
 				}
+
 				return null;
 			}
 		}
@@ -348,18 +367,6 @@ namespace bonus.app.Core.Services
 
 				return response.IsSuccessStatusCode;
 			}
-		}
-
-		public string Error
-		{
-			get;
-			private set;
-		}
-
-		public Dictionary<string, string[]> ErrorDetails
-		{
-			get;
-			private set;
 		}
 		#endregion
 

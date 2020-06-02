@@ -38,10 +38,8 @@ namespace bonus.app.Core.ViewModels
 			_geoHelperService = geoHelperService;
 			_authService = authService;
 		}
-		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService)
-		{
-			_geoHelperService = geoHelperService;
-		}
+
+		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService) => _geoHelperService = geoHelperService;
 		#endregion
 
 		#region Properties

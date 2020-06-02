@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using bonus.app.Core.ViewModels.Businessman.Statistics;
+﻿using bonus.app.Core.ViewModels.Businessman.Statistics;
 using Microcharts;
 using MvvmCross.Forms.Views;
 using SkiaSharp;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Entry = Microcharts.Entry;
 
 namespace bonus.app.Core.Pages.Businessman.Statistics
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GeographyDetailPage : MvxContentPage<GeographyDetailViewModel>
 	{
+		#region .ctor
 		public GeographyDetailPage()
 		{
 			InitializeComponent();
 		}
+		#endregion
 
+		#region Overrided
 		#region override
-		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		/// <summary>
+		/// When overridden, allows application developers to customize behavior immediately prior to the
+		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+		/// </summary>
 		/// <remarks>To be added.</remarks>
 		protected override void OnAppearing()
 		{
@@ -59,6 +58,7 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 
 			donut.Chart = donutView;
 		}
+		#endregion
 		#endregion
 	}
 }

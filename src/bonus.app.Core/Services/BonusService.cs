@@ -17,9 +17,14 @@ namespace bonus.app.Core.Services
 		private const string AccrueAndWriteOffBonusesUri = "http://bonus.itmit-studio.ru/api/service";
 		private const string GetMyBonusesUri = "http://bonus.itmit-studio.ru/api/getMyBonuses";
 		#endregion
-
 		#endregion
 
+		#region .ctor
+		public BonusService(IAuthService authService)
+			: base(authService)
+		{
+		}
+		#endregion
 
 		#region IBonusService members
 		public async Task<bool> AccrueAndWriteOffBonuses(AccrueAndWriteOffBonusesDto requestDto)
@@ -47,13 +52,9 @@ namespace bonus.app.Core.Services
 			{
 				return new List<AccrualBonuses>();
 			}
+
 			return services;
 		}
 		#endregion
-
-		public BonusService(IAuthService authService)
-			: base(authService)
-		{
-		}
 	}
 }

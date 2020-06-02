@@ -18,24 +18,25 @@
     </NavigationPage.TitleView>
 
     <views:MvxContentPage.ToolbarItems>
-        <ToolbarItem Text="Добавить свою услугу" Order="Secondary" Clicked="MenuItem_OnClicked" Priority="0"/>
-        <ToolbarItem Text="Редактировать список услуг" Order="Secondary" Command="{Binding OpenEditCommand}" Priority="1"/>
+        <ToolbarItem Text="Добавить свою услугу" Order="Secondary" Clicked="MenuItem_OnClicked" Priority="0" />
+        <ToolbarItem Text="Редактировать список услуг" Order="Secondary" Command="{Binding OpenEditCommand}"
+                     Priority="1" />
     </views:MvxContentPage.ToolbarItems>
 
     <views:MvxContentPage.Content>
         <!--Страница 4.2 Мои услуги(предпринимателя)-->
-        <RefreshView 
+        <RefreshView
             Command="{Binding RefreshCommand}"
             IsRefreshing="{Binding IsRefreshing}">
             <ScrollView x:Name="Scroll" Margin="0,0,0,5">
                 <StackLayout Margin="15,0" Spacing="0">
                     <Grid>
                         <StackLayout
-                        IsVisible="{Binding HasServices}"
-                        IsEnabled="{Binding HasServices}"
-                        BindableLayout.ItemsSource="{Binding MyServices}"
-                        VerticalOptions="FillAndExpand"
-                        HorizontalOptions="FillAndExpand">
+                            IsVisible="{Binding HasServices}"
+                            IsEnabled="{Binding HasServices}"
+                            BindableLayout.ItemsSource="{Binding MyServices}"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <services2:ServiceAccrualValueContentView />
@@ -44,17 +45,18 @@
                         </StackLayout>
 
                         <Label Text="Пока у вас нет услуг"
-                           Grid.Column="0"
-                           Grid.Row="0"
-                           IsVisible="{Binding HasServices, Converter={StaticResource InverseBoolConverter}}"
-                           IsEnabled="{Binding HasServices, Converter={StaticResource InverseBoolConverter}}"
-                           HorizontalTextAlignment="Start" Margin="5,20,5,15" />
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               IsVisible="{Binding HasServices, Converter={StaticResource InverseBoolConverter}}"
+                               IsEnabled="{Binding HasServices, Converter={StaticResource InverseBoolConverter}}"
+                               HorizontalTextAlignment="Start" Margin="5,20,5,15" />
                     </Grid>
 
                     <BoxView Margin="0,0,0,20" />
 
-                    <Label Text="Добавить услугу" x:Name="AddServiceLabel" Margin="0,0,0,35" FontSize="Body" HorizontalOptions="Center"
-                       FontFamily="{x:Static design:DesignClass.MontserratBold}" />
+                    <Label Text="Добавить услугу" x:Name="AddServiceLabel" Margin="0,0,0,35" FontSize="Body"
+                           HorizontalOptions="Center"
+                           FontFamily="{x:Static design:DesignClass.MontserratBold}" />
 
                     <services2:MyServicesContentView x:Name="MyServicesView" />
                     <contentViews:ServiceAccrualBonusesContentView />

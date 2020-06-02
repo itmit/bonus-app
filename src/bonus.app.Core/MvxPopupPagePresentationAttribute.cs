@@ -6,7 +6,5 @@ namespace bonus.app.Core
 	[AttributeUsage(AttributeTargets.Class)]
 	public class MvxPopupPagePresentationAttribute : MvxPagePresentationAttribute
 	{
-		#region .ctor
-		#endregion
 	}
 }

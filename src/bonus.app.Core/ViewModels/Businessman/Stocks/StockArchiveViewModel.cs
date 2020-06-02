@@ -17,27 +17,31 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 	{
 		#region Data
 		#region Fields
-		private readonly IStockService _stockService;
-		private MvxObservableCollection<Stock> _stocks;
-		private bool _isVisibleServices;
-		private MvxCommand _showOrHideTypesServicesCommand;
-		private int _shapeRotation;
-		private ServiceViewModel _selectedService;
-		private MvxObservableCollection<ServiceTypeViewModel> _services;
-		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes;
-		private readonly Mapper _mapper;
-		private readonly IServicesService _servicesService;
-		private readonly IAuthService _authService;
 		private MvxCommand _applyFiltersCommand;
+		private readonly IAuthService _authService;
 		private bool _isMyStocks;
-		private Stock _selectedItem;
+		private bool _isVisibleServices;
+		private readonly Mapper _mapper;
+		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes;
 		private readonly IMvxNavigationService _navigationService;
+		private Stock _selectedItem;
+		private ServiceViewModel _selectedService;
 		private Stock _selectedStock;
+		private MvxObservableCollection<ServiceTypeViewModel> _services;
+		private readonly IServicesService _servicesService;
+		private int _shapeRotation;
+		private MvxCommand _showOrHideTypesServicesCommand;
+		private MvxObservableCollection<Stock> _stocks;
+		private readonly IStockService _stockService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public StockArchiveViewModel(IStockService stockService, IGeoHelperService geoHelperService, IAuthService authService, IServicesService servicesService, IMvxNavigationService navigationService)
+		public StockArchiveViewModel(IStockService stockService,
+									 IGeoHelperService geoHelperService,
+									 IAuthService authService,
+									 IServicesService servicesService,
+									 IMvxNavigationService navigationService)
 		{
 			_navigationService = navigationService;
 			_authService = authService;
@@ -55,6 +59,55 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		}
 		#endregion
 
+		#region Properties
+		public PicCountryAndCityViewModel PicCountryAndCityViewModel
+		{
+			get;
+		}
+
+		public MvxCommand ApplyFiltersCommand
+		{
+			get
+			{
+				_applyFiltersCommand = _applyFiltersCommand ??
+									   new MvxCommand(async () =>
+									   {
+										   try
+										   {
+											   Stocks = IsMyStocks
+															? new MvxObservableCollection<Stock>(
+																await _stockService.GetMyStock(SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
+															: new MvxObservableCollection<Stock>(
+																await _stockService.GetArchiveStock(SelectedService.Uuid,
+																									PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru));
+										   }
+										   catch (Exception e)
+										   {
+											   Console.WriteLine(e);
+										   }
+									   });
+				return _applyFiltersCommand;
+			}
+		}
+
+		public bool IsVisibleServices
+		{
+			get => _isVisibleServices;
+			set => SetProperty(ref _isVisibleServices, value);
+		}
+
+		public MvxObservableCollection<CreatedServiceViewModel> MyServiceTypes
+		{
+			get => _myServiceTypes;
+			set => SetProperty(ref _myServiceTypes, value);
+		}
+
+		public Stock SelectedItem
+		{
+			get => _selectedItem;
+			set => SetProperty(ref _selectedItem, value);
+		}
+
 		public Stock SelectedStock
 		{
 			get => _selectedStock;
@@ -69,6 +122,64 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				_navigationService.Navigate<BusinessmanStocksDetailViewModel, Stock>(value);
 			}
 		}
+
+		public MvxObservableCollection<ServiceTypeViewModel> Services
+		{
+			get => _services;
+			private set => SetProperty(ref _services, value);
+		}
+
+		public int ShapeRotation
+		{
+			get => _shapeRotation;
+			set => SetProperty(ref _shapeRotation, value);
+		}
+
+		public MvxCommand ShowOrHideTypesServicesCommand
+		{
+			get
+			{
+				_showOrHideTypesServicesCommand = _showOrHideTypesServicesCommand ??
+												  new MvxCommand(() =>
+												  {
+													  IsVisibleServices = !IsVisibleServices;
+													  ShapeRotation = IsVisibleServices ? 180 : 0;
+												  });
+				return _showOrHideTypesServicesCommand;
+			}
+		}
+
+		public MvxObservableCollection<Stock> Stocks
+		{
+			get => _stocks;
+			set => SetProperty(ref _stocks, value);
+		}
+		#endregion
+
+		#region IFilterViewModel members
+		public bool IsMyStocks
+		{
+			get => _isMyStocks;
+			set => SetProperty(ref _isMyStocks, value);
+		}
+		#endregion
+
+		#region IServiceParentViewModel members
+		public ServiceViewModel SelectedService
+		{
+			get => _selectedService;
+			set
+			{
+				if (_selectedService != null)
+				{
+					_selectedService.Color = Color.Transparent;
+				}
+
+				value.Color = Color.FromHex("#BB8D91");
+				SetProperty(ref _selectedService, value);
+			}
+		}
+		#endregion
 
 		#region Overrided
 		public override async Task Initialize()
@@ -96,104 +207,5 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 		#endregion
-
-		public Stock SelectedItem
-		{
-			get => _selectedItem;
-			set => SetProperty(ref _selectedItem, value);
-		}
-
-		public bool IsMyStocks
-		{
-			get => _isMyStocks;
-			set => SetProperty(ref _isMyStocks, value);
-		}
-
-		public MvxCommand ApplyFiltersCommand
-		{
-			get
-			{
-				_applyFiltersCommand = _applyFiltersCommand ?? new MvxCommand(async () =>
-				{
-					try
-					{
-						Stocks = IsMyStocks ? new MvxObservableCollection<Stock>(await _stockService.GetMyStock(SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru)) 
-									 : new MvxObservableCollection<Stock>(await _stockService.GetArchiveStock(SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru));
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e);
-					}
-				});
-				return _applyFiltersCommand;
-			}
-		}
-
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-
-				value.Color = Color.FromHex("#BB8D91");
-				SetProperty(ref _selectedService, value);
-			}
-		}
-
-		public int ShapeRotation
-		{
-			get => _shapeRotation;
-			set => SetProperty(ref _shapeRotation, value);
-		}
-
-		public MvxCommand ShowOrHideTypesServicesCommand
-		{
-			get
-			{
-				_showOrHideTypesServicesCommand = _showOrHideTypesServicesCommand ??
-												  new MvxCommand(() =>
-												  {
-													  IsVisibleServices = !IsVisibleServices;
-													  ShapeRotation = IsVisibleServices ? 180 : 0;
-												  });
-				return _showOrHideTypesServicesCommand;
-			}
-		}
-
-
-		public MvxObservableCollection<CreatedServiceViewModel> MyServiceTypes
-		{
-			get => _myServiceTypes;
-			set => SetProperty(ref _myServiceTypes, value);
-		}
-
-
-		public MvxObservableCollection<ServiceTypeViewModel> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
-
-
-		public PicCountryAndCityViewModel PicCountryAndCityViewModel
-		{
-			get;
-		}
-
-		public bool IsVisibleServices
-		{
-			get => _isVisibleServices;
-			set => SetProperty(ref _isVisibleServices, value);
-		}
-
-		public MvxObservableCollection<Stock> Stocks
-		{
-			get => _stocks;
-			set => SetProperty(ref _stocks, value);
-		}
 	}
 }

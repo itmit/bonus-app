@@ -22,8 +22,8 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 		{
 			if (sender is Label)
 			{
-				((Label)sender).BackgroundColor = Color.FromHex("#BB8D91");
-				((Label)sender).BackgroundColor = await GetColor();
+				((Label) sender).BackgroundColor = Color.FromHex("#BB8D91");
+				((Label) sender).BackgroundColor = await GetColor();
 			}
 		}
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using bonus.app.Core.Models;
-using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
@@ -46,6 +44,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set;
 		}
 
+		public ServiceTypeItem ServiceTypeItem
+		{
+			get;
+			set;
+		}
+
 		public ICreateServiceViewModel ViewModel
 		{
 			get;
@@ -56,53 +60,62 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			get
 			{
-				_createServiceCommand = _createServiceCommand ??
-										new Command<bool>(Execute);
+				_createServiceCommand = _createServiceCommand ?? new Command<bool>(Execute);
 				return _createServiceCommand;
 			}
+		}
+
+		public ValidatableObject<string> Name
+		{
+			get => _name;
+			set => SetProperty(ref _name, value);
 		}
 
 		public MvxCommand RemoveServiceCommand
 		{
 			get
 			{
-				_removeServiceCommand = _removeServiceCommand ?? new MvxCommand(async () =>
-				{
-					if (IsBusy)
-					{
-						return;
-					}
-					if (!IsCreated)
-					{
-						Device.BeginInvokeOnMainThread(() =>
-						{
-							Application.Current.MainPage.DisplayAlert("Внимание", $"Услуга {Name.Value} не создана.", "Ок");
-						});
-					}
+				_removeServiceCommand = _removeServiceCommand ??
+										new MvxCommand(async () =>
+										{
+											if (IsBusy)
+											{
+												return;
+											}
 
-					try
-					{
-						if (await ViewModel.RemoveServiceTypeItem(ServiceTypeItem.Uuid))
-						{
-							IsBusy = false;
-						}
-						else
-						{
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								Application.Current.MainPage.DisplayAlert("Внимание", "Не удалось удалить услугу.", "Ок");
-							});
-						}
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e);
-					}
-				});
+											if (!IsCreated)
+											{
+												Device.BeginInvokeOnMainThread(() =>
+												{
+													Application.Current.MainPage.DisplayAlert("Внимание", $"Услуга {Name.Value} не создана.", "Ок");
+												});
+											}
+
+											try
+											{
+												if (await ViewModel.RemoveServiceTypeItem(ServiceTypeItem.Uuid))
+												{
+													IsBusy = false;
+												}
+												else
+												{
+													Device.BeginInvokeOnMainThread(() =>
+													{
+														Application.Current.MainPage.DisplayAlert("Внимание", "Не удалось удалить услугу.", "Ок");
+													});
+												}
+											}
+											catch (Exception e)
+											{
+												Console.WriteLine(e);
+											}
+										});
 				return _removeServiceCommand;
 			}
 		}
+		#endregion
 
+		#region Private
 		private async void Execute(bool isFocused)
 		{
 			if (!isFocused)
@@ -145,18 +158,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 				IsBusy = false;
 			}
-		}
-
-		public ServiceTypeItem ServiceTypeItem
-		{
-			get;
-			set;
-		}
-
-		public ValidatableObject<string> Name
-		{
-			get => _name;
-			set => SetProperty(ref _name, value);
 		}
 		#endregion
 	}

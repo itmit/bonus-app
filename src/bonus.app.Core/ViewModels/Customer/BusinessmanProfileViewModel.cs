@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Resources;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
-using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Essentials;
@@ -19,35 +15,117 @@ namespace bonus.app.Core.ViewModels.Customer
 	{
 		#region Data
 		#region Fields
-		private MvxObservableCollection<Service> _services;
-		private User _user;
-		private MvxObservableCollection<PortfolioImage> _portfolioImages;
-		private MvxCommand _openVkCommand;
+		private Guid _guid;
+		private bool _isShowedDetails;
+		private bool _isSubscribe;
+		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openChatCommand;
 		private MvxCommand _openClassmatesCommand;
 		private MvxCommand _openFacebookCommand;
 		private MvxCommand _openInstagramCommand;
-		private MvxCommand _showBonusDetailsCommand;
-		private bool _isShowedDetails;
-		private readonly IMvxNavigationService _navigationService;
-		private Guid _guid;
-		private readonly IProfileService _profileService;
+		private MvxCommand _openVkCommand;
 		private string _photoSource;
-		private MvxCommand _openChatCommand;
-		private ISubscribeService _subscribeService;
-		private bool _isSubscribe;
+		private MvxObservableCollection<PortfolioImage> _portfolioImages;
+		private readonly IProfileService _profileService;
+		private MvxObservableCollection<Service> _services;
+		private readonly IServicesService _servicesService;
+		private MvxCommand _showBonusDetailsCommand;
 		private MvxCommand _subscribeCommand;
+		private readonly ISubscribeService _subscribeService;
 		private MvxCommand _unsubscribeCommand;
-		private IServicesService _servicesService;
+		private User _user;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public BusinessmanProfileViewModel(IMvxNavigationService navigationService, IProfileService profileService, ISubscribeService subscribeService, IServicesService servicesService)
+		public BusinessmanProfileViewModel(IMvxNavigationService navigationService,
+										   IProfileService profileService,
+										   ISubscribeService subscribeService,
+										   IServicesService servicesService)
 		{
 			_navigationService = navigationService;
 			_profileService = profileService;
 			_subscribeService = subscribeService;
 			_servicesService = servicesService;
+		}
+		#endregion
+
+		#region Properties
+		public bool IsShowedDetails
+		{
+			get => _isShowedDetails;
+			set => SetProperty(ref _isShowedDetails, value);
+		}
+
+		public bool IsSubscribe
+		{
+			get => _isSubscribe;
+			private set => SetProperty(ref _isSubscribe, value);
+		}
+
+		public MvxCommand OpenChatCommand
+		{
+			get
+			{
+				_openChatCommand = _openChatCommand ??
+								   new MvxCommand(() =>
+								   {
+									   _navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(User, null));
+								   });
+				return _openChatCommand;
+			}
+		}
+
+		public MvxCommand OpenClassmatesCommand
+		{
+			get
+			{
+				_openClassmatesCommand = _openClassmatesCommand ??
+										 new MvxCommand(async () =>
+										 {
+											 await OpenBrowser(User.ClassmatesLink);
+										 });
+				return _openClassmatesCommand;
+			}
+		}
+
+		public MvxCommand OpenFacebookCommand
+		{
+			get
+			{
+				_openFacebookCommand = _openFacebookCommand ??
+									   new MvxCommand(async () =>
+									   {
+										   await OpenBrowser(User.FacebookLink);
+									   });
+				return _openFacebookCommand;
+			}
+		}
+
+		public MvxCommand OpenInstagramCommand
+		{
+			get
+			{
+				_openInstagramCommand = _openInstagramCommand ??
+										new MvxCommand(async () =>
+										{
+											await OpenBrowser(User.InstagramLink);
+										});
+				return _openInstagramCommand;
+			}
+		}
+
+		public MvxCommand OpenVkCommand
+		{
+			get
+			{
+				_openVkCommand = _openVkCommand ??
+								 new MvxCommand(async () =>
+								 {
+									 await OpenBrowser(User.VkLink);
+								 });
+				return _openVkCommand;
+			}
 		}
 
 		public string PhotoSource
@@ -55,24 +133,11 @@ namespace bonus.app.Core.ViewModels.Customer
 			get => _photoSource;
 			private set => SetProperty(ref _photoSource, value);
 		}
-		#endregion
 
-		#region Properties
 		public MvxObservableCollection<PortfolioImage> PortfolioImages
 		{
 			get => _portfolioImages;
 			private set => SetProperty(ref _portfolioImages, value);
-		}
-		public MvxCommand OpenChatCommand
-		{
-			get
-			{
-				_openChatCommand = _openChatCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(User, null));
-				});
-				return _openChatCommand;
-			}
 		}
 
 		public MvxObservableCollection<Service> Services
@@ -81,92 +146,53 @@ namespace bonus.app.Core.ViewModels.Customer
 			private set => SetProperty(ref _services, value);
 		}
 
+		public MvxCommand ShowBonusDetailsCommand
+		{
+			get
+			{
+				_showBonusDetailsCommand = _showBonusDetailsCommand ??
+										   new MvxCommand(() =>
+										   {
+											   IsShowedDetails = !IsShowedDetails;
+										   });
+				return _showBonusDetailsCommand;
+			}
+		}
+
+		public MvxCommand SubscribeCommand
+		{
+			get
+			{
+				_subscribeCommand = _subscribeCommand ??
+									new MvxCommand(async () =>
+									{
+										IsSubscribe = await _subscribeService.SubscribeToBusinessman(_guid);
+									});
+				return _subscribeCommand;
+			}
+		}
+
+		public MvxCommand UnsubscribeCommand
+		{
+			get
+			{
+				_unsubscribeCommand = _unsubscribeCommand ??
+									  new MvxCommand(async () =>
+									  {
+										  IsSubscribe = !await _subscribeService.UnsubscribeToBusinessman(_guid);
+									  });
+				return _unsubscribeCommand;
+			}
+		}
+
 		public User User
 		{
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
-
-		public MvxCommand OpenVkCommand
-		{
-			get
-			{
-				_openVkCommand = _openVkCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.VkLink);
-				});
-				return _openVkCommand;
-			}
-		}
-
-		public MvxCommand OpenInstagramCommand
-		{
-			get
-			{
-				_openInstagramCommand = _openInstagramCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.InstagramLink);
-				});
-				return _openInstagramCommand;
-			}
-		}
-
-		public MvxCommand ShowBonusDetailsCommand
-		{
-			get
-			{
-				_showBonusDetailsCommand = _showBonusDetailsCommand ?? new MvxCommand(() =>
-				{
-					IsShowedDetails = !IsShowedDetails;
-				});
-				return _showBonusDetailsCommand;
-			}
-		}
-
-		public bool IsShowedDetails
-		{
-			get => _isShowedDetails;
-			set => SetProperty(ref _isShowedDetails, value);
-		}
-
-		public MvxCommand OpenFacebookCommand
-		{
-			get
-			{
-				_openFacebookCommand = _openFacebookCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.FacebookLink);
-				});
-				return _openFacebookCommand;
-			}
-		}
-		public MvxCommand OpenClassmatesCommand
-		{
-			get
-			{
-				_openClassmatesCommand = _openClassmatesCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.ClassmatesLink);
-				});
-				return _openClassmatesCommand;
-			}
-		}
-
-		private async Task OpenBrowser(string link)
-		{
-			if (Uri.TryCreate(link, UriKind.Absolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
-			{
-				await Browser.OpenAsync(uriResult, BrowserLaunchMode.SystemPreferred);
-			}
-		}
 		#endregion
 
 		#region Overrided
-		public override void Prepare(Guid parameter)
-		{
-			_guid = parameter;
-		}
-
 		public override async Task Initialize()
 		{
 			await base.Initialize();
@@ -185,34 +211,19 @@ namespace bonus.app.Core.ViewModels.Customer
 			}
 		}
 
-		public MvxCommand SubscribeCommand
+		public override void Prepare(Guid parameter)
 		{
-			get
-			{
-				_subscribeCommand = _subscribeCommand ?? new MvxCommand(async () =>
-				{
-					IsSubscribe = await _subscribeService.SubscribeToBusinessman(_guid);
-				});
-				return _subscribeCommand;
-			}
+			_guid = parameter;
 		}
+		#endregion
 
-		public MvxCommand UnsubscribeCommand
+		#region Private
+		private async Task OpenBrowser(string link)
 		{
-			get
+			if (Uri.TryCreate(link, UriKind.Absolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
 			{
-				_unsubscribeCommand = _unsubscribeCommand ?? new MvxCommand(async () =>
-				{
-					IsSubscribe = !await _subscribeService.UnsubscribeToBusinessman(_guid);
-				});
-				return _unsubscribeCommand;
+				await Browser.OpenAsync(uriResult, BrowserLaunchMode.SystemPreferred);
 			}
-		}
-
-		public bool IsSubscribe
-		{
-			get => _isSubscribe;
-			private set => SetProperty(ref _isSubscribe, value);
 		}
 		#endregion
 	}

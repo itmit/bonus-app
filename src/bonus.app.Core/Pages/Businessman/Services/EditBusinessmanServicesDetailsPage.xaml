@@ -30,7 +30,7 @@
                         <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}" />
                     </Grid>
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UpdateCommand}"/>
+                        <TapGestureRecognizer Command="{Binding UpdateCommand}" />
                     </Frame.GestureRecognizers>
                 </design:CustomButton>
             </StackLayout>

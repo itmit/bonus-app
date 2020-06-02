@@ -41,7 +41,7 @@
                     <contentViews:PicCountryAndCityContentView.Footer>
                         <StackLayout x:Name="Content">
 
-                            <services1:MyServicesContentView Margin="0,20,0,0" x:Name="MyServicesContentView"/>
+                            <services1:MyServicesContentView Margin="0,20,0,0" x:Name="MyServicesContentView" />
 
                             <ui:MaterialTextField Text="{Binding Name.Value}"
                                                   Placeholder="Название акции"
@@ -68,10 +68,10 @@
                             </StackLayout>
                             <BoxView />
                             <Label Text="{Binding ShareTime.Errors, Converter={StaticResource FirstElementConverter}}"
-                                   IsVisible="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}" 
+                                   IsVisible="{Binding ShareTime.IsValid, Converter={StaticResource InverseBoolConverter}}"
                                    Margin="0,0,0,20"
-                                   TextColor="DarkRed"/>
-                            
+                                   TextColor="DarkRed" />
+
                             <StackLayout Orientation="Horizontal" Margin="10,0,5,0">
                                 <Label Text="Только для подписчиков, до" VerticalOptions="Center" />
                                 <Switch HorizontalOptions="EndAndExpand"
@@ -88,7 +88,7 @@
                                                FontSize="Body"
                                                PressedBackgroundColor="#a0968e"
                                                FontFamily="{x:Static design:DesignClass.MontserratRegular}"
-                                               Command="{Binding ShowShareCommand}"/>
+                                               Command="{Binding ShowShareCommand}" />
                             <design:CustomButton Style="{StaticResource AppButtonGradient}">
                                 <Grid>
                                     <graphic:RectangleInProfile />

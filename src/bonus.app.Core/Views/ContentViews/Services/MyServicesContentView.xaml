@@ -18,7 +18,7 @@
                     <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
                 </StackLayout.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
-                    <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14"/>
+                    <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14" />
                     <Image Source="Shape.png"
                            WidthRequest="15"
                            VerticalOptions="Center"
@@ -55,7 +55,8 @@
                     <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
                 </StackLayout.GestureRecognizers>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,15,15">
-                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoBold}" FontSize="14"/>
+                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoBold}"
+                           FontSize="14" />
                     <Image Source="ic_plus_add_4x.png"
                            WidthRequest="24"
                            VerticalOptions="Center"

@@ -31,7 +31,19 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		}
 
+		public string Car
+		{
+			get;
+			set;
+		}
+
 		public string City
+		{
+			get;
+			set;
+		}
+
+		public string ClassmatesLink
 		{
 			get;
 			set;
@@ -61,6 +73,12 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		}
 
+		public string FacebookLink
+		{
+			get;
+			set;
+		}
+
 		[PrimaryKey]
 		public string Guid
 		{
@@ -68,6 +86,12 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		} = System.Guid.NewGuid()
 				  .ToString();
+
+		public string InstagramLink
+		{
+			get;
+			set;
+		}
 
 		public string Login
 		{
@@ -99,25 +123,7 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		}
 
-		public string Car
-		{
-			get;
-			set;
-		}
-
 		public string Role
-		{
-			get;
-			set;
-		}
-
-		public string WorkTime
-		{
-			get;
-			set;
-		}
-
-		public string InstagramLink
 		{
 			get;
 			set;
@@ -129,13 +135,7 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		}
 
-		public string ClassmatesLink
-		{
-			get;
-			set;
-		}
-
-		public string FacebookLink
+		public string WorkTime
 		{
 			get;
 			set;

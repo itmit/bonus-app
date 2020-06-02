@@ -41,6 +41,38 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			set;
 		}
 
+		[JsonProperty("email")]
+		public string Email
+		{
+			get;
+			set;
+		}
+
+		public string FacebookLink
+		{
+			get;
+			set;
+		}
+
+		public string InstagramLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("name")]
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		public string Odnoklassniki
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("password")]
 		public string Password
 		{
@@ -62,46 +94,14 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			set;
 		}
 
-		[JsonProperty("worktime")]
-		public string WorkTime
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("email")]
-		public string Email
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("name")]
-		public string Name
-		{
-			get;
-			set;
-		}
-
-		public string InstagramLink
-		{
-			get;
-			set;
-		}
-
 		public string VkLink
 		{
 			get;
 			set;
 		}
 
-		public string Odnoklassniki
-		{
-			get;
-			set;
-		}
-
-		public string FacebookLink
+		[JsonProperty("worktime")]
+		public string WorkTime
 		{
 			get;
 			set;

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using MvvmCross.Binding.Extensions;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.Converters
@@ -16,8 +14,8 @@ namespace bonus.app.Core.Converters
 			if (value is IEnumerable values)
 			{
 				var array = values as object[] ??
-								 values.Cast<object>()
-									   .ToArray();
+							values.Cast<object>()
+								  .ToArray();
 				return array.Any() ? array.ElementAt(0) : null;
 			}
 

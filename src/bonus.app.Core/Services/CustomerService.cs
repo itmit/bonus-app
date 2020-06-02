@@ -38,7 +38,7 @@ namespace bonus.app.Core.Services
 				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
 				cfg.CreateMap<UserData, User>()
 				   .ForPath(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
-				   .ForPath(m => m.PhotoSource, o => o.MapFrom(q => BaseService.Domain + q.Photo))
+				   .ForPath(m => m.PhotoSource, o => o.MapFrom(q => Domain + q.Photo))
 				   .ForPath(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
 		}
@@ -75,7 +75,7 @@ namespace bonus.app.Core.Services
 					var user = _mapper.Map<User>(data.Data);
 					var userInfo = _mapper.Map<User>(data.Data.Client);
 					userInfo.Balance = user.Balance / 100;
-					
+
 					return userInfo;
 				}
 
@@ -113,7 +113,7 @@ namespace bonus.app.Core.Services
 					var user = _mapper.Map<User>(data.Data);
 					var userInfo = _mapper.Map<User>(data.Data.Client);
 					userInfo.Balance = user.Balance / 100;
-					
+
 					return userInfo;
 				}
 

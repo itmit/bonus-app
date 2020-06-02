@@ -7,8 +7,10 @@ namespace bonus.app.Core.Services
 {
 	public interface INewsService
 	{
+		#region Overridable
 		Task<List<News>> GetNews();
 
 		Task<List<string>> GetNewsImagesSources(Guid uuid);
+		#endregion
 	}
 }

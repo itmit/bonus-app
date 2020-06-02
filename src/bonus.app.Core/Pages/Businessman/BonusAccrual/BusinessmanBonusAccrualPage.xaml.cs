@@ -17,6 +17,7 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 		}
 		#endregion
 
+		#region Overrided
 		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
 		/// <returns>To be added.</returns>
 		/// <remarks>To be added.</remarks>
@@ -25,5 +26,6 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 			Navigation.PopModalAsync();
 			return true;
 		}
+		#endregion
 	}
 }

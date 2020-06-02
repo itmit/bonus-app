@@ -13,14 +13,14 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 	{
 		#region Data
 		#region Fields
+		private bool _isFavoriteStocks;
 		private bool _isRefreshing;
+		private MvxCommand _openCreateShareArchivePageCommand;
+		private MvxCommand _openFavoriteStocksCommand;
 		private MvxCommand _refreshCommand;
 		private Stock _selectedStock;
 		private MvxObservableCollection<Stock> _stocks;
 		private readonly IStockService _stockService;
-		private bool _isFavoriteStocks;
-		private MvxCommand _openFavoriteStocksCommand;
-		private MvxCommand _openCreateShareArchivePageCommand;
 		#endregion
 		#endregion
 
@@ -50,15 +50,15 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 			}
 		}
 
-
 		public MvxCommand OpenFavoriteStocksCommand
 		{
 			get
 			{
-				_openFavoriteStocksCommand = _openFavoriteStocksCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<FavoriteStocksViewModel>();
-				});
+				_openFavoriteStocksCommand = _openFavoriteStocksCommand ??
+											 new MvxCommand(() =>
+											 {
+												 NavigationService.Navigate<FavoriteStocksViewModel>();
+											 });
 				return _openFavoriteStocksCommand;
 			}
 		}

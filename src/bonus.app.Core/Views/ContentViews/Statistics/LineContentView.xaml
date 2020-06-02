@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.Statistics.LineContentView">
-  <ContentView.Content>
-      <!--Горизонтальные линии-разделители графика-->
+    <ContentView.Content>
+        <!--Горизонтальные линии-разделители графика-->
         <Frame Padding="0"
                BorderColor="#cccccc"
                HeightRequest="251"
                CornerRadius="0"
                HasShadow="False">
             <Grid>
-                <BoxView TranslationY="50" VerticalOptions="Start"/>
-                <BoxView TranslationY="100" VerticalOptions="Start"/>
-                <BoxView TranslationY="150" VerticalOptions="Start"/>
-                <BoxView TranslationY="200" VerticalOptions="Start"/>
+                <BoxView TranslationY="50" VerticalOptions="Start" />
+                <BoxView TranslationY="100" VerticalOptions="Start" />
+                <BoxView TranslationY="150" VerticalOptions="Start" />
+                <BoxView TranslationY="200" VerticalOptions="Start" />
             </Grid>
         </Frame>
     </ContentView.Content>

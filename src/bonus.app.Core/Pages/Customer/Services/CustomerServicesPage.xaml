@@ -41,27 +41,28 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <!--Выбор стран-->
-                <contentViews:PicCountryAndCityContentView VerticalOptions="Fill" ViewModel="{Binding PicCountryAndCityViewModel}"/>
+                <contentViews:PicCountryAndCityContentView VerticalOptions="Fill"
+                                                           ViewModel="{Binding PicCountryAndCityViewModel}" />
 
                 <StackLayout Grid.Row="1" Margin="10,0,10,15" Spacing="0">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
                     </StackLayout.GestureRecognizers>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
-                        <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14"/>
+                        <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14" />
                         <Image Source="Shape.png"
-                           WidthRequest="15"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand"
-                           Rotation="{Binding ShapeRotation}" />
+                               WidthRequest="15"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               Rotation="{Binding ShapeRotation}" />
                     </StackLayout>
                     <BoxView />
                 </StackLayout>
 
                 <CollectionView Grid.Row="2" IsVisible="{Binding IsVisibleServices}"
-                                        IsEnabled="{Binding IsVisibleServices}"
-                                        HeightRequest="200"
-                                        ItemsSource="{Binding ServiceTypes}">
+                                IsEnabled="{Binding IsVisibleServices}"
+                                HeightRequest="200"
+                                ItemsSource="{Binding ServiceTypes}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <services1:ServiceTypeContentView />

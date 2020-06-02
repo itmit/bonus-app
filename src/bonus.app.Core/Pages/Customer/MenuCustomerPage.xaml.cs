@@ -1,5 +1,4 @@
 ﻿using System;
-using bonus.app.Core.Page;
 using bonus.app.Core.Pages.Chats;
 using bonus.app.Core.ViewModels.Customer;
 using MvvmCross.Forms.Presenters.Attributes;

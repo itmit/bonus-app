@@ -1,5 +1,4 @@
-﻿using bonus.app.Core.ViewModels;
-using bonus.app.Core.ViewModels.Chats;
+﻿using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

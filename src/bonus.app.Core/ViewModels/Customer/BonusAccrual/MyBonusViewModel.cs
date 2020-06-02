@@ -10,11 +10,15 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 {
 	public class MyBonusViewModel : MvxViewModel
 	{
+		#region Data
+		#region Fields
 		private readonly IBonusService _bonusService;
 		private MvxObservableCollection<AccrualBonuses> _myBonuses;
-		private double _sum;
-		private AccrualBonuses _selectedBusinessman;
 		private readonly IMvxNavigationService _navigationService;
+		private AccrualBonuses _selectedBusinessman;
+		private double _sum;
+		#endregion
+		#endregion
 
 		#region .ctor
 		public MyBonusViewModel(IBonusService bonusService, IMvxNavigationService navigationService)
@@ -23,6 +27,13 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 			_bonusService = bonusService;
 		}
 		#endregion
+
+		#region Properties
+		public MvxObservableCollection<AccrualBonuses> MyBonuses
+		{
+			get => _myBonuses;
+			private set => SetProperty(ref _myBonuses, value);
+		}
 
 		public AccrualBonuses SelectedBusinessman
 		{
@@ -33,12 +44,17 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 				{
 					return;
 				}
+
 				SetProperty(ref _selectedBusinessman, value);
 				_navigationService.Navigate<BusinessmanProfileViewModel, Guid>(value.Uuid);
 			}
 		}
 
-		public override async Task Initialize() 
+		public string Sum => _sum.ToString(CultureInfo.InvariantCulture);
+		#endregion
+
+		#region Overrided
+		public override async Task Initialize()
 		{
 			await base.Initialize();
 
@@ -54,18 +70,11 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 			_sum = 0;
 			foreach (var bonus in MyBonuses)
 			{
-				_sum += (double)bonus.AccrualValue / 100;
+				_sum += (double) bonus.AccrualValue / 100;
 			}
 
 			await RaisePropertyChanged(() => Sum);
 		}
-
-		public MvxObservableCollection<AccrualBonuses> MyBonuses
-		{
-			get => _myBonuses;
-			private set => SetProperty(ref _myBonuses, value);
-		}
-
-		public string Sum => _sum.ToString(CultureInfo.InvariantCulture);
+		#endregion
 	}
 }

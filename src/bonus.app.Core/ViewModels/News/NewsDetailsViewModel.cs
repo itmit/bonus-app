@@ -7,13 +7,23 @@ namespace bonus.app.Core.ViewModels.News
 {
 	public class NewsDetailsViewModel : MvxViewModel<Models.News>
 	{
+		#region Data
+		#region Fields
+		private MvxObservableCollection<string> _images;
 		private Models.News _news;
 		private readonly INewsService _newsService;
-		private MvxObservableCollection<string> _images;
+		#endregion
+		#endregion
 
-		public NewsDetailsViewModel(INewsService newsService)
+		#region .ctor
+		public NewsDetailsViewModel(INewsService newsService) => _newsService = newsService;
+		#endregion
+
+		#region Properties
+		public MvxObservableCollection<string> Images
 		{
-			_newsService = newsService;
+			get => _images;
+			private set => SetProperty(ref _images, value);
 		}
 
 		public Models.News News
@@ -21,8 +31,10 @@ namespace bonus.app.Core.ViewModels.News
 			get => _news;
 			private set => SetProperty(ref _news, value);
 		}
+		#endregion
 
-		public override async Task Initialize() 
+		#region Overrided
+		public override async Task Initialize()
 		{
 			await base.Initialize();
 			try
@@ -35,15 +47,10 @@ namespace bonus.app.Core.ViewModels.News
 			}
 		}
 
-		public MvxObservableCollection<string> Images
-		{
-			get => _images;
-			private set => SetProperty(ref _images, value);
-		}
-
 		public override void Prepare(Models.News parameter)
 		{
 			News = parameter;
 		}
+		#endregion
 	}
 }

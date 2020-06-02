@@ -53,7 +53,7 @@
                                 <transformations:CircleTransformation />
                             </forms:CachedImage.Transformations>
                             <forms:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenClientProfileCommand}"/>
+                                <TapGestureRecognizer Command="{Binding OpenClientProfileCommand}" />
                             </forms:CachedImage.GestureRecognizers>
                         </forms:CachedImage>
                         <StackLayout>
@@ -140,7 +140,7 @@
                     <Frame Style="{StaticResource Frame}" Margin="0,10">
                         <Entry Text="{Binding BonusesForWriteOffString}"
                                Placeholder="Сколько списать бонусов"
-                               Unfocused="VisualElement_OnUnfocused1" 
+                               Unfocused="VisualElement_OnUnfocused1"
                                Style="{StaticResource Entry}"
                                Visual="Material" />
                     </Frame>

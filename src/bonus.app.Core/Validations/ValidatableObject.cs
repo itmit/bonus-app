@@ -24,6 +24,11 @@ namespace bonus.app.Core.Validations
 		#endregion
 
 		#region Properties
+		public List<IValidationRule<T>> Validations
+		{
+			get;
+		}
+
 		public List<string> Errors
 		{
 			get => _errors;
@@ -32,11 +37,6 @@ namespace bonus.app.Core.Validations
 				_errors = value;
 				RaisePropertyChanged(() => Errors);
 			}
-		}
-
-		public List<IValidationRule<T>> Validations
-		{
-			get;
 		}
 
 		public T Value

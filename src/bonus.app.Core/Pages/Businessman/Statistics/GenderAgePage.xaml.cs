@@ -1,7 +1,5 @@
-﻿using System.Drawing;
-using bonus.app.Core.ViewModels.Businessman.Statistics;
+﻿using bonus.app.Core.ViewModels.Businessman.Statistics;
 using Microcharts;
-using Entry = Microcharts.Entry;
 using MvvmCross.Forms.Views;
 using SkiaSharp;
 using Xamarin.Forms.Xaml;
@@ -18,8 +16,12 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 		}
 		#endregion
 
+		#region Overrided
 		#region override
-		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		/// <summary>
+		/// When overridden, allows application developers to customize behavior immediately prior to the
+		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
+		/// </summary>
 		/// <remarks>To be added.</remarks>
 		protected override void OnAppearing()
 		{
@@ -151,6 +153,7 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 			ChartView5.Chart = chart5;
 			ChartView6.Chart = chart6;
 		}
+		#endregion
 		#endregion
 	}
 }

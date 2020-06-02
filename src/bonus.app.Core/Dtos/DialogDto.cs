@@ -1,24 +1,19 @@
 ﻿using System;
-using bonus.app.Core.Models;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Dtos
 {
 	public class DialogDto
 	{
+		#region Properties
+		[JsonProperty("created_at")]
+		public DateTime? CreatedAt
+		{
+			get;
+			set;
+		}
+
 		public int Id
-		{
-			get;
-			set;
-		}
-
-		public string UserName
-		{
-			get;
-			set;
-		}
-
-		public string UserPhoto
 		{
 			get;
 			set;
@@ -43,21 +38,8 @@ namespace bonus.app.Core.Dtos
 			set;
 		} = string.Empty;
 
-		[JsonProperty("created_at")]
-		public DateTime? CreatedAt
-		{
-			get;
-			set;
-		}
-
 		[JsonProperty("updated_at")]
 		public DateTime? UpdatedAt
-		{
-			get;
-			set;
-		}
-
-		public Guid UserUuid
 		{
 			get;
 			set;
@@ -68,5 +50,24 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+
+		public string UserName
+		{
+			get;
+			set;
+		}
+
+		public string UserPhoto
+		{
+			get;
+			set;
+		}
+
+		public Guid UserUuid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

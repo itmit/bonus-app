@@ -8,14 +8,30 @@ namespace bonus.app.Core.ViewModels.Businessman
 {
 	public class ClientProfileViewModel : MvxViewModel<User>
 	{
-		private User _user;
-		private MvxCommand _openChatCommand;
-
+		#region Data
+		#region Fields
 		private readonly IMvxNavigationService _navigationService;
+		private MvxCommand _openChatCommand;
+		private User _user;
+		#endregion
+		#endregion
 
-		public ClientProfileViewModel(IMvxNavigationService navigationService)
+		#region .ctor
+		public ClientProfileViewModel(IMvxNavigationService navigationService) => _navigationService = navigationService;
+		#endregion
+
+		#region Properties
+		public MvxCommand OpenChatCommand
 		{
-			_navigationService = navigationService;
+			get
+			{
+				_openChatCommand = _openChatCommand ??
+								   new MvxCommand(() =>
+								   {
+									   _navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(User, null));
+								   });
+				return _openChatCommand;
+			}
 		}
 
 		public User User
@@ -23,22 +39,13 @@ namespace bonus.app.Core.ViewModels.Businessman
 			get => _user;
 			private set => SetProperty(ref _user, value);
 		}
+		#endregion
 
-		public MvxCommand OpenChatCommand
-		{
-			get
-			{
-				_openChatCommand = _openChatCommand ?? new MvxCommand(() =>
-				{
-					_navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(User, null));
-				});
-				return _openChatCommand;
-			}
-		}
-
+		#region Overrided
 		public override void Prepare(User parameter)
 		{
 			User = parameter;
 		}
+		#endregion
 	}
 }

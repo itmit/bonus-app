@@ -12,7 +12,7 @@
              x:Class="bonus.app.Core.Views.ViewCells.FilterContentView">
     <ContentView.Content>
         <StackLayout>
-            <StackLayout MinimumHeightRequest="240" >
+            <StackLayout MinimumHeightRequest="240">
                 <StackLayout Spacing="0">
                     <Grid BackgroundColor="White" ColumnSpacing="0">
                         <!--Tab-->
@@ -22,13 +22,13 @@
                         </Grid.ColumnDefinitions>
 
                         <Frame HasShadow="False" Grid.Column="0" HorizontalOptions="Fill" Padding="0,15"
-                           VerticalOptions="Center" CornerRadius="0">
+                               VerticalOptions="Center" CornerRadius="0">
                             <StackLayout Spacing="0" VerticalOptions="Center">
                                 <Label x:Name="MyStockLabel" Text="Мои акции"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,15"
-                                   HorizontalOptions="Center" />
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,15"
+                                       HorizontalOptions="Center" />
                                 <BoxView x:Name="LeftBoxView" WidthRequest="2" BackgroundColor="Transparent"
-                                     HorizontalOptions="FillAndExpand" />
+                                         HorizontalOptions="FillAndExpand" />
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
@@ -36,13 +36,13 @@
                         </Frame>
 
                         <Frame HasShadow="False" Grid.Column="1" HorizontalOptions="Fill" Padding="0,15"
-                           VerticalOptions="Center" CornerRadius="0">
+                               VerticalOptions="Center" CornerRadius="0">
                             <StackLayout Spacing="0">
                                 <Label x:Name="AllStockLabel" Text="Все акции"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,15"
-                                   HorizontalOptions="Center" Scale="1.1" />
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" Margin="0,0,0,15"
+                                       HorizontalOptions="Center" Scale="1.1" />
                                 <BoxView x:Name="RightBoxView" WidthRequest="2" BackgroundColor="#BB8D91"
-                                     HorizontalOptions="FillAndExpand" />
+                                         HorizontalOptions="FillAndExpand" />
                             </StackLayout>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1" />
@@ -52,28 +52,29 @@
 
                     <StackLayout Orientation="Horizontal" Padding="20,0,20,20" BackgroundColor="White">
                         <Label Text="Фильтр" FontFamily="{x:Static design:DesignClass.MontserratRegular}"
-                           VerticalOptions="Center" />
+                               VerticalOptions="Center" />
                         <ImageButton Source="ic_pref_4x.png" BackgroundColor="White" HorizontalOptions="EndAndExpand"
-                                 WidthRequest="15" VerticalOptions="Center" Clicked="ImageButton_OnClicked" />
+                                     WidthRequest="15" VerticalOptions="Center" Clicked="ImageButton_OnClicked" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ImageButton_OnClicked" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
                     <StackLayout x:Name="StackLayout" IsVisible="False" IsEnabled="False" BackgroundColor="White">
-                        <contentViews:PicCountryAndCityContentView VerticalOptions="Fill" ViewModel="{Binding PicCountryAndCityViewModel}"/>
+                        <contentViews:PicCountryAndCityContentView VerticalOptions="Fill"
+                                                                   ViewModel="{Binding PicCountryAndCityViewModel}" />
 
                         <StackLayout Margin="10,0,10,15" Spacing="0">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
                             </StackLayout.GestureRecognizers>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
-                                <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14"/>
+                                <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14" />
                                 <Image Source="Shape.png"
-                                   WidthRequest="15"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="EndAndExpand"
-                                   Rotation="{Binding ShapeRotation}" />
+                                       WidthRequest="15"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand"
+                                       Rotation="{Binding ShapeRotation}" />
                             </StackLayout>
                             <BoxView />
                         </StackLayout>
@@ -95,13 +96,13 @@
                                 <Label Text="ПРИМЕНИТЬ" Style="{StaticResource TextForAppButton}" />
                             </Grid>
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ApplyFiltersCommand}"/>
+                                <TapGestureRecognizer Command="{Binding ApplyFiltersCommand}" />
                             </Frame.GestureRecognizers>
                         </design:CustomButton>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
-            <StackLayout HeightRequest="150"/>
+            <StackLayout HeightRequest="150" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

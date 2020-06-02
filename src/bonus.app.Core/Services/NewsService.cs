@@ -8,13 +8,22 @@ namespace bonus.app.Core.Services
 {
 	public class NewsService : BaseService, INewsService
 	{
+		#region Data
+		#region Consts
+		private const string GetNewsImagesSourcesUri = "http://bonus.itmit-studio.ru/api/news/{0}";
+
+		private const string GetNewsUri = "http://bonus.itmit-studio.ru/api/news";
+		#endregion
+		#endregion
+
+		#region .ctor
 		public NewsService(IAuthService authService)
 			: base(authService)
 		{
 		}
+		#endregion
 
-		private const string GetNewsUri = "http://bonus.itmit-studio.ru/api/news";
-
+		#region INewsService members
 		public async Task<List<News>> GetNews()
 		{
 			var news = await GetAsync<List<News>>(GetNewsUri);
@@ -26,12 +35,11 @@ namespace bonus.app.Core.Services
 
 			return news;
 		}
-		private const string GetNewsImagesSourcesUri = "http://bonus.itmit-studio.ru/api/news/{0}";
 
 		public async Task<List<string>> GetNewsImagesSources(Guid uuid)
 		{
 			var images = await GetAsync<List<NewsImage>>(string.Format(GetNewsImagesSourcesUri, uuid));
-			List<string> result = new List<string>();
+			var result = new List<string>();
 			foreach (var image in images)
 			{
 				result.Add(Domain + image.Image);
@@ -39,5 +47,6 @@ namespace bonus.app.Core.Services
 
 			return result;
 		}
+		#endregion
 	}
 }

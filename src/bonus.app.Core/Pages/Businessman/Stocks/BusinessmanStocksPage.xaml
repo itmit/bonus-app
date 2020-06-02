@@ -26,10 +26,10 @@
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Normal" />
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#bb8d91"/>
+                                <Setter Property="BackgroundColor" Value="#bb8d91" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -48,12 +48,12 @@
                             ItemsSource="{Binding Stocks}"
                             SelectionMode="Single"
                             SelectedItem="{Binding SelectedStock}">
-                 <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
-                 </CollectionView.ItemsLayout>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <contentViews:StockContentView BackgroundColor="White"/>
+                        <contentViews:StockContentView BackgroundColor="White" />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

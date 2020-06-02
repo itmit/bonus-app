@@ -18,7 +18,7 @@
                 <Frame Grid.Row="0" Grid.Column="0" Padding="0" IsClippedToBounds="True" CornerRadius="20"
                        HasShadow="False">
                     <StackLayout>
-                        <Image Source="{Binding ImagePath}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill"/>
+                        <Image Source="{Binding ImagePath}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" />
 
                         <controls:ExtendedEditorControl x:Name="ChatTextInput"
                                                         Text="{Binding TextToSend}"

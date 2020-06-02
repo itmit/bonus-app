@@ -5,6 +5,7 @@ namespace bonus.app.Core.Models
 {
 	public class AccrualBonuses
 	{
+		#region Properties
 		[JsonProperty("accrual_method")]
 		public BonusValueType AccrualMethod
 		{
@@ -18,6 +19,13 @@ namespace bonus.app.Core.Models
 			get;
 			set;
 		}
+
+		public User Client
+		{
+			get;
+			set;
+		}
+
 		public string Name
 		{
 			get;
@@ -25,12 +33,6 @@ namespace bonus.app.Core.Models
 		}
 
 		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
-		public User Client
 		{
 			get;
 			set;
@@ -51,7 +53,8 @@ namespace bonus.app.Core.Models
 		}
 
 		public string AccrualValueString => (AccrualValue / 100).ToString();
-	
+
 		public string WhiteOffValueString => (AccrualValue / 100).ToString();
+		#endregion
 	}
 }

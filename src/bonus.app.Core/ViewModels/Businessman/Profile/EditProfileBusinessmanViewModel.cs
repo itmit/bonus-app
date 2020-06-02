@@ -48,6 +48,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			Value = string.Empty
 		};
+		private readonly Mapper _mapper;
 		private ValidatableObject<string> _name = new ValidatableObject<string>
 		{
 			Value = string.Empty
@@ -63,7 +64,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			Value = string.Empty
 		};
-		private Mapper _mapper;
 		#endregion
 		#endregion
 
@@ -208,6 +208,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 		#endregion
 
+		#region IPortfolioParentViewModel members
+		public void RemovedPortfolioImage(PortfolioViewModel portfolioViewModel)
+		{
+			PortfolioImages.Remove(portfolioViewModel);
+			RaisePropertyChanged(() => PortfolioImages);
+		}
+		#endregion
+
 		#region Overrided
 		public override async Task Initialize()
 		{
@@ -338,6 +346,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					{
 						arg.Phone = string.Empty;
 					}
+
 					if (User.Email.Equals(Email.Value))
 					{
 						arg.Email = string.Empty;
@@ -461,11 +470,5 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			return true;
 		}
 		#endregion
-
-		public void RemovedPortfolioImage(PortfolioViewModel portfolioViewModel)
-		{
-			PortfolioImages.Remove(portfolioViewModel);
-			RaisePropertyChanged(() => PortfolioImages);
-		}
 	}
 }

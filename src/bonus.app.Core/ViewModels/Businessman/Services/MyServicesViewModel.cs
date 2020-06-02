@@ -14,6 +14,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 	{
 		#region Data
 		#region Fields
+		private readonly IAuthService _authService;
 		private bool _isVisibleServices;
 		private readonly Mapper _mapper;
 		private MvxObservableCollection<CreatedServiceViewModel> _myServiceTypes = new MvxObservableCollection<CreatedServiceViewModel>();
@@ -23,7 +24,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private int _shapeRotation;
 		private MvxCommand _showMyServiceTypesCommand;
 		private MvxCommand _showOrHideTypesServicesCommand;
-		private IAuthService _authService;
 		#endregion
 		#endregion
 
@@ -106,25 +106,117 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		}
 		#endregion
 
-		#region Public
-		private async Task ReloadServices()
+		#region ICreateServiceViewModel members
+		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name)
+		{
+			if (UserServiceType == null)
+			{
+				var type = await _servicesServices.CreateServiceType(_authService.User.Uuid.ToString());
+				if (type == null)
+				{
+					throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+				}
+
+				type.Name = "Ваши услуги";
+				UserServiceType = type;
+				Services.Insert(0,
+								new ServiceTypeViewModel
+								{
+									Name = type.Name,
+									Uuid = type.Uuid
+								});
+				await RaisePropertyChanged(() => Services);
+			}
+
+			if (UserServiceType == null)
+			{
+				throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+			}
+
+			var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
+			if (item == null)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
+				});
+			}
+			else
+			{
+				Services.Single(t => t.Uuid.Equals(UserServiceType.Uuid))
+						.Services.Add(new ServiceViewModel
+						{
+							Color = Color.Transparent,
+							Name = item.Name,
+							Uuid = item.Uuid,
+							ParentViewModel = this
+						});
+				await RaisePropertyChanged(() => Services);
+			}
+
+			return item;
+		}
+
+		public async Task<bool> EditServiceTypeItem(Guid uuid, string name)
 		{
 			try
 			{
-				var types = await _servicesServices.GetMyServices();
-				UserServiceType = types.SingleOrDefault(t => t.Name.Equals(_authService.User.Uuid.ToString()));
-				if (UserServiceType != null)
+				var res = await _servicesServices.RemoveServiceTypeItem(uuid);
+				if (res)
 				{
-					UserServiceType.Name = "Ваши услуги";
-				}
+					if (UserServiceType == null)
+					{
+						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
+					}
 
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(types);
-				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
+					var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
+
+					if (item != null)
+					{
+						return true;
+					}
+
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
+					});
+					return false;
+				}
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
+
+			return false;
+		}
+
+		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
+		{
+			var res = false;
+			try
+			{
+				res = await _servicesServices.RemoveServiceTypeItem(uuid);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			if (res)
+			{
+				var type = Services.Single(t => t.Uuid.Equals(UserServiceType.Uuid));
+				type.Services.Remove(type.Services.Single(s => s.Uuid.Equals(uuid)));
+				await RaisePropertyChanged(() => Services);
+				MyServiceTypes.Remove(MyServiceTypes.Single(t => t.ServiceTypeItem.Uuid.Equals(uuid)));
+				await RaisePropertyChanged(() => MyServiceTypes);
+			}
+			else
+			{
+				return false;
+			}
+
+			return true;
 		}
 		#endregion
 
@@ -171,114 +263,26 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		}
 		#endregion
 
-		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name)
+		#region Private
+		private async Task ReloadServices()
 		{
-			if (UserServiceType == null)
-			{
-				var type = await _servicesServices.CreateServiceType(_authService.User.Uuid.ToString());
-				if (type == null)
-				{
-					throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-				}
-
-				type.Name = "Ваши услуги";
-				UserServiceType = type;
-				Services.Insert(0, new ServiceTypeViewModel
-				{
-					Name = type.Name,
-					Uuid = type.Uuid
-				});
-				await RaisePropertyChanged(() => Services);
-			}
-
-			if (UserServiceType == null)
-			{
-				throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-			}
-
-			var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
-			if (item == null)
-			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
-				});
-			}
-			else
-			{
-				Services.Single(t => t.Uuid.Equals(UserServiceType.Uuid)).Services.Add(new ServiceViewModel
-				{
-					Color = Color.Transparent,
-					Name = item.Name,
-					Uuid = item.Uuid,
-					ParentViewModel = this
-				});
-				await RaisePropertyChanged(() => Services);
-			}
-
-			return item;
-		}
-
-		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
-		{
-			bool res = false;
 			try
 			{
-				res = await _servicesServices.RemoveServiceTypeItem(uuid);
+				var types = await _servicesServices.GetMyServices();
+				UserServiceType = types.SingleOrDefault(t => t.Name.Equals(_authService.User.Uuid.ToString()));
+				if (UserServiceType != null)
+				{
+					UserServiceType.Name = "Ваши услуги";
+				}
+
+				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(types);
+				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
-
-			if (res)
-			{
-				var type = Services.Single(t => t.Uuid.Equals(UserServiceType.Uuid));
-				type.Services.Remove(type.Services.Single(s => s.Uuid.Equals(uuid)));
-				await RaisePropertyChanged(() => Services);
-				MyServiceTypes.Remove(MyServiceTypes.Single(t => t.ServiceTypeItem.Uuid.Equals(uuid)));
-				await RaisePropertyChanged(() => MyServiceTypes);
-			}
-			else
-			{
-				return false;
-			}
-			return true;
 		}
-
-		public async Task<bool> EditServiceTypeItem(Guid uuid, string name)
-		{
-			try
-			{
-				var res = await _servicesServices.RemoveServiceTypeItem(uuid);
-				if (res)
-				{
-					if (UserServiceType == null)
-					{
-						throw new InvalidOperationException("Невозможно создать вид услуги без категории.");
-					}
-
-					var item = await _servicesServices.CreateServiceTypeItem(name, UserServiceType.Uuid);
-
-					if (item != null)
-					{
-						return true;
-					}
-
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						Application.Current.MainPage.DisplayAlert("Внимание", $"Не удалось создать услугу: \"{name}\"", "Ок");
-					});
-					return false;
-
-				}
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
-
-			return false;
-		}
+		#endregion
 	}
 }

@@ -9,9 +9,11 @@ namespace bonus.app.Core.Pages.Businessman
 	[MvxModalPresentation]
 	public partial class ClientProfilePage : MvxContentPage<ClientProfileViewModel>
 	{
+		#region .ctor
 		public ClientProfilePage()
 		{
 			InitializeComponent();
 		}
+		#endregion
 	}
 }

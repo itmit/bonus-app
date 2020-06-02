@@ -48,6 +48,13 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
+		[JsonProperty("odnoklassniki")]
+		public string ClassmatesLink
+		{
+			get;
+			set;
+		}
+
 		public string Contact
 		{
 			get;
@@ -67,6 +74,20 @@ namespace bonus.app.Core.Models
 		}
 
 		public string Email
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("facebook")]
+		public string FacebookLink
+		{
+			get;
+			set;
+		}
+
+		[JsonProperty("instagram")]
+		public string InstagramLink
 		{
 			get;
 			set;
@@ -130,20 +151,6 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public string WorkTime
-		{
-			get;
-			set;
-		}
-
-
-		[JsonProperty("instagram")]
-		public string InstagramLink
-		{
-			get;
-			set;
-		}
-
 		[JsonProperty("vk")]
 		public string VkLink
 		{
@@ -151,15 +158,7 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		[JsonProperty("odnoklassniki")]
-		public string ClassmatesLink
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("facebook")]
-		public string FacebookLink
+		public string WorkTime
 		{
 			get;
 			set;

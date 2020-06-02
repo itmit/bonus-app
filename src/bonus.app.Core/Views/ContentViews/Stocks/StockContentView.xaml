@@ -10,27 +10,27 @@
              x:Class="bonus.app.Core.Views.ContentViews.StockContentView">
     <ContentView.Content>
         <!--Ячейка для списка мои акции у предпринимателя-->
-            <Grid Padding="20,10" ColumnSpacing="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+        <Grid Padding="20,10" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                 <Frame Grid.Column="0"
-                       Padding="0"
-                       CornerRadius="10"
-                       HasShadow="False"
-                       WidthRequest="85"
-                       HeightRequest="70">
-                    <forms:CachedImage Source="{Binding ImageSource}"
-                                       Aspect="AspectFill"/>
-                </Frame>
+            <Frame Grid.Column="0"
+                   Padding="0"
+                   CornerRadius="10"
+                   HasShadow="False"
+                   WidthRequest="85"
+                   HeightRequest="70">
+                <forms:CachedImage Source="{Binding ImageSource}"
+                                   Aspect="AspectFill" />
+            </Frame>
 
-                <StackLayout Grid.Column="1">
-                    <Label Text="{Binding Name}" MaxLines="1" />
-                    <Label Text="{Binding Description}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption"
-                           TextColor="Gray" />
-                </StackLayout>
-            </Grid>
+            <StackLayout Grid.Column="1">
+                <Label Text="{Binding Name}" MaxLines="1" />
+                <Label Text="{Binding Description}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="Caption"
+                       TextColor="Gray" />
+            </StackLayout>
+        </Grid>
     </ContentView.Content>
 </ContentView>

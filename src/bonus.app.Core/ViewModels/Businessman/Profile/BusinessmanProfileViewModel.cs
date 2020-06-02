@@ -23,26 +23,30 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Data
 		#region Fields
 		private readonly IAuthService _authService;
+
+		private Application _formsApplication;
+		private bool _isRefreshing;
+		private bool _isShowedDetails;
+		private MvxCommand _openClassmatesCommand;
 		private MvxCommand _openDialogsCommand;
 		private MvxCommand _openEditProfilePageCommand;
-		private MvxCommand _openSubscribersCommand;
-		private IEnumerable<Service> _services;
-		private readonly IServicesService _servicesService;
-		private User _user;
-		private readonly IProfileService _profileService;
-		private MvxObservableCollection<PortfolioImage> _portfolioImages;
-		private MvxCommand _openVkCommand;
-		private MvxCommand _openClassmatesCommand;
 		private MvxCommand _openFacebookCommand;
 		private MvxCommand _openInstagramCommand;
-		private MvxCommand _showBonusDetailsCommand;
-		private bool _isShowedDetails;
-		private Command<MaterialMenuResult> _portfolioActionCommand;
+		private MvxCommand _openSubscribersCommand;
+		private MvxCommand _openVkCommand;
 		private readonly IPermissionsService _permissionsService;
-		private PortfolioImage _selectedPortfolioImage;
+
+		private readonly IMvxFormsViewPresenter _platformPresenter;
+		private Command<MaterialMenuResult> _portfolioActionCommand;
+		private MvxObservableCollection<PortfolioImage> _portfolioImages;
+		private readonly IProfileService _profileService;
 		private MvxCommand _refreshCommand;
-		private bool _isRefreshing;
+		private PortfolioImage _selectedPortfolioImage;
 		private SelectionMode _selectionModePortfolio;
+		private IEnumerable<Service> _services;
+		private readonly IServicesService _servicesService;
+		private MvxCommand _showBonusDetailsCommand;
+		private User _user;
 		#endregion
 		#endregion
 
@@ -64,14 +68,152 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			User = _authService.User;
 			PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
 		}
+		#endregion
 
+		#region Properties
 		public string PhotoSource
 		{
 			get;
 		}
-		#endregion
 
-		#region Properties
+		public Application FormsApplication
+		{
+			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
+			set => _formsApplication = value;
+		}
+
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
+		public bool IsShowedDetails
+		{
+			get => _isShowedDetails;
+			set => SetProperty(ref _isShowedDetails, value);
+		}
+
+		public MvxCommand OpenClassmatesCommand
+		{
+			get
+			{
+				_openClassmatesCommand = _openClassmatesCommand ??
+										 new MvxCommand(async () =>
+										 {
+											 await OpenBrowser(User.ClassmatesLink);
+										 });
+				return _openClassmatesCommand;
+			}
+		}
+
+		public MvxCommand OpenDialogsCommand
+		{
+			get
+			{
+				_openDialogsCommand = _openDialogsCommand ??
+									  new MvxCommand(() =>
+									  {
+										  NavigationService.Navigate<DialogsViewModel>();
+									  });
+				return _openDialogsCommand;
+			}
+		}
+
+		public MvxCommand OpenEditProfilePageCommand
+		{
+			get
+			{
+				_openEditProfilePageCommand = _openEditProfilePageCommand ??
+											  new MvxCommand(async () =>
+											  {
+												  var user = await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments, User>(
+																 new EditProfileViewModelArguments(_authService.User.Uuid, true));
+												  if (user == null)
+												  {
+													  return;
+												  }
+
+												  User = user;
+											  });
+				return _openEditProfilePageCommand;
+			}
+		}
+
+		public MvxCommand OpenFacebookCommand
+		{
+			get
+			{
+				_openFacebookCommand = _openFacebookCommand ??
+									   new MvxCommand(async () =>
+									   {
+										   await OpenBrowser(User.FacebookLink);
+									   });
+				return _openFacebookCommand;
+			}
+		}
+
+		public MvxCommand OpenInstagramCommand
+		{
+			get
+			{
+				_openInstagramCommand = _openInstagramCommand ??
+										new MvxCommand(async () =>
+										{
+											await OpenBrowser(User.InstagramLink);
+										});
+				return _openInstagramCommand;
+			}
+		}
+
+		public MvxCommand OpenSubscribersCommand
+		{
+			get
+			{
+				_openSubscribersCommand = _openSubscribersCommand ??
+										  new MvxCommand(() =>
+										  {
+											  NavigationService.Navigate<BusinessmanSubscribersViewModel>();
+										  });
+				return _openSubscribersCommand;
+			}
+		}
+
+		public MvxCommand OpenVkCommand
+		{
+			get
+			{
+				_openVkCommand = _openVkCommand ??
+								 new MvxCommand(async () =>
+								 {
+									 await OpenBrowser(User.VkLink);
+								 });
+				return _openVkCommand;
+			}
+		}
+
+		public Command<MaterialMenuResult> PortfolioActionCommand
+		{
+			get
+			{
+				_portfolioActionCommand = _portfolioActionCommand ??
+										  new Command<MaterialMenuResult>(result =>
+										  {
+											  switch (result.Index)
+											  {
+												  case 0:
+													  AddImageToPortfolio();
+													  break;
+												  case 1:
+													  SelectionModePortfolio = SelectionMode.Single;
+													  FormsApplication.MainPage.DisplayAlert("Внимание", "Выберите картинку для ее удаления.", "Ок");
+													  break;
+											  }
+										  });
+				return _portfolioActionCommand;
+			}
+		}
+
 		public MvxObservableCollection<PortfolioImage> PortfolioImages
 		{
 			get => _portfolioImages;
@@ -93,48 +235,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
-		public bool IsRefreshing
-		{
-			get => _isRefreshing;
-			set => SetProperty(ref _isRefreshing, value);
-		}
-
-		public Command<MaterialMenuResult> PortfolioActionCommand
-		{
-			get
-			{
-				_portfolioActionCommand = _portfolioActionCommand ??
-										  new Command<MaterialMenuResult>(result =>
-										  {
-											  switch (result.Index)
-											  {
-												  case 0:
-													  AddImageToPortfolio();
-													  break;
-												  case 1:
-													  SelectionModePortfolio = SelectionMode.Single;
-													  FormsApplication.MainPage.DisplayAlert("Внимание", "Выберите картинку для ее удаления." ,"Ок");
-													  break;
-											  }
-										  });
-				return _portfolioActionCommand;
-			}
-		}
-
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		private Application _formsApplication;
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-			set => _formsApplication = value;
-		}
-		public SelectionMode SelectionModePortfolio
-		{
-			get => _selectionModePortfolio;
-			set => SetProperty(ref _selectionModePortfolio, value);
-		}
-
 		public PortfolioImage SelectedPortfolioImage
 		{
 			get => _selectedPortfolioImage;
@@ -146,6 +246,39 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
+		public SelectionMode SelectionModePortfolio
+		{
+			get => _selectionModePortfolio;
+			set => SetProperty(ref _selectionModePortfolio, value);
+		}
+
+		public IEnumerable<Service> Services
+		{
+			get => _services;
+			private set => SetProperty(ref _services, value);
+		}
+
+		public MvxCommand ShowBonusDetailsCommand
+		{
+			get
+			{
+				_showBonusDetailsCommand = _showBonusDetailsCommand ??
+										   new MvxCommand(() =>
+										   {
+											   IsShowedDetails = !IsShowedDetails;
+										   });
+				return _showBonusDetailsCommand;
+			}
+		}
+
+		public User User
+		{
+			get => _user;
+			private set => SetProperty(ref _user, value);
+		}
+		#endregion
+
+		#region Public
 		public async void RemovePortfolioImage(PortfolioImage portfolioImage)
 		{
 			try
@@ -163,11 +296,29 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Console.WriteLine(e);
 			}
 		}
+		#endregion
 
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			try
+			{
+				Services = await _servicesService.GetBusinessmenService();
+				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+		}
+		#endregion
+
+		#region Private
 		private async void AddImageToPortfolio()
 		{
-			if (await _permissionsService.CheckPermission(Permission.Storage,
-														 "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
 			{
 				if (!CrossMedia.Current.IsPickPhotoSupported)
 				{
@@ -196,151 +347,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
-		public MvxCommand OpenDialogsCommand
-		{
-			get
-			{
-				_openDialogsCommand = _openDialogsCommand ??
-								   new MvxCommand(() =>
-								   {
-									   NavigationService.Navigate<DialogsViewModel>();
-								   });
-				return _openDialogsCommand;
-			}
-		}
-
-		public MvxCommand OpenEditProfilePageCommand
-		{
-			get
-			{
-				_openEditProfilePageCommand = _openEditProfilePageCommand ??
-											  new MvxCommand(async () =>
-											  {
-												  var user = await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments, User>(
-																 new EditProfileViewModelArguments(_authService.User.Uuid, true));
-												  if (user == null)
-												  {
-													  return;
-												  }
-
-												  User = user;
-											  });
-				return _openEditProfilePageCommand;
-			}
-		}
-
-		public MvxCommand OpenSubscribersCommand
-		{
-			get
-			{
-				_openSubscribersCommand = _openSubscribersCommand ??
-										  new MvxCommand(() =>
-										  {
-											  NavigationService.Navigate<BusinessmanSubscribersViewModel>();
-										  });
-				return _openSubscribersCommand;
-			}
-		}
-
-		public IEnumerable<Service> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
-
-		public User User
-		{
-			get => _user;
-			private set => SetProperty(ref _user, value);
-		}
-
-		public MvxCommand OpenVkCommand
-		{
-			get
-			{
-				_openVkCommand = _openVkCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.VkLink);
-				});
-				return _openVkCommand;
-			}
-		}
-
-		public MvxCommand OpenInstagramCommand
-		{
-			get
-			{
-				_openInstagramCommand = _openInstagramCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.InstagramLink);
-				});
-				return _openInstagramCommand;
-			}
-		}
-
-		public MvxCommand ShowBonusDetailsCommand
-		{
-			get
-			{
-				_showBonusDetailsCommand = _showBonusDetailsCommand ?? new MvxCommand(() =>
-				{
-					IsShowedDetails = !IsShowedDetails;
-				});
-				return _showBonusDetailsCommand;
-			}
-		}
-
-		public bool IsShowedDetails
-		{
-			get => _isShowedDetails;
-			set => SetProperty(ref _isShowedDetails, value);
-		}
-
-		public MvxCommand OpenFacebookCommand
-		{
-			get
-			{
-				_openFacebookCommand = _openFacebookCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.FacebookLink);
-				});
-				return _openFacebookCommand;
-			}
-		}
-		public MvxCommand OpenClassmatesCommand
-		{
-			get
-			{
-				_openClassmatesCommand = _openClassmatesCommand ?? new MvxCommand(async () =>
-				{
-					await OpenBrowser(User.ClassmatesLink);
-				});
-				return _openClassmatesCommand;
-			}
-		}
-
 		private async Task OpenBrowser(string link)
 		{
 			if (Uri.TryCreate(link, UriKind.Absolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
 			{
 				await Browser.OpenAsync(uriResult, BrowserLaunchMode.SystemPreferred);
-			}
-		}
-		#endregion
-
-		#region Overrided
-		public override async Task Initialize()
-		{
-			await base.Initialize();
-
-			try
-			{
-				Services = await _servicesService.GetBusinessmenService();
-				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
 			}
 		}
 		#endregion

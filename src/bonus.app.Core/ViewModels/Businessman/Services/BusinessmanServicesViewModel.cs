@@ -20,12 +20,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private int? _bonusPercentage;
 		private int? _cancellationBonusAmount;
 		private int? _cancellationBonusPercentage;
+		private bool _isRefreshing;
 
 		private MvxObservableCollection<Service> _myServices;
-		private readonly IServicesService _servicesServices;
 		private MvxCommand _openEditCommand;
 		private MvxCommand _refreshCommand;
-		private bool _isRefreshing;
+		private readonly IServicesService _servicesServices;
 		#endregion
 		#endregion
 
@@ -39,41 +39,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region Properties
-		public MvxCommand OpenEditCommand
-		{
-			get
-			{
-				_openEditCommand = _openEditCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<EditBusinessmanServicesViewModel>();
-				});
-				return _openEditCommand;
-			}
-		}
-
-		public MvxCommand RefreshCommand
-		{
-			get
-			{
-				_refreshCommand = _refreshCommand ?? new MvxCommand(async () =>
-				{
-					
-					IsRefreshing = true;
-					MyServicesViewModel.MyServiceTypes.Clear();
-					MyServicesViewModel.Services.Clear();
-					await Initialize();
-					IsRefreshing = false;
-				});
-				return _refreshCommand;
-			}
-		}
-
-		public bool IsRefreshing
-		{
-			get => _isRefreshing;
-			set => SetProperty(ref _isRefreshing, value);
-		}
-
 		public MyServicesViewModel MyServicesViewModel
 		{
 			get;
@@ -114,10 +79,46 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 		public bool HasServices => MyServices != null && MyServices.Count > 0;
 
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
 		public MvxObservableCollection<Service> MyServices
 		{
 			get => _myServices;
 			private set => SetProperty(ref _myServices, value);
+		}
+
+		public MvxCommand OpenEditCommand
+		{
+			get
+			{
+				_openEditCommand = _openEditCommand ??
+								   new MvxCommand(() =>
+								   {
+									   NavigationService.Navigate<EditBusinessmanServicesViewModel>();
+								   });
+				return _openEditCommand;
+			}
+		}
+
+		public MvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ??
+								  new MvxCommand(async () =>
+								  {
+									  IsRefreshing = true;
+									  MyServicesViewModel.MyServiceTypes.Clear();
+									  MyServicesViewModel.Services.Clear();
+									  await Initialize();
+									  IsRefreshing = false;
+								  });
+				return _refreshCommand;
+			}
 		}
 		#endregion
 

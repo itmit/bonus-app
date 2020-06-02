@@ -2,7 +2,6 @@
 using bonus.app.Core.ViewModels.Customer.Services;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer.Services
@@ -18,6 +17,7 @@ namespace bonus.app.Core.Pages.Customer.Services
 		}
 		#endregion
 
+		#region Private
 		private void ImageButton_OnClicked(object sender, EventArgs e)
 		{
 			if (GridHeader.IsEnabled)
@@ -31,5 +31,6 @@ namespace bonus.app.Core.Pages.Customer.Services
 				GridHeader.IsVisible = true;
 			}
 		}
+		#endregion
 	}
 }

@@ -45,7 +45,6 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 				});
 			}
 		}
-		#endregion
 
 		private void VisualElement_OnUnfocused1(object sender, FocusEventArgs e)
 		{
@@ -68,5 +67,6 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 				});
 			}
 		}
+		#endregion
 	}
 }

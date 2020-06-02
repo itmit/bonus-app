@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using AutoMapper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
@@ -58,34 +56,19 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 
 			AddValidations();
 		}
-
-		private void AddValidations()
-		{
-			Description.Validations.Add(new IsNotNullOrEmptyRule
-			{
-				ValidationMessage = "Заполните описание акции."
-			});
-			Name.Validations.Add(new IsNotNullOrEmptyRule
-			{
-				ValidationMessage = "Укажите название акции."
-			});
-			Name.Validations.Add(new MinLengthRule(3)
-			{
-				ValidationMessage = "Название акции не может содержать меньше 4 символов."
-			});
-			ShareTime.Validations.Add(new IsValidDateRule(DateTime.Now, new DateTime(2099, 1, 1))
-			{
-				ValidationMessage = "Срок размещения акции должен быть актуальным."
-			});
-		}
 		#endregion
 
 		#region Properties
+		public MyServicesViewModel MyServicesViewModel
+		{
+			get;
+		}
+
 		public PicCountryAndCityViewModel PicCountryAndCityViewModel
 		{
 			get;
 		}
-		public MyServicesViewModel MyServicesViewModel { get; }
+
 		public bool CanCreateShareCommand
 		{
 			get => _canCreateShareCommand;
@@ -146,7 +129,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
-
 		public ValidatableObject<DateTime?> ShareTime
 		{
 			get => _shareTime;
@@ -164,6 +146,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 										{
 											return;
 										}
+
 										if (ShareTime.Value == null)
 										{
 											ShareTime.Value = DateTime.Now;
@@ -176,14 +159,42 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 											Name = Name.Value,
 											ShareTime = ShareTime.Value.Value
 										});
-										
 									});
 				return _showShareCommand;
 			}
 		}
 		#endregion
 
+		#region Overrided
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+			await PicCountryAndCityViewModel.Initialize();
+			await MyServicesViewModel.Initialize();
+		}
+		#endregion
+
 		#region Private
+		private void AddValidations()
+		{
+			Description.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Заполните описание акции."
+			});
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите название акции."
+			});
+			Name.Validations.Add(new MinLengthRule(3)
+			{
+				ValidationMessage = "Название акции не может содержать меньше 4 символов."
+			});
+			ShareTime.Validations.Add(new IsValidDateRule(DateTime.Now, new DateTime(2099, 1, 1))
+			{
+				ValidationMessage = "Срок размещения акции должен быть актуальным."
+			});
+		}
+
 		private bool CheckValidFields()
 		{
 			CanCreateShareCommand = false;
@@ -228,7 +239,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			{
 				result = false;
 			}
-			
+
 			CanCreateShareCommand = !result;
 			return result;
 		}
@@ -282,13 +293,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			{
 				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка попробуйте повторить запрос позже.", "Ок");
 			});
-		}
-
-		public override async Task Initialize() 
-		{
-			await base.Initialize();
-			await PicCountryAndCityViewModel.Initialize();
-			await MyServicesViewModel.Initialize();
 		}
 
 		private async void PicImageCommandExecute()

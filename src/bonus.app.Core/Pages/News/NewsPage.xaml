@@ -19,10 +19,10 @@
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Normal" />
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="#bb8d91"/>
+                                <Setter Property="BackgroundColor" Value="#bb8d91" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -40,7 +40,7 @@
                             SelectedItem="{Binding SelectedNews}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <contentviews:NewsContentView/>
+                        <contentviews:NewsContentView />
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

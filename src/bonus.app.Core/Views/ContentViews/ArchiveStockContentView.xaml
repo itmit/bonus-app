@@ -19,7 +19,7 @@
                 <forms:CachedImage Source="{Binding ImageSource}"
                                    WidthRequest="60"
                                    HeightRequest="50"
-                                   Aspect="AspectFill"/>
+                                   Aspect="AspectFill" />
             </Frame>
             <StackLayout Grid.Column="1" Spacing="0" VerticalOptions="Start">
                 <Label Text="{Binding Name}" FontSize="Body" />

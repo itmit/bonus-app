@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
@@ -18,25 +17,15 @@ namespace bonus.app.Core.ViewModels
 		#region Fields
 		private ValidatableObject<string> _address = new ValidatableObject<string>();
 
-		protected IAuthService AuthService
-		{
-			get;
-		}
-
 		private string _imageName;
 		private string _imageSource;
 		private bool _isAuthorization;
 		private bool _isBusy;
 
-		protected IPermissionsService PermissionsService
-		{
-			get;
-		}
-
 		private ValidatableObject<string> _phoneNumber = new ValidatableObject<string>();
 		private MvxCommand _picPhotoCommand;
-		private User _user;
 		private string _title;
+		private User _user;
 		#endregion
 		#endregion
 
@@ -60,6 +49,16 @@ namespace bonus.app.Core.ViewModels
 		{
 			get;
 			private set;
+		}
+
+		protected IAuthService AuthService
+		{
+			get;
+		}
+
+		protected IPermissionsService PermissionsService
+		{
+			get;
 		}
 
 		public ValidatableObject<string> Address
@@ -113,6 +112,12 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
+		public string Title
+		{
+			get => _title;
+			private set => SetProperty(ref _title, value);
+		}
+
 		public User User
 		{
 			get => _user;
@@ -128,13 +133,20 @@ namespace bonus.app.Core.ViewModels
 
 			User = AuthService.User;
 			IsAuthorization = User != null;
-			if (Parameters.IsActiveUser & User != null)
+			if (Parameters.IsActiveUser & (User != null))
 			{
 				Address.Value = User.Address;
-				string p = string.Empty;
+				var p = string.Empty;
 
-
-				p = User.Phone.Substring(0, 2) + " (" + User.Phone.Substring(2, 3) + ") " + User.Phone.Substring(5, 3) + "-" + User.Phone.Substring(8, 2) + "-" + User.Phone.Substring(10, 2);
+				p = User.Phone.Substring(0, 2) +
+					" (" +
+					User.Phone.Substring(2, 3) +
+					") " +
+					User.Phone.Substring(5, 3) +
+					"-" +
+					User.Phone.Substring(8, 2) +
+					"-" +
+					User.Phone.Substring(10, 2);
 				PhoneNumber.Value = p;
 				ImageSource = User.PhotoSource;
 				if (!string.IsNullOrWhiteSpace(ImageSource))
@@ -142,12 +154,6 @@ namespace bonus.app.Core.ViewModels
 					ImageName = ImageSource.Substring(ImageSource.LastIndexOf('/') + 1);
 				}
 			}
-		}
-
-		public string Title
-		{
-			get => _title;
-			private set => SetProperty(ref _title, value);
 		}
 
 		public override void Prepare(EditProfileViewModelArguments parameter)

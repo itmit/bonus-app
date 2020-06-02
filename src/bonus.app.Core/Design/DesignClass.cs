@@ -133,6 +133,6 @@ namespace bonus.app.Core.Design
 			get;
 			set;
 		}
-        #endregion
-    }
+		#endregion
+	}
 }

@@ -41,7 +41,7 @@
                         <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
                     </Entry.Behaviors>
                 </Entry>
-                <ui:MaterialButton Style="{StaticResource StatisticButton}"/>
+                <ui:MaterialButton Style="{StaticResource StatisticButton}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

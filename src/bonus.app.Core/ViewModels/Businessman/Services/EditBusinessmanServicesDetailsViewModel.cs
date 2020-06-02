@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
-using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
@@ -15,16 +13,27 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 {
 	public class EditBusinessmanServicesDetailsViewModel : MvxViewModel<Service, Service>
 	{
-		private readonly IMvxNavigationService _navigationService;
-		private MvxCommand _updateCommand;
-		private IServicesService _servicesService;
-		private int? _cancellationBonusAmount;
-		private int? _bonusPercentage;
+		#region Data
+		#region Fields
 		private int? _bonusAmount;
+		private int? _bonusPercentage;
+		private int? _cancellationBonusAmount;
 		private int? _cancellationBonusPercentage;
 
+		private Application _formsApplication;
+		private readonly IMvxNavigationService _navigationService;
+
+		private Service _service;
+		private readonly IServicesService _servicesService;
+		private MvxCommand _updateCommand;
+		#endregion
+		#endregion
+
 		#region .ctor
-		public EditBusinessmanServicesDetailsViewModel(IMvxNavigationService navigationService, IServicesService servicesService, IAuthService authService, IMvxFormsViewPresenter platformPresenter)
+		public EditBusinessmanServicesDetailsViewModel(IMvxNavigationService navigationService,
+													   IServicesService servicesService,
+													   IAuthService authService,
+													   IMvxFormsViewPresenter platformPresenter)
 		{
 			_servicesService = servicesService;
 			PlatformPresenter = platformPresenter;
@@ -33,25 +42,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		}
 		#endregion
 
-
-		private IMvxFormsViewPresenter PlatformPresenter { get; }
-
-		private Application _formsApplication;
-
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = PlatformPresenter.FormsApplication);
-			set => _formsApplication = value;
-		}
-
-
-		private Service _service;
-
+		#region Properties
 		public MyServicesViewModel MyServicesViewModel
 		{
 			get;
 		}
 
+		private IMvxFormsViewPresenter PlatformPresenter
+		{
+			get;
+		}
 
 		public int? BonusAmount
 		{
@@ -77,12 +77,23 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set => SetProperty(ref _cancellationBonusPercentage, value);
 		}
 
-
-		public override void Prepare(Service parameter)
+		public Application FormsApplication
 		{
-			_service = parameter;
+			get => _formsApplication ?? (_formsApplication = PlatformPresenter.FormsApplication);
+			set => _formsApplication = value;
 		}
 
+		public MvxCommand UpdateCommand
+		{
+			get
+			{
+				_updateCommand = _updateCommand ?? new MvxCommand(UpdateCommandExecute);
+				return _updateCommand;
+			}
+		}
+		#endregion
+
+		#region Overrided
 		public override async Task Initialize()
 		{
 			await MyServicesViewModel.Initialize();
@@ -110,15 +121,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 		}
 
-		public MvxCommand UpdateCommand
+		public override void Prepare(Service parameter)
 		{
-			get
-			{
-				_updateCommand = _updateCommand ?? new MvxCommand(UpdateCommandExecute);
-				return _updateCommand;
-			}
+			_service = parameter;
 		}
+		#endregion
 
+		#region Private
 		private async void UpdateCommandExecute()
 		{
 			var service = new CreateServiceDto
@@ -200,5 +209,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 			await _navigationService.Close(this, _service);
 		}
+		#endregion
 	}
 }

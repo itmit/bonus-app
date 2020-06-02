@@ -78,11 +78,6 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				return _furetherCommand;
 			}
 		}
-		public Guid UserUuid
-		{
-			get => _userUuid;
-			set => SetProperty(ref _userUuid, value);
-		}
 
 		public MvxCommand OpenScannerCommand
 		{
@@ -125,6 +120,12 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 		{
 			get => _userLogin;
 			set => SetProperty(ref _userLogin, value);
+		}
+
+		public Guid UserUuid
+		{
+			get => _userUuid;
+			set => SetProperty(ref _userUuid, value);
 		}
 		#endregion
 	}

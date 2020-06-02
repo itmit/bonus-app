@@ -22,8 +22,8 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 		{
 			if (sender is StackLayout)
 			{
-				((StackLayout)sender).BackgroundColor = Color.FromHex("#BB8D91");
-				((StackLayout)sender).BackgroundColor = await GetColor();
+				((StackLayout) sender).BackgroundColor = Color.FromHex("#BB8D91");
+				((StackLayout) sender).BackgroundColor = await GetColor();
 			}
 		}
 

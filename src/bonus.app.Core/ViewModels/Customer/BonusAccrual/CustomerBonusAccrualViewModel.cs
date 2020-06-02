@@ -13,36 +13,35 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 		#region Data
 		#region Fields
 		private readonly IAuthService _authService;
-		private Guid _userUuid;
 		private MvxCommand _openMyBonusesCommand;
+		private Guid _userUuid;
 		#endregion
 		#endregion
 
 		#region .ctor
 		public CustomerBonusAccrualViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
-			: base(logProvider, navigationService)
-		{
+			: base(logProvider, navigationService) =>
 			_authService = authService;
-		}
 		#endregion
 
 		#region Properties
-		public Guid UserUuid
-		{
-			get => _userUuid;
-			set => SetProperty(ref _userUuid, value);
-		}
-
 		public MvxCommand OpenMyBonusesCommand
 		{
 			get
 			{
-				_openMyBonusesCommand = _openMyBonusesCommand ?? new MvxCommand(() =>
-				{
-					NavigationService.Navigate<MyBonusViewModel>();
-				});
+				_openMyBonusesCommand = _openMyBonusesCommand ??
+										new MvxCommand(() =>
+										{
+											NavigationService.Navigate<MyBonusViewModel>();
+										});
 				return _openMyBonusesCommand;
 			}
+		}
+
+		public Guid UserUuid
+		{
+			get => _userUuid;
+			set => SetProperty(ref _userUuid, value);
 		}
 		#endregion
 

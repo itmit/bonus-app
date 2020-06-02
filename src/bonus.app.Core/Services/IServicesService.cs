@@ -11,21 +11,21 @@ namespace bonus.app.Core.Services
 		#region Overridable
 		Task<bool> CreateService(CreateServiceDto createServiceDto);
 
-		Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid);
-
-		Task<bool> RemoveServiceTypeItem(Guid uuid);
-
 		Task<ServiceType> CreateServiceType(string name);
 
-		Task<bool> UpdateService(CreateServiceDto service, Guid uuid);
-
-		Task<IEnumerable<ServiceType>> GetMyServices();
+		Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid);
 
 		Task<List<Service>> GetAllServices();
-		
+
 		Task<IEnumerable<Service>> GetBusinessmenService();
 
 		Task<IEnumerable<Service>> GetBusinessmenService(Guid businessmenUuid);
+
+		Task<IEnumerable<ServiceType>> GetMyServices();
+
+		Task<bool> RemoveServiceTypeItem(Guid uuid);
+
+		Task<bool> UpdateService(CreateServiceDto service, Guid uuid);
 		#endregion
 	}
 }

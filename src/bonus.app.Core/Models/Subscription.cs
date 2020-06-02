@@ -6,19 +6,20 @@ namespace bonus.app.Core.Models
 {
 	public class Subscription
 	{
-		public Guid Uuid
-		{
-			get;
-			set;
-		}
-
-		public string Name
+		#region Properties
+		public int Amount
 		{
 			get;
 			set;
 		}
 
 		public string Login
+		{
+			get;
+			set;
+		}
+
+		public string Name
 		{
 			get;
 			set;
@@ -31,16 +32,17 @@ namespace bonus.app.Core.Models
 			set;
 		}
 
-		public int Amount
-		{
-			get;
-			set;
-		}
-
 		public List<string> Services
 		{
 			get;
 			set;
 		}
+
+		public Guid Uuid
+		{
+			get;
+			set;
+		}
+		#endregion
 	}
 }

@@ -16,10 +16,23 @@ namespace bonus.app.Core.Services
 {
 	public class ChatsService : BaseService, IChatsService
 	{
-		private List<Dialog> _userDialogs = new List<Dialog>();
+		#region Data
+		#region Consts
+		private const string DialogsUri = "http://bonus.itmit-studio.ru/api/dialogs";
+
+		private const string GetMessagesUri = "http://bonus.itmit-studio.ru/api/dialogs/{0}";
+
+		private const string SendMessageUri = "http://bonus.itmit-studio.ru/api/sendMessage";
+		#endregion
+
+		#region Fields
 		private Guid _guid;
 		private readonly Mapper _mapper;
+		private List<Dialog> _userDialogs = new List<Dialog>();
+		#endregion
+		#endregion
 
+		#region .ctor
 		public ChatsService(IAuthService authService)
 			: base(authService)
 		{
@@ -35,9 +48,9 @@ namespace bonus.app.Core.Services
 				   .ForPath(model => model.LastMessage.Text, m => m.MapFrom(dto => dto.LastMessage));
 			}));
 		}
+		#endregion
 
-		private const string DialogsUri = "http://bonus.itmit-studio.ru/api/dialogs";
-
+		#region IChatsService members
 		public async Task<Dialog> CreateDialog(User user)
 		{
 			using (var client = new HttpClient())
@@ -71,48 +84,17 @@ namespace bonus.app.Core.Services
 			}
 		}
 
-		private const string SendMessageUri = "http://bonus.itmit-studio.ru/api/sendMessage";
-
-		public async Task<Message> SendMessage(int dialogId, string content, string file)
+		public async Task<List<Dialog>> GetDialogs()
 		{
-			using (var client = new HttpClient())
+			var dialogs = await GetAsync<List<DialogDto>>(DialogsUri);
+			if (dialogs == null)
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var base64 = string.Empty;
-				if (!string.IsNullOrWhiteSpace(file))
-				{
-					base64 = Convert.ToBase64String(File.ReadAllBytes(file));
-				}
-
-				var response = await client.PostAsync(new Uri(SendMessageUri), new StringContent(new JObject(new JProperty("dialog_id", dialogId),
-																					  new JProperty("content", content),
-																					  new JProperty("file", base64)).ToString(), Encoding.UTF8, ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Message>>(json);
-				if (!data.Success)
-				{
-					return null;
-				}
-
-				if (!string.IsNullOrWhiteSpace(data.Data.ImageSource))
-				{
-					data.Data.ImageSource = Domain + data.Data.ImageSource;
-				}
-				return data.Data;
+				return new List<Dialog>();
 			}
-		}
 
-		private const string GetMessagesUri = "http://bonus.itmit-studio.ru/api/dialogs/{0}";
+			SavedDialogs = _mapper.Map<List<Dialog>>(dialogs);
+			return SavedDialogs;
+		}
 
 		public async Task<List<Message>> GetMessages(int dialogId)
 		{
@@ -129,6 +111,7 @@ namespace bonus.app.Core.Services
 					message.ImageSource = Domain + message.ImageSource;
 				}
 			}
+
 			return messages;
 		}
 
@@ -149,16 +132,48 @@ namespace bonus.app.Core.Services
 			private set => _userDialogs = value;
 		}
 
-		public async Task<List<Dialog>> GetDialogs()
+		public async Task<Message> SendMessage(int dialogId, string content, string file)
 		{
-			var dialogs = await GetAsync<List<DialogDto>>(DialogsUri);
-			if (dialogs == null)
+			using (var client = new HttpClient())
 			{
-				return new List<Dialog>();
-			}
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
-			SavedDialogs = _mapper.Map<List<Dialog>>(dialogs);
-			return SavedDialogs;
+				var base64 = string.Empty;
+				if (!string.IsNullOrWhiteSpace(file))
+				{
+					base64 = Convert.ToBase64String(File.ReadAllBytes(file));
+				}
+
+				var response = await client.PostAsync(new Uri(SendMessageUri),
+													  new StringContent(
+														  new JObject(new JProperty("dialog_id", dialogId), new JProperty("content", content), new JProperty("file", base64))
+															  .ToString(),
+														  Encoding.UTF8,
+														  ApplicationJson));
+
+				var json = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<Message>>(json);
+				if (!data.Success)
+				{
+					return null;
+				}
+
+				if (!string.IsNullOrWhiteSpace(data.Data.ImageSource))
+				{
+					data.Data.ImageSource = Domain + data.Data.ImageSource;
+				}
+
+				return data.Data;
+			}
 		}
+		#endregion
 	}
 }

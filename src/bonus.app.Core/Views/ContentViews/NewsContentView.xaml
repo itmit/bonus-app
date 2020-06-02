@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:design="clr-namespace:bonus.app.Core.Design"
              xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="bonus.app.Core.Views.ContentViews.NewsContentView">
     <ContentView.Content>
-         <StackLayout Spacing="0">
+        <StackLayout Spacing="0">
             <StackLayout Orientation="Horizontal" Spacing="20" Margin="20,25,5,0">
                 <Frame Padding="0" CornerRadius="10" HasShadow="False">
-                    <forms:CachedImage Source="{Binding ImageSource}" WidthRequest="60" IsVisible="True" IsEnabled="True"/>
+                    <forms:CachedImage Source="{Binding ImageSource}" WidthRequest="60" IsVisible="True"
+                                       IsEnabled="True" />
                 </Frame>
                 <StackLayout>
                     <Label Text="{Binding Name}" TextColor="#505050" FontSize="Body" MaxLines="1" />
@@ -16,8 +18,8 @@
                 </StackLayout>
             </StackLayout>
             <Label Text="{Binding Text}"
-                   TextColor="#110000" Opacity="0.7" MaxLines="3" Margin="20,0,5,0"/>
-            <BoxView Margin="15,10,0,0"/>
+                   TextColor="#110000" Opacity="0.7" MaxLines="3" Margin="20,0,5,0" />
+            <BoxView Margin="15,10,0,0" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -31,12 +31,12 @@
             <StackLayout Margin="20,0" Spacing="0">
                 <Frame Padding="0"
                        HasShadow="False"
-                       CornerRadius="10" 
+                       CornerRadius="10"
                        WidthRequest="320"
                        HeightRequest="265"
                        Margin="0,20">
                     <forms:CachedImage Source="{Binding Stock.ImageSource}"
-                                       Aspect="AspectFill"/>
+                                       Aspect="AspectFill" />
                 </Frame>
                 <Label Text="{Binding User.Name}" TextColor="#858585" />
                 <Label Text="{Binding Stock.Name}" TextColor="#505050" FontSize="Body" Margin="0,5" />

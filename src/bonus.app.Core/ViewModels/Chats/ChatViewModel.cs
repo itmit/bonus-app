@@ -13,53 +13,70 @@ namespace bonus.app.Core.ViewModels.Chats
 {
 	public class ChatViewModel : MvxViewModel<ChatViewModelArguments>
 	{
-		private User _recipient;
-		private MvxCommand _sendCommand;
-		private MvxObservableCollection<Message> _messages = new MvxObservableCollection<Message>();
-		private string _textToSend;
+		#region Data
+		#region Fields
+		private MvxCommand _attachImageCommand;
 		private readonly IChatsService _chatsService;
 		private string _imagePath = string.Empty;
-		private MvxCommand _attachImageCommand;
+		private MvxObservableCollection<Message> _messages = new MvxObservableCollection<Message>();
 		private readonly IPermissionsService _permissionsService;
+		private User _recipient;
+		private MvxCommand _sendCommand;
+		private string _textToSend;
+		#endregion
+		#endregion
+
+		#region .ctor
 		public ChatViewModel(IChatsService chatsService, IPermissionsService permissionsService)
 		{
 			_chatsService = chatsService;
 			_permissionsService = permissionsService;
 		}
+		#endregion
 
-		public User Recipient
+		#region Properties
+		public Dialog Dialog
 		{
-			get => _recipient;
-			private set => SetProperty(ref _recipient, value);
+			get;
+			private set;
+		}
+
+		public int? DialogId
+		{
+			get;
+			private set;
 		}
 
 		public MvxCommand AttachImageCommand
 		{
 			get
 			{
-				_attachImageCommand = _attachImageCommand ?? new MvxCommand(async () => {
-					if (!await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
-					{
-						return;
-					}
+				_attachImageCommand = _attachImageCommand ??
+									  new MvxCommand(async () =>
+									  {
+										  if (!await _permissionsService.CheckPermission(Permission.Storage,
+																						 "Для загрузки аватара необходимо разрешение на использование хранилища."))
+										  {
+											  return;
+										  }
 
-					if (!CrossMedia.Current.IsPickPhotoSupported)
-					{
-						return;
-					}
+										  if (!CrossMedia.Current.IsPickPhotoSupported)
+										  {
+											  return;
+										  }
 
-					var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-					{
-						PhotoSize = PhotoSize.Medium
-					});
+										  var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+										  {
+											  PhotoSize = PhotoSize.Medium
+										  });
 
-					if (image == null)
-					{
-						return;
-					}
+										  if (image == null)
+										  {
+											  return;
+										  }
 
-					ImagePath = image.Path;
-				});
+										  ImagePath = image.Path;
+									  });
 				return _attachImageCommand;
 			}
 		}
@@ -70,27 +87,68 @@ namespace bonus.app.Core.ViewModels.Chats
 			set => SetProperty(ref _imagePath, value);
 		}
 
-		public override void Prepare(ChatViewModelArguments parameter)
-		{
-			Recipient = parameter.User;
-			if (parameter.DialogId != null)
-			{
-				DialogId = parameter.DialogId.Value;
-			}
-
-			Dialog = parameter.Dialog;
-		}
-
-		public int? DialogId
-		{
-			get;
-			private set;
-		}
-
 		public MvxObservableCollection<Message> Messages
 		{
 			get => _messages;
 			set => SetProperty(ref _messages, value);
+		}
+
+		public User Recipient
+		{
+			get => _recipient;
+			private set => SetProperty(ref _recipient, value);
+		}
+
+		public MvxCommand SendCommand
+		{
+			get
+			{
+				_sendCommand = _sendCommand ??
+							   new MvxCommand(async () =>
+							   {
+								   if (DialogId == null)
+								   {
+									   try
+									   {
+										   DialogId = (await _chatsService.CreateDialog(Recipient)).Id;
+									   }
+									   catch (Exception e)
+									   {
+										   Console.WriteLine(e);
+									   }
+								   }
+
+								   if (string.IsNullOrWhiteSpace(TextToSend))
+								   {
+									   return;
+								   }
+
+								   if (DialogId == null)
+								   {
+									   throw new InvalidOperationException("Dialog id is null.");
+								   }
+
+								   try
+								   {
+									   var message = await _chatsService.SendMessage(DialogId.Value, TextToSend, ImagePath);
+									   Messages.Insert(0, message);
+									   await RaisePropertyChanged(() => Messages);
+
+									   if (Dialog != null)
+									   {
+										   Dialog.LastMessage = message;
+									   }
+								   }
+								   catch (Exception e)
+								   {
+									   Console.WriteLine(e);
+								   }
+
+								   TextToSend = string.Empty;
+								   ImagePath = string.Empty;
+							   });
+				return _sendCommand;
+			}
 		}
 
 		public string TextToSend
@@ -98,14 +156,15 @@ namespace bonus.app.Core.ViewModels.Chats
 			get => _textToSend;
 			set => SetProperty(ref _textToSend, value);
 		}
+		#endregion
 
+		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
 			if (DialogId == null)
 			{
-
 				if (_chatsService.SavedDialogs.Count == 0)
 				{
 					await _chatsService.GetDialogs();
@@ -133,62 +192,22 @@ namespace bonus.app.Core.ViewModels.Chats
 			}
 		}
 
-		public MvxCommand SendCommand
+		public override void Prepare(ChatViewModelArguments parameter)
 		{
-			get
+			Recipient = parameter.User;
+			if (parameter.DialogId != null)
 			{
-				_sendCommand = _sendCommand ?? new MvxCommand(async () =>
-				{
-					if (DialogId == null)
-					{
-						try
-						{
-							DialogId = (await _chatsService.CreateDialog(Recipient)).Id;
-						}
-						catch (Exception e)
-						{
-							Console.WriteLine(e);
-						}
-					}
-
-					if (string.IsNullOrWhiteSpace(TextToSend))
-					{
-						return;
-					}
-
-					if (DialogId == null)
-					{
-						throw new InvalidOperationException("Dialog id is null.");
-					}
-
-					try
-					{
-						var message = await _chatsService.SendMessage(DialogId.Value, TextToSend, ImagePath);
-						Messages.Insert(0, message);
-						await RaisePropertyChanged(() => Messages);
-
-						if (Dialog != null)
-						{
-							Dialog.LastMessage = message;
-						}
-					}
-					catch (Exception e)
-					{
-						Console.WriteLine(e);
-					}
-
-					TextToSend = string.Empty;
-					ImagePath = string.Empty;
-				});
-				return _sendCommand;
+				DialogId = parameter.DialogId.Value;
 			}
-		}
 
-		public Dialog Dialog { get; private set; }
+			Dialog = parameter.Dialog;
+		}
+		#endregion
 	}
 
 	public class ChatViewModelArguments
 	{
+		#region .ctor
 		public ChatViewModelArguments(User user, int? dialogId)
 		{
 			User = user;
@@ -197,14 +216,17 @@ namespace bonus.app.Core.ViewModels.Chats
 				DialogId = dialogId.Value;
 			}
 		}
+
 		public ChatViewModelArguments(Dialog dialog)
 		{
 			User = dialog.UserTo;
 			DialogId = dialog.Id;
 			Dialog = dialog;
 		}
+		#endregion
 
-		public User User
+		#region Properties
+		public Dialog Dialog
 		{
 			get;
 		}
@@ -214,9 +236,10 @@ namespace bonus.app.Core.ViewModels.Chats
 			get;
 		}
 
-		public Dialog Dialog
+		public User User
 		{
 			get;
 		}
+		#endregion
 	}
 }

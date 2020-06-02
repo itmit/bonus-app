@@ -24,16 +24,16 @@ namespace bonus.app.Core.Services
 
 		#region Data
 		#region Consts
+		private const string AddToFavoriteUri = "http://bonus.itmit-studio.ru/api/addStockToFavorite";
 		private const string CreateUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
 		private const string EditStockUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
 		private const string GetArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive";
+		private const string GetFavoriteStocksUri = "http://bonus.itmit-studio.ru/api/getFavoriteStocks";
 		private const string GetFilterArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive/filtered";
 		private const string GetMyArchiveStockUri = "http://bonus.itmit-studio.ru/api/businessmanstockarchive";
 		private const string GetMyFilterArchiveStockUri = "http://bonus.itmit-studio.ru/api/businessmanstockarchive/filtered";
 		private const string GetStockForEditUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}/edit";
-		private const string AddToFavoriteUri = "http://bonus.itmit-studio.ru/api/addStockToFavorite";
-		private const string GetFavoriteStocksUri = "http://bonus.itmit-studio.ru/api/getFavoriteStocks";
 		#endregion
 		#endregion
 
@@ -45,6 +45,27 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region IStockService members
+		public async Task<bool> AddToFavorite(Guid stockUuid)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+
+				var resp = await client.PostAsync(AddToFavoriteUri, new StringContent($"{{\"stock_uuid\":\"{stockUuid}\"}}", Encoding.UTF8, ApplicationJson));
+				var json = await resp.Content.ReadAsStringAsync();
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return false;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+				return data.Success;
+			}
+		}
+
 		public async Task<bool> CreateStock(Stock stock, byte[] imageBytes)
 		{
 			using (var client = new HttpClient())
@@ -220,6 +241,28 @@ namespace bonus.app.Core.Services
 			return stocks;
 		}
 
+		public async Task<List<Stock>> GetFavoriteStocks()
+		{
+			var stocks = await GetAsync<List<Stock>>(GetFavoriteStocksUri);
+			if (stocks == null)
+			{
+				return new List<Stock>();
+			}
+
+			foreach (var share in stocks)
+			{
+				if (string.IsNullOrEmpty(share.ImageSource))
+				{
+					share.ImageSource = string.Empty;
+					continue;
+				}
+
+				share.ImageSource = Domain + share.ImageSource;
+			}
+
+			return stocks;
+		}
+
 		public Task<IEnumerable<Stock>> GetMyStock() => GetMyStock(null, null);
 
 		public async Task<IEnumerable<Stock>> GetMyStock(Guid? serviceUuid, string city)
@@ -279,49 +322,6 @@ namespace bonus.app.Core.Services
 				data.Data.ImageSource = Domain + data.Data.ImageSource;
 				return data.Data;
 			}
-		}
-
-		public async Task<bool> AddToFavorite(Guid stockUuid)
-		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var resp = await client.PostAsync(AddToFavoriteUri, new StringContent($"{{\"stock_uuid\":\"{stockUuid}\"}}", Encoding.UTF8, ApplicationJson));
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				return data.Success;
-			}
-		}
-
-		public async Task<List<Stock>> GetFavoriteStocks()
-		{
-			var stocks = await GetAsync<List<Stock>>(GetFavoriteStocksUri);
-			if (stocks == null)
-			{
-				return new List<Stock>();
-			}
-
-			foreach (var share in stocks)
-			{
-				if (string.IsNullOrEmpty(share.ImageSource))
-				{
-					share.ImageSource = string.Empty;
-					continue;
-				}
-
-				share.ImageSource = Domain + share.ImageSource;
-			}
-
-			return stocks;
 		}
 		#endregion
 	}

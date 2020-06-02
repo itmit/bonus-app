@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <core:MvxFormsApplication xmlns="http://xamarin.com/schemas/2014/forms"
-                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                     xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
-                     xmlns:design="clr-namespace:bonus.app.Core.Design"
-                     xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-                     xmlns:core="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
-                     mc:Ignorable="d"
-                     x:Class="bonus.app.Core.App">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
+                          xmlns:design="clr-namespace:bonus.app.Core.Design"
+                          xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                          xmlns:core="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                          mc:Ignorable="d"
+                          x:Class="bonus.app.Core.App">
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
@@ -74,7 +74,7 @@
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
                 <Setter Property="TextColor" Value="#505050" />
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="14" />
             </Style>
             <Style TargetType="BoxView">
                 <Setter Property="BackgroundColor" Value="#CCCCCC" />

@@ -18,13 +18,20 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
+		public string Car
+		{
+			get;
+			set;
+		}
+
 		public string City
 		{
 			get;
 			set;
 		}
 
-		public string Car
+		[JsonProperty("odnoklassniki")]
+		public string ClassmatesLink
 		{
 			get;
 			set;
@@ -48,15 +55,8 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("photo")]
-		public string Photo
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("work_time")]
-		public string WorkTime
+		[JsonProperty("facebook")]
+		public string FacebookLink
 		{
 			get;
 			set;
@@ -69,6 +69,13 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
+		[JsonProperty("photo")]
+		public string Photo
+		{
+			get;
+			set;
+		}
+
 		[JsonProperty("vk")]
 		public string VkLink
 		{
@@ -76,15 +83,8 @@ namespace bonus.app.Core.Dtos
 			set;
 		}
 
-		[JsonProperty("odnoklassniki")]
-		public string ClassmatesLink
-		{
-			get;
-			set;
-		}
-
-		[JsonProperty("facebook")]
-		public string FacebookLink
+		[JsonProperty("work_time")]
+		public string WorkTime
 		{
 			get;
 			set;

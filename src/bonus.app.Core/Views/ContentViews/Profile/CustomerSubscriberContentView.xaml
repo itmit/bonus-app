@@ -15,11 +15,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <forms:CachedImage Source="{Binding PhotoSource}" WidthRequest="40" Aspect="AspectFill" 
+            <forms:CachedImage Source="{Binding PhotoSource}" WidthRequest="40" Aspect="AspectFill"
                                LoadingPlaceholder="icon_no_photo.png"
                                ErrorPlaceholder="icon_no_photo.png">
                 <forms:CachedImage.Transformations>
-                    <transformations:CircleTransformation BorderSize="10" BorderHexColor="#FFFFFF"/>
+                    <transformations:CircleTransformation BorderSize="10" BorderHexColor="#FFFFFF" />
                 </forms:CachedImage.Transformations>
             </forms:CachedImage>
             <Label Grid.Column="1" Text="{Binding Name}" MaxLines="1" VerticalOptions="Center" FontFamily="Roboto" />

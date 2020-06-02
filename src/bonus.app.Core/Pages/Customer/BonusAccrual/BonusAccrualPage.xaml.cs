@@ -1,6 +1,4 @@
-﻿using System;
-using bonus.app.Core.Page;
-using bonus.app.Core.ViewModels.Customer.BonusAccrual;
+﻿using bonus.app.Core.ViewModels.Customer.BonusAccrual;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms.Xaml;

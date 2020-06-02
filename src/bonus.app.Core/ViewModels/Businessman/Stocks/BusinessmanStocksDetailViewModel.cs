@@ -38,10 +38,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			get
 			{
 				_openArchivePageCommand = _openArchivePageCommand ??
-													 new MvxCommand(() =>
-													 {
-														 _navigationService.Navigate<StockArchiveViewModel>();
-													 });
+										  new MvxCommand(() =>
+										  {
+											  _navigationService.Navigate<StockArchiveViewModel>();
+										  });
 				return _openArchivePageCommand;
 			}
 		}
