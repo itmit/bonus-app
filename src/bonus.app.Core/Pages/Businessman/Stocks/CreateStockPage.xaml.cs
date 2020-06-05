@@ -23,9 +23,7 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 		protected override void OnAppearing()
 		{
 			Content.BindingContext = ViewModel;
-			PicCountryAndCityContentView.ViewModel = ViewModel.PicCountryAndCityViewModel;
-			MyServicesContentView.ViewModel = ViewModel.MyServicesViewModel;
-
+			PicServiceTypeLayout.ViewModel = ViewModel.PicServiceTypeViewModel;
 			base.OnAppearing();
 		}
 		#endregion

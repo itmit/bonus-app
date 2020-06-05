@@ -54,22 +54,39 @@
 
                     <BoxView Margin="0,0,0,20" />
 
-                    <Label Text="Добавить услугу" x:Name="AddServiceLabel" Margin="0,0,0,35" FontSize="Body"
-                           HorizontalOptions="Center"
-                           FontFamily="{x:Static design:DesignClass.MontserratBold}" />
+                    <Grid>
+                        <Label Text="Добавить услугу" x:Name="AddServiceLabel" Margin="0,0,0,35" FontSize="Body"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontFamily="{x:Static design:DesignClass.MontserratBold}" />
+                        <Image Source="Shape.png"
+                               WidthRequest="15"
+                               Margin="0,0,0,35"
+                               VerticalOptions="Center"
+                               HorizontalOptions="EndAndExpand"
+                               Rotation="0"
+                               x:Name="ShapeImage"
+                               />
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    
+                    <StackLayout x:Name="AddServiceLayout" IsVisible="False" IsEnabled="False">
+                        <services2:MyServicesContentView x:Name="MyServicesView" />
+                        <contentViews:ServiceAccrualBonusesContentView />
 
-                    <services2:MyServicesContentView x:Name="MyServicesView" />
-                    <contentViews:ServiceAccrualBonusesContentView />
-
-                    <design:CustomButton Style="{StaticResource AppButtonGradient}">
-                        <Grid>
-                            <graphic:RectangleInProfile />
-                            <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}" />
-                        </Grid>
-                        <design:CustomButton.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
-                        </design:CustomButton.GestureRecognizers>
-                    </design:CustomButton>
+                        <design:CustomButton Style="{StaticResource AppButtonGradient}">
+                            <Grid>
+                                <graphic:RectangleInProfile />
+                                <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}" />
+                            </Grid>
+                            <design:CustomButton.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
+                            </design:CustomButton.GestureRecognizers>
+                        </design:CustomButton>
+                    </StackLayout>
+                    
                 </StackLayout>
             </ScrollView>
 

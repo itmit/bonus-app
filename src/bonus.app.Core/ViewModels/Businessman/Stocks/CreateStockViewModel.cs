@@ -53,19 +53,19 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			_permissionsService = permissionsService;
 			_navigationService = navigationService;
 			PicCountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
-			MyServicesViewModel = new MyServicesViewModel(servicesServices, authService);
+			PicServiceTypeViewModel = new PicServiceTypeViewModel(servicesServices, authService);
 
 			AddValidations();
 		}
 		#endregion
 
 		#region Properties
-		public MyServicesViewModel MyServicesViewModel
+		public PicCountryAndCityViewModel PicCountryAndCityViewModel
 		{
 			get;
 		}
 
-		public PicCountryAndCityViewModel PicCountryAndCityViewModel
+		public PicServiceTypeViewModel PicServiceTypeViewModel
 		{
 			get;
 		}
@@ -171,7 +171,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			await base.Initialize();
 			await PicCountryAndCityViewModel.Initialize();
-			await MyServicesViewModel.Initialize();
+			await PicServiceTypeViewModel.Initialize();
 		}
 		#endregion
 
@@ -218,7 +218,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				result = false;
 			}
 
-			if (MyServicesViewModel.SelectedService == null && result)
+			if (PicServiceTypeViewModel.SelectedService == null && result)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
@@ -264,7 +264,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 													  {
 														  Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
 														  City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
-														  Service = MyServicesViewModel.SelectedService.Uuid,
+														  Service = PicServiceTypeViewModel.SelectedService.Uuid,
 														  Description = Description.Value,
 														  ImageSource = ImageName,
 														  Name = Name.Value,

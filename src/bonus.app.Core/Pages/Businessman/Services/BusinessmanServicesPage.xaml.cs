@@ -37,5 +37,12 @@ namespace bonus.app.Core.Pages.Businessman.Services
 			Scroll.ScrollToAsync(AddServiceLabel, ScrollToPosition.Start, false);
 		}
 		#endregion
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			AddServiceLayout.IsEnabled = !AddServiceLayout.IsEnabled;
+			AddServiceLayout.IsVisible = AddServiceLayout.IsEnabled;
+			ShapeImage.Rotation = AddServiceLayout.IsEnabled ? 180 : 0;
+		}
 	}
 }
