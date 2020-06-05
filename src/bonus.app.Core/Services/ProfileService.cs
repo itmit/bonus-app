@@ -9,8 +9,11 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Dtos.CustomerDtos;
+using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
+using Microsoft.AppCenter.Crashes;
+using MvvmCross;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
@@ -235,31 +238,29 @@ namespace bonus.app.Core.Services
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (AuthService.Token != null)
-			{
-				content.Add(new StringContent("PUT"), "_method");
-				if (await Update(content))
-				{
-					var user = AuthService.User;
-					user.City = arguments.City;
-					user.Country = arguments.Country;
-					user.Address = arguments.Address;
-					user.Car = arguments.Car;
-					user.Sex = arguments.Sex;
-					user.Phone = arguments.Phone;
-					user.Birthday = arguments.Birthday;
-					user.PhotoSource = imagePath;
-
-					_userRepository.Update(user);
-					return user;
-				}
-			}
-			else
+			if (AuthService.Token == null)
 			{
 				return await FillInfo(content);
 			}
 
-			return null;
+			content.Add(new StringContent("PUT"), "_method");
+			if (!await Update(content))
+			{
+				return null;
+			}
+
+			var user = AuthService.User;
+			user.City = arguments.City;
+			user.Country = arguments.Country;
+			user.Address = arguments.Address;
+			user.Car = arguments.Car;
+			user.Sex = arguments.Sex;
+			user.Phone = arguments.Phone;
+			user.Birthday = arguments.Birthday;
+			user.PhotoSource = imagePath;
+
+			_userRepository.Update(user);
+			return user;
 		}
 
 		public string Error
@@ -371,11 +372,27 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Private
-		private async Task<User> FillInfo(HttpContent content)
+		private async Task<User> FillInfo(MultipartFormDataContent content)
 		{
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+
+				try
+				{
+					var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
+					if (service != null)
+					{
+						content.Add(new StringContent("device_token"), await service.CreateToken(Secrets.SenderId) ?? string.Empty);
+					}
+				}
+				catch (Exception e)
+				{
+					Crashes.TrackError(e, new Dictionary<string, string>());
+					Console.WriteLine(e);
+				}
+
+
 				var response = await client.PostAsync(FillInfoUri, content);
 
 				var json = await response.Content.ReadAsStringAsync();

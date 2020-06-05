@@ -11,6 +11,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
@@ -297,33 +298,35 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 
 		private async void PicImageCommandExecute()
 		{
-			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			if (!await _permissionsService.RequestPermissionAsync<StoragePermission>(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
 			{
-				if (!CrossMedia.Current.IsPickPhotoSupported)
-				{
-					return;
-				}
+				return;
+			}
 
-				var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-				{
-					PhotoSize = PhotoSize.Medium
-				});
+			if (!CrossMedia.Current.IsPickPhotoSupported)
+			{
+				return;
+			}
 
-				if (image == null)
-				{
-					return;
-				}
+			var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+			{
+				PhotoSize = PhotoSize.Medium
+			});
 
-				ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
-				ImageSource = image.Path;
+			if (image == null)
+			{
+				return;
+			}
 
-				using (var memoryStream = new MemoryStream())
-				{
-					image.GetStream()
-						 .CopyTo(memoryStream);
-					image.Dispose();
-					_imageBytes = memoryStream.ToArray();
-				}
+			ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
+			ImageSource = image.Path;
+
+			using (var memoryStream = new MemoryStream())
+			{
+				image.GetStream()
+					 .CopyTo(memoryStream);
+				image.Dispose();
+				_imageBytes = memoryStream.ToArray();
 			}
 		}
 		#endregion

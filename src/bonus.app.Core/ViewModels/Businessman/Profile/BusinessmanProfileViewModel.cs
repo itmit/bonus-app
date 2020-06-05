@@ -11,6 +11,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -318,33 +319,35 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Private
 		private async void AddImageToPortfolio()
 		{
-			if (await _permissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			if (!await _permissionsService.RequestPermissionAsync<StoragePermission>(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
 			{
-				if (!CrossMedia.Current.IsPickPhotoSupported)
-				{
-					return;
-				}
-
-				var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-				{
-					PhotoSize = PhotoSize.Medium
-				});
-
-				if (image == null)
-				{
-					return;
-				}
-
-				var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
-
-				if (portfolioImage == null)
-				{
-					return;
-				}
-
-				PortfolioImages.Add(portfolioImage);
-				await RaisePropertyChanged(() => PortfolioImages);
+				return;
 			}
+
+			if (!CrossMedia.Current.IsPickPhotoSupported)
+			{
+				return;
+			}
+
+			var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+			{
+				PhotoSize = PhotoSize.Medium
+			});
+
+			if (image == null)
+			{
+				return;
+			}
+
+			var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
+
+			if (portfolioImage == null)
+			{
+				return;
+			}
+
+			PortfolioImages.Add(portfolioImage);
+			await RaisePropertyChanged(() => PortfolioImages);
 		}
 
 		private async Task OpenBrowser(string link)

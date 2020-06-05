@@ -72,8 +72,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				_refreshCommand = _refreshCommand ??
 								  new MvxCommand(async () =>
 								  {
-									  IsRefreshing = true;
-									  Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStock());
+									  IsRefreshing = true; 
+									  await Initialize();
 									  IsRefreshing = false;
 								  });
 				return _refreshCommand;
@@ -108,7 +108,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			await base.Initialize();
 
-			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStock());
+			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStocks());
 		}
 		#endregion
 

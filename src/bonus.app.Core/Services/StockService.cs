@@ -25,7 +25,7 @@ namespace bonus.app.Core.Services
 		#region Data
 		#region Consts
 		private const string AddToFavoriteUri = "http://bonus.itmit-studio.ru/api/addStockToFavorite";
-		private const string CreateUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
+		private const string BusinessmenStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
 		private const string EditStockUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
 		private const string GetArchiveStockUri = "http://bonus.itmit-studio.ru/api/customerstockarchive";
@@ -104,7 +104,7 @@ namespace bonus.app.Core.Services
 					}
 				};
 
-				var response = await client.PostAsync(new Uri(CreateUri), content);
+				var response = await client.PostAsync(new Uri(BusinessmenStocksUri), content);
 
 				var json = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(json);
@@ -183,23 +183,8 @@ namespace bonus.app.Core.Services
 		public async Task<IEnumerable<Stock>> GetAll()
 		{
 			var stocks = await GetAsync<List<Stock>>(GetAllUri);
-			if (stocks == null)
-			{
-				return new List<Stock>();
-			}
 
-			foreach (var share in stocks)
-			{
-				if (string.IsNullOrEmpty(share.ImageSource))
-				{
-					share.ImageSource = string.Empty;
-					continue;
-				}
-
-				share.ImageSource = Domain + share.ImageSource;
-			}
-
-			return stocks;
+			return ConvertSocksImages(stocks);
 		}
 
 		public Task<IEnumerable<Stock>> GetArchiveStock() => GetArchiveStock(null, null);
@@ -222,23 +207,7 @@ namespace bonus.app.Core.Services
 				stocks = (await GetAsync<IEnumerable<Stock>>(GetFilterArchiveStockUri, $"{{\"uuid\":\"{uuid}\",\"city\":\"{city}\"}}"))?.ToList();
 			}
 
-			if (stocks == null)
-			{
-				return new List<Stock>();
-			}
-
-			foreach (var stock in stocks)
-			{
-				if (string.IsNullOrEmpty(stock.ImageSource))
-				{
-					stock.ImageSource = string.Empty;
-					continue;
-				}
-
-				stock.ImageSource = Domain + stock.ImageSource;
-			}
-
-			return stocks;
+			return ConvertSocksImages(stocks);
 		}
 
 		public async Task<List<Stock>> GetFavoriteStocks()
@@ -263,9 +232,9 @@ namespace bonus.app.Core.Services
 			return stocks;
 		}
 
-		public Task<IEnumerable<Stock>> GetMyStock() => GetMyStock(null, null);
+		public Task<IEnumerable<Stock>> GetMyArchiveStock() => GetMyArchiveStock(null, null);
 
-		public async Task<IEnumerable<Stock>> GetMyStock(Guid? serviceUuid, string city)
+		public async Task<IEnumerable<Stock>> GetMyArchiveStock(Guid? serviceUuid, string city)
 		{
 			List<Stock> stocks;
 			if (serviceUuid == null && string.IsNullOrEmpty(city))
@@ -283,6 +252,11 @@ namespace bonus.app.Core.Services
 				stocks = (await GetAsync<IEnumerable<Stock>>(GetMyFilterArchiveStockUri, $"{{\"uuid\":\"{uuid}\",\"city\":\"{city}\"}}"))?.ToList();
 			}
 
+			return ConvertSocksImages(stocks);
+		}
+
+		private static IEnumerable<Stock> ConvertSocksImages(IEnumerable<Stock> stocks)
+		{
 			if (stocks == null)
 			{
 				return new List<Stock>();
@@ -300,6 +274,13 @@ namespace bonus.app.Core.Services
 			}
 
 			return stocks;
+		}
+
+		public async Task<IEnumerable<Stock>> GetMyStocks()
+		{
+			var stocks = await GetAsync<List<Stock>>(BusinessmenStocksUri);
+
+			return ConvertSocksImages(stocks);
 		}
 
 		public async Task<Stock> GetStockForEdit(Guid uuid)

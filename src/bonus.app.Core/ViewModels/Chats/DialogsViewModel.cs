@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -26,6 +27,17 @@ namespace bonus.app.Core.ViewModels.Chats
 		{
 			_navigationService = navigationService;
 			_chatsService = chatsService;
+			var service = Mvx.IoCProvider.Resolve<IMessagingService>();
+
+			if (service != null)
+			{
+				service.MessageReceived += OnMessageReceived;
+			}
+		}
+
+		private async void OnMessageReceived(object sender, EventArgs e)
+		{
+			await Initialize();
 		}
 		#endregion
 

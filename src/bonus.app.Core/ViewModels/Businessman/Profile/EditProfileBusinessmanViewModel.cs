@@ -16,6 +16,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
@@ -107,32 +108,36 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				_addPortfolioImageCommand = _addPortfolioImageCommand ??
 											new MvxCommand(async () =>
 											{
-												if (await PermissionsService.CheckPermission(Permission.Storage,
-																							 "Для загрузки аватара необходимо разрешение на использование хранилища."))
+												if (!await PermissionsService.RequestPermissionAsync<StoragePermission>(Permission.Storage,
+																									 "Для загрузки аватара необходимо разрешение на использование хранилища."))
 												{
-													if (!CrossMedia.Current.IsPickPhotoSupported)
-													{
-														return;
-													}
-
-													var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-													{
-														PhotoSize = PhotoSize.Medium
-													});
-
-													if (image == null)
-													{
-														return;
-													}
-
-													var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
-
-													if (portfolioImage != null)
-													{
-														PortfolioImages.Add(_mapper.Map<PortfolioViewModel>(portfolioImage));
-														await RaisePropertyChanged(() => PortfolioImages);
-													}
+													return;
 												}
+
+												if (!CrossMedia.Current.IsPickPhotoSupported)
+												{
+													return;
+												}
+
+												var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+												{
+													PhotoSize = PhotoSize.Medium
+												});
+
+												if (image == null)
+												{
+													return;
+												}
+
+												var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
+
+												if (portfolioImage == null)
+												{
+													return;
+												}
+
+												PortfolioImages.Add(_mapper.Map<PortfolioViewModel>(portfolioImage));
+												await RaisePropertyChanged(() => PortfolioImages);
 											});
 				return _addPortfolioImageCommand;
 			}

@@ -8,8 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
+using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
 using bonus.app.Core.Repositories;
+using Microsoft.AppCenter.Crashes;
+using MvvmCross;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
@@ -71,6 +74,20 @@ namespace bonus.app.Core.Services
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 
+				try
+				{
+					var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
+					if (service != null)
+					{
+						authData.DeviceToken = await service.CreateToken(Secrets.SenderId);
+					}
+				}
+				catch (Exception e)
+				{
+					Crashes.TrackError(e, new Dictionary<string, string>());
+					Console.WriteLine(e);
+				}
+
 				var json = JsonConvert.SerializeObject(authData);
 				Debug.WriteLine(json);
 				var response = await client.PostAsync(LoginUri, new StringContent(json, Encoding.UTF8, BaseService.ApplicationJson));
@@ -88,36 +105,36 @@ namespace bonus.app.Core.Services
 
 				if (response.IsSuccessStatusCode)
 				{
-					if (data.Success)
+					if (!data.Success)
 					{
-						var user = _mapper.Map<User>(data.Data.Client);
-						var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+						return _mapper.Map<User>(data.Data);
+					}
 
-						userInfo.Role = user.Role;
-						userInfo.Uuid = user.Uuid;
-						userInfo.Email = user.Email ?? string.Empty;
-						userInfo.Phone = user.Phone ?? string.Empty;
-						userInfo.Name = user.Name ?? string.Empty;
-						userInfo.Login = user.Login ?? string.Empty;
+					var user = _mapper.Map<User>(data.Data.Client);
+					var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
 
-						userInfo.AccessToken = new AccessToken
-						{
-							Body = data.Data.Body,
-							Type = data.Data.Type
-						};
+					userInfo.Role = user.Role;
+					userInfo.Uuid = user.Uuid;
+					userInfo.Email = user.Email ?? string.Empty;
+					userInfo.Phone = user.Phone ?? string.Empty;
+					userInfo.Name = user.Name ?? string.Empty;
+					userInfo.Login = user.Login ?? string.Empty;
 
-						if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
-						{
-							return userInfo;
-						}
+					userInfo.AccessToken = new AccessToken
+					{
+						Body = data.Data.Body,
+						Type = data.Data.Type
+					};
 
-						_userUuid = userInfo.Uuid;
-						_userRepository.Add(userInfo);
-
+					if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
+					{
 						return userInfo;
 					}
 
-					return _mapper.Map<User>(data.Data);
+					_userUuid = userInfo.Uuid;
+					_userRepository.Add(userInfo);
+
+					return userInfo;
 				}
 
 				if (data.ErrorDetails != null)
@@ -139,6 +156,15 @@ namespace bonus.app.Core.Services
 			}
 
 			_userRepository.RemoveAll();
+
+			try
+			{
+				Mvx.IoCProvider.Resolve<IFirebaseService>()?.DeleteInstance(Secrets.SenderId);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 			return true;
 
 			// TODO: Сделать выход на сервере.
@@ -152,13 +178,15 @@ namespace bonus.app.Core.Services
 				var json = await response.Content.ReadAsStringAsync();
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				if (data.Success)
+				if (!data.Success)
 				{
-					_userUuid = Guid.Empty;
-					_userRepository.Remove(user);
+					return false;
 				}
 
-				return data.Success;
+				_userUuid = Guid.Empty;
+				_userRepository.Remove(user);
+
+				return true;
 			}
 		}
 

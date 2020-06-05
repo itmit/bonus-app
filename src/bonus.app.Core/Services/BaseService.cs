@@ -15,9 +15,9 @@ namespace bonus.app.Core.Services
 	{
 		#region Data
 		#region Static
-		public static readonly string ApplicationJson = "application/json";
+		public const string ApplicationJson = "application/json";
 
-		public static readonly string Domain = "http://bonus.itmit-studio.ru/";
+		public const string Domain = "http://bonus.itmit-studio.ru/";
 		#endregion
 		#endregion
 

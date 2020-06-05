@@ -3,10 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 
 namespace bonus.app.Core.ViewModels.Chats
@@ -31,6 +33,18 @@ namespace bonus.app.Core.ViewModels.Chats
 		{
 			_chatsService = chatsService;
 			_permissionsService = permissionsService;
+
+			var service = Mvx.IoCProvider.Resolve<IMessagingService>();
+
+			if (service != null)
+			{
+				service.MessageReceived += OnMessageReceived;
+			}
+		}
+
+		private async void OnMessageReceived(object sender, EventArgs e)
+		{
+			await Initialize();
 		}
 		#endregion
 
@@ -54,8 +68,8 @@ namespace bonus.app.Core.ViewModels.Chats
 				_attachImageCommand = _attachImageCommand ??
 									  new MvxCommand(async () =>
 									  {
-										  if (!await _permissionsService.CheckPermission(Permission.Storage,
-																						 "Для загрузки аватара необходимо разрешение на использование хранилища."))
+										  if (!await _permissionsService.RequestPermissionAsync<StoragePermission>(Permission.Storage,
+																								"Для загрузки аватара необходимо разрешение на использование хранилища."))
 										  {
 											  return;
 										  }

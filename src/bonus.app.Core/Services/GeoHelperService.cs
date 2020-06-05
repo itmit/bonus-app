@@ -55,7 +55,7 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region Private
-		private string FormatUriForGetCities(CityFilterDto filter, PaginationRequestDto pagination, OrderDto order)
+		private static string FormatUriForGetCities(CityFilterDto filter, PaginationRequestDto pagination, OrderDto order)
 		{
 			var sb = new StringBuilder(GetCitiesUri);
 			if (filter != null)

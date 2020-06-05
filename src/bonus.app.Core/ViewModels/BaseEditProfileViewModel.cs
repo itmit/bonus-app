@@ -7,6 +7,7 @@ using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 
 namespace bonus.app.Core.ViewModels
@@ -166,26 +167,28 @@ namespace bonus.app.Core.ViewModels
 		#region Private
 		private async void PicImageCommandExecute()
 		{
-			if (await PermissionsService.CheckPermission(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
+			if (!await PermissionsService.RequestPermissionAsync<StoragePermission>(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))
 			{
-				if (!CrossMedia.Current.IsPickPhotoSupported)
-				{
-					return;
-				}
-
-				var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-				{
-					PhotoSize = PhotoSize.Medium
-				});
-
-				if (image == null)
-				{
-					return;
-				}
-
-				ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
-				ImageSource = image.Path;
+				return;
 			}
+
+			if (!CrossMedia.Current.IsPickPhotoSupported)
+			{
+				return;
+			}
+
+			var image = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+			{
+				PhotoSize = PhotoSize.Medium
+			});
+
+			if (image == null)
+			{
+				return;
+			}
+
+			ImageName = image.Path.Substring(image.Path.LastIndexOf('/') + 1);
+			ImageSource = image.Path;
 		}
 		#endregion
 	}

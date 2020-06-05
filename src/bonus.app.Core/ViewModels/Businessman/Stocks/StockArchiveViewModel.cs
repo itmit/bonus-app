@@ -76,7 +76,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 										   {
 											   Stocks = IsMyStocks
 															? new MvxObservableCollection<Stock>(
-																await _stockService.GetMyStock(SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
+																await _stockService.GetMyArchiveStock(SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
 															: new MvxObservableCollection<Stock>(
 																await _stockService.GetArchiveStock(SelectedService.Uuid,
 																									PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru));
@@ -199,7 +199,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(types);
 				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
 
-				Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStock());
+				Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyArchiveStock());
 			}
 			catch (Exception e)
 			{

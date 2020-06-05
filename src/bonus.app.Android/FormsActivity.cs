@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
+using Android.Gms.Common;
 using Android.OS;
+using Android.Util;
 using FFImageLoading.Forms.Platform;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -28,6 +30,51 @@ namespace bonus.app.Droid
 			private set;
 		}
 		#endregion
+
+		private const string Tag = "BonusFormsActivity";
+		internal const string ChannelId = "bonus_notification_channel";
+
+		private void IsPlayServicesAvailable()
+		{
+			var resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
+			if (resultCode != ConnectionResult.Success)
+			{
+				if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+				{
+					Log.Debug(Tag, GoogleApiAvailability.Instance.GetErrorString(resultCode));
+				}
+				else
+				{
+					Log.Debug(Tag, "This device is not supported");
+					Finish();
+				}
+
+				return;
+			}
+
+			Log.Debug(Tag, "Google Play Services is available.");
+		}
+
+		private void CreateNotificationChannel()
+		{
+			if (Build.VERSION.SdkInt < BuildVersionCodes.O)
+			{
+				// Notification channels are new in API 26 (and not a part of the
+				// support library). There is no need to create a notification
+				// channel on older versions of Android.
+				return;
+			}
+
+			var channelName = ChannelId;
+			var channelDescription = string.Empty;
+			var channel = new NotificationChannel(ChannelId, channelName, NotificationImportance.Default)
+			{
+				Description = channelDescription
+			};
+
+			var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+			notificationManager.CreateNotificationChannel(channel);
+		}
 
 		#region Overrided
 		public override void OnBackPressed()
@@ -60,6 +107,24 @@ namespace bonus.app.Droid
 			FormsMaterial.Init(this, bundle);
 			
 			base.OnCreate(bundle);
+
+			if (Intent.Extras != null)
+			{
+				foreach (var key in Intent.Extras.KeySet())
+				{
+					if (key == null)
+					{
+						continue;
+					}
+
+					var value = Intent.Extras.GetString(key);
+					Log.Debug(Tag, "Key: {0} Value: {1}", key, value);
+				}
+			}
+
+			IsPlayServicesAvailable();
+			CreateNotificationChannel();
+
 			Material.Init(this, bundle);
 
 			CachedImageRenderer.Init(true);
@@ -67,14 +132,14 @@ namespace bonus.app.Droid
 			ToolbarResource = Resource.Layout.Toolbar;
 		}
 
-		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+		private static void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
 		{
 			Crashes.TrackError(e.Exception, new Dictionary<string, string> {
 				{ "Sender", sender.GetType().FullName }
 			});
 		}
 
-		private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
 			Crashes.TrackError(e.ExceptionObject as Exception, new Dictionary<string, string> {
 				{ "Sender", sender.GetType().FullName }

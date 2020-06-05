@@ -5,6 +5,7 @@ using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
 
@@ -86,31 +87,34 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 				_openScannerCommand = _openScannerCommand ??
 									  new MvxCommand(async () =>
 									  {
-										  if (await _permissionsService.CheckPermission(Permission.Camera,
-																						"Для сканирования QR-кода необходимо разрешение на использование камеры."))
+										  if (!await _permissionsService.RequestPermissionAsync<CameraPermission>(Permission.Camera,
+																												  "Для сканирования QR-кода необходимо разрешение на использование камеры.")
+										  )
 										  {
-											  var result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
-											  User user = null;
-											  try
-											  {
-												  user = await _customerService.GetCustomerByUuid(result);
-											  }
-											  catch (Exception e)
-											  {
-												  Console.WriteLine(e);
-											  }
-
-											  if (user == null)
-											  {
-												  Device.BeginInvokeOnMainThread(() =>
-												  {
-													  Application.Current.MainPage.DisplayAlert("Ошибка", "Покупатель не найден.", "Ок");
-												  });
-												  return;
-											  }
-
-											  await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, User>(user);
+											  return;
 										  }
+
+										  var result = await NavigationService.Navigate<ScannerViewModel, object, Guid>(null);
+										  User user = null;
+										  try
+										  {
+											  user = await _customerService.GetCustomerByUuid(result);
+										  }
+										  catch (Exception e)
+										  {
+											  Console.WriteLine(e);
+										  }
+
+										  if (user == null)
+										  {
+											  Device.BeginInvokeOnMainThread(() =>
+											  {
+												  Application.Current.MainPage.DisplayAlert("Ошибка", "Покупатель не найден.", "Ок");
+											  });
+											  return;
+										  }
+
+										  await NavigationService.Navigate<BusinessmanBonusAccrualDetailsViewModel, User>(user);
 									  });
 				return _openScannerCommand;
 			}

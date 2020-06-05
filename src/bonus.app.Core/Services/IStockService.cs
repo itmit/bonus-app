@@ -28,11 +28,13 @@ namespace bonus.app.Core.Services
 
 		Task<List<Stock>> GetFavoriteStocks();
 
-		Task<IEnumerable<Stock>> GetMyStock(Guid? serviceUuid, string city);
+		Task<IEnumerable<Stock>> GetMyArchiveStock(Guid? serviceUuid, string city);
 
-		Task<IEnumerable<Stock>> GetMyStock();
+		Task<IEnumerable<Stock>> GetMyArchiveStock();
 
 		Task<Stock> GetStockForEdit(Guid uuid);
+
+		Task<IEnumerable<Stock>> GetMyStocks();
 		#endregion
 	}
 }
