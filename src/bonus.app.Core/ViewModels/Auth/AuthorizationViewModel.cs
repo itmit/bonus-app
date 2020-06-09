@@ -206,6 +206,8 @@ namespace bonus.app.Core.ViewModels.Auth
 				case UserRole.Customer:
 					await NavigationService.Navigate<MainCustomerViewModel>();
 					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 

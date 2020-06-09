@@ -44,18 +44,18 @@ namespace bonus.app.Core
 				rootPage = FormsApplication.MainPage;
 			}
 
-			if (rootPage is TPage page)
+			switch (rootPage)
 			{
-				return page;
+				case TPage page:
+					return page;
+				case TabbedPage tabbedPage:
+				{
+					var currentPage = GetPageOfType<TPage>(tabbedPage.CurrentPage);
+					return currentPage;
+				}
+				default:
+					return base.GetPageOfType<TPage>(rootPage);
 			}
-
-			if (rootPage is TabbedPage tabbedPage)
-			{
-				var currentPage = GetPageOfType<TPage>(tabbedPage.CurrentPage);
-				return currentPage;
-			}
-
-			return base.GetPageOfType<TPage>(rootPage);
 		}
 
 		public override void RegisterAttributeTypes()
@@ -71,7 +71,6 @@ namespace bonus.app.Core
 			if (existingPage == FormsApplication.MainPage)
 			{
 				FormsApplication.MainPage = page;
-				var p = Application.Current.MainPage;
 				return;
 			}
 
@@ -80,36 +79,37 @@ namespace bonus.app.Core
 
 		public override async Task<bool> ShowTabbedPage(Type view, MvxTabbedPagePresentationAttribute attribute, MvxViewModelRequest request)
 		{
-			if (attribute.Position == TabbedPosition.Tab)
+			if (attribute.Position != TabbedPosition.Tab)
 			{
-				var page = await CloseAndCreatePage(view, request, attribute);
-				var tabHost = GetPageOfType<TabbedPage>();
-				if (tabHost == null)
-				{
-					tabHost = new TabbedPage();
-					await PushOrReplacePage(FormsApplication.MainPage, tabHost, attribute);
-				}
+				return await base.ShowTabbedPage(view, attribute, request);
+			}
 
-				if (tabHost.Children.Any(p => p.GetType() == page.GetType() || (p as NavigationPage)?.RootPage.GetType() == page.GetType()))
-				{
-					return true;
-				}
+			var page = await CloseAndCreatePage(view, request, attribute);
+			var tabHost = GetPageOfType<TabbedPage>();
+			if (tabHost == null)
+			{
+				tabHost = new TabbedPage();
+				await PushOrReplacePage(FormsApplication.MainPage, tabHost, attribute);
+			}
 
-				if (attribute.WrapInNavigationPage)
-				{
-					tabHost.Children.Add(new NavigationPage(page)
-					{
-						Title = page.Title,
-						IconImageSource = page.IconImageSource
-					});
-					return true;
-				}
-
-				tabHost.Children.Add(page);
+			if (tabHost.Children.Any(p => p.GetType() == page.GetType() || (p as NavigationPage)?.RootPage.GetType() == page.GetType()))
+			{
 				return true;
 			}
 
-			return await base.ShowTabbedPage(view, attribute, request);
+			if (attribute.WrapInNavigationPage)
+			{
+				tabHost.Children.Add(new NavigationPage(page)
+				{
+					Title = page.Title,
+					IconImageSource = page.IconImageSource
+				});
+				return true;
+			}
+
+			tabHost.Children.Add(page);
+			return true;
+
 		}
 
 		public override NavigationPage TopNavigationPage(Xamarin.Forms.Page rootPage = null)
@@ -119,19 +119,18 @@ namespace bonus.app.Core
 				rootPage = FormsApplication.MainPage;
 			}
 
-			if (rootPage is TabbedPage tabbedPage)
+			if (!(rootPage is TabbedPage tabbedPage))
 			{
-				if (tabbedPage.CurrentPage != null)
-				{
-					var navTabbedPage = TopNavigationPage(tabbedPage.CurrentPage);
-					if (navTabbedPage != null)
-					{
-						return navTabbedPage;
-					}
-				}
+				return base.TopNavigationPage(rootPage);
 			}
 
-			return base.TopNavigationPage(rootPage);
+			if (tabbedPage.CurrentPage == null)
+			{
+				return base.TopNavigationPage(rootPage);
+			}
+
+			var navTabbedPage = TopNavigationPage(tabbedPage.CurrentPage);
+			return navTabbedPage ?? base.TopNavigationPage(rootPage);
 		}
 		#endregion
 
