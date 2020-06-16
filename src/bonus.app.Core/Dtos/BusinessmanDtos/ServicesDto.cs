@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ServiceModels;
 
 namespace bonus.app.Core.Dtos.BusinessmanDtos
 {

@@ -46,6 +46,9 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Пароль пользователя.
 		/// </summary>
 		private string _password;
+		private IFacebookService _facebookService;
+		private IVkService _vkService;
+		private MvxCommand _facebookLoginCommand;
 		#endregion
 		#endregion
 
@@ -56,9 +59,13 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
 		/// <param name="authService">Сервис для авторизации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
-			: base(logProvider, navigationService) =>
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IVkService vkService, IFacebookService facebookService)
+			: base(logProvider, navigationService)
+		{
 			_authService = authService;
+			_vkService = vkService;
+			_facebookService = facebookService;
+		}
 		#endregion
 
 		#region Properties
@@ -134,9 +141,34 @@ namespace bonus.app.Core.ViewModels.Auth
 				_openAuthVkFcPage = _openAuthVkFcPage ??
 									new MvxCommand(() =>
 									{
-										NavigationService.Navigate<AuthVkFcViewModel>();
 									});
 				return _openAuthVkFcPage;
+			}
+		}
+
+		public MvxCommand FacebookLoginCommand {
+			get
+			{
+				_facebookLoginCommand = _facebookLoginCommand ??
+										new MvxCommand(async () =>
+										{
+											var result = await _facebookService.Login();
+											switch (result.LoginState)
+											{
+												case LoginState.Canceled:
+													// Обработать
+													break;
+												case LoginState.Success:
+
+													break;
+												case LoginState.Failed:
+													break;
+												default:
+													// Обработать ошибки
+													break;
+											}
+										});
+				return _facebookLoginCommand;
 			}
 		}
 
@@ -186,13 +218,16 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Uuid != Guid.Empty)
 			{
-				if (user.Role == UserRole.Businessman)
+				switch (user.Role)
 				{
-					await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
-				}
-				else if (user.Role == UserRole.Customer)
-				{
-					await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
+					case UserRole.Businessman:
+						await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
+						break;
+					case UserRole.Customer:
+						await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
 				}
 
 				return;

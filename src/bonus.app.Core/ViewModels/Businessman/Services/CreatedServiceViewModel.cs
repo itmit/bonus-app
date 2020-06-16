@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.GeoHelperModels;
 using MonkeyCache.FileStore;
 using Newtonsoft.Json;
 using Xamarin.Essentials;

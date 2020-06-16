@@ -44,6 +44,39 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+    <key>vk.com</key>
+    <dict>
+      <key>NSExceptionRequiresForwardSecrecy</key>
+      <false/>
+      <key>NSIncludesSubdomains</key>
+      <true/>
+      <key>NSExceptionAllowsInsecureHTTPLoads</key>
+      <true/>
+    </dict>
+    <key>NSExceptionDomains</key>
+    <dict>
+      <key>facebook.com</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>fbcdn.net</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>akamaihd.net</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+    </dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera usage description</string>
@@ -65,5 +98,36 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>vk7511393</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb3865467926858251</string>
+				<string>vk7511393</string>
+			</array>
+    </dict>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb3865467926858251</string>
+      </array>
+    </dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    <string>fbapi</string>
+    <string>fb-messenger-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+    <string>vk-share</string>
+		<string>vkauthorize</string>
+	</array>
+  <key>FacebookAppID</key>
+  <string>1102463466549096</string>
+  <key>FacebookDisplayName</key>
+  <string>Binwell Social Demo</string>
 </dict>
 </plist>
