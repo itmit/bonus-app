@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Views.ContentViews.Statistics.LineChartContentView">
+  <ContentView.Content>
+      <forms:SKCanvasView PaintSurface="SKCanvasView_OnPaintSurfacew_OnPaintSurface" VerticalOptions="FillAndExpand" Margin="30"/>
+  </ContentView.Content>
+</ContentView>
