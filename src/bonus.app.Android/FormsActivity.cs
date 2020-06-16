@@ -2,21 +2,33 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Gms.Common;
 using Android.OS;
+using Android.Runtime;
 using Android.Util;
+using bonus.app.Core.Services;
+using bonus.app.Droid.Services;
 using FFImageLoading.Forms.Platform;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
+using Org.Json;
 using Plugin.Permissions;
 using Rg.Plugins.Popup;
+using VKontakte;
+using Xamarin.Facebook;
+using Xamarin.Facebook.AppEvents;
+using Xamarin.Facebook.Login;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using XF.Material.Droid;
-using ZXing.Net.Mobile.Forms.Android;
+using LoginResult = bonus.app.Core.Services.LoginResult;
 using PermissionsHandler = ZXing.Net.Mobile.Android.PermissionsHandler;
+using Platform = ZXing.Net.Mobile.Forms.Android.Platform;
 
 namespace bonus.app.Droid
 {
@@ -33,6 +45,28 @@ namespace bonus.app.Droid
 
 		private const string Tag = "BonusFormsActivity";
 		internal const string ChannelId = "bonus_notification_channel";
+
+		protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
+		{
+			var task = VKSdk.OnActivityResultAsync(requestCode, resultCode, data, out var vkResult);
+
+			if (!vkResult)
+			{
+				base.OnActivityResult(requestCode, resultCode, data);
+				AndroidFacebookService.Instance.OnActivityResult(requestCode, (int)resultCode, data);
+				return;
+			}
+
+			try
+			{
+				var token = await task;
+				// Get token
+			}
+			catch (Exception e)
+			{
+				// Handle exception
+			}
+		}
 
 		private void IsPlayServicesAvailable()
 		{
@@ -65,7 +99,7 @@ namespace bonus.app.Droid
 				return;
 			}
 
-			var channelName = ChannelId;
+			const string channelName = ChannelId;
 			var channelDescription = string.Empty;
 			var channel = new NotificationChannel(ChannelId, channelName, NotificationImportance.Default)
 			{
@@ -77,19 +111,17 @@ namespace bonus.app.Droid
 		}
 
 		#region Overrided
-		public override void OnBackPressed()
-		{
-			if (Popup.SendBackPressed(base.OnBackPressed))
-			{
-				// Do something if there are some pages in the `PopupStack`
-			}
-		}
-
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
 		{
 			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 			PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+		}
+
+		protected override void OnResume()
+		{
+			base.OnResume();
+			AppEventsLogger.ActivateApp(Application);
 		}
 
 		protected override void OnCreate(Bundle bundle)
@@ -107,6 +139,8 @@ namespace bonus.app.Droid
 			FormsMaterial.Init(this, bundle);
 			
 			base.OnCreate(bundle);
+
+			this.GetActivity();
 
 			if (Intent.Extras != null)
 			{
@@ -147,4 +181,5 @@ namespace bonus.app.Droid
 		}
 		#endregion
 	}
+
 }

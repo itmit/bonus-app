@@ -9,6 +9,7 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ServiceModels;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services

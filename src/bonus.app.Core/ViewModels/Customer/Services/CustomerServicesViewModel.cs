@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Services;
 using MvvmCross.Commands;

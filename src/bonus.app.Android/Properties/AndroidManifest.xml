@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.1.4b" package="itmit.bonus.app" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          android:versionCode="1"
+          android:versionName="0.1.4b"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="itmit.bonus.app"
+          android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -14,6 +19,29 @@
         <category android:name="${applicationId}" />
       </intent-filter>
     </receiver>
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+    <activity android:name="com.facebook.FacebookActivity"
+              tools:replace="android:theme"
+              android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+              android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:label="@string/app_name" />
+    <activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="@string/fb_login_protocol_scheme" />
+      </intent-filter>
+    </activity>
+    <activity android:name="com.binwell.login.MainActivity" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="@string/vk_data_theme" />
+      </intent-filter>
+    </activity>
+    <provider android:authorities="com.facebook.app.FacebookContentProvider1102463466549096" android:name="com.facebook.FacebookContentProvider" android:exported="true" />
   </application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

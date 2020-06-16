@@ -22,10 +22,11 @@ namespace bonus.app.Droid
 		{
 			var provider = base.CreateIocProvider();
 			provider.RegisterType<IFirebaseService, AndroidFirebaseService>();
-			provider.RegisterSingleton(typeof(IMessagingService), new MessagingService());
+			provider.RegisterType<IFacebookService, AndroidFacebookService>();
+			provider.RegisterType<IVkService, AndroidVkService>();
+			provider.RegisterSingleton<IMessagingService>(new MessagingService());
 			return provider;
 		}
-
 
 		protected override IMvxFormsPagePresenter CreateFormsPagePresenter(IMvxFormsViewPresenter viewPresenter)
 		{

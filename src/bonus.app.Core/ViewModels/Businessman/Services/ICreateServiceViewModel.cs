@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ServiceModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {

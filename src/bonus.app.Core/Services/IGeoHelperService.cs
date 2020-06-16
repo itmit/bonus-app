@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.GeoHelper;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.GeoHelperModels;
 
 namespace bonus.app.Core.Services
 {
