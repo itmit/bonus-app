@@ -7,6 +7,7 @@ using Android.Runtime;
 using bonus.app.Core.Services;
 using MvvmCross;
 using Org.Json;
+using Plugin.CurrentActivity;
 using Xamarin.Facebook;
 using Xamarin.Facebook.Login;
 using LoginResult = bonus.app.Core.Services.LoginResult;
@@ -18,7 +19,7 @@ namespace bonus.app.Droid.Services
 		public static AndroidFacebookService Instance => Mvx.IoCProvider.Resolve<IFacebookService>() as AndroidFacebookService;
 
 		private readonly ICallbackManager _callbackManager = CallbackManagerFactory.Create();
-		private readonly string[] _permissions = { @"public_profile", @"email", @"user_about_me" };
+		private readonly string[] _permissions = { @"email", @"user_gender", @"user_hometown" };
 
 		private LoginResult _loginResult;
 		private TaskCompletionSource<LoginResult> _completionSource;
@@ -31,9 +32,8 @@ namespace bonus.app.Droid.Services
 		public Task<LoginResult> Login()
 		{
 			_completionSource = new TaskCompletionSource<LoginResult>();
-			var context = Application.Context;
 			
-			LoginManager.Instance.LogInWithReadPermissions((Activity)context, _permissions);
+			LoginManager.Instance.LogInWithReadPermissions(CrossCurrentActivity.Current.Activity, _permissions);
 			return _completionSource.Task;
 		}
 

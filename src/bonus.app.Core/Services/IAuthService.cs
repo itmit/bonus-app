@@ -35,6 +35,8 @@ namespace bonus.app.Core.Services
 		Task<bool> Logout(User user);
 
 		Task<User> Register(User user, string password, string confirmPassword);
+
+		Task<User> AuthorizationAnExternalService(string email, string accessToken, ExternalAuthService authServiceType);
 		#endregion
 	}
 }

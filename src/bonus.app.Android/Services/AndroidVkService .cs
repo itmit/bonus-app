@@ -2,6 +2,7 @@
 using Android.App;
 using bonus.app.Core.Services;
 using MvvmCross;
+using Plugin.CurrentActivity;
 using VKontakte;
 using VKontakte.API;
 using Xamarin.Forms;
@@ -24,7 +25,7 @@ namespace bonus.app.Droid.Services
 		public Task<LoginResult> Login()
 		{
 			_completionSource = new TaskCompletionSource<LoginResult>();
-			VKSdk.Login(Android.App.Application.Context as Activity, _permissions);
+			VKSdk.Login(CrossCurrentActivity.Current.Activity, _permissions);
 			return _completionSource.Task;
 		}
 
@@ -68,7 +69,7 @@ namespace bonus.app.Droid.Services
 			}
 		}
 
-		private void SetErrorResult(string errorMessage)
+		public void SetErrorResult(string errorMessage)
 		{
 			SetResult(new LoginResult
 			{

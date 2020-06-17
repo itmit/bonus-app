@@ -1,4 +1,6 @@
-﻿namespace bonus.app.Core.Models
+﻿using System;
+
+namespace bonus.app.Core.Models
 {
 	/// <summary>
 	/// Представляет token доступа к api.
@@ -13,7 +15,7 @@
 		{
 			get;
 			set;
-		}
+		} = string.Empty;
 
 		/// <summary>
 		/// Возвращает или устанавливает тип token.
@@ -22,7 +24,7 @@
 		{
 			get;
 			set;
-		}
+		} = string.Empty;
 		#endregion
 
 		#region Overrided

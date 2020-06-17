@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using bonus.app.Core.Dtos;
+using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman;
@@ -49,6 +51,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		private IFacebookService _facebookService;
 		private IVkService _vkService;
 		private MvxCommand _facebookLoginCommand;
+		private IProfileService _profileService;
 		#endregion
 		#endregion
 
@@ -59,12 +62,13 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
 		/// <param name="authService">Сервис для авторизации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IVkService vkService, IFacebookService facebookService)
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IVkService vkService, IFacebookService facebookService, IProfileService profileService)
 			: base(logProvider, navigationService)
 		{
 			_authService = authService;
 			_vkService = vkService;
 			_facebookService = facebookService;
+			_profileService = profileService;
 		}
 		#endregion
 
@@ -134,15 +138,136 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <summary>
 		/// Возвращает команду для перехода на авторизацию через Vk или Facebook.
 		/// </summary>
-		public IMvxCommand OpenAuthVkFcPage
+		public IMvxCommand VkLoginCommand
 		{
 			get
 			{
 				_openAuthVkFcPage = _openAuthVkFcPage ??
-									new MvxCommand(() =>
+									new MvxCommand(async () =>
 									{
+										var result = await _vkService.Login();
+										await AuthorizationAnExternalService(result, ExternalAuthService.Vk);
 									});
 				return _openAuthVkFcPage;
+			}
+		}
+
+		private async Task AuthorizationAnExternalService(LoginResult result, ExternalAuthService serviceType)
+		{
+			string serviceName;
+			switch (serviceType)
+			{
+				case ExternalAuthService.Vk:
+					serviceName = "Vk";
+					break;
+				case ExternalAuthService.Facebook:
+					serviceName = "Facebook";
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(serviceType), serviceType, null);
+			}
+
+			switch (result.LoginState)
+			{
+				case LoginState.Canceled:
+					// Обработать
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Ошибка", $"Авторизация через {serviceName} отменена.", "Ок");
+					});
+					break;
+				case LoginState.Success:
+
+					User user = null;
+					try
+					{
+						user = await _authService.AuthorizationAnExternalService(result.Email, result.Token, serviceType);
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+
+					var isActive = true;
+					if (user == null)
+					{
+						var role = await Application.Current.MainPage.DisplayAlert("Внимание",
+																				   "Выберите тип аккаунта.",
+																				   "Предприниматель",
+																				   "Покупатель") ? UserRole.Businessman : UserRole.Customer;
+
+						user = await _authService.Register(new User
+														   {
+															   Email = result.Email,
+															   Name = $"{result.FirstName} {result.LastName}",
+															   Login = result.UserId,
+															   Role = role
+						},
+														   result.UserId,
+														   result.UserId);
+						if (user == null)
+						{
+							Device.BeginInvokeOnMainThread(() =>
+							{
+								Application.Current.MainPage.DisplayAlert("Ошибка",
+																		  $"Авторизация через {serviceName} пошла успешно, но не удалось зарегистрировать данного пользователя в системе.",
+																		  "Ок");
+							});
+							return;
+						}
+
+						isActive = false;
+					}
+
+					if (string.IsNullOrEmpty(user.AccessToken?.Body) && user.Uuid != Guid.Empty)
+					{
+						if (isActive)
+						{
+							Device.BeginInvokeOnMainThread(() =>
+							{
+								Application.Current.MainPage.DisplayAlert("Внимание", $"Авторизация через {serviceName} невозможна, пока Вы не заполните статистическую информацию.", "Ок");
+							});
+						}
+						else
+						{
+							switch (user.Role)
+							{
+								case UserRole.Businessman:
+									await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(
+										new EditProfileViewModelArguments(user.Uuid, false, result.UserId));
+									break;
+								case UserRole.Customer:
+									await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
+										new EditProfileViewModelArguments(user.Uuid, false, result.UserId));
+									break;
+								default:
+									throw new ArgumentOutOfRangeException();
+							}
+						}
+						return;
+					}
+
+					switch (user.Role)
+					{
+						case UserRole.Businessman:
+							await NavigationService.Navigate<MainBusinessmanViewModel>();
+							break;
+						case UserRole.Customer:
+							await NavigationService.Navigate<MainCustomerViewModel>();
+							break;
+						default:
+							throw new ArgumentOutOfRangeException();
+					}
+
+					break;
+				case LoginState.Failed:
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						Application.Current.MainPage.DisplayAlert("Ошибка", "Не удалось авторизоваться.", "Ок");
+					});
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 
@@ -153,20 +278,7 @@ namespace bonus.app.Core.ViewModels.Auth
 										new MvxCommand(async () =>
 										{
 											var result = await _facebookService.Login();
-											switch (result.LoginState)
-											{
-												case LoginState.Canceled:
-													// Обработать
-													break;
-												case LoginState.Success:
-
-													break;
-												case LoginState.Failed:
-													break;
-												default:
-													// Обработать ошибки
-													break;
-											}
+											await AuthorizationAnExternalService(result, ExternalAuthService.Facebook);
 										});
 				return _facebookLoginCommand;
 			}

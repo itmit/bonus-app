@@ -14,10 +14,9 @@
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
-                      Title="{Binding Title}"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage">
     <NavigationPage.TitleView>
-        <Label Text="Редактор профиля" Style="{StaticResource TitleLabel}" />
+        <Label Text="{Binding Title}" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

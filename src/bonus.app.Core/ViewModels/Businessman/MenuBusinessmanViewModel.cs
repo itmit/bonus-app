@@ -124,31 +124,33 @@ namespace bonus.app.Core.ViewModels.Businessman
 		#region Private
 		private void OpenProfileCommandExecute()
 		{
-			if (Application.Current.MainPage is MasterDetailPage masterDetailPage)
+			if (!(Application.Current.MainPage is MasterDetailPage masterDetailPage))
 			{
-				if (masterDetailPage.Detail is TabbedPage tabbedPage)
+				return;
+			}
+
+			if (masterDetailPage.Detail is TabbedPage tabbedPage)
+			{
+				var profilePage = tabbedPage.Children.Single(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
+																  (p as IMvxPage)?.ViewModel is BusinessmanProfileViewModel);
+				tabbedPage.CurrentPage = profilePage;
+				if (profilePage is NavigationPage profileNavigationPage && profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
 				{
-					var profilePage = tabbedPage.Children.Single(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
-																	  (p as IMvxPage)?.ViewModel is BusinessmanProfileViewModel);
-					tabbedPage.CurrentPage = profilePage;
-					if (profilePage is NavigationPage profileNavigationPage && profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
+					foreach (var page in profileNavigationPage.Navigation.NavigationStack)
 					{
-						foreach (var page in profileNavigationPage.Navigation.NavigationStack)
+						if (profileNavigationPage.RootPage == profileNavigationPage.CurrentPage)
 						{
-							if (profileNavigationPage.RootPage == profileNavigationPage.CurrentPage)
-							{
-								break;
-							}
-
-							_navigationService.Close(((IMvxPage) page).ViewModel);
+							break;
 						}
-					}
 
-					tabbedPage.CurrentPage = profilePage;
+						_navigationService.Close(((IMvxPage) page).ViewModel);
+					}
 				}
 
-				masterDetailPage.IsPresented = false;
+				tabbedPage.CurrentPage = profilePage;
 			}
+
+			masterDetailPage.IsPresented = false;
 		}
 		#endregion
 	}

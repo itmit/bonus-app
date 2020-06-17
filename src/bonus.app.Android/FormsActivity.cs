@@ -17,6 +17,7 @@ using Microsoft.AppCenter.Crashes;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
 using Org.Json;
+using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Rg.Plugins.Popup;
 using VKontakte;
@@ -60,11 +61,18 @@ namespace bonus.app.Droid
 			try
 			{
 				var token = await task;
-				// Get token
+				AndroidVkService.Instance.SetUserToken(token);
 			}
 			catch (Exception e)
 			{
-				// Handle exception
+				if (!(e is VKException vkException) || vkException.Error.ErrorCode != VKontakte.API.VKError.VkCanceled)
+				{
+					AndroidVkService.Instance.SetErrorResult(e.Message);
+				}
+				else
+				{
+					AndroidVkService.Instance.SetCanceledResult();
+				}
 			}
 		}
 
@@ -140,6 +148,7 @@ namespace bonus.app.Droid
 			
 			base.OnCreate(bundle);
 
+			CrossCurrentActivity.Current.Init(this, bundle);
 			this.GetActivity();
 
 			if (Intent.Extras != null)

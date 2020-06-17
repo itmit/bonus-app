@@ -22,8 +22,8 @@ namespace bonus.app.Droid
 		{
 			var provider = base.CreateIocProvider();
 			provider.RegisterType<IFirebaseService, AndroidFirebaseService>();
-			provider.RegisterType<IFacebookService, AndroidFacebookService>();
-			provider.RegisterType<IVkService, AndroidVkService>();
+			provider.RegisterSingleton<IFacebookService>(new AndroidFacebookService());
+			provider.RegisterSingleton<IVkService>(new AndroidVkService());
 			provider.RegisterSingleton<IMessagingService>(new MessagingService());
 			return provider;
 		}

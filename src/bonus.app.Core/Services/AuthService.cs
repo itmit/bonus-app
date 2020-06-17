@@ -212,6 +212,8 @@ namespace bonus.app.Core.Services
 					case UserRole.Customer:
 						regDto.Type = "customer";
 						break;
+					default:
+						throw new ArgumentOutOfRangeException();
 				}
 
 				var requestBody = JsonConvert.SerializeObject(regDto);
@@ -227,7 +229,7 @@ namespace bonus.app.Core.Services
 
 				if (data.Success)
 				{
-					user = await Task.FromResult(_mapper.Map<User>(data.Data));
+					user.Uuid = data.Data.Uuid;
 					return user;
 				}
 
@@ -241,6 +243,107 @@ namespace bonus.app.Core.Services
 
 				Error = data.Error;
 
+				return null;
+			}
+		}
+
+		private const string AuthorizationAnExternalServiceUri = "http://bonus.itmit-studio.ru/api/authorizationAnExternalService";
+		public async Task<User> AuthorizationAnExternalService(string email, string accessToken, ExternalAuthService authServiceType)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
+
+				var request = new Dictionary<string, string>
+				{
+					{"email", email },
+					{"access_token", accessToken },
+				};
+				switch (authServiceType)
+				{
+					case ExternalAuthService.Vk:
+						request.Add("service", "vk");
+						break;
+					case ExternalAuthService.Facebook:
+						request.Add("service", "facebook");
+						break;
+					default:
+						throw new ArgumentOutOfRangeException(nameof(authServiceType), authServiceType, null);
+				}
+
+				try
+				{
+					var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
+					if (service != null)
+					{
+						var deviceToken = await service.CreateToken(Secrets.SenderId);
+						if (!string.IsNullOrWhiteSpace(deviceToken))
+						{
+							request.Add("device_token", deviceToken);
+
+						}
+					}
+				}
+				catch (Exception e)
+				{
+					Crashes.TrackError(e, new Dictionary<string, string>());
+					Console.WriteLine(e);
+				}
+
+				
+				var response = await client.PostAsync(AuthorizationAnExternalServiceUri, new FormUrlEncodedContent(request));
+
+				var jsonString = await response.Content.ReadAsStringAsync();
+				Debug.WriteLine(jsonString);
+
+				if (string.IsNullOrEmpty(jsonString))
+				{
+					Error = "Нет ответа от сервера";
+					return null;
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+				if (response.IsSuccessStatusCode)
+				{
+					if (!data.Success)
+					{
+						return _mapper.Map<User>(data.Data);
+					}
+
+					var user = _mapper.Map<User>(data.Data.Client);
+					var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+
+					userInfo.Role = user.Role;
+					userInfo.Uuid = user.Uuid;
+					userInfo.Email = user.Email ?? string.Empty;
+					userInfo.Phone = user.Phone ?? string.Empty;
+					userInfo.Name = user.Name ?? string.Empty;
+					userInfo.Login = user.Login ?? string.Empty;
+
+					userInfo.AccessToken = new AccessToken
+					{
+						Body = data.Data.Body,
+						Type = data.Data.Type
+					};
+
+					if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
+					{
+						return userInfo;
+					}
+
+					_userUuid = userInfo.Uuid;
+					_userRepository.Add(userInfo);
+
+					return userInfo;
+				}
+
+				if (data.ErrorDetails != null)
+				{
+					ErrorDetails = data.ErrorDetails;
+				}
+
+				Error = data.Error;
 				return null;
 			}
 		}

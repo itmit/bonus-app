@@ -70,7 +70,7 @@
                         </Label>
                         <Label Text="Войти с помощью Vkontakte" HorizontalTextAlignment="Center" TextColor="White">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenAuthVkFcPage}" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Command="{Binding VkLoginCommand}" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
