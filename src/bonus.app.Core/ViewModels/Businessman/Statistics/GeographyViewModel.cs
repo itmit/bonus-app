@@ -1,30 +1,32 @@
-﻿using MvvmCross.Commands;
+﻿using bonus.app.Core.Services;
+using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
-	public class GeographyViewModel : MvxNavigationViewModel
+	public class GeographyViewModel : MvxViewModel
 	{
 		#region .ctor
-		public GeographyViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-			: base(logProvider, navigationService)
+		public GeographyViewModel(IMvxNavigationService navigationService)
 		{
+			_navigationService = navigationService;
 		}
 		#endregion
 
 		#region .prop
-		private MvxCommand _openGeographyDetailPageCommand;
+		private IMvxCommand<GeographyStatisticsType> _openGeographyDetailPageCommand;
+		private readonly IMvxNavigationService _navigationService;
 
-		public IMvxCommand OpenGeographyDetailPageCommand
+		public IMvxCommand<GeographyStatisticsType> OpenGeographyDetailPageCommand
 		{
 			get
 			{
 				_openGeographyDetailPageCommand = _openGeographyDetailPageCommand ??
-												  new MvxCommand(() =>
+												  new MvxCommand<GeographyStatisticsType>(type =>
 												  {
-													  NavigationService.Navigate<GeographyDetailViewModel>();
+													  _navigationService.Navigate<GeographyDetailViewModel, GeographyStatisticsType>(type);
 												  });
 				return _openGeographyDetailPageCommand;
 			}

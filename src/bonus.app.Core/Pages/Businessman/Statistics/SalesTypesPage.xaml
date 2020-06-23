@@ -8,7 +8,11 @@
                       xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      x:Name="StatisticPage"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
+                      xmlns:controls="clr-namespace:bonus.app.Core.Controls;assembly=bonus.app.Core"
+                      xmlns:statistics1="clr-namespace:bonus.app.Core.Views.ContentViews.Statistics;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Statistics.SalesTypesPage">
     <NavigationPage.TitleView>
@@ -17,36 +21,96 @@
 
     <ContentPage.Content>
         <!--Страница 11.1 Продажи по видам-->
-        <ScrollView>
-            <StackLayout Margin="15,0" Spacing="0">
-                <Grid Margin="5,20,5,15">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Добавить услугу" VerticalOptions="Center" />
-                    <Image Grid.Column="1" Source="ic_plusbrown_4x.png" HorizontalOptions="EndAndExpand"
-                           VerticalOptions="Center" WidthRequest="10" />
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
-                    </Grid.GestureRecognizers>
-                </Grid>
-                <BoxView />
 
-                <Entry Placeholder="За период"
-                       PlaceholderColor="#505050"
-                       TextColor="#505050"
-                       Keyboard="Numeric"
-                       Visual="Material"
-                       FontFamily="{x:Static design:DesignClass.LatoRegular}"
-                       Margin="0,0,0,20"
-                       BackgroundColor="Transparent">
-                    <Entry.Behaviors>
-                        <behaviors:MaskedBehavior Mask="XX.XX.XXXX - XX.XX.XXXX" />
-                    </Entry.Behaviors>
-                </Entry>
-                <ui:MaterialButton Style="{StaticResource StatisticButton}" />
-            </StackLayout>
-        </ScrollView>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <StackLayout Margin="15,0" Spacing="0">
+                    <StackLayout>
+                        <StackLayout Margin="0,0,0,15" Spacing="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
+                                <Label Text="Добавить услугу" FontSize="14" />
+                                <Image Source="ic_plusbrown_4x"
+                                       WidthRequest="15"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand"/>
+                            </StackLayout>
+                            <BoxView />
+                        </StackLayout>
+
+                        <StackLayout  IsVisible="{Binding IsVisibleServices}"
+                                      IsEnabled="{Binding IsVisibleServices}"
+                                      BindableLayout.ItemsSource="{Binding Services}"
+                                      HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Spacing="0">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="{Binding Name}" Margin="50,20,5,15" HorizontalOptions="FillAndExpand" />
+                                        <BoxView Margin="35,0,0,0" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                    <BoxView />
+
+                    <StackLayout BindableLayout.ItemsSource="{Binding Result}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <statistics1:LineStatisticContentView/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                    <Grid Margin="0,-15,5,-20" ColumnSpacing="0" BackgroundColor="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ui:MaterialDateField Grid.Column="0"
+                                              VerticalOptions="Center"
+                                              BackgroundColor="Transparent"
+                                              TextFontSize="14"
+                                              TextFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                              Placeholder="__.__.____"
+                                              TextColor="#505050"
+                                              TintColor="#505050"
+                                              Date="{Binding DateFrom}"
+                                              PlaceholderColor="#505050"
+                                              WidthRequest="130"
+                                              FloatingPlaceholderEnabled="False"
+                                              PlaceholderFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                              HorizontalPadding="10"
+                                              ShouldAnimateUnderline="False" />
+                        <Label Text="—" Grid.Column="1" VerticalOptions="Start" Margin="0,10,0,0" />
+                        <ui:MaterialDateField Grid.Column="2"
+                                              VerticalOptions="Center"
+                                              BackgroundColor="Transparent"
+                                              TextFontSize="14"
+                                              TextFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                              Placeholder="__.__.____"
+                                              TextColor="#505050"
+                                              TintColor="#505050"
+                                              Date="{Binding DateTo}"
+                                              PlaceholderColor="#505050"
+                                              WidthRequest="130"
+                                              FloatingPlaceholderEnabled="False"
+                                              PlaceholderFontFamily="{x:Static design:DesignClass.LatoRegular}"
+                                              HorizontalPadding="10"
+                                              ShouldAnimateUnderline="False" />
+                    </Grid>
+                    <ui:MaterialButton Style="{StaticResource StatisticButton}" Margin="0,0,0,20" Command="{Binding RefreshCommand}"/>
+
+                    <statistics1:LineChartContentView VerticalOptions="FillAndExpand" x:Name="LineChart" Lines="{Binding Lines}"/>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

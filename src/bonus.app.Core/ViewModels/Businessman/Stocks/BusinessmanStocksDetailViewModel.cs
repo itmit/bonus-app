@@ -1,4 +1,6 @@
-﻿using bonus.app.Core.Models;
+﻿using System;
+using System.Threading.Tasks;
+using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -7,7 +9,7 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
-	public class BusinessmanStocksDetailViewModel : MvxViewModel<Stock>
+	public class BusinessmanStocksDetailViewModel : MvxViewModel<Guid>
 	{
 		#region Data
 		#region Fields
@@ -19,6 +21,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		private Stock _stock;
 		private readonly IStockService _stockService;
 		private User _user;
+		private Guid _guid;
 		#endregion
 		#endregion
 
@@ -92,23 +95,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		#endregion
 
 		#region Overrided
-		public override void Prepare(Stock parameter)
+		public override void Prepare(Guid parameter)
 		{
-			Stock = parameter;
-			if (Stock.Status == null)
-			{
-				ShareColor = Color.Transparent;
-				return;
-			}
+			_guid = parameter;
+		}
 
-			if (Stock.Status.Equals("Завершена"))
-			{
-				ShareColor = Color.FromHex("#807D746D");
-			}
-			else if (Stock.Status.Equals("Отклонена"))
-			{
-				ShareColor = Color.FromHex("#80BB8D91");
-			}
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			Stock = await _stockService.GetDetail(_guid);
 		}
 		#endregion
 

@@ -86,6 +86,12 @@ namespace bonus.app.Core.Models.ServiceModels
 			get => WhiteOffMethod == BonusValueType.Points ? WhiteOffValue / 100 : WhiteOffValue;
 			set => WhiteOffValue = (int) (WhiteOffMethod == BonusValueType.Points ? value * 100 : value);
 		}
+
+		public int Id
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

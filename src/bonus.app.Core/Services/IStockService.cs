@@ -24,7 +24,7 @@ namespace bonus.app.Core.Services
 
 		Task<IEnumerable<Stock>> GetArchiveStock(Guid? serviceUuid, string city);
 
-		Task<IEnumerable<Stock>> GetArchiveStock();
+		Task<Stock> GetDetail(Guid uuid);
 
 		Task<List<Stock>> GetFavoriteStocks();
 

@@ -1,20 +1,17 @@
-﻿
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using SkiaSharp;
 using Xamarin.Forms;
 
 namespace bonus.app.Core.Models.Statistic
 {
-	public class Line
+	public class PiecePieChart
 	{
-		[JsonProperty("views")]
-		public List<Point> Points
+		public string Name
 		{
 			get;
 			set;
 		}
 
-		public string Name
+		public float Percent
 		{
 			get;
 			set;

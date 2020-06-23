@@ -10,6 +10,8 @@
                       xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+                      xmlns:forms1="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+                      xmlns:statistics1="clr-namespace:bonus.app.Core.Views.ContentViews.Statistics;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Statistics.GeographyDetailPage">
 
@@ -18,18 +20,19 @@
     </views:MvxNavigationPage.TitleView>
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Spacing="0" Margin="15,0">
-                <Label Text="Страны" Padding="10,20,5,15" />
-                <BoxView />
-                <Label Text="За период" FontSize="Micro" Margin="10,5" />
-                <Grid Margin="0,-15,5,-20" ColumnSpacing="0" BackgroundColor="Transparent">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <ui:MaterialDateField Grid.Column="0"
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <StackLayout Spacing="0" Margin="15,0">
+                    <Label Text="Страны" Padding="10,20,5,15" />
+                    <BoxView />
+                    <Label Text="За период" FontSize="Micro" Margin="10,5" />
+                    <Grid Margin="0,-15,5,-20" ColumnSpacing="0" BackgroundColor="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ui:MaterialDateField Grid.Column="0"
                                           VerticalOptions="Center"
                                           BackgroundColor="Transparent"
                                           TextFontSize="14"
@@ -37,14 +40,15 @@
                                           Placeholder="__.__.____"
                                           TextColor="#505050"
                                           TintColor="#505050"
+                                          Date="{Binding DateFrom}"
                                           PlaceholderColor="#505050"
                                           WidthRequest="130"
                                           FloatingPlaceholderEnabled="False"
                                           PlaceholderFontFamily="{x:Static design:DesignClass.LatoRegular}"
                                           HorizontalPadding="10"
                                           ShouldAnimateUnderline="False" />
-                    <Label Text="—" Grid.Column="1" VerticalOptions="Start" Margin="0,10,0,0" />
-                    <ui:MaterialDateField Grid.Column="2"
+                        <Label Text="—" Grid.Column="1" VerticalOptions="Start" Margin="0,10,0,0" />
+                        <ui:MaterialDateField Grid.Column="2"
                                           VerticalOptions="Center"
                                           BackgroundColor="Transparent"
                                           TextFontSize="14"
@@ -52,22 +56,32 @@
                                           Placeholder="__.__.____"
                                           TextColor="#505050"
                                           TintColor="#505050"
+                                          Date="{Binding DateTo}"
                                           PlaceholderColor="#505050"
                                           WidthRequest="130"
                                           FloatingPlaceholderEnabled="False"
                                           PlaceholderFontFamily="{x:Static design:DesignClass.LatoRegular}"
                                           HorizontalPadding="10"
                                           ShouldAnimateUnderline="False" />
-                </Grid>
-                <BoxView Margin="0,0,0,20" HeightRequest="1" />
-                <ui:MaterialButton Style="{StaticResource StatisticButton}" Margin="0,0,0,20" />
-                <forms:ChartView x:Name="donut"
+                    </Grid>
+                    <BoxView Margin="0,0,0,20" HeightRequest="1" />
+                    <ui:MaterialButton Style="{StaticResource StatisticButton}" Margin="0,0,0,20" Command="{Binding RefreshCommand}"/>
+                    <forms:ChartView Chart="{Binding DonutChart}"
                                  HorizontalOptions="Center"
                                  WidthRequest="240"
                                  HeightRequest="240"
                                  Rotation="90" />
 
-            </StackLayout>
-        </ScrollView>
+                    <StackLayout BindableLayout.ItemsSource="{Binding Result}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <statistics1:StatisticContentView/>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

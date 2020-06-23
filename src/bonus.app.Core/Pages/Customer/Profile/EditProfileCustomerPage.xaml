@@ -11,12 +11,11 @@
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
-                      Title="{Binding Title}"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage">
     <NavigationPage.TitleView>
-        <Label Text="Редактор профиля" Style="{StaticResource TitleLabel}" />
+        <Label Text="{Binding Title}" Style="{StaticResource TitleLabel}" />
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
@@ -49,9 +48,9 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
 
-                <contentViews:PicCountryAndCityContentView x:Name="PicCountryAndCityView">
+                <contentViews:PicCountryAndCityContentView ViewModel="{Binding CountryAndCityViewModel}">
                     <contentViews:PicCountryAndCityContentView.Footer>
-                        <StackLayout>
+                        <StackLayout x:Name="MainContent">
                             <ui:MaterialTextField Text="{Binding Address.Value}"
                                                   Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Адрес"

@@ -125,7 +125,8 @@ namespace bonus.app.Core.Services
 				content.Add(new StringContent(arguments.Password), "password");
 			}
 
-			if (!string.IsNullOrEmpty(imagePath))
+			if (!string.IsNullOrEmpty(imagePath)&& !(Uri.TryCreate(imagePath, UriKind.Absolute, out var uriResult)
+													 && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps)))
 			{
 				var byteArrayContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
@@ -232,7 +233,8 @@ namespace bonus.app.Core.Services
 				content.Add(new StringContent(arguments.Password), "password");
 			}
 
-			if (!string.IsNullOrEmpty(imagePath))
+			if (!string.IsNullOrEmpty(imagePath) && !(Uri.TryCreate(imagePath, UriKind.Absolute, out var uriResult)
+				&& (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps)))
 			{
 				var byteArrayContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");

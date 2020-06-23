@@ -5,16 +5,15 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
-	public class StatisticsViewModel : MvxNavigationViewModel
+	public class StatisticsViewModel : MvxViewModel
 	{
 		#region .ctor
-		public StatisticsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-			: base(logProvider, navigationService)
+		public StatisticsViewModel(IMvxNavigationService navigationService)
 		{
+			_navigationService = navigationService;
 		}
 		#endregion
 
-		#region Command
 		#region Sales
 		private MvxCommand _openSalesTypesPageCommand;
 
@@ -25,7 +24,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 				_openSalesTypesPageCommand = _openSalesTypesPageCommand ??
 											 new MvxCommand(() =>
 											 {
-												 NavigationService.Navigate<SalesTypesViewModel>();
+												 _navigationService.Navigate<SalesTypesViewModel>();
 											 });
 				return _openSalesTypesPageCommand;
 			}
@@ -42,7 +41,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 				_openGenderAgePageCommand = _openGenderAgePageCommand ??
 											new MvxCommand(() =>
 											{
-												NavigationService.Navigate<GenderAgeViewModel>();
+												_navigationService.Navigate<GenderAgeViewModel>();
 											});
 				return _openGenderAgePageCommand;
 			}
@@ -59,7 +58,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 				_openGeographyPageCommand = _openGeographyPageCommand ??
 											new MvxCommand(() =>
 											{
-												NavigationService.Navigate<GeographyViewModel>();
+												_navigationService.Navigate<GeographyViewModel>();
 											});
 				return _openGeographyPageCommand;
 			}
@@ -76,7 +75,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 				_openViewsStockPageCommand = _openViewsStockPageCommand ??
 											 new MvxCommand(() =>
 											 {
-												 NavigationService.Navigate<ViewsStockViewModel>();
+												 _navigationService.Navigate<ViewsStockViewModel>();
 											 });
 				return _openViewsStockPageCommand;
 			}
@@ -93,7 +92,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 				_openViewsProfilePageCommand = _openViewsProfilePageCommand ??
 											   new MvxCommand(() =>
 											   {
-												   NavigationService.Navigate<ViewsProfileViewModel>();
+												   _navigationService.Navigate<ViewsProfileViewModel>();
 											   });
 				return _openViewsProfilePageCommand;
 			}
@@ -102,6 +101,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 		#region Transitions
 		private MvxCommand _openTransitionsProfilePageCommand;
+		private readonly IMvxNavigationService _navigationService;
 
 		public IMvxCommand OpenTransitionsProfilePageCommand
 		{
@@ -110,12 +110,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 				_openTransitionsProfilePageCommand = _openTransitionsProfilePageCommand ??
 													 new MvxCommand(() =>
 													 {
-														 NavigationService.Navigate<TransitionsProfileViewModel>();
+														 _navigationService.Navigate<TransitionsProfileViewModel>();
 													 });
 				return _openTransitionsProfilePageCommand;
 			}
 		}
-		#endregion
 		#endregion
 	}
 }

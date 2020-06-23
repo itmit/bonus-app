@@ -6,6 +6,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:statistics="clr-namespace:bonus.app.Core.ViewModels.Businessman.Statistics;assembly=bonus.app.Core"
+                      xmlns:services="clr-namespace:bonus.app.Core.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Statistics.GeographyPage">
     <NavigationPage.TitleView>
@@ -18,14 +19,14 @@
             <Label Text="Страны" Padding="10,20,5,15">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
-                                          Command="{Binding OpenGeographyDetailPageCommand}" />
+                                          Command="{Binding OpenGeographyDetailPageCommand}" CommandParameter="{x:Static services:GeographyStatisticsType.Country}"/>
                 </Label.GestureRecognizers>
             </Label>
             <BoxView />
             <Label Text="Города" Padding="10,20,5,15">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"
-                                          Command="{Binding OpenGeographyDetailPageCommand}" />
+                                          Command="{Binding OpenGeographyDetailPageCommand}" CommandParameter="{x:Static services:GeographyStatisticsType.City}"/>
                 </Label.GestureRecognizers>
             </Label>
             <BoxView />

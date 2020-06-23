@@ -187,7 +187,17 @@ namespace bonus.app.Core.Services
 			return ConvertSocksImages(stocks);
 		}
 
-		public Task<IEnumerable<Stock>> GetArchiveStock() => GetArchiveStock(null, null);
+		public const string GetDetailUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
+
+		public async Task<Stock> GetDetail(Guid uuid)
+		{
+			var stock = await GetAsync<Stock>(string.Format(GetDetailUri, uuid));
+			if (string.IsNullOrEmpty(stock.ImageSource))
+			{
+				stock.ImageSource = "about:blank";
+			}
+			return stock;
+		}
 
 		public async Task<IEnumerable<Stock>> GetArchiveStock(Guid? serviceUuid, string city)
 		{
@@ -262,7 +272,8 @@ namespace bonus.app.Core.Services
 				return new List<Stock>();
 			}
 
-			foreach (var stock in stocks)
+			var list = stocks.ToList();
+			foreach (var stock in list)
 			{
 				if (string.IsNullOrEmpty(stock.ImageSource))
 				{
@@ -273,7 +284,7 @@ namespace bonus.app.Core.Services
 				stock.ImageSource = Domain + stock.ImageSource;
 			}
 
-			return stocks;
+			return list;
 		}
 
 		public async Task<IEnumerable<Stock>> GetMyStocks()

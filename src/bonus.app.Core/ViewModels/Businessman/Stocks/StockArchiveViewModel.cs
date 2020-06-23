@@ -120,7 +120,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				}
 
 				SetProperty(ref _selectedStock, value);
-				_navigationService.Navigate<BusinessmanStocksDetailViewModel, Stock>(value);
+				_navigationService.Navigate<BusinessmanStocksDetailViewModel, Guid>(value.Uuid);
 			}
 		}
 

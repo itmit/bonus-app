@@ -56,7 +56,6 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 				BackgroundColor = SKColor.Empty
 			};
 
-			donut.Chart = donutView;
 		}
 		#endregion
 		#endregion
