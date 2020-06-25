@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using bonus.app.Core.ViewModels.Businessman.Pay;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.Views.ContentViews
 {
@@ -10,5 +12,16 @@ namespace bonus.app.Core.Views.ContentViews
 			InitializeComponent();
 		}
 		#endregion
+
+		public PaySubscribesViewModel ParentViewModel
+		{
+			get;
+			set;
+		}
+
+		private void Button_OnClicked(object sender, EventArgs e)
+		{
+			ParentViewModel.ChangeRateCommand.Execute(BindingContext);
+		}
 	}
 }

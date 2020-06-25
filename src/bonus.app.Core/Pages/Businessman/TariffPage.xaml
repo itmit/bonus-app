@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="businessman:TariffViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+                      xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
+                      xmlns:converters="clr-namespace:bonus.app.Core.Converters;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.TariffPage"
+                      NavigationPage.BackButtonTitle="false">
+    <NavigationPage.TitleView>
+        <Label Text="Тариф" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+
+    <!--Страница 9 Тариф-->
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout Margin="15,0" Spacing="0">
+                <StackLayout IsVisible="{Binding SelectedRate, Converter={StaticResource NullToBoolConverter}}"
+                             IsEnabled="{Binding SelectedRate, Converter={StaticResource NullToBoolConverter}}">
+                    <Label FontSize="Body" TextColor="#505050" FontFamily="{x:Static design:DesignClass.MontserratBold}"
+                       HorizontalOptions="Center" Margin="0,20,0,35" Text="{Binding SelectedRate.Name}" />
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Orientation="Horizontal" Margin="5,0,5,15" Grid.Row="0">
+                            <Label Text="Стоимость подписки" />
+                            <Label HorizontalOptions="EndAndExpand" FontFamily="{x:Static design:DesignClass.LatoBold}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="{Binding SelectedRate.Price}" />
+                                            <Span Text=" руб." />
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <BoxView Grid.Row="1" />
+                        <StackLayout Orientation="Horizontal" Margin="5,20,5,15" Grid.Row="2">
+                            <Label Text="Акции (доступно)" />
+                            <Label Text="{Binding SelectedRate.StocksAvailable}" FontFamily="{x:Static design:DesignClass.LatoBold}"
+                               HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                        <BoxView Grid.Row="3" />
+                        <StackLayout Orientation="Horizontal" Margin="5,20,5,15" Grid.Row="4">
+                            <Label Text="Акции (создано)" />
+                            <Label Text="{Binding SelectedRate.CreatedStocks}" FontFamily="{x:Static design:DesignClass.LatoBold}"
+                               HorizontalOptions="EndAndExpand" />
+                        </StackLayout>
+                        <BoxView Grid.Row="5" />
+                        <StackLayout Orientation="Horizontal" Margin="5,20,5,15" Grid.Row="6">
+                            <Label Text="Подписка активна до" />
+                            <Label Text="{Binding SelectedRate.ExpiresAt }" HorizontalOptions="EndAndExpand" />
+                            <Image Source="ic_calendar_4x.png" WidthRequest="18" HorizontalOptions="End" />
+                        </StackLayout>
+                        <BoxView Grid.Row="7" />
+                    </Grid>
+                </StackLayout>
+
+                <Grid>
+                    <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30" IsVisible="{Binding IsVisiblePayment}" IsEnabled="{Binding IsVisiblePayment}">
+                        <Grid>
+                            <graphic:RectangleInProfile />
+                            <Label Text="ПРОДЛИТЬ" Style="{StaticResource TextForAppButton}" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PaymentCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </design:CustomButton>
+                    <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,20,0,30"
+                                         IsVisible="{Binding IsEnabledChangeRate}"
+                                         IsEnabled="{Binding IsEnabledChangeRate}">
+                        <Grid>
+                            <graphic:RectangleInProfile />
+                            <Label Text="ПОДКЛЮЧИТЬ"  Style="{StaticResource TextForAppButton}" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeRateCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </design:CustomButton>
+                </Grid>
+
+                <Label Text="Доступные тарифы" FontSize="Body"
+                       FontFamily="{x:Static design:DesignClass.MontserratBold}" HorizontalOptions="Center"
+                       Margin="0,0,0,15" />
+
+                <CollectionView ItemsSource="{Binding Rates}"
+                                SelectedItem="{Binding SelectedRate}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame x:Name="Tariff" CornerRadius="10" BorderColor="#A0968E" BackgroundColor="Transparent" Margin="0,10,0,10" Padding="20,25,20,45">
+                                    <StackLayout Spacing="0">
+                                        <Label FontSize="Body" FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                               HorizontalOptions="Center" Margin="0,0,0,20" Text="{Binding Name}"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Стоимость подписки" />
+                                            <Label HorizontalOptions="EndAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <FormattedString.Spans>
+                                                            <Span Text="{Binding Price}" />
+                                                            <Span Text=" руб." />
+                                                        </FormattedString.Spans>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Margin="0,15">
+                                            <Label Text="Размещение акций" />
+                                            <Label Text="{Binding Stocks}" HorizontalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                        <!--<StackLayout Orientation="Horizontal">
+                                        <Label Text="Дополнительные опции" />
+                                        <Label Text="5" HorizontalOptions="EndAndExpand" />
+                                    </StackLayout>-->
+                                    </StackLayout>
+                                </Frame>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

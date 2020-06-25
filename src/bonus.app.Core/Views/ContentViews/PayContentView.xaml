@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:design="clr-namespace:bonus.app.Core.Design"
              xmlns:xf="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ContentViews.PayContentView">
     <ContentView.Content>
@@ -16,20 +17,20 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Column="0" Spacing="0">
-                    <Label FontSize="Body">
+                    <Label FontSize="Body" Text="{Binding Name}"/>
+
+                    <!-- Тариф не подключен -->
+                    <Label TextColor="Gray" >
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="Подписка на " />
-                                    <Span Text="12" />
-                                    <Span Text=" месяц" />
-                                    <Span Text="ев" />
+                                    <Span Text="от "/>
+                                    <Span Text="{Binding ., Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"/>
+                                    <Span Text="."/>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Text="Ожидание оплаты&#10;Ожидание оплаты Ожидание оплаты Ожидание оплаты Ожидание оплаты"
-                           TextColor="Gray" />
                 </StackLayout>
                 <xf:MaterialButton Grid.Column="1"
                                    ButtonType="Outlined"
@@ -42,19 +43,8 @@
                                    AllCaps="False"
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}"
                                    CornerRadius="18"
-                                   IsVisible="True" />
-                <xf:MaterialButton Grid.Column="1"
-                                   ButtonType="Flat"
-                                   BackgroundColor="#BB8D91"
-                                   Text="Оплатить"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   BorderColor="#BB8D91"
-                                   TextColor="White"
-                                   AllCaps="False"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}"
-                                   CornerRadius="18"
-                                   IsVisible="false" />
+                                   IsVisible="True"
+                                   Clicked="Button_OnClicked" />
             </Grid>
             <BoxView />
         </StackLayout>

@@ -288,7 +288,7 @@
     <EmbeddedResource Update="Page\SupportPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\TariffPage.xaml">
+    <EmbeddedResource Update="Pages\Businessman\TariffPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Statistics\TransitionsProfilePage.xaml">

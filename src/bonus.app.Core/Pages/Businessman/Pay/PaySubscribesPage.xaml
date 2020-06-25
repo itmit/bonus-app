@@ -8,6 +8,8 @@
                       xmlns:pay="clr-namespace:bonus.app.Core.ViewModels.Businessman.Pay;assembly=bonus.app.Core"
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Pay.PaySubscribesPage">
     <NavigationPage.TitleView>
@@ -16,15 +18,42 @@
 
     <ContentPage.Content>
         <!--Страница 8.1.1 Оплата(Подписка)-->
-        <CollectionView Margin="15,0,0,0">
-            <CollectionView.ItemsSource>
-                <x:String>0000</x:String>
-            </CollectionView.ItemsSource>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <contentviews:PayContentView />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
+        <CollectionView Margin="15,0,0,0" ItemsSource="{Binding Rates}" SelectionMode="None" x:Name="RateCollection">
+            <CollectionView.Header>
+                <StackLayout Spacing="0" IsVisible="{Binding MyRate, Converter={StaticResource NullToBoolConverter}}">
+                    <Grid Margin="5,25,15,20" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Spacing="0">
+                            <Label FontSize="Body" Text="{Binding MyRate.Name}"/>
+
+                            <!-- Тариф не активен -->
+                            <Label Text="Ожидание оплаты"
+                                   TextColor="Gray"
+                                   IsVisible="{Binding MyRate.IsActive, Converter={StaticResource InverseBoolConverter}}"
+                                   IsEnabled="{Binding MyRate.IsActive, Converter={StaticResource InverseBoolConverter}}"/>
+
+                        </StackLayout>
+                        <ui:MaterialButton Grid.Column="1"
+                                           IsVisible="{Binding MyRate.IsActive, Converter={StaticResource InverseBoolConverter}}"
+                                           IsEnabled="{Binding MyRate.IsActive, Converter={StaticResource InverseBoolConverter}}"
+                                           ButtonType="Flat"
+                                           BackgroundColor="#BB8D91"
+                                           Text="Оплатить"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           BorderColor="#BB8D91"
+                                           TextColor="White"
+                                           AllCaps="False"
+                                           FontFamily="{x:Static design:DesignClass.MontserratRegular}"
+                                           CornerRadius="18" 
+                                           Command="{Binding PaymentCommand}"/>
+                    </Grid>
+                    <BoxView />
+                </StackLayout>
+            </CollectionView.Header>
         </CollectionView>
     </ContentPage.Content>
 </views:MvxContentPage>
