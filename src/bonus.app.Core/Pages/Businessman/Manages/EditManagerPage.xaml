@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="managers:EditManagerViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic;assembly=bonus.app.Core"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:managers="clr-namespace:bonus.app.Core.ViewModels.Businessman.Managers;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Businessman.Manages.EditManagerPage">
+    <ContentPage.Content>
+        <StackLayout Margin="15,0" Spacing="0">
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Entry">
+                        <Setter Property="PlaceholderColor" Value="#505050" />
+                        <Setter Property="Visual" Value="Material" />
+                        <Setter Property="TextColor" Value="#505050" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                        <Setter Property="Margin" Value="0,10" />
+                        <Setter Property="FontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                    </Style>
+                    <Style TargetType="ui:MaterialTextField">
+                        <Setter Property="PlaceholderColor" Value="#505050" />
+                        <Setter Property="Visual" Value="Material" />
+                        <Setter Property="TintColor" Value="#505050" />
+                        <Setter Property="TextColor" Value="#505050" />
+                        <Setter Property="TextFontSize" Value="14" />
+                        <Setter Property="BackgroundColor" Value="Transparent" />
+                        <Setter Property="Margin" Value="0,10" />
+                        <Setter Property="AlwaysShowUnderline" Value="True" />
+                        <Setter Property="UnderlineColor" Value="DarkGray" />
+                        <Setter Property="FloatingPlaceholderColor" Value="DarkGray" />
+                        <Setter Property="TextFontFamily" Value="{x:Static design:DesignClass.LatoRegular}" />
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+            <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
+                                  Placeholder="Номер телефона"
+                                  HelperText="+7 (XXX) XXX-XX-XX"
+                                  InputType="Telephone"
+                                  ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstElementConverter}}"
+                                  HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
+                <ui:MaterialTextField.Behaviors>
+                    <behaviors:MaterialTextFieldMaskedBehavior Mask="+7 (XXX) XXX-XX-XX" />
+                </ui:MaterialTextField.Behaviors>
+            </ui:MaterialTextField>
+            <ui:MaterialTextField Text="{Binding Name.Value}"
+                                      Placeholder="Ф.И.О."
+                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
+                                      HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+            
+            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
+                <Grid>
+                    <graphic:RectangleInProfile />
+                    <Label Text="Сохранить" Style="{StaticResource TextForAppButton}" />
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding EditManagerCommand}" />
+                </Frame.GestureRecognizers>
+            </design:CustomButton>
+
+            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
+                <Grid>
+                    <graphic:RectangleInProfile />
+                    <Label Text="Удалить менеджера" Style="{StaticResource TextForAppButton}" />
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DeleteManagerCommand}" />
+                </Frame.GestureRecognizers>
+            </design:CustomButton>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

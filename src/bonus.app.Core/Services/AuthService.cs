@@ -10,6 +10,7 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Repositories;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross;
@@ -211,6 +212,8 @@ namespace bonus.app.Core.Services
 						break;
 					case UserRole.Customer:
 						regDto.Type = "customer";
+						break;
+					case UserRole.Manager:
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();

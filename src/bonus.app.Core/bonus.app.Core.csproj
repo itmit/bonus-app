@@ -45,6 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\Manager\ManagerTabbedPage.xaml.cs">
+      <DependentUpon>ManagerTabbedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Businessman\Popups\SharePopupPage.xaml.cs">
       <DependentUpon>SharePopupPage.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,12 @@
     <Compile Update="Pages\Customer\Stocks\SelectedStocksDetailPage.xaml.cs">
       <DependentUpon>SelectedStocksDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Manager\MainManagerPage.xaml.cs">
+      <DependentUpon>MainManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Manager\MenuManagerPage.xaml.cs">
+      <DependentUpon>MenuManagerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\News\NewsPage.xaml.cs">
       <DependentUpon>NewsPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +156,15 @@
     <EmbeddedResource Update="Pages\AllStock.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Businessman\Manages\CreateManagerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Businessman\Manages\EditManagerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Businessman\Manages\ManagersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Statistics\GeographyDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -172,6 +190,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Customer\Stocks\FavoriteStocksPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Manager\ProfileManagerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\News\NewsDetailsPage.xaml">
@@ -307,6 +328,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Chats\TextOutContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\ManagerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\MyBonusContentView.xaml">

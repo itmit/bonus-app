@@ -13,6 +13,12 @@ namespace bonus.app.Core.RealmObjects
 			set;
 		}
 
+		public int Id
+		{
+			get;
+			set;
+		}
+
 		public string Address
 		{
 			get;

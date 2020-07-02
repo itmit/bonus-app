@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Logging;

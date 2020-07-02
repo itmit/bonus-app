@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Dtos
@@ -15,6 +16,12 @@ namespace bonus.app.Core.Dtos
 		}
 
 		public string Login
+		{
+			get;
+			set;
+		}
+
+		public int Id
 		{
 			get;
 			set;

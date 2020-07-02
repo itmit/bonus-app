@@ -18,6 +18,7 @@
 
     <views:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Редактировать профиль" Order="Secondary" Command="{Binding OpenEditProfilePageCommand}" />
+        <ToolbarItem Text="Менеджеры" Order="Secondary" Command="{Binding OpenManagersCommand}" />
     </views:MvxContentPage.ToolbarItems>
 
     <NavigationPage.TitleView>

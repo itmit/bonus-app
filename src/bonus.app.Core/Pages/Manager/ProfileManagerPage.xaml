@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="manager:ProfileManagerViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:manager="clr-namespace:bonus.app.Core.ViewModels.Manager;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+                      mc:Ignorable="d"
+                      x:Class="bonus.app.Core.Pages.Manager.ProfileManagerPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="25,0">
+                <Grid ColumnSpacing="15" Margin="0,15,0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="1" VerticalOptions="Start">
+                        <Label Style="{StaticResource TitleLabel}" FontSize="Body" Text="{Binding User.Email}"/>
+                        <Label Text="{Binding User.Name}" Style="{StaticResource TitleLabel}" FontSize="Body" />
+                    </StackLayout>
+                </Grid>
+                <Grid ColumnSpacing="10" Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
+                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                        <design:CustomButton.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
+                        </design:CustomButton.GestureRecognizers>
+                    </design:CustomButton>
+                    <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
+                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="Подписки" FontSize="Body"
+                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenSubscribesCommand}" />
+                        </Frame.GestureRecognizers>
+                    </design:CustomButton>
+                </Grid>
+                <Label Text="{Binding User.Phone}" TextColor="#505050" Margin="10,0" />
+                <BoxView />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 
 namespace bonus.app.Core.Repositories
 {

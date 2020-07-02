@@ -1,6 +1,7 @@
 ﻿using System;
+using bonus.app.Core.Models.UserModels;
 
-namespace bonus.app.Core.Models
+namespace bonus.app.Core.Models.ChatModels
 {
 	public class Dialog
 	{

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services

@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace bonus.app.Core.Models
+namespace bonus.app.Core.Models.UserModels
 {
 	/// <summary>
 	/// Представляет пользователя.
@@ -159,6 +159,12 @@ namespace bonus.app.Core.Models
 		}
 
 		public string WorkTime
+		{
+			get;
+			set;
+		}
+
+		public int Id
 		{
 			get;
 			set;

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Customer.Profile;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;

@@ -11,6 +11,12 @@ namespace bonus.app.Core.Dtos
 			get;
 			set;
 		}
+		
+		public int Id
+		{
+			get;
+			set;
+		}
 
 		public DateTime? Birthday
 		{

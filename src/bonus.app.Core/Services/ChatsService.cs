@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ChatModels;
+using bonus.app.Core.Models.UserModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

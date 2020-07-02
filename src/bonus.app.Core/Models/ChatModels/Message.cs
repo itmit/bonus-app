@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace bonus.app.Core.Models
+namespace bonus.app.Core.Models.ChatModels
 {
 	public class Message
 	{

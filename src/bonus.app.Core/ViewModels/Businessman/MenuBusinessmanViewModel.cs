@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
+using bonus.app.Core.ViewModels.Businessman.Managers;
 using bonus.app.Core.ViewModels.Businessman.Pay;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Businessman.Statistics;
@@ -26,6 +27,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 		private MvxCommand _openStatisticsCommand;
 		private MvxCommand _openSupportCommand;
 		private MvxCommand _openTariffCommand;
+		private MvxCommand _openManagersCommand;
 		#endregion
 		#endregion
 

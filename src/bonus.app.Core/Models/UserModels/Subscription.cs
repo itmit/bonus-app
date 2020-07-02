@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace bonus.app.Core.Models
+namespace bonus.app.Core.Models.UserModels
 {
 	public class Subscription
 	{

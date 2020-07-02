@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace bonus.app.Core.Models
+﻿namespace bonus.app.Core.Models.UserModels
 {
 	/// <summary>
 	/// Представляет token доступа к api.

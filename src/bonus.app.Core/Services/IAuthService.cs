@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 
 namespace bonus.app.Core.Services
 {

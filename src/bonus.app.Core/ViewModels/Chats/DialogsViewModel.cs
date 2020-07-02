@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ChatModels;
 using bonus.app.Core.Services;
 using MvvmCross;
 using MvvmCross.Commands;

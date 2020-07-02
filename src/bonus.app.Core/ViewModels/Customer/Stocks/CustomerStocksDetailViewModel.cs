@@ -1,4 +1,5 @@
 ﻿using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Commands;

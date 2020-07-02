@@ -5,11 +5,13 @@ using System.Windows.Input;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Customer;
 using bonus.app.Core.ViewModels.Customer.Profile;
+using bonus.app.Core.ViewModels.Manager;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -48,8 +50,8 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Пароль пользователя.
 		/// </summary>
 		private string _password;
-		private IFacebookService _facebookService;
-		private IVkService _vkService;
+		private readonly IFacebookService _facebookService;
+		private readonly IVkService _vkService;
 		private MvxCommand _facebookLoginCommand;
 		private IProfileService _profileService;
 		#endregion
@@ -240,6 +242,8 @@ namespace bonus.app.Core.ViewModels.Auth
 									await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
 										new EditProfileViewModelArguments(user.Uuid, false, result.UserId));
 									break;
+								case UserRole.Manager:
+									return;
 								default:
 									throw new ArgumentOutOfRangeException();
 							}
@@ -254,6 +258,9 @@ namespace bonus.app.Core.ViewModels.Auth
 							break;
 						case UserRole.Customer:
 							await NavigationService.Navigate<MainCustomerViewModel>();
+							break;
+						case UserRole.Manager:
+							await NavigationService.Navigate<MainManagerViewModel>();
 							break;
 						default:
 							throw new ArgumentOutOfRangeException();
@@ -338,6 +345,8 @@ namespace bonus.app.Core.ViewModels.Auth
 					case UserRole.Customer:
 						await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
 						break;
+					case UserRole.Manager:
+						return;
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
@@ -352,6 +361,9 @@ namespace bonus.app.Core.ViewModels.Auth
 					break;
 				case UserRole.Customer:
 					await NavigationService.Navigate<MainCustomerViewModel>();
+					break;
+				case UserRole.Manager:
+					await NavigationService.Navigate<MainManagerViewModel>();
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

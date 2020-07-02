@@ -1,4 +1,5 @@
 ﻿using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;

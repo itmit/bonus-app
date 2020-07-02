@@ -1,4 +1,5 @@
 ﻿using bonus.app.Core.Models;
+using bonus.app.Core.Models.ChatModels;
 using bonus.app.Core.Views.ContentViews.Chats;
 using Xamarin.Forms;
 

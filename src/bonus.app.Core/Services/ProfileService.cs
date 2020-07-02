@@ -11,6 +11,7 @@ using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Helpers;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Repositories;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross;

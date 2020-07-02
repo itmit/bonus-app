@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using battery.app.Core.RealmObjects;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.RealmObjects;
 using Realms;
 

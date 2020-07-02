@@ -1,4 +1,4 @@
-﻿namespace bonus.app.Core.Models
+﻿namespace bonus.app.Core.Models.UserModels
 {
 	/// <summary>
 	/// Представляет возможные роли пользователя.
@@ -13,6 +13,11 @@
 		/// <summary>
 		/// Покупатель.
 		/// </summary>
-		Customer
+		Customer,
+
+		/// <summary>
+		/// Менеджер.
+		/// </summary>
+		Manager
 	}
 }

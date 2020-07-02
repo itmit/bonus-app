@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;

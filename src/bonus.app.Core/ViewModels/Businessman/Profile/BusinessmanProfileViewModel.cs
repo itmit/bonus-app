@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.ViewModels.Businessman.Managers;
 using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
@@ -49,6 +51,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private readonly IServicesService _servicesService;
 		private MvxCommand _showBonusDetailsCommand;
 		private User _user;
+		private MvxCommand _openManagersCommand;
 		#endregion
 		#endregion
 
@@ -316,6 +319,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 		#endregion
+
+
+		public MvxCommand OpenManagersCommand
+		{
+			get
+			{
+				_openManagersCommand = _openManagersCommand ??
+									   new MvxCommand(() =>
+									   {
+										   NavigationService.Navigate<ManagersViewModel>();
+									   });
+				return _openManagersCommand;
+			}
+		}
 
 		#region Private
 		private async void AddImageToPortfolio()

@@ -1,8 +1,10 @@
-﻿using bonus.app.Core.Models;
+﻿using System;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Customer;
+using bonus.app.Core.ViewModels.Manager;
 using MonkeyCache.FileStore;
 using MvvmCross;
 using MvvmCross.IoC;
@@ -48,14 +50,19 @@ namespace bonus.app.Core
 				return;
 			}
 
-			if (user.Role == UserRole.Businessman)
+			switch (user.Role)
 			{
-				RegisterAppStart<MainBusinessmanViewModel>();
-			}
-
-			if (user.Role == UserRole.Customer)
-			{
-				RegisterAppStart<MainCustomerViewModel>();
+				case UserRole.Businessman:
+					RegisterAppStart<MainBusinessmanViewModel>();
+					break;
+				case UserRole.Customer:
+					RegisterAppStart<MainCustomerViewModel>();
+					break;
+				case UserRole.Manager:
+					RegisterAppStart<MainManagerViewModel>();
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 		#endregion

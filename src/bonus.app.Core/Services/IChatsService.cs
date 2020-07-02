@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.ChatModels;
+using bonus.app.Core.Models.UserModels;
 
 namespace bonus.app.Core.Services
 {
