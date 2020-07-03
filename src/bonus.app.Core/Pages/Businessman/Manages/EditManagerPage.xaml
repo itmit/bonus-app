@@ -11,6 +11,10 @@
                       xmlns:managers="clr-namespace:bonus.app.Core.ViewModels.Businessman.Managers;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Manages.EditManagerPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="Редактирование менеджера" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="15,0" Spacing="0">
             <StackLayout.Resources>
@@ -43,6 +47,7 @@
                                   Placeholder="Номер телефона"
                                   HelperText="+7 (XXX) XXX-XX-XX"
                                   InputType="Telephone"
+                                  TextChangeCommand="{Binding RaiseCanUpdateManagerCommand}"
                                   ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstElementConverter}}"
                                   HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
                 <ui:MaterialTextField.Behaviors>
@@ -50,11 +55,15 @@
                 </ui:MaterialTextField.Behaviors>
             </ui:MaterialTextField>
             <ui:MaterialTextField Text="{Binding Name.Value}"
-                                      Placeholder="Ф.И.О."
-                                      ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
-                                      HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-            
-            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
+                                  Placeholder="Ф.И.О."
+                                  TextChangeCommand="{Binding RaiseCanUpdateManagerCommand}"
+                                  ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
+                                  HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+            <design:CustomButton Style="{StaticResource AppButtonGradient}"
+                                 Margin="0,0,0,20"
+                                 IsVisible="{Binding CanUpdateManager}"
+                                 IsEnabled="{Binding CanUpdateManager}">
                 <Grid>
                     <graphic:RectangleInProfile />
                     <Label Text="Сохранить" Style="{StaticResource TextForAppButton}" />
@@ -64,7 +73,8 @@
                 </Frame.GestureRecognizers>
             </design:CustomButton>
 
-            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,0,0,20">
+            <design:CustomButton Style="{StaticResource AppButtonGradient}"
+                                 Margin="0,0,0,20">
                 <Grid>
                     <graphic:RectangleInProfile />
                     <Label Text="Удалить менеджера" Style="{StaticResource TextForAppButton}" />

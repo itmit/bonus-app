@@ -13,8 +13,13 @@ namespace bonus.app.Core.Services
 		
 		Task<User> GetManager();
 
-		Task<User> EditManager(string  name, string phone);
+		Task<bool> EditManager(int managerId, string  name, string phone);
 
-		Task<bool> DeleteManager();
+		Task<bool> DeleteManager(int managerId);
+
+		string LastError
+		{
+			get;
+		}
 	}
 }

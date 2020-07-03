@@ -3,17 +3,20 @@ using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
+using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Managers
 {
-	public class CreateManagerViewModel : MvxViewModel
+	public class CreateManagerViewModel : MvxViewModelResult<bool>
 	{
-		public CreateManagerViewModel(IMvxNavigationService navigationService, IManagerService managerService)
+		public CreateManagerViewModel(IMvxNavigationService navigationService, IManagerService managerService, IMvxFormsViewPresenter platformPresenter)
 		{
 			_navigationService = navigationService;
 			_managerService = managerService;
+			_platformPresenter = platformPresenter;
 			AddValidations();
 		}
 		
@@ -52,6 +55,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 				ValidationMessage = "Не корректный номер телефона."
 			});
 		}
+
 		public ValidatableObject<string> PhoneNumber
 		{
 			get => _phoneNumber;
@@ -99,8 +103,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 				return _createManagerCommand;
 			}
 		}
-		
-		private bool IsValidFields => Name.Validate() & Email.Validate() & Password.Validate() & ConfirmPassword.Validate() & Name.Validate() & PhoneNumber.Validate();
+
+		private readonly IMvxFormsViewPresenter _platformPresenter;
+
+		private Application _formsApplication;
+		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
+
+		private bool IsValidFields => Name.Validate() & Email.Validate() & Password.Validate() & ConfirmPassword.Validate() & PhoneNumber.Validate();
 
 		private async void CreateManagerCommandExecute()
 		{
@@ -121,9 +130,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 
 				if (uuid.Equals(Guid.Empty))
 				{
+
+					if (_managerService.LastError.Equals("The email has already been taken."))
+					{
+						await FormsApplication.MainPage.DisplayAlert("Внимание", "Пользователь с такой почтой уже зарегистрирован", "Ок");
+					}
+					else
+					{
+						await FormsApplication.MainPage.DisplayAlert("Внимание", _managerService.LastError, "Ок");
+					}
 					return;
 				}
-				await _navigationService.Close(this);
+				await _navigationService.Close(this, true);
 			}
 			catch (Exception e)
 			{

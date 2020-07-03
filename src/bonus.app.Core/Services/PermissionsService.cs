@@ -24,10 +24,7 @@ namespace bonus.app.Core.Services
 		private readonly IMvxFormsViewPresenter _platformPresenter;
 
 		private Application _formsApplication;
-		private Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-		}
+		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
 		#endregion
 
 		#region IPermissionsService members

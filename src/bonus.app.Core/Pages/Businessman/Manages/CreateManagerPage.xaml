@@ -11,6 +11,10 @@
                       xmlns:behaviors="clr-namespace:bonus.app.Core.Behaviors;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Manages.CreateManagerPage">
+
+    <NavigationPage.TitleView>
+        <Label Text="Создание менеджера" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="15,0" Spacing="0">
             <StackLayout.Resources>

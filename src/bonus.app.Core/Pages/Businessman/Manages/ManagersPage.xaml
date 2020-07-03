@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Акции" Style="{StaticResource TitleLabel}" />
+            <Label Grid.Column="0" Text="Менеджеры" Style="{StaticResource TitleLabel}" />
             <ImageButton Grid.Column="1" Source="ic_plus_add_4x" WidthRequest="30" HeightRequest="30" Margin="0,0,10,0"
                          HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Command="{Binding OpenCreateManagerCommand}" />
         </Grid>
@@ -25,6 +25,7 @@
                      Command="{Binding RefreshCommand}">
             <CollectionView ItemsSource="{Binding Managers}"
                             SelectionMode="Single"
+                            SelectionChanged="SelectableItemsView_OnSelectionChanged"
                             SelectedItem="{Binding SelectedManager}"
                             VerticalOptions="CenterAndExpand"
                             HorizontalOptions="CenterAndExpand" >

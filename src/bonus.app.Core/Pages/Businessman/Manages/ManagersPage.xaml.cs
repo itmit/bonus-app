@@ -12,5 +12,10 @@ namespace bonus.app.Core.Pages.Businessman.Manages
 		{
 			InitializeComponent();
 		}
+
+		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			((CollectionView) sender).SelectedItem = null;
+		}
 	}
 }

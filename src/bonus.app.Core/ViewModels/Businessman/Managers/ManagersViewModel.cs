@@ -63,7 +63,15 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 				}
 
 				SetProperty(ref _selectedManager, value);
-				_navigationService.Navigate<EditManagerViewModel, User>(value);
+				OpenEditPage(value);
+			}
+		}
+
+		private async void OpenEditPage(User value)
+		{
+			if (await _navigationService.Navigate<EditManagerViewModel, User, bool>(value))
+			{
+				RefreshCommand.Execute();
 			}
 		}
 
@@ -86,9 +94,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 			get
 			{
 				_openCreateManagerCommand = _openCreateManagerCommand ??
-											new MvxCommand(() =>
+											new MvxCommand(async () =>
 											{
-												_navigationService.Navigate<CreateManagerViewModel>();
+												if (await _navigationService.Navigate<CreateManagerViewModel, bool>())
+												{
+													RefreshCommand.Execute();
+												}
 											});
 				return _openCreateManagerCommand;
 			}
