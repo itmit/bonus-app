@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using bonus.app.Core.Dtos;
-using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
@@ -12,7 +13,9 @@ using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Customer;
 using bonus.app.Core.ViewModels.Customer.Profile;
 using bonus.app.Core.ViewModels.Manager;
+using MvvmCross;
 using MvvmCross.Commands;
+using MvvmCross.Forms.Presenters;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -27,12 +30,24 @@ namespace bonus.app.Core.ViewModels.Auth
 	{
 		#region Data
 		#region Fields
+		/// <summary>
+		/// Сервис авторизации.
+		/// </summary>
 		private readonly IAuthService _authService;
+
+		/// <summary>
+		/// Команда создания аккаунта.
+		/// </summary>
 		private MvxCommand _createAccountCommand;
+
 		/// <summary>
 		/// Ошибки авторизации.
 		/// </summary>
 		private Dictionary<string, string> _errors;
+
+		/// <summary>
+		/// Команда восстановления пароля.
+		/// </summary>
 		private ICommand _forgotPasswordCommand;
 
 		/// <summary>
@@ -44,16 +59,31 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Команда для авторизации.
 		/// </summary>
 		private ICommand _loginCommand;
-		private IMvxCommand _openAuthVkFcPage;
+
+		/// <summary>
+		/// Команда входа через ВКонтакте.
+		/// </summary>
+		private IMvxCommand _vkLoginCommand;
 
 		/// <summary>
 		/// Пароль пользователя.
 		/// </summary>
 		private string _password;
+
+		/// <summary>
+		/// Сервис для входа через facebook.
+		/// </summary>
 		private readonly IFacebookService _facebookService;
+
+		/// <summary>
+		/// Сервис для входа через ВКонтакте.
+		/// </summary>
 		private readonly IVkService _vkService;
+
+		/// <summary>
+		/// Команда входа через facebook.
+		/// </summary>
 		private MvxCommand _facebookLoginCommand;
-		private IProfileService _profileService;
 		#endregion
 		#endregion
 
@@ -64,16 +94,31 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
 		/// <param name="authService">Сервис для авторизации.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IVkService vkService, IFacebookService facebookService, IProfileService profileService)
+		/// <param name="platformPresenter">Обрабатывает логику для общей навигации, связанной с формами.</param>
+		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IMvxFormsViewPresenter platformPresenter)
 			: base(logProvider, navigationService)
 		{
 			_authService = authService;
-			_vkService = vkService;
-			_facebookService = facebookService;
-			_profileService = profileService;
+			Mvx.IoCProvider.TryResolve(out _vkService);
+			Mvx.IoCProvider.TryResolve(out _facebookService);
+			_platformPresenter = platformPresenter;
 		}
 		#endregion
 
+		/// <summary>
+		/// Обрабатывает логику для общей навигации, связанной с формами.
+		/// </summary>
+		private readonly IMvxFormsViewPresenter _platformPresenter;
+
+		/// <summary>
+		/// Текущее приложение xamarin forms.
+		/// </summary>
+		private Application _formsApplication;
+
+		/// <summary>
+		/// Возвращает текущее приложение xamarin forms.
+		/// </summary>
+		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
 		#region Properties
 		/// <summary>
 		/// Возвращает команду для создания аккаунта.
@@ -138,22 +183,27 @@ namespace bonus.app.Core.ViewModels.Auth
 		}
 
 		/// <summary>
-		/// Возвращает команду для перехода на авторизацию через Vk или Facebook.
+		/// Возвращает команду для перехода на авторизацию через Vk.
 		/// </summary>
 		public IMvxCommand VkLoginCommand
 		{
 			get
 			{
-				_openAuthVkFcPage = _openAuthVkFcPage ??
+				_vkLoginCommand = _vkLoginCommand ??
 									new MvxCommand(async () =>
 									{
 										var result = await _vkService.Login();
 										await AuthorizationAnExternalService(result, ExternalAuthService.Vk);
 									});
-				return _openAuthVkFcPage;
+				return _vkLoginCommand;
 			}
 		}
 
+		/// <summary>
+		/// Авторизует либо регистрирует пользователя в системе, после входа через ВК или Facebook.
+		/// </summary>
+		/// <param name="result">Результат входа.</param>
+		/// <param name="serviceType">Тип внешнего сервиса для входа (ВК/Facebook)</param>
 		private async Task AuthorizationAnExternalService(LoginResult result, ExternalAuthService serviceType)
 		{
 			string serviceName;
@@ -172,10 +222,10 @@ namespace bonus.app.Core.ViewModels.Auth
 			switch (result.LoginState)
 			{
 				case LoginState.Canceled:
-					// Обработать
+
 					Device.BeginInvokeOnMainThread(() =>
 					{
-						Application.Current.MainPage.DisplayAlert("Ошибка", $"Авторизация через {serviceName} отменена.", "Ок");
+						FormsApplication.MainPage.DisplayAlert("Ошибка", $"Авторизация через {serviceName} отменена.", "Ок");
 					});
 					break;
 				case LoginState.Success:
@@ -193,7 +243,7 @@ namespace bonus.app.Core.ViewModels.Auth
 					var isActive = true;
 					if (user == null)
 					{
-						var role = await Application.Current.MainPage.DisplayAlert("Внимание",
+						var role = await FormsApplication.MainPage.DisplayAlert("Внимание",
 																				   "Выберите тип аккаунта.",
 																				   "Предприниматель",
 																				   "Покупатель") ? UserRole.Businessman : UserRole.Customer;
@@ -211,8 +261,8 @@ namespace bonus.app.Core.ViewModels.Auth
 						{
 							Device.BeginInvokeOnMainThread(() =>
 							{
-								Application.Current.MainPage.DisplayAlert("Ошибка",
-																		  $"Авторизация через {serviceName} пошла успешно, но не удалось зарегистрировать данного пользователя в системе.",
+								FormsApplication.MainPage.DisplayAlert("Ошибка",
+																		  $"Авторизация через {serviceName} пошла успешно, но не удалось создать аккаунт данного пользователя в системе.",
 																		  "Ок");
 							});
 							return;
@@ -227,7 +277,7 @@ namespace bonus.app.Core.ViewModels.Auth
 						{
 							Device.BeginInvokeOnMainThread(() =>
 							{
-								Application.Current.MainPage.DisplayAlert("Внимание", $"Авторизация через {serviceName} невозможна, пока Вы не заполните статистическую информацию.", "Ок");
+								FormsApplication.MainPage.DisplayAlert("Внимание", $"Авторизация через {serviceName} невозможна, пока Вы не заполните статистическую информацию.", "Ок");
 							});
 						}
 						else
@@ -270,7 +320,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				case LoginState.Failed:
 					Device.BeginInvokeOnMainThread(() =>
 					{
-						Application.Current.MainPage.DisplayAlert("Ошибка", "Не удалось авторизоваться.", "Ок");
+						FormsApplication.MainPage.DisplayAlert("Ошибка", "Не удалось авторизоваться.", "Ок");
 					});
 					break;
 				default:
@@ -278,6 +328,9 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 		}
 
+		/// <summary>
+		/// Возвращает команду для перехода на авторизацию через Facebook.
+		/// </summary>
 		public MvxCommand FacebookLoginCommand {
 			get
 			{
@@ -311,7 +364,13 @@ namespace bonus.app.Core.ViewModels.Auth
 			var password = Password?.Trim();
 			if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
 			{
-				await Application.Current.MainPage.DisplayAlert("Внимание", "E-mail и пароль должны быть заполнены", "Ок");
+				await FormsApplication.MainPage.DisplayAlert("Внимание", "E-mail и пароль должны быть заполнены", "Ок");
+				return;
+			}
+
+			if (!CheckIsEmail(login) && !CheckIsPhoneNumber(login))
+			{
+				await FormsApplication.MainPage.DisplayAlert("Внимание", "Введите Email или номер телефона в формате с + и тд", "Ок");
 				return;
 			}
 
@@ -340,10 +399,12 @@ namespace bonus.app.Core.ViewModels.Auth
 				switch (user.Role)
 				{
 					case UserRole.Businessman:
-						await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
+						await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(
+							new EditProfileViewModelArguments(user.Uuid, false, password));
 						break;
 					case UserRole.Customer:
-						await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(new EditProfileViewModelArguments(user.Uuid, false, password));
+						await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
+							new EditProfileViewModelArguments(user.Uuid, false, password));
 						break;
 					case UserRole.Manager:
 						return;
@@ -370,11 +431,29 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 		}
 
+		private static bool CheckIsEmail(string email)
+		{
+			try
+			{
+				var address = new MailAddress(email);
+				return address.Address == email;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		private bool CheckIsPhoneNumber(string number) => Regex.Match(number, @"^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$").Success;
+
+		/// <summary>
+		/// Показывает ошибку при авторизации.
+		/// </summary>
 		private void ShowErrors()
 		{
 			if (_authService.ErrorDetails == null)
 			{
-				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
+				FormsApplication.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
 				return;
 			}
 
@@ -388,7 +467,7 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (!string.IsNullOrEmpty(_authService.Error))
 			{
-				Application.Current.MainPage.DisplayAlert("Внимание", _authService.Error, "Ок");
+				FormsApplication.MainPage.DisplayAlert("Внимание", _authService.Error, "Ок");
 			}
 		}
 		#endregion

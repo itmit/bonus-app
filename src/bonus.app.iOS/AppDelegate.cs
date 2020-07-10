@@ -17,7 +17,6 @@ using MvvmCross.Platforms.Ios.Core;
 using Rg.Plugins.Popup;
 using UIKit;
 using UserNotifications;
-using VKontakte;
 using Xamarin.Forms;
 using XF.Material.iOS;
 using ZXing.Net.Mobile.Forms.iOS;
@@ -80,20 +79,8 @@ namespace bonus.app.iOS
 			}
 			App.Configure();
 
-			Facebook.CoreKit.Profile.EnableUpdatesOnAccessTokenChange(true);
-			Facebook.CoreKit.ApplicationDelegate.SharedInstance.FinishedLaunching(app, options);
-			VKSdk.Initialize("7511393");
+			//VKSdk.Initialize("7511393");
 			return base.FinishedLaunching(app, options);
-		}
-
-		public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation) 
-			=> VKSdk.ProcessOpenUrl(url, sourceApplication)
-			   || Facebook.CoreKit.ApplicationDelegate.SharedInstance.OpenUrl(application, url, sourceApplication, annotation)
-			   || base.OpenUrl(application, url, sourceApplication, annotation);
-
-		public override void OnActivated(UIApplication application)
-		{
-			Facebook.CoreKit.AppEvents.ActivateApp();
 		}
 
 		public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)

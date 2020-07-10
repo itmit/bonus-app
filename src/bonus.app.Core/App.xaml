@@ -26,8 +26,9 @@
             </Style>
             <Style x:Key="AuthAndRegFrame" TargetType="Frame">
                 <Setter Property="IsClippedToBounds" Value="True" />
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="BackgroundColor" Value="#bab3af" />
                 <Setter Property="CornerRadius" Value="24" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="Padding" Value="0,-3" />
             </Style>
             <!--Стиль для кнопок в авторизации-->
@@ -67,7 +68,7 @@
             <Style x:Key="AuthAndRegEntry" TargetType="Entry">
                 <Setter Property="PlaceholderColor" Value="#d5d1cf" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="BackgroundColor" Value="#bab3af" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Visual" Value="Material" />
             </Style>

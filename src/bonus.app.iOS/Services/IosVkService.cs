@@ -1,127 +1,127 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 using bonus.app.Core.Services;
 using Foundation;
+using Newtonsoft.Json.Linq;
 using UIKit;
+using Xamarin.Auth;
+/*
 using VKontakte;
 using VKontakte.API;
 using VKontakte.API.Methods;
 using VKontakte.API.Models;
 using VKontakte.Core;
 using VKontakte.Views;
+*/
 using Xamarin.Forms;
 
 namespace bonus.app.iOS.Services
 {
-	public class IosVkService : NSObject, IVkService, IVKSdkDelegate, IVKSdkUIDelegate
+	public class IosVkService : NSObject, IVkService//, IVKSdkDelegate, IVKSdkUIDelegate
     {
-		private readonly string[] _permissions = {
-            VKPermissions.Email,
-            VKPermissions.Offline
-        };
-
-		private LoginResult _loginResult;
 		private TaskCompletionSource<LoginResult> _completionSource;
 
-        public IosVkService()
-        {
-            VKSdk.Instance.RegisterDelegate(this);
-            VKSdk.Instance.UiDelegate = this;
-        }
+		public Task<LoginResult> Login()
+		{
+			_completionSource = new TaskCompletionSource<LoginResult>();
 
-        public Task<LoginResult> Login()
-        {
-            _completionSource = new TaskCompletionSource<LoginResult>();
-            VKSdk.Authorize(_permissions);
-            return _completionSource.Task;
-        }
+			var auth = new OAuth2Authenticator("7511393",
+											   "email",
+											   new Uri("https://oauth.vk.com/authorize"),
+											   new Uri("https://oauth.vk.com/blank.html"));
+			
 
-        public void Logout()
-        {
-            _loginResult = null;
-            _completionSource = null;
-        }
+			auth.Completed += AuthOnCompleted;
+			auth.Error += AuthOnError;
 
-        [Export("vkSdkTokenHasExpired:")]
-        public void TokenHasExpired(VKAccessToken expiredToken)
-        {
-            VKSdk.Authorize(_permissions);
-        }
+			auth.ClearCookiesBeforeLogin = true;
+			auth.Title = "Vk";
 
-        public new void Dispose()
-        {
-            VKSdk.Instance.UnregisterDelegate(this);
-            VKSdk.Instance.UiDelegate = null;
-            SetCancelledResult();
-        }
+			UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(auth.GetUI(), true, null);
 
-        public void AccessAuthorizationFinished(VKAuthorizationResult result)
-        {
-            if (result?.Token == null)
+			return _completionSource.Task;
+		}
+
+		private void AuthOnError(object sender, AuthenticatorErrorEventArgs e)
+		{
+		}
+
+		private async void AuthOnCompleted(object sender, AuthenticatorCompletedEventArgs authCompletedArgs)
+		{
+			UIApplication.SharedApplication.KeyWindow.RootViewController.DismissViewController(true, null);
+
+			if (!authCompletedArgs.IsAuthenticated || authCompletedArgs.Account == null)
 			{
-				SetErrorResult(result?.Error?.LocalizedDescription ?? @"VK authorization unknown error");
+				SetResult(new LoginResult { LoginState = LoginState.Canceled });
 			}
 			else
-            {
-                _loginResult = new LoginResult
-                {
-                    Token = result.Token.AccessToken,
-                    UserId = result.Token.UserId,
-                    Email = result.Token.Email,
-                    ExpireAt = Utils.FromMsDateTime(result.Token.ExpiresIn),
-                };
-                Task.Run(GetUserInfo);
-            }
-        }
-
-		private async Task GetUserInfo()
-        {
-            var request = VKApi.Users.Get(NSDictionary.FromObjectAndKey((NSString)@"photo_400_orig", VKApiConst.Fields));
-            var response = await request.ExecuteAsync();
-            var users = response.ParsedModel as VKUsersArray;
-			if (users?.FirstObject is VKUser account && _loginResult != null)
-            {
-                _loginResult.FirstName = account.first_name;
-                _loginResult.LastName = account.last_name;
-                _loginResult.ImageUrl = account.photo_400_orig;
-                _loginResult.LoginState = LoginState.Success;
-                SetResult(_loginResult);
-            }
-            else
 			{
-				SetErrorResult(@"Unable to complete the request of user info");
+				var expInString = authCompletedArgs.Account.Properties.ContainsKey("expires_in")
+									  ? authCompletedArgs.Account.Properties["expires_in"]
+									  : null;
+
+				var expireAt = DateTimeOffset.Now.AddSeconds(Convert.ToInt32(expInString));
+
+				SetResult(new LoginResult
+				{
+					Token = authCompletedArgs.Account.Properties.ContainsKey("access_token")
+								? authCompletedArgs.Account.Properties["access_token"]
+								: null,
+					ExpireAt = expireAt,
+					LoginState = LoginState.Success,
+					UserId = authCompletedArgs.Account.Properties.ContainsKey("user_id")
+								 ? authCompletedArgs.Account.Properties["user_id"]
+								 : null,
+					Email = authCompletedArgs.Account.Properties.ContainsKey("email")
+								? authCompletedArgs.Account.Properties["email"]
+								: null
+				});
 			}
 		}
 
-        public void UserAuthorizationFailed()
-        {
-            SetErrorResult(@"VK authorization unknown error");
-        }
-
-        public void ShouldPresentViewController(UIViewController controller)
-        {
-            Device.BeginInvokeOnMainThread(() => Utils.GetCurrentViewController().PresentViewController(controller, true, null));
-        }
-
-        public void NeedCaptchaEnter(VKError captchaError)
-        {
-            Device.BeginInvokeOnMainThread(() => VKCaptchaViewController.Create(captchaError).PresentIn(Utils.GetCurrentViewController()));
-        }
-
-		private void SetCancelledResult()
-        {
-            SetResult(new LoginResult { LoginState = LoginState.Canceled });
-        }
-
-		private void SetErrorResult(string errorString)
-        {
-            SetResult(new LoginResult { LoginState = LoginState.Failed, ErrorString = errorString });
-        }
-
 		private void SetResult(LoginResult result)
-        {
-            _completionSource?.TrySetResult(result);
-            _loginResult = null;
-            _completionSource = null;
-        }
-    }
+		{
+			_completionSource?.TrySetResult(result);
+			_completionSource = null;
+		}
+
+
+		private async Task GetUserProfile(Account account, string token, DateTimeOffset expireAt)
+		{
+			var result = new LoginResult
+			{
+				Token = token,
+				ExpireAt = expireAt
+			};
+
+			var request = new OAuth2Request("GET", new Uri($"https://api.vk.com/method/users.get?fields=email&access_token={token}&v=5.120"),
+											null, account);
+			var response = await request.GetResponseAsync();
+			if (response != null && response.StatusCode == HttpStatusCode.OK)
+			{
+				var userJson = response.GetResponseText();
+
+				var jObject = JObject.Parse(userJson);
+
+				result.LoginState = LoginState.Success;
+				result.Email = jObject["email"].ToString();
+
+				var userId = jObject["id"].ToString();
+				result.UserId = userId;
+			}
+			else
+			{
+				result.LoginState = LoginState.Failed;
+				result.ErrorString = $"Error: Responce={response}, StatusCode = {response?.StatusCode}";
+			}
+
+			SetResult(result);
+		}
+
+		public void Logout()
+		{
+			_completionSource = null;
+		}
+	}
 }

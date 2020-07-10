@@ -20,6 +20,8 @@ namespace bonus.app.iOS
 		{
 			var provider = base.CreateIocProvider();
 			provider.RegisterType<IFirebaseService, IosFirebaseService>();
+			provider.RegisterSingleton<IFacebookService>(new IosFacebookService());
+			provider.RegisterSingleton<IVkService>(new IosVkService());
 			provider.RegisterSingleton(typeof(IMessagingService), new MessagingService());
 			return provider;
 		}

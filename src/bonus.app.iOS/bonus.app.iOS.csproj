@@ -14,7 +14,7 @@
     <AssemblyName>bonus.app.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>manual</ProvisioningType>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,12 +25,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>Apple Development: Vadim Grashenko (DSN36L2SUL)</CodesignKey>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchEnableSGenConc>false</MtouchEnableSGenConc>
+    <MtouchFloat32>false</MtouchFloat32>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
+    <MtouchFastDev>false</MtouchFastDev>
+    <OptimizePNGs>true</OptimizePNGs>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -61,14 +65,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignKey>iPhone Distribution: ITMIT OOO (D74723C9R5)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>false</MtouchFloat32>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchFastDev>false</MtouchFastDev>
-    <CodesignProvision>Bonus</CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
+    <CodesignExtraArgs>
+    </CodesignExtraArgs>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <OptimizePNGs>true</OptimizePNGs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />
@@ -87,6 +96,7 @@
     <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Secrets.json" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -176,10 +186,10 @@
       <Version>0.7.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>3.2.2</Version>
+      <Version>3.3.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>3.2.2</Version>
+      <Version>3.3.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Forms">
       <Version>6.4.2</Version>
@@ -193,8 +203,8 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.0.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Facebook.iOS">
-      <Version>5.12.0</Version>
+    <PackageReference Include="Xamarin.Auth">
+      <Version>1.7.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
@@ -205,13 +215,10 @@
     <PackageReference Include="Xamarin.Firebase.iOS.CloudMessaging">
       <Version>4.3.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.967" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.6.0.967</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.VKontakte">
-      <Version>1.0.1</Version>
+      <Version>4.7.0.1080</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
       <Version>1.6.5</Version>
@@ -220,7 +227,7 @@
       <Version>2.4.1</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
-      <Version>1.68.3</Version>
+      <Version>2.80.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

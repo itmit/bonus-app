@@ -1,88 +1,112 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 using bonus.app.Core.Services;
 using CoreGraphics;
-using Facebook.CoreKit;
-using Facebook.LoginKit;
 using Foundation;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UIKit;
+using Xamarin.Auth;
 using Xamarin.Forms.Platform.iOS;
 
 namespace bonus.app.iOS.Services
 {
 	public class IosFacebookService : IFacebookService
-
 	{
-		private readonly LoginManager _loginManager = new LoginManager();
-		private readonly string[] _permissions = { @"public_profile", @"email", @"user_about_me" };
-
-		private LoginResult _loginResult;
 		private TaskCompletionSource<LoginResult> _completionSource;
 
         public Task<LoginResult> Login()
         {
-            _completionSource = new TaskCompletionSource<LoginResult>();
-            _loginManager.LogIn(_permissions, GetCurrentViewController(), LoginManagerLoginHandler);
-            return _completionSource.Task;
-        }
+			_completionSource = new TaskCompletionSource<LoginResult>();
 
-        public void Logout()
-        {
-            _loginManager.LogOut();
-        }
+			var auth = new OAuth2Authenticator("3865467926858251",
+											   "email",
+											   new Uri("https://www.facebook.com/v7.0/dialog/oauth"),
+											   new Uri("https://www.facebook.com/connect/login_success.html"));
 
-		private void LoginManagerLoginHandler(LoginManagerLoginResult result, NSError error)
-        {
-            if (result.IsCancelled)
+			auth.Completed += AuthOnCompleted;
+			auth.Error += AuthOnError;
+
+			auth.ClearCookiesBeforeLogin = true;
+			auth.Title = "Facebook";
+
+			UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(auth.GetUI(), true, null);
+
+			return _completionSource.Task;
+		}
+
+		private void AuthOnError(object sender, AuthenticatorErrorEventArgs e)
+		{
+			throw new NotImplementedException();
+		}
+
+		private async void AuthOnCompleted(object sender, AuthenticatorCompletedEventArgs authCompletedArgs)
+		{
+			UIApplication.SharedApplication.KeyWindow.RootViewController.DismissViewController(true, null);
+
+			if (!authCompletedArgs.IsAuthenticated || authCompletedArgs.Account == null)
 			{
-				_completionSource.TrySetResult(new LoginResult { LoginState = LoginState.Canceled });
-			}
-			else if (error != null)
-			{
-				_completionSource.TrySetResult(new LoginResult { LoginState = LoginState.Failed, ErrorString = error.LocalizedDescription });
+				SetResult(new LoginResult { LoginState = LoginState.Canceled });
 			}
 			else
-            {
-                _loginResult = new LoginResult
-                {
-                    Token = result.Token.TokenString,
-                    UserId = result.Token.UserId,
-                    ExpireAt = result.Token.ExpirationDate.ToDateTime()
-                };
-
-                var request = new GraphRequest(@"me", new NSDictionary(@"fields", @"email"));
-                request.Start(GetEmailRequestHandler);
-            }
-        }
-
-		private void GetEmailRequestHandler(GraphRequestConnection connection, NSObject result, NSError error)
-        {
-            if (error != null)
-                _completionSource.TrySetResult(new LoginResult { LoginState = LoginState.Failed, ErrorString = error.LocalizedDescription });
-            else
-            {
-                _loginResult.FirstName = Profile.CurrentProfile.FirstName;
-                _loginResult.LastName = Profile.CurrentProfile.LastName;
-                _loginResult.ImageUrl = Profile.CurrentProfile.ImageUrl(ProfilePictureMode.Square, new CGSize()).ToString();
-
-                var dict = result as NSDictionary;
-                var emailKey = new NSString(@"email");
-                if (dict != null && dict.ContainsKey(emailKey))
-                    _loginResult.Email = dict[emailKey]?.ToString();
-
-                _loginResult.LoginState = LoginState.Success;
-                _completionSource.TrySetResult(_loginResult);
-            }
-        }
-
-		private static UIViewController GetCurrentViewController()
-        {
-            var viewController = UIApplication.SharedApplication.KeyWindow.RootViewController;
-            while (viewController.PresentedViewController != null)
 			{
-				viewController = viewController.PresentedViewController;
+				var token = authCompletedArgs.Account.Properties.ContainsKey("access_token")
+								? authCompletedArgs.Account.Properties["access_token"]
+								: null;
+				var expInString = authCompletedArgs.Account.Properties.ContainsKey("expires_in")
+									  ? authCompletedArgs.Account.Properties["expires_in"]
+									  : null;
+
+				var expireIn = Convert.ToInt32(expInString);
+				var expireAt = DateTimeOffset.Now.AddSeconds(expireIn);
+
+				await GetUserProfile(authCompletedArgs.Account, token, expireAt);
+			}
+        }
+
+		private void SetResult(LoginResult result)
+		{
+			_completionSource?.TrySetResult(result);
+			_completionSource = null;
+		}
+
+
+		private async Task GetUserProfile(Account account, string token, DateTimeOffset expireAt)
+		{
+			var result = new LoginResult
+			{
+				Token = token,
+				ExpireAt = expireAt
+			};
+
+			var request = new OAuth2Request("GET", new Uri($"https://graph.facebook.com/me?fields=email&access_token={token}"),
+											null, account);
+			var response = await request.GetResponseAsync();
+			if (response != null && response.StatusCode == HttpStatusCode.OK)
+			{
+				var userJson = response.GetResponseText();
+
+				var jObject = JObject.Parse(userJson);
+
+				result.LoginState = LoginState.Success;
+				result.Email = jObject["email"].ToString();
+
+				var userId = jObject["id"].ToString();
+				result.UserId = userId;
+			}
+			else
+			{
+				result.LoginState = LoginState.Failed;
+				result.ErrorString = $"Error: Responce={response}, StatusCode = {response?.StatusCode}";
 			}
 
-			return viewController;
-        }
-    }
+			SetResult(result);
+		}
+
+        public void Logout()
+		{
+			_completionSource = null;
+		}
+	}
 }
