@@ -20,14 +20,16 @@ namespace bonus.app.Core.Pages.Businessman.Statistics
 		#region private
 		private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			if (sender is StackLayout)
+			if (!(sender is StackLayout layout))
 			{
-				((StackLayout) sender).BackgroundColor = Color.FromHex("#BB8D91");
-				((StackLayout) sender).BackgroundColor = await GetColor();
+				return;
 			}
+
+			layout.BackgroundColor = Color.FromHex("#BB8D91");
+			layout.BackgroundColor = await GetColor();
 		}
 
-		private async Task<Color> GetColor()
+		private static async Task<Color> GetColor()
 		{
 			await Task.Delay(100);
 			return Color.Transparent;

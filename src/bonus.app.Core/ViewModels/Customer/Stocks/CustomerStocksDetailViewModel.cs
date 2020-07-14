@@ -1,4 +1,6 @@
-﻿using bonus.app.Core.Models;
+﻿using System;
+using System.Threading.Tasks;
+using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Stocks;
@@ -10,7 +12,7 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Customer.Stocks
 {
-	public class CustomerStocksDetailViewModel : MvxViewModel<Stock>
+	public class CustomerStocksDetailViewModel : MvxViewModel<Guid>
 	{
 		#region Data
 		#region Fields
@@ -24,16 +26,16 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		private Stock _stock;
 		private readonly IStockService _stockService;
 		private User _user;
+		private Guid _guid;
+		private MvxCommand _showBusinessmanProfileCommand;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CustomerStocksDetailViewModel(IAuthService authService,
-											 IMvxNavigationService navigationService,
+		public CustomerStocksDetailViewModel(IMvxNavigationService navigationService,
 											 IStockService stockService,
 											 IMvxFormsViewPresenter platformPresenter)
 		{
-			User = authService.User;
 			_navigationService = navigationService;
 			_stockService = stockService;
 			_platformPresenter = platformPresenter;
@@ -104,31 +106,46 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 			get => _stock;
 			private set => SetProperty(ref _stock, value);
 		}
-
-		public User User
-		{
-			get => _user;
-			private set => SetProperty(ref _user, value);
-		}
 		#endregion
 
 		#region Overrided
-		public override void Prepare(Stock parameter)
+		public override void Prepare(Guid parameter)
 		{
-			Stock = parameter;
-			switch (Stock.Status)
+			_guid = parameter;
+		}
+		#endregion
+
+		public MvxCommand ShowBusinessmanProfileCommand
+		{
+			get
 			{
-				case null:
-					ShareColor = Color.Transparent;
-					return;
+				_showBusinessmanProfileCommand = _showBusinessmanProfileCommand ?? new MvxCommand(() =>
+				{
+					_navigationService.Navigate<BusinessmanProfileViewModel, BusinessmanProfileViewModelArgs>(new BusinessmanProfileViewModelArgs(Stock.Client.Uuid, Stock.Id, null));
+				});
+				return _showBusinessmanProfileCommand;
+			}
+		}
+
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			var stock = await _stockService.GetDetail(_guid);
+			switch (stock.Status)
+			{
 				case "Завершена":
 					ShareColor = Color.FromHex("#807D746D");
 					break;
 				case "Отклонена":
 					ShareColor = Color.FromHex("#80BB8D91");
 					break;
+				default:
+					ShareColor = Color.Transparent;
+					break;
 			}
+
+			Stock = stock;
 		}
-		#endregion
 	}
 }

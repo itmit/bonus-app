@@ -40,7 +40,12 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <StackLayout>
-                        <Label Text="{Binding User.Name}" TextColor="#858585" />
+                        <StackLayout>
+                            <Label Text="{Binding Stock.Client.Name}" TextColor="#858585" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowBusinessmanProfileCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
                         <Label Text="{Binding Stock.Name}" FontSize="Body" Margin="0,0,0,5" />
                     </StackLayout>
                     <StackLayout Grid.Column="1" Padding="15">

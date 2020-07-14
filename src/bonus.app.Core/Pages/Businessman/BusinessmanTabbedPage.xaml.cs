@@ -2,6 +2,7 @@
 using bonus.app.Core.ViewModels.Businessman;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
@@ -19,6 +20,14 @@ namespace bonus.app.Core.Pages.Businessman
 			InitializeComponent();
 			On<Android>()
 				.SetToolbarPlacement(ToolbarPlacement.Bottom);
+
+			CurrentPageChanged += (sender, args) =>
+			{
+				if (CurrentPage is NavigationPage)
+				{
+					CurrentPage.Navigation.PopToRootAsync();
+				}
+			};
 		}
 		#endregion
 
@@ -28,13 +37,13 @@ namespace bonus.app.Core.Pages.Businessman
 		/// <remarks>To be added.</remarks>
 		protected override bool OnBackButtonPressed()
 		{
-			if (Navigation.ModalStack.Count == 1 && Navigation.ModalStack[0] is ScannerPage)
+			if (Navigation.ModalStack.Count != 1 || !(Navigation.ModalStack[0] is ScannerPage))
 			{
-				Navigation.PopModalAsync();
-				return true;
+				return base.OnBackButtonPressed();
 			}
 
-			return base.OnBackButtonPressed();
+			Navigation.PopModalAsync();
+			return true;
 		}
 		#endregion
 	}

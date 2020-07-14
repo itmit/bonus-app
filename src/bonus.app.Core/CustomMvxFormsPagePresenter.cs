@@ -37,6 +37,8 @@ namespace bonus.app.Core
 			return base.CloseContentPage(viewModel, attribute);
 		}
 
+		public override Task<bool> CloseModal(IMvxViewModel viewModel, MvxModalPresentationAttribute attribute) => base.CloseModal(viewModel, attribute);
+
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)
 		{
 			if (rootPage == null)

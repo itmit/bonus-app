@@ -13,6 +13,8 @@ namespace bonus.app.Core.Services
 
 		Task<List<Line>> GetStocksViewsStatistic(DateTime dateFrom, DateTime dateTo);
 
+		Task<List<Line>> GetTransitionsProfileStatistics(IEnumerable<Stock> stocks, IEnumerable<Service> services, DateTime dateFrom, DateTime dateTo);
+
 		Task<List<Line>> GetSalesStatisticsByType(IEnumerable<Service> types, DateTime dateFrom, DateTime dateTo);
 
 		Task<List<PiecePieChart>> GetGeographyStatistics(DateTime dateFrom, DateTime dateTo, GeographyStatisticsType statisticsType);

@@ -63,7 +63,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				}
 
 				SetProperty(ref _selectedSubscription, value);
-				_navigationService.Navigate<BusinessmanProfileViewModel, Guid>(value.Uuid);
+				_navigationService.Navigate<BusinessmanProfileViewModel, BusinessmanProfileViewModelArgs>(new BusinessmanProfileViewModelArgs(value.Uuid));
 			}
 		}
 

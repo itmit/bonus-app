@@ -28,7 +28,14 @@ namespace bonus.app.Core.Views.ContentViews.Statistics
 		}
 
 		public static readonly BindableProperty LinesProperty =
-			BindableProperty.Create(nameof(Lines), typeof(IEnumerable<Line>), typeof(ItemsView), new List<Line>(), BindingMode.OneTime, null, OnLinesPropertyPropertyChanged);
+			BindableProperty.Create(
+				nameof(Lines), 
+				typeof(IEnumerable<Line>), 
+				typeof(LineChartContentView),
+				defaultValue: new List<Line>(), 
+				BindingMode.OneWay, 
+				null,
+				OnLinesPropertyPropertyChanged);
 
 		private static void OnLinesPropertyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
 		{
@@ -133,7 +140,8 @@ namespace bonus.app.Core.Views.ContentViews.Statistics
 				return;
 			}
 
-			var a = (info.Width - xOffset - (90 + xOffset)) / (dates.Count - 1);
+			var dc = dates.Count == 1 ? dates.Count : dates.Count - 1;
+			var a = (info.Width - xOffset - (90 + xOffset)) / dc;
 			foreach (var line in list)
 			{
 				pointPaint.Color = line

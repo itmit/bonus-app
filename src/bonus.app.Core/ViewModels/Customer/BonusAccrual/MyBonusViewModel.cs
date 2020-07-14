@@ -46,7 +46,7 @@ namespace bonus.app.Core.ViewModels.Customer.BonusAccrual
 				}
 
 				SetProperty(ref _selectedBusinessman, value);
-				_navigationService.Navigate<BusinessmanProfileViewModel, Guid>(value.Uuid);
+				_navigationService.Navigate<BusinessmanProfileViewModel, BusinessmanProfileViewModelArgs>(new BusinessmanProfileViewModelArgs(value.Uuid));
 			}
 		}
 

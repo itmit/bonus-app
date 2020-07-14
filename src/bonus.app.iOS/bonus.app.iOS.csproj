@@ -96,7 +96,6 @@
     <BundleResource Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Secrets.json" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -471,5 +470,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_heart_filled_4x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_eye_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_hide_eye_gray.png" />
   </ItemGroup>
 </Project>

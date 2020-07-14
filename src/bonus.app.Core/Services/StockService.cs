@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.UserModels;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Services
@@ -187,14 +188,37 @@ namespace bonus.app.Core.Services
 			return ConvertSocksImages(stocks);
 		}
 
-		public const string GetDetailUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
+		public const string GetDetailBusinessmanUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
+		public const string GetDetailCustomerUri = "http://bonus.itmit-studio.ru/api/customerstock/{0}";
 
 		public async Task<Stock> GetDetail(Guid uuid)
 		{
-			var stock = await GetAsync<Stock>(string.Format(GetDetailUri, uuid));
+			Stock stock = null;
+			switch (AuthService.User.Role)
+			{
+				case UserRole.Manager:
+				case UserRole.Businessman:
+				{
+					stock = await GetAsync<Stock>(string.Format(GetDetailBusinessmanUri, uuid));
+					break;
+				}
+				case UserRole.Customer:
+				{
+					stock = await GetAsync<Stock>(string.Format(GetDetailCustomerUri, uuid));
+					break;
+				}
+
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+
 			if (string.IsNullOrEmpty(stock.ImageSource))
 			{
 				stock.ImageSource = "about:blank";
+			}
+			else
+			{
+				stock.ImageSource = Domain + stock.ImageSource;
 			}
 			return stock;
 		}

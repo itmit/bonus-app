@@ -1,4 +1,5 @@
 ﻿using System;
+using bonus.app.Core.Models.UserModels;
 using Newtonsoft.Json;
 
 namespace bonus.app.Core.Models
@@ -8,6 +9,12 @@ namespace bonus.app.Core.Models
 		#region Properties
 		[JsonProperty("city")]
 		public string City
+		{
+			get;
+			set;
+		}
+
+		public User Client
 		{
 			get;
 			set;
@@ -76,6 +83,12 @@ namespace bonus.app.Core.Models
 		}
 
 		public Guid Uuid
+		{
+			get;
+			set;
+		}
+
+		public int? Id
 		{
 			get;
 			set;

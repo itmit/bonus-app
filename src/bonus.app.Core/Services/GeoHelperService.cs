@@ -40,18 +40,18 @@ namespace bonus.app.Core.Services
 			return res;
 		}
 
-		public async Task<List<Country>> GetCountries(LocaleDto locale)
+		public async Task<List<Country>> GetCountries(LocaleDto locale, string name = null)
 		{
 			var uri = string.Format(GetCountriesUri, Secrets.GeoHelperApiKey, locale.Lang, locale.FallbackLang);
 
-			var res = await GetAsync<Country>(uri);
-
-			if (res == null)
+			if (!string.IsNullOrWhiteSpace(name))
 			{
-				return new List<Country>();
+				uri += $"&filter[name]={name}";
 			}
 
-			return res;
+			var res = await GetAsync<Country>(uri);
+
+			return res ?? new List<Country>();
 		}
 		#endregion
 
@@ -122,20 +122,24 @@ namespace bonus.app.Core.Services
 				sb.Append(pagination.Limit);
 			}
 
-			if (order != null)
+			if (order == null)
 			{
-				if (!string.IsNullOrEmpty(order.By))
-				{
-					sb.Append("&order[by]=");
-					sb.Append(order.By);
-				}
-
-				if (!string.IsNullOrEmpty(order.Dir))
-				{
-					sb.Append("&order[dir]=");
-					sb.Append(order.Dir);
-				}
+				return sb.ToString();
 			}
+
+			if (!string.IsNullOrEmpty(order.By))
+			{
+				sb.Append("&order[by]=");
+				sb.Append(order.By);
+			}
+
+			if (string.IsNullOrEmpty(order.Dir))
+			{
+				return sb.ToString();
+			}
+
+			sb.Append("&order[dir]=");
+			sb.Append(order.Dir);
 
 			return sb.ToString();
 		}

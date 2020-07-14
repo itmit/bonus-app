@@ -14,8 +14,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 {
 	public class SalesTypesViewModel : MvxViewModel
 	{
-		private IStatisticService _statisticService;
-		private IServicesService _servicesService;
+		private readonly IStatisticService _statisticService;
+		private readonly IServicesService _servicesService;
 		private MvxObservableCollection<Service> _services;
 		private MvxCommand _showOrHideTypesServicesCommand;
 		private bool _isVisibleServices;

@@ -13,11 +13,10 @@ using Xamarin.Essentials;
 
 namespace bonus.app.Core.ViewModels.Customer
 {
-	public class BusinessmanProfileViewModel : MvxViewModel<Guid>
+	public class BusinessmanProfileViewModel : MvxViewModel<BusinessmanProfileViewModelArgs>
 	{
 		#region Data
 		#region Fields
-		private Guid _guid;
 		private bool _isShowedDetails;
 		private bool _isSubscribe;
 		private readonly IMvxNavigationService _navigationService;
@@ -36,6 +35,7 @@ namespace bonus.app.Core.ViewModels.Customer
 		private readonly ISubscribeService _subscribeService;
 		private MvxCommand _unsubscribeCommand;
 		private User _user;
+		private BusinessmanProfileViewModelArgs _parameter;
 		#endregion
 		#endregion
 
@@ -168,7 +168,7 @@ namespace bonus.app.Core.ViewModels.Customer
 				_subscribeCommand = _subscribeCommand ??
 									new MvxCommand(async () =>
 									{
-										IsSubscribe = await _subscribeService.SubscribeToBusinessman(_guid);
+										IsSubscribe = await _subscribeService.SubscribeToBusinessman(_parameter.Uuid);
 									});
 				return _subscribeCommand;
 			}
@@ -181,7 +181,7 @@ namespace bonus.app.Core.ViewModels.Customer
 				_unsubscribeCommand = _unsubscribeCommand ??
 									  new MvxCommand(async () =>
 									  {
-										  IsSubscribe = !await _subscribeService.UnsubscribeToBusinessman(_guid);
+										  IsSubscribe = !await _subscribeService.UnsubscribeToBusinessman(_parameter.Uuid);
 									  });
 				return _unsubscribeCommand;
 			}
@@ -201,11 +201,11 @@ namespace bonus.app.Core.ViewModels.Customer
 
 			try
 			{
-				User = await _profileService.GetUser(_guid);
+				User = await _profileService.GetUser(_parameter.Uuid, _parameter.StockId, _parameter.ServiceId);
 				PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
-				IsSubscribe = (await _subscribeService.GetSubscriptions()).Any(s => s.Uuid.Equals(_guid));
-				Services = new MvxObservableCollection<Service>(await _servicesService.GetBusinessmenService(_guid));
-				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio(_guid));
+				IsSubscribe = (await _subscribeService.GetSubscriptions()).Any(s => s.Uuid.Equals(_parameter.Uuid));
+				Services = new MvxObservableCollection<Service>(await _servicesService.GetBusinessmenService(_parameter.Uuid));
+				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio(_parameter.Uuid));
 			}
 			catch (Exception e)
 			{
@@ -213,9 +213,9 @@ namespace bonus.app.Core.ViewModels.Customer
 			}
 		}
 
-		public override void Prepare(Guid parameter)
+		public override void Prepare(BusinessmanProfileViewModelArgs parameter)
 		{
-			_guid = parameter;
+			_parameter = parameter;
 		}
 		#endregion
 
@@ -228,5 +228,31 @@ namespace bonus.app.Core.ViewModels.Customer
 			}
 		}
 		#endregion
+	}
+
+	public class BusinessmanProfileViewModelArgs
+	{
+		public BusinessmanProfileViewModelArgs(Guid uuid, int? stockId, int? serviceId)
+		{
+			Uuid = uuid;
+			StockId = stockId;
+			ServiceId = serviceId;
+		}
+
+		public BusinessmanProfileViewModelArgs(Guid uuid) => Uuid = uuid;
+
+		public Guid Uuid
+		{
+			get;
+		}
+
+		public int? StockId
+		{
+			get;
+		}
+		public int? ServiceId
+		{
+			get;
+		}
 	}
 }

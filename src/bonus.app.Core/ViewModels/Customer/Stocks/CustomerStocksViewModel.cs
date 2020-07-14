@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Stocks;
@@ -89,7 +90,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 				}
 
 				SetProperty(ref _selectedStock, value);
-				NavigationService.Navigate<CustomerStocksDetailViewModel, Stock>(value);
+				NavigationService.Navigate<CustomerStocksDetailViewModel, Guid>(value.Uuid);
 			}
 		}
 

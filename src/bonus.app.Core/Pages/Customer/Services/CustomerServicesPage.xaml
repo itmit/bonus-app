@@ -72,7 +72,10 @@
             </Grid>
 
             <!--Список услуг-->
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Services}">
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Services}"
+                            SelectedItem="{Binding SelectedServiceItem}"
+                            SelectionMode="Single"
+                            SelectionChanged="SelectableItemsView_OnSelectionChanged">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <viewCells:CustomerServicesContentView />

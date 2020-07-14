@@ -11,7 +11,7 @@ namespace bonus.app.Core.Services
 		#region Overridable
 		Task<List<City>> GetCities(LocaleDto locale, CityFilterDto filter = null, PaginationRequestDto pagination = null, OrderDto order = null);
 
-		Task<List<Country>> GetCountries(LocaleDto locale);
+		Task<List<Country>> GetCountries(LocaleDto locale, string name = null);
 		#endregion
 	}
 }

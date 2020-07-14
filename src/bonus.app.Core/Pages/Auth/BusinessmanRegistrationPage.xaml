@@ -59,17 +59,38 @@
                                       InputType="Email"
                                       ErrorText="{Binding Email.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-                <ui:MaterialTextField Text="{Binding Password.Value}"
-                                      Placeholder="Пароль"
-                                      InputType="Password"
-                                      ErrorText="{Binding Password.Errors, Converter={StaticResource FirstElementConverter}}"
-                                      HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-                <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
+                <Grid>
+                    <ui:MaterialTextField Text="{Binding Password.Value}"
+                                          Placeholder="Пароль"
+                                          x:Name="PasswordField"
+                                          InputType="Password" 
+                                          ErrorText="{Binding Password.Errors, Converter={StaticResource FirstElementConverter}}"
+                                          HasError="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}" />
+
+                    <Image Source="ic_eye_gray" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0"
+                           WidthRequest="24">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Grid>
+                    <ui:MaterialTextField Text="{Binding ConfirmPassword.Value}"
                                       Placeholder="Повторите пароль"
                                       InputType="Password"
+                                      x:Name="ConfirmPasswordField"
                                       ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-
+                    <Image Source="ic_eye.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Margin="0,0,10,0"
+                           WidthRequest="24">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
                 <Entry Text="{Binding PinCode}" x:Name="PinCode" Keyboard="Numeric" IsPassword="True"
                        Placeholder="Код из 4 цифр для быстрого входа" />
                 <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,30">

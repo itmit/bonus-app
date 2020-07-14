@@ -69,6 +69,7 @@
                                                   Placeholder="Номер телефона"
                                                   HelperText="+7 (XXX) XXX-XX-XX"
                                                   InputType="Telephone"
+                                                  MaxLength="18"
                                                   ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding PhoneNumber.IsValid, Converter={StaticResource InverseBoolConverter}}">
                                 <ui:MaterialTextField.Behaviors>

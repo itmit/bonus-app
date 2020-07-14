@@ -25,40 +25,37 @@
         <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
             <ScrollView>
                 <StackLayout Margin="15,0" Spacing="0">
-                    <StackLayout>
-                        <StackLayout Margin="0,0,0,15" Spacing="0">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
-                            </StackLayout.GestureRecognizers>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
-                                <Label Text="Добавить услугу" FontSize="14" />
-                                <Image Source="ic_plusbrown_4x"
-                                       WidthRequest="15"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="EndAndExpand"/>
-                            </StackLayout>
-                            <BoxView />
+                    <StackLayout Spacing="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
+                        </StackLayout.GestureRecognizers>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
+                            <Label Text="Добавить услугу" FontSize="14" />
+                            <Image Source="ic_plusbrown_4x"
+                                   WidthRequest="15"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
-
-                        <StackLayout  IsVisible="{Binding IsVisibleServices}"
-                                      IsEnabled="{Binding IsVisibleServices}"
-                                      BindableLayout.ItemsSource="{Binding Services}"
-                                      HorizontalOptions="FillAndExpand"
-                                      VerticalOptions="FillAndExpand">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout Spacing="0">
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                                        </StackLayout.GestureRecognizers>
-                                        <Label Text="{Binding Name}" Margin="50,20,5,15" HorizontalOptions="FillAndExpand" />
-                                        <BoxView Margin="35,0,0,0" />
-                                    </StackLayout>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
+                        <BoxView />
                     </StackLayout>
-                    <BoxView />
+
+                    <StackLayout  IsVisible="{Binding IsVisibleServices}"
+                                  IsEnabled="{Binding IsVisibleServices}"
+                                  BindableLayout.ItemsSource="{Binding Services}"
+                                  HorizontalOptions="FillAndExpand"
+                                  VerticalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Spacing="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="{Binding Name}" Margin="50,20,5,15" HorizontalOptions="FillAndExpand" />
+                                    <BoxView Margin="35,0,0,0" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
 
                     <StackLayout BindableLayout.ItemsSource="{Binding Result}">
                         <BindableLayout.ItemTemplate>

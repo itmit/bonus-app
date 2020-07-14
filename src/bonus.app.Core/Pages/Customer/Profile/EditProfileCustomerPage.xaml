@@ -61,6 +61,7 @@
                             <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
                                                   Style="{StaticResource MaterialTextField}"
                                                   Placeholder="Номер телефона"
+                                                  MaxLength="18"
                                                   HelperText="+7 (XXX) XXX-XX-XX"
                                                   InputType="Telephone"
                                                   ErrorText="{Binding PhoneNumber.Errors, Converter={StaticResource FirstElementConverter}}"

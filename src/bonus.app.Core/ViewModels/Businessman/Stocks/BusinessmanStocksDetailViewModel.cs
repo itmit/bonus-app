@@ -112,11 +112,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		#region Private
 		private void StockServiceOnEditedStock(Stock stock)
 		{
-			if (stock != null)
+			if (stock == null)
 			{
-				Stock = stock;
-				RaiseAllPropertiesChanged();
+				return;
 			}
+
+			Stock = stock;
+			RaiseAllPropertiesChanged();
 		}
 		#endregion
 	}

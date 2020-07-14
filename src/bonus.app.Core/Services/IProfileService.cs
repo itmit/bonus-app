@@ -33,6 +33,7 @@ namespace bonus.app.Core.Services
 
 		Task<List<PortfolioImage>> GetPortfolio(Guid uuid);
 
+		Task<User> GetUser(Guid uuid, int? stockId, int? serviceId);
 		Task<User> GetUser(Guid uuid);
 
 		Task<bool> RemoveImageFromPortfolio(Guid uuid);

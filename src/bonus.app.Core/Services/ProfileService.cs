@@ -85,12 +85,7 @@ namespace bonus.app.Core.Services
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
 
-				if (data.Success)
-				{
-					return data.Data;
-				}
-
-				return null;
+				return data.Success ? data.Data : null;
 			}
 		}
 
@@ -311,14 +306,28 @@ namespace bonus.app.Core.Services
 			return images;
 		}
 
-		public async Task<User> GetUser(Guid uuid)
+		public async Task<User> GetUser(Guid uuid, int? stockId, int? serviceId)
 		{
 			using (var client = new HttpClient())
 			{
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
 				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
 
-				var response = await client.GetAsync(string.Format(GetUserUri, uuid));
+				var url = string.Format(GetUserUri, uuid);
+				if (stockId != null || serviceId != null)
+				{
+					url += '?';
+				}
+				if (stockId != null)
+				{
+					url += $"stock_id={stockId}&";
+				}
+				if (serviceId != null)
+				{
+					url += $"service_item_id={serviceId}&";
+				}
+
+				var response = await client.GetAsync(url);
 
 				var jsonString = await response.Content.ReadAsStringAsync();
 				Debug.WriteLine(jsonString);
@@ -330,35 +339,38 @@ namespace bonus.app.Core.Services
 
 				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
 
-				if (response.IsSuccessStatusCode)
+				if (!response.IsSuccessStatusCode)
 				{
-					if (data.Success)
-					{
-						var user = _mapper.Map<User>(data.Data.Client);
-						var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+					return null;
+				}
 
-						userInfo.Role = user.Role;
-						userInfo.Uuid = user.Uuid;
-						userInfo.Email = user.Email ?? string.Empty;
-						userInfo.Phone = user.Phone ?? string.Empty;
-						userInfo.Name = user.Name ?? string.Empty;
-						userInfo.Login = user.Login ?? string.Empty;
-
-						userInfo.AccessToken = new AccessToken
-						{
-							Body = data.Data.Body,
-							Type = data.Data.Type
-						};
-
-						return userInfo;
-					}
-
+				if (!data.Success)
+				{
 					return _mapper.Map<User>(data.Data);
 				}
 
-				return null;
+				var user = _mapper.Map<User>(data.Data.Client);
+				var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+
+				userInfo.Role = user.Role;
+				userInfo.Uuid = user.Uuid;
+				userInfo.Email = user.Email ?? string.Empty;
+				userInfo.Phone = user.Phone ?? string.Empty;
+				userInfo.Name = user.Name ?? string.Empty;
+				userInfo.Login = user.Login ?? string.Empty;
+
+				userInfo.AccessToken = new AccessToken
+				{
+					Body = data.Data.Body,
+					Type = data.Data.Type
+				};
+
+				return userInfo;
+
 			}
 		}
+
+		public Task<User> GetUser(Guid uuid) => GetUser(uuid, null, null);
 
 		public async Task<bool> RemoveImageFromPortfolio(Guid uuid)
 		{

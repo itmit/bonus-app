@@ -31,6 +31,10 @@ namespace bonus.app.Core.ViewModels
 		private Country _selectedCountry;
 		private MvxCommand _showOrHideCitiesCommand;
 		private MvxCommand _showOrHideCountriesCommand;
+		private string _searchCountry;
+		private MvxCommand _searchCountryCommand;
+		private MvxCommand _searchCityCommand;
+		private string _searchCity;
 		#endregion
 		#endregion
 
@@ -49,6 +53,70 @@ namespace bonus.app.Core.ViewModels
 		{
 			get;
 			set;
+		}
+
+		public MvxCommand SearchCountryCommand
+		{
+			get
+			{
+				_searchCountryCommand = _searchCountryCommand ?? new MvxCommand(async () => {
+					var countries = await _geoHelperService.GetCountries(new LocaleDto
+					{
+						FallbackLang = "en",
+						Lang = "ru"
+					}, SearchCountry);
+					if (string.IsNullOrEmpty(SearchCountry))
+					{
+						countries.Move(countries.Single(c => c.Iso.Equals("RU")), 0);
+						countries.Move(countries.Single(c => c.Iso.Equals("UA")), 1);
+						countries.Move(countries.Single(c => c.Iso.Equals("BY")), 2);
+						countries.Move(countries.Single(c => c.Iso.Equals("KZ")), 3);
+						countries.Move(countries.Single(c => c.Iso.Equals("AZ")), 4);
+					}
+					Countries = new MvxObservableCollection<Country>(countries.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
+				});
+
+				return _searchCountryCommand;
+			}
+		}
+
+		public string SearchCountry
+		{
+			get => _searchCountry;
+			set
+			{
+				SetProperty(ref _searchCountry, value);
+				if (value.Length > 2 || string.IsNullOrEmpty(value))
+				{
+					SearchCountryCommand.Execute();
+				}
+			}
+		}
+		
+		public MvxCommand SearchCityCommand
+		{
+			get
+			{
+				_searchCityCommand = _searchCityCommand ?? new MvxCommand(() => {
+					Cities.Clear();
+					LoadCities(SelectedCountry, 1);
+				});
+
+				return _searchCityCommand;
+			}
+		}
+
+		public string SearchCity
+		{
+			get => _searchCity;
+			set
+			{
+				SetProperty(ref _searchCity, value);
+				if (value.Length > 2 || string.IsNullOrEmpty(value))
+				{
+					SearchCityCommand.Execute();
+				}
+			}
 		}
 
 		public User User
@@ -128,18 +196,20 @@ namespace bonus.app.Core.ViewModels
 				IsVisibleSelectedCity = true;
 				_cities = new MvxObservableCollection<City>();
 				LoadCities(value, 1);
-				if (User != null && !string.IsNullOrEmpty(User.City))
+				if (User == null || string.IsNullOrEmpty(User.City))
 				{
-					_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
-									new City
-									{
-										LocalizedNames = new LocalizedName
-										{
-											Ru = User.City
-										}
-									};
-					RaisePropertyChanged(() => SelectedCity);
+					return;
 				}
+
+				_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
+								new City
+								{
+									LocalizedNames = new LocalizedName
+									{
+										Ru = User.City
+									}
+								};
+				RaisePropertyChanged(() => SelectedCity);
 			}
 		}
 
@@ -214,6 +284,15 @@ namespace bonus.app.Core.ViewModels
 				return;
 			}
 
+			var filter = new CityFilterDto
+			{
+				CountryIso = country.Iso
+			};
+			if (!string.IsNullOrWhiteSpace(SearchCity))
+			{
+				filter.Name = SearchCity;
+			}
+
 			IsBusy = true;
 			_currentPageNumber = pageNumber;
 			try
@@ -223,10 +302,7 @@ namespace bonus.app.Core.ViewModels
 																   FallbackLang = "en",
 																   Lang = "ru"
 															   },
-															   new CityFilterDto
-															   {
-																   CountryIso = country.Iso
-															   },
+															   filter,
 															   new PaginationRequestDto
 															   {
 																   Limit = 250,

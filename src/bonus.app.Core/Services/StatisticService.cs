@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
+using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Models.Statistic;
 using Newtonsoft.Json;
@@ -74,6 +76,82 @@ namespace bonus.app.Core.Services
 			}
 		}
 
+		public async Task<List<Line>> GetTransitionsProfileStatistics(IEnumerable<Stock> stocks, IEnumerable<Service> services, DateTime dateFrom, DateTime dateTo)
+		{
+			using (var client = new HttpClient())
+			{
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+
+				var serviceIds = new StringBuilder();
+				var servicesList = services.ToList();
+				if (servicesList.Any())
+				{
+					serviceIds.Append('[');
+					foreach (var service in servicesList)
+					{
+						serviceIds.Append(service.Id);
+						serviceIds.Append(',');
+					}
+
+					serviceIds.Remove(serviceIds.Length - 1, 1);
+					serviceIds.Append(']');
+				}
+
+				var stockIds = new StringBuilder();
+				var stockList = stocks.ToList();
+				if (stockList.Any())
+				{
+					stockIds.Append('[');
+
+					foreach (var service in stockList)
+					{
+						stockIds.Append(service.Id);
+						stockIds.Append(',');
+					}
+
+					stockIds.Remove(stockIds.Length - 1, 1);
+					stockIds.Append(']');
+				}
+
+
+				var json = await client.GetStringAsync(string.Format(GetTransitionsProfileStatisticsUri,
+																	 dateFrom.ToString("yyyy-MM-dd"),
+																	 dateTo.ToString("yyyy-MM-dd"),
+																	 stockIds,
+																	 serviceIds));
+
+				Debug.WriteLine(json);
+
+				if (string.IsNullOrEmpty(json))
+				{
+					return new List<Line>();
+				}
+
+				var data = JsonConvert.DeserializeObject<ResponseDto<List<Line>>>(json);
+
+				if (data == null)
+				{
+					return new List<Line>();
+				}
+				if (data.Data == null)
+				{
+					return new List<Line>();
+				}
+				for (var i = 0; i < data.Data.Count; i++)
+				{
+					if (i > 15)
+					{
+						data.Data[i].Color = Color.Gray;
+						continue;
+					}
+					data.Data[i].Color = Colors.Values[i];
+				}
+
+				return data.Data;
+			}
+		}
+
 		public async Task<List<Line>> GetSalesStatisticsByType(IEnumerable<Service> types, DateTime dateFrom, DateTime dateTo)
 		{
 			using (var client = new HttpClient())
@@ -126,6 +204,7 @@ namespace bonus.app.Core.Services
 		private const string GetGeographyStatisticsUri = "http://bonus.itmit-studio.ru/api/statistics/getGeographyStatistics?date_from={0}&date_to={1}&type={2}";
 		private const string GetProfileViewsStatisticUri = "http://bonus.itmit-studio.ru/api/statistics/getProfileViewsStatistics?date_from={0}&date_to={1}&profile_uuid={2}";
 		private const string GetStockViewsStatisticsUri = "http://bonus.itmit-studio.ru/api/statistics/getStockViewsStatistics?date_from={0}&date_to={1}";
+		private const string GetTransitionsProfileStatisticsUri = "http://bonus.itmit-studio.ru/api/statistics/getTransitionsProfileStatistics?date_from={0}&date_to={1}&service_type_ids={3}&stock_ids={2}";
 		private const string GetSalesStatisticsUri = "http://bonus.itmit-studio.ru/api/statistics/getSalesStatistics?date_from={0}&date_to={1}&service_type_ids={2}";
 
 		public async Task<List<PiecePieChart>> GetGeographyStatistics(DateTime dateFrom, DateTime dateTo, GeographyStatisticsType statisticsType)

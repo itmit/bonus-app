@@ -26,6 +26,7 @@ namespace bonus.app.Core.ViewModels.Customer.Services
 		private MvxObservableCollection<ServiceTypeViewModel> _servicesTypes;
 		private int _shapeRotation;
 		private MvxCommand _showOrHideTypesServicesCommand;
+		private Service _selectedServiceItem;
 		#endregion
 		#endregion
 
@@ -68,6 +69,21 @@ namespace bonus.app.Core.ViewModels.Customer.Services
 		{
 			get => _servicesTypes;
 			private set => SetProperty(ref _servicesTypes, value);
+		}
+
+		public Service SelectedServiceItem
+		{
+			get => _selectedServiceItem;
+			set
+			{
+				if (value == null)
+				{
+					return;
+				}
+
+				SetProperty(ref _selectedServiceItem, value);
+				NavigationService.Navigate<BusinessmanProfileViewModel, BusinessmanProfileViewModelArgs>(new BusinessmanProfileViewModelArgs(value.Client.Uuid, null, value.Id));
+			}
 		}
 
 		public int ShapeRotation

@@ -41,7 +41,9 @@
                             SelectionMode="Single"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand">
-
+                <CollectionView.Header>
+                    <SearchBar Text="{Binding SearchCountry}" SearchCommand="{Binding SearchCountryCommand}"/>
+                </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <contentViews:CountryCityContentView />
@@ -79,7 +81,9 @@
                                 Scrolled="Cities_OnScrolled"
                                 VerticalOptions="FillAndExpand"
                                 HorizontalOptions="FillAndExpand">
-
+                    <CollectionView.Header>
+                        <SearchBar Text="{Binding SearchCity}" SearchCommand="{Binding SearchCityCommand}"/>
+                    </CollectionView.Header>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <contentViews:CountryCityContentView />

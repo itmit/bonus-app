@@ -69,7 +69,6 @@
                                               Command="{Binding OpenViewsProfilePageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                <!--
                 <StackLayout Spacing="0" Grid.Row="5">
                     <Label Text="Переходы в профиль" Margin="10,20,5,15" />
                     <BoxView />
@@ -78,7 +77,6 @@
                                               Command="{Binding OpenTransitionsProfilePageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
-                -->
             </Grid>
         </ScrollView>
     </ContentPage.Content>
