@@ -6,19 +6,10 @@ using Foundation;
 using Newtonsoft.Json.Linq;
 using UIKit;
 using Xamarin.Auth;
-/*
-using VKontakte;
-using VKontakte.API;
-using VKontakte.API.Methods;
-using VKontakte.API.Models;
-using VKontakte.Core;
-using VKontakte.Views;
-*/
-using Xamarin.Forms;
 
 namespace bonus.app.iOS.Services
 {
-	public class IosVkService : NSObject, IVkService//, IVKSdkDelegate, IVKSdkUIDelegate
+	public class IosVkService : NSObject, IVkService
     {
 		private TaskCompletionSource<LoginResult> _completionSource;
 

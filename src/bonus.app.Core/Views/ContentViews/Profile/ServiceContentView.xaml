@@ -8,7 +8,7 @@
              x:Class="bonus.app.Core.Views.ContentViews.Profile.ServiceContentView">
     <ContentView.Content>
         <Frame Margin="5" BackgroundColor="Transparent" HeightRequest="25"
-               CornerRadius="12" IsClippedToBounds="True" Padding="20,5" BorderColor="#9A9A9A"
+               CornerRadius="24" IsClippedToBounds="True" Padding="15,2.5" BorderColor="#9A9A9A"
                HasShadow="False">
             <Label Text="{Binding Name}" TextColor="#9A9A9A" FontSize="Caption"
                    VerticalOptions="Center" HorizontalOptions="Center" />

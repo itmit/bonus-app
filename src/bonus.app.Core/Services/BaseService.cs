@@ -22,11 +22,23 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region .ctor
-		public BaseService(IAuthService authService) => AuthService = authService;
+		public BaseService(IAuthService authService)
+		{
+			AuthService = authService;
+			HttpClient = new HttpClient();
+			HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
+			HttpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+
+		}
 		#endregion
 
 		#region Properties
 		protected IAuthService AuthService
+		{
+			get;
+		}
+
+		protected HttpClient HttpClient
 		{
 			get;
 		}
@@ -54,14 +66,8 @@ namespace bonus.app.Core.Services
 				//skip web request because we are using cached data
 				if (string.IsNullOrWhiteSpace(json))
 				{
-					using (var client = new HttpClient())
-					{
-						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-						json = await client.GetStringAsync(new Uri(url));
-					}
-
+					json = await HttpClient.GetStringAsync(new Uri(url));
+					
 					Debug.WriteLine(json);
 					response = JsonConvert.DeserializeObject<ResponseDto<T>>(json);
 					if (response.Success)
@@ -106,15 +112,9 @@ namespace bonus.app.Core.Services
 				//skip web request because we are using cached data
 				if (string.IsNullOrWhiteSpace(json))
 				{
-					using (var client = new HttpClient())
-					{
-						client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-						client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-						var res = await client.PostAsync(new Uri(url), new StringContent(jsonData, Encoding.UTF8, ApplicationJson));
-						json = await res.Content.ReadAsStringAsync();
-					}
-
+					var res = await HttpClient.PostAsync(new Uri(url), new StringContent(jsonData, Encoding.UTF8, ApplicationJson));
+					json = await res.Content.ReadAsStringAsync();
+					
 					Debug.WriteLine(json);
 					response = JsonConvert.DeserializeObject<ResponseDto<T>>(json);
 					if (response.Success)

@@ -25,6 +25,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 		private bool _isRefreshing;
 		private DateTime? _dateFrom;
 		private DateTime? _dateTo;
+		private MvxCommand _createChartCommand;
 
 		#region .ctor
 		public SalesTypesViewModel(IServicesService servicesService, IStatisticService statisticService)
@@ -102,19 +103,43 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 		}
 		#endregion
 
+		public MvxCommand CreateChartCommand
+		{
+			get
+			{
+				_createChartCommand = _createChartCommand ?? new MvxCommand(async () => {
+
+					if (DateTo == null)
+					{
+						DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
+					}
+
+					if (DateFrom == null)
+					{
+						DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
+					}
+
+					if (!SelectedItems.Any())
+					{
+						return;
+					}
+
+					try
+					{
+						Result = new MvxObservableCollection<Line>(await _statisticService.GetSalesStatisticsByType(SelectedItems, DateFrom.Value, DateTo.Value));
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+				});
+				return _createChartCommand;
+			}
+		}
+
 		public override async Task Initialize()
 		{
 			await base.Initialize();
-
-			if (DateTo == null)
-			{
-				DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
-			}
-
-			if (DateFrom == null)
-			{
-				DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
-			}
 
 			try
 			{
@@ -123,18 +148,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
-			}
-
-			if (SelectedItems.Any())
-			{
-				try
-				{
-					Result = new MvxObservableCollection<Line>(await _statisticService.GetSalesStatisticsByType(SelectedItems, DateFrom.Value, DateTo.Value));
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine(e);
-				}
 			}
 		}
 	}

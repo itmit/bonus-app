@@ -12,6 +12,7 @@
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:sys="clr-namespace:System;assembly=netstandard"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Customer.Profile.EditProfileCustomerPage">
     <NavigationPage.TitleView>
@@ -91,17 +92,15 @@
                                 <BoxView />
                             </StackLayout>
 
-                            <ui:MaterialDateField Date="{Binding Birthday.Value}"
-                                                  ErrorText="{Binding Birthday.Errors, Converter={StaticResource FirstElementConverter}}"
-                                                  HasError="{Binding Birthday.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                                                  TextColor="#505050"
-                                                  BackgroundColor="Transparent"
-                                                  Placeholder="Дата рождения"
-                                                  TextFontSize="14"
-                                                  AlwaysShowUnderline="True"
-                                                  UnderlineColor="DarkGray"
-                                                  TintColor="#505050"
-                                                  TextFontFamily="{x:Static design:DesignClass.LatoRegular}" />
+                            <DatePicker Date="{Binding Birthday.Value}"
+                                        TextColor="#505050"
+                                        MaximumDate="{x:Static sys:DateTime.Now}"
+                                        BackgroundColor="Transparent" />
+                            <Label Text="{Binding Birthday.Errors, Converter={StaticResource FirstElementConverter}}"
+                                   IsVisible="{Binding Birthday.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                   TextColor="DarkRed"
+                                   Margin="10,-10,0,0"
+                                   FontSize="13"/>
 
                             <Entry Style="{StaticResource Entry}" Placeholder="Марка автомобиля" Text="{Binding Car}"
                                    BackgroundColor="Transparent" />

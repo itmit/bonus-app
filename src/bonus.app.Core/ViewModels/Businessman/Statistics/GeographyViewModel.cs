@@ -9,10 +9,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 	public class GeographyViewModel : MvxViewModel
 	{
 		#region .ctor
-		public GeographyViewModel(IMvxNavigationService navigationService)
-		{
-			_navigationService = navigationService;
-		}
+		public GeographyViewModel(IMvxNavigationService navigationService) => _navigationService = navigationService;
 		#endregion
 
 		#region .prop

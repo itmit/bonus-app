@@ -48,137 +48,120 @@ namespace bonus.app.Core.Services
 		#region IStockService members
 		public async Task<bool> AddToFavorite(Guid stockUuid)
 		{
-			using (var client = new HttpClient())
+			var resp = await HttpClient.PostAsync(AddToFavoriteUri, new StringContent($"{{\"stock_uuid\":\"{stockUuid}\"}}", Encoding.UTF8, ApplicationJson));
+			var json = await resp.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var resp = await client.PostAsync(AddToFavoriteUri, new StringContent($"{{\"stock_uuid\":\"{stockUuid}\"}}", Encoding.UTF8, ApplicationJson));
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				return data.Success;
+				return false;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			return data.Success;
 		}
 
 		public async Task<bool> CreateStock(Stock stock, byte[] imageBytes)
 		{
-			using (var client = new HttpClient())
+			var byteArrayContent = new ByteArrayContent(imageBytes);
+			byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+			var date = stock.ShareTime.ToString("yyyy-MM-dd");
+			var content = new MultipartFormDataContent
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var byteArrayContent = new ByteArrayContent(imageBytes);
-				byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-				var date = stock.ShareTime.ToString("yyyy-MM-dd");
-				var content = new MultipartFormDataContent
 				{
-					{
-						byteArrayContent, "\"photo\"", $"\"{stock.ImageSource}\""
-					},
-					{
-						new StringContent(stock.Description), "description"
-					},
-					{
-						new StringContent(stock.Country), "country"
-					},
-					{
-						new StringContent(stock.City), "city"
-					},
-					{
-						new StringContent(stock.Name), "name"
-					},
-					{
-						new StringContent(date), "expires_at"
-					},
-					{
-						new StringContent(stock.IsSubscriberOnly ? "1" : "0"), "sub_only"
-					},
-					{
-						new StringContent(stock.Service.ToString()), "service_uuid"
-					}
-				};
-
-				var response = await client.PostAsync(new Uri(BusinessmenStocksUri), content);
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
+					byteArrayContent, "\"photo\"", $"\"{stock.ImageSource}\""
+				},
 				{
-					return false;
+					new StringContent(stock.Description), "description"
+				},
+				{
+					new StringContent(stock.Country), "country"
+				},
+				{
+					new StringContent(stock.City), "city"
+				},
+				{
+					new StringContent(stock.Name), "name"
+				},
+				{
+					new StringContent(date), "expires_at"
+				},
+				{
+					new StringContent(stock.IsSubscriberOnly ? "1" : "0"), "sub_only"
+				},
+				{
+					new StringContent(stock.Service.ToString()), "service_uuid"
 				}
+			};
 
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				if (data.Success)
-				{
-					CreatedStockEventHandler?.Invoke(this, EventArgs.Empty);
-				}
+			var response = await HttpClient.PostAsync(new Uri(BusinessmenStocksUri), content);
 
-				return data.Success;
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
+			{
+				return false;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			if (data.Success)
+			{
+				CreatedStockEventHandler?.Invoke(this, EventArgs.Empty);
+			}
+
+			return data.Success;
 		}
 
 		public async Task<bool> EditStock(Stock stock, byte[] imageBytes = null)
 		{
-			using (var client = new HttpClient())
+			var date = stock.ShareTime.ToString("yyyy-MM-dd");
+			var content = new MultipartFormDataContent
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var date = stock.ShareTime.ToString("yyyy-MM-dd");
-				var content = new MultipartFormDataContent
 				{
-					{
-						new StringContent(stock.Description), "description"
-					},
-					{
-						new StringContent(stock.Country), "country"
-					},
-					{
-						new StringContent(stock.City), "city"
-					},
-					{
-						new StringContent(stock.Name), "name"
-					},
-					{
-						new StringContent(date), "expires_at"
-					},
-					{
-						new StringContent(stock.Service.ToString()), "service_uuid"
-					}
-				};
-
-				if (imageBytes != null)
+					new StringContent(stock.Description), "description"
+				},
 				{
-					var byteArrayContent = new ByteArrayContent(imageBytes);
-					byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
-					content.Add(byteArrayContent, "\"photo\"", $"\"{stock.ImageSource}\"");
+					new StringContent(stock.Country), "country"
+				},
+				{
+					new StringContent(stock.City), "city"
+				},
+				{
+					new StringContent(stock.Name), "name"
+				},
+				{
+					new StringContent(date), "expires_at"
+				},
+				{
+					new StringContent(stock.Service.ToString()), "service_uuid"
 				}
+			};
 
-				var response = await client.PostAsync(new Uri(string.Format(EditStockUri, stock.Uuid)), content);
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				if (data.Success)
-				{
-					EditedStock?.Invoke(stock);
-				}
-
-				return data.Success;
+			if (imageBytes != null)
+			{
+				var byteArrayContent = new ByteArrayContent(imageBytes);
+				byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+				content.Add(byteArrayContent, "\"photo\"", $"\"{stock.ImageSource}\"");
 			}
+
+			var response = await HttpClient.PostAsync(new Uri(string.Format(EditStockUri, stock.Uuid)), content);
+
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
+			{
+				return false;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			if (data.Success)
+			{
+				EditedStock?.Invoke(stock);
+			}
+
+			return data.Success;
 		}
 
 		public async Task<IEnumerable<Stock>> GetAll()
@@ -188,8 +171,8 @@ namespace bonus.app.Core.Services
 			return ConvertSocksImages(stocks);
 		}
 
-		public const string GetDetailBusinessmanUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
-		public const string GetDetailCustomerUri = "http://bonus.itmit-studio.ru/api/customerstock/{0}";
+		private const string GetDetailBusinessmanUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
+		private const string GetDetailCustomerUri = "http://bonus.itmit-studio.ru/api/customerstock/{0}";
 
 		public async Task<Stock> GetDetail(Guid uuid)
 		{
@@ -320,24 +303,19 @@ namespace bonus.app.Core.Services
 
 		public async Task<Stock> GetStockForEdit(Guid uuid)
 		{
-			using (var client = new HttpClient())
+			var response = await HttpClient.GetAsync(new Uri(string.Format(GetStockForEditUri, uuid)));
+
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.GetAsync(new Uri(string.Format(GetStockForEditUri, uuid)));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Stock>>(json);
-				data.Data.ImageSource = Domain + data.Data.ImageSource;
-				return data.Data;
+				return null;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<Stock>>(json);
+			data.Data.ImageSource = Domain + data.Data.ImageSource;
+			return data.Data;
 		}
 		#endregion
 	}

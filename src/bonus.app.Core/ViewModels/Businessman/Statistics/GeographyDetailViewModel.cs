@@ -22,6 +22,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 		private bool _isRefreshing;
 		private DateTime? _dateTo;
 		private DateTime? _dateFrom;
+		private MvxCommand _createChartCommand;
 
 		public MvxObservableCollection<PiecePieChart> Result
 		{
@@ -60,45 +61,58 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 			set => SetProperty(ref _dateTo, value);
 		}
 
+
+		public MvxCommand CreateChartCommand
+		{
+			get
+			{
+				_createChartCommand = _createChartCommand ?? new MvxCommand(async () => {
+
+					if (DateTo == null)
+					{
+						DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
+					}
+
+					if (DateFrom == null)
+					{
+						DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
+					}
+
+					try
+					{
+						Result = new MvxObservableCollection<PiecePieChart>(await _statisticService.GetGeographyStatistics(DateFrom.Value, DateTo.Value, StatisticsType));
+						for (var i = 0; i < Result.Count; i++)
+						{
+							Result[i]
+								.Color = Colors.Values[i];
+						}
+						var entries = Result.Select(piecePieChart => new Entry(piecePieChart.Percent)
+						{
+							Color = piecePieChart.Color.ToSKColor()
+						});
+						DonutChart = new DonutChart
+						{
+							MaxValue = 100f,
+							MinValue = 0f,
+							Entries = entries,
+							HoleRadius = 0.3f,
+							BackgroundColor = SKColor.Empty
+						};
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+				});
+				return _createChartCommand;
+			}
+		}
+
 		public override async Task Initialize() 
 		{
 			await base.Initialize();
 
-			try
-			{
-				if (DateTo == null)
-				{
-					DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
-				}
-
-				if (DateFrom == null)
-				{
-					DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
-				}
-
-				Result = new MvxObservableCollection<PiecePieChart>(await _statisticService.GetGeographyStatistics(DateFrom.Value, DateTo.Value, StatisticsType));
-				for (var i = 0; i < Result.Count; i++)
-				{
-					Result[i]
-						.Color = Colors.Values[i];
-				}
-				var entries = Result.Select(piecePieChart => new Entry(piecePieChart.Percent)
-				{
-					Color = piecePieChart.Color.ToSKColor()
-				});
-				DonutChart = new DonutChart
-				{
-					MaxValue = 100f,
-					MinValue = 0f,
-					Entries = entries,
-					HoleRadius = 0.3f,
-					BackgroundColor = SKColor.Empty
-				};
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+			CreateChartCommand.Execute();
 		}
 
 		public DonutChart DonutChart

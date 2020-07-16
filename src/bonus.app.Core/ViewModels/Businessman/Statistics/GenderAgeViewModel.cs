@@ -18,11 +18,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 		private DateTime? _dateFrom;
 		private DateTime? _dateTo;
 		private MvxObservableCollection<BarChart> _columns = new MvxObservableCollection<BarChart>();
+		private MvxCommand _createChartCommand;
 
-		public GenderAgeViewModel(IStatisticService statisticService)
-		{
-			_statisticService = statisticService;
-		}
+		public GenderAgeViewModel(IStatisticService statisticService) => _statisticService = statisticService;
 
 		public MvxObservableCollection<BarChart> Columns
 		{
@@ -33,50 +31,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 		public override async Task Initialize() 
 		{
 			await base.Initialize();
-			
-			if (DateTo == null)
-			{
-				DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
-			}
-
-			if (DateFrom == null)
-			{
-				DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
-			}
-
-			try
-			{
-				var result = await _statisticService.GetAgeStatistics(DateFrom.Value, DateTo.Value);
-				Columns.Clear();
-				foreach (var column in result)
-				{
-					var sum = column.Male + column.Female;
-					Columns.Add(new BarChart
-					{
-						Entries = new[]
-						{
-							new Entry(sum > 0 ? 100 / sum * column.Male : 0)
-							{
-								Color = Colors.Values[0].ToSKColor()
-							},
-							new Entry(sum > 0 ? 100 / sum * column.Female : 0)
-							{
-								Color = Colors.Values[2].ToSKColor()
-							}
-						},
-						BackgroundColor = SKColor.Empty,
-						Margin = 0f,
-						MaxValue = 100f,
-						MinValue = 0f
-					});
-				}
-
-				await RaisePropertyChanged(() => Columns);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+			CreateChartCommand.Execute();
 		}
 
 		public MvxCommand RefreshCommand
@@ -90,6 +45,59 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 					IsRefreshing = false;
 				});
 				return _refreshCommand;
+			}
+		}
+
+		public MvxCommand CreateChartCommand
+		{
+			get
+			{
+				_createChartCommand = _createChartCommand ?? new MvxCommand(async () => {
+
+					if (DateTo == null)
+					{
+						DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
+					}
+
+					if (DateFrom == null)
+					{
+						DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
+					}
+					try
+					{
+						var result = await _statisticService.GetAgeStatistics(DateFrom.Value, DateTo.Value);
+						Columns.Clear();
+						foreach (var column in result)
+						{
+							var sum = column.Male + column.Female;
+							Columns.Add(new BarChart
+							{
+								Entries = new[]
+								{
+									new Entry(sum > 0 ? 100 / sum * column.Male : 0)
+									{
+										Color = Colors.Values[0].ToSKColor()
+									},
+									new Entry(sum > 0 ? 100 / sum * column.Female : 0)
+									{
+										Color = Colors.Values[2].ToSKColor()
+									}
+								},
+								BackgroundColor = SKColor.Empty,
+								Margin = 0f,
+								MaxValue = 100f,
+								MinValue = 0f
+							});
+						}
+
+						await RaisePropertyChanged(() => Columns);
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+				});
+				return _createChartCommand;
 			}
 		}
 

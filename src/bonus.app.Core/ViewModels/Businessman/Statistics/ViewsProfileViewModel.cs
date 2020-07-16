@@ -18,11 +18,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 		private DateTime? _dateFrom;
 		private DateTime? _dateTo;
 		private MvxObservableCollection<Line> _lines = new MvxObservableCollection<Line>();
+		private MvxCommand _createChartCommand;
 
-		public ViewsProfileViewModel(IStatisticService statisticService)
-		{
-			_statisticService = statisticService;
-		}
+		public ViewsProfileViewModel(IStatisticService statisticService) => _statisticService = statisticService;
 
 		public MvxObservableCollection<Line> Lines
 		{
@@ -30,38 +28,49 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 			private set => SetProperty(ref _lines, value);
 		}
 
+		public MvxCommand CreateChartCommand
+		{
+			get
+			{
+				_createChartCommand = _createChartCommand ?? new MvxCommand(async () => {
+					if (DateTo == null)
+					{
+						DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
+					}
+
+					if (DateFrom == null)
+					{
+						DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
+					}
+
+					try
+					{
+						Lines = new MvxObservableCollection<Line>(await _statisticService.GetProfileViewsStatistic(DateFrom.Value, DateTo.Value))
+						{
+							[0] =
+							{
+								Color = Colors.Values[0]
+							},
+							[1] =
+							{
+								Color = Colors.Values[2]
+							}
+						};
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine(e);
+					}
+				});
+				return _createChartCommand;
+			}
+		}
+
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
-			if (DateTo == null)
-			{
-				DateTo = DateTime.Now + new TimeSpan(1, 0, 0, 0);
-			}
-
-			if (DateFrom == null)
-			{
-				DateFrom = DateTo.Value - new TimeSpan(30, 0, 0, 0);
-			}
-
-			try
-			{
-				Lines = new MvxObservableCollection<Line>(await _statisticService.GetProfileViewsStatistic(DateFrom.Value, DateTo.Value))
-				{
-					[0] =
-					{
-						Color = Colors.Values[0]
-					},
-					[1] =
-					{
-						Color = Colors.Values[2]
-					}
-				};
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+			CreateChartCommand.Execute();
 		}
 
 		public MvxCommand RefreshCommand

@@ -81,7 +81,7 @@
                                       x:Name="ConfirmPasswordField"
                                       ErrorText="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstElementConverter}}"
                                       HasError="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-                    <Image Source="ic_eye.png"
+                    <Image Source="ic_eye_gray"
                            HorizontalOptions="End"
                            VerticalOptions="Center"
                            Margin="0,0,10,0"
