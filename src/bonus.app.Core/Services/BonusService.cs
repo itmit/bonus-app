@@ -29,31 +29,20 @@ namespace bonus.app.Core.Services
 		#region IBonusService members
 		public async Task<bool> AccrueAndWriteOffBonuses(AccrueAndWriteOffBonusesDto requestDto)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+			var json = JsonConvert.SerializeObject(requestDto);
+			Debug.WriteLine(json);
+			var response = await HttpClient.PostAsync(AccrueAndWriteOffBonusesUri, new StringContent(json, Encoding.UTF8, ApplicationJson));
 
-				var json = JsonConvert.SerializeObject(requestDto);
-				Debug.WriteLine(json);
-				var response = await client.PostAsync(AccrueAndWriteOffBonusesUri, new StringContent(json, Encoding.UTF8, ApplicationJson));
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
 
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
-
-				return response.IsSuccessStatusCode;
-			}
+			return response.IsSuccessStatusCode;
 		}
 
 		public async Task<List<AccrualBonuses>> GetMyBonuses()
 		{
 			var services = await GetAsync<List<AccrualBonuses>>(GetMyBonusesUri);
-			if (services == null)
-			{
-				return new List<AccrualBonuses>();
-			}
-
-			return services;
+			return services ?? new List<AccrualBonuses>();
 		}
 		#endregion
 	}

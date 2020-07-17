@@ -36,49 +36,37 @@ namespace bonus.app.Core.Services
 
 		public async Task<bool> ChangeRate(Rate rate)
 		{
-			using (var client = new HttpClient())
+			var response = await HttpClient.PostAsync(ChangeRateUri, new StringContent($"{{\"id\":{rate.Id}}}", Encoding.UTF8, ApplicationJson));
+
+			var json = await response.Content.ReadAsStringAsync();
+
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var response = await client.PostAsync(ChangeRateUri, new StringContent($"{{\"id\":{rate.Id}}}", Encoding.UTF8, ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Rate>>(json);
-
-				return data?.Data != null;
+				return false;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<Rate>>(json);
+
+			return data?.Data != null;
 		}
 
 		public async Task<string> GetHtmlPayment()
 		{
-			using (var client = new HttpClient())
+			var response = await HttpClient.PostAsync(GetHtmlPaymentUri, new StringContent("{\"count_rates\":1}", Encoding.UTF8, ApplicationJson));
+			var json = await response.Content.ReadAsStringAsync();
+
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var response = await client.PostAsync(GetHtmlPaymentUri, new StringContent("{\"count_rates\":1}", Encoding.UTF8, ApplicationJson));
-				var json = await response.Content.ReadAsStringAsync();
-
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return "";
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Dictionary<string, string>>>(json);
-
-				return data?.Data["url"];
+				return "";
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<Dictionary<string, string>>>(json);
+
+			return data?.Data["url"];
 		}
 	}
 }

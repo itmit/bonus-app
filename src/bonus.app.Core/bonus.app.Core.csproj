@@ -291,7 +291,7 @@
     <EmbeddedResource Update="Pages\Auth\BusinessmanRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\RecoveryDetailPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\RecoveryDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Statistics\SalesTypesPage.xaml">

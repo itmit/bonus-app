@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<views:MvxContentPage x:TypeArguments="auth:RecoveryDetailViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
+             xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+             xmlns:auth="clr-namespace:bonus.app.Core.ViewModels.Auth;assembly=bonus.app.Core"
+             NavigationPage.HasNavigationBar="False"
+             mc:Ignorable="d"
+             x:Class="bonus.app.Core.Pages.Auth.RecoveryDetailPage">
+    <ContentPage.Content>
+        <!--1.4.2 Детальная страница восстановления пароля-->
+        <Grid>
+            <graphic:RectangleForContentPage />
+
+            <ScrollView>
+                <StackLayout Margin="30,0" Spacing="0">
+                    <Image Style="{StaticResource ImageBonus}" />
+                    <Label Text="Мы отправили код для восстановления&#10;пароля на указанный адрес"
+                           HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="0,20" TextColor="White" />
+                    <StackLayout Margin="0,0,0,20">
+                        <Frame Style="{StaticResource AuthAndRegFrame}">
+                            <Entry Placeholder="Введите полученный код" Style="{StaticResource AuthAndRegEntry}" Text="{Binding Code.Value}"/>
+                        </Frame>
+                        <Label Margin="10,-5,0,0"
+                               Text="{Binding Code.Errors, Converter={StaticResource FirstElementConverter}}"
+                               TextColor="DarkRed"
+                               IsVisible="{Binding Code.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,0,0,20">
+                        <Grid>
+                            <Frame Style="{StaticResource AuthAndRegFrame}">
+                                <Entry Placeholder="Введите новый пароль" 
+                                       x:Name="PasswordEntry" 
+                                       IsPassword="True"
+                                       Style="{StaticResource AuthAndRegEntry}" 
+                                       Text="{Binding Password.Value}"/>
+                            </Frame>
+                            <Image Source="ic_eye"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,10,0"
+                                   WidthRequest="24">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShowHidePassword" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <Label Margin="10,-5,0,0"
+                               Text="{Binding Password.Errors, Converter={StaticResource FirstElementConverter}}"
+                               TextColor="DarkRed"
+                               IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,0,0,20">
+                        <Grid>
+                            <Frame Style="{StaticResource AuthAndRegFrame}">
+                                <Entry Placeholder="Повторите новый пароль" x:Name="ConfirmPasswordEntry" Style="{StaticResource AuthAndRegEntry}" Text="{Binding ConfirmPassword.Value}"/>
+                            </Frame>
+                            <Image Source="ic_eye"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,10,0"
+                                   WidthRequest="24">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShowHideConfirmPassword" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        <Label Margin="10,-5,0,0"
+                               Text="{Binding ConfirmPassword.Errors, Converter={StaticResource FirstElementConverter}}"
+                               TextColor="DarkRed"
+                               IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource InverseBoolConverter}}"/>
+                    </StackLayout>
+
+                    <Button Text="СМЕНИТЬ ПАРОЛЬ" Style="{StaticResource AuthAndRegButton}" Margin="0,0,0,50" Command="{Binding RecoverCommand}"/>
+                    <Label Text="Я не получил код" TextColor="White" HorizontalTextAlignment="Center" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SendCodeCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>

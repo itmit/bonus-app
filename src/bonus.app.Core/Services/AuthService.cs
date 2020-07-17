@@ -24,7 +24,6 @@ namespace bonus.app.Core.Services
 		#region Consts
 		private const string LoginUri = "http://bonus.itmit-studio.ru/api/login";
 
-		private const string LogOutUri = "http://bonus.itmit-studio.ru/api/logout";
 		private const string RegisterUri = "http://bonus.itmit-studio.ru/api/register";
 		#endregion
 
@@ -32,6 +31,7 @@ namespace bonus.app.Core.Services
 		private readonly Mapper _mapper;
 		private readonly IUserRepository _userRepository;
 		private Guid _userUuid = Guid.Empty;
+		private readonly HttpClient _httpClient;
 		#endregion
 		#endregion
 
@@ -53,6 +53,8 @@ namespace bonus.app.Core.Services
 				   .ForMember(m => m.Uuid, o => o.MapFrom(q => q.Uuid))
 				   .ForMember(m => m.Role, o => o.MapFrom(q => q.Role));
 			}));
+			_httpClient = new HttpClient();
+			_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
 		}
 		#endregion
 
@@ -71,89 +73,113 @@ namespace bonus.app.Core.Services
 
 		public async Task<User> Login(AuthDto authData)
 		{
-			using (var client = new HttpClient())
+			try
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
-
-				try
+				var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
+				if (service != null)
 				{
-					var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
-					if (service != null)
-					{
-						authData.DeviceToken = await service.CreateToken(Secrets.SenderId);
-					}
+					authData.DeviceToken = await service.CreateToken(Secrets.SenderId);
 				}
-				catch (Exception e)
+			}
+			catch (Exception e)
+			{
+				Crashes.TrackError(e, new Dictionary<string, string>());
+				Console.WriteLine(e);
+			}
+
+			var json = JsonConvert.SerializeObject(authData);
+			Debug.WriteLine(json);
+			var response = await _httpClient.PostAsync(LoginUri, new StringContent(json, Encoding.UTF8, BaseService.ApplicationJson));
+
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
+
+			if (string.IsNullOrEmpty(jsonString))
+			{
+				Error = "Нет ответа от сервера";
+				return null;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+			if (response.IsSuccessStatusCode)
+			{
+				if (!data.Success)
 				{
-					Crashes.TrackError(e, new Dictionary<string, string>());
-					Console.WriteLine(e);
+					return _mapper.Map<User>(data.Data);
 				}
 
-				var json = JsonConvert.SerializeObject(authData);
-				Debug.WriteLine(json);
-				var response = await client.PostAsync(LoginUri, new StringContent(json, Encoding.UTF8, BaseService.ApplicationJson));
+				var user = _mapper.Map<User>(data.Data.Client);
+				var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
 
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
+				userInfo.Role = user.Role;
+				userInfo.Uuid = user.Uuid;
+				userInfo.Email = user.Email ?? string.Empty;
+				userInfo.Phone = user.Phone ?? string.Empty;
+				userInfo.Name = user.Name ?? string.Empty;
+				userInfo.Login = user.Login ?? string.Empty;
 
-				if (string.IsNullOrEmpty(jsonString))
+				userInfo.AccessToken = new AccessToken
 				{
-					Error = "Нет ответа от сервера";
-					return null;
-				}
+					Body = data.Data.Body,
+					Type = data.Data.Type
+				};
 
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (response.IsSuccessStatusCode)
+				if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
 				{
-					if (!data.Success)
-					{
-						return _mapper.Map<User>(data.Data);
-					}
-
-					var user = _mapper.Map<User>(data.Data.Client);
-					var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
-
-					userInfo.Role = user.Role;
-					userInfo.Uuid = user.Uuid;
-					userInfo.Email = user.Email ?? string.Empty;
-					userInfo.Phone = user.Phone ?? string.Empty;
-					userInfo.Name = user.Name ?? string.Empty;
-					userInfo.Login = user.Login ?? string.Empty;
-
-					userInfo.AccessToken = new AccessToken
-					{
-						Body = data.Data.Body,
-						Type = data.Data.Type
-					};
-
-					if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
-					{
-						return userInfo;
-					}
-
-					_userUuid = userInfo.Uuid;
-					_userRepository.Add(userInfo);
-
 					return userInfo;
 				}
 
-				if (data.ErrorDetails != null)
-				{
-					ErrorDetails = data.ErrorDetails;
-				}
+				_userUuid = userInfo.Uuid;
+				_userRepository.Add(userInfo);
 
-				Error = data.Error;
-				return null;
+				return userInfo;
 			}
+
+			if (data.ErrorDetails != null)
+			{
+				ErrorDetails = data.ErrorDetails;
+			}
+
+			Error = data.Error;
+			return null;
 		}
 
-		public async Task<bool> Logout(User user)
+		private const string SendRecoveryCodeUri = "http://bonus.itmit-studio.ru/api/sendCode";
+
+		public async Task<bool> SendRecoveryCode(string email)
+		{
+			var response = await _httpClient.PostAsync(SendRecoveryCodeUri, new FormUrlEncodedContent(new Dictionary<string, string>
+			{
+				{"email", email }
+			}));
+
+			return response.IsSuccessStatusCode;
+		}
+
+		private const string RecoveryUri = "http://bonus.itmit-studio.ru/api/resetPassword";
+
+		public async Task<bool> Recovery(string email, string code, string password, string passwordConfirmation)
+		{
+			var response = await _httpClient.PostAsync(RecoveryUri, new FormUrlEncodedContent(new Dictionary<string, string>
+			{
+				{"email", email },
+				{"code", code },
+				{"password", password },
+				{"password_confirmation", passwordConfirmation },
+			}));
+
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
+			return !string.IsNullOrEmpty(jsonString) && response.IsSuccessStatusCode;
+		}
+
+		public Task<bool> Logout(User user)
 		{
 			if (user != null && !user.Uuid.Equals(Guid.Empty) && _userRepository.Remove(user))
 			{
 				_userUuid = Guid.Empty;
-				return true;
+				return Task.FromResult(true);
 			}
 
 			_userRepository.RemoveAll();
@@ -166,189 +192,157 @@ namespace bonus.app.Core.Services
 			{
 				Console.WriteLine(e);
 			}
-			return true;
-
-			// TODO: Сделать выход на сервере.
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"{user.AccessToken.Type} {user.AccessToken.Body}");
-
-				var response = await client.PostAsync(LogOutUri, null);
-
-				var json = await response.Content.ReadAsStringAsync();
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-				if (!data.Success)
-				{
-					return false;
-				}
-
-				_userUuid = Guid.Empty;
-				_userRepository.Remove(user);
-
-				return true;
-			}
+			return Task.FromResult(true);
 		}
 
 		public async Task<User> Register(User user, string password, string confirmPassword)
 		{
-			using (var client = new HttpClient())
+			var regDto = new RegisterDto
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
+				Email = user.Email,
+				Name = user.Name,
+				Login = user.Login,
+				Password = password,
+				PasswordConfirm = confirmPassword
+			};
+			switch (user.Role)
+			{
+				case UserRole.Businessman:
+					regDto.Type = "businessman";
+					break;
+				case UserRole.Customer:
+					regDto.Type = "customer";
+					break;
+				case UserRole.Manager:
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 
-				var regDto = new RegisterDto
-				{
-					Email = user.Email,
-					Name = user.Name,
-					Login = user.Login,
-					Password = password,
-					PasswordConfirm = confirmPassword
-				};
-				switch (user.Role)
-				{
-					case UserRole.Businessman:
-						regDto.Type = "businessman";
-						break;
-					case UserRole.Customer:
-						regDto.Type = "customer";
-						break;
-					case UserRole.Manager:
-						break;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
+			var requestBody = JsonConvert.SerializeObject(regDto);
 
-				var requestBody = JsonConvert.SerializeObject(regDto);
+			Debug.WriteLine(requestBody);
 
-				Debug.WriteLine(requestBody);
+			var response = await _httpClient.PostAsync(RegisterUri, new StringContent(requestBody, Encoding.UTF8, BaseService.ApplicationJson));
 
-				var response = await client.PostAsync(RegisterUri, new StringContent(requestBody, Encoding.UTF8, BaseService.ApplicationJson));
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
 
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
 
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+			if (data.Success)
+			{
+				user.Uuid = data.Data.Uuid;
+				return user;
+			}
 
-				if (data.Success)
-				{
-					user.Uuid = data.Data.Uuid;
-					return user;
-				}
-
-				if (data.ErrorDetails != null)
-				{
-					ErrorDetails = data.ErrorDetails;
-					Error = data.ErrorDetails.First()
-								.Value.FirstOrDefault();
-					return null;
-				}
-
-				Error = data.Error;
-
+			if (data.ErrorDetails != null)
+			{
+				ErrorDetails = data.ErrorDetails;
+				Error = data.ErrorDetails.First()
+							.Value.FirstOrDefault();
 				return null;
 			}
+
+			Error = data.Error;
+
+			return null;
 		}
 
 		private const string AuthorizationAnExternalServiceUri = "http://bonus.itmit-studio.ru/api/authorizationAnExternalService";
 		public async Task<User> AuthorizationAnExternalService(string email, string accessToken, ExternalAuthService authServiceType)
 		{
-			using (var client = new HttpClient())
+			var request = new Dictionary<string, string>
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(BaseService.ApplicationJson));
+				{"email", email },
+				{"access_token", accessToken },
+			};
+			switch (authServiceType)
+			{
+				case ExternalAuthService.Vk:
+					request.Add("service", "vk");
+					break;
+				case ExternalAuthService.Facebook:
+					request.Add("service", "facebook");
+					break;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(authServiceType), authServiceType, null);
+			}
 
-				var request = new Dictionary<string, string>
+			try
+			{
+				var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
+				if (service != null)
 				{
-					{"email", email },
-					{"access_token", accessToken },
+					var deviceToken = await service.CreateToken(Secrets.SenderId);
+					if (!string.IsNullOrWhiteSpace(deviceToken))
+					{
+						request.Add("device_token", deviceToken);
+
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Crashes.TrackError(e, new Dictionary<string, string>());
+				Console.WriteLine(e);
+			}
+
+			
+			var response = await _httpClient.PostAsync(AuthorizationAnExternalServiceUri, new FormUrlEncodedContent(request));
+
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
+
+			if (string.IsNullOrEmpty(jsonString))
+			{
+				Error = "Нет ответа от сервера";
+				return null;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+			if (response.IsSuccessStatusCode)
+			{
+				if (!data.Success)
+				{
+					return _mapper.Map<User>(data.Data);
+				}
+
+				var user = _mapper.Map<User>(data.Data.Client);
+				var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+
+				userInfo.Role = user.Role;
+				userInfo.Uuid = user.Uuid;
+				userInfo.Email = user.Email ?? string.Empty;
+				userInfo.Phone = user.Phone ?? string.Empty;
+				userInfo.Name = user.Name ?? string.Empty;
+				userInfo.Login = user.Login ?? string.Empty;
+
+				userInfo.AccessToken = new AccessToken
+				{
+					Body = data.Data.Body,
+					Type = data.Data.Type
 				};
-				switch (authServiceType)
+
+				if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
 				{
-					case ExternalAuthService.Vk:
-						request.Add("service", "vk");
-						break;
-					case ExternalAuthService.Facebook:
-						request.Add("service", "facebook");
-						break;
-					default:
-						throw new ArgumentOutOfRangeException(nameof(authServiceType), authServiceType, null);
-				}
-
-				try
-				{
-					var service = Mvx.IoCProvider.Resolve<IFirebaseService>();
-					if (service != null)
-					{
-						var deviceToken = await service.CreateToken(Secrets.SenderId);
-						if (!string.IsNullOrWhiteSpace(deviceToken))
-						{
-							request.Add("device_token", deviceToken);
-
-						}
-					}
-				}
-				catch (Exception e)
-				{
-					Crashes.TrackError(e, new Dictionary<string, string>());
-					Console.WriteLine(e);
-				}
-
-				
-				var response = await client.PostAsync(AuthorizationAnExternalServiceUri, new FormUrlEncodedContent(request));
-
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
-
-				if (string.IsNullOrEmpty(jsonString))
-				{
-					Error = "Нет ответа от сервера";
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (response.IsSuccessStatusCode)
-				{
-					if (!data.Success)
-					{
-						return _mapper.Map<User>(data.Data);
-					}
-
-					var user = _mapper.Map<User>(data.Data.Client);
-					var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
-
-					userInfo.Role = user.Role;
-					userInfo.Uuid = user.Uuid;
-					userInfo.Email = user.Email ?? string.Empty;
-					userInfo.Phone = user.Phone ?? string.Empty;
-					userInfo.Name = user.Name ?? string.Empty;
-					userInfo.Login = user.Login ?? string.Empty;
-
-					userInfo.AccessToken = new AccessToken
-					{
-						Body = data.Data.Body,
-						Type = data.Data.Type
-					};
-
-					if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
-					{
-						return userInfo;
-					}
-
-					_userUuid = userInfo.Uuid;
-					_userRepository.Add(userInfo);
-
 					return userInfo;
 				}
 
-				if (data.ErrorDetails != null)
-				{
-					ErrorDetails = data.ErrorDetails;
-				}
+				_userUuid = userInfo.Uuid;
+				_userRepository.Add(userInfo);
 
-				Error = data.Error;
-				return null;
+				return userInfo;
 			}
+
+			if (data.ErrorDetails != null)
+			{
+				ErrorDetails = data.ErrorDetails;
+			}
+
+			Error = data.Error;
+			return null;
 		}
 
 		public AccessToken Token => User?.AccessToken;

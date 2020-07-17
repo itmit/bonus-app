@@ -62,11 +62,7 @@ namespace bonus.app.Core.Services
 		#region IProfileService members
 		public async Task<PortfolioImage> AddImageToPortfolio(string imageSource)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(GetPortfolioUri,
+			var response = await HttpClient.PostAsync(GetPortfolioUri,
 													  new MultipartFormDataContent
 													  {
 														  {
@@ -75,18 +71,17 @@ namespace bonus.app.Core.Services
 														  }
 													  });
 
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
 
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
-
-				return data.Success ? data.Data : null;
+			if (string.IsNullOrEmpty(json))
+			{
+				return null;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
+
+			return data.Success ? data.Data : null;
 		}
 
 		public async Task<User> Edit(EditBusinessmanDto arguments, string imagePath)
@@ -308,81 +303,68 @@ namespace bonus.app.Core.Services
 
 		public async Task<User> GetUser(Guid uuid, int? stockId, int? serviceId)
 		{
-			using (var client = new HttpClient())
+			var url = string.Format(GetUserUri, uuid);
+			if (stockId != null || serviceId != null)
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var url = string.Format(GetUserUri, uuid);
-				if (stockId != null || serviceId != null)
-				{
-					url += '?';
-				}
-				if (stockId != null)
-				{
-					url += $"stock_id={stockId}&";
-				}
-				if (serviceId != null)
-				{
-					url += $"service_item_id={serviceId}&";
-				}
-
-				var response = await client.GetAsync(url);
-
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
-
-				if (string.IsNullOrEmpty(jsonString))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (!response.IsSuccessStatusCode)
-				{
-					return null;
-				}
-
-				if (!data.Success)
-				{
-					return _mapper.Map<User>(data.Data);
-				}
-
-				var user = _mapper.Map<User>(data.Data.Client);
-				var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
-
-				userInfo.Role = user.Role;
-				userInfo.Uuid = user.Uuid;
-				userInfo.Email = user.Email ?? string.Empty;
-				userInfo.Phone = user.Phone ?? string.Empty;
-				userInfo.Name = user.Name ?? string.Empty;
-				userInfo.Login = user.Login ?? string.Empty;
-
-				userInfo.AccessToken = new AccessToken
-				{
-					Body = data.Data.Body,
-					Type = data.Data.Type
-				};
-
-				return userInfo;
-
+				url += '?';
 			}
+			if (stockId != null)
+			{
+				url += $"stock_id={stockId}&";
+			}
+			if (serviceId != null)
+			{
+				url += $"service_item_id={serviceId}&";
+			}
+
+			var response = await HttpClient.GetAsync(url);
+
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
+
+			if (string.IsNullOrEmpty(jsonString))
+			{
+				return null;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+			if (!response.IsSuccessStatusCode)
+			{
+				return null;
+			}
+
+			if (!data.Success)
+			{
+				return _mapper.Map<User>(data.Data);
+			}
+
+			var user = _mapper.Map<User>(data.Data.Client);
+			var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
+
+			userInfo.Role = user.Role;
+			userInfo.Uuid = user.Uuid;
+			userInfo.Email = user.Email ?? string.Empty;
+			userInfo.Phone = user.Phone ?? string.Empty;
+			userInfo.Name = user.Name ?? string.Empty;
+			userInfo.Login = user.Login ?? string.Empty;
+
+			userInfo.AccessToken = new AccessToken
+			{
+				Body = data.Data.Body,
+				Type = data.Data.Type
+			};
+
+			return userInfo;
 		}
 
 		public Task<User> GetUser(Guid uuid) => GetUser(uuid, null, null);
 
 		public async Task<bool> RemoveImageFromPortfolio(Guid uuid)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+			var response = await HttpClient.DeleteAsync(string.Format(PortfolioUri, uuid));
 
-				var response = await client.DeleteAsync(string.Format(PortfolioUri, uuid));
-
-				return response.IsSuccessStatusCode;
-			}
+			return response.IsSuccessStatusCode;
 		}
 		#endregion
 
@@ -456,19 +438,14 @@ namespace bonus.app.Core.Services
 
 		private async Task<bool> Update(HttpContent content)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(string.Format(UpdateUri, AuthService.User.Uuid), content);
+			var response = await HttpClient.PostAsync(string.Format(UpdateUri, AuthService.User.Uuid), content);
 
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
 
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
 
-				return data.Success;
-			}
+			return data.Success;
 		}
 		#endregion
 	}

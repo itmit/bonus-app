@@ -119,6 +119,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Возвращает текущее приложение xamarin forms.
 		/// </summary>
 		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
+		
 		#region Properties
 		/// <summary>
 		/// Возвращает команду для создания аккаунта.
