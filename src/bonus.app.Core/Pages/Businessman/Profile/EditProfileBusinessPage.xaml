@@ -21,7 +21,7 @@
 
     <ContentPage.Content>
         <!--3.2 Страница редактирования профиля предпринимателя-->
-        <ScrollView Margin="0,0,0,5">
+        <ScrollView Margin="0,0,0,5" x:Name="EditProfileBusinessmanScroll">
             <StackLayout Spacing="0">
                 <StackLayout.Resources>
                     <ResourceDictionary>
@@ -51,21 +51,25 @@
                     <contentViews:PicCountryAndCityContentView.Footer>
                         <StackLayout Grid.Row="1" x:Name="Layout">
                             <ui:MaterialTextField Text="{Binding Address.Value}"
+                                                  x:Name="Address"
                                                   Placeholder="Адрес"
                                                   ErrorText="{Binding Address.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding WorkingMode.Value}"
+                                                  x:Name="WorkingMode"
                                                   Placeholder="Режим работы"
                                                   ErrorText="{Binding WorkingMode.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding WorkingMode.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding Contact.Value}"
+                                                  x:Name="Contact"
                                                   Placeholder="Контактное лицо"
                                                   ErrorText="{Binding Contact.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Contact.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
+                                                  x:Name="PhoneNumber"
                                                   Placeholder="Номер телефона"
                                                   HelperText="+7 (XXX) XXX-XX-XX"
                                                   InputType="Telephone"
@@ -84,34 +88,40 @@
                                          IsEnabled="{Binding Parameters.IsActiveUser}">
 
                                 <ui:MaterialTextField Text="{Binding Name.Value}"
+                                                      x:Name="Name"
                                                       Placeholder="Торговое название или имя мастера"
                                                       ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
                                 <ui:MaterialTextField Text="{Binding Email.Value}"
+                                                      x:Name="Email"
                                                       Placeholder="E-mail"
                                                       InputType="Email"
                                                       ErrorText="{Binding Email.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding VkLink.Value}"
+                                                      x:Name="VkLink"
                                                       Placeholder="Ссылка на аккаунт в VKontakte"
                                                       InputType="Email"
                                                       ErrorText="{Binding VkLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding VkLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding InstagramLink.Value}"
+                                                      x:Name="InstagramLink"
                                                       Placeholder="Ссылка на аккаунт в Instagram"
                                                       InputType="Email"
                                                       ErrorText="{Binding InstagramLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding InstagramLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding FacebookLink.Value}"
+                                                      x:Name="FacebookLink"
                                                       Placeholder="Ссылка на аккаунт в Facebook"
                                                       InputType="Email"
                                                       ErrorText="{Binding FacebookLink.Errors, Converter={StaticResource FirstElementConverter}}"
                                                       HasError="{Binding FacebookLink.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                                 <ui:MaterialTextField Text="{Binding ClassmatesLink.Value}"
+                                                      x:Name="ClassmatesLink"
                                                       Placeholder="Ссылка на аккаунт в Однокласниках"
                                                       InputType="Email"
                                                       ErrorText="{Binding ClassmatesLink.Errors, Converter={StaticResource FirstElementConverter}}"

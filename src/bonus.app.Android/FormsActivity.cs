@@ -14,26 +14,21 @@ using FFImageLoading.Forms.Platform;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using MvvmCross;
 using MvvmCross.Forms.Platforms.Android.Views;
-using Org.Json;
 using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Rg.Plugins.Popup;
 using VKontakte;
-using Xamarin.Facebook;
 using Xamarin.Facebook.AppEvents;
-using Xamarin.Facebook.Login;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using XF.Material.Droid;
-using LoginResult = bonus.app.Core.Services.LoginResult;
 using PermissionsHandler = ZXing.Net.Mobile.Android.PermissionsHandler;
 using Platform = ZXing.Net.Mobile.Forms.Android.Platform;
 
 namespace bonus.app.Droid
 {
-	[Activity(Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class FormsActivity : MvxFormsAppCompatActivity
 	{
 		#region Properties

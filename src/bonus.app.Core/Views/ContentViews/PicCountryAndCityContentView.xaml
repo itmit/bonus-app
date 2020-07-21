@@ -33,23 +33,25 @@
                 <BoxView />
             </StackLayout>
 
-            <CollectionView Grid.Row="1"
-                            IsVisible="{Binding IsVisibleCountries}"
-                            IsEnabled="{Binding IsVisibleCountries}"
-                            ItemsSource="{Binding Countries}"
-                            SelectedItem="{Binding SelectedCountry}"
-                            SelectionMode="Single"
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand">
-                <CollectionView.Header>
-                    <SearchBar Text="{Binding SearchCountry}" SearchCommand="{Binding SearchCountryCommand}"/>
-                </CollectionView.Header>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <contentViews:CountryCityContentView />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <StackLayout Grid.Row="1">
+                <SearchBar Text="{Binding SearchCountry}"
+                           SearchCommand="{Binding SearchCountryCommand}"
+                           IsVisible="{Binding IsVisibleCountries}"
+                           IsEnabled="{Binding IsVisibleCountries}"/>
+                <CollectionView IsVisible="{Binding IsVisibleCountries}"
+                                IsEnabled="{Binding IsVisibleCountries}"
+                                ItemsSource="{Binding Countries}"
+                                SelectedItem="{Binding SelectedCountry}"
+                                SelectionMode="Single"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <contentViews:CountryCityContentView />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
 
             <Grid Grid.Row="1"
                   IsVisible="{Binding IsVisibleCountries, Converter={StaticResource InverseBoolConverter}}">
@@ -72,24 +74,27 @@
                     <BoxView />
                 </StackLayout>
 
-                <CollectionView Grid.Row="1"
-                                IsVisible="{Binding IsVisibleCities}"
-                                IsEnabled="{Binding IsVisibleCities}"
-                                SelectionMode="Single"
-                                ItemsSource="{Binding Cities}"
-                                SelectedItem="{Binding SelectedCity}"
-                                Scrolled="Cities_OnScrolled"
-                                VerticalOptions="FillAndExpand"
-                                HorizontalOptions="FillAndExpand">
-                    <CollectionView.Header>
-                        <SearchBar Text="{Binding SearchCity}" SearchCommand="{Binding SearchCityCommand}"/>
-                    </CollectionView.Header>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <contentViews:CountryCityContentView />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <StackLayout Grid.Row="1">
+                    <SearchBar Text="{Binding SearchCity}"
+                               SearchCommand="{Binding SearchCityCommand}"
+                               IsVisible="{Binding IsVisibleCities}"
+                               IsEnabled="{Binding IsVisibleCities}"/>
+                    <CollectionView IsVisible="{Binding IsVisibleCities}"
+                                    IsEnabled="{Binding IsVisibleCities}"
+                                    SelectionMode="Single"
+                                    ItemsSource="{Binding Cities}"
+                                    SelectedItem="{Binding SelectedCity}"
+                                    Scrolled="Cities_OnScrolled"
+                                    VerticalOptions="FillAndExpand"
+                                    HorizontalOptions="FillAndExpand">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <contentViews:CountryCityContentView />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                
 
                 <StackLayout Grid.Row="1" x:Name="FieldsLayout"
                              IsVisible="{Binding IsVisibleCities, Converter={StaticResource InverseBoolConverter}}" />
