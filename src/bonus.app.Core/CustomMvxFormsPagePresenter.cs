@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross.Exceptions;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
@@ -37,8 +38,6 @@ namespace bonus.app.Core
 			return base.CloseContentPage(viewModel, attribute);
 		}
 
-		public override Task<bool> CloseModal(IMvxViewModel viewModel, MvxModalPresentationAttribute attribute) => base.CloseModal(viewModel, attribute);
-
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)
 		{
 			if (rootPage == null)
@@ -64,19 +63,6 @@ namespace bonus.app.Core
 		{
 			base.RegisterAttributeTypes();
 			AttributeTypesToActionsDictionary.Register<MvxPopupPagePresentationAttribute>(ShowPopupPage, ClosePopupPage);
-		}
-
-		public override void ReplacePageRoot(Xamarin.Forms.Page existingPage, Xamarin.Forms.Page page, MvxPagePresentationAttribute attribute)
-		{
-			// If the existing page is the current main page of the forms
-			// app, then simply replace it
-			if (existingPage == FormsApplication.MainPage)
-			{
-				FormsApplication.MainPage = page;
-				return;
-			}
-
-			base.ReplacePageRoot(existingPage, page, attribute);
 		}
 
 		public override async Task<bool> ShowTabbedPage(Type view, MvxTabbedPagePresentationAttribute attribute, MvxViewModelRequest request)

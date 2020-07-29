@@ -385,6 +385,8 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 		}
+
+		public event EventHandler TokenUpdated;
 		#endregion
 	}
 }

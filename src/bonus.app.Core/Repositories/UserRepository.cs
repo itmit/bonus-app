@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using battery.app.Core.RealmObjects;
 using bonus.app.Core.Models;
@@ -47,7 +48,7 @@ namespace bonus.app.Core.Repositories
 				var userRealm = _mapper.Map<UserRealmObject>(user);
 				using (var transaction = realm.BeginWrite())
 				{
-					realm.Add((RealmObject) userRealm, true);
+					realm.Add(userRealm, true);
 					transaction.Commit();
 				}
 			}
@@ -66,14 +67,9 @@ namespace bonus.app.Core.Repositories
 		{
 			using (var realm = Realm.GetInstance())
 			{
-				var users = realm.All<UserRealmObject>();
-				var userList = new List<User>();
-				foreach (var user in users)
-				{
-					userList.Add(_mapper.Map<User>(user));
-				}
+				var users = realm.All<UserRealmObject>().ToList();
 
-				return userList;
+				return _mapper.Map<List<User>>(users);
 			}
 		}
 

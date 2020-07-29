@@ -370,7 +370,7 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (!CheckIsEmail(login) && !CheckIsPhoneNumber(login))
 			{
-				await FormsApplication.MainPage.DisplayAlert("Внимание", "Введите Email или номер телефона в формате с + и тд", "Ок");
+				await FormsApplication.MainPage.DisplayAlert("Внимание", "Введите Email или номер телефона в формате международном формате, начиная с плюса, без пробелов, скобок и т.п.", "Ок");
 				return;
 			}
 
@@ -444,7 +444,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 		}
 
-		private bool CheckIsPhoneNumber(string number) => Regex.Match(number, @"^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$").Success;
+		private bool CheckIsPhoneNumber(string number) => Regex.Match(number, @"^\+\d*").Success;
 
 		/// <summary>
 		/// Показывает ошибку при авторизации.
