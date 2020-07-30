@@ -27,8 +27,15 @@ namespace bonus.app.Core.Services
 			AuthService = authService;
 			HttpClient = new HttpClient();
 			HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-			//HttpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+			if (AuthService.Token != null)
+			{
+				HttpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+			}
 
+			AuthService.TokenUpdated += (sender, args) =>
+			{
+				HttpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+			};
 		}
 		#endregion
 

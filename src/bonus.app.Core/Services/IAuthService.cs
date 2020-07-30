@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
@@ -29,6 +30,8 @@ namespace bonus.app.Core.Services
 			get;
 		}
 		#endregion
+
+		event EventHandler TokenUpdated;
 
 		#region Overridable
 		Task<User> Login(AuthDto authData);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,13 +14,17 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross;
+using MvvmCross.Core;
+using MvvmCross.Forms.Core;
 using MvvmCross.Platforms.Ios.Core;
+using MvvmCross.ViewModels;
 using Rg.Plugins.Popup;
 using UIKit;
 using UserNotifications;
 using Xamarin.Forms;
 using XF.Material.iOS;
 using ZXing.Net.Mobile.Forms.iOS;
+using PropertyChangingEventArgs = Xamarin.Forms.PropertyChangingEventArgs;
 
 namespace bonus.app.iOS
 {
@@ -29,6 +34,8 @@ namespace bonus.app.iOS
 	[Register("AppDelegate")]
 	public class AppDelegate : MvxApplicationDelegate
 	{
+		private Xamarin.Forms.Application _application;
+
 		#region Overrided
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -50,7 +57,43 @@ namespace bonus.app.iOS
 			FormsMaterial.Init();
 			CachedImageRenderer.Init();
 			Material.Init();
+			App.Configure();
 
+			RegisterForRemoteNotification();
+
+			base.FinishedLaunching(app, options);
+
+			if (!Mvx.IoCProvider.TryResolve(out IMvxFormsSetup setup))
+			{
+				return true;
+			}
+
+			_application = setup.FormsApplication;
+			setup.FormsApplication.PropertyChanged += ApplicationOnPropertyChanged;
+
+			return true;
+		}
+
+		private void ApplicationOnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			if (args.PropertyName == "MainPage")
+			{
+				UpdateMainPage();
+			}
+		}
+
+		private void UpdateMainPage()
+		{
+			if (_application.MainPage == null)
+			{
+				return;
+			}
+			Window.RootViewController = _application.MainPage.CreateViewController();
+		}
+
+
+		private void RegisterForRemoteNotification()
+		{
 			if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
 			{
 				UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
@@ -77,11 +120,8 @@ namespace bonus.app.iOS
 				const UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound;
 				UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
 			}
-			App.Configure();
-
-			//VKSdk.Initialize("7511393");
-			return base.FinishedLaunching(app, options);
 		}
+
 
 		public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error)
 		{
