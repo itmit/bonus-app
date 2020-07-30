@@ -17,7 +17,6 @@ namespace bonus.app.Core.ViewModels
 	{
 		#region Data
 		#region Fields
-		private ValidatableObject<string> _address = new ValidatableObject<string>();
 
 		private string _imageName;
 		private string _imageSource;
@@ -61,12 +60,6 @@ namespace bonus.app.Core.ViewModels
 		protected IPermissionsService PermissionsService
 		{
 			get;
-		}
-
-		public ValidatableObject<string> Address
-		{
-			get => _address;
-			set => SetProperty(ref _address, value);
 		}
 
 		public string ImageName
@@ -137,7 +130,6 @@ namespace bonus.app.Core.ViewModels
 			IsAuthorization = User != null;
 			if (Parameters.IsActiveUser & (User != null))
 			{
-				Address.Value = User.Address;
 				var p = string.Empty;
 
 				p = User.Phone.Substring(0, 2) +

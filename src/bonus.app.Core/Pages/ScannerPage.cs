@@ -7,9 +7,9 @@ using MvvmCross.Views;
 using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms;
 
-namespace bonus.app.Core.Page
+namespace bonus.app.Core.Pages
 {
-	[MvxModalPresentation(Animated = true, WrapInNavigationPage = false)]
+	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = true)]
 	public class ScannerPage : ZXingScannerPage, IMvxPage<ScannerViewModel>
 	{
 		#region Data

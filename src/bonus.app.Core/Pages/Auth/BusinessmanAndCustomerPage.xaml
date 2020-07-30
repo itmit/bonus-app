@@ -29,10 +29,14 @@
                             Для продолжения пройдите &#10; простую процедуру регистрации
                         </Label.Text>
                     </Label>
-                    <Button Text="ПРЕДПРИНИМАТЕЛЬ" Style="{StaticResource AuthAndRegButton}"
+                    <Button Text="ПРЕДПРИНИМАТЕЛЬ"
+                            Style="{StaticResource AuthAndRegButton}"
                             Margin="0,0,0,15"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                             Command="{Binding OpenEntrepreneurRegistrationCommand}" />
-                    <Button Text="ПОКУПАТЕЛЬ" Style="{StaticResource AuthAndRegButton}"
+                    <Button Text="ПОКУПАТЕЛЬ"
+                            Style="{StaticResource AuthAndRegButton}"
+                            IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                             Command="{Binding OpenBuyerRegistrationCommand}" />
 
                     <Label Text="перейти к авторизации" HorizontalTextAlignment="Center" HorizontalOptions="Center"

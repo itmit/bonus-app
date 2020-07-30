@@ -53,7 +53,6 @@ namespace bonus.app.Core.ViewModels.Auth
 													   ConfirmPassword.Value);
 				if (user != null)
 				{
-					await Application.Current.MainPage.Navigation.PopToRootAsync();
 					await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(
 						new EditProfileViewModelArguments(user.Uuid, false, Password.Value));
 					return true;

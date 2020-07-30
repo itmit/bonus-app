@@ -200,9 +200,6 @@ namespace bonus.app.Core.Services
 					new StringContent(arguments.Country), "country"
 				},
 				{
-					new StringContent(arguments.Address), "address"
-				},
-				{
 					new StringContent(arguments.Birthday.ToString("yyyy-MM-dd")), "birthday"
 				},
 				{
@@ -245,7 +242,6 @@ namespace bonus.app.Core.Services
 			var user = AuthService.User;
 			user.City = arguments.City;
 			user.Country = arguments.Country;
-			user.Address = arguments.Address;
 			user.Car = arguments.Car;
 			user.Sex = arguments.Sex;
 			user.Phone = arguments.Phone;

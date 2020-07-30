@@ -52,12 +52,6 @@
                 <contentViews:PicCountryAndCityContentView ViewModel="{Binding CountryAndCityViewModel}">
                     <contentViews:PicCountryAndCityContentView.Footer>
                         <StackLayout x:Name="MainContent">
-                            <ui:MaterialTextField Text="{Binding Address.Value}"
-                                                  Style="{StaticResource MaterialTextField}"
-                                                  Placeholder="Адрес"
-                                                  ErrorText="{Binding Address.Errors, Converter={StaticResource FirstElementConverter}}"
-                                                  HasError="{Binding Address.IsValid, Converter={StaticResource InverseBoolConverter}}" />
-
 
                             <ui:MaterialTextField Text="{Binding PhoneNumber.Value}"
                                                   Style="{StaticResource MaterialTextField}"
@@ -98,7 +92,7 @@
                                         BackgroundColor="Transparent" />
                             <Label Text="{Binding Birthday.Errors, Converter={StaticResource FirstElementConverter}}"
                                    IsVisible="{Binding Birthday.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                                   TextColor="DarkRed"
+                                   TextColor="Red"
                                    Margin="10,-10,0,0"
                                    FontSize="13"/>
 
@@ -108,7 +102,9 @@
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля"
                                                               Margin="5,0,0,0" />
 
-                            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0,10,0,0">
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}"
+                                                 Margin="0,10,0,0"
+                                                 IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}">
                                 <Grid>
                                     <graphic:RectangleInProfile />
                                     <Label Text="СОХРАНИТЬ" Style="{StaticResource TextForAppButton}" />

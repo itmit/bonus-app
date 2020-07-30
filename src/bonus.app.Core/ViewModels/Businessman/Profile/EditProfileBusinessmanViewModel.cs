@@ -233,6 +233,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				await CreateServiceViewModel.Initialize();
 				WorkingMode.Value = User.WorkTime;
 				Contact.Value = User.Contact;
+				Address.Value = User.Address;
 				Description = User.Description;
 				Email.Value = User.Email;
 				Name.Value = User.Name;
@@ -250,6 +251,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 					Console.WriteLine(e);
 				}
 			}
+		}
+
+		private ValidatableObject<string> _address = new ValidatableObject<string>();
+
+		public ValidatableObject<string> Address
+		{
+			get => _address;
+			set => SetProperty(ref _address, value);
 		}
 
 		public override void Prepare(EditProfileViewModelArguments parameter)

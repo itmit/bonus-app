@@ -7,6 +7,7 @@ using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Customer.Profile
 {
@@ -100,14 +101,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			{
 				ValidationMessage = "Не корректная дата."
 			});
-			Address.Validations.Add(new IsNotNullOrEmptyRule
-			{
-				ValidationMessage = "укажите адрес."
-			});
-			Address.Validations.Add(new MinLengthRule(6)
-			{
-				ValidationMessage = "Адрес не может быть меньше 6 символов."
-			});
 			PhoneNumber.Validations.Add(new IsNotNullOrEmptyRule
 			{
 				ValidationMessage = "Укажите номер телефона."
@@ -120,7 +113,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 
 		private async void EditCommandExecute()
 		{
-			if (!Birthday.Validate() | !Address.Validate() | !PhoneNumber.Validate())
+			if (!Birthday.Validate() | !PhoneNumber.Validate())
 			{
 				return;
 			}
@@ -148,6 +141,12 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				return;
 			}
 
+			if (IsBusy)
+			{
+				return;
+			}
+			IsBusy = true;
+			var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Обработка данных...");
 			try
 			{
 				var arg = new EditCustomerDto
@@ -158,7 +157,6 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 					Phone = PhoneNumber.Value,
 					Birthday = Birthday.Value.Value,
 					Car = Car,
-					Address = Address.Value,
 					Password = Parameters.Password
 				};
 				if (IsFemale)
@@ -174,15 +172,18 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
+					await loadingDialog.DismissAsync();
 					await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();
 					await _navigationService.Navigate<MainCustomerViewModel>();
+					return;
 				}
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
-
+			IsBusy = false;
+			await loadingDialog.DismissAsync();
 			if (_customerProfileService.ErrorDetails != null && _customerProfileService.ErrorDetails.Count > 0)
 			{
 				var key = _customerProfileService.ErrorDetails.First()

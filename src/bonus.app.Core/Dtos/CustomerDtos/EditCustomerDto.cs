@@ -6,13 +6,6 @@ namespace bonus.app.Core.Dtos.CustomerDtos
 	public class EditCustomerDto
 	{
 		#region Properties
-		[JsonProperty("address")]
-		public string Address
-		{
-			get;
-			set;
-		}
-
 		[JsonProperty("birthday")]
 		public DateTime Birthday
 		{

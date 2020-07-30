@@ -28,6 +28,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Команда для перехода на регистрацию предпринимателя.
 		/// </summary>
 		private MvxCommand _openPurchaserRegistrationCommand;
+		private bool _isBusy;
 		#endregion
 		#endregion
 
@@ -44,6 +45,12 @@ namespace bonus.app.Core.ViewModels.Auth
 		#endregion
 
 		#region Properties
+		public bool IsBusy
+		{
+			get => _isBusy;
+			set => SetProperty(ref _isBusy, value);
+		}
+
 		/// <summary>
 		/// Возвращает команду для перехода на авторизацию.
 		/// </summary>
@@ -52,9 +59,15 @@ namespace bonus.app.Core.ViewModels.Auth
 			get
 			{
 				_openAuthorizationPageCommand = _openAuthorizationPageCommand ??
-												new MvxCommand(() =>
+												new MvxCommand(async () =>
 												{
-													NavigationService.Navigate<AuthorizationViewModel>();
+													if (IsBusy)
+													{
+														return;
+													}
+													IsBusy = true;
+													await NavigationService.Navigate<AuthorizationViewModel>();
+													IsBusy = false;
 												});
 				return _openAuthorizationPageCommand;
 			}
@@ -68,9 +81,15 @@ namespace bonus.app.Core.ViewModels.Auth
 			get
 			{
 				_openBuyerRegistrationCommand = _openBuyerRegistrationCommand ??
-												new MvxCommand(() =>
+												new MvxCommand(async () =>
 												{
-													NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Customer);
+													if (IsBusy)
+													{
+														return;
+													}
+													IsBusy = true;
+													await NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Customer);
+													IsBusy = false;
 												});
 				return _openBuyerRegistrationCommand;
 			}
@@ -84,9 +103,15 @@ namespace bonus.app.Core.ViewModels.Auth
 			get
 			{
 				_openPurchaserRegistrationCommand = _openPurchaserRegistrationCommand ??
-													new MvxCommand(() =>
+													new MvxCommand(async () =>
 													{
-														NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Businessman);
+														if (IsBusy)
+														{
+															return;
+														}
+														IsBusy = true;
+														await NavigationService.Navigate<PublicOfferViewModel, UserRole>(UserRole.Businessman);
+														IsBusy = false;
 													});
 				return _openPurchaserRegistrationCommand;
 			}

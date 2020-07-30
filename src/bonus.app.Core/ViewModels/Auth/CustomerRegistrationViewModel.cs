@@ -9,6 +9,9 @@ using bonus.app.Core.ViewModels.Customer.Profile;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
+using XF.Material.Forms.Resources;
+using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
@@ -59,6 +62,8 @@ namespace bonus.app.Core.ViewModels.Auth
 		#region Overrided
 		protected override async Task<bool> RegistrationCommandExecute()
 		{
+			var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение данных...");
+
 			try
 			{
 				_user = await _authService.Register(new User
@@ -73,13 +78,13 @@ namespace bonus.app.Core.ViewModels.Auth
 
 				if (_user != null)
 				{
-					await Application.Current.MainPage.Navigation.PopToRootAsync();
 					if (await _navigationService.Navigate<SuccessRegisterPopupViewModel, object, bool>(null))
 					{
 						await _navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
 							new EditProfileViewModelArguments(_user.Uuid, false, Password.Value));
 					}
 
+					await dialog.DismissAsync();
 					return true;
 				}
 			}
@@ -88,6 +93,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				Console.WriteLine(e);
 			}
 
+			await dialog.DismissAsync();
 			if (_authService.ErrorDetails != null && _authService.ErrorDetails.Count > 0)
 			{
 				var key = _authService.ErrorDetails.First()
@@ -109,7 +115,6 @@ namespace bonus.app.Core.ViewModels.Auth
 					Application.Current.MainPage.DisplayAlert("Ошибка", _authService.Error, "Ок");
 				});
 			}
-
 			return false;
 		}
 		#endregion

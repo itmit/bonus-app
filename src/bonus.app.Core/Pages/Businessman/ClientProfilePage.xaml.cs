@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Pages.Businessman
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxModalPresentation]
+	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = true)]
 	public partial class ClientProfilePage : MvxContentPage<ClientProfileViewModel>
 	{
 		#region .ctor
