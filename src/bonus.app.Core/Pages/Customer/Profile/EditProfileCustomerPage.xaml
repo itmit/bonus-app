@@ -88,8 +88,10 @@
 
                             <DatePicker Date="{Binding Birthday.Value}"
                                         TextColor="#505050"
+                                        Format="dd.MM.yyyy"
                                         MaximumDate="{x:Static sys:DateTime.Now}"
                                         BackgroundColor="Transparent" />
+
                             <Label Text="{Binding Birthday.Errors, Converter={StaticResource FirstElementConverter}}"
                                    IsVisible="{Binding Birthday.IsValid, Converter={StaticResource InverseBoolConverter}}"
                                    TextColor="Red"
