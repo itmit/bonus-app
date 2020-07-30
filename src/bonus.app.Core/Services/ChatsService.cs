@@ -55,35 +55,30 @@ namespace bonus.app.Core.Services
 		#region IChatsService members
 		public async Task<Dialog> CreateDialog(User user)
 		{
-			using (var client = new HttpClient())
+			var response = await HttpClient.PostAsync(new Uri(DialogsUri), new StringContent($"{{\"client_uuid\":\"{user.Uuid}\"}}", Encoding.UTF8, ApplicationJson));
+
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var response = await client.PostAsync(new Uri(DialogsUri), new StringContent($"{{\"client_uuid\":\"{user.Uuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Dialog>>(json);
-				if (data.Success)
-				{
-					var dialog = new Dialog
-					{
-						Id = data.Data.Id,
-						UserTo = user
-					};
-					SavedDialogs.Add(dialog);
-					return dialog;
-				}
-
 				return null;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<Dialog>>(json);
+			if (!data.Success)
+			{
+				return null;
+			}
+
+			var dialog = new Dialog
+			{
+				Id = data.Data.Id,
+				UserTo = user
+			};
+			SavedDialogs.Add(dialog);
+			return dialog;
+
 		}
 
 		public async Task<List<Dialog>> GetDialogs()
@@ -136,45 +131,39 @@ namespace bonus.app.Core.Services
 
 		public async Task<Message> SendMessage(int dialogId, string content, string file)
 		{
-			using (var client = new HttpClient())
+			var base64 = string.Empty;
+			if (!string.IsNullOrWhiteSpace(file))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var base64 = string.Empty;
-				if (!string.IsNullOrWhiteSpace(file))
-				{
-					base64 = Convert.ToBase64String(File.ReadAllBytes(file));
-				}
-
-				var response = await client.PostAsync(new Uri(SendMessageUri),
-													  new StringContent(
-														  new JObject(new JProperty("dialog_id", dialogId), new JProperty("content", content), new JProperty("file", base64))
-															  .ToString(),
-														  Encoding.UTF8,
-														  ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<Message>>(json);
-				if (!data.Success)
-				{
-					return null;
-				}
-
-				if (!string.IsNullOrWhiteSpace(data.Data.ImageSource))
-				{
-					data.Data.ImageSource = Domain + data.Data.ImageSource;
-				}
-
-				return data.Data;
+				base64 = Convert.ToBase64String(File.ReadAllBytes(file));
 			}
+
+			var response = await HttpClient.PostAsync(new Uri(SendMessageUri),
+												  new StringContent(
+													  new JObject(new JProperty("dialog_id", dialogId), new JProperty("content", content), new JProperty("file", base64))
+														  .ToString(),
+													  Encoding.UTF8,
+													  ApplicationJson));
+
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
+			{
+				return null;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<Message>>(json);
+			if (!data.Success)
+			{
+				return null;
+			}
+
+			if (!string.IsNullOrWhiteSpace(data.Data.ImageSource))
+			{
+				data.Data.ImageSource = Domain + data.Data.ImageSource;
+			}
+
+			return data.Data;
 		}
 		#endregion
 	}

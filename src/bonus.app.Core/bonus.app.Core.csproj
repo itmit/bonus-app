@@ -35,13 +35,13 @@
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1142" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.1080" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.1142" />  
     <PackageReference Include="XF.Material" Version="1.6.5" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
-    <PackageReference Include="SkiaSharp" Version="2.80.0" />
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.0" />
+    <PackageReference Include="SkiaSharp" Version="2.80.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -153,9 +153,6 @@
     <EmbeddedResource Remove="Views\ContentViews\ArchiveStockContenView.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Pages\AllStock.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Manages\CreateManagerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -291,7 +288,7 @@
     <EmbeddedResource Update="Pages\Auth\BusinessmanRegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\RecoveryDetailPage.xaml">
+    <EmbeddedResource Update="Pages\Auth\RecoveryDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Statistics\SalesTypesPage.xaml">

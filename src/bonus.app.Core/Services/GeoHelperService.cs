@@ -32,12 +32,7 @@ namespace bonus.app.Core.Services
 
 			var res = await GetAsync<City>(uri);
 
-			if (res == null)
-			{
-				return new List<City>();
-			}
-
-			return res;
+			return res ?? new List<City>();
 		}
 
 		public async Task<List<Country>> GetCountries(LocaleDto locale, string name = null)

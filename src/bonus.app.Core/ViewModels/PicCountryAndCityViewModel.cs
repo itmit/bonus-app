@@ -86,10 +86,7 @@ namespace bonus.app.Core.ViewModels
 			set
 			{
 				SetProperty(ref _searchCountry, value);
-				if (value.Length > 2 || string.IsNullOrEmpty(value))
-				{
-					SearchCountryCommand.Execute();
-				}
+				SearchCountryCommand.Execute();
 			}
 		}
 		
@@ -112,10 +109,7 @@ namespace bonus.app.Core.ViewModels
 			set
 			{
 				SetProperty(ref _searchCity, value);
-				if (value.Length > 2 || string.IsNullOrEmpty(value))
-				{
-					SearchCityCommand.Execute();
-				}
+				SearchCityCommand.Execute();
 			}
 		}
 
@@ -288,10 +282,10 @@ namespace bonus.app.Core.ViewModels
 			{
 				CountryIso = country.Iso
 			};
-			if (!string.IsNullOrWhiteSpace(SearchCity))
-			{
+			//if (!string.IsNullOrWhiteSpace(SearchCity))
+			//{
 				filter.Name = SearchCity;
-			}
+			//}
 
 			IsBusy = true;
 			_currentPageNumber = pageNumber;

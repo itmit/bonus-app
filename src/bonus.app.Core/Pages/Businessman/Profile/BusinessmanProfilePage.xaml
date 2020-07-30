@@ -207,7 +207,6 @@
                             </Grid>
 
                             <CollectionView HeightRequest="250"
-                                            ItemSizingStrategy="MeasureFirstItem"
                                             ItemsSource="{Binding PortfolioImages}"
                                             SelectedItem="{Binding SelectedPortfolioImage}"
                                             SelectionMode="{Binding SelectionModePortfolio}">

@@ -48,50 +48,39 @@ namespace bonus.app.Core.Services
 		#region ICustomerService members
 		public async Task<User> GetCustomerByLogin(string login)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var response = await client.PostAsync(GetCustomerByLoginUri,
-													  new FormUrlEncodedContent(new Dictionary<string, string>
+			var response = await HttpClient.PostAsync(GetCustomerByLoginUri,
+												  new FormUrlEncodedContent(new Dictionary<string, string>
+												  {
 													  {
-														  {
-															  "login", login
-														  }
-													  }));
+														  "login", login
+													  }
+												  }));
 
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
 
-				if (string.IsNullOrEmpty(jsonString))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (response.IsSuccessStatusCode)
-				{
-					var user = _mapper.Map<User>(data.Data);
-					var userInfo = _mapper.Map<User>(data.Data.Client);
-					userInfo.Balance = user.Balance / 100;
-
-					return userInfo;
-				}
-
+			if (string.IsNullOrEmpty(jsonString))
+			{
 				return null;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+			if (!response.IsSuccessStatusCode)
+			{
+				return null;
+			}
+
+			var user = _mapper.Map<User>(data.Data);
+			var userInfo = _mapper.Map<User>(data.Data.Client);
+			userInfo.Balance = user.Balance / 100;
+
+			return userInfo;
 		}
 
 		public async Task<User> GetCustomerByUuid(Guid uuid)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var response = await client.PostAsync(GetCustomerByUuidUri,
+			var response = await HttpClient.PostAsync(GetCustomerByUuidUri,
 													  new FormUrlEncodedContent(new Dictionary<string, string>
 													  {
 														  {
@@ -99,27 +88,27 @@ namespace bonus.app.Core.Services
 														  }
 													  }));
 
-				var jsonString = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(jsonString);
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
 
-				if (string.IsNullOrEmpty(jsonString))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
-
-				if (response.IsSuccessStatusCode)
-				{
-					var user = _mapper.Map<User>(data.Data);
-					var userInfo = _mapper.Map<User>(data.Data.Client);
-					userInfo.Balance = user.Balance / 100;
-
-					return userInfo;
-				}
-
+			if (string.IsNullOrEmpty(jsonString))
+			{
 				return null;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+			if (!response.IsSuccessStatusCode)
+			{
+				return null;
+			}
+
+			var user = _mapper.Map<User>(data.Data);
+			var userInfo = _mapper.Map<User>(data.Data.Client);
+			userInfo.Balance = user.Balance / 100;
+
+			return userInfo;
+
 		}
 		#endregion
 	}

@@ -20,6 +20,7 @@ using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
@@ -254,43 +255,45 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		public override void Prepare(EditProfileViewModelArguments parameter)
 		{
 			base.Prepare(parameter);
-			if (Parameters.IsActiveUser)
+			if (!Parameters.IsActiveUser)
 			{
-				CreateServiceViewModel = new CreateServiceViewModel(Mvx.IoCProvider.Resolve<IServicesService>(), AuthService);
-
-				Email.Validations.Add(new IsNotNullOrEmptyRule
-				{
-					ValidationMessage = "Укажите Email адрес."
-				});
-				Email.Validations.Add(new IsValidEmailRule
-				{
-					ValidationMessage = "Не корректно введен Email."
-				});
-				Name.Validations.Add(new IsNotNullOrEmptyRule
-				{
-					ValidationMessage = "Укажите торговое название или имя мастера."
-				});
-				Name.Validations.Add(new MinLengthRule(2)
-				{
-					ValidationMessage = "Торговое название или имя мастера не может быть меньше 2 символов."
-				});
-				VkLink.Validations.Add(new IsValidUriRule
-				{
-					ValidationMessage = "Не корректная ссылка."
-				});
-				InstagramLink.Validations.Add(new IsValidUriRule
-				{
-					ValidationMessage = "Не корректная ссылка."
-				});
-				FacebookLink.Validations.Add(new IsValidUriRule
-				{
-					ValidationMessage = "Не корректная ссылка."
-				});
-				ClassmatesLink.Validations.Add(new IsValidUriRule
-				{
-					ValidationMessage = "Не корректная ссылка."
-				});
+				return;
 			}
+
+			CreateServiceViewModel = new CreateServiceViewModel(Mvx.IoCProvider.Resolve<IServicesService>(), AuthService);
+
+			Email.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите Email адрес."
+			});
+			Email.Validations.Add(new IsValidEmailRule
+			{
+				ValidationMessage = "Не корректно введен Email."
+			});
+			Name.Validations.Add(new IsNotNullOrEmptyRule
+			{
+				ValidationMessage = "Укажите торговое название или имя мастера."
+			});
+			Name.Validations.Add(new MinLengthRule(2)
+			{
+				ValidationMessage = "Торговое название или имя мастера не может быть меньше 2 символов."
+			});
+			VkLink.Validations.Add(new IsValidUriRule
+			{
+				ValidationMessage = "Не корректная ссылка."
+			});
+			InstagramLink.Validations.Add(new IsValidUriRule
+			{
+				ValidationMessage = "Не корректная ссылка."
+			});
+			FacebookLink.Validations.Add(new IsValidUriRule
+			{
+				ValidationMessage = "Не корректная ссылка."
+			});
+			ClassmatesLink.Validations.Add(new IsValidUriRule
+			{
+				ValidationMessage = "Не корректная ссылка."
+			});
 		}
 		#endregion
 
@@ -369,6 +372,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (Parameters.IsActiveUser)
 				{
+					await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно.");
 					await _navigationService.Close(this, user);
 					return;
 				}
@@ -408,11 +412,37 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
+		public delegate void EditErrorHandler(string[] propertyName);
+
+		public EditErrorHandler FailedEdit;
+
 		private bool Validate()
 		{
-			if (!WorkingMode.Validate() | !Contact.Validate() | !Address.Validate() | !PhoneNumber.Validate())
+			var isValid = true;
+			var props = new List<string>();
+
+			if (!WorkingMode.Validate())
 			{
-				return false;
+				isValid = false;
+				props.Add(nameof(WorkingMode));
+			}
+			
+			if (!Contact.Validate())
+			{
+				isValid = false;
+				props.Add(nameof(Contact));
+			}
+			
+			if (!Address.Validate())
+			{
+				isValid = false;
+				props.Add(nameof(Address));
+			}
+
+			if (!PhoneNumber.Validate())
+			{
+				isValid = false;
+				props.Add(nameof(PhoneNumber));
 			}
 
 			if (CountryAndCityViewModel.SelectedCountry == null)
@@ -433,47 +463,67 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return false;
 			}
 
-			if (Parameters.IsActiveUser)
+			if (!Parameters.IsActiveUser)
 			{
-				if (!string.IsNullOrEmpty(VkLink.Value))
+				if (!isValid)
 				{
-					if (!VkLink.Validate())
-					{
-						return false;
-					}
+					FailedEdit?.Invoke(props.ToArray());
 				}
+				return isValid;
+			}
 
-				if (!string.IsNullOrEmpty(InstagramLink.Value))
+			if (!string.IsNullOrEmpty(VkLink.Value))
+			{
+				if (!VkLink.Validate())
 				{
-					if (!InstagramLink.Validate())
-					{
-						return false;
-					}
-				}
-
-				if (!string.IsNullOrEmpty(FacebookLink.Value))
-				{
-					if (!FacebookLink.Validate())
-					{
-						return false;
-					}
-				}
-
-				if (!string.IsNullOrEmpty(ClassmatesLink.Value))
-				{
-					if (!ClassmatesLink.Validate())
-					{
-						return false;
-					}
+					isValid = false;
+					props.Add(nameof(VkLink));
 				}
 			}
 
-			if (Parameters.IsActiveUser & !Email.Validate() & !Name.Validate())
+			if (!string.IsNullOrEmpty(InstagramLink.Value))
 			{
-				return false;
+				if (!InstagramLink.Validate())
+				{
+					isValid = false;
+					props.Add(nameof(InstagramLink));
+				}
 			}
 
-			return true;
+			if (!string.IsNullOrEmpty(FacebookLink.Value))
+			{
+				if (!FacebookLink.Validate())
+				{
+					isValid = false;
+					props.Add(nameof(FacebookLink));
+				}
+			}
+
+			if (!string.IsNullOrEmpty(ClassmatesLink.Value))
+			{
+				if (!ClassmatesLink.Validate())
+				{
+					isValid = false;
+					props.Add(nameof(ClassmatesLink));
+				}
+			}
+
+			if (!Email.Validate())
+			{
+				isValid = false;
+				props.Add(nameof(EditCommand));
+			}
+
+			if (!Name.Validate())
+			{
+				isValid = false;
+				props.Add(nameof(Name));
+			}
+			if (!isValid)
+			{
+				FailedEdit?.Invoke(props.ToArray());
+			}
+			return isValid;
 		}
 		#endregion
 	}
