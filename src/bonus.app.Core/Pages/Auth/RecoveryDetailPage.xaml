@@ -58,7 +58,11 @@
                     <StackLayout Margin="0,0,0,20">
                         <Grid>
                             <Frame Style="{StaticResource AuthAndRegFrame}">
-                                <Entry Placeholder="Повторите новый пароль" x:Name="ConfirmPasswordEntry" Style="{StaticResource AuthAndRegEntry}" Text="{Binding ConfirmPassword.Value}"/>
+                                <Entry Placeholder="Повторите новый пароль"
+                                       x:Name="ConfirmPasswordEntry"
+                                       IsPassword="True"
+                                       Style="{StaticResource AuthAndRegEntry}"
+                                       Text="{Binding ConfirmPassword.Value}"/>
                             </Frame>
                             <Image Source="ic_eye"
                                    HorizontalOptions="End"

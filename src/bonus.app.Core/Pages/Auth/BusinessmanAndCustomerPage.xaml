@@ -39,7 +39,7 @@
                             IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
                             Command="{Binding OpenBuyerRegistrationCommand}" />
 
-                    <Label Text="перейти к авторизации" HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                    <Label Text="Перейти к авторизации" HorizontalTextAlignment="Center" HorizontalOptions="Center"
                            Margin="0,40,0,30" TextColor="White"
                            FontFamily="{x:Static design:DesignClass.MontserratRegular}">
                         <Label.GestureRecognizers>

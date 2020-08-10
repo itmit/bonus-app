@@ -155,7 +155,29 @@ namespace bonus.app.Core.Services
 				{"email", email }
 			}));
 
-			return response.IsSuccessStatusCode;
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
+
+			if (string.IsNullOrEmpty(jsonString))
+			{
+				Error = "Нет ответа от сервера";
+				return false;
+			}
+			
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(jsonString);
+			if (data.Success)
+			{
+				return true;
+			}
+
+			if (data.ErrorDetails != null)
+			{
+				ErrorDetails = data.ErrorDetails;
+			}
+
+			Error = data.Error;
+
+			return false;
 		}
 
 		private const string RecoveryUri = "http://bonus.itmit-studio.ru/api/resetPassword";

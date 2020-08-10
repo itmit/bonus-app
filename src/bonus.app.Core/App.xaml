@@ -8,9 +8,15 @@
                           xmlns:design="clr-namespace:bonus.app.Core.Design"
                           xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                           xmlns:core="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                          xmlns:resources="clr-namespace:XF.Material.Forms.Resources;assembly=XF.Material"
                           mc:Ignorable="d"
                           x:Class="bonus.app.Core.App">
     <Application.Resources>
+        <resources:MaterialColorConfiguration x:Key="Material.Color"
+                                         Error="DarkRed"
+                                         Primary="#7E756F" />
+        <resources:MaterialConfiguration x:Key="Material.Configuration"
+                                    ColorConfiguration="{StaticResource Material.Color}" />
         <ResourceDictionary>
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#ffffff</Color>

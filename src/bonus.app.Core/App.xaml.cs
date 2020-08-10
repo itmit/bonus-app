@@ -13,7 +13,7 @@ namespace bonus.app.Core
 			InitializeComponent();
 			On<Android>()
 				.UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-			Material.Init(this);
+			Material.Init(this, "Material.Configuration");
 		}
 		#endregion
 

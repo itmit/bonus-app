@@ -381,7 +381,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (Parameters.IsActiveUser)
 				{
-					await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно.");
+					await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно.", "Внимание", "Ок");
 					await _navigationService.Close(this, user);
 					return;
 				}

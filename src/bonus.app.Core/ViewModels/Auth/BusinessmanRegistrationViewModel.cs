@@ -8,6 +8,7 @@ using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
@@ -40,6 +41,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		#region Overrided
 		protected override async Task<bool> RegistrationCommandExecute()
 		{
+			var loading = await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение данных...");
 			try
 			{
 				var user = await _authService.Register(new User
@@ -55,6 +57,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				{
 					await _navigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments>(
 						new EditProfileViewModelArguments(user.Uuid, false, Password.Value));
+					await loading.DismissAsync();
 					return true;
 				}
 			}
@@ -62,6 +65,8 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				Console.WriteLine(e);
 			}
+
+			await loading.DismissAsync();
 
 			if (_authService.ErrorDetails != null && _authService.ErrorDetails.Count > 0)
 			{

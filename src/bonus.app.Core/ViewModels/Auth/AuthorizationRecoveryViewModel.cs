@@ -1,8 +1,10 @@
-﻿using bonus.app.Core.Services;
+﻿using System.Collections.Generic;
+using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
@@ -57,6 +59,48 @@ namespace bonus.app.Core.ViewModels.Auth
 			}
 		}
 
+		/// <summary>
+		/// Показывает ошибку при авторизации.
+		/// </summary>
+		private async void ShowErrors()
+		{
+			if (_authService.ErrorDetails == null)
+			{
+				await MaterialDialog.Instance.AlertAsync("Ошибка сервера", "Внимание", "Ок");
+				return;
+			}
+
+			var dictionary = new Dictionary<string, string>();
+			foreach (var detail in _authService.ErrorDetails)
+			{
+				dictionary[detail.Key] = string.Join("&#10;", detail.Value);
+			}
+
+			if (!dictionary.ContainsKey("email"))
+			{
+				await MaterialDialog.Instance.AlertAsync(_authService.Error, "Внимание", "Ок");
+				return;
+			}
+
+			var error = dictionary["email"];
+
+			if (string.IsNullOrEmpty(error))
+			{
+				return;
+			}
+
+			if (error.Equals("The selected email is invalid."))
+			{
+				await MaterialDialog.Instance.AlertAsync("Пользователь не найден.", "Внимание", "Ок");
+				return;
+			}
+
+			if (error.Equals("The email must be a valid email address."))
+			{
+				await MaterialDialog.Instance.AlertAsync("Не корректно введен Email.",  "Внимание", "Ок");
+			}
+		}
+
 		public MvxCommand SendCodeCommand
 		{
 			get
@@ -71,6 +115,10 @@ namespace bonus.app.Core.ViewModels.Auth
 					if (await _authService.SendRecoveryCode(Email.Value))
 					{
 						await _navigationService.Navigate<RecoveryDetailViewModel, string>(Email.Value);
+					}
+					else
+					{
+						ShowErrors();
 					}
 				});
 				return _sendCodeCommand;

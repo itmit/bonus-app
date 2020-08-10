@@ -20,6 +20,7 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
@@ -114,6 +115,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// Текущее приложение xamarin forms.
 		/// </summary>
 		private Application _formsApplication;
+		private bool _isBusy;
 
 		/// <summary>
 		/// Возвращает текущее приложение xamarin forms.
@@ -232,6 +234,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				case LoginState.Success:
 
 					User user = null;
+					var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Авторизация...");
 					try
 					{
 						user = await _authService.AuthorizationAnExternalService(result.Email, result.Token, serviceType);
@@ -244,11 +247,12 @@ namespace bonus.app.Core.ViewModels.Auth
 					var isActive = true;
 					if (user == null)
 					{
+						await dialog.DismissAsync();
 						var role = await FormsApplication.MainPage.DisplayAlert("Внимание",
 																				   "Выберите тип аккаунта.",
 																				   "Предприниматель",
 																				   "Покупатель") ? UserRole.Businessman : UserRole.Customer;
-
+						dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Создание аккаунта...");
 						user = await _authService.Register(new User
 														   {
 															   Email = result.Email,
@@ -260,18 +264,21 @@ namespace bonus.app.Core.ViewModels.Auth
 														   result.UserId);
 						if (user == null)
 						{
+							await dialog.DismissAsync();
 							Device.BeginInvokeOnMainThread(() =>
 							{
 								FormsApplication.MainPage.DisplayAlert("Ошибка",
 																		  $"Авторизация через {serviceName} пошла успешно, но не удалось создать аккаунт данного пользователя в системе.",
 																		  "Ок");
 							});
+							IsBusy = false;
 							return;
 						}
 
 						isActive = false;
 					}
 
+					await dialog.DismissAsync();
 					if (string.IsNullOrEmpty(user.AccessToken?.Body) && user.Uuid != Guid.Empty)
 					{
 						if (isActive)
@@ -294,11 +301,12 @@ namespace bonus.app.Core.ViewModels.Auth
 										new EditProfileViewModelArguments(user.Uuid, false, result.UserId));
 									break;
 								case UserRole.Manager:
-									return;
+									break;
 								default:
 									throw new ArgumentOutOfRangeException();
 							}
 						}
+						IsBusy = false;
 						return;
 					}
 
@@ -327,6 +335,8 @@ namespace bonus.app.Core.ViewModels.Auth
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+
+			IsBusy = false;
 		}
 
 		/// <summary>
@@ -361,21 +371,30 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// </summary>
 		private async void LoginExecute()
 		{
+			if (IsBusy)
+			{
+				return;
+			}
+			IsBusy = true;
+
 			var login = Login?.Trim();
 			var password = Password?.Trim();
 			if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
 			{
 				await FormsApplication.MainPage.DisplayAlert("Внимание", "E-mail и пароль должны быть заполнены", "Ок");
+				IsBusy = false;
 				return;
 			}
 
 			if (!CheckIsEmail(login) && !CheckIsPhoneNumber(login))
 			{
-				await FormsApplication.MainPage.DisplayAlert("Внимание", "Введите Email или номер телефона в формате международном формате, начиная с плюса, без пробелов, скобок и т.п.", "Ок");
+				await FormsApplication.MainPage.DisplayAlert("Внимание", "Введите Email или номер телефона в формате международном формате, начиная с плюса, без пробелов, скобок", "Ок");
+				IsBusy = false;
 				return;
 			}
 
 			User user = null;
+			var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Авторизация...");
 			try
 			{
 				user = await _authService.Login(new AuthDto
@@ -392,9 +411,11 @@ namespace bonus.app.Core.ViewModels.Auth
 			if (user == null)
 			{
 				ShowErrors();
+				IsBusy = false;
+				await dialog.DismissAsync();
 				return;
 			}
-
+			await dialog.DismissAsync();
 			if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Uuid != Guid.Empty)
 			{
 				switch (user.Role)
@@ -408,11 +429,11 @@ namespace bonus.app.Core.ViewModels.Auth
 							new EditProfileViewModelArguments(user.Uuid, false, password));
 						break;
 					case UserRole.Manager:
-						return;
+						break;
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
-
+				IsBusy = false;
 				return;
 			}
 
@@ -430,6 +451,14 @@ namespace bonus.app.Core.ViewModels.Auth
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+
+			IsBusy = false;
+		}
+
+		public bool IsBusy
+		{
+			get => _isBusy;
+			set => SetProperty(ref _isBusy, value);
 		}
 
 		private static bool CheckIsEmail(string email)
