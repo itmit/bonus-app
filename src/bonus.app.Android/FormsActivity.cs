@@ -28,7 +28,9 @@ using Platform = ZXing.Net.Mobile.Forms.Android.Platform;
 
 namespace bonus.app.Droid
 {
-	[Activity(Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Icon = "@mipmap/ic_launcher"
+			  , Theme = "@style/MainTheme"
+			  , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class FormsActivity : MvxFormsAppCompatActivity
 	{
 		#region Properties
