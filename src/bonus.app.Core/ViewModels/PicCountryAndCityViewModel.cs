@@ -21,12 +21,10 @@ namespace bonus.app.Core.ViewModels
 		private int _cityShapeRotation;
 		private MvxObservableCollection<Country> _countries;
 		private int _countryShapeRotation;
-		private int _currentPageNumber;
 		private readonly IGeoHelperService _geoHelperService;
 		private bool _isVisibleCities;
 		private bool _isVisibleCountries;
 		private bool _isVisibleSelectedCity;
-		private MvxCommand _loadMoreCitiesCommand;
 		private City _selectedCity;
 		private Country _selectedCountry;
 		private MvxCommand _showOrHideCitiesCommand;
@@ -96,7 +94,7 @@ namespace bonus.app.Core.ViewModels
 			{
 				_searchCityCommand = _searchCityCommand ?? new MvxCommand(() => {
 					Cities.Clear();
-					LoadCities(SelectedCountry, 1);
+					LoadCities(SelectedCountry);
 				});
 
 				return _searchCityCommand;
@@ -161,15 +159,6 @@ namespace bonus.app.Core.ViewModels
 			set => SetProperty(ref _isVisibleSelectedCity, value);
 		}
 
-		public MvxCommand LoadMoreCitiesCommand
-		{
-			get
-			{
-				_loadMoreCitiesCommand = _loadMoreCitiesCommand ?? new MvxCommand(() => LoadCities(SelectedCountry, _currentPageNumber + 1));
-				return _loadMoreCitiesCommand;
-			}
-		}
-
 		public City SelectedCity
 		{
 			get => _selectedCity;
@@ -189,20 +178,14 @@ namespace bonus.app.Core.ViewModels
 				ShowOrHideCountriesCommand.Execute();
 				IsVisibleSelectedCity = true;
 				_cities = new MvxObservableCollection<City>();
-				LoadCities(value, 1);
+				LoadCities(value);
+				SelectedCity = null;
+
 				if (User == null || string.IsNullOrEmpty(User.City))
 				{
 					return;
 				}
 
-				_selectedCity = Cities.SingleOrDefault(c => c.LocalizedNames.Ru.Equals(User.City)) ??
-								new City
-								{
-									LocalizedNames = new LocalizedName
-									{
-										Ru = User.City
-									}
-								};
 				RaisePropertyChanged(() => SelectedCity);
 			}
 		}
@@ -271,7 +254,7 @@ namespace bonus.app.Core.ViewModels
 		#endregion
 
 		#region Private
-		private async void LoadCities(Country country, int pageNumber)
+		private async void LoadCities(Country country)
 		{
 			if (country == null)
 			{
@@ -280,15 +263,11 @@ namespace bonus.app.Core.ViewModels
 
 			var filter = new CityFilterDto
 			{
-				CountryIso = country.Iso
+				CountryIso = country.Iso,
+				Name = SearchCity
 			};
-			//if (!string.IsNullOrWhiteSpace(SearchCity))
-			//{
-				filter.Name = SearchCity;
-			//}
 
 			IsBusy = true;
-			_currentPageNumber = pageNumber;
 			try
 			{
 				var cities = await _geoHelperService.GetCities(new LocaleDto
@@ -299,15 +278,34 @@ namespace bonus.app.Core.ViewModels
 															   filter,
 															   new PaginationRequestDto
 															   {
-																   Limit = 250,
-																   Page = _currentPageNumber
+																   Limit = 100,
+																   Page = 1
 															   },
 															   new OrderDto
 															   {
 																   By = "population",
 																   Dir = "desc"
 															   });
-				Cities.AddRange(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
+				MvxObservableCollection<City> collection;
+				if (string.IsNullOrEmpty(SearchCity))
+				{
+					collection = new MvxObservableCollection<City>(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)).OrderBy(c => c.Name));
+					var mos = collection.SingleOrDefault(c => c.Id == 4995);
+					if (mos != null)
+					{
+						collection.Move(collection.IndexOf(mos), 0);
+					}
+					var pet = collection.SingleOrDefault(c => c.Id == 5000);
+					if (pet != null)
+					{
+						collection.Move(collection.IndexOf(pet), 1);
+					}
+				}
+				else
+				{
+					collection = new MvxObservableCollection<City>(cities.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
+				}
+				Cities = collection;
 				await RaisePropertyChanged(() => Cities);
 			}
 			catch (Exception e)

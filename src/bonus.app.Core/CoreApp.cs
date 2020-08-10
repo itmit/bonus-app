@@ -31,7 +31,7 @@ namespace bonus.app.Core
 				.RegisterAsDynamic();
 
 			Barrel.ApplicationId = "itmit.bonus.app";
-			RealmConfiguration.DefaultConfiguration.SchemaVersion = 2;
+			RealmConfiguration.DefaultConfiguration.SchemaVersion = 3;
 
 			var firstRun = Preferences.Get("FirstRun", "true");
 			if (firstRun.Equals("true"))

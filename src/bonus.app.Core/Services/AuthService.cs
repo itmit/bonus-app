@@ -131,6 +131,7 @@ namespace bonus.app.Core.Services
 				}
 
 				_userUuid = userInfo.Uuid;
+				_userRepository.RemoveAll();
 				_userRepository.Add(userInfo);
 
 				return userInfo;

@@ -48,11 +48,11 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 								   new MvxCommand(async () =>
 								   {
 									   var login = UserLogin?.Trim();
-									   if (string.IsNullOrEmpty(login) || login.Length < 3)
+									   if (string.IsNullOrEmpty(login) || login.Length != 18)
 									   {
 										   Device.BeginInvokeOnMainThread(() =>
 										   {
-											   Application.Current.MainPage.DisplayAlert("Ошибка", "Заполните поле логин (не менее 3 символов).", "Ок");
+											   Application.Current.MainPage.DisplayAlert("Ошибка", "Заполните поле номер телефона (18 символов).", "Ок");
 										   });
 									   }
 

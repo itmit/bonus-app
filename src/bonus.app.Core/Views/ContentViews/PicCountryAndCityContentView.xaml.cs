@@ -34,23 +34,5 @@ namespace bonus.app.Core.Views.ContentViews
 			}
 		}
 		#endregion
-
-		#region Private
-		private void Cities_OnScrolled(object sender, ItemsViewScrolledEventArgs e)
-		{
-			if (ViewModel.IsBusy || ViewModel.Cities.Count == 0)
-			{
-				return;
-			}
-
-			if (e.LastVisibleItemIndex == ViewModel.Cities.Count - 1)
-			{
-				ViewModel.IsBusy = true;
-
-				ViewModel.LoadMoreCitiesCommand.Execute();
-				ViewModel.IsBusy = false;
-			}
-		}
-		#endregion
 	}
 }

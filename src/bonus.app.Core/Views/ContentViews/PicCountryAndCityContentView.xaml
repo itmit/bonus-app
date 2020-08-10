@@ -84,7 +84,6 @@
                                     SelectionMode="Single"
                                     ItemsSource="{Binding Cities}"
                                     SelectedItem="{Binding SelectedCity}"
-                                    Scrolled="Cities_OnScrolled"
                                     VerticalOptions="FillAndExpand"
                                     HorizontalOptions="FillAndExpand">
                         <CollectionView.ItemTemplate>
@@ -92,6 +91,11 @@
                                 <contentViews:CountryCityContentView />
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <StackLayout>
+                                <Label Margin="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Другой город"/>
+                            </StackLayout>
+                        </CollectionView.Footer>
                     </CollectionView>
                 </StackLayout>
                 
