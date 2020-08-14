@@ -34,7 +34,10 @@ namespace bonus.app.Core.Services
 
 			AuthService.TokenUpdated += (sender, args) =>
 			{
-				HttpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				if (AuthService.Token != null)
+				{
+					HttpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
+				}
 			};
 		}
 		#endregion

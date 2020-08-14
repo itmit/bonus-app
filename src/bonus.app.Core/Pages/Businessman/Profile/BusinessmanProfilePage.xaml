@@ -186,7 +186,8 @@
                                 <Label Grid.Column="0" Text="Портфолио" TextColor="#000000" FontSize="Body"
                                        FontFamily="Roboto"
                                        HorizontalOptions="Start" />
-                                <ui:MaterialMenuButton Grid.Column="1" MenuBackgroundColor="White"
+                                <ui:MaterialMenuButton Grid.Column="1"
+                                                       MenuBackgroundColor="White"
                                                        MenuCornerRadius="5"
                                                        MenuTextColor="Black"
                                                        HorizontalOptions="EndAndExpand"
@@ -209,7 +210,9 @@
                             <CollectionView HeightRequest="250"
                                             ItemsSource="{Binding PortfolioImages}"
                                             SelectedItem="{Binding SelectedPortfolioImage}"
-                                            SelectionMode="{Binding SelectionModePortfolio}">
+                                            SelectionMode="Single"
+                                            ItemSizingStrategy="MeasureFirstItem"
+                                            >
                                 <CollectionView.EmptyView>
                                     <Label Text="Добавьте изображение&#10;для портфолио"
                                            HorizontalOptions="Center"
@@ -217,8 +220,8 @@
                                            TextColor="Black"
                                            VerticalOptions="Center" />
                                 </CollectionView.EmptyView>
-                                <CollectionView.ItemsLayout>
-                                    <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
+                                <CollectionView.ItemsLayout >
+                                    <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="3"
                                                      VerticalItemSpacing="5" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>

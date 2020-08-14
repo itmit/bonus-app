@@ -246,8 +246,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			set
 			{
 				SetProperty(ref _selectedPortfolioImage, value);
-				RemovePortfolioImage(value);
-				SelectionModePortfolio = SelectionMode.None;
+				NavigationService.Navigate<PhotoViewModel, string>(value.ImageSource);
+				//RemovePortfolioImage(value);
+				//SelectionModePortfolio = SelectionMode.None;
 			}
 		}
 
@@ -320,7 +321,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 		#endregion
 
-
 		public MvxCommand OpenManagersCommand
 		{
 			get
@@ -357,18 +357,16 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return;
 			}
 
-			var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
-
-			if (portfolioImage == null)
+			PortfolioImages.Add(new PortfolioImage
 			{
-				return;
-			}
-
-			PortfolioImages.Add(portfolioImage);
+				ImageSource = image.Path
+			});
 			await RaisePropertyChanged(() => PortfolioImages);
+
+			await _profileService.AddImageToPortfolio(image.Path);
 		}
 
-		private async Task OpenBrowser(string link)
+		private static async Task OpenBrowser(string link)
 		{
 			if (Uri.TryCreate(link, UriKind.Absolute, out var uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
 			{

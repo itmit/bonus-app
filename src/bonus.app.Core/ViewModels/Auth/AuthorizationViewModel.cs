@@ -278,11 +278,11 @@ namespace bonus.app.Core.ViewModels.Auth
 						isActive = false;
 					}
 
-					await dialog.DismissAsync();
 					if (string.IsNullOrEmpty(user.AccessToken?.Body) && user.Uuid != Guid.Empty)
 					{
 						if (isActive)
 						{
+							await dialog.DismissAsync();
 							Device.BeginInvokeOnMainThread(() =>
 							{
 								FormsApplication.MainPage.DisplayAlert("Внимание", $"Авторизация через {serviceName} невозможна, пока Вы не заполните статистическую информацию.", "Ок");
@@ -305,6 +305,7 @@ namespace bonus.app.Core.ViewModels.Auth
 								default:
 									throw new ArgumentOutOfRangeException();
 							}
+							await dialog.DismissAsync();
 						}
 						IsBusy = false;
 						return;
@@ -325,8 +326,10 @@ namespace bonus.app.Core.ViewModels.Auth
 							throw new ArgumentOutOfRangeException();
 					}
 
+					await dialog.DismissAsync();
 					break;
 				case LoginState.Failed:
+
 					Device.BeginInvokeOnMainThread(() =>
 					{
 						FormsApplication.MainPage.DisplayAlert("Ошибка", "Не удалось авторизоваться.", "Ок");
@@ -393,6 +396,13 @@ namespace bonus.app.Core.ViewModels.Auth
 				return;
 			}
 
+			if (password.Length < 6)
+			{
+				await FormsApplication.MainPage.DisplayAlert("Внимание", "Пароль должен состоять минимум из 6 символов.", "Ок");
+				IsBusy = false;
+				return;
+			}
+
 			User user = null;
 			var dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Авторизация...");
 			try
@@ -415,7 +425,7 @@ namespace bonus.app.Core.ViewModels.Auth
 				await dialog.DismissAsync();
 				return;
 			}
-			await dialog.DismissAsync();
+
 			if (string.IsNullOrEmpty(user.AccessToken.Body) && user.Uuid != Guid.Empty)
 			{
 				switch (user.Role)
@@ -433,6 +443,8 @@ namespace bonus.app.Core.ViewModels.Auth
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
+
+				await dialog.DismissAsync();
 				IsBusy = false;
 				return;
 			}
@@ -452,6 +464,7 @@ namespace bonus.app.Core.ViewModels.Auth
 					throw new ArgumentOutOfRangeException();
 			}
 
+			await dialog.DismissAsync();
 			IsBusy = false;
 		}
 

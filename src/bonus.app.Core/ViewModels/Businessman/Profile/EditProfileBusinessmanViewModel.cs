@@ -291,18 +291,39 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			{
 				ValidationMessage = "Не корректная ссылка."
 			});
+			VkLink.Validations.Add(new IsSuccessRegexMatch(
+									   new Regex(@"(^(https:\/\/)|^(http:\/\/))+vk\.com\/+.{5,32}", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+			{
+				ValidationMessage = "Введенная ссылка не является ссылкой на vk."
+			});
 			InstagramLink.Validations.Add(new IsValidUriRule
 			{
 				ValidationMessage = "Не корректная ссылка."
+			});
+			InstagramLink.Validations.Add(new IsSuccessRegexMatch(
+											  new Regex(@"(^(https:\/\/)|^(http:\/\/))+((www\.)?)+instagram\.com\/+(.{1,30})+\?.", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+										  {
+											  ValidationMessage = "Введенная ссылка не является ссылкой на instagram."
 			});
 			FacebookLink.Validations.Add(new IsValidUriRule
 			{
 				ValidationMessage = "Не корректная ссылка."
 			});
+			FacebookLink.Validations.Add(new IsSuccessRegexMatch(
+											 new Regex(@"(^(https:\/\/)|^(http:\/\/))+((www\.)?)+facebook\.com\/+.{5,64}", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+										 {
+											 ValidationMessage = "Введенная ссылка не является ссылкой на Facebook."
+			});
 			ClassmatesLink.Validations.Add(new IsValidUriRule
 			{
 				ValidationMessage = "Не корректная ссылка."
 			});
+
+			ClassmatesLink.Validations.Add(new IsSuccessRegexMatch(
+											   new Regex(@"(^(https:\/\/)|^(http:\/\/))+ok\.ru\/+.{1,64}", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+										   {
+											   ValidationMessage = "Введенная ссылка не является ссылкой на одноклассники."
+										   });
 		}
 		#endregion
 
@@ -342,6 +363,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				return;
 			}
 
+			var loading = await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение данных...");
 			try
 			{
 				var arg = new EditBusinessmanDto
@@ -381,6 +403,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (Parameters.IsActiveUser)
 				{
+					await loading.DismissAsync();
 					await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно.", "Внимание", "Ок");
 					await _navigationService.Close(this, user);
 					return;
@@ -388,6 +411,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
 				{
+					await loading.DismissAsync();
 					await _navigationService.Navigate<SuccessRegisterBusinessmanPopupViewModel>();
 					await _navigationService.Navigate<MainBusinessmanViewModel>();
 					return;
@@ -398,26 +422,22 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Console.WriteLine(e);
 			}
 
+			await loading.DismissAsync();
+
 			if (_profileService.ErrorDetails != null && _profileService.ErrorDetails.Count > 0)
 			{
 				var key = _profileService.ErrorDetails.First()
 										 .Key;
 				if (key.Equals("phone"))
 				{
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						Application.Current.MainPage.DisplayAlert("Ошибка", "Пользователь с таким номером уже существует.", "Ок");
-					});
+					await MaterialDialog.Instance.AlertAsync("Пользователь с таким номером уже существует.", "Ошибка", "Ок");
 					return;
 				}
 			}
 
 			if (!string.IsNullOrEmpty(_profileService.Error))
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Ошибка", _profileService.Error, "Ок");
-				});
+				await MaterialDialog.Instance.AlertAsync(_profileService.Error, "Ошибка", "Ок");
 			}
 		}
 
@@ -456,19 +476,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 			if (CountryAndCityViewModel.SelectedCountry == null)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
-				});
+				MaterialDialog.Instance.AlertAsync("Выберите страну.", "Внимание", "Ок");
 				return false;
 			}
 
 			if (CountryAndCityViewModel.SelectedCity == null)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
-				});
+				MaterialDialog.Instance.AlertAsync("Выберите город.", "Внимание", "Ок");
 				return false;
 			}
 

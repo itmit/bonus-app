@@ -10,7 +10,7 @@
     <ContentView.Content>
         <Frame Padding="0"
                WidthRequest="100"
-               HeightRequest="60"
+               HeightRequest="100"
                CornerRadius="10"
                HasShadow="False">
             <forms:CachedImage Source="{Binding ImageSource}"

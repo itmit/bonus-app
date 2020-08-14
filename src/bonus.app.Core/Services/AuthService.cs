@@ -133,6 +133,7 @@ namespace bonus.app.Core.Services
 				_userUuid = userInfo.Uuid;
 				_userRepository.RemoveAll();
 				_userRepository.Add(userInfo);
+				TokenUpdated?.Invoke(this, EventArgs.Empty);
 
 				return userInfo;
 			}
@@ -197,16 +198,35 @@ namespace bonus.app.Core.Services
 			return !string.IsNullOrEmpty(jsonString) && response.IsSuccessStatusCode;
 		}
 
-		public Task<bool> Logout(User user)
+		private const string LogoutUri = "http://bonus.itmit-studio.ru/api/logout";
+
+		public async Task<bool> Logout(User user)
 		{
-			if (user != null && !user.Uuid.Equals(Guid.Empty) && _userRepository.Remove(user))
+			if (user.Uuid.Equals(Guid.Empty) || !_userRepository.Remove(user))
 			{
-				_userUuid = Guid.Empty;
-				return Task.FromResult(true);
+				_userRepository.RemoveAll();
 			}
 
-			_userRepository.RemoveAll();
+			_userUuid = Guid.Empty;
 
+			try
+			{
+				using (var httpClient = new HttpClient())
+				{
+					httpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(user.AccessToken.ToString());
+
+					var response = await httpClient.PostAsync(LogoutUri, new StringContent("{}", Encoding.UTF8, BaseService.ApplicationJson));
+
+					var jsonString = await response.Content.ReadAsStringAsync();
+					Debug.WriteLine(jsonString);
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			TokenUpdated?.Invoke(this, EventArgs.Empty);
 			try
 			{
 				Mvx.IoCProvider.Resolve<IFirebaseService>()?.DeleteInstance(Secrets.SenderId);
@@ -215,7 +235,7 @@ namespace bonus.app.Core.Services
 			{
 				Console.WriteLine(e);
 			}
-			return Task.FromResult(true);
+			return true;
 		}
 
 		public async Task<User> Register(User user, string password, string confirmPassword)
@@ -355,7 +375,7 @@ namespace bonus.app.Core.Services
 
 				_userUuid = userInfo.Uuid;
 				_userRepository.Add(userInfo);
-
+				TokenUpdated?.Invoke(this, EventArgs.Empty);
 				return userInfo;
 			}
 

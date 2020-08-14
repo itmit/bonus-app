@@ -146,7 +146,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				return;
 			}
 			IsBusy = true;
-			var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Обработка данных...");
+			var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение данных...");
 			try
 			{
 				var arg = new EditCustomerDto

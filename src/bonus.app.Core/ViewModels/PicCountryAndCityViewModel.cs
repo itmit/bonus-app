@@ -231,12 +231,15 @@ namespace bonus.app.Core.ViewModels
 					FallbackLang = "en",
 					Lang = "ru"
 				});
-				countries.Move(countries.Single(c => c.Iso.Equals("RU")), 0);
-				countries.Move(countries.Single(c => c.Iso.Equals("UA")), 1);
-				countries.Move(countries.Single(c => c.Iso.Equals("BY")), 2);
-				countries.Move(countries.Single(c => c.Iso.Equals("KZ")), 3);
-				countries.Move(countries.Single(c => c.Iso.Equals("AZ")), 4);
-				Countries = new MvxObservableCollection<Country>(countries.Where(c => !string.IsNullOrEmpty(c.LocalizedNames.Ru)));
+				var countriesCollection = new MvxObservableCollection<Country>
+				{
+					countries.Single(c => c.Iso.Equals("RU")),
+					countries.Single(c => c.Iso.Equals("UA")),
+					countries.Single(c => c.Iso.Equals("BY")),
+					countries.Single(c => c.Iso.Equals("KZ")),
+					countries.Single(c => c.Iso.Equals("AZ"))
+				};
+				Countries = new MvxObservableCollection<Country>(countriesCollection);
 			}
 			catch (Exception e)
 			{

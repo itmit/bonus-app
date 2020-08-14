@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<core:MvxPopupPage x:TypeArguments="viewModels:PhotoViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                   xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                   xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                   xmlns:core="clr-namespace:bonus.app.Core;assembly=bonus.app.Core"
+                   xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                   xmlns:zoomScrollView="clr-namespace:Xamarin.Forms.ZoomScrollView;assembly=Xamarin.Forms.ZoomScrollView"
+                   BackgroundColor="Black"
+                   NavigationPage.HasNavigationBar="False"
+                   mc:Ignorable="d"
+                   x:Class="bonus.app.Core.Pages.PhotoPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+
+    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+    <zoomScrollView:ZoomScrollView Orientation="Both" 
+                                   MinimumZoomScale="1"
+                                   x:Name="Scroll"
+                                   MaximumZoomScale="3">
+        <forms:CachedImage Source="{Binding ImageSource}" VerticalOptions="CenterAndExpand" x:Name="CachedImage"/>
+    </zoomScrollView:ZoomScrollView>
+</core:MvxPopupPage>
