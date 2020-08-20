@@ -21,7 +21,21 @@ namespace bonus.app.Core.Pages
 		{
 			base.OnAppearing();
 
-			CachedImage.HeightRequest = Scroll.Height;
+			var scrollNum = Scroll.Width / Scroll.Height;
+			var imageNum = CachedImage.Width / CachedImage.Height;
+			if (scrollNum > imageNum)
+			{
+				CachedImage.HeightRequest = Scroll.Height;
+			}
+			else
+			{
+				if (CachedImage.Width <= Scroll.Width)
+				{
+					CachedImage.HeightRequest = Scroll.Height;
+					return;
+				}
+				CachedImage.WidthRequest = Scroll.Width;
+			}
 		}
 	}
 }

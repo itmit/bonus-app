@@ -46,6 +46,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Pages\Businessman\Services\CreateServiceStepOnePage.xaml.cs">
+      <DependentUpon>CreateServiceStepOnePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Manager\ManagerTabbedPage.xaml.cs">
       <DependentUpon>ManagerTabbedPage.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,9 @@
     <EmbeddedResource Remove="Views\ContentViews\ArchiveStockContenView.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Pages\Auth\PrivacyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Manages\CreateManagerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -161,6 +167,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Manages\ManagersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Businessman\Services\CreateServiceStepOnePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Businessman\Services\CreateServiceStepTwoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Statistics\GeographyDetailPage.xaml">

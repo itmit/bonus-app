@@ -1,5 +1,6 @@
 ﻿using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Businessman.Stocks
@@ -27,5 +28,15 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 			base.OnAppearing();
 		}
 		#endregion
+
+		private void Name_OnTextChanged(object sender, TextChangedEventArgs e)
+		{
+			ViewModel.Name.Validate();
+		}
+
+		private void Description_OnTextChanged(object sender, TextChangedEventArgs e)
+		{
+			ViewModel.Description.Validate();
+		}
 	}
 }

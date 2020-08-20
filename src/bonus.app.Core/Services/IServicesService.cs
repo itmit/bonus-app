@@ -28,5 +28,7 @@ namespace bonus.app.Core.Services
 
 		Task<bool> UpdateService(CreateServiceDto service, Guid uuid);
 		#endregion
+
+		event EventHandler MyServicesListChanged;
 	}
 }

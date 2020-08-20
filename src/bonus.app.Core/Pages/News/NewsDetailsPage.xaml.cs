@@ -1,4 +1,6 @@
-﻿using bonus.app.Core.ViewModels.News;
+﻿using System;
+using bonus.app.Core.ViewModels.News;
+using FFImageLoading.Forms;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -62,5 +64,13 @@ namespace bonus.app.Core.Pages.News
 			}
 		}
 		#endregion
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			if (((CachedImage)sender).Source is UriImageSource imageSource)
+			{
+				ViewModel.ShowPhotoCommand.Execute(imageSource.Uri);
+			}
+		}
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.News
@@ -12,14 +14,32 @@ namespace bonus.app.Core.ViewModels.News
 		private MvxObservableCollection<string> _images;
 		private Models.News _news;
 		private readonly INewsService _newsService;
+		private MvxCommand<string> _showPhotoCommand;
+		private IMvxNavigationService _navigationService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public NewsDetailsViewModel(INewsService newsService) => _newsService = newsService;
+		public NewsDetailsViewModel(INewsService newsService, IMvxNavigationService navigationService)
+		{ 
+			_newsService = newsService;
+			_navigationService = navigationService;
+		}
 		#endregion
 
 		#region Properties
+		public MvxCommand<string> ShowPhotoCommand
+		{
+			get
+			{
+				_showPhotoCommand = _showPhotoCommand ?? new MvxCommand<string>(src =>
+				{
+					_navigationService.Navigate<PhotoViewModel, string>(src);
+				});
+				return _showPhotoCommand;
+			}
+		}
+
 		public MvxObservableCollection<string> Images
 		{
 			get => _images;

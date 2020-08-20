@@ -3,6 +3,7 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
@@ -13,11 +14,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Fields
 		private readonly IProfileService _profileService;
 		private MvxCommand _removeImageCommand;
+		private MvxCommand _showImageCommand;
+		private IMvxNavigationService _navigationService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public PortfolioViewModel(IProfileService profileService) => _profileService = profileService;
+		public PortfolioViewModel(IProfileService profileService, IMvxNavigationService navigationService)
+		{
+			_profileService = profileService;
+			_navigationService = navigationService;
+		}
 		#endregion
 
 		#region Properties
@@ -25,6 +32,18 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		{
 			get;
 			set;
+		}
+
+		public MvxCommand ShowImageCommand
+		{
+			get
+			{
+				_showImageCommand = _showImageCommand ?? new MvxCommand(() =>
+				{
+					_navigationService.Navigate<PhotoViewModel, string>(ImageSource);
+				});
+				return _showImageCommand;
+			}
 		}
 
 		public string ImageSource

@@ -17,32 +17,5 @@ namespace bonus.app.Core.Pages.Businessman.Services
 			InitializeComponent();
 		}
 		#endregion
-
-		#region Overrided
-		/// <summary>
-		/// When overridden, allows application developers to customize behavior immediately prior to the
-		/// <see cref="T:Xamarin.Forms.Page" /> becoming visible.
-		/// </summary>
-		/// <remarks>To be added.</remarks>
-		protected override void OnAppearing()
-		{
-			MyServicesView.ViewModel = ViewModel.MyServicesViewModel;
-			base.OnAppearing();
-		}
-		#endregion
-
-		#region Private
-		private void MenuItem_OnClicked(object sender, EventArgs e)
-		{
-			Scroll.ScrollToAsync(AddServiceLabel, ScrollToPosition.Start, false);
-		}
-		#endregion
-
-		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-		{
-			AddServiceLayout.IsEnabled = !AddServiceLayout.IsEnabled;
-			AddServiceLayout.IsVisible = AddServiceLayout.IsEnabled;
-			ShapeImage.Rotation = AddServiceLayout.IsEnabled ? 180 : 0;
-		}
 	}
 }

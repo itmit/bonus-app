@@ -7,10 +7,10 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Businessman.Services;assembly=bonus.app.Core"
-                      xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:services2="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Services.BusinessmanServicesPage">
     <NavigationPage.TitleView>
@@ -18,78 +18,54 @@
     </NavigationPage.TitleView>
 
     <views:MvxContentPage.ToolbarItems>
-        <ToolbarItem Text="Добавить свою услугу" Order="Secondary" Clicked="MenuItem_OnClicked" Priority="0" />
+        <ToolbarItem Text="Добавить свою услугу" Order="Secondary" Command="{Binding AddServiceCommand}" Priority="0" />
         <ToolbarItem Text="Редактировать список услуг" Order="Secondary" Command="{Binding OpenEditCommand}"
                      Priority="1" />
     </views:MvxContentPage.ToolbarItems>
 
     <views:MvxContentPage.Content>
         <!--Страница 4.2 Мои услуги(предпринимателя)-->
-        <RefreshView
-            Command="{Binding RefreshCommand}"
-            IsRefreshing="{Binding IsRefreshing}">
-            <ScrollView x:Name="Scroll" Margin="0,0,0,5">
-                <StackLayout Margin="15,0" Spacing="0">
-                    <Grid>
-                        <StackLayout
-                            IsVisible="{Binding HasServices}"
-                            IsEnabled="{Binding HasServices}"
-                            BindableLayout.ItemsSource="{Binding MyServices}"
-                            VerticalOptions="FillAndExpand"
-                            HorizontalOptions="FillAndExpand">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <services2:ServiceAccrualValueContentView />
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
+        <RefreshView Margin="15,5,15,0"
+                     Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <Grid>
+                <CollectionView ItemsSource="{Binding MyServices}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <services2:ServiceAccrualValueContentView />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="Center">
+                            <Label Text="Пока у вас нет услуг"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="5,20,5,15" />
+
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="20,0">
+                                <Grid>
+                                    <graphic:RectangleInProfile />
+                                    <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}" />
+                                </Grid>
+                                <design:CustomButton.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
+                                </design:CustomButton.GestureRecognizers>
+                            </design:CustomButton>
                         </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
 
-                        <Label Text="Пока у вас нет услуг"
-                               Grid.Column="0"
-                               Grid.Row="0"
-                               IsVisible="{Binding HasServices, Converter={StaticResource InverseBoolConverter}}"
-                               IsEnabled="{Binding HasServices, Converter={StaticResource InverseBoolConverter}}"
-                               HorizontalTextAlignment="Start" Margin="5,20,5,15" />
-                    </Grid>
-
-                    <BoxView Margin="0,0,0,20" />
-
-                    <Grid>
-                        <Label Text="Добавить услугу" x:Name="AddServiceLabel" Margin="0,0,0,35" FontSize="Body"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"
-                               FontFamily="{x:Static design:DesignClass.MontserratBold}" />
-                        <Image Source="Shape.png"
-                               WidthRequest="15"
-                               Margin="0,0,0,35"
-                               VerticalOptions="Center"
-                               HorizontalOptions="EndAndExpand"
-                               Rotation="0"
-                               x:Name="ShapeImage"
-                               />
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
-                        </Grid.GestureRecognizers>
-                    </Grid>
-                    
-                    <StackLayout x:Name="AddServiceLayout" IsVisible="False" IsEnabled="False">
-                        <services2:MyServicesContentView x:Name="MyServicesView" />
-                        <contentViews:ServiceAccrualBonusesContentView />
-
-                        <design:CustomButton Style="{StaticResource AppButtonGradient}">
-                            <Grid>
-                                <graphic:RectangleInProfile />
-                                <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}" />
-                            </Grid>
-                            <design:CustomButton.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
-                            </design:CustomButton.GestureRecognizers>
-                        </design:CustomButton>
-                    </StackLayout>
-                    
-                </StackLayout>
-            </ScrollView>
-
+                <ui:MaterialButton BackgroundColor="#7E756F"
+                                   FontSize="25"
+                                   Command="{Binding AddServiceCommand}"
+                                   CornerRadius="35"
+                                   HeightRequest="75"
+                                   Margin="0,0,5,20"
+                                   WidthRequest="75"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="End"
+                                   Text="+"
+                                   TextColor="White" />
+            </Grid>
         </RefreshView>
     </views:MvxContentPage.Content>
 </views:MvxContentPage>

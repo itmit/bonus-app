@@ -27,6 +27,7 @@ namespace bonus.app.Core.Services
 
 		private const string GetPortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
 		private const string GetUserUri = "http://bonus.itmit-studio.ru/api/client/{0}";
+		private const string GetCurrentUserUri = "http://bonus.itmit-studio.ru/api/client";
 		private const string PortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio/{0}";
 		private const string UpdateUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 		#endregion
@@ -81,7 +82,13 @@ namespace bonus.app.Core.Services
 
 			var data = JsonConvert.DeserializeObject<ResponseDto<PortfolioImage>>(json);
 
-			return data.Success ? data.Data : null;
+			if (!data.Success)
+			{
+				return null;
+			}
+			PortfolioChanged?.Invoke(this, EventArgs.Empty);
+			data.Data.ImageSource = Domain + data.Data.ImageSource;
+			return data.Data;
 		}
 
 		public async Task<User> Edit(EditBusinessmanDto arguments, string imagePath)
@@ -266,6 +273,8 @@ namespace bonus.app.Core.Services
 
 		public Task<List<PortfolioImage>> GetPortfolio() => GetPortfolio(Guid.Empty);
 
+		public event EventHandler PortfolioChanged;
+
 		public async Task<List<PortfolioImage>> GetPortfolio(Guid uuid)
 		{
 			List<PortfolioImage> images;
@@ -295,6 +304,49 @@ namespace bonus.app.Core.Services
 			}
 
 			return images;
+		}
+
+		public async Task<User> GetUser()
+		{
+			var response = await HttpClient.GetAsync(GetCurrentUserUri);
+
+			var jsonString = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(jsonString);
+
+			if (string.IsNullOrEmpty(jsonString))
+			{
+				return null;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<UserDto>>(jsonString);
+
+			if (!response.IsSuccessStatusCode)
+			{
+				return null;
+			}
+
+			return data.Success ? MapUser(data.Data) : _mapper.Map<User>(data.Data);
+		}
+
+		private User MapUser(UserDto data)
+		{
+			var user = _mapper.Map<User>(data.Client);
+			var userInfo = _mapper.Map<User>(data.ClientInfo);
+
+			userInfo.Role = user.Role;
+			userInfo.Uuid = user.Uuid;
+			userInfo.Email = user.Email ?? string.Empty;
+			userInfo.Phone = user.Phone ?? string.Empty;
+			userInfo.Name = user.Name ?? string.Empty;
+			userInfo.Login = user.Login ?? string.Empty;
+
+			userInfo.AccessToken = new AccessToken
+			{
+				Body = data.Body,
+				Type = data.Type
+			};
+
+			return userInfo;
 		}
 
 		public async Task<User> GetUser(Guid uuid, int? stockId, int? serviceId)
@@ -330,28 +382,7 @@ namespace bonus.app.Core.Services
 				return null;
 			}
 
-			if (!data.Success)
-			{
-				return _mapper.Map<User>(data.Data);
-			}
-
-			var user = _mapper.Map<User>(data.Data.Client);
-			var userInfo = _mapper.Map<User>(data.Data.ClientInfo);
-
-			userInfo.Role = user.Role;
-			userInfo.Uuid = user.Uuid;
-			userInfo.Email = user.Email ?? string.Empty;
-			userInfo.Phone = user.Phone ?? string.Empty;
-			userInfo.Name = user.Name ?? string.Empty;
-			userInfo.Login = user.Login ?? string.Empty;
-
-			userInfo.AccessToken = new AccessToken
-			{
-				Body = data.Data.Body,
-				Type = data.Data.Type
-			};
-
-			return userInfo;
+			return data.Success ? MapUser(data.Data) : _mapper.Map<User>(data.Data);
 		}
 
 		public Task<User> GetUser(Guid uuid) => GetUser(uuid, null, null);
@@ -359,7 +390,10 @@ namespace bonus.app.Core.Services
 		public async Task<bool> RemoveImageFromPortfolio(Guid uuid)
 		{
 			var response = await HttpClient.DeleteAsync(string.Format(PortfolioUri, uuid));
-
+			if (response.IsSuccessStatusCode)
+			{
+				PortfolioChanged?.Invoke(this, EventArgs.Empty);
+			}
 			return response.IsSuccessStatusCode;
 		}
 		#endregion

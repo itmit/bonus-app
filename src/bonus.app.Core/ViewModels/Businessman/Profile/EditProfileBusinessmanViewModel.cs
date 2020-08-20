@@ -83,7 +83,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<PortfolioImage, PortfolioViewModel>()
-				   .ConstructUsing(m => new PortfolioViewModel(profileService)
+				   .ConstructUsing(m => new PortfolioViewModel(profileService, navigationService)
 				   {
 					   ImageSource = m.ImageSource,
 					   ImageName = m.ImageName,
@@ -97,12 +97,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region Properties
-		public CreateServiceViewModel CreateServiceViewModel
-		{
-			get;
-			private set;
-		}
-
 		public MvxCommand AddPortfolioImageCommand
 		{
 			get
@@ -131,15 +125,25 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 													return;
 												}
 
-												var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
-
-												if (portfolioImage == null)
+												using (await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение ..."))
 												{
-													return;
-												}
+													try
+													{
+														var portfolioImage = await _profileService.AddImageToPortfolio(image.Path);
 
-												PortfolioImages.Add(_mapper.Map<PortfolioViewModel>(portfolioImage));
-												await RaisePropertyChanged(() => PortfolioImages);
+														if (portfolioImage == null)
+														{
+															return;
+														}
+
+														PortfolioImages.Add(_mapper.Map<PortfolioViewModel>(portfolioImage));
+														await RaisePropertyChanged(() => PortfolioImages);
+													}
+													catch (Exception exception)
+													{
+														Console.WriteLine(exception);
+													}
+												}
 											});
 				return _addPortfolioImageCommand;
 			}
@@ -230,7 +234,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 			if (Parameters.IsActiveUser && User != null)
 			{
-				await CreateServiceViewModel.Initialize();
 				WorkingMode.Value = User.WorkTime;
 				Contact.Value = User.Contact;
 				Address.Value = User.Address;
@@ -268,8 +271,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			{
 				return;
 			}
-
-			CreateServiceViewModel = new CreateServiceViewModel(Mvx.IoCProvider.Resolve<IServicesService>(), AuthService);
 
 			Email.Validations.Add(new IsNotNullOrEmptyRule
 			{

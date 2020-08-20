@@ -19,6 +19,7 @@ using Plugin.Permissions.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Profile
 {
@@ -46,7 +47,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private readonly IProfileService _profileService;
 		private MvxCommand _refreshCommand;
 		private PortfolioImage _selectedPortfolioImage;
-		private SelectionMode _selectionModePortfolio;
+		private bool _isDeletePortfolioImageOn;
 		private IEnumerable<Service> _services;
 		private readonly IServicesService _servicesService;
 		private MvxCommand _showBonusDetailsCommand;
@@ -71,7 +72,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			_platformPresenter = platformPresenter;
 			_authService = authService;
 			User = _authService.User;
+			_profileService.PortfolioChanged += ProfileServiceOnPortfolioChanged;
 			PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
+		}
+
+		private async void ProfileServiceOnPortfolioChanged(object sender, EventArgs e)
+		{
+			PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
 		}
 		#endregion
 
@@ -210,8 +217,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 													  AddImageToPortfolio();
 													  break;
 												  case 1:
-													  SelectionModePortfolio = SelectionMode.Single;
-													  FormsApplication.MainPage.DisplayAlert("Внимание", "Выберите картинку для ее удаления.", "Ок");
+													  IsDeletePortfolioImageOn = true;
+													  MaterialDialog.Instance.AlertAsync("Выберите картинку для ее удаления", "Внимание", "Ок");
 													  break;
 											  }
 										  });
@@ -233,6 +240,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 								  new MvxCommand(async () =>
 								  {
 									  IsRefreshing = true;
+									  User = await _profileService.GetUser();
 									  await Initialize();
 									  IsRefreshing = false;
 								  });
@@ -245,17 +253,27 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			get => _selectedPortfolioImage;
 			set
 			{
+				if (value == null)
+				{
+					return;
+				}
 				SetProperty(ref _selectedPortfolioImage, value);
-				NavigationService.Navigate<PhotoViewModel, string>(value.ImageSource);
-				//RemovePortfolioImage(value);
-				//SelectionModePortfolio = SelectionMode.None;
+				if (IsDeletePortfolioImageOn)
+				{
+					RemovePortfolioImage(value);
+					IsDeletePortfolioImageOn = false;
+				}
+				else
+				{
+					NavigationService.Navigate<PhotoViewModel, string>(value.ImageSource);
+				}
 			}
 		}
 
-		public SelectionMode SelectionModePortfolio
+		public bool IsDeletePortfolioImageOn
 		{
-			get => _selectionModePortfolio;
-			set => SetProperty(ref _selectionModePortfolio, value);
+			get => _isDeletePortfolioImageOn;
+			set => SetProperty(ref _isDeletePortfolioImageOn, value);
 		}
 
 		public IEnumerable<Service> Services
@@ -287,6 +305,13 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Public
 		public async void RemovePortfolioImage(PortfolioImage portfolioImage)
 		{
+			var confirm = await MaterialDialog.Instance.ConfirmAsync("Вы действительно хотите удалите картинку из портфолио?", "Подтвердите", "Да", "Нет");
+
+			if (confirm == null || !confirm.Value)
+			{
+				return;
+			}
+
 			try
 			{
 				if (!await _profileService.RemoveImageFromPortfolio(portfolioImage.Uuid))

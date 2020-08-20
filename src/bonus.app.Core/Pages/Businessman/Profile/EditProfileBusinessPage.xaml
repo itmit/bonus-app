@@ -12,7 +12,6 @@
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-                      xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Profile.EditProfileBusinessPage">
     <NavigationPage.TitleView>
@@ -130,26 +129,36 @@
 
                             <contentViews:PicPhotoContentView Placeholder="Установите фотографию профиля" />
 
-                            <services:CreateServiceContentView x:Name="CreateServiceContentView"
-                                                               IsVisible="{Binding Parameters.IsActiveUser}"
-                                                               IsEnabled="{Binding Parameters.IsActiveUser}" />
-
                             <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
                                          IsEnabled="{Binding Parameters.IsActiveUser}">
 
-                                <StackLayout Orientation="Horizontal"
-                                             Spacing="0"
-                                             Margin="10,15,20,15">
-                                    <Label Text="Портфолио"
-                                           FontSize="14" />
+                                <Grid Margin="10,15,20,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
                                     <Image Source="ic_add_image_4x.png"
                                            HeightRequest="16"
-                                           WidthRequest="18"
+                                           WidthRequest="18" />
+
+                                    <Label Grid.Column="1"
+                                           Text="Портфолио"
+                                           FontSize="14" />
+
+                                    <Image Grid.Column="3"
+                                           Source="ic_plusbrown_4x"
+                                           WidthRequest="15"
+                                           VerticalOptions="Center"
+                                           BackgroundColor="Transparent"
                                            HorizontalOptions="EndAndExpand" />
-                                    <StackLayout.GestureRecognizers>
+
+                                    <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding AddPortfolioImageCommand}" />
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
                                 <BoxView />
 
                                 <StackLayout IsVisible="True" BindableLayout.ItemsSource="{Binding PortfolioImages}">

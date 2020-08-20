@@ -44,12 +44,15 @@
                             <services1:PicServiceTypeContentView Margin="0,20,0,0" x:Name="PicServiceTypeLayout" />
 
                             <ui:MaterialTextField Text="{Binding Name.Value}"
+                                                  MaxLength="30"
                                                   Placeholder="Название акции"
                                                   ErrorText="{Binding Name.Errors, Converter={StaticResource FirstElementConverter}}"
+                                                  TextChanged="Name_OnTextChanged"
                                                   HasError="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
                             <ui:MaterialTextField Text="{Binding Description.Value}"
                                                   Placeholder="Описание акции&#10;&#10;"
+                                                  TextChanged="Description_OnTextChanged"
                                                   ErrorText="{Binding Description.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Description.IsValid, Converter={StaticResource InverseBoolConverter}}" />
 
@@ -73,7 +76,7 @@
                                    TextColor="DarkRed" />
 
                             <StackLayout Orientation="Horizontal" Margin="10,0,5,0">
-                                <Label Text="Только для подписчиков, до" VerticalOptions="Center" />
+                                <Label Text="Только для подписчиков" VerticalOptions="Center" />
                                 <Switch HorizontalOptions="EndAndExpand"
                                         IsToggled="{Binding IsSubscriberOnly}"
                                         VerticalOptions="Center" />

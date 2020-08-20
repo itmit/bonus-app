@@ -1,6 +1,8 @@
 ﻿using System;
+using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using MvvmCross.Forms.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Auth
@@ -26,5 +28,10 @@ namespace bonus.app.Core.Pages.Auth
 			Ch2.IsChecked = !Ch2.IsChecked;
 		}
 		#endregion
+
+		private void ShowPrivacy(object sender, EventArgs e)
+		{
+			Navigation.PushAsync(new PrivacyPage());
+		}
 	}
 }

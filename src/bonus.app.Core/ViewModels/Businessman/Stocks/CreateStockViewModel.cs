@@ -14,6 +14,7 @@ using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
@@ -192,7 +193,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			});
 			ShareTime.Validations.Add(new IsValidDateRule(DateTime.Now, new DateTime(2099, 1, 1))
 			{
-				ValidationMessage = "Срок размещения акции должен быть актуальным."
+				ValidationMessage = "Срок размещения акции должен быть больше текущей даты."
 			});
 		}
 
@@ -202,37 +203,25 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			var result = true;
 			if (PicCountryAndCityViewModel.SelectedCountry == null)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
-				});
+				MaterialDialog.Instance.AlertAsync("Выберите страну", "Внимание", "Ок");
 				result = false;
 			}
 
 			if (PicCountryAndCityViewModel.SelectedCity == null && result)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
-				});
+				MaterialDialog.Instance.AlertAsync("Выберите город", "Внимание", "Ок");
 				result = false;
 			}
 
 			if (PicServiceTypeViewModel.SelectedService == null && result)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите услугу.", "Ок");
-				});
+				MaterialDialog.Instance.AlertAsync("Выберите услугу", "Внимание", "Ок");
 				result = false;
 			}
 
 			if (string.IsNullOrEmpty(ImageSource) && result)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите изображение акции.", "Ок");
-				});
+				MaterialDialog.Instance.AlertAsync("Выберите изображение акции", "Внимание", "Ок");
 				result = false;
 			}
 
@@ -289,11 +278,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 
 				return;
 			}
-
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				Application.Current.MainPage.DisplayAlert("Внимание", "Ошибка попробуйте повторить запрос позже.", "Ок");
-			});
+			await MaterialDialog.Instance.AlertAsync("Ошибка попробуйте повторить запрос позже", "Внимание", "Ок");
 		}
 
 		private async void PicImageCommandExecute()

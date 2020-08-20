@@ -24,7 +24,20 @@
                        Text="Покупатель согласен предоставить&#10;продавцу следующие персональные данные: &#10;-имя;&#10; -контактный номер телефона;&#10; -адрес электронной почты;&#10; -адрес доставки.&#10; При оплате с помощью банковской карты, клиент&#10;направляется на платежный сервис Яндекс.Касса,&#10;который отвечает за обработку и сохранность данных&#10;банковской карты клиента." />
                 <Label Margin="0,0,0,25" FontSize="Caption" TextColor="#505050"
                        Text="Данные клиента используются для оплаты заказа.&#10;Компания «Bonus System»,&#10;вправе изменить оферту по&#10;своему усмотрению. Изменения вступают в силу с&#10;момента публикации на сайте." />
-                <Grid RowSpacing="10" Margin="0,0,0,15">
+
+                <Label Margin="0,0,0,25"
+                       FontSize="Caption"
+                       TextDecorations="Underline"
+                       TextColor="#BB8D91"
+                       Text="Политика конфиденциальности" >
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowPrivacy"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+
+<Grid RowSpacing="10" Margin="0,0,0,15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -47,7 +60,11 @@
                                         </Span.GestureRecognizers>
                                     </Span>
                                     <Span Text="политикой конфиденциальности." TextDecorations="Underline"
-                                          TextColor="#BB8D91" />
+                                          TextColor="#BB8D91" >
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ShowPrivacy"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>

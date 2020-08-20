@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
-	public class CreateServiceViewModel : MvxViewModel, ICreateServiceViewModel
+	public class CreateServiceContentViewModel : MvxViewModel, ICreateServiceViewModel
 	{
 		#region Data
 		#region Fields
@@ -22,7 +22,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region .ctor
-		public CreateServiceViewModel(IServicesService servicesServices, IAuthService authService)
+		public CreateServiceContentViewModel(IServicesService servicesServices, IAuthService authService)
 		{
 			_authService = authService;
 			_servicesServices = servicesServices;

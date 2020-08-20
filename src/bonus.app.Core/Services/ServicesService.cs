@@ -51,70 +51,47 @@ namespace bonus.app.Core.Services
 		#region IServicesService members
 		public async Task<bool> CreateService(CreateServiceDto createServiceDto)
 		{
-			using (var client = new HttpClient())
+			var request = JsonConvert.SerializeObject(createServiceDto);
+			var response = await HttpClient.PostAsync(BusinessmanServicesUri, new StringContent(request, Encoding.UTF8, ApplicationJson));
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var request = JsonConvert.SerializeObject(createServiceDto);
-
-				var response = await client.PostAsync(BusinessmanServicesUri, new StringContent(request, Encoding.UTF8, ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
-				return data.Success;
+				return false;
 			}
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			if (data.Success)
+			{
+				MyServicesListChanged?.Invoke(this, EventArgs.Empty);
+			}
+			return data.Success;
 		}
 
 		public async Task<ServiceType> CreateServiceType(string name)
 		{
-			using (var client = new HttpClient())
+			var response = await HttpClient.PostAsync(CreateServiceTypeUri, new StringContent($"{{\"name\":\"{name}\"}}", Encoding.UTF8, ApplicationJson));
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(CreateServiceTypeUri, new StringContent($"{{\"name\":\"{name}\"}}", Encoding.UTF8, ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<ServiceType>>(json);
-
-				return data.Data;
+				return null;
 			}
+			var data = JsonConvert.DeserializeObject<ResponseDto<ServiceType>>(json);
+			return data.Data;
 		}
 
 		public async Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid)
 		{
-			using (var client = new HttpClient())
+			var response = await HttpClient.PostAsync(CreateServiceUri,
+												  new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(CreateServiceUri,
-													  new StringContent($"{{\"name\":\"{name}\",\"uuid\":\"{serviceTypeUuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-				if (string.IsNullOrEmpty(json))
-				{
-					return null;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<ServiceTypeItem>>(json);
-
-				return data.Data;
+				return null;
 			}
+			var data = JsonConvert.DeserializeObject<ResponseDto<ServiceTypeItem>>(json);
+			return data.Data;
 		}
 
 		public async Task<List<Service>> GetAllServices()
@@ -124,12 +101,10 @@ namespace bonus.app.Core.Services
 			{
 				return new List<Service>();
 			}
-
 			foreach (var service in services)
 			{
 				service.Client.PhotoSource = Domain + service.Client.PhotoSource;
 			}
-
 			return services;
 		}
 
@@ -145,41 +120,33 @@ namespace bonus.app.Core.Services
 			{
 				return new List<ServiceType>();
 			}
-
 			return _mapper.Map<ServiceType[]>(dtos);
 		}
 
 		public async Task<bool> RemoveServiceTypeItem(Guid uuid)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var response = await client.PostAsync(RemoveServiceTypeItemUri, new StringContent($"{{\"uuid\":\"{uuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-#if DEBUG
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-#endif
-				return response.IsSuccessStatusCode;
-			}
+			var response = await HttpClient.PostAsync(RemoveServiceTypeItemUri, new StringContent($"{{\"uuid\":\"{uuid}\"}}", Encoding.UTF8, ApplicationJson));
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			return data.Success;
 		}
 
 		public async Task<bool> UpdateService(CreateServiceDto service, Guid uuid)
 		{
-			using (var client = new HttpClient())
+			var request = JsonConvert.SerializeObject(service);
+			var response = await HttpClient.PutAsync(string.Format(BusinessmanServiceUri, uuid), new StringContent(request, Encoding.UTF8, ApplicationJson));
+			var json = await response.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			if (data.Success)
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-				var request = JsonConvert.SerializeObject(service);
-				var response = await client.PutAsync(string.Format(BusinessmanServiceUri, uuid), new StringContent(request, Encoding.UTF8, ApplicationJson));
-#if DEBUG
-				var json = await response.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-#endif
-				return response.IsSuccessStatusCode;
+				MyServicesListChanged?.Invoke(this, EventArgs.Empty);
 			}
+			return data.Success;
 		}
+
+		public event EventHandler MyServicesListChanged;
 		#endregion
 	}
 }

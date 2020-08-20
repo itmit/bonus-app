@@ -13,7 +13,23 @@
     <!--Содержимое с добавлением услуг-->
     <ContentView.Content>
         <StackLayout Spacing="0">
-            <StackLayout Margin="0,0,0,15" Spacing="0">
+
+            <StackLayout Spacing="0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,15,15">
+                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoBold}"
+                           FontSize="14" />
+                    <Image Source="ic_plus_add_4x.png"
+                           WidthRequest="24"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand" />
+                </StackLayout>
+                <BoxView />
+            </StackLayout>
+
+            <StackLayout Margin="0,15" Spacing="0">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
                 </StackLayout.GestureRecognizers>
@@ -38,31 +54,6 @@
                         <services:ServiceTypeContentView />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
-            </StackLayout>
-
-            <StackLayout BindableLayout.ItemsSource="{Binding MyServiceTypes}"
-                         IsVisible="{Binding IsVisibleServices}"
-                         IsEnabled="{Binding IsVisibleServices}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <services:CreatedServiceContentView />
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
-
-            <StackLayout Margin="0,20,0,0" Spacing="0" IsVisible="{Binding IsVisibleServices}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
-                </StackLayout.GestureRecognizers>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,15,15">
-                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoBold}"
-                           FontSize="14" />
-                    <Image Source="ic_plus_add_4x.png"
-                           WidthRequest="24"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand" />
-                </StackLayout>
-                <BoxView />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>
