@@ -8,6 +8,9 @@
                       xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Manager.ProfileManagerPage">
+    <NavigationPage.TitleView>
+        <Label Text="Профиль" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="25,0">
@@ -21,13 +24,14 @@
                         <Label Text="{Binding User.Name}" Style="{StaticResource TitleLabel}" FontSize="Body" />
                     </StackLayout>
                 </Grid>
-                <Grid ColumnSpacing="10" Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
-                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                <design:CustomButton Margin="0,0,0,20"
+                                     IsClippedToBounds="True"
+                                     CornerRadius="20"
+                                     HasShadow="False"
+                                     Padding="0"
+                                     WidthRequest="300"
+                                     HeightRequest="40"
+                                     BackgroundColor="#bab3af">
                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -38,28 +42,10 @@
                                    FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
                                    VerticalTextAlignment="Center" />
                         </Grid>
-                        <design:CustomButton.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
-                        </design:CustomButton.GestureRecognizers>
-                    </design:CustomButton>
-                    <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
-                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
-                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
-                                   VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Подписки" FontSize="Body"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenSubscribesCommand}" />
+                            <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
                         </Frame.GestureRecognizers>
                     </design:CustomButton>
-                </Grid>
                 <Label Text="{Binding User.Phone}" TextColor="#505050" Margin="10,0" />
                 <BoxView />
             </StackLayout>

@@ -13,23 +13,7 @@
     <!--Содержимое с добавлением услуг-->
     <ContentView.Content>
         <StackLayout Spacing="0">
-
-            <StackLayout Spacing="0">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
-                </StackLayout.GestureRecognizers>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,15,15">
-                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoBold}"
-                           FontSize="14" />
-                    <Image Source="ic_plus_add_4x.png"
-                           WidthRequest="24"
-                           VerticalOptions="Center"
-                           HorizontalOptions="EndAndExpand" />
-                </StackLayout>
-                <BoxView />
-            </StackLayout>
-
-            <StackLayout Margin="0,15" Spacing="0">
+            <StackLayout  Spacing="0">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
                 </StackLayout.GestureRecognizers>
@@ -51,9 +35,52 @@
                          HorizontalOptions="FillAndExpand">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <services:ServiceTypeContentView />
+                        <StackLayout Margin="0,15,0,0"  Spacing="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowOrHideServicesCommand}" />
+                            </StackLayout.GestureRecognizers>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
+                                <Label Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       Margin="20,0,0,0" />
+                                <Image Source="Shape.png"
+                                       WidthRequest="15"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand"
+                                       Rotation="{Binding Rotation}" />
+                            </StackLayout>
+                            <BoxView />
+
+                            <StackLayout IsVisible="{Binding IsVisibleServices}"
+                                         IsEnabled="{Binding IsVisibleServices}"
+                                         BindableLayout.ItemsSource="{Binding SubTypes}"
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <services:ServiceTypeContentView />
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <StackLayout Margin="0,15,0,0" Spacing="0">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
+                </StackLayout.GestureRecognizers>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,0,15,15">
+                    <Label Text="Добавить свою услугу" FontFamily="{x:Static design:DesignClass.LatoBold}"
+                           FontSize="14" />
+                    <Image Source="ic_plus_add_4x.png"
+                           WidthRequest="24"
+                           VerticalOptions="Center"
+                           HorizontalOptions="EndAndExpand" />
+                </StackLayout>
+                <BoxView />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

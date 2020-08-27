@@ -7,6 +7,9 @@
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic;assembly=bonus.app.Core"
+                      xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Stocks.BusinessmanStocksPage"
                       NavigationPage.HasBackButton="False">
@@ -43,20 +46,51 @@
         <RefreshView
             Command="{Binding RefreshCommand}"
             IsRefreshing="{Binding IsRefreshing}">
-            <CollectionView VerticalScrollBarVisibility="Never"
+            <Grid>
+                <CollectionView VerticalScrollBarVisibility="Never"
                             Margin="0,5"
                             ItemsSource="{Binding Stocks}"
                             SelectionMode="Single"
                             SelectedItem="{Binding SelectedStock}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <contentViews:StockContentView BackgroundColor="White" />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <contentViews:StockContentView BackgroundColor="White" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout VerticalOptions="Center">
+                            <Label Text="Пока у вас нет акций"
+                                   HorizontalTextAlignment="Center"
+                                   Margin="5,20,5,15" />
+
+                            <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="20,0">
+                                <Grid>
+                                    <graphic:RectangleInProfile />
+                                    <Label Text="ДОБАВИТЬ АКЦИЮ" Style="{StaticResource TextForAppButton}" />
+                                </Grid>
+                                <design:CustomButton.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenCreateStockPageCommand}" />
+                                </design:CustomButton.GestureRecognizers>
+                            </design:CustomButton>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <ui:MaterialButton BackgroundColor="#7E756F"
+                                   FontSize="25"
+                                   Command="{Binding OpenCreateStockPageCommand}"
+                                   CornerRadius="35"
+                                   HeightRequest="75"
+                                   Margin="0,0,20,20"
+                                   WidthRequest="75"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="End"
+                                   Text="+"
+                                   TextColor="White" />
+            </Grid>
         </RefreshView>
 
     </views:MvxContentPage.Content>

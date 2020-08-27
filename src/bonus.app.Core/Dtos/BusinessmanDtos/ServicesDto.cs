@@ -18,6 +18,12 @@ namespace bonus.app.Core.Dtos.BusinessmanDtos
 			get;
 			set;
 		}
+
+		public List<ServiceType> SubTypes
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

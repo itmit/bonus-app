@@ -30,21 +30,5 @@ namespace bonus.app.Core.Pages.Businessman
 			};
 		}
 		#endregion
-
-		#region Overrided
-		/// <summary>Event that is raised when the back button is pressed.</summary>
-		/// <returns>To be added.</returns>
-		/// <remarks>To be added.</remarks>
-		protected override bool OnBackButtonPressed()
-		{
-			if (Navigation.ModalStack.Count != 1 || !(Navigation.ModalStack[0] is ScannerPage))
-			{
-				return base.OnBackButtonPressed();
-			}
-
-			Navigation.PopModalAsync();
-			return true;
-		}
-		#endregion
 	}
 }

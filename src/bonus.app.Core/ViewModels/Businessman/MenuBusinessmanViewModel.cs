@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using bonus.app.Core.Helpers;
+using bonus.app.Core.Models.UserModels;
+using bonus.app.Core.Pages.Businessman;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman.Managers;
@@ -27,7 +31,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 		private MvxCommand _openStatisticsCommand;
 		private MvxCommand _openSupportCommand;
 		private MvxCommand _openTariffCommand;
-		private MvxCommand _openManagersCommand;
+		private MvxCommand _openHelpPageCommand;
 		#endregion
 		#endregion
 
@@ -62,6 +66,19 @@ namespace bonus.app.Core.ViewModels.Businessman
 				return _openPayCommand;
 			}
 		}
+		public MvxCommand OpenHelpPageCommand
+		{
+			get
+			{
+				_openHelpPageCommand = _openHelpPageCommand ??
+								  new MvxCommand(() =>
+								  {
+									  _navigationService.Navigate<HelpViewModel>();
+									  ((MasterDetailPage) Application.Current.MainPage).IsPresented = false;
+								  });
+				return _openHelpPageCommand;
+			}
+		}
 
 		public MvxCommand OpenProfileCommand
 		{
@@ -93,7 +110,11 @@ namespace bonus.app.Core.ViewModels.Businessman
 				_openSupportCommand = _openSupportCommand ??
 									  new MvxCommand(() =>
 									  {
-										  _navigationService.Navigate<ChatViewModel>();
+										  _navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(new User
+										  {
+											  Uuid = Guid.Parse(Secrets.SupportClientUuid),
+											  Name = "Тех. поддержка"
+										  }, null));
 										  ((MasterDetailPage) Application.Current.MainPage).IsPresented = false;
 									  });
 				return _openSupportCommand;
@@ -116,7 +137,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 		#endregion
 
 		#region Public
-		public async void LogOutCommandExecute()
+		private async void LogOutCommandExecute()
 		{
 			await _authService.Logout(_authService.User);
 			await _navigationService.Navigate<AuthorizationViewModel>();

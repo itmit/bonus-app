@@ -29,6 +29,12 @@ namespace bonus.app.Core.Models.ServiceModels
 			get;
 			set;
 		}
+
+		public List<ServiceType> SubTypes
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

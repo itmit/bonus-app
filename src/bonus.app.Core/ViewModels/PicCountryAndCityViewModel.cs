@@ -33,6 +33,9 @@ namespace bonus.app.Core.ViewModels
 		private MvxCommand _searchCountryCommand;
 		private MvxCommand _searchCityCommand;
 		private string _searchCity;
+		private bool _isFirstSelectCountry = true;
+		private bool _isFirstSelectCity = true;
+		private bool _canPicCountryOrCity = true;
 		#endregion
 		#endregion
 
@@ -164,6 +167,17 @@ namespace bonus.app.Core.ViewModels
 			get => _selectedCity;
 			set
 			{
+				if (!CanPicCountryOrCity)
+				{
+					return;
+				}
+
+				if (_isFirstSelectCity && _selectedCity != null)
+				{
+					_isFirstSelectCity = false;
+					return;
+				}
+
 				SetProperty(ref _selectedCity, value);
 				ShowOrHideCitiesCommand.Execute();
 			}
@@ -174,7 +188,19 @@ namespace bonus.app.Core.ViewModels
 			get => _selectedCountry;
 			set
 			{
+				if (!CanPicCountryOrCity)
+				{
+					return;
+				}
+
+				if (_isFirstSelectCountry && _selectedCountry != null)
+				{
+					_isFirstSelectCountry = false;
+					return;
+				}
+
 				SetProperty(ref _selectedCountry, value);
+
 				ShowOrHideCountriesCommand.Execute();
 				IsVisibleSelectedCity = true;
 				_cities = new MvxObservableCollection<City>();
@@ -190,6 +216,12 @@ namespace bonus.app.Core.ViewModels
 			}
 		}
 
+		public bool CanPicCountryOrCity
+		{
+			get => _canPicCountryOrCity;
+			set => SetProperty(ref _canPicCountryOrCity, value);
+		}
+
 		public MvxCommand ShowOrHideCitiesCommand
 		{
 			get
@@ -197,6 +229,11 @@ namespace bonus.app.Core.ViewModels
 				_showOrHideCitiesCommand = _showOrHideCitiesCommand ??
 										   new MvxCommand(() =>
 										   {
+											   if (!CanPicCountryOrCity)
+											   {
+												   return;
+											   }
+
 											   CityShapeRotation = IsVisibleCities ? 0 : 180;
 											   IsVisibleCities = !IsVisibleCities;
 										   });
@@ -211,6 +248,11 @@ namespace bonus.app.Core.ViewModels
 				_showOrHideCountriesCommand = _showOrHideCountriesCommand ??
 											  new MvxCommand(() =>
 											  {
+												  if (!CanPicCountryOrCity)
+												  {
+													  return;
+												  }
+
 												  CountryShapeRotation = IsVisibleCountries ? 0 : 180;
 												  IsVisibleCountries = !IsVisibleCountries;
 											  });
@@ -224,6 +266,7 @@ namespace bonus.app.Core.ViewModels
 		{
 			await base.Initialize();
 			User = _authService?.User;
+
 			try
 			{
 				var countries = await _geoHelperService.GetCountries(new LocaleDto
@@ -248,10 +291,34 @@ namespace bonus.app.Core.ViewModels
 
 			if (User != null && !string.IsNullOrEmpty(User.Country))
 			{
-				IsVisibleCities = true;
-				IsVisibleCountries = true;
 				_selectedCountry = Countries.Single(c => c.LocalizedNames.Ru.Equals(User.Country));
 				await RaisePropertyChanged(() => SelectedCountry);
+				if (SelectedCountry != null && !string.IsNullOrEmpty(User.City))
+				{
+					IsVisibleSelectedCity = true;
+					var cities = await _geoHelperService.GetCities(new LocaleDto
+															  {
+																  FallbackLang = "en",
+																  Lang = "ru"
+															  },
+															  new CityFilterDto
+															  {
+																  CountryIso = SelectedCountry.Iso,
+																  Name = User.City
+															  },
+															  new PaginationRequestDto
+															  {
+																  Limit = 100,
+																  Page = 1
+															  },
+															  new OrderDto
+															  {
+																  By = "population",
+																  Dir = "desc"
+															  });
+					_selectedCity = cities.FirstOrDefault();
+					await RaisePropertyChanged(() => SelectedCity);
+				}
 			}
 		}
 		#endregion

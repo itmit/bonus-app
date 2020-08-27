@@ -8,9 +8,9 @@
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:design="clr-namespace:bonus.app.Core.Design"
-                      xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
                       xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+                      xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Stocks.CreateStockPage">
     <NavigationPage.TitleView>
@@ -41,7 +41,7 @@
                     <contentViews:PicCountryAndCityContentView.Footer>
                         <StackLayout x:Name="Content">
 
-                            <services1:PicServiceTypeContentView Margin="0,20,0,0" x:Name="PicServiceTypeLayout" />
+                            <services:MyServicesContentView Margin="0,20,0,0" x:Name="MyServicesContentView"/>
 
                             <ui:MaterialTextField Text="{Binding Name.Value}"
                                                   MaxLength="30"
@@ -52,6 +52,7 @@
 
                             <ui:MaterialTextField Text="{Binding Description.Value}"
                                                   Placeholder="Описание акции&#10;&#10;"
+                                                  Margin="0,15,0,0"
                                                   TextChanged="Description_OnTextChanged"
                                                   ErrorText="{Binding Description.Errors, Converter={StaticResource FirstElementConverter}}"
                                                   HasError="{Binding Description.IsValid, Converter={StaticResource InverseBoolConverter}}" />
@@ -66,6 +67,7 @@
                                             Date="{Binding ShareTime.Value}"
                                             MaximumDate="2099-01-01"
                                             MinimumDate="2000-01-01"
+                                            Format="dd.MM.yyyy"
                                             FontFamily="{x:Static design:DesignClass.LatoRegular}" />
                                 <Image Source="ic_calendar_4x.png" VerticalOptions="Center" WidthRequest="18" />
                             </StackLayout>
@@ -81,7 +83,7 @@
                                         IsToggled="{Binding IsSubscriberOnly}"
                                         VerticalOptions="Center" />
                             </StackLayout>
-                            <BoxView Margin="0,15,0,20" />
+                            <BoxView Margin="0,5,0,20" />
                             <ui:MaterialButton Text="ПРОСМОТР"
                                                ButtonType="Outlined"
                                                HeightRequest="55"

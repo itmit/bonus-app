@@ -14,7 +14,7 @@
         <StackLayout Margin="15">
             <contentViews:ServiceAccrualBonusesContentView />
 
-            <design:CustomButton Style="{StaticResource AppButtonGradient}">
+            <design:CustomButton Margin="0,15" Style="{StaticResource AppButtonGradient}">
                 <Grid>
                     <graphic:RectangleInProfile />
                     <Label Text="ДОБАВИТЬ УСЛУГУ" Style="{StaticResource TextForAppButton}" />

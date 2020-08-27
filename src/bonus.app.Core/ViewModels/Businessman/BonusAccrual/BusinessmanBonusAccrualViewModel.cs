@@ -9,6 +9,7 @@ using MvvmCross.ViewModels;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 {
@@ -50,10 +51,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 									   var login = UserLogin?.Trim();
 									   if (string.IsNullOrEmpty(login) || login.Length != 18)
 									   {
-										   Device.BeginInvokeOnMainThread(() =>
-										   {
-											   Application.Current.MainPage.DisplayAlert("Ошибка", "Заполните поле номер телефона (18 символов).", "Ок");
-										   });
+										   await MaterialDialog.Instance.AlertAsync("Заполните поле номер телефона (18 символов)", "Ошибка", "Ок");
 									   }
 
 									   User user = null;
@@ -68,10 +66,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 
 									   if (user == null)
 									   {
-										   Device.BeginInvokeOnMainThread(() =>
-										   {
-											   Application.Current.MainPage.DisplayAlert("Ошибка", "Покупатель не найден.", "Ок");
-										   });
+										   await MaterialDialog.Instance.AlertAsync("Покупатель не найден", "Ошибка", "Ок");
 										   return;
 									   }
 
@@ -108,10 +103,7 @@ namespace bonus.app.Core.ViewModels.Businessman.BonusAccrual
 
 										  if (user == null)
 										  {
-											  Device.BeginInvokeOnMainThread(() =>
-											  {
-												  Application.Current.MainPage.DisplayAlert("Ошибка", "Покупатель не найден.", "Ок");
-											  });
+											  await MaterialDialog.Instance.AlertAsync("Покупатель не найден", "Ошибка", "Ок");
 											  return;
 										  }
 

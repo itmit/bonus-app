@@ -66,7 +66,7 @@ namespace bonus.app.Core.Services
 
 			var data = JsonConvert.DeserializeObject<ResponseDto<Dictionary<string, string>>>(json);
 
-			return data?.Data["url"];
+			return data.Success ? data.Data?["url"] : null;
 		}
 	}
 }

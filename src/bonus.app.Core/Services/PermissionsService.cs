@@ -4,6 +4,7 @@ using MvvmCross.Forms.Presenters;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.Services
 {
@@ -51,15 +52,12 @@ namespace bonus.app.Core.Services
 					return true;
 				}
 
-				Device.BeginInvokeOnMainThread(async () =>
-				{
-					var answer = await FormsApplication.MainPage.DisplayAlert("Внимание", message, "Ок", "Отмена");
+				var answer = await MaterialDialog.Instance.ConfirmAsync(message, "Внимание", "Ок", "Отмена");
 
-					if (answer)
-					{
-						_settingsHelper.OpenAppSettings();
-					}
-				});
+				if (answer != null && answer.Value)
+				{
+					_settingsHelper.OpenAppSettings();
+				}
 			}
 			catch (Exception ex)
 			{

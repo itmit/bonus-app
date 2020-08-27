@@ -6,7 +6,6 @@
                       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
                       xmlns:businessman="clr-namespace:bonus.app.Core.ViewModels.Businessman;assembly=bonus.app.Core"
                       xmlns:graphic="clr-namespace:bonus.app.Core.Graphic"
                       xmlns:views1="clr-namespace:bonus.app.Core.Views;assembly=bonus.app.Core"
@@ -42,13 +41,14 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
 
                         <StackLayout Grid.Row="0" Orientation="Horizontal">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenProfileCommand}" NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
-                            <Image Source="ic_profile_w.png" Style="{StaticResource image}" />
+                            <Image Source="ic_profile_w" Style="{StaticResource image}" />
 
                             <Label Text="Профиль" TextColor="White" />
                         </StackLayout>
@@ -57,7 +57,7 @@
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenPayCommand}" NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
-                            <Image Source="ic_rub.png" Style="{StaticResource image}" />
+                            <Image Source="ic_rub" Style="{StaticResource image}" />
 
                             <Label Text="Оплата" TextColor="White" />
                         </StackLayout>
@@ -66,13 +66,13 @@
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenTariffCommand}" NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
-                            <Image Source="ic_tarif_4x.png" Style="{StaticResource image}" />
+                            <Image Source="ic_tarif_4x" Style="{StaticResource image}" />
 
                             <Label Text="Тарифы" TextColor="White" />
                         </StackLayout>
 
                         <StackLayout Grid.Row="3" Orientation="Horizontal">
-                            <Image Source="ic_support.png" Style="{StaticResource image}" />
+                            <Image Source="ic_support" Style="{StaticResource image}" />
 
                             <Label Text="Тех. поддержка" TextColor="White" />
                             <StackLayout.GestureRecognizers>
@@ -80,7 +80,7 @@
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Grid.Row="4" Orientation="Horizontal">
-                            <Image Source="ic_statistic_4x.png" Style="{StaticResource image}" />
+                            <Image Source="ic_statistic_4x" Style="{StaticResource image}" />
 
                             <Label Text="Статистика" TextColor="White" />
                             <StackLayout.GestureRecognizers>
@@ -90,6 +90,16 @@
                         </StackLayout>
 
                         <StackLayout Grid.Row="5" Orientation="Horizontal">
+                            <Image Source="icons8_help_48" Style="{StaticResource image}" />
+
+                            <Label Text="Помощь" TextColor="White" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenHelpPageCommand}"
+                                                      NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="6" Orientation="Horizontal">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding LogOutCommand}" />
                             </StackLayout.GestureRecognizers>

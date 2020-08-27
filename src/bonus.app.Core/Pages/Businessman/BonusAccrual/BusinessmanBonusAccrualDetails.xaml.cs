@@ -11,7 +11,6 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = true)]
 	public partial class BusinessmanBonusAccrualDetails : MvxContentPage<BusinessmanBonusAccrualDetailsViewModel>
 	{
 		#region .ctor

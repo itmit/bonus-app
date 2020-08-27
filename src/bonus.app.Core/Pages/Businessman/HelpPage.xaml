@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage x:TypeArguments="viewModels:HelpViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:bonus.app.Core.ViewModels;assembly=bonus.app.Core"
+                      NavigationPage.HasNavigationBar="True"
+                      x:Class="bonus.app.Core.Pages.Businessman.HelpPage">
+    <NavigationPage.TitleView>
+        <Label Text="Помощь" Style="{StaticResource TitleLabel}" />
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20,20" Spacing="0">
+                <Label Text="ВОЗВРАТ ДЕНЕЖНЫХ СРЕДСТВ" Style="{StaticResource TitleLabel}" FontSize="Body"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="FillAndExpand" />
+                <Label Margin="0,0,0,15" FontSize="Caption" TextColor="#505050"
+                       Text="Не предусмотрен"/>
+
+                <Label Text="ОПИСАНИЕ ПРОЦЕССА ПЕРЕДАЧИ ДАННЫХ" Style="{StaticResource TitleLabel}" FontSize="Body"
+                                                                              HorizontalTextAlignment="Center"
+                                                                              HorizontalOptions="FillAndExpand" />
+
+                <Label Margin="0,0,0,15" FontSize="Caption" TextColor="#505050"
+                       Text="Для оплаты (ввода реквизитов Вашей карты) Вы будете перенаправлены на платёжный шлюз ПАО СБЕРБАНК. Соединение с платёжным шлюзом и передача информации осуществляется в защищённом режиме с использованием протокола шифрования SSL. В случае если Ваш банк поддерживает технологию безопасного проведения интернет-платежей Verified By Visa, MasterCard SecureCode, MIR Accept, J-Secure для проведения платежа также может потребоваться ввод специального пароля.&#10;
+&#10;
+Настоящий сайт поддерживает 256-битное шифрование. Конфиденциальность сообщаемой персональной информации обеспечивается ПАО СБЕРБАНК. Введённая информация не будет предоставлена третьим лицам за исключением случаев, предусмотренных законодательством РФ. Проведение платежей по банковским картам осуществляется в строгом соответствии с требованиями платёжных систем МИР, Visa Int., MasterCard Europe Sprl, JCB." />
+
+                <Label Text="СПОСОБЫ ОПЛАТЫ" Style="{StaticResource TitleLabel}" FontSize="Body"
+                                       HorizontalTextAlignment="Center"
+                                       HorizontalOptions="FillAndExpand" />
+
+                <Label Margin="0,0,0,15" FontSize="Caption" TextColor="#505050"
+                       Text="Банковской картой&#10;
+Для выбора оплаты товара с помощью банковской карты на соответствующей странице необходимо нажать кнопку Оплата заказа банковской картой. Оплата происходит через ПАО СБЕРБАНК с использованием банковских карт следующих платёжных систем:&#10;
+&#10;
+МИР (разместить логотип МИР);&#10;
+VISA International (разместить логотип VISA International);&#10;
+Mastercard Worldwide (разместить логотип Mastercard Worldwide);&#10;
+JCB (разместить логотип JCB)."/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</views:MvxContentPage>

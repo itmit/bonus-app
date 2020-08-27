@@ -4,6 +4,7 @@ using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
@@ -31,6 +32,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			{
 				_openTwoStepCommand = _openTwoStepCommand ?? new MvxCommand(() =>
 				{
+					if (MyServicesContentViewModel.SelectedService == null)
+					{
+						MaterialDialog.Instance.AlertAsync("Выберите услугу", "Внимание", "Ок");
+						return;
+					}
+
 					_navigationService.Navigate<CreateServiceStepTwoViewModel, CreateServiceStepTwoViewModel.CreateServiceStepTwoViewModelArgs>(new CreateServiceStepTwoViewModel.CreateServiceStepTwoViewModelArgs(MyServicesContentViewModel.SelectedService.Uuid, this));
 				});
 				return _openTwoStepCommand;
@@ -41,6 +48,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			await base.Initialize();
 			await MyServicesContentViewModel.Initialize();
+			MyServicesContentViewModel.IsVisibleServices = true;
 		}
 	}
 }

@@ -202,10 +202,7 @@ namespace bonus.app.Core.Services
 
 		public async Task<bool> Logout(User user)
 		{
-			if (user.Uuid.Equals(Guid.Empty) || !_userRepository.Remove(user))
-			{
-				_userRepository.RemoveAll();
-			}
+			_userRepository.RemoveAll();
 
 			_userUuid = Guid.Empty;
 

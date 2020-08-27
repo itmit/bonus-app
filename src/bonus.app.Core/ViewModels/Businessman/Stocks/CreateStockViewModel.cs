@@ -54,7 +54,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			_permissionsService = permissionsService;
 			_navigationService = navigationService;
 			PicCountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
-			PicServiceTypeViewModel = new PicServiceTypeViewModel(servicesServices, authService);
+			MyServicesViewModel = new MyServicesViewModel(servicesServices, authService);
 
 			AddValidations();
 		}
@@ -66,7 +66,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			get;
 		}
 
-		public PicServiceTypeViewModel PicServiceTypeViewModel
+		public MyServicesViewModel MyServicesViewModel
 		{
 			get;
 		}
@@ -171,8 +171,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		public override async Task Initialize()
 		{
 			await base.Initialize();
+			PicCountryAndCityViewModel.CanPicCountryOrCity = false;
 			await PicCountryAndCityViewModel.Initialize();
-			await PicServiceTypeViewModel.Initialize();
+			await MyServicesViewModel.Initialize();
 		}
 		#endregion
 
@@ -213,7 +214,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				result = false;
 			}
 
-			if (PicServiceTypeViewModel.SelectedService == null && result)
+			if (MyServicesViewModel.SelectedService == null && result)
 			{
 				MaterialDialog.Instance.AlertAsync("Выберите услугу", "Внимание", "Ок");
 				result = false;
@@ -253,7 +254,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 													  {
 														  Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
 														  City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
-														  Service = PicServiceTypeViewModel.SelectedService.Uuid,
+														  Service = MyServicesViewModel.SelectedService.Uuid,
 														  Description = Description.Value,
 														  ImageSource = ImageName,
 														  Name = Name.Value,

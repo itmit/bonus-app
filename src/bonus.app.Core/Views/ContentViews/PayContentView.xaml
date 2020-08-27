@@ -25,7 +25,7 @@
                             <FormattedString>
                                 <FormattedString.Spans>
                                     <Span Text="от "/>
-                                    <Span Text="{Binding ., Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"/>
+                                    <Span Text="{Binding ., Source={x:Static sys:DateTime.Now}, StringFormat='{0:dd MMMM, yyyy}'}"/>
                                     <Span Text="."/>
                                 </FormattedString.Spans>
                             </FormattedString>

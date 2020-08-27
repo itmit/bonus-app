@@ -8,38 +8,54 @@
              mc:Ignorable="d"
              x:Class="bonus.app.Core.Views.ViewCells.Chat.ChatInputBarView">
     <ContentView.Content>
-        <Frame x:Name="Frame" HasShadow="False" BorderColor="#505050" Padding="20,5" BackgroundColor="White">
+        <Frame HasShadow="False" BorderColor="#505050" Padding="20,5" BackgroundColor="White">
             <Grid ColumnSpacing="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Row="0" Grid.Column="0" Padding="0" IsClippedToBounds="True" CornerRadius="20"
-                       HasShadow="False">
-                    <StackLayout>
-                        <Image Source="{Binding ImagePath}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" />
 
-                        <controls:ExtendedEditorControl x:Name="ChatTextInput"
-                                                        Text="{Binding TextToSend}"
-                                                        Margin="1"
-                                                        TextColor="Black"
-                                                        Keyboard="Chat"
-                                                        IsExpandable="true"
-                                                        HorizontalOptions="FillAndExpand"
-                                                        PlaceholderColor="Black"
-                                                        Placeholder="Напишите сообщение" />
-                    </StackLayout>
-                </Frame>
-                <ImageButton Grid.Column="1"
-                             Source="ic_attach_4x.png"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Grid.ColumnSpan="3" IsVisible="{Binding ImagePath, Converter={StaticResource NullToBoolConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="1" HeightRequest="100" Source="{Binding ImagePath}" Aspect="AspectFill" />
+                </Grid>
+
+                <StackLayout Grid.Row="1" Grid.Column="0">
+
+                    <Frame Padding="0" IsClippedToBounds="True" CornerRadius="20"
+                           HasShadow="False">
+                            <controls:ExtendedEditorControl x:Name="ChatTextInput"
+                                                            Text="{Binding TextToSend}"
+                                                            Margin="1"
+                                                            TextColor="Black"
+                                                            Keyboard="Chat"
+                                                            IsExpandable="true"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            PlaceholderColor="Black"
+                                                            Placeholder="Напишите сообщение" />
+                    </Frame>
+                </StackLayout>
+
+                <ImageButton Grid.Row="1" Grid.Column="1"
+                             Source="ic_attach_4x"
                              WidthRequest="40"
                              CornerRadius="20"
                              BackgroundColor="White"
                              VerticalOptions="EndAndExpand"
                              Command="{Binding AttachImageCommand}"
                              Padding="5" />
-                <ImageButton Grid.Column="2"
+                <ImageButton Grid.Row="1" Grid.Column="2"
                              Source="ic_send_4x.png"
                              WidthRequest="40"
                              HeightRequest="40"

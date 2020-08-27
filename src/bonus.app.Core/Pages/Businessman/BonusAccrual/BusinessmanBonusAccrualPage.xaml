@@ -20,17 +20,18 @@
             <graphic:GradientForBonusAccrual />
 
             <ScrollView>
-                <StackLayout Margin="30,0" Spacing="0">
+                <StackLayout Margin="30,0"
+                             Spacing="0">
                     <Label Text="Списание бонусов" HorizontalTextAlignment="Center" FontSize="Large"
                            Margin="{x:Static design:DesignClass.MarginForTitle}"
                            TextColor="White" FontFamily="{x:Static design:DesignClass.MontserratBold}" />
-                    <Label Text="QR barcode scanner" TextColor="White" HorizontalOptions="Center" Margin="0,0,0,30"
-                           FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
 
-                    <Label Text="Для сканирования нажмите на QR-код"
+                    <Label Text="Для начисления бонусов найдите клиента по номеру телефона, либо отсканируйте его QR-код. Для сканирования нажмите на QR-код"
                            TextColor="White"
+                           HorizontalTextAlignment="Center"
                            HorizontalOptions="Center"
                            Margin="0,0,0,30"
+                           FontSize="16"
                            FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
 
                     <Frame CornerRadius="60"
@@ -49,7 +50,10 @@
                         </Frame.GestureRecognizers>
                     </Frame>
 
-                    <Frame Margin="0,0,0,20" CornerRadius="23" IsClippedToBounds="True" Padding="0,-2"
+                    <Frame Margin="0,0,0,20"
+                           CornerRadius="23"
+                           IsClippedToBounds="True"
+                           Padding="0,-2"
                            HasShadow="False"
                            HeightRequest="50" BackgroundColor="#bab3af">
                         <SearchBar Placeholder="Поиск по номеру телефона"
@@ -66,7 +70,10 @@
                             </SearchBar.Behaviors>
                         </SearchBar>
                     </Frame>
-                    <Button Text="ДАЛЕЕ" Style="{StaticResource AuthAndRegButton}" Command="{Binding FurtherCommand}" />
+                    <Button Text="ДАЛЕЕ"
+                            Style="{StaticResource AuthAndRegButton}"
+                            Margin="0,0,0,30"
+                            Command="{Binding FurtherCommand}" />
                 </StackLayout>
             </ScrollView>
         </Grid>

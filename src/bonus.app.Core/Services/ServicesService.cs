@@ -43,6 +43,7 @@ namespace bonus.app.Core.Services
 				   .ForPath(model => model.Id, m => m.MapFrom(dto => dto.Type.Id))
 				   .ForPath(model => model.Name, m => m.MapFrom(dto => dto.Type.Name))
 				   .ForPath(model => model.Uuid, m => m.MapFrom(dto => dto.Type.Uuid))
+				   .ForPath(model => model.SubTypes, m => m.MapFrom(dto => dto.SubTypes))
 				   .ForPath(model => model.Services, m => m.MapFrom(dto => dto.Items));
 			}));
 		}

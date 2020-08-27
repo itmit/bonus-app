@@ -14,6 +14,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private MvxObservableCollection<ServiceViewModel> _services = new MvxObservableCollection<ServiceViewModel>();
 		private MvxCommand _showOrHideServicesCommand;
 		private Guid _uuid;
+		private MvxObservableCollection<ServiceTypeViewModel> _subTypes;
 		#endregion
 		#endregion
 
@@ -60,6 +61,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			get => _uuid;
 			set => SetProperty(ref _uuid, value);
+		}
+
+		public MvxObservableCollection<ServiceTypeViewModel> SubTypes
+		{
+			get => _subTypes;
+			set => SetProperty(ref _subTypes, value);
 		}
 		#endregion
 	}

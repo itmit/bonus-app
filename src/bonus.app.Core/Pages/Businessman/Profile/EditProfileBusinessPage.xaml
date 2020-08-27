@@ -81,7 +81,8 @@
                             </ui:MaterialTextField>
 
                             <ui:MaterialTextField Placeholder="Описание (расскажите об услугах)&#10;&#10;"
-                                                  Text="{Binding Description}" />
+                                                  Text="{Binding Description}"
+                                                  Margin="0,15,0,0" />
 
                             <StackLayout IsVisible="{Binding Parameters.IsActiveUser}"
                                          IsEnabled="{Binding Parameters.IsActiveUser}">

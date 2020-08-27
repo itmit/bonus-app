@@ -4,7 +4,7 @@ using MvvmCross.Forms.Views;
 
 namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 {
-	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_charges", WrapInNavigationPage = false, Title = "Начисления")]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_charges", Title = "Бонусы")]
 	public partial class BusinessmanBonusAccrualPage : MvxContentPage<BusinessmanBonusAccrualViewModel>
 	{
 		#region .ctor
@@ -14,17 +14,6 @@ namespace bonus.app.Core.Pages.Businessman.BonusAccrual
 
 			BarcodeImageView.BarcodeOptions.Width = 225;
 			BarcodeImageView.BarcodeOptions.Height = 225;
-		}
-		#endregion
-
-		#region Overrided
-		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
-		/// <returns>To be added.</returns>
-		/// <remarks>To be added.</remarks>
-		protected override bool OnBackButtonPressed()
-		{
-			Navigation.PopModalAsync();
-			return true;
 		}
 		#endregion
 	}

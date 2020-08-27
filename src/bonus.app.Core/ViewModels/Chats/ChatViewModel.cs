@@ -21,7 +21,7 @@ namespace bonus.app.Core.ViewModels.Chats
 		#region Fields
 		private MvxCommand _attachImageCommand;
 		private readonly IChatsService _chatsService;
-		private string _imagePath = string.Empty;
+		private string _imagePath;
 		private MvxObservableCollection<Message> _messages = new MvxObservableCollection<Message>();
 		private readonly IPermissionsService _permissionsService;
 		private User _recipient;
@@ -126,17 +126,17 @@ namespace bonus.app.Core.ViewModels.Chats
 								   {
 									   try
 									   {
-										   DialogId = (await _chatsService.CreateDialog(Recipient)).Id;
+										   DialogId = (await _chatsService.CreateDialog(Recipient))?.Id;
 									   }
 									   catch (Exception e)
 									   {
 										   Console.WriteLine(e);
 									   }
-								   }
 
-								   if (string.IsNullOrWhiteSpace(TextToSend))
-								   {
-									   return;
+									   if (DialogId == null)
+									   {
+										   return;
+									   }
 								   }
 
 								   if (DialogId == null)

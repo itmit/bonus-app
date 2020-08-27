@@ -26,7 +26,10 @@
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,20,15">
                     <Label Text="{Binding SelectedCountry.LocalizedNames.Ru, FallbackValue='Страна'}" FontSize="14"
                            Margin="5,0,0,0" />
-                    <Image Source="Shape.png" WidthRequest="15" Rotation="{Binding CountryShapeRotation}"
+                    <Image Source="Shape"
+                           IsVisible="{Binding CanPicCountryOrCity}"
+                           WidthRequest="15"
+                           Rotation="{Binding CountryShapeRotation}"
                            VerticalOptions="Center"
                            HorizontalOptions="EndAndExpand" />
                 </StackLayout>
@@ -67,7 +70,10 @@
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="5,20,20,15">
                         <Label Text="{Binding SelectedCity.LocalizedNames.Ru, FallbackValue='Город'}" FontSize="14"
                                Margin="5,0,0,0" />
-                        <Image Source="Shape.png" WidthRequest="15" Rotation="{Binding CityShapeRotation}"
+                        <Image Source="Shape"
+                               IsVisible="{Binding CanPicCountryOrCity}"
+                               WidthRequest="15"
+                               Rotation="{Binding CityShapeRotation}"
                                VerticalOptions="Center"
                                HorizontalOptions="EndAndExpand" />
                     </StackLayout>

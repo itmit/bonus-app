@@ -9,7 +9,6 @@ using ZXing.Net.Mobile.Forms;
 
 namespace bonus.app.Core.Pages
 {
-	[MvxMasterDetailPagePresentation(Position = MasterDetailPosition.Detail, WrapInNavigationPage = true)]
 	public class ScannerPage : ZXingScannerPage, IMvxPage<ScannerViewModel>
 	{
 		#region Data
@@ -82,15 +81,6 @@ namespace bonus.app.Core.Pages
 			{
 				OnScanResult += ViewModel.OnScanResult;
 			}
-		}
-
-		/// <summary>Application developers can override this method to provide behavior when the back button is pressed.</summary>
-		/// <returns>To be added.</returns>
-		/// <remarks>To be added.</remarks>
-		protected override bool OnBackButtonPressed()
-		{
-			Navigation.PopModalAsync();
-			return true;
 		}
 		#endregion
 
