@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using bonus.app.Core.Helpers;
+using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Chats;
@@ -55,7 +58,11 @@ namespace bonus.app.Core.ViewModels.Manager
 				_openSupportCommand = _openSupportCommand ??
 									  new MvxCommand(() =>
 									  {
-										  NavigationService.Navigate<ChatViewModel>();
+										  NavigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(new User
+										  {
+											  Uuid = Guid.Parse(Secrets.SupportClientUuid),
+											  Name = "Тех. поддержка"
+										  }, null));
 										  ((MasterDetailPage)Application.Current.MainPage).IsPresented = false;
 									  });
 				return _openSupportCommand;

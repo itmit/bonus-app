@@ -41,17 +41,30 @@
                             </Image.GestureRecognizers>
                         </Image>
                     </Grid>
-                    <StackLayout Orientation="Horizontal" Spacing="0" Margin="0,0,0,20">
-                        <CheckBox x:Name="IsRemember" VerticalOptions="Center" HorizontalOptions="Start"
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0,0,0,20"
+                                 Spacing="0">
+                        <CheckBox x:Name="IsRemember"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="Start"
+                                  IsVisible="False"
                                   Color="#DADADA" />
-                        <Label Text="Запомнить" FontSize="Caption" TextColor="White" HorizontalOptions="Start"
-                               VerticalOptions="Center" Margin="10,0,0,0">
+                        <Label Text="Запомнить"
+                               FontSize="Caption"
+                               TextColor="White"
+                               HorizontalOptions="Start"
+                               IsVisible="False"
+                               VerticalOptions="Center"
+                               Margin="10,0,0,0">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped_1" />
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="Забыли пароль?" TextColor="White" HorizontalOptions="EndAndExpand"
-                               VerticalOptions="Center" FontSize="Caption">
+                        <Label Text="Забыли пароль?"
+                               TextColor="White"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="Center"
+                               FontSize="Caption">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"
                                                       NumberOfTapsRequired="1" />
@@ -77,7 +90,10 @@
                             <TapGestureRecognizer Command="{Binding CreateAccountCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Text="Справочный центр" TextColor="White" HorizontalTextAlignment="Center" />
+                    <Label Text="Справочный центр"
+                           IsVisible="False"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" />
                 </StackLayout>
             </ScrollView>
         </Grid>

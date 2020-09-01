@@ -34,5 +34,11 @@ namespace bonus.app.Core.Views.ContentViews
 			}
 		}
 		#endregion
+
+		private void OtherCityTabbed(object sender, EventArgs e)
+		{
+			CitySearchBar.Focus();
+			ViewModel.Cities.Clear();
+		}
 	}
 }

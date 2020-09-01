@@ -318,6 +318,11 @@ namespace bonus.app.Core.ViewModels
 															  });
 					_selectedCity = cities.FirstOrDefault();
 					await RaisePropertyChanged(() => SelectedCity);
+
+					if (CanPicCountryOrCity)
+					{
+						LoadCities(SelectedCountry);
+					}
 				}
 			}
 		}

@@ -161,7 +161,7 @@ namespace bonus.app.Core.ViewModels.Chats
 								   }
 
 								   TextToSend = string.Empty;
-								   ImagePath = string.Empty;
+								   ImagePath = null;
 							   });
 				return _sendCommand;
 			}

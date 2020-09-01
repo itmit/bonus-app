@@ -149,6 +149,9 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
+                        <Label Text="Информации нет"
+                               IsVisible="{Binding HasServiceInfo, Converter={StaticResource InverseBoolConverter}}"/>
+
                         <Label Margin="0,35,0,0" Text="Мы в соцсетях:" TextColor="#000000" FontSize="Body"
                                FontFamily="{x:Static design:DesignClass.MontserratRegular}" />
                         <StackLayout Orientation="Horizontal" Spacing="0">

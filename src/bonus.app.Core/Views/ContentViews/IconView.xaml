@@ -9,7 +9,7 @@
              x:Class="bonus.app.Core.Views.IconView">
     <ContentView.Content>
         <!--Представление с иконками внизу в меню пользователя и предпринимателя-->
-        <StackLayout Spacing="0">
+        <StackLayout IsVisible="False"  Spacing="0">
             <Label Text="Поделись с друзьями:"
                    FontSize="Body"
                    FontFamily="{x:Static design:DesignClass.LatoRegular}"

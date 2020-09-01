@@ -80,14 +80,13 @@
                     <BoxView />
                 </StackLayout>
 
-                <StackLayout Grid.Row="1">
+                <StackLayout IsVisible="{Binding IsVisibleCities}"
+                             IsEnabled="{Binding IsVisibleCities}"
+                             Grid.Row="1">
                     <SearchBar Text="{Binding SearchCity}"
-                               SearchCommand="{Binding SearchCityCommand}"
-                               IsVisible="{Binding IsVisibleCities}"
-                               IsEnabled="{Binding IsVisibleCities}"/>
-                    <CollectionView IsVisible="{Binding IsVisibleCities}"
-                                    IsEnabled="{Binding IsVisibleCities}"
-                                    SelectionMode="Single"
+                               x:Name="CitySearchBar"
+                               SearchCommand="{Binding SearchCityCommand}"/>
+                    <CollectionView SelectionMode="Single"
                                     ItemsSource="{Binding Cities}"
                                     SelectedItem="{Binding SelectedCity}"
                                     VerticalOptions="FillAndExpand"
@@ -99,6 +98,9 @@
                         </CollectionView.ItemTemplate>
                         <CollectionView.Footer>
                             <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OtherCityTabbed"/>
+                                </StackLayout.GestureRecognizers>
                                 <Label Margin="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Другой город"/>
                             </StackLayout>
                         </CollectionView.Footer>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
@@ -7,6 +8,7 @@ using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.ViewModels.Businessman.Managers;
 using bonus.app.Core.ViewModels.Chats;
+using MvvmCross.Binding.Extensions;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Logging;
@@ -53,6 +55,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private MvxCommand _showBonusDetailsCommand;
 		private User _user;
 		private MvxCommand _openManagersCommand;
+		private bool _hasServiceInfo;
 		#endregion
 		#endregion
 
@@ -282,6 +285,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			private set => SetProperty(ref _services, value);
 		}
 
+		public bool HasServiceInfo
+		{
+			get => _hasServiceInfo;
+			set => SetProperty(ref _hasServiceInfo, value);
+		}
+
 		public MvxCommand ShowBonusDetailsCommand
 		{
 			get
@@ -343,6 +352,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			{
 				Console.WriteLine(e);
 			}
+			HasServiceInfo = Services != null && Services.Any();
 		}
 		#endregion
 
