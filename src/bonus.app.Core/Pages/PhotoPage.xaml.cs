@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using bonus.app.Core.ViewModels;
 using bonus.app.Core.ViewModels.Businessman;
 using Rg.Plugins.Popup.Pages;
@@ -36,6 +37,11 @@ namespace bonus.app.Core.Pages
 				}
 				CachedImage.WidthRequest = Scroll.Width;
 			}
+		}
+
+		private void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			Navigation.PopAsync();
 		}
 	}
 }

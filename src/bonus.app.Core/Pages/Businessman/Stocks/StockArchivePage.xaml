@@ -9,15 +9,21 @@
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:contentviews="clr-namespace:bonus.app.Core.Views.ContentViews"
                       xmlns:shares="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
+                      xmlns:stocks="clr-namespace:bonus.app.Core.Views.ContentViews.Stocks;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Stocks.StockArchivePage">
     <NavigationPage.TitleView>
-        <Label Text="Архив акций" Style="{StaticResource TitleLabel}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Архив акций" Style="{StaticResource TitleLabel}" />
+            <ImageButton Grid.Column="1" Source="ic_pref_4x.png" WidthRequest="20" HeightRequest="20"
+                         HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Clicked="ShowFilter"
+                         Margin="0,0,25,0" />
+        </Grid>
     </NavigationPage.TitleView>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Фильтр" Order="Secondary" Clicked="MenuItem_OnClicked" />
-    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <!--5.5 Архив акций-->
@@ -37,11 +43,11 @@
             <!--Затемнение заднего фона-->
             <StackLayout BackgroundColor="Black" x:Name="BlackBackground" IsEnabled="False" IsVisible="False" />
             <!--Появляющийся фильтр-->
-            <viewCells:FilterContentView x:Name="Filter" IsEnabled="False">
-                <viewCells:FilterContentView.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                </viewCells:FilterContentView.GestureRecognizers>
-            </viewCells:FilterContentView>
+            <stocks:FilterContentView x:Name="Filter" IsEnabled="False">
+                <stocks:FilterContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowFilter" />
+                </stocks:FilterContentView.GestureRecognizers>
+            </stocks:FilterContentView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

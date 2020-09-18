@@ -68,7 +68,7 @@
                 </BindableLayout.ItemTemplate>
             </StackLayout>
 
-            <StackLayout Margin="0,15,0,0" Spacing="0">
+            <StackLayout Margin="0,15,0,0" Spacing="0" IsVisible="{Binding CanAddService}">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding AddServiceCommand}" />
                 </StackLayout.GestureRecognizers>

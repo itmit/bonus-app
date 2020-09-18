@@ -16,6 +16,12 @@ namespace bonus.app.Core.Models.ServiceModels
 			get;
 			set;
 		}
+
+		public int? Id
+		{
+			get;
+			set;
+		}
 		#endregion
 	}
 }

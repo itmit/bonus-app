@@ -44,26 +44,31 @@ namespace bonus.app.Core
 			var user = Mvx.IoCProvider.Resolve<IAuthService>()
 						  .User;
 
-			if (user?.AccessToken == null)
+			if (user?.AccessToken != null)
 			{
-				RegisterAppStart<AuthorizationViewModel>();
-				return;
+				var profile = Mvx.IoCProvider.Resolve<IProfileService>().GetUser();
+
+				if (profile.GetAwaiter().GetResult() != null)
+				{
+					switch (user.Role)
+					{
+						case UserRole.Businessman:
+							RegisterAppStart<MainBusinessmanViewModel>();
+							break;
+						case UserRole.Customer:
+							RegisterAppStart<MainCustomerViewModel>();
+							break;
+						case UserRole.Manager:
+							RegisterAppStart<MainManagerViewModel>();
+							break;
+						default:
+							throw new ArgumentOutOfRangeException();
+					}
+					return;
+				}
 			}
 
-			switch (user.Role)
-			{
-				case UserRole.Businessman:
-					RegisterAppStart<MainBusinessmanViewModel>();
-					break;
-				case UserRole.Customer:
-					RegisterAppStart<MainCustomerViewModel>();
-					break;
-				case UserRole.Manager:
-					RegisterAppStart<MainManagerViewModel>();
-					break;
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
+			RegisterAppStart<AuthorizationViewModel>();
 		}
 		#endregion
 	}

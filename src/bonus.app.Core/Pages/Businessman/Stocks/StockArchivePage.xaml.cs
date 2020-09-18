@@ -29,12 +29,22 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 			return false;
 		}
 
-		/// <summary>
-		/// Управляет выплывающим фильтром
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private async void MenuItem_OnClicked(object sender, EventArgs e)
+		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			((CollectionView) sender).SelectedItem = null;
+		}
+		#endregion
+
+		/// <summary>When overridden, allows application developers to customize behavior immediately prior to the <see cref="T:Xamarin.Forms.Page" /> becoming visible.</summary>
+		/// <remarks>To be added.</remarks>
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			Filter.ServicesFilterContentView.ViewModel = ViewModel.MyServicesContentViewModel;
+		}
+
+		private async void ShowFilter(object sender, EventArgs e)
 		{
 			if (Filter.IsEnabled)
 			{
@@ -55,26 +65,5 @@ namespace bonus.app.Core.Pages.Businessman.Stocks
 				Filter.IsEnabled = true;
 			}
 		}
-
-		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			((CollectionView) sender).SelectedItem = null;
-		}
-
-		/// <summary>
-		/// Скрывает фильтр
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-		{
-			BlackBackground.FadeTo(0, 500)
-						   .GetAwaiter();
-			Filter.TranslateTo(0, Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height - Device.Info.PixelScreenSize.Height, 500)
-				  .GetAwaiter();
-			BlackBackground.IsVisible = await GetEndVisible();
-			Filter.IsEnabled = false;
-		}
-		#endregion
 	}
 }

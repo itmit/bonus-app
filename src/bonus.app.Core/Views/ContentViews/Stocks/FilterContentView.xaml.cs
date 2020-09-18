@@ -1,9 +1,9 @@
 ﻿using System;
-using bonus.app.Core.Views.ContentViews.Stocks;
+using bonus.app.Core.Views.ContentViews.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace bonus.app.Core.Views.ViewCells
+namespace bonus.app.Core.Views.ContentViews.Stocks
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FilterContentView : ContentView
@@ -13,8 +13,14 @@ namespace bonus.app.Core.Views.ViewCells
 		{
 			InitializeComponent();
 			MyStockLabel.TextColor = Color.Gray;
+			ServicesFilterContentView = FilterMyServicesContentView;
 		}
 		#endregion
+
+		public MyServicesContentView ServicesFilterContentView
+		{
+			get;
+		}
 
 		#region Private
 		/// <summary>

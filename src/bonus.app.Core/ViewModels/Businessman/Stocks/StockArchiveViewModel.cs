@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace bonus.app.Core.ViewModels.Businessman.Stocks
 {
-	public class StockArchiveViewModel : MvxViewModel, IServiceParentViewModel, IFilterViewModel
+	public class StockArchiveViewModel : MvxViewModel, IFilterViewModel
 	{
 		#region Data
 		#region Fields
@@ -49,18 +49,19 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			_stockService = stockService;
 			_servicesService = servicesService;
 			PicCountryAndCityViewModel = new PicCountryAndCityViewModel(geoHelperService, authService);
-			_mapper = new Mapper(new MapperConfiguration(cfg =>
+			MyServicesContentViewModel = new MyServicesViewModel(servicesService, authService)
 			{
-				cfg.CreateMap<ServiceType, ServiceTypeViewModel>()
-				   .ForMember(vm => vm.Services, m => m.MapFrom(model => model.Services));
-
-				cfg.CreateMap<ServiceTypeItem, ServiceViewModel>()
-				   .ForMember(vm => vm.ParentViewModel, m => m.MapFrom(model => this));
-			}));
+				CanAddService = false
+			};
 		}
 		#endregion
 
 		#region Properties
+		public MyServicesViewModel MyServicesContentViewModel
+		{
+			get;
+		}
+
 		public PicCountryAndCityViewModel PicCountryAndCityViewModel
 		{
 			get;
@@ -77,9 +78,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 										   {
 											   Stocks = IsMyStocks
 															? new MvxObservableCollection<Stock>(
-																await _stockService.GetMyArchiveStock(SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
+																await _stockService.GetMyArchiveStock(MyServicesContentViewModel.SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
 															: new MvxObservableCollection<Stock>(
-																await _stockService.GetArchiveStock(SelectedService.Uuid,
+																await _stockService.GetArchiveStock(MyServicesContentViewModel.SelectedService.Uuid,
 																									PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru));
 										   }
 										   catch (Exception e)
@@ -95,12 +96,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			get => _isVisibleServices;
 			set => SetProperty(ref _isVisibleServices, value);
-		}
-
-		public MvxObservableCollection<CreatedServiceViewModel> MyServiceTypes
-		{
-			get => _myServiceTypes;
-			set => SetProperty(ref _myServiceTypes, value);
 		}
 
 		public Stock SelectedItem
@@ -124,32 +119,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 			}
 		}
 
-		public MvxObservableCollection<ServiceTypeViewModel> Services
-		{
-			get => _services;
-			private set => SetProperty(ref _services, value);
-		}
-
-		public int ShapeRotation
-		{
-			get => _shapeRotation;
-			set => SetProperty(ref _shapeRotation, value);
-		}
-
-		public MvxCommand ShowOrHideTypesServicesCommand
-		{
-			get
-			{
-				_showOrHideTypesServicesCommand = _showOrHideTypesServicesCommand ??
-												  new MvxCommand(() =>
-												  {
-													  IsVisibleServices = !IsVisibleServices;
-													  ShapeRotation = IsVisibleServices ? 180 : 0;
-												  });
-				return _showOrHideTypesServicesCommand;
-			}
-		}
-
 		public MvxObservableCollection<Stock> Stocks
 		{
 			get => _stocks;
@@ -165,41 +134,15 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		}
 		#endregion
 
-		#region IServiceParentViewModel members
-		public ServiceViewModel SelectedService
-		{
-			get => _selectedService;
-			set
-			{
-				if (_selectedService != null)
-				{
-					_selectedService.Color = Color.Transparent;
-				}
-
-				value.Color = Color.FromHex("#BB8D91");
-				SetProperty(ref _selectedService, value);
-			}
-		}
-		#endregion
-
 		#region Overrided
 		public override async Task Initialize()
 		{
 			await PicCountryAndCityViewModel.Initialize();
+			await MyServicesContentViewModel.Initialize();
 			await base.Initialize();
 
 			try
 			{
-				var types = await _servicesService.GetMyServices();
-				var type = types.SingleOrDefault(t => t.Name.Equals(_authService.User.Uuid.ToString()));
-				if (type != null)
-				{
-					type.Name = "Ваши услуги";
-				}
-
-				var typesVm = _mapper.Map<ServiceTypeViewModel[]>(types);
-				Services = new MvxObservableCollection<ServiceTypeViewModel>(typesVm);
-
 				Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyArchiveStock());
 			}
 			catch (Exception e)

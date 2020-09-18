@@ -215,8 +215,7 @@
                                             SelectedItem="{Binding SelectedPortfolioImage}"
                                             SelectionMode="Single"
                                             ItemSizingStrategy="MeasureFirstItem"
-                                            SelectionChanged="SelectableItemsView_OnSelectionChanged"
-                                            >
+                                            SelectionChanged="SelectableItemsView_OnSelectionChanged" >
                                 <CollectionView.EmptyView>
                                     <Label Text="Добавьте изображение&#10;для портфолио"
                                            HorizontalOptions="Center"

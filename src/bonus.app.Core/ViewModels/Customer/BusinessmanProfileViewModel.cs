@@ -36,6 +36,7 @@ namespace bonus.app.Core.ViewModels.Customer
 		private MvxCommand _unsubscribeCommand;
 		private User _user;
 		private BusinessmanProfileViewModelArgs _parameter;
+		private PortfolioImage _selectedPortfolioImage;
 		#endregion
 		#endregion
 
@@ -57,6 +58,20 @@ namespace bonus.app.Core.ViewModels.Customer
 		{
 			get => _isShowedDetails;
 			set => SetProperty(ref _isShowedDetails, value);
+		}
+
+		public PortfolioImage SelectedPortfolioImage
+		{
+			get => _selectedPortfolioImage;
+			set
+			{
+				if (value == null)
+				{
+					return;
+				}
+				SetProperty(ref _selectedPortfolioImage, value);
+				_navigationService.Navigate<PhotoViewModel, string>(value.ImageSource);
+			}
 		}
 
 		public bool IsSubscribe
@@ -85,7 +100,10 @@ namespace bonus.app.Core.ViewModels.Customer
 				_openClassmatesCommand = _openClassmatesCommand ??
 										 new MvxCommand(async () =>
 										 {
-											 await OpenBrowser(User.ClassmatesLink);
+											 if (User.ClassmatesLink != null)
+											 {
+												 await OpenBrowser(User.ClassmatesLink);
+											 }
 										 });
 				return _openClassmatesCommand;
 			}
@@ -98,7 +116,10 @@ namespace bonus.app.Core.ViewModels.Customer
 				_openFacebookCommand = _openFacebookCommand ??
 									   new MvxCommand(async () =>
 									   {
-										   await OpenBrowser(User.FacebookLink);
+										   if (User.FacebookLink != null)
+										   {
+											   await OpenBrowser(User.FacebookLink);
+										   }
 									   });
 				return _openFacebookCommand;
 			}
@@ -111,7 +132,10 @@ namespace bonus.app.Core.ViewModels.Customer
 				_openInstagramCommand = _openInstagramCommand ??
 										new MvxCommand(async () =>
 										{
-											await OpenBrowser(User.InstagramLink);
+											if (User.InstagramLink != null)
+											{
+												await OpenBrowser(User.InstagramLink);
+											}
 										});
 				return _openInstagramCommand;
 			}
@@ -124,7 +148,10 @@ namespace bonus.app.Core.ViewModels.Customer
 				_openVkCommand = _openVkCommand ??
 								 new MvxCommand(async () =>
 								 {
-									 await OpenBrowser(User.VkLink);
+									 if (User.VkLink != null)
+									 {
+										 await OpenBrowser(User.VkLink);
+									 }
 								 });
 				return _openVkCommand;
 			}

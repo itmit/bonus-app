@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.GeoHelperModels;
 using bonus.app.Core.Models.ServiceModels;
 
 namespace bonus.app.Core.Services
@@ -17,6 +18,8 @@ namespace bonus.app.Core.Services
 		Task<ServiceTypeItem> CreateServiceTypeItem(string name, Guid serviceTypeUuid);
 
 		Task<List<Service>> GetAllServices();
+
+		Task<List<Service>> GetAllServices(Country country, City city, int? serviceId);
 
 		Task<IEnumerable<Service>> GetBusinessmenService();
 

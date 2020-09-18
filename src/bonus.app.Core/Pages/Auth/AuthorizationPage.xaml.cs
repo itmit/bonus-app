@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Pages.Auth
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxContentPagePresentation(NoHistory = true)]
+	[MvxContentPagePresentation(NoHistory = true, WrapInNavigationPage = true)]
 	public partial class AuthorizationPage : MvxContentPage<AuthorizationViewModel>
 	{
 		#region .ctor

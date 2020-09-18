@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace bonus.app.Core.Pages.Customer.BonusAccrual
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_charges", Title = "Начисления")]
+	[MvxTabbedPagePresentation(Position = TabbedPosition.Tab, Icon = "ic_charges", Title = "Бонусы")]
 	public partial class BonusAccrualPage : MvxContentPage<CustomerBonusAccrualViewModel>
 	{
 		#region .ctor

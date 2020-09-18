@@ -48,6 +48,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 				return _selectService;
 			}
 		}
+
+		public int Id
+		{
+			get;
+			set;
+		}
 		#endregion
 
 		#region Private

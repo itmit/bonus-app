@@ -95,33 +95,18 @@ namespace bonus.app.Core.ViewModels.Auth
 		/// <param name="logProvider">Провайдер логов.</param>
 		/// <param name="navigationService">Сервис для навигации.</param>
 		/// <param name="authService">Сервис для авторизации.</param>
-		/// <param name="platformPresenter">Обрабатывает логику для общей навигации, связанной с формами.</param>
-		public AuthorizationViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService, IMvxFormsViewPresenter platformPresenter)
+		public AuthorizationViewModel(IMvxLogProvider logProvider
+									  , IMvxNavigationService navigationService
+									  , IAuthService authService)
 			: base(logProvider, navigationService)
 		{
 			_authService = authService;
 			Mvx.IoCProvider.TryResolve(out _vkService);
 			Mvx.IoCProvider.TryResolve(out _facebookService);
-			_platformPresenter = platformPresenter;
 		}
 		#endregion
-
-		/// <summary>
-		/// Обрабатывает логику для общей навигации, связанной с формами.
-		/// </summary>
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		/// <summary>
-		/// Текущее приложение xamarin forms.
-		/// </summary>
-		private Application _formsApplication;
 		private bool _isBusy;
 
-		/// <summary>
-		/// Возвращает текущее приложение xamarin forms.
-		/// </summary>
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-		
 		#region Properties
 		/// <summary>
 		/// Возвращает команду для создания аккаунта.
@@ -225,11 +210,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			switch (result.LoginState)
 			{
 				case LoginState.Canceled:
-
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						FormsApplication.MainPage.DisplayAlert("Ошибка", $"Авторизация через {serviceName} отменена.", "Ок");
-					});
+					await MaterialDialog.Instance.AlertAsync($"Авторизация через {serviceName} отменена", "Ошибка", "Ок");
 					break;
 				case LoginState.Success:
 
@@ -248,10 +229,13 @@ namespace bonus.app.Core.ViewModels.Auth
 					if (user == null)
 					{
 						await dialog.DismissAsync();
-						var role = await FormsApplication.MainPage.DisplayAlert("Внимание",
-																				   "Выберите тип аккаунта.",
-																				   "Предприниматель",
-																				   "Покупатель") ? UserRole.Businessman : UserRole.Customer;
+						var confirm = await MaterialDialog.Instance.ConfirmAsync("Выберите тип аккаунта", "Внимание", "Предприниматель", "Покупатель");
+						if (confirm == null)
+						{
+							return;
+						}
+						var role = confirm.Value ? UserRole.Businessman : UserRole.Customer;
+
 						dialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Создание аккаунта...");
 						user = await _authService.Register(new User
 														   {
@@ -265,12 +249,8 @@ namespace bonus.app.Core.ViewModels.Auth
 						if (user == null)
 						{
 							await dialog.DismissAsync();
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								FormsApplication.MainPage.DisplayAlert("Ошибка",
-																		  $"Авторизация через {serviceName} пошла успешно, но не удалось создать аккаунт данного пользователя в системе.",
-																		  "Ок");
-							});
+							await MaterialDialog.Instance.AlertAsync($"Авторизация через {serviceName} пошла успешно, но не удалось создать аккаунт данного пользователя в системе",
+																	 "Ошибка", "Ок");
 							IsBusy = false;
 							return;
 						}
@@ -283,10 +263,8 @@ namespace bonus.app.Core.ViewModels.Auth
 						if (isActive)
 						{
 							await dialog.DismissAsync();
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								FormsApplication.MainPage.DisplayAlert("Внимание", $"Авторизация через {serviceName} невозможна, пока Вы не заполните статистическую информацию.", "Ок");
-							});
+							await MaterialDialog.Instance.AlertAsync($"Авторизация через {serviceName} невозможна, пока Вы не заполните статистическую информацию",
+																	 "Внимание", "Ок");
 						}
 						else
 						{
@@ -329,11 +307,8 @@ namespace bonus.app.Core.ViewModels.Auth
 					await dialog.DismissAsync();
 					break;
 				case LoginState.Failed:
-
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						FormsApplication.MainPage.DisplayAlert("Ошибка", "Не удалось авторизоваться.", "Ок");
-					});
+					await MaterialDialog.Instance.AlertAsync("Не удалось авторизоваться",
+															 "Ошибка", "Ок");
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -384,21 +359,24 @@ namespace bonus.app.Core.ViewModels.Auth
 			var password = Password?.Trim();
 			if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
 			{
-				await FormsApplication.MainPage.DisplayAlert("Внимание", "E-mail и пароль должны быть заполнены", "Ок");
+				await MaterialDialog.Instance.AlertAsync("E-mail и пароль должны быть заполнены",
+														 "Внимание", "Ок");
 				IsBusy = false;
 				return;
 			}
 
 			if (!CheckIsEmail(login) && !CheckIsPhoneNumber(login))
 			{
-				await FormsApplication.MainPage.DisplayAlert("Внимание", "Введите Email или номер телефона в формате международном формате, начиная с плюса, без пробелов, скобок", "Ок");
+				await MaterialDialog.Instance.AlertAsync("Введите Email или номер телефона в формате международном формате, начиная с плюса, без пробелов, скобок",
+														 "Внимание", "Ок");
 				IsBusy = false;
 				return;
 			}
 
 			if (password.Length < 6)
 			{
-				await FormsApplication.MainPage.DisplayAlert("Внимание", "Пароль должен состоять минимум из 6 символов.", "Ок");
+				await MaterialDialog.Instance.AlertAsync("Пароль должен состоять минимум из 6 символов",
+														 "Внимание", "Ок");
 				IsBusy = false;
 				return;
 			}
@@ -496,7 +474,7 @@ namespace bonus.app.Core.ViewModels.Auth
 		{
 			if (_authService.ErrorDetails == null)
 			{
-				FormsApplication.MainPage.DisplayAlert("Внимание", "Ошибка сервера", "Ок");
+				MaterialDialog.Instance.AlertAsync("Ошибка сервера", "Внимание", "Ок");
 				return;
 			}
 
@@ -510,7 +488,8 @@ namespace bonus.app.Core.ViewModels.Auth
 
 			if (!string.IsNullOrEmpty(_authService.Error))
 			{
-				FormsApplication.MainPage.DisplayAlert("Внимание", _authService.Error, "Ок");
+				MaterialDialog.Instance.AlertAsync(_authService.Error,
+												   "Внимание", "Ок");
 			}
 		}
 		#endregion

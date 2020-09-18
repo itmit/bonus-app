@@ -25,6 +25,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private int _shapeRotation;
 		private MvxCommand _showMyServiceTypesCommand;
 		private MvxCommand _showOrHideTypesServicesCommand;
+		private bool _canAddService = true;
 		#endregion
 		#endregion
 
@@ -90,6 +91,12 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			get => _shapeRotation;
 			set => SetProperty(ref _shapeRotation, value);
+		}
+
+		public bool CanAddService
+		{
+			get => _canAddService;
+			set => SetProperty(ref _canAddService, value);
 		}
 
 		public MvxCommand ShowOrHideTypesServicesCommand

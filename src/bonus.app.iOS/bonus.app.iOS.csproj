@@ -65,15 +65,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Distribution: ITMIT OOO (D74723C9R5)</CodesignKey>
+    <CodesignKey>Apple Development: Vadim Grashenko (DSN36L2SUL)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>false</MtouchFloat32>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
     <MtouchFastDev>false</MtouchFastDev>
-    <CodesignProvision>
-    </CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignExtraArgs>
     </CodesignExtraArgs>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
@@ -476,5 +475,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icons8_help_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_arrow_back_white_18dp.png" />
   </ItemGroup>
 </Project>

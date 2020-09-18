@@ -9,7 +9,7 @@
              xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
              xmlns:services="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
              mc:Ignorable="d"
-             x:Class="bonus.app.Core.Views.ViewCells.FilterContentView">
+             x:Class="bonus.app.Core.Views.ContentViews.Stocks.FilterContentView">
     <ContentView.Content>
         <StackLayout>
             <StackLayout MinimumHeightRequest="240">
@@ -61,44 +61,26 @@
                     </StackLayout>
 
                     <StackLayout x:Name="StackLayout" IsVisible="False" IsEnabled="False" BackgroundColor="White">
-                        <contentViews:PicCountryAndCityContentView VerticalOptions="Fill"
-                                                                   ViewModel="{Binding PicCountryAndCityViewModel}" />
+                        <ScrollView>
+                            <contentViews:PicCountryAndCityContentView VerticalOptions="Fill"
+                                                                       ViewModel="{Binding PicCountryAndCityViewModel}">
+                                <contentViews:PicCountryAndCityContentView.Footer>
+                                    <StackLayout>
+                                        <services:MyServicesContentView x:Name="FilterMyServicesContentView" Margin="0,5"/>
 
-                        <StackLayout Margin="10,0,10,15" Spacing="0">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
-                            </StackLayout.GestureRecognizers>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
-                                <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14" />
-                                <Image Source="Shape.png"
-                                       WidthRequest="15"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="EndAndExpand"
-                                       Rotation="{Binding ShapeRotation}" />
-                            </StackLayout>
-                            <BoxView />
-                        </StackLayout>
-
-                        <CollectionView IsVisible="{Binding IsVisibleServices}"
-                                        IsEnabled="{Binding IsVisibleServices}"
-                                        HeightRequest="200"
-                                        ItemsSource="{Binding Services}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <services:ServiceTypeContentView />
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-
-                        <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="0" CornerRadius="0">
-                            <Grid>
-                                <graphic:RectangleInProfile x:Name="Gradient" />
-                                <Label Text="ПРИМЕНИТЬ" Style="{StaticResource TextForAppButton}" />
-                            </Grid>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ApplyFiltersCommand}" />
-                            </Frame.GestureRecognizers>
-                        </design:CustomButton>
+                                        <design:CustomButton Style="{StaticResource AppButtonGradient}" Margin="-20,0" CornerRadius="0">
+                                            <Grid>
+                                                <graphic:RectangleInProfile x:Name="Gradient" />
+                                                <Label Text="ПРИМЕНИТЬ" Style="{StaticResource TextForAppButton}" />
+                                            </Grid>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ApplyFiltersCommand}" />
+                                            </Frame.GestureRecognizers>
+                                        </design:CustomButton>
+                                    </StackLayout>
+                                </contentViews:PicCountryAndCityContentView.Footer>
+                            </contentViews:PicCountryAndCityContentView>
+                        </ScrollView>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

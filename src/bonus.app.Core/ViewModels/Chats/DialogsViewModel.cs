@@ -6,6 +6,7 @@ using bonus.app.Core.Services;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.Navigation.EventArguments;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Chats
@@ -91,8 +92,6 @@ namespace bonus.app.Core.ViewModels.Chats
 				SetProperty(ref _selectedDialog, value);
 
 				_navigationService.Navigate<ChatViewModel, ChatViewModelArguments>(new ChatViewModelArguments(value));
-
-				SetProperty(ref _selectedDialog, null);
 			}
 		}
 		#endregion

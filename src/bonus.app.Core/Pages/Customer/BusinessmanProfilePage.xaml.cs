@@ -1,6 +1,7 @@
 ﻿using bonus.app.Core.ViewModels.Customer;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace bonus.app.Core.Pages.Customer
@@ -15,5 +16,10 @@ namespace bonus.app.Core.Pages.Customer
 			InitializeComponent();
 		}
 		#endregion
+
+		private void SelectableItemsView_OnSelectionChangedChanged(object sender, SelectionChangedEventArgs e)
+		{
+			((CollectionView)sender).SelectedItem = null;
+		}
 	}
 }

@@ -9,6 +9,7 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
@@ -32,28 +33,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 		#region .ctor
 		public EditBusinessmanServicesDetailsViewModel(IMvxNavigationService navigationService,
-													   IServicesService servicesService,
-													   IAuthService authService,
-													   IMvxFormsViewPresenter platformPresenter)
+													   IServicesService servicesService)
 		{
 			_servicesService = servicesService;
-			PlatformPresenter = platformPresenter;
 			_navigationService = navigationService;
-			MyServicesViewModel = new MyServicesViewModel(servicesService, authService);
 		}
 		#endregion
 
 		#region Properties
-		public MyServicesViewModel MyServicesViewModel
-		{
-			get;
-		}
-
-		private IMvxFormsViewPresenter PlatformPresenter
-		{
-			get;
-		}
-
 		public int? BonusAmount
 		{
 			get => _bonusAmount;
@@ -78,12 +65,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			set => SetProperty(ref _cancellationBonusPercentage, value);
 		}
 
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = PlatformPresenter.FormsApplication);
-			set => _formsApplication = value;
-		}
-
 		public MvxCommand UpdateCommand
 		{
 			get
@@ -97,11 +78,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#region Overrided
 		public override async Task Initialize()
 		{
-			await MyServicesViewModel.Initialize();
 			await base.Initialize();
-
-			var temp = MyServicesViewModel.Services.Single(model => model.Services.Any(service => service.Uuid == _service.ServiceItemUuid));
-			MyServicesViewModel.SelectedService = temp.Services.SingleOrDefault(service => service.Uuid == _service.ServiceItemUuid);
 
 			if (_service.AccrualMethod == BonusValueType.Points)
 			{
@@ -133,7 +110,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		{
 			var service = new CreateServiceDto
 			{
-				Uuid = MyServicesViewModel.SelectedService.Uuid
+				Uuid = _service.Uuid
 			};
 
 			BonusValueType accrualMethod;
@@ -158,10 +135,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 			else
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					FormsApplication.MainPage.DisplayAlert("Внимание", "Укажите количество или процент начисляемых бонусов.", "Ок");
-				});
+				await MaterialDialog.Instance.AlertAsync("Укажите количество или процент начисляемых бонусов", "Внимание", "Ок");
 				return;
 			}
 
@@ -183,10 +157,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 			}
 			else
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					FormsApplication.MainPage.DisplayAlert("Внимание", "Укажите количество или процент списываемых бонусов.", "Ок");
-				});
+				await MaterialDialog.Instance.AlertAsync("Укажите количество или процент списываемых бонусов", "Внимание", "Ок");
 				return;
 			}
 
@@ -194,15 +165,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 
 			if (!result)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось обновить услугу.", "Ок");
-				});
+				await MaterialDialog.Instance.AlertAsync("Не удалось обновить услугу", "Внимание", "Ок");
 				return;
 			}
 
-			_service.Name = MyServicesViewModel.SelectedService.Name;
-			_service.ServiceItemUuid = MyServicesViewModel.SelectedService.Uuid;
 			_service.AccrualMethod = accrualMethod;
 			_service.WhiteOffMethod = writeOffMethod;
 			_service.AccrualValue = accrualValue;

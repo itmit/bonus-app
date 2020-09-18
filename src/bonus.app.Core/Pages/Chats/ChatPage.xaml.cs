@@ -16,12 +16,5 @@ namespace bonus.app.Core.Pages.Chats
 			Grid.BackgroundColor = Color.FromRgba(160, 150, 142, 76);
 		}
 		#endregion
-
-		#region Public
-		public void OnListTapped(object sender, ItemTappedEventArgs e)
-		{
-			ChatInput.UnFocusEntry();
-		}
-		#endregion
 	}
 }

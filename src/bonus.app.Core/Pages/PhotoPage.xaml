@@ -27,10 +27,22 @@
     </pages:PopupPage.Animation>
 
     <!--You can use any elements here which are extended from Xamarin.Forms.View-->
-    <zoomScrollView:ZoomScrollView Orientation="Both" 
-                                   MinimumZoomScale="1"
-                                   x:Name="Scroll"
-                                   MaximumZoomScale="3">
-        <forms:CachedImage Source="{Binding ImageSource}" VerticalOptions="CenterAndExpand" x:Name="CachedImage"/>
-    </zoomScrollView:ZoomScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image Source="outline_arrow_back_white_18dp" Margin="10" VerticalOptions="Start" HorizontalOptions="Start" HeightRequest="25" WidthRequest="25">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <zoomScrollView:ZoomScrollView Grid.Row="1"
+                                       Orientation="Both" 
+                                       MinimumZoomScale="1"
+                                       x:Name="Scroll"
+                                       MaximumZoomScale="3">
+            <forms:CachedImage Source="{Binding ImageSource}" VerticalOptions="CenterAndExpand" x:Name="CachedImage"/>
+        </zoomScrollView:ZoomScrollView>
+    </Grid>
 </core:MvxPopupPage>

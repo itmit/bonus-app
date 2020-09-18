@@ -1,10 +1,16 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels
 {
 	public class PhotoViewModel : MvxViewModel<string>
 	{
 		private string _imageSource;
+		private MvxCommand _closePhotoCommand;
+		private readonly IMvxNavigationService _navigationService;
+
+		public PhotoViewModel(IMvxNavigationService navigationService) => _navigationService = navigationService;
 
 		public override void Prepare(string parameter)
 		{

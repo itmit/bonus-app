@@ -7,10 +7,11 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:viewCells="clr-namespace:bonus.app.Core.Views.ViewCells.Services;assembly=bonus.app.Core"
-                      xmlns:viewCells1="clr-namespace:bonus.app.Core.Views.ViewCells;assembly=bonus.app.Core"
                       xmlns:services="clr-namespace:bonus.app.Core.ViewModels.Customer.Services;assembly=bonus.app.Core"
                       xmlns:services1="clr-namespace:bonus.app.Core.Views.ContentViews.Services;assembly=bonus.app.Core"
                       xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+                      xmlns:design="clr-namespace:bonus.app.Core.Design;assembly=bonus.app.Core"
+                      xmlns:graphic="clr-namespace:bonus.app.Core.Graphic;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Customer.Services.CustomerServicesPage">
     <NavigationPage.TitleView>
@@ -34,54 +35,48 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" x:Name="GridHeader" IsVisible="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <!--Выбор стран-->
-                <contentViews:PicCountryAndCityContentView VerticalOptions="Fill"
-                                                           ViewModel="{Binding PicCountryAndCityViewModel}" />
+            <!--Выбор стран-->
+            <contentViews:PicCountryAndCityContentView x:Name="GridHeader"
+                                                       IsVisible="False"
+                                                       IsEnabled="False"
+                                                       VerticalOptions="Fill"
+                                                       ViewModel="{Binding PicCountryAndCityViewModel}" >
+                <contentViews:PicCountryAndCityContentView.Footer>
+                    <StackLayout x:Name="FilterLayout">
+                        <services1:MyServicesContentView ViewModel="{Binding MyServicesViewModel}"
+                                                         Margin="0,5,0,0"/>
 
-                <StackLayout Grid.Row="1" Margin="10,0,10,15" Spacing="0">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
-                    </StackLayout.GestureRecognizers>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="10,0,20,15">
-                        <Label Text="{Binding SelectedService.Name, FallbackValue='Вид услуги'}" FontSize="14" />
-                        <Image Source="Shape.png"
-                               WidthRequest="15"
-                               VerticalOptions="Center"
-                               HorizontalOptions="EndAndExpand"
-                               Rotation="{Binding ShapeRotation}" />
+                        <design:CustomButton Style="{StaticResource AppButtonGradient}"
+                                             Margin="-30,0"
+                                             CornerRadius="0">
+                            <Grid>
+                                <graphic:RectangleInProfile />
+                                <Label Text="ПРИМЕНИТЬ" Style="{StaticResource TextForAppButton}" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ApplyFiltersCommand}" />
+                            </Frame.GestureRecognizers>
+                        </design:CustomButton>
                     </StackLayout>
-                    <BoxView />
-                </StackLayout>
+                </contentViews:PicCountryAndCityContentView.Footer>
+            </contentViews:PicCountryAndCityContentView>
 
-                <CollectionView Grid.Row="2" IsVisible="{Binding IsVisibleServices}"
-                                IsEnabled="{Binding IsVisibleServices}"
-                                HeightRequest="200"
-                                ItemsSource="{Binding ServiceTypes}">
+            <!--Список услуг-->
+            <RefreshView Grid.Row="1"
+                         IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}">
+
+                <CollectionView ItemsSource="{Binding Services}"
+                                SelectedItem="{Binding SelectedServiceItem}"
+                                SelectionMode="Single"
+                                SelectionChanged="SelectableItemsView_OnSelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <services1:ServiceTypeContentView />
+                            <viewCells:CustomerServicesContentView />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            </Grid>
-
-            <!--Список услуг-->
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Services}"
-                            SelectedItem="{Binding SelectedServiceItem}"
-                            SelectionMode="Single"
-                            SelectionChanged="SelectableItemsView_OnSelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <viewCells:CustomerServicesContentView />
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            </RefreshView>
         </Grid>
     </ContentPage.Content>
 </views:MvxContentPage>

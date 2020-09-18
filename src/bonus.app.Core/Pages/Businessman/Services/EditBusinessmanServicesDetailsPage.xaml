@@ -21,10 +21,9 @@
         <!--Страница 4.3.2 редактор мои услуги у предпринимателя-->
         <ScrollView>
             <StackLayout Spacing="0" Margin="15,20">
-                <services1:MyServicesContentView x:Name="MyServicesView" />
                 <contentViews:ServiceAccrualBonusesContentView />
 
-                <design:CustomButton Style="{StaticResource AppButtonGradient}">
+                <design:CustomButton Margin="0,20"  Style="{StaticResource AppButtonGradient}">
                     <Grid>
                         <graphic:RectangleInProfile />
                         <Label Text="СОХРАНИТЬ ИЗМЕНЕНИЯ" Style="{StaticResource TextForAppButton}" />

@@ -293,7 +293,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				ValidationMessage = "Не корректная ссылка."
 			});
 			VkLink.Validations.Add(new IsSuccessRegexMatch(
-									   new Regex(@"(^(https:\/\/)|^(http:\/\/))+vk\.com\/+.{5,32}", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+									   new Regex(@"(^(https:\/\/)|^(http:\/\/))+vk\.com\/+(.{5,32})+\/?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
 			{
 				ValidationMessage = "Введенная ссылка не является ссылкой на vk."
 			});
@@ -302,7 +302,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				ValidationMessage = "Не корректная ссылка."
 			});
 			InstagramLink.Validations.Add(new IsSuccessRegexMatch(
-											  new Regex(@"(^(https:\/\/)|^(http:\/\/))+((www\.)?)+instagram\.com\/+(.{1,30})+\?.", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+											  new Regex(@"(^(https:\/\/)|^(http:\/\/))+((www\.)?)+instagram\.com\/+(.{1,30})+\/?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
 										  {
 											  ValidationMessage = "Введенная ссылка не является ссылкой на instagram."
 			});
@@ -311,7 +311,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				ValidationMessage = "Не корректная ссылка."
 			});
 			FacebookLink.Validations.Add(new IsSuccessRegexMatch(
-											 new Regex(@"(^(https:\/\/)|^(http:\/\/))+((www\.)?)+facebook\.com\/+.{5,64}", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+											 new Regex(@"(^(https:\/\/)|^(http:\/\/))+((www\.)?)+facebook\.com\/+(.{5,64})+\/?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
 										 {
 											 ValidationMessage = "Введенная ссылка не является ссылкой на Facebook."
 			});
@@ -321,7 +321,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			});
 
 			ClassmatesLink.Validations.Add(new IsSuccessRegexMatch(
-											   new Regex(@"(^(https:\/\/)|^(http:\/\/))+ok\.ru\/+.{1,64}", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
+											   new Regex(@"(^(https:\/\/)|^(http:\/\/))+ok\.ru\/+(.{1,64})+\/?", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Singleline))
 										   {
 											   ValidationMessage = "Введенная ссылка не является ссылкой на одноклассники."
 										   });

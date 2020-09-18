@@ -38,7 +38,7 @@ namespace bonus.app.iOS.Services
 		{
 		}
 
-		private async void AuthOnCompleted(object sender, AuthenticatorCompletedEventArgs authCompletedArgs)
+		private void AuthOnCompleted(object sender, AuthenticatorCompletedEventArgs authCompletedArgs)
 		{
 			UIApplication.SharedApplication.KeyWindow.RootViewController.DismissViewController(true, null);
 

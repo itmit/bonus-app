@@ -9,6 +9,7 @@ using AutoMapper;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
+using bonus.app.Core.Models.GeoHelperModels;
 using bonus.app.Core.Models.ServiceModels;
 using Newtonsoft.Json;
 
@@ -98,6 +99,39 @@ namespace bonus.app.Core.Services
 		public async Task<List<Service>> GetAllServices()
 		{
 			var services = await GetAsync<List<Service>>(GetAllUri);
+			if (services == null)
+			{
+				return new List<Service>();
+			}
+			foreach (var service in services)
+			{
+				service.Client.PhotoSource = Domain + service.Client.PhotoSource;
+			}
+			return services;
+		}
+
+		public async Task<List<Service>> GetAllServices(Country country, City city, int? serviceId)
+		{
+			var queryParams = "?";
+			if (country != null)
+			{
+				queryParams += "country=" + country.Name + "&";
+			}
+			
+			if (city != null)
+			{
+				queryParams += "city=" + city.Name + "&";
+			}
+
+			if (serviceId != null)
+			{
+				queryParams += "serviceItemId=" + serviceId.Value;
+			}
+
+			var url = GetAllUri + queryParams;
+			Debug.WriteLine(url);
+
+			var services = await GetAsync<List<Service>>(url);
 			if (services == null)
 			{
 				return new List<Service>();

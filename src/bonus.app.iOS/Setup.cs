@@ -3,8 +3,10 @@ using bonus.app.Core.Services;
 using bonus.app.iOS.Services;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
+using MvvmCross.Forms.Platforms.Ios.Presenters;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.IoC;
+using MvvmCross.Platforms.Ios.Presenters;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.iOS
@@ -32,6 +34,13 @@ namespace bonus.app.iOS
 			Mvx.IoCProvider.RegisterSingleton<IMvxFormsPagePresenter>(formsPagePresenter);
 			Mvx.IoCProvider.RegisterSingleton<ISettingsHelper>(new SettingsHelper());
 			return formsPagePresenter;
+		}
+
+		protected override IMvxIosViewPresenter CreateViewPresenter()
+		{
+			var viewPresenter = new MvxFormsIosViewPresenter(ApplicationDelegate, Window, FormsApplication);
+			viewPresenter.FormsPagePresenter = CreateFormsPagePresenter(viewPresenter);
+			return viewPresenter;
 		}
 		#endregion
 	}

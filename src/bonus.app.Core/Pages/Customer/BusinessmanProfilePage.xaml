@@ -211,8 +211,12 @@
                                    FontFamily="Roboto"
                                    HorizontalOptions="Start" />
                         </Grid>
-                        <CollectionView HeightRequest="250" ItemSizingStrategy="MeasureFirstItem"
-                                        ItemsSource="{Binding PortfolioImages}">
+                        <CollectionView HeightRequest="250"
+                                        ItemsSource="{Binding PortfolioImages}"
+                                        SelectedItem="{Binding SelectedPortfolioImage}"
+                                        SelectionMode="Single"
+                                        ItemSizingStrategy="MeasureFirstItem"
+                                        SelectionChanged="SelectableItemsView_OnSelectionChangedChanged" >
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout Span="3" Orientation="Vertical" HorizontalItemSpacing="5"
                                                  VerticalItemSpacing="5" />

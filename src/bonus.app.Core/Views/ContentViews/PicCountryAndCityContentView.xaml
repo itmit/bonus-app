@@ -106,10 +106,13 @@
                         </CollectionView.Footer>
                     </CollectionView>
                 </StackLayout>
-                
 
-                <StackLayout Grid.Row="1" x:Name="FieldsLayout"
-                             IsVisible="{Binding IsVisibleCities, Converter={StaticResource InverseBoolConverter}}" />
+                <StackLayout Grid.Row="1"
+                             IsVisible="{Binding IsVisibleCities, Converter={StaticResource InverseBoolConverter}}">
+                    <StackLayout x:Name="FieldsLayout"
+                                 BindingContext="{Binding ParentViewModel}"
+                    />
+                </StackLayout>
             </Grid>
         </Grid>
 

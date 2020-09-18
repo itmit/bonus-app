@@ -47,6 +47,24 @@ namespace bonus.app.Core.ViewModels
 		}
 
 		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService) => _geoHelperService = geoHelperService;
+
+		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService, IAuthService authService, MvxViewModel parentViewModel)
+		{
+			ParentViewModel = parentViewModel;
+			_geoHelperService = geoHelperService;
+			_authService = authService;
+		}
+
+		public PicCountryAndCityViewModel(IGeoHelperService geoHelperService, MvxViewModel parentViewModel)
+		{
+			_geoHelperService = geoHelperService;
+			ParentViewModel = parentViewModel;
+		}
+
+		public MvxViewModel ParentViewModel
+		{
+			get;
+		}
 		#endregion
 
 		#region Properties

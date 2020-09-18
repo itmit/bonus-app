@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross;
 using MvvmCross.Exceptions;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
+using MvvmCross.Logging;
 using MvvmCross.Presenters;
 using MvvmCross.ViewModels;
 using Rg.Plugins.Popup.Extensions;
@@ -16,6 +18,8 @@ namespace bonus.app.Core
 {
 	public class CustomMvxFormsPagePresenter : MvxFormsPagePresenter
 	{
+		private IMvxLog _logger;
+
 		#region .ctor
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:MvvmCross.Forms.Views.MvxFormsPagePresenter" /> class.
@@ -27,6 +31,16 @@ namespace bonus.app.Core
 		}
 		#endregion
 
+		public IMvxLog Logger
+		{
+			get
+			{
+				_logger = _logger ?? Mvx.IoCProvider.Resolve<IMvxLogProvider>()
+								  .GetLogFor(GetType());
+				return _logger;
+			}
+		} 
+
 		#region Overrided
 		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute)
 		{
@@ -37,7 +51,26 @@ namespace bonus.app.Core
 
 			return base.CloseContentPage(viewModel, attribute);
 		}
-
+		public override Task<bool> Show(MvxViewModelRequest request)
+		{
+#if DEBUG // Only wrap in try-finally when in debug
+			try
+			{
+#endif
+				return base.Show(request);
+#if DEBUG // Only showing this when debugging MVX
+			}
+			catch (Exception exception)
+			{
+				Logger.Log(MvxLogLevel.Debug, () => exception.ToString());
+				throw;
+			}
+			finally
+			{
+				Logger.Log(MvxLogLevel.Debug, () => FormsApplication.Hierarchy());
+			}
+#endif
+		}
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)
 		{
 			if (rootPage == null)
@@ -125,10 +158,9 @@ namespace bonus.app.Core
 		#region Private
 		private async Task<bool> ClosePopupPage(IMvxViewModel viewModel, MvxPopupPagePresentationAttribute attribute)
 		{
-			var page = PopupNavigation.Instance.PopupStack?.OfType<IMvxPage>()
-									  .FirstOrDefault(x => x.ViewModel == viewModel) as PopupPage;
-
-			if (page == null)
+			var popup = PopupNavigation.Instance.PopupStack?.OfType<IMvxPage>()
+									   .FirstOrDefault(x => x.ViewModel == viewModel);
+			if (!(popup is PopupPage page))
 			{
 				await FormsApplication.MainPage.Navigation.PopPopupAsync(attribute.Animated);
 				return true;

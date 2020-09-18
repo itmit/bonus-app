@@ -15,11 +15,9 @@ namespace bonus.app.Core.Pages.Chats
 		}
 		#endregion
 
-		#region Private
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			Navigation.PushAsync(new ChatPage());
+			((CollectionView) sender).SelectedItem = null;
 		}
-		#endregion
 	}
 }
