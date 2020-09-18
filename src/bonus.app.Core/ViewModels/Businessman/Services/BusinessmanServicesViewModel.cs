@@ -26,7 +26,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region .ctor
-		public BusinessmanServicesViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IServicesService servicesServices)
+		public BusinessmanServicesViewModel(IMvxLogProvider logProvider
+											, IMvxNavigationService navigationService
+											, IServicesService servicesServices)
 			: base(logProvider, navigationService)
 		{
 			_servicesServices = servicesServices;

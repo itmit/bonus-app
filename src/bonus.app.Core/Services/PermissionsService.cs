@@ -17,15 +17,7 @@ namespace bonus.app.Core.Services
 		#endregion
 
 		#region .ctor
-		public PermissionsService(ISettingsHelper settingsHelper, IMvxFormsViewPresenter platformPresenter)
-		{
-			_platformPresenter = platformPresenter; _settingsHelper = settingsHelper;
-		}
-
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		private Application _formsApplication;
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
+		public PermissionsService(ISettingsHelper settingsHelper) => _settingsHelper = settingsHelper;
 		#endregion
 
 		#region IPermissionsService members

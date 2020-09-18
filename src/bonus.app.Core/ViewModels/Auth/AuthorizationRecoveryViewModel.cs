@@ -114,7 +114,7 @@ namespace bonus.app.Core.ViewModels.Auth
 
 					if (await _authService.SendRecoveryCode(Email.Value))
 					{
-						await _navigationService.Navigate<RecoveryDetailViewModel, string>(Email.Value);
+						await _navigationService.Navigate<RecoveryDetailViewModel, RecoveryDetailViewModelArgs>(new RecoveryDetailViewModelArgs(Email.Value, this));
 					}
 					else
 					{

@@ -9,6 +9,7 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Customer.Stocks
 {
@@ -17,15 +18,12 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		#region Data
 		#region Fields
 		private MvxCommand _addToFavoriteCommand;
-		private Application _formsApplication;
 		private readonly IMvxNavigationService _navigationService;
 		private MvxCommand _openArchivePageCommand;
 		private MvxCommand _openFavoriteStocksCommand;
-		private readonly IMvxFormsViewPresenter _platformPresenter;
 		private Color _shareColor;
 		private Stock _stock;
 		private readonly IStockService _stockService;
-		private User _user;
 		private Guid _guid;
 		private MvxCommand _showBusinessmanProfileCommand;
 		#endregion
@@ -33,12 +31,10 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 
 		#region .ctor
 		public CustomerStocksDetailViewModel(IMvxNavigationService navigationService,
-											 IStockService stockService,
-											 IMvxFormsViewPresenter platformPresenter)
+											 IStockService stockService)
 		{
 			_navigationService = navigationService;
 			_stockService = stockService;
-			_platformPresenter = platformPresenter;
 		}
 		#endregion
 
@@ -52,21 +48,15 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 										{
 											if (await _stockService.AddToFavorite(Stock.Uuid))
 											{
-												await FormsApplication.MainPage.DisplayAlert("Внимание", "Акция добавлена в избранное.", "Ок");
+												await MaterialDialog.Instance.AlertAsync("Акция добавлена в избранное", "Внимание", "Ок");
 											}
 											else
 											{
-												await FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось добавить акцию избранное.", "Ок");
+												await MaterialDialog.Instance.AlertAsync("Не удалось добавить акцию избранное", "Внимание", "Ок");
 											}
 										});
 				return _addToFavoriteCommand;
 			}
-		}
-
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-			set => _formsApplication = value;
 		}
 
 		public MvxCommand OpenArchivePageCommand

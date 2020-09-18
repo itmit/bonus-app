@@ -7,16 +7,16 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Managers
 {
 	public class CreateManagerViewModel : MvxViewModelResult<bool>
 	{
-		public CreateManagerViewModel(IMvxNavigationService navigationService, IManagerService managerService, IMvxFormsViewPresenter platformPresenter)
+		public CreateManagerViewModel(IMvxNavigationService navigationService, IManagerService managerService)
 		{
 			_navigationService = navigationService;
 			_managerService = managerService;
-			_platformPresenter = platformPresenter;
 			AddValidations();
 		}
 		
@@ -104,11 +104,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 			}
 		}
 
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		private Application _formsApplication;
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-
 		private bool IsValidFields => Name.Validate() & Email.Validate() & Password.Validate() & ConfirmPassword.Validate() & PhoneNumber.Validate();
 
 		private async void CreateManagerCommandExecute()
@@ -133,11 +128,11 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 
 					if (_managerService.LastError.Equals("The email has already been taken."))
 					{
-						await FormsApplication.MainPage.DisplayAlert("Внимание", "Пользователь с такой почтой уже зарегистрирован", "Ок");
+						await MaterialDialog.Instance.AlertAsync("Пользователь с такой почтой уже зарегистрирован", "Внимание", "Ок");
 					}
 					else
 					{
-						await FormsApplication.MainPage.DisplayAlert("Внимание", _managerService.LastError, "Ок");
+						await MaterialDialog.Instance.AlertAsync(_managerService.LastError, "Внимание", "Ок");
 					}
 					return;
 				}

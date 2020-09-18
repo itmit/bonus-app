@@ -3,40 +3,28 @@ using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Auth
 {
-	public class RecoveryDetailViewModel : MvxViewModel<string>
+	public class RecoveryDetailViewModel : MvxViewModel<RecoveryDetailViewModelArgs>
 	{
-		private IAuthService _authService;
+		private readonly IAuthService _authService;
 		private MvxCommand _sendCodeCommand;
-		private string _email;
-		/// <summary>
-		/// Обрабатывает логику для общей навигации, связанной с формами.
-		/// </summary>
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		/// <summary>
-		/// Текущее приложение xamarin forms.
-		/// </summary>
-		private Application _formsApplication;
 		private ValidatableObject<string> _confirmPassword = new ValidatableObject<string>();
 		private ValidatableObject<string> _password = new ValidatableObject<string>();
 		private MvxCommand _recoverCommand;
 		private ValidatableObject<string> _code = new ValidatableObject<string>();
+		private readonly IMvxNavigationService _navigationService;
 
-		/// <summary>
-		/// Возвращает текущее приложение xamarin forms.
-		/// </summary>
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-
-		public RecoveryDetailViewModel(IAuthService authService, IMvxFormsViewPresenter platformPresenter)
+		public RecoveryDetailViewModel(IAuthService authService, IMvxNavigationService navigationService)
 		{
 			_authService = authService;
-			_platformPresenter = platformPresenter;
+			_navigationService = navigationService;
 			AddValidations();
 		}
 
@@ -49,10 +37,7 @@ namespace bonus.app.Core.ViewModels.Auth
 			{
 				_sendCodeCommand = _sendCodeCommand ?? new MvxCommand(async () =>
 				{
-					if (await _authService.SendRecoveryCode(_email))
-					{
-						await FormsApplication.MainPage.DisplayAlert("Внимание", "Код для восстановления пароля отправлен на указанный адрес, повторно", "Ок");
-					}
+					await MaterialDialog.Instance.AlertAsync("Код для восстановления пароля отправлен на указанный адрес, повторно", "Внимание", "Ок");
 				});
 				return _sendCodeCommand;
 			}
@@ -96,7 +81,7 @@ namespace bonus.app.Core.ViewModels.Auth
 
 					try
 					{
-						res = await _authService.Recovery(_email, Code.Value, Password.Value, ConfirmPassword.Value);
+						res = await _authService.Recovery(Parameter.Email, Code.Value, Password.Value, ConfirmPassword.Value);
 					}
 					catch (Exception e)
 					{
@@ -108,12 +93,9 @@ namespace bonus.app.Core.ViewModels.Auth
 						return;
 					}
 
-					await FormsApplication.MainPage.Navigation.PopToRootAsync();
-
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						Application.Current.MainPage.DisplayAlert("Внимание", "Пароль сброшен", "Ок");
-					});
+					await _navigationService.Close(Parameter.ParentViewModel);
+					await _navigationService.Close(this);
+					await MaterialDialog.Instance.AlertAsync("Пароль сброшен", "Внимание", "Ок");
 				});
 				return _recoverCommand;
 			}
@@ -138,9 +120,34 @@ namespace bonus.app.Core.ViewModels.Auth
 			set => SetProperty(ref _confirmPassword, value);
 		}
 
-		public override void Prepare(string parameter)
+		public override void Prepare(RecoveryDetailViewModelArgs parameter)
 		{
-			_email = parameter;
+			Parameter = parameter;
+		}
+
+		public RecoveryDetailViewModelArgs Parameter
+		{
+			get;
+			private set;
+		}
+	}
+
+	public class RecoveryDetailViewModelArgs
+	{
+		public string Email
+		{
+			get;
+		}
+
+		public IMvxViewModel ParentViewModel
+		{
+			get;
+		}
+
+		public RecoveryDetailViewModelArgs(string email, IMvxViewModel parentViewModel)
+		{
+			Email = email;
+			ParentViewModel = parentViewModel;
 		}
 	}
 }

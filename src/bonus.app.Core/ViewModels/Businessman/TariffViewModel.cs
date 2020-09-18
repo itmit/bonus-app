@@ -9,6 +9,7 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 using Device = Xamarin.Forms.Device;
 
 namespace bonus.app.Core.ViewModels.Businessman
@@ -27,10 +28,9 @@ namespace bonus.app.Core.ViewModels.Businessman
 		#endregion
 
 		#region .ctor
-		public TariffViewModel(IMvxNavigationService navigationService, IRateService rateService, IMvxFormsViewPresenter platformPresenter)
+		public TariffViewModel(IMvxNavigationService navigationService, IRateService rateService)
 		{
 			_rateService = rateService;
-			_platformPresenter = platformPresenter;
 			_navigationService = navigationService;
 		}
 		#endregion
@@ -83,12 +83,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 
 		public bool IsEnabledChangeRate => _myRate == null || (SelectedRate != null && _myRate != null && SelectedRate.Id != _myRate.Id);
 
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		private Application _formsApplication;
 		private MvxCommand _paymentCommand;
-
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
 
 		public MvxCommand PaymentCommand
 		{
@@ -107,18 +102,20 @@ namespace bonus.app.Core.ViewModels.Businessman
 					{
 						if (args.Result == WebNavigationResult.Success && args.Url.StartsWith(_rateService.PaySuccessUrl))
 						{
-							await FormsApplication.MainPage.Navigation.PopModalAsync();
-							await FormsApplication.MainPage.DisplayAlert("Внимание", "Оплата прошла успешно", "Ок");
+							await Application.Current.MainPage.Navigation.PopModalAsync();
+							await MaterialDialog.Instance.AlertAsync("Оплата прошла успешно", "Внимание", "Ок");
 							await Initialize();
 						}
 
-						if (args.Result == WebNavigationResult.Success && args.Url.StartsWith(_rateService.PayErrorUrl))
+						if (args.Result != WebNavigationResult.Success || !args.Url.StartsWith(_rateService.PayErrorUrl))
 						{
-							await FormsApplication.MainPage.Navigation.PopModalAsync();
-							await FormsApplication.MainPage.DisplayAlert("Внимание", "Платеж не прошел", "Ок");
+							return;
 						}
+
+						await Application.Current.MainPage.Navigation.PopModalAsync();
+						await MaterialDialog.Instance.AlertAsync("Платеж не прошел", "Внимание", "Ок");
 					};
-					await FormsApplication.MainPage.Navigation.PushModalAsync(new ContentPage
+					await Application.Current.MainPage.Navigation.PushModalAsync(new ContentPage
 					{
 						Content = webView
 					});
@@ -137,22 +134,21 @@ namespace bonus.app.Core.ViewModels.Businessman
 					{
 						if (SelectedRate == null)
 						{
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								FormsApplication.MainPage.DisplayAlert("Внимание", "Выберите тариф.", "Ок");
-							});
+							await MaterialDialog.Instance.AlertAsync("Выберите тариф", "Внимание", "Ок");
 							return;
 						}
 
 						if (_myRate != null && SelectedRate.Id == _myRate.Id)
 						{
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								FormsApplication.MainPage.DisplayAlert("Внимание", "Выбранный тариф уже подключен.", "Ок");
-							});
+							await MaterialDialog.Instance.AlertAsync("Выбранный тариф уже подключен", "Внимание", "Ок");
 						}
-
-						if (!await FormsApplication.MainPage.DisplayAlert("Внимание", "Вы уверены, что хотите сменить тариф?", "Да", "Нет"))
+						
+						var confirm = await MaterialDialog.Instance.ConfirmAsync("Вы уверены, что хотите сменить тариф?", "Внимание", "Да", "Нет");
+						if (confirm == null)
+						{
+							return;
+						}
+						if (!confirm.Value)
 						{
 							return;
 						}
@@ -161,19 +157,13 @@ namespace bonus.app.Core.ViewModels.Businessman
 
 						if (rate)
 						{
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								FormsApplication.MainPage.DisplayAlert("Внимание", "Вы успешно сменили тариф.", "Ок");
-							});
+							await MaterialDialog.Instance.AlertAsync("Вы успешно сменили тариф", "Внимание", "Ок");
 							_myRate = await _rateService.GetMyRate();
 							SelectedRate = _myRate;
 						}
 						else
 						{
-							Device.BeginInvokeOnMainThread(() =>
-							{
-								FormsApplication.MainPage.DisplayAlert("Внимание", "Не удалось сменить тариф.", "Ок");
-							});
+							await MaterialDialog.Instance.AlertAsync("Не удалось сменить тариф", "Внимание", "Ок");
 						}
 					}
 					catch (Exception e)

@@ -22,7 +22,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		private int? _cancellationBonusAmount;
 		private int? _cancellationBonusPercentage;
 
-		private Application _formsApplication;
 		private readonly IMvxNavigationService _navigationService;
 
 		private Service _service;

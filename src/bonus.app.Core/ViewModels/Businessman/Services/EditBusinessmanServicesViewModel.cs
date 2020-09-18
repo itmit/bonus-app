@@ -8,6 +8,7 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Services
 {
@@ -17,11 +18,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#region Fields
 		private MvxCommand _editServiceCommand;
 
-		private Application _formsApplication;
 		private bool _isRefreshing;
 		private MvxObservableCollection<Service> _myServices;
 		private readonly IMvxNavigationService _navigationService;
-		private readonly IMvxFormsViewPresenter _platformPresenter;
 		private MvxCommand _refreshCommand;
 		private Service _selectedService;
 		private readonly IServicesService _servicesServices;
@@ -29,9 +28,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 		#endregion
 
 		#region .ctor
-		public EditBusinessmanServicesViewModel(IMvxNavigationService navigationService, IServicesService servicesServices, IMvxFormsViewPresenter platformPresenter)
+		public EditBusinessmanServicesViewModel(IMvxNavigationService navigationService, IServicesService servicesServices)
 		{
-			_platformPresenter = platformPresenter;
 			_navigationService = navigationService;
 			_servicesServices = servicesServices;
 		}
@@ -47,7 +45,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 									  {
 										  if (SelectedService == null)
 										  {
-											  await FormsApplication.MainPage.DisplayAlert("Внимание", "Выберете услугу, которую необходимо отредактировать", "Ок");
+											  await MaterialDialog.Instance.AlertAsync("Выберете услугу, которую необходимо отредактировать", "Внимание", "Ок");
 											  return;
 										  }
 
@@ -61,12 +59,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Services
 									  });
 				return _editServiceCommand;
 			}
-		}
-
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-			set => _formsApplication = value;
 		}
 
 		public bool IsRefreshing

@@ -31,7 +31,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Fields
 		private readonly IAuthService _authService;
 
-		private Application _formsApplication;
 		private bool _isRefreshing;
 		private bool _isShowedDetails;
 		private MvxCommand _openClassmatesCommand;
@@ -43,7 +42,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private MvxCommand _openVkCommand;
 		private readonly IPermissionsService _permissionsService;
 
-		private readonly IMvxFormsViewPresenter _platformPresenter;
 		private Command<MaterialMenuResult> _portfolioActionCommand;
 		private MvxObservableCollection<PortfolioImage> _portfolioImages;
 		private readonly IProfileService _profileService;
@@ -60,19 +58,17 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#endregion
 
 		#region .ctor
-		public BusinessmanProfileViewModel(IMvxLogProvider logProvider,
-										   IMvxNavigationService navigationService,
-										   IAuthService authService,
-										   IServicesService servicesService,
-										   IProfileService profileService,
-										   IPermissionsService permissionsService,
-										   IMvxFormsViewPresenter platformPresenter)
+		public BusinessmanProfileViewModel(IMvxLogProvider logProvider
+										   , IMvxNavigationService navigationService
+										   , IAuthService authService
+										   , IServicesService servicesService
+										   , IProfileService profileService
+										   , IPermissionsService permissionsService)
 			: base(logProvider, navigationService)
 		{
 			_servicesService = servicesService;
 			_profileService = profileService;
 			_permissionsService = permissionsService;
-			_platformPresenter = platformPresenter;
 			_authService = authService;
 			User = _authService.User;
 			_profileService.PortfolioChanged += ProfileServiceOnPortfolioChanged;
@@ -89,12 +85,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		public string PhotoSource
 		{
 			get;
-		}
-
-		public Application FormsApplication
-		{
-			get => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
-			set => _formsApplication = value;
 		}
 
 		public bool IsRefreshing

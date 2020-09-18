@@ -8,17 +8,17 @@ using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Pay
 {
 	public class PaySubscribesViewModel : MvxViewModel
 	{
 		#region .ctor
-		public PaySubscribesViewModel(IRateService rateService, IMvxNavigationService navigationService, IMvxFormsViewPresenter platformPresenter)
+		public PaySubscribesViewModel(IRateService rateService, IMvxNavigationService navigationService)
 		{
 			_rateService = rateService;
 			_navigationService = navigationService;
-			_platformPresenter = platformPresenter;
 		}
 		#endregion
 		
@@ -43,12 +43,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Pay
 				Console.WriteLine(e);
 			}
 		}
-
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		private Application _formsApplication;
-
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
 
 		public MvxObservableCollection<Rate> Rates
 		{
@@ -81,18 +75,20 @@ namespace bonus.app.Core.ViewModels.Businessman.Pay
 									  {
 										  if (args.Result == WebNavigationResult.Success && args.Url.StartsWith(_rateService.PaySuccessUrl))
 										  {
-											  await FormsApplication.MainPage.Navigation.PopModalAsync();
-											  await FormsApplication.MainPage.DisplayAlert("Внимание", "Оплата прошла успешно", "Ок");
+											  await Application.Current.MainPage.Navigation.PopModalAsync();
+											  await MaterialDialog.Instance.AlertAsync("Оплата прошла успешно", "Внимание", "Ок");
 											  await Initialize();
 										  }
 
-										  if (args.Result == WebNavigationResult.Success && args.Url.StartsWith(_rateService.PayErrorUrl))
+										  if (args.Result != WebNavigationResult.Success || !args.Url.StartsWith(_rateService.PayErrorUrl))
 										  {
-											  await FormsApplication.MainPage.Navigation.PopModalAsync();
-											  await FormsApplication.MainPage.DisplayAlert("Внимание", "Платеж не прошел", "Ок");
+											  return;
 										  }
+
+										  await Application.Current.MainPage.Navigation.PopModalAsync();
+										  await MaterialDialog.Instance.AlertAsync("Платеж не прошел", "Внимание", "Ок");
 									  };
-									  await FormsApplication.MainPage.Navigation.PushModalAsync(new ContentPage
+									  await Application.Current.MainPage.Navigation.PushModalAsync(new ContentPage
 									  {
 										  Content = webView
 									  });

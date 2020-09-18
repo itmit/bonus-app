@@ -7,6 +7,7 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman.Managers
 {
@@ -42,11 +43,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 		private MvxCommand _deleteManagerCommand;
 		private Command<string> _raiseCanUpdateManagerCommand;
 
-		public EditManagerViewModel(IMvxNavigationService navigationService, IManagerService managerService, IMvxFormsViewPresenter platformPresenter)
+		public EditManagerViewModel(IMvxNavigationService navigationService, IManagerService managerService)
 		{
 			_navigationService = navigationService;
 			_managerService = managerService;
-			_platformPresenter = platformPresenter;
 		}
 
 		public Command<string> RaiseCanUpdateManagerCommand
@@ -94,7 +94,14 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 
 		private async void DeleteManagerCommandExecute()
 		{
-			if (!await FormsApplication.MainPage.DisplayAlert("Внимание", "Вы уверены, что хотите удалить этого менеджера?", "Да", "Нет"))
+			var confirm = await MaterialDialog.Instance.ConfirmAsync("Вы уверены, что хотите удалить этого менеджера?", "Внимание", "Да", "Нет");
+
+			if (confirm == null)
+			{
+				return;
+			}
+
+			if (!confirm.Value)
 			{
 				return;
 			}
@@ -104,7 +111,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 				var res = await _managerService.DeleteManager(User.Id);
 				if (!res)
 				{
-					await FormsApplication.MainPage.DisplayAlert("Ошибка", "Менеджер уже удален", "Ок");
+					await MaterialDialog.Instance.AlertAsync("Менеджер уже удален", "Ошибка", "Ок");
 				}
 				await _navigationService.Close(this, true);
 			}
@@ -113,11 +120,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 				Console.WriteLine(e);
 			}
 		}
-
-		private readonly IMvxFormsViewPresenter _platformPresenter;
-
-		private Application _formsApplication;
-		private Application FormsApplication => _formsApplication ?? (_formsApplication = _platformPresenter.FormsApplication);
 
 		private bool IsValidFields => Name.Validate() & PhoneNumber.Validate();
 
@@ -131,8 +133,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 			try
 			{
 				await _navigationService.Close(this, await _managerService.EditManager(User.Id, Name.Value, PhoneNumber.Value));
-
-				await FormsApplication.MainPage.DisplayAlert("Внимание", "Изменения сохранены", "Ок");
+				await MaterialDialog.Instance.AlertAsync("Изменения сохранены", "Внимание", "Ок");
 			}
 			catch (Exception e)
 			{
