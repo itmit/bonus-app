@@ -43,7 +43,7 @@
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <Frame Padding="0" CornerRadius="10" HasShadow="False" Opacity="0.8">
-                                    <forms:CachedImage Source="{Binding .}"
+                                    <forms:CachedImage Source="{Binding Source}"
                                                        WidthRequest="70" >
                                         <forms:CachedImage.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>

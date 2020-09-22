@@ -1,4 +1,5 @@
-﻿using MvvmCross.Forms.Views;
+﻿using MvvmCross.Binding.BindingContext;
+using MvvmCross.Forms.Views;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
 
@@ -48,6 +49,8 @@ namespace bonus.app.Core.Controls
 		#endregion
 
 		#region IMvxView<TViewModel> members
+		public MvxFluentBindingDescriptionSet<IMvxElement<TViewModel>, TViewModel> CreateBindingSet() => this.CreateBindingSet<IMvxElement<TViewModel>, TViewModel>();
+
 		public new TViewModel ViewModel
 		{
 			get => (TViewModel) base.ViewModel;

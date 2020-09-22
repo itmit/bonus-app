@@ -32,6 +32,7 @@ namespace bonus.app.Core.Services
 		private readonly IUserRepository _userRepository;
 		private Guid _userUuid = Guid.Empty;
 		private readonly HttpClient _httpClient;
+		private bool? _userIsAuthorized;
 		#endregion
 		#endregion
 
@@ -133,6 +134,8 @@ namespace bonus.app.Core.Services
 				_userUuid = userInfo.Uuid;
 				_userRepository.RemoveAll();
 				_userRepository.Add(userInfo);
+
+				UserIsAuthorized = true;
 				TokenUpdated?.Invoke(this, EventArgs.Empty);
 
 				return userInfo;
@@ -223,6 +226,7 @@ namespace bonus.app.Core.Services
 				Console.WriteLine(e);
 			}
 
+			UserIsAuthorized = false;
 			TokenUpdated?.Invoke(this, EventArgs.Empty);
 			try
 			{
@@ -232,6 +236,7 @@ namespace bonus.app.Core.Services
 			{
 				Console.WriteLine(e);
 			}
+
 			return true;
 		}
 
@@ -290,6 +295,7 @@ namespace bonus.app.Core.Services
 		}
 
 		private const string AuthorizationAnExternalServiceUri = "http://bonus.itmit-studio.ru/api/authorizationAnExternalService";
+
 		public async Task<User> AuthorizationAnExternalService(string email, string accessToken, ExternalAuthService authServiceType)
 		{
 			var request = new Dictionary<string, string>
@@ -418,6 +424,43 @@ namespace bonus.app.Core.Services
 
 				return null;
 			}
+		}
+
+		public bool UserIsAuthorized
+		{
+			get
+			{
+				if (_userIsAuthorized == null)
+				{
+					_userIsAuthorized = CheckUserIsAuthorized();
+				}
+
+				return _userIsAuthorized.Value;
+			}
+			private set => _userIsAuthorized = value;
+		}
+
+		private bool CheckUserIsAuthorized()
+		{
+			if (Token == null)
+			{
+				return false;
+			}
+
+			var profile = Mvx.IoCProvider.Resolve<IProfileService>().GetUser();
+
+			if (profile.GetAwaiter()
+					   .GetResult() !=
+				null)
+			{
+				return true;
+			}
+
+			_userRepository.RemoveAll();
+
+			_userUuid = Guid.Empty;
+
+			return false;
 		}
 
 		public event EventHandler TokenUpdated;

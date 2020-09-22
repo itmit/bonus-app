@@ -45,11 +45,7 @@ namespace bonus.app.Core.Services
 			_userRepository = userRepository;
 			_mapper = new Mapper(new MapperConfiguration(cfg =>
 			{
-				cfg.CreateMap<AccessToken, UserDto>();
-
-				cfg.CreateMap<UserDto, User>()
-				   .ForPath(m => m.AccessToken.Body, o => o.MapFrom(q => q.Body))
-				   .ForPath(m => m.AccessToken.Type, o => o.MapFrom(q => q.Type));
+				cfg.CreateMap<UserDto, User>();
 				cfg.CreateMap<UserInfoDto, User>()
 				   .ForMember(m => m.PhotoSource, o => o.MapFrom(q => string.IsNullOrWhiteSpace(q.Photo) ? null : Domain + q.Photo))
 				   .ForMember(m => m.Birthday, o => o.MapFrom(q => q.Birthday ?? DateTime.MinValue));
@@ -130,7 +126,7 @@ namespace bonus.app.Core.Services
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (AuthService.Token != null)
+			if (AuthService.UserIsAuthorized)
 			{
 				content.Add(new StringContent("PUT"), "_method");
 				content.Add(new StringContent(arguments.WorkTime), "work_time");
@@ -165,35 +161,33 @@ namespace bonus.app.Core.Services
 					content.Add(new StringContent(arguments.Name), "name");
 				}
 
-				if (await Update(content))
+				if (!await Update(content))
 				{
-					var user = AuthService.User;
-					user.City = arguments.City;
-					user.Country = arguments.Country;
-					user.Address = arguments.Address;
-					user.Contact = arguments.Contact;
-					user.Description = arguments.Description;
-					user.Phone = string.IsNullOrEmpty(arguments.Phone) ? user.Phone : arguments.Phone;
-					user.Email = string.IsNullOrEmpty(arguments.Email) ? user.Email : arguments.Email;
-					user.WorkTime = arguments.WorkTime;
-					user.PhotoSource = string.IsNullOrEmpty(imagePath) ? user.PhotoSource : imagePath;
-
-					user.FacebookLink = arguments.FacebookLink;
-					user.VkLink = arguments.VkLink;
-					user.InstagramLink = arguments.InstagramLink;
-					user.ClassmatesLink = arguments.Odnoklassniki;
-
-					_userRepository.Update(user);
-					return user;
+					return null;
 				}
-			}
-			else
-			{
-				content.Add(new StringContent(arguments.WorkTime), "worktime");
-				return await FillInfo(content);
+
+				var user = AuthService.User;
+				user.City = arguments.City;
+				user.Country = arguments.Country;
+				user.Address = arguments.Address;
+				user.Contact = arguments.Contact;
+				user.Description = arguments.Description;
+				user.Phone = string.IsNullOrEmpty(arguments.Phone) ? user.Phone : arguments.Phone;
+				user.Email = string.IsNullOrEmpty(arguments.Email) ? user.Email : arguments.Email;
+				user.WorkTime = arguments.WorkTime;
+				user.PhotoSource = string.IsNullOrEmpty(imagePath) ? user.PhotoSource : imagePath;
+
+				user.FacebookLink = arguments.FacebookLink;
+				user.VkLink = arguments.VkLink;
+				user.InstagramLink = arguments.InstagramLink;
+				user.ClassmatesLink = arguments.Odnoklassniki;
+
+				_userRepository.Update(user);
+				return user;
 			}
 
-			return null;
+			content.Add(new StringContent(arguments.WorkTime), "worktime");
+			return await FillInfo(content);
 		}
 
 		public async Task<User> Edit(EditCustomerDto arguments, string imagePath)
@@ -235,7 +229,7 @@ namespace bonus.app.Core.Services
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (AuthService.Token == null)
+			if (!AuthService.UserIsAuthorized)
 			{
 				return await FillInfo(content);
 			}
@@ -339,13 +333,7 @@ namespace bonus.app.Core.Services
 			userInfo.Phone = user.Phone ?? string.Empty;
 			userInfo.Name = user.Name ?? string.Empty;
 			userInfo.Login = user.Login ?? string.Empty;
-
-			userInfo.AccessToken = new AccessToken
-			{
-				Body = data.Body,
-				Type = data.Type
-			};
-
+			
 			return userInfo;
 		}
 
@@ -438,19 +426,6 @@ namespace bonus.app.Core.Services
 					userInfo.Phone = user.Phone ?? string.Empty;
 					userInfo.Name = user.Name ?? string.Empty;
 					userInfo.Login = user.Login ?? string.Empty;
-
-					userInfo.AccessToken = new AccessToken
-					{
-						Body = data.Data.Body,
-						Type = data.Data.Type
-					};
-
-					if (string.IsNullOrEmpty(userInfo.AccessToken.Body) && userInfo.Uuid != Guid.Empty)
-					{
-						return userInfo;
-					}
-
-					_userRepository.Add(userInfo);
 
 					return userInfo;
 				}

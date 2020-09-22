@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
+using Microsoft.AppCenter.Crashes;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
@@ -111,32 +114,32 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			});
 		}
 
-		private async void EditCommandExecute()
+		private bool Validate()
 		{
 			if (!Birthday.Validate() | !PhoneNumber.Validate())
 			{
-				return;
+				return false;
 			}
 
 			if (CountryAndCityViewModel.SelectedCountry == null)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите страну.", "Ок");
-				});
-				return;
+				MaterialDialog.Instance.AlertAsync("Выберите страну", "Внимание", "Ок");
+				return false;
 			}
 
-			if (CountryAndCityViewModel.SelectedCity == null)
+			if (CountryAndCityViewModel.SelectedCity != null)
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Внимание", "Выберите город.", "Ок");
-				});
-				return;
+				return true;
 			}
 
-			if (Birthday.Value == null)
+			MaterialDialog.Instance.AlertAsync("Выберите город", "Внимание", "Ок");
+			return false;
+
+		}
+
+		private async void EditCommandExecute()
+		{
+			if (!Validate() || Birthday.Value == null)
 			{
 				return;
 			}
@@ -146,42 +149,63 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				return;
 			}
 			IsBusy = true;
+
 			var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение данных...");
+
+			var arg = new EditCustomerDto
+			{
+				Uuid = Parameters.Guid,
+				Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
+				City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
+				Phone = PhoneNumber.Value,
+				Birthday = Birthday.Value.Value,
+				Car = Car,
+				Password = Parameters.Password
+			};
+			if (IsFemale)
+			{
+				arg.Sex = "female";
+			}
+			else if (IsMale)
+			{
+				arg.Sex = "male";
+			}
+
 			try
 			{
-				var arg = new EditCustomerDto
-				{
-					Uuid = Parameters.Guid,
-					Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
-					City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
-					Phone = PhoneNumber.Value,
-					Birthday = Birthday.Value.Value,
-					Car = Car,
-					Password = Parameters.Password
-				};
-				if (IsFemale)
-				{
-					arg.Sex = "female";
-				}
-				else if (IsMale)
-				{
-					arg.Sex = "male";
-				}
-
 				var user = await _customerProfileService.Edit(arg, ImageSource);
 
-				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
+				if (user != null)
 				{
-					await loadingDialog.DismissAsync();
-					await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();
-					await _navigationService.Navigate<MainCustomerViewModel>();
-					return;
+					if (Parameters.IsActiveUser)
+					{
+						await loadingDialog.DismissAsync();
+						await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно", "Внимание", "Ок");
+						await _navigationService.Close(this, user);
+						return;
+					}
+
+					await AuthService.Login(new AuthDto
+					{
+						Login = user.Email,
+						Password = Parameters.Password
+					});
+
+					if (AuthService.UserIsAuthorized)
+					{
+						await loadingDialog.DismissAsync();
+						await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();
+						await _navigationService.Navigate<MainCustomerViewModel>();
+						return;
+					}
 				}
 			}
 			catch (Exception e)
 			{
+				Crashes.TrackError(e, new Dictionary<string, string>());
 				Console.WriteLine(e);
 			}
+
 			IsBusy = false;
 			await loadingDialog.DismissAsync();
 			if (_customerProfileService.ErrorDetails != null && _customerProfileService.ErrorDetails.Count > 0)
@@ -190,20 +214,14 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 												 .Key;
 				if (key.Equals("phone"))
 				{
-					Device.BeginInvokeOnMainThread(() =>
-					{
-						Application.Current.MainPage.DisplayAlert("Ошибка", "Пользователь с таким номером уже существует.", "Ок");
-					});
+					await MaterialDialog.Instance.AlertAsync("Пользователь с таким номером уже существует", "Внимание", "Ок");
 					return;
 				}
 			}
 
 			if (!string.IsNullOrEmpty(_customerProfileService.Error))
 			{
-				Device.BeginInvokeOnMainThread(() =>
-				{
-					Application.Current.MainPage.DisplayAlert("Ошибка", _customerProfileService.Error, "Ок");
-				});
+				await MaterialDialog.Instance.AlertAsync(_customerProfileService.Error, "Внимание", "Ок");
 			}
 		}
 		#endregion

@@ -34,6 +34,8 @@ namespace bonus.app.Core.Pages
 		#endregion
 
 		#region IMvxDataConsumer members
+		public MvxFluentBindingDescriptionSet<IMvxElement<ScannerViewModel>, ScannerViewModel> CreateBindingSet() => this.CreateBindingSet<IMvxElement<ScannerViewModel>, ScannerViewModel>();
+
 		public object DataContext
 		{
 			get => BindingContext.DataContext;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
+using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
@@ -11,6 +12,7 @@ using bonus.app.Core.Services;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman.Services;
+using Microsoft.AppCenter.Crashes;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -141,6 +143,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 													}
 													catch (Exception exception)
 													{
+														Crashes.TrackError(exception, new Dictionary<string, string>());
 														Console.WriteLine(exception);
 													}
 												}
@@ -365,58 +368,69 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 
 			var loading = await MaterialDialog.Instance.LoadingDialogAsync(message: "Сохранение данных...");
+
+			var arg = new EditBusinessmanDto
+			{
+				Uuid = Parameters.Guid,
+				Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
+				City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
+				Address = Address.Value,
+				WorkTime = WorkingMode.Value,
+				Contact = Contact.Value,
+				Description = Description,
+				Phone = PhoneNumber.Value,
+				Password = Parameters.Password
+			};
+
+			if (User != null && Parameters.IsActiveUser)
+			{
+				var p = Regex.Replace(PhoneNumber.Value, "[@,\\ \\(\\)\\-]", string.Empty);
+				if (User.Phone.Equals(p))
+				{
+					arg.Phone = string.Empty;
+				}
+
+				if (User.Email.Equals(Email.Value))
+				{
+					arg.Email = string.Empty;
+				}
+
+				arg.Name = Name.Value;
+				arg.VkLink = VkLink.Value;
+				arg.InstagramLink = InstagramLink.Value;
+				arg.FacebookLink = FacebookLink.Value;
+				arg.Odnoklassniki = ClassmatesLink.Value;
+			}
+
 			try
 			{
-				var arg = new EditBusinessmanDto
-				{
-					Uuid = Parameters.Guid,
-					Country = CountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
-					City = CountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
-					Address = Address.Value,
-					WorkTime = WorkingMode.Value,
-					Contact = Contact.Value,
-					Description = Description,
-					Phone = PhoneNumber.Value,
-					Password = Parameters.Password
-				};
-
-				if (User != null && Parameters.IsActiveUser)
-				{
-					var p = Regex.Replace(PhoneNumber.Value, "[@,\\ \\(\\)\\-]", string.Empty);
-					if (User.Phone.Equals(p))
-					{
-						arg.Phone = string.Empty;
-					}
-
-					if (User.Email.Equals(Email.Value))
-					{
-						arg.Email = string.Empty;
-					}
-
-					arg.Name = Name.Value;
-					arg.VkLink = VkLink.Value;
-					arg.InstagramLink = InstagramLink.Value;
-					arg.FacebookLink = FacebookLink.Value;
-					arg.Odnoklassniki = ClassmatesLink.Value;
-				}
-
 				var user = await _profileService.Edit(arg, ImageSource);
 
-				if (Parameters.IsActiveUser)
+				if (user != null)
 				{
-					await loading.DismissAsync();
-					await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно.", "Внимание", "Ок");
-					await _navigationService.Close(this, user);
-					return;
-				}
+					if (Parameters.IsActiveUser)
+					{
+						await loading.DismissAsync();
+						await MaterialDialog.Instance.AlertAsync("Изменения сохранены успешно", "Внимание", "Ок");
+						await _navigationService.Close(this, user);
+						return;
+					}
 
-				if (user?.AccessToken != null && !string.IsNullOrEmpty(user.AccessToken.Body))
-				{
-					await loading.DismissAsync();
-					await _navigationService.Navigate<SuccessRegisterBusinessmanPopupViewModel>();
-					await _navigationService.Navigate<MainBusinessmanViewModel>();
-					return;
+					await AuthService.Login(new AuthDto
+					{
+						Login = user.Email,
+						Password = Parameters.Password
+					});
+
+					if (AuthService.UserIsAuthorized)
+					{
+						await loading.DismissAsync();
+						await _navigationService.Navigate<SuccessRegisterBusinessmanPopupViewModel>();
+						await _navigationService.Navigate<MainBusinessmanViewModel>();
+						return;
+					}
 				}
+				
 			}
 			catch (Exception e)
 			{
@@ -431,7 +445,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 										 .Key;
 				if (key.Equals("phone"))
 				{
-					await MaterialDialog.Instance.AlertAsync("Пользователь с таким номером уже существует.", "Ошибка", "Ок");
+					await MaterialDialog.Instance.AlertAsync("Пользователь с таким номером уже существует", "Ошибка", "Ок");
 					return;
 				}
 			}

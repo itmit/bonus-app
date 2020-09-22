@@ -54,50 +54,38 @@ namespace bonus.app.Core.Services
 
 		public async Task<bool> SubscribeToBusinessman(Guid businessmanUuid)
 		{
-			using (var client = new HttpClient())
-			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var resp = await client.PostAsync(new Uri(SubscribeToBusinessmanUri),
+			var resp = await HttpClient.PostAsync(new Uri(SubscribeToBusinessmanUri),
 												  new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
 
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
+			var json = await resp.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
 
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
-				return data.Success;
+			if (string.IsNullOrEmpty(json))
+			{
+				return false;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+			return data.Success;
 		}
 
 		public async Task<bool> UnsubscribeToBusinessman(Guid businessmanUuid)
 		{
-			using (var client = new HttpClient())
+			var resp = await HttpClient.PostAsync(new Uri(UnsubscribeToBusinessmanUri),
+													  new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
+
+			var json = await resp.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
 			{
-				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ApplicationJson));
-				client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(AuthService.Token.ToString());
-
-				var resp = await client.PostAsync(new Uri(UnsubscribeToBusinessmanUri),
-												  new StringContent($"{{\"businessmen_uuid\":\"{businessmanUuid}\"}}", Encoding.UTF8, ApplicationJson));
-
-				var json = await resp.Content.ReadAsStringAsync();
-				Debug.WriteLine(json);
-
-				if (string.IsNullOrEmpty(json))
-				{
-					return false;
-				}
-
-				var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
-				return data.Success;
+				return false;
 			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+
+			return data.Success;
 		}
 		#endregion
 	}

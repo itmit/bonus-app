@@ -283,7 +283,6 @@ namespace bonus.app.Core.ViewModels
 		public override async Task Initialize()
 		{
 			await base.Initialize();
-			User = _authService?.User;
 
 			try
 			{
@@ -306,6 +305,17 @@ namespace bonus.app.Core.ViewModels
 			{
 				Console.WriteLine(e);
 			}
+
+			if (_authService == null) { 
+				return;
+			}
+
+			if (!_authService.UserIsAuthorized)
+			{
+				return;
+			}
+
+			User = _authService.User;
 
 			if (User != null && !string.IsNullOrEmpty(User.Country))
 			{

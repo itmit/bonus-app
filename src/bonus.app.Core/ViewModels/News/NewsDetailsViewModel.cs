@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using bonus.app.Core.Models;
 using bonus.app.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -11,7 +12,7 @@ namespace bonus.app.Core.ViewModels.News
 	{
 		#region Data
 		#region Fields
-		private MvxObservableCollection<string> _images;
+		private MvxObservableCollection<ImageModel> _images;
 		private Models.News _news;
 		private readonly INewsService _newsService;
 		private MvxCommand<string> _showPhotoCommand;
@@ -40,7 +41,7 @@ namespace bonus.app.Core.ViewModels.News
 			}
 		}
 
-		public MvxObservableCollection<string> Images
+		public MvxObservableCollection<ImageModel> Images
 		{
 			get => _images;
 			private set => SetProperty(ref _images, value);
@@ -59,7 +60,11 @@ namespace bonus.app.Core.ViewModels.News
 			await base.Initialize();
 			try
 			{
-				Images = new MvxObservableCollection<string>(await _newsService.GetNewsImagesSources(News.Uuid));
+				Images = new MvxObservableCollection<ImageModel>();
+				foreach (var src in await _newsService.GetNewsImagesSources(News.Uuid))
+				{
+					Images.Add(new ImageModel(src));
+				}
 			}
 			catch (Exception e)
 			{

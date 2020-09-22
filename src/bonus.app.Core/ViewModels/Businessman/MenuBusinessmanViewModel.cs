@@ -15,6 +15,7 @@ using MvvmCross.Forms.Views;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace bonus.app.Core.ViewModels.Businessman
 {
@@ -139,8 +140,17 @@ namespace bonus.app.Core.ViewModels.Businessman
 		#region Public
 		private async void LogOutCommandExecute()
 		{
-			await _authService.Logout(_authService.User);
-			await _navigationService.Navigate<AuthorizationViewModel>();
+			var loading = await MaterialDialog.Instance.LoadingDialogAsync("Загрузка ...");
+			try
+			{
+				await _authService.Logout(_authService.User);
+				await _navigationService.Navigate<AuthorizationViewModel>();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+			await loading.DismissAsync();
 		}
 		#endregion
 
@@ -154,10 +164,11 @@ namespace bonus.app.Core.ViewModels.Businessman
 
 			if (masterDetailPage.Detail is TabbedPage tabbedPage)
 			{
-				var profilePage = tabbedPage.Children.Single(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
+				var profilePage = tabbedPage.Children.SingleOrDefault(p => ((p as NavigationPage)?.RootPage as IMvxPage)?.ViewModel is BusinessmanProfileViewModel ||
 																  (p as IMvxPage)?.ViewModel is BusinessmanProfileViewModel);
 				tabbedPage.CurrentPage = profilePage;
-				if (profilePage is NavigationPage profileNavigationPage && profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
+				if (profilePage is NavigationPage profileNavigationPage 
+					&& profileNavigationPage.RootPage != profileNavigationPage.CurrentPage)
 				{
 					foreach (var page in profileNavigationPage.Navigation.NavigationStack)
 					{

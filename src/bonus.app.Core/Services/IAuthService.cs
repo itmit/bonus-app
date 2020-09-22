@@ -29,6 +29,11 @@ namespace bonus.app.Core.Services
 		{
 			get;
 		}
+
+		bool UserIsAuthorized
+		{
+			get;
+		}
 		#endregion
 
 		event EventHandler TokenUpdated;

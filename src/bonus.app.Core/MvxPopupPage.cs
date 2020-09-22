@@ -145,6 +145,8 @@ namespace bonus.app.Core
 		#endregion
 
 		#region IMvxView<TViewModel> members
+		public MvxFluentBindingDescriptionSet<IMvxElement<TViewModel>, TViewModel> CreateBindingSet() => this.CreateBindingSet<IMvxElement<TViewModel>, TViewModel>();
+
 		public new TViewModel ViewModel
 		{
 			get => (TViewModel) base.ViewModel;
