@@ -84,6 +84,8 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\RightToolbarMenuCustomRenderer.cs" />
+    <Compile Include="Renderers\TableSource.cs" />
     <Compile Include="Services\IosFacebookService.cs" />
     <Compile Include="Services\IosFirebaseService.cs" />
     <Compile Include="Services\IosVkService.cs" />
@@ -234,7 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\AppIcons.appiconset\" />
-    <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bitmap.png">
@@ -478,5 +479,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\outline_arrow_back_white_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\more.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\more%404x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\more%402x.png" />
   </ItemGroup>
 </Project>

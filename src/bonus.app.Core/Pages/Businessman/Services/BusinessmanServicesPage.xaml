@@ -18,8 +18,8 @@
     </NavigationPage.TitleView>
 
     <views:MvxContentPage.ToolbarItems>
-        <ToolbarItem Text="Добавить свою услугу" Order="Secondary" Command="{Binding AddServiceCommand}" Priority="0" />
-        <ToolbarItem Text="Редактировать список услуг" Order="Secondary" Command="{Binding OpenEditCommand}"
+        <ToolbarItem Text="Добавить свою услугу" Order="Primary" Command="{Binding AddServiceCommand}" Priority="0" />
+        <ToolbarItem Text="Редактировать список услуг" Order="Primary" Command="{Binding OpenEditCommand}"
                      Priority="1" />
     </views:MvxContentPage.ToolbarItems>
 

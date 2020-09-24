@@ -46,10 +46,11 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			get
 			{
 				_openEditProfileCommand = _openEditProfileCommand ??
-										  new MvxCommand(() =>
+										  new MvxCommand(async () =>
 										  {
-											  NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments>(
-												  new EditProfileViewModelArguments(User.Uuid, true));
+											  var user = await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments, User>(
+															 new EditProfileViewModelArguments(User.Uuid, true));
+											  User = user ?? User;
 										  });
 				return _openEditProfileCommand;
 			}

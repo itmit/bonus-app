@@ -26,6 +26,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		private readonly IStockService _stockService;
 		private Guid _guid;
 		private MvxCommand _showBusinessmanProfileCommand;
+		private MvxCommand _removeFromFavoriteCommand;
 		#endregion
 		#endregion
 
@@ -48,6 +49,8 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 										{
 											if (await _stockService.AddToFavorite(Stock.Uuid))
 											{
+												Stock.IsFavorite = true;
+												await RaisePropertyChanged(() => Stock);
 												await MaterialDialog.Instance.AlertAsync("Акция добавлена в избранное", "Внимание", "Ок");
 											}
 											else
@@ -56,6 +59,28 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 											}
 										});
 				return _addToFavoriteCommand;
+			}
+		}
+
+		public MvxCommand RemoveFromFavoriteCommand
+		{
+			get
+			{
+				_removeFromFavoriteCommand = _removeFromFavoriteCommand ??
+										new MvxCommand(async () =>
+										{
+											if (await _stockService.RemoveFromFavorite(Stock.Uuid))
+											{
+												Stock.IsFavorite = false;
+												await RaisePropertyChanged(() => Stock);
+												await MaterialDialog.Instance.AlertAsync("Акция убрана из избранных", "Внимание", "Ок");
+											}
+											else
+											{
+												await MaterialDialog.Instance.AlertAsync("Не удалось удалить акцию из избранных", "Внимание", "Ок");
+											}
+										});
+				return _removeFromFavoriteCommand;
 			}
 		}
 

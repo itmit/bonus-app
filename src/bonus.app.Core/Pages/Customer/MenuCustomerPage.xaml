@@ -45,7 +45,7 @@
                                                       NumberOfTapsRequired="1" />
                             </StackLayout.GestureRecognizers>
                             <Image Source="ic_rub.png" WidthRequest="18" HeightRequest="18" VerticalOptions="Center" />
-                            <Label Text="Начислить бонусы" TextColor="White" VerticalOptions="Center" />
+                            <Label Text="Мои бонусы" TextColor="White" VerticalOptions="Center" />
                         </StackLayout>
 
                         <StackLayout Grid.Row="2" Orientation="Horizontal">

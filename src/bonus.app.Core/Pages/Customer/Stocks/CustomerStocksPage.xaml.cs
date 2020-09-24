@@ -21,20 +21,6 @@ namespace bonus.app.Core.Pages.Customer.Stocks
 		#endregion
 
 		#region Private
-		private void ImageButton_OnClicked(object sender, EventArgs e)
-		{
-			if (StackLayout.IsEnabled)
-			{
-				StackLayout.IsVisible = false;
-				StackLayout.IsEnabled = false;
-			}
-			else
-			{
-				StackLayout.IsVisible = true;
-				StackLayout.IsEnabled = true;
-			}
-		}
-
 		private void SelectableItemsView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			((CollectionView) sender).SelectedItem = null;

@@ -14,7 +14,6 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 	{
 		#region Data
 		#region Fields
-		private bool _isFavoriteStocks;
 		private bool _isRefreshing;
 		private MvxCommand _openCreateShareArchivePageCommand;
 		private MvxCommand _openFavoriteStocksCommand;
@@ -22,6 +21,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		private Stock _selectedStock;
 		private MvxObservableCollection<Stock> _stocks;
 		private readonly IStockService _stockService;
+		private bool _isInitialize;
 		#endregion
 		#endregion
 
@@ -101,12 +101,23 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		}
 		#endregion
 
+		public override async void ViewAppearing()
+		{
+			base.ViewAppearing();
+
+			if (_isInitialize)
+			{
+				Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
+			}
+		}
+
 		#region Overrided
 		public override async Task Initialize()
 		{
 			await base.Initialize();
 
 			Stocks = new MvxObservableCollection<Stock>(await _stockService.GetAll());
+			_isInitialize = true;
 		}
 		#endregion
 	}

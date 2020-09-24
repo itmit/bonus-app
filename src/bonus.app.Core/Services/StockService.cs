@@ -26,6 +26,7 @@ namespace bonus.app.Core.Services
 		#region Data
 		#region Consts
 		private const string AddToFavoriteUri = "http://bonus.itmit-studio.ru/api/addStockToFavorite";
+		private const string RemoveFromFavoriteUri = "http://bonus.itmit-studio.ru/api/removeFromFavorite";
 		private const string BusinessmenStocksUri = "http://bonus.itmit-studio.ru/api/businessmanstock";
 		private const string EditStockUri = "http://bonus.itmit-studio.ru/api/businessmanstock/{0}";
 		private const string GetAllUri = "http://bonus.itmit-studio.ru/api/customerstock";
@@ -49,6 +50,21 @@ namespace bonus.app.Core.Services
 		public async Task<bool> AddToFavorite(Guid stockUuid)
 		{
 			var resp = await HttpClient.PostAsync(AddToFavoriteUri, new StringContent($"{{\"stock_uuid\":\"{stockUuid}\"}}", Encoding.UTF8, ApplicationJson));
+			var json = await resp.Content.ReadAsStringAsync();
+			Debug.WriteLine(json);
+
+			if (string.IsNullOrEmpty(json))
+			{
+				return false;
+			}
+
+			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
+			return data.Success;
+		}
+
+		public async Task<bool> RemoveFromFavorite(Guid stockUuid)
+		{
+			var resp = await HttpClient.PostAsync(RemoveFromFavoriteUri, new StringContent($"{{\"stock_uuid\":\"{stockUuid}\"}}", Encoding.UTF8, ApplicationJson));
 			var json = await resp.Content.ReadAsStringAsync();
 			Debug.WriteLine(json);
 

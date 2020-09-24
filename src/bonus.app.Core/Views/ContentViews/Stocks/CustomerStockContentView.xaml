@@ -32,9 +32,9 @@
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Text="{Binding Name}" MaxLines="1" VerticalOptions="Center" />
                     <Image Grid.Column="1" Source="ic_heart_4x" WidthRequest="17" HorizontalOptions="EndAndExpand"
-                           IsVisible="{Binding IsFavorites, Converter={StaticResource InverseBoolConverter}}" />
+                           IsVisible="{Binding IsFavorite, Converter={StaticResource InverseBoolConverter}}" />
                     <Image Grid.Column="1" Source="ic_heart_filled_4x" WidthRequest="17"
-                           HorizontalOptions="EndAndExpand" IsVisible="{Binding IsFavorites}" />
+                           HorizontalOptions="EndAndExpand" IsVisible="{Binding IsFavorite}" />
                 </Grid>
                 <Label Text="{Binding Description}" MaxLines="3" FontSize="Caption" TextColor="Gray" />
             </StackLayout>

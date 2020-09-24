@@ -16,6 +16,8 @@ namespace bonus.app.Core.Services
 		#region Overridable
 		Task<bool> AddToFavorite(Guid stockUuid);
 
+		Task<bool> RemoveFromFavorite(Guid stockUuid);
+
 		Task<bool> CreateStock(Stock stock, byte[] imageBytes);
 
 		Task<bool> EditStock(Stock stock, byte[] imageBytes);
