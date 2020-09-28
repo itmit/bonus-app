@@ -133,6 +133,9 @@
     <Compile Update="Pages\Auth\SuccessRegisterPopupPage.xaml.cs">
       <DependentUpon>SuccessRegisterPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ContentViews\CityCollectionContentView.xaml.cs">
+      <DependentUpon>CityCollectionContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ContentViews\PicCountryAndCityContentView.xaml.cs">
       <DependentUpon>PicCountryAndCityContentView.xaml</DependentUpon>
     </Compile>
@@ -344,6 +347,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Chats\TextOutContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ContentViews\CityCollectionContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\ManagerView.xaml">

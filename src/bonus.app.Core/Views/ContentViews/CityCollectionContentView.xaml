@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:contentViews="clr-namespace:bonus.app.Core.Views.ContentViews;assembly=bonus.app.Core"
+             x:Class="bonus.app.Core.Views.ContentViews.CityCollectionContentView">
+    <ContentView.Content>
+        <StackLayout IsVisible="{Binding IsVisibleCities}"
+                     IsEnabled="{Binding IsVisibleCities}">
+            <SearchBar Text="{Binding SearchCity}"
+                       x:Name="CityBar"
+                       SearchCommand="{Binding SearchCityCommand}"/>
+            <CollectionView SelectionMode="Single"
+                            ItemsSource="{Binding Cities}"
+                            SelectedItem="{Binding SelectedCity}"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <contentViews:CountryCityContentView />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="Выбор города запрещен"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.Footer>
+                    <StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OtherCityTabbed"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label Margin="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Другой город"/>
+                    </StackLayout>
+                </CollectionView.Footer>
+            </CollectionView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

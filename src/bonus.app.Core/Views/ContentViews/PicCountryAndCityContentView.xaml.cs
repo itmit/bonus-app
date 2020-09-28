@@ -12,6 +12,7 @@ namespace bonus.app.Core.Views.ContentViews
 		#region Data
 		#region Fields
 		private View _footer;
+		private CityCollectionContentView _cityCollectionContentView;
 		#endregion
 		#endregion
 
@@ -21,6 +22,25 @@ namespace bonus.app.Core.Views.ContentViews
 			InitializeComponent();
 		}
 		#endregion
+
+		protected override void OnViewModelSet()
+		{
+			base.OnViewModelSet();
+
+			if (!ViewModel.CanPicCountryOrCity)
+			{
+				return;
+			}
+
+			_cityCollectionContentView = new CityCollectionContentView(OtherCityTabExecute);
+			CityCollectionView.Children.Add(_cityCollectionContentView);
+		}
+
+		private void OtherCityTabExecute()
+		{
+			_cityCollectionContentView.CitySearchBar.Focus();
+			ViewModel.Cities.Clear();
+		}
 
 		#region Properties
 		public View Footer
@@ -34,11 +54,5 @@ namespace bonus.app.Core.Views.ContentViews
 			}
 		}
 		#endregion
-
-		private void OtherCityTabbed(object sender, EventArgs e)
-		{
-			CitySearchBar.Focus();
-			ViewModel.Cities.Clear();
-		}
 	}
 }

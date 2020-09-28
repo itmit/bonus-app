@@ -43,35 +43,6 @@ namespace bonus.app.Core
 			}
 		}
 
-		public override void ReplacePageRoot(Xamarin.Forms.Page existingPage, Xamarin.Forms.Page page, MvxPagePresentationAttribute attribute)
-		{
-			try
-			{
-				base.ReplacePageRoot(existingPage,  page, attribute);
-			}
-			catch (Exception ex)
-			{
-				Crashes.TrackError(ex);
-				Logger.Log(MvxLogLevel.Debug, () => ex.ToString());
-				throw;
-			}
-		}
-
-		public override Task PushOrReplacePage(Xamarin.Forms.Page rootPage, Xamarin.Forms.Page page, MvxPagePresentationAttribute attribute)
-		{
-			try
-			{
-				return base.PushOrReplacePage(rootPage, page, attribute);
-			}
-			catch (Exception ex)
-			{
-				Crashes.TrackError(ex);
-				Logger.Log(MvxLogLevel.Debug, () => ex.ToString());
-			}
-
-			return new Task(() => {});
-		}
-
 		#region Overrided
 		public override Task<bool> CloseContentPage(IMvxViewModel viewModel, MvxContentPagePresentationAttribute attribute)
 		{

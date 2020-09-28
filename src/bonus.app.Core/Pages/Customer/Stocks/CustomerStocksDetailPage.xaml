@@ -17,8 +17,6 @@
     <views:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Избранные акции" Order="Secondary" Priority="0"
                      Command="{Binding OpenFavoriteStocksCommand}" />
-        <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
-                     Command="{Binding OpenArchivePageCommand}" />
     </views:MvxContentPage.ToolbarItems>
 
     <ContentPage.Content>

@@ -35,7 +35,7 @@
                 </StackLayout>
                 <BoxView />
             </StackLayout>
-
+            
             <StackLayout Grid.Row="1">
                 <SearchBar Text="{Binding SearchCountry}"
                            SearchCommand="{Binding SearchCountryCommand}"
@@ -55,14 +55,14 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
-
+            
             <Grid Grid.Row="1"
                   IsVisible="{Binding IsVisibleCountries, Converter={StaticResource InverseBoolConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
+                
                 <StackLayout IsVisible="{Binding IsVisibleSelectedCity}">
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ShowOrHideCitiesCommand}" />
@@ -80,32 +80,7 @@
                     <BoxView />
                 </StackLayout>
 
-                <StackLayout IsVisible="{Binding IsVisibleCities}"
-                             IsEnabled="{Binding IsVisibleCities}"
-                             Grid.Row="1">
-                    <SearchBar Text="{Binding SearchCity}"
-                               x:Name="CitySearchBar"
-                               SearchCommand="{Binding SearchCityCommand}"/>
-                    <CollectionView SelectionMode="Single"
-                                    ItemsSource="{Binding Cities}"
-                                    SelectedItem="{Binding SelectedCity}"
-                                    VerticalOptions="FillAndExpand"
-                                    HorizontalOptions="FillAndExpand">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <contentViews:CountryCityContentView />
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                        <CollectionView.Footer>
-                            <StackLayout>
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OtherCityTabbed"/>
-                                </StackLayout.GestureRecognizers>
-                                <Label Margin="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Другой город"/>
-                            </StackLayout>
-                        </CollectionView.Footer>
-                    </CollectionView>
-                </StackLayout>
+                <StackLayout Grid.Row="1" x:Name="CityCollectionView"/>
 
                 <StackLayout Grid.Row="1"
                              IsVisible="{Binding IsVisibleCities, Converter={StaticResource InverseBoolConverter}}">
