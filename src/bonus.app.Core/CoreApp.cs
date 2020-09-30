@@ -1,6 +1,7 @@
 ﻿using System;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Customer;
@@ -25,10 +26,9 @@ namespace bonus.app.Core
 				.RegisterAsLazySingleton();
 
 			CreatableTypes()
-				.InNamespace("bonus.app.Core.Repositories")
 				.EndingWith("Repository")
 				.AsInterfaces()
-				.RegisterAsDynamic();
+				.RegisterAsLazySingleton();
 
 			Barrel.ApplicationId = "itmit.bonus.app";
 			RealmConfiguration.DefaultConfiguration.SchemaVersion = 3;

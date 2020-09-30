@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Models.Statistic;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -126,7 +127,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 					try
 					{
-						Result = new MvxObservableCollection<Line>(await _statisticService.GetSalesStatisticsByType(SelectedItems, DateFrom.Value, DateTo.Value));
+						Result = new MvxObservableCollection<Line>(await _statisticService.SalesStatisticsByType(SelectedItems, DateFrom.Value, DateTo.Value));
 					}
 					catch (Exception e)
 					{

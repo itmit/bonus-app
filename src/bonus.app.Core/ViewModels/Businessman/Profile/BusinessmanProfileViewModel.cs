@@ -6,6 +6,7 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Businessman.Managers;
 using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Binding.Extensions;
@@ -77,7 +78,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 		private async void ProfileServiceOnPortfolioChanged(object sender, EventArgs e)
 		{
-			PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
+			PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.Portfolio());
 		}
 		#endregion
 
@@ -233,7 +234,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 								  new MvxCommand(async () =>
 								  {
 									  IsRefreshing = true;
-									  User = await _profileService.GetUser();
+									  User = await _profileService.User();
 									  await Initialize();
 									  IsRefreshing = false;
 								  });
@@ -331,18 +332,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Overrided
 		public override async Task Initialize()
 		{
-			await base.Initialize();
+			LoadProfileTask = MvxNotifyTask.Create(LoadProfile);
 
-			try
-			{
-				Services = await _servicesService.GetBusinessmenService();
-				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio());
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
-			HasServiceInfo = Services != null && Services.Any();
+			await base.Initialize();
 		}
 		#endregion
 
@@ -359,7 +351,23 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			}
 		}
 
+		public MvxNotifyTask LoadProfileTask
+		{ 
+			get;
+			private set;
+		}
+
 		#region Private
+		private async Task LoadProfile()
+		{
+			User = await _profileService.User();
+
+			Services = await _servicesService.GetBusinessmenService();
+			HasServiceInfo = Services != null && Services.Any();
+
+			PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.Portfolio());
+		}
+
 		private async void AddImageToPortfolio()
 		{
 			if (!await _permissionsService.RequestPermissionAsync<StoragePermission>(Permission.Storage, "Для загрузки аватара необходимо разрешение на использование хранилища."))

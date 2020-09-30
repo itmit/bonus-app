@@ -6,11 +6,12 @@ using Android.OS;
 using Android.Provider;
 using Android.Runtime;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross;
 using Org.Json;
 using Xamarin.Facebook;
 using Xamarin.Facebook.Login;
-using LoginResult = bonus.app.Core.Services.LoginResult;
+using LoginResult = bonus.app.Core.Services.Interfaces.LoginResult;
 using Uri = Android.Net.Uri;
 
 namespace bonus.app.Droid.Services

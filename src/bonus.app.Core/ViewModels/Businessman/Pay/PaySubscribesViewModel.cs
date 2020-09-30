@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Logging;

@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Support.V4.App;
 using Android.Util;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Firebase.Messaging;
 using MvvmCross;
 

@@ -1,6 +1,7 @@
 ﻿using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman.Popups

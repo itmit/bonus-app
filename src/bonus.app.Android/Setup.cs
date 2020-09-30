@@ -1,5 +1,6 @@
 ﻿using bonus.app.Core;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Droid.Services;
 using Firebase.Messaging;
 using MvvmCross;

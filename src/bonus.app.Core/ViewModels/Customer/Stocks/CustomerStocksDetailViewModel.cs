@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
@@ -146,7 +147,7 @@ namespace bonus.app.Core.ViewModels.Customer.Stocks
 		{
 			await base.Initialize();
 
-			var stock = await _stockService.GetDetail(_guid);
+			var stock = await _stockService.Detail(_guid);
 			switch (stock.Status)
 			{
 				case "Завершена":

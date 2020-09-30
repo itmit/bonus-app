@@ -1,5 +1,6 @@
 ﻿using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;

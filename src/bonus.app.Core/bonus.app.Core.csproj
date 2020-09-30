@@ -29,7 +29,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
-    <PackageReference Include="MvvmCross.Forms" Version="6.4.2" />
+    <PackageReference Include="MvvmCross.Forms" Version="7.0.1" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
     <PackageReference Include="Realm" Version="4.3.0" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
@@ -109,9 +109,6 @@
     <Compile Update="Pages\Customer\Stocks\CustomerStocksPage.xaml.cs">
       <DependentUpon>CustomerStocksPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Customer\Stocks\SelectedStocksPage.xaml.cs">
-      <DependentUpon>SelectedStocksPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Pages\Customer\Stocks\SelectedStocksDetailPage.xaml.cs">
       <DependentUpon>SelectedStocksDetailPage.xaml</DependentUpon>
     </Compile>
@@ -144,15 +141,6 @@
     </Compile>
     <Compile Update="Views\ContentViews\Statistics\LineStatisticContentView.xaml.cs">
       <DependentUpon>LineStatisticContentView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml.cs">
-      <DependentUpon>ServiceTypeViewCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ViewCells\Shares\CustomerSharesViewCell.xaml.cs">
-      <DependentUpon>CustomerSharesViewCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\ViewCells\Shares\MyShareViewCell.xaml.cs">
-      <DependentUpon>MyShareViewCell.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -257,9 +245,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Customer\Stocks\SelectedStocksDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Customer\Stocks\SelectedStocksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Businessman\Services\EditBusinessmanServicesDetailsPage.xaml">
@@ -436,37 +421,13 @@
     <EmbeddedResource Update="Pages\Auth\SuccessRegisterPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\CountryCityViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Stocks\FilterContentView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\NewsViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\PayViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\Services\MyServicesContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Services\ServiceTypeViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Services\ServiceViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\SharesViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\CustomerSharesViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\ContentViews\CarouselContentView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewCells\Shares\SelectedSharesViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

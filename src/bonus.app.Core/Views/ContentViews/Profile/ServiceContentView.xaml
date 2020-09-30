@@ -10,19 +10,19 @@
         <Frame Margin="5"
                BackgroundColor="Transparent"
                HeightRequest="25"
-               CornerRadius="24"
+               Padding="15, 2.5"
                IsClippedToBounds="True"
                BorderColor="#9A9A9A"
                HasShadow="False">
 
-            <Frame.Padding>
-                <OnPlatform x:TypeArguments="Thickness">
+            <Frame.CornerRadius>
+                <OnPlatform x:TypeArguments="x:Single">
                     <OnPlatform.Platforms>
-                        <On Platform="iOS" Value="10, 2.5"/>
-                        <On Platform="Android" Value="15, 2.5"/>
+                        <On Platform="iOS" Value="15"/>
+                        <On Platform="Android" Value="24"/>
                     </OnPlatform.Platforms>
                 </OnPlatform>
-            </Frame.Padding>
+            </Frame.CornerRadius>
 
             <Label Text="{Binding Name}" TextColor="#9A9A9A" FontSize="Caption"
                    VerticalOptions="Center" HorizontalOptions="Center" />

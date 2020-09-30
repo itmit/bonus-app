@@ -1,5 +1,6 @@
 ﻿using System;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 
 namespace bonus.app.iOS.Services
 {

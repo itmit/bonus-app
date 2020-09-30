@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -81,7 +82,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Managers
 
 			try
 			{
-				Managers = new MvxObservableCollection<User>(await _managerService.GetManagers());
+				Managers = new MvxObservableCollection<User>(await _managerService.Managers());
 			}
 			catch (Exception e)
 			{

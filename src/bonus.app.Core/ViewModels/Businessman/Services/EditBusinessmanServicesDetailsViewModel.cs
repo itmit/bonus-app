@@ -4,6 +4,7 @@ using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Forms.Presenters;
 using MvvmCross.Navigation;

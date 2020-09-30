@@ -1,5 +1,7 @@
-﻿using bonus.app.Core;
+﻿using System.Threading.Tasks;
+using bonus.app.Core;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.iOS.Services;
 using MvvmCross;
 using MvvmCross.Forms.Platforms.Ios.Core;
@@ -8,11 +10,16 @@ using MvvmCross.Forms.Presenters;
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Ios.Presenters;
 using MvvmCross.ViewModels;
+using UIKit;
+using Xamarin.Forms;
 
 namespace bonus.app.iOS
 {
 	public class Setup : MvxFormsIosSetup<CoreApp, App>
 	{
+		private MvxFormsIosViewPresenter _presenter;
+		private CustomMvxFormsPagePresenter _formsPagePresenter;
+
 		#region Overrided
 		protected override IMvxApplication CreateApp() => new CoreApp();
 
@@ -30,17 +37,17 @@ namespace bonus.app.iOS
 
 		protected override IMvxFormsPagePresenter CreateFormsPagePresenter(IMvxFormsViewPresenter viewPresenter)
 		{
-			var formsPagePresenter = new CustomMvxFormsPagePresenter(viewPresenter);
-			Mvx.IoCProvider.RegisterSingleton<IMvxFormsPagePresenter>(formsPagePresenter);
+			_formsPagePresenter = new CustomMvxFormsPagePresenter(viewPresenter);
+			Mvx.IoCProvider.RegisterSingleton<IMvxFormsPagePresenter>(_formsPagePresenter);
 			Mvx.IoCProvider.RegisterSingleton<ISettingsHelper>(new SettingsHelper());
-			return formsPagePresenter;
+			return _formsPagePresenter;
 		}
 
 		protected override IMvxIosViewPresenter CreateViewPresenter()
 		{
-			var viewPresenter = new MvxFormsIosViewPresenter(ApplicationDelegate, Window, FormsApplication);
-			viewPresenter.FormsPagePresenter = CreateFormsPagePresenter(viewPresenter);
-			return viewPresenter;
+			_presenter = new MvxFormsIosViewPresenter(ApplicationDelegate, Window, FormsApplication);
+			_presenter.FormsPagePresenter = CreateFormsPagePresenter(_presenter);
+			return _presenter;
 		}
 		#endregion
 	}

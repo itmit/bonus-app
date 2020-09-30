@@ -1,4 +1,5 @@
 ﻿using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;

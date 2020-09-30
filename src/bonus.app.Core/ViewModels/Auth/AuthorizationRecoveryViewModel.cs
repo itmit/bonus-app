@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.Validations;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;

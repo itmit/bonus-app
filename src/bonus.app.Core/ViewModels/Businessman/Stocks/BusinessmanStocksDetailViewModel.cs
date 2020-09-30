@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -105,7 +106,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 		{
 			await base.Initialize();
 
-			Stock = await _stockService.GetDetail(_guid);
+			Stock = await _stockService.Detail(_guid);
 		}
 		#endregion
 

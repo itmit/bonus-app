@@ -33,7 +33,7 @@ namespace bonus.app.Core
 		}
 		#endregion
 
-		public IMvxLog Logger
+		private IMvxLog Logger
 		{
 			get
 			{
@@ -53,6 +53,7 @@ namespace bonus.app.Core
 
 			return base.CloseContentPage(viewModel, attribute);
 		}
+
 		public override Task<bool> Show(MvxViewModelRequest request)
 		{
 #if DEBUG // Only wrap in try-finally when in debug
@@ -73,6 +74,19 @@ namespace bonus.app.Core
 			}
 #endif
 		}
+
+		public override void ReplacePageRoot(Xamarin.Forms.Page existingPage, Xamarin.Forms.Page page, MvxPagePresentationAttribute attribute)
+		{
+			try
+			{
+				base.ReplacePageRoot(existingPage, page, attribute);
+			}
+			catch (Exception e)
+			{
+				Logger.Log(MvxLogLevel.Debug, () => e.ToString());
+			}
+		}
+
 		public override TPage GetPageOfType<TPage>(Xamarin.Forms.Page rootPage = null)
 		{
 			if (rootPage == null)

@@ -5,6 +5,7 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Chats;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -228,11 +229,11 @@ namespace bonus.app.Core.ViewModels.Customer
 
 			try
 			{
-				User = await _profileService.GetUser(_parameter.Uuid, _parameter.StockId, _parameter.ServiceId);
+				User = await _profileService.User(_parameter.Uuid, _parameter.StockId, _parameter.ServiceId);
 				PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
 				IsSubscribe = (await _subscribeService.GetSubscriptions()).Any(s => s.Uuid.Equals(_parameter.Uuid));
 				Services = new MvxObservableCollection<Service>(await _servicesService.GetBusinessmenService(_parameter.Uuid));
-				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.GetPortfolio(_parameter.Uuid));
+				PortfolioImages = new MvxObservableCollection<PortfolioImage>(await _profileService.Portfolio(_parameter.Uuid));
 			}
 			catch (Exception e)
 			{

@@ -6,6 +6,7 @@ using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Models.Statistic;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -46,7 +47,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 			try
 			{
 				Services = new MvxObservableCollection<Service>(await _servicesService.GetBusinessmenService());
-				Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyStocks());
+				Stocks = new MvxObservableCollection<Stock>(await _stockService.MyStocks());
 			}
 			catch (Exception e)
 			{
@@ -72,7 +73,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 					try
 					{
-						Lines = new MvxObservableCollection<Line>(await _statisticService.GetTransitionsProfileStatistics(SelectedStocks, SelectedItems, DateFrom.Value, DateTo.Value));
+						Lines = new MvxObservableCollection<Line>(await _statisticService.TransitionsProfileStatistics(SelectedStocks, SelectedItems, DateFrom.Value, DateTo.Value));
 					}
 					catch (Exception e)
 					{

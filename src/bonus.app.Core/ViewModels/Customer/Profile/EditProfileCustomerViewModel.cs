@@ -4,6 +4,7 @@ using System.Linq;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
 using Microsoft.AppCenter.Crashes;

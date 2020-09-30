@@ -8,6 +8,7 @@ using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Businessman;
 using bonus.app.Core.ViewModels.Businessman.Profile;
 using bonus.app.Core.ViewModels.Customer;

@@ -3,6 +3,7 @@ using System.Linq;
 using bonus.app.Core.Helpers;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Chats;
 using bonus.app.Core.ViewModels.Customer.BonusAccrual;

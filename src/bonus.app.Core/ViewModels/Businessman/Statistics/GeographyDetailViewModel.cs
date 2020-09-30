@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models.Statistic;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Microcharts;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
@@ -80,7 +81,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 					try
 					{
-						Result = new MvxObservableCollection<PiecePieChart>(await _statisticService.GetGeographyStatistics(DateFrom.Value, DateTo.Value, StatisticsType));
+						Result = new MvxObservableCollection<PiecePieChart>(await _statisticService.GeographyStatistics(DateFrom.Value, DateTo.Value, StatisticsType));
 						for (var i = 0; i < Result.Count; i++)
 						{
 							Result[i]

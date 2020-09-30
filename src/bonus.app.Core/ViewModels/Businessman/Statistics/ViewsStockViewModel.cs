@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Models.Statistic;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
 using MvvmCross.Navigation;
@@ -38,7 +39,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 
 					try
 					{
-						Lines = new MvxObservableCollection<Line>(await _statisticService.GetStocksViewsStatistic(DateFrom.Value, DateTo.Value))
+						Lines = new MvxObservableCollection<Line>(await _statisticService.StocksViewsStatistic(DateFrom.Value, DateTo.Value))
 						{
 							[0] =
 							{

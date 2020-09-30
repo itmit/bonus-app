@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross;
 using Plugin.CurrentActivity;
 using VKontakte;

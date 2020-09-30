@@ -5,6 +5,7 @@ using AutoMapper;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.ServiceModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.ViewModels.Businessman.Services;
 using bonus.app.Core.Views.ContentViews.Stocks;
 using MvvmCross.Commands;
@@ -78,9 +79,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 										   {
 											   Stocks = IsMyStocks
 															? new MvxObservableCollection<Stock>(
-																await _stockService.GetMyArchiveStock(MyServicesContentViewModel.SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
+																await _stockService.MyArchiveStock(MyServicesContentViewModel.SelectedService.Uuid, PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru))
 															: new MvxObservableCollection<Stock>(
-																await _stockService.GetArchiveStock(MyServicesContentViewModel.SelectedService.Uuid,
+																await _stockService.ArchiveStock(MyServicesContentViewModel.SelectedService.Uuid,
 																									PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru));
 										   }
 										   catch (Exception e)
@@ -143,7 +144,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 
 			try
 			{
-				Stocks = new MvxObservableCollection<Stock>(await _stockService.GetMyArchiveStock());
+				Stocks = new MvxObservableCollection<Stock>(await _stockService.MyArchiveStock());
 			}
 			catch (Exception e)
 			{

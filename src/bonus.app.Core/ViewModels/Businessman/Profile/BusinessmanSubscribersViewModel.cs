@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -96,7 +97,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				SetProperty(ref _selectedSubscription, value);
 				Task.Run(async () =>
 				{
-					await _navigationService.Navigate<ClientProfileViewModel, User>(await _profileService.GetUser(value.Uuid));
+					await _navigationService.Navigate<ClientProfileViewModel, User>(await _profileService.User(value.Uuid));
 				});
 			}
 		}

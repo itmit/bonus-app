@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
+using bonus.app.Core.Services.Interfaces;
 using MonkeyCache.FileStore;
 using Newtonsoft.Json;
 using Xamarin.Essentials;

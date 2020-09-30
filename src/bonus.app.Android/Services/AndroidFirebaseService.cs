@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Android.Gms.Extensions;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Firebase.Iid;
 using Firebase.Messaging;
 

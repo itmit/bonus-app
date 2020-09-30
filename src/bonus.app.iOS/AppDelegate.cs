@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.iOS.Services;
 using FFImageLoading.Forms.Platform;
 using Firebase.CloudMessaging;

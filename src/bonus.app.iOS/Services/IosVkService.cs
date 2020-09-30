@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Foundation;
 using Newtonsoft.Json.Linq;
 using UIKit;
@@ -78,7 +79,7 @@ namespace bonus.app.iOS.Services
 		}
 
 
-		private async Task GetUserProfile(Account account, string token, DateTimeOffset expireAt)
+		private async Task UserProfile(Account account, string token, DateTimeOffset expireAt)
 		{
 			var result = new LoginResult
 			{

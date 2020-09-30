@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Firebase.CloudMessaging;
 using Foundation;
 using UIKit;

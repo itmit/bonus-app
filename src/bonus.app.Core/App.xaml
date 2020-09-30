@@ -48,7 +48,16 @@
             </Style>
             <!--Стиль для кнопок в приложении-->
             <Style x:Key="AppButtonGradient" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="22.5" />
+                <Setter Property="CornerRadius" >
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Single">
+                            <OnPlatform.Platforms>
+                                <On Platform="iOS" Value="30"/>
+                                <On Platform="Android" Value="22.5"/>
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="HeightRequest" Value="45" />
                 <Setter Property="HasShadow" Value="False" />

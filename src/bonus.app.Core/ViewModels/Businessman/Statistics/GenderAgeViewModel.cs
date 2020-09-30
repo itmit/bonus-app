@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using bonus.app.Core.Models.Statistic;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Microcharts;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
@@ -65,7 +66,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Statistics
 					}
 					try
 					{
-						var result = await _statisticService.GetAgeStatistics(DateFrom.Value, DateTo.Value);
+						var result = await _statisticService.AgeStatistics(DateFrom.Value, DateTo.Value);
 						Columns.Clear();
 						foreach (var column in result)
 						{

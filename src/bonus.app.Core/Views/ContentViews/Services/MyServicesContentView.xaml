@@ -13,7 +13,7 @@
     <!--Содержимое с добавлением услуг-->
     <ContentView.Content>
         <StackLayout Spacing="0">
-            <StackLayout  Spacing="0">
+            <StackLayout Spacing="0">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ShowOrHideTypesServicesCommand}" />
                 </StackLayout.GestureRecognizers>

@@ -1,24 +1,27 @@
-﻿using MvvmCross.Logging;
+﻿using MvvmCross.Commands;
+using MvvmCross.Logging;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Businessman
 {
-	public class MainBusinessmanViewModel : MvxNavigationViewModel
+	public class MainBusinessmanViewModel : MvxViewModel
 	{
 		#region .ctor
-		public MainBusinessmanViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
-			: base(logProvider, navigationService)
+		public MainBusinessmanViewModel(IMvxNavigationService navigationService)
 		{
+			ShowMenuBusinessmanViewModelCommand = new MvxAsyncCommand(async () => await navigationService.Navigate<MenuBusinessmanViewModel>());
+			ShowMainTabbedBusinessmanViewModelCommand = new MvxAsyncCommand(async () => await navigationService.Navigate<MainTabbedBusinessmanViewModel>());
 		}
-		#endregion
 
-		#region Overrided
-		public override async void ViewAppearing()
+		public MvxAsyncCommand ShowMainTabbedBusinessmanViewModelCommand
 		{
-			base.ViewAppearing();
-			await NavigationService.Navigate<MenuBusinessmanViewModel>();
-			await NavigationService.Navigate<MainTabbedBusinessmanViewModel>();
+			get;
+		}
+
+		public MvxAsyncCommand ShowMenuBusinessmanViewModelCommand
+		{
+			get;
 		}
 		#endregion
 	}

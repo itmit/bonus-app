@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using CoreGraphics;
 using Foundation;
 using Newtonsoft.Json;

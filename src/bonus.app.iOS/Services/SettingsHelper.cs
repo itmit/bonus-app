@@ -1,4 +1,5 @@
 ﻿using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using Foundation;
 using UIKit;
 

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
-using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Businessman.Services;
 using MvvmCross.Commands;
@@ -152,7 +152,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 
 			try
 			{
-				Stock = await _stockService.GetStockForEdit(Stock.Uuid);
+				Stock = await _stockService.StockForEdit(Stock.Uuid);
 
 				ImageSource = Stock.ImageSource;
 

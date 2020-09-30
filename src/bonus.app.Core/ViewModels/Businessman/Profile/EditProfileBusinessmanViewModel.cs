@@ -9,6 +9,7 @@ using bonus.app.Core.Dtos.BusinessmanDtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
+using bonus.app.Core.Services.Interfaces;
 using bonus.app.Core.Validations;
 using bonus.app.Core.ViewModels.Auth;
 using bonus.app.Core.ViewModels.Businessman.Services;
@@ -250,7 +251,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 
 				try
 				{
-					PortfolioImages = new MvxObservableCollection<PortfolioViewModel>(_mapper.Map<List<PortfolioViewModel>>(await _profileService.GetPortfolio()));
+					PortfolioImages = new MvxObservableCollection<PortfolioViewModel>(_mapper.Map<List<PortfolioViewModel>>(await _profileService.Portfolio()));
 				}
 				catch (Exception e)
 				{
