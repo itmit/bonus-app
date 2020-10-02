@@ -1,4 +1,5 @@
-﻿using bonus.app.Core.ViewModels.Businessman.Stocks;
+﻿using System;
+using bonus.app.Core.ViewModels.Businessman.Stocks;
 using MvvmCross.Forms.Views;
 using Xamarin.Forms.Xaml;
 

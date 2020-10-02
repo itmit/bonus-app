@@ -319,7 +319,10 @@ namespace bonus.app.Core.Services.Implementations
 				return null;
 			}
 
-			return data.Success ? MapUser(data.Data) : _mapper.Map<User>(data.Data);
+			var user = data.Success ? MapUser(data.Data) : _mapper.Map<User>(data.Data);
+			user.AccessToken = AuthService.User.AccessToken;
+			_userRepository.Update(user);
+			return user;
 		}
 
 		private User MapUser(UserDto data)

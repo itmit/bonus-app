@@ -1,4 +1,5 @@
-﻿using bonus.app.Core.Models;
+﻿using System.Threading.Tasks;
+using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
 using bonus.app.Core.Services;
 using bonus.app.Core.Services.Interfaces;
@@ -10,25 +11,52 @@ using MvvmCross.ViewModels;
 
 namespace bonus.app.Core.ViewModels.Customer.Profile
 {
-	public class CustomerProfileViewModel : MvxNavigationViewModel
+	public class CustomerProfileViewModel : MvxViewModel
 	{
 		#region Data
 		#region Fields
 		private MvxCommand _openDialogsCommand;
 		private MvxCommand _openEditProfileCommand;
 		private MvxCommand _openSubscribesCommand;
-
+		private readonly IProfileService _profileService;
 		private User _user;
+		private MvxCommand _refreshCommand;
+		private bool _isRefreshing;
+		private readonly IMvxNavigationService _navigationService;
 		#endregion
 		#endregion
 
 		#region .ctor
-		public CustomerProfileViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IAuthService authService)
-			: base(logProvider, navigationService) =>
-			User = authService.User;
+		public CustomerProfileViewModel(IMvxNavigationService navigationService
+										, IProfileService profileService)
+		{
+			_profileService = profileService;
+			_navigationService = navigationService;
+		}
 		#endregion
 
 		#region Properties
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set => SetProperty(ref _isRefreshing, value);
+		}
+
+		public MvxCommand RefreshCommand
+		{
+			get
+			{
+				_refreshCommand = _refreshCommand ??
+								  new MvxCommand(async () =>
+								  {
+									  IsRefreshing = true;
+									  await Initialize();
+									  IsRefreshing = false;
+								  });
+				return _refreshCommand;
+			}
+		}
+
 		public MvxCommand OpenDialogsCommand
 		{
 			get
@@ -36,7 +64,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				_openDialogsCommand = _openDialogsCommand ??
 									  new MvxCommand(() =>
 									  {
-										  NavigationService.Navigate<DialogsViewModel>();
+										  _navigationService.Navigate<DialogsViewModel>();
 									  });
 				return _openDialogsCommand;
 			}
@@ -49,7 +77,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				_openEditProfileCommand = _openEditProfileCommand ??
 										  new MvxCommand(async () =>
 										  {
-											  var user = await NavigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments, User>(
+											  var user = await _navigationService.Navigate<EditProfileCustomerViewModel, EditProfileViewModelArguments, User>(
 															 new EditProfileViewModelArguments(User.Uuid, true));
 											  User = user ?? User;
 										  });
@@ -64,11 +92,29 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				_openSubscribesCommand = _openSubscribesCommand ??
 										 new MvxCommand(() =>
 										 {
-											 NavigationService.Navigate<CustomerSubscribersViewModel>();
+											 _navigationService.Navigate<CustomerSubscribersViewModel>();
 										 });
 				return _openSubscribesCommand;
 			}
 		}
+
+		public override Task Initialize() 
+		{
+			LoadProfileTask =  MvxNotifyTask.Create(LoadProfile);
+			return base.Initialize();
+		}
+
+		public MvxNotifyTask LoadProfileTask
+		{
+			get;
+			private set;
+		}
+
+		private async Task LoadProfile()
+		{
+			User = await _profileService.User();
+		}
+
 
 		public User User
 		{

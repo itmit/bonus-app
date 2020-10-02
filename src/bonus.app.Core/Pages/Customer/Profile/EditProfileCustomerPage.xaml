@@ -49,7 +49,7 @@
                     </ResourceDictionary>
                 </StackLayout.Resources>
 
-                <contentViews:PicCountryAndCityContentView ViewModel="{Binding CountryAndCityViewModel}">
+                <contentViews:PicCountryAndCityContentView x:Name="PicCountryAndCityContentView">
                     <contentViews:PicCountryAndCityContentView.Footer>
                         <StackLayout x:Name="MainContent">
 

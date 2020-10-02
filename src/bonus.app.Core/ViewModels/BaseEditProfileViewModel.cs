@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using bonus.app.Core.Models;
 using bonus.app.Core.Models.UserModels;
@@ -131,18 +132,8 @@ namespace bonus.app.Core.ViewModels
 			IsAuthorization = User != null;
 			if (Parameters.IsActiveUser & (User != null))
 			{
-				var p = string.Empty;
+				PhoneNumber.Value =  Regex.Replace(User.Phone, @"\ |\(|\)|\-", string.Empty);
 
-				p = User.Phone.Substring(0, 2) +
-					" (" +
-					User.Phone.Substring(2, 3) +
-					") " +
-					User.Phone.Substring(5, 3) +
-					"-" +
-					User.Phone.Substring(8, 2) +
-					"-" +
-					User.Phone.Substring(10, 2);
-				PhoneNumber.Value = p;
 				ImageSource = User.PhotoSource;
 				if (!string.IsNullOrWhiteSpace(ImageSource))
 				{

@@ -242,31 +242,34 @@ namespace bonus.app.Core.ViewModels.Businessman.Stocks
 				return;
 			}
 
+			if (ShareTime.Value == null)
+			{
+				ShareTime.Value = DateTime.Now;
+			}
+
 			var res = false;
+			var stock = new Stock
+			{
+				Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
+				City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
+				Service = MyServicesViewModel.SelectedService.Uuid,
+				Description = Description.Value,
+				ImageSource = ImageName,
+				Name = Name.Value,
+				ShareTime = ShareTime.Value.Value,
+				IsSubscriberOnly = IsSubscriberOnly
+			};
+
+			var loading = await MaterialDialog.Instance.LoadingDialogAsync("Сохранение ...");
 			try
 			{
-				if (ShareTime.Value == null)
-				{
-					ShareTime.Value = DateTime.Now;
-				}
-
-				res = await _stockService.CreateStock(new Stock
-													  {
-														  Country = PicCountryAndCityViewModel.SelectedCountry.LocalizedNames.Ru,
-														  City = PicCountryAndCityViewModel.SelectedCity.LocalizedNames.Ru,
-														  Service = MyServicesViewModel.SelectedService.Uuid,
-														  Description = Description.Value,
-														  ImageSource = ImageName,
-														  Name = Name.Value,
-														  ShareTime = ShareTime.Value.Value,
-														  IsSubscriberOnly = IsSubscriberOnly
-													  },
-													  _imageBytes);
+				res = await _stockService.CreateStock(stock, _imageBytes);
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
+			await loading.DismissAsync();
 
 			CanCreateShareCommand = !res;
 			if (res)

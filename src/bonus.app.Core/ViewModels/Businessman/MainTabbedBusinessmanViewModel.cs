@@ -20,7 +20,6 @@ namespace bonus.app.Core.ViewModels.Businessman
 			ShowBusinessmanStocksViewModelCommand = new MvxAsyncCommand(async () => await navigationService.Navigate<BusinessmanStocksViewModel>());
 			ShowNewsViewModelCommand = new MvxAsyncCommand(async () => await navigationService.Navigate<NewsViewModel>());
 			ShowBusinessmanBonusAccrualViewModelCommand = new MvxAsyncCommand(async () => await navigationService.Navigate<BusinessmanBonusAccrualViewModel>());
-
 		}
 		#endregion
 

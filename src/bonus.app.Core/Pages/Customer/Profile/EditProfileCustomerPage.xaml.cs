@@ -22,6 +22,7 @@ namespace bonus.app.Core.Pages.Customer.Profile
 		protected override void OnAppearing()
 		{
 			MainContent.BindingContext = ViewModel;
+			PicCountryAndCityContentView.ViewModel = ViewModel.CountryAndCityViewModel;
 			base.OnAppearing();
 		}
 

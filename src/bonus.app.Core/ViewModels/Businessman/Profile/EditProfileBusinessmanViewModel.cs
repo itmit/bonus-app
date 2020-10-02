@@ -378,7 +378,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 				Address = Address.Value,
 				WorkTime = WorkingMode.Value,
 				Contact = Contact.Value,
-				Description = Description,
+				Description = Description ?? string.Empty,
 				Phone = PhoneNumber.Value,
 				Password = Parameters.Password
 			};

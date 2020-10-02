@@ -7,7 +7,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                       xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-                      xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                       xmlns:stocks="clr-namespace:bonus.app.Core.ViewModels.Businessman.Stocks;assembly=bonus.app.Core"
                       mc:Ignorable="d"
                       x:Class="bonus.app.Core.Pages.Businessman.Stocks.BusinessmanStocksDetailPage"
@@ -17,12 +16,12 @@
     </NavigationPage.TitleView>
 
     <views:MvxContentPage.ToolbarItems>
-        <ToolbarItem Text="Создать новую акцию" Order="Secondary" Priority="0"
-                     Command="{Binding OpenCreateStockPageCommand}" />
-        <ToolbarItem Text="Архив акций" Order="Secondary" Priority="1"
-                     Command="{Binding OpenArchivePageCommand}" />
-        <ToolbarItem Text="Редактировать акцию" Order="Secondary" Priority="2"
+        <ToolbarItem Text="Редактировать акцию" Order="Secondary"
                      Command="{Binding OpenEditStockArchivePageCommand}" />
+        <ToolbarItem Text="Архив акций" Order="Secondary"
+                     Command="{Binding OpenArchivePageCommand}" />
+        <ToolbarItem Text="Создать новую акцию" Order="Secondary"
+                     Command="{Binding OpenCreateStockPageCommand}" />
     </views:MvxContentPage.ToolbarItems>
 
     <ContentPage.Content>

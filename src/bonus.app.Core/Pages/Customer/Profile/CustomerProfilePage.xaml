@@ -18,100 +18,104 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Редактировать профиль" Order="Secondary" Command="{Binding OpenEditProfileCommand}" />
     </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <!-- Страница 16.1.1 - 16.1.2 Профиль покупателя -->
-        <ScrollView>
-            <StackLayout Margin="25,0">
-                <Grid ColumnSpacing="15" Margin="0,15,0,25">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Frame IsClippedToBounds="True" HasShadow="False" CornerRadius="50" Padding="1" Grid.Column="0"
-                           BorderColor="#505050">
-                        <forms:CachedImage Source="{Binding User.PhotoSource}"
-                                           WidthRequest="100"
-                                           HeightRequest="100"
-                                           VerticalOptions="Start"
-                                           ErrorPlaceholder="icon_no_photo.png"
-                                           LoadingPlaceholder="icon_no_photo.png">
-                            <forms:CachedImage.Transformations>
-                                <transformations:CircleTransformation />
-                            </forms:CachedImage.Transformations>
-                        </forms:CachedImage>
-                    </Frame>
-                    <StackLayout Grid.Column="1" VerticalOptions="Start">
-                        <Label Style="{StaticResource TitleLabel}" FontSize="Body">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <FormattedString.Spans>
-                                        <Span Text="@" />
-                                        <Span Text="{Binding User.Login}" />
-                                    </FormattedString.Spans>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label Text="{Binding User.Name}" Style="{StaticResource TitleLabel}" FontSize="Body" />
-                    </StackLayout>
-                </Grid>
-                <Grid ColumnSpacing="10" Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
-                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
-                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
-                        <design:CustomButton.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
-                        </design:CustomButton.GestureRecognizers>
-                    </design:CustomButton>
-                    <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
-                                         Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
-                        <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
-                                   VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Подписки" FontSize="Body"
-                                   FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
-                                   VerticalTextAlignment="Center" />
-                        </Grid>
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OpenSubscribesCommand}" />
-                        </Frame.GestureRecognizers>
-                    </design:CustomButton>
-                </Grid>
-                <Label Text="{Binding User.Phone}" TextColor="#505050" Margin="10,0" />
-                <BoxView />
-                <Label TextColor="#505050" Margin="10,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="{Binding User.City}" />
-                                <Span Text=", " />
-                                <Span Text="{Binding User.Address}" />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <BoxView />
-                <Label Text="{Binding User.Birthday, StringFormat='{0:dd.MM.yyyy}'}" TextColor="#505050" Margin="10,0" />
-                <BoxView />
-                <Label Text="{Binding User.Car}" TextColor="#505050" Margin="10,0" />
-                <BoxView />
-            </StackLayout>
-        </ScrollView>
+        <RefreshView Command="{Binding RefreshCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <StackLayout Margin="25,0">
+                    <Grid ColumnSpacing="15" Margin="0,15,0,25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Frame IsClippedToBounds="True" HasShadow="False" CornerRadius="50" Padding="1" Grid.Column="0"
+                               BorderColor="#505050">
+                            <forms:CachedImage Source="{Binding User.PhotoSource}"
+                                               WidthRequest="100"
+                                               HeightRequest="100"
+                                               VerticalOptions="Start"
+                                               ErrorPlaceholder="icon_no_photo.png"
+                                               LoadingPlaceholder="icon_no_photo.png">
+                                <forms:CachedImage.Transformations>
+                                    <transformations:CircleTransformation />
+                                </forms:CachedImage.Transformations>
+                            </forms:CachedImage>
+                        </Frame>
+                        <StackLayout Grid.Column="1" VerticalOptions="Start">
+                            <Label Style="{StaticResource TitleLabel}" FontSize="Body">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="@" />
+                                            <Span Text="{Binding User.Login}" />
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="{Binding User.Name}" Style="{StaticResource TitleLabel}" FontSize="Body" />
+                        </StackLayout>
+                    </Grid>
+                    <Grid ColumnSpacing="10" Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <design:CustomButton Grid.Column="0" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
+                                             Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="ic_mess_4x.png" WidthRequest="15" VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="Сообщения" FontSize="Body"
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
+                                       VerticalTextAlignment="Center" />
+                            </Grid>
+                            <design:CustomButton.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenDialogsCommand}" />
+                            </design:CustomButton.GestureRecognizers>
+                        </design:CustomButton>
+                        <design:CustomButton Grid.Column="1" IsClippedToBounds="True" CornerRadius="20" HasShadow="False"
+                                             Padding="0" WidthRequest="155" HeightRequest="40" BackgroundColor="#bab3af">
+                            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="ic_bookmarks_4x.png" WidthRequest="10"
+                                       VerticalOptions="Center" />
+                                <Label Grid.Column="1" Text="Подписки" FontSize="Body"
+                                       FontFamily="{x:Static design:DesignClass.MontserratRegular}" TextColor="White"
+                                       VerticalTextAlignment="Center" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenSubscribesCommand}" />
+                            </Frame.GestureRecognizers>
+                        </design:CustomButton>
+                    </Grid>
+                    <Label Text="{Binding User.Phone}" TextColor="#505050" Margin="10,0" />
+                    <BoxView />
+                    <Label TextColor="#505050" Margin="10,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="{Binding User.City}" />
+                                    <Span Text=", " />
+                                    <Span Text="{Binding User.Address}" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <BoxView />
+                    <Label Text="{Binding User.Birthday, StringFormat='{0:dd.MM.yyyy}'}" TextColor="#505050" Margin="10,0" />
+                    <BoxView />
+                    <Label Text="{Binding User.Car}" TextColor="#505050" Margin="10,0" />
+                    <BoxView />
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </views:MvxContentPage>

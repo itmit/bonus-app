@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Dtos.CustomerDtos;
 using bonus.app.Core.Services;
@@ -10,6 +12,7 @@ using bonus.app.Core.ViewModels.Auth;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XF.Material.Forms.UI.Dialogs;
 
@@ -45,6 +48,17 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 			AddValidations();
 		}
 		#endregion
+
+		public override async Task Initialize()
+		{
+			await base.Initialize();
+
+			if (Parameters.IsActiveUser && User != null)
+			{
+				Car = User.Car;
+				Birthday.Value = User.Birthday;
+			}
+		}
 
 		#region Properties
 		public ValidatableObject<DateTime?> Birthday
@@ -163,6 +177,16 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 				Car = Car,
 				Password = Parameters.Password
 			};
+
+			if (User != null && Parameters.IsActiveUser)
+			{
+				var p = Regex.Replace(PhoneNumber.Value, "[@,\\ \\(\\)\\-]", string.Empty);
+				if (User.Phone.Equals(p))
+				{
+					arg.Phone = string.Empty;
+				}
+			}
+
 			if (IsFemale)
 			{
 				arg.Sex = "female";

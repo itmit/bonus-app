@@ -37,8 +37,11 @@
                                 FlowDirection="RightToLeft"
                                 VerticalOptions="FillAndExpand">
                     <CollectionView.EmptyView>
-                        <Label Grid.Row="0" Margin="0,30,0,0" HorizontalOptions="Center"
+                        <Label Grid.Row="0"
+                               Margin="0,30,0,0"
+                               HorizontalOptions="Center"
                                HorizontalTextAlignment="Center"
+                               ScaleX="-1"
                                Rotation="180">
                             <Label.FormattedText>
                                 <FormattedString>

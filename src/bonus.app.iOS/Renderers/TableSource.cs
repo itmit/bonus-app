@@ -38,8 +38,8 @@ namespace bonus.app.iOS.Renderers
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
 			// Used command to excute and deselct the row and removed the table.
-			var command = _tableItems[0].Command;
-			command.Execute(_tableItems[0].CommandParameter);
+			var command = _tableItems[indexPath.Row].Command;
+			command.Execute(_tableItems[indexPath.Row].CommandParameter);
 			tableView.DeselectRow(indexPath, true);
 			tableView.RemoveFromSuperview();
 		}

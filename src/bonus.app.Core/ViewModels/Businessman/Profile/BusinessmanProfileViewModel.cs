@@ -234,7 +234,6 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 								  new MvxCommand(async () =>
 								  {
 									  IsRefreshing = true;
-									  User = await _profileService.User();
 									  await Initialize();
 									  IsRefreshing = false;
 								  });
