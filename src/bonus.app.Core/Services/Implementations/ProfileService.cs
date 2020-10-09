@@ -24,7 +24,6 @@ namespace bonus.app.Core.Services.Implementations
 		#region Data
 		#region Consts
 		private const string FillInfoUri = "http://bonus.itmit-studio.ru/api/fillInfo";
-
 		private const string GetPortfolioUri = "http://bonus.itmit-studio.ru/api/portfolio";
 		private const string GetUserUri = "http://bonus.itmit-studio.ru/api/client/{0}";
 		private const string GetCurrentUserUri = "http://bonus.itmit-studio.ru/api/client";
@@ -37,6 +36,8 @@ namespace bonus.app.Core.Services.Implementations
 		private readonly IUserRepository _userRepository;
 		#endregion
 		#endregion
+
+		public event EventHandler UserUpdated;
 
 		#region .ctor
 		public ProfileService(IAuthService authService, IUserRepository userRepository)
@@ -126,7 +127,7 @@ namespace bonus.app.Core.Services.Implementations
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (AuthService.UserIsAuthorized)
+			if (await AuthService.UserIsAuthorized())
 			{
 				content.Add(new StringContent("PUT"), "_method");
 				content.Add(new StringContent(arguments.WorkTime), "work_time");
@@ -229,7 +230,7 @@ namespace bonus.app.Core.Services.Implementations
 				content.Add(byteArrayContent, "\"photo\"", $"\"{imagePath.Substring(imagePath.LastIndexOf('/') + 1)}\"");
 			}
 
-			if (!AuthService.UserIsAuthorized)
+			if (!await AuthService.UserIsAuthorized())
 			{
 				return await FillInfo(content);
 			}
@@ -320,8 +321,6 @@ namespace bonus.app.Core.Services.Implementations
 			}
 
 			var user = data.Success ? MapUser(data.Data) : _mapper.Map<User>(data.Data);
-			user.AccessToken = AuthService.User.AccessToken;
-			_userRepository.Update(user);
 			return user;
 		}
 
@@ -452,7 +451,10 @@ namespace bonus.app.Core.Services.Implementations
 			Debug.WriteLine(json);
 
 			var data = JsonConvert.DeserializeObject<ResponseDto<object>>(json);
-
+			if (data.Success)
+			{
+				UserUpdated?.Invoke(this, EventArgs.Empty);
+			}
 			return data.Success;
 		}
 		#endregion

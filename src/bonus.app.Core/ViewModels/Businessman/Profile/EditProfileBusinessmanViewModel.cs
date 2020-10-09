@@ -423,7 +423,7 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 						Password = Parameters.Password
 					});
 
-					if (AuthService.UserIsAuthorized)
+					if (await AuthService.UserIsAuthorized())
 					{
 						await loading.DismissAsync();
 						await _navigationService.Navigate<SuccessRegisterBusinessmanPopupViewModel>();

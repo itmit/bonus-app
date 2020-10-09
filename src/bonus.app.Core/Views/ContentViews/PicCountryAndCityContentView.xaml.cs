@@ -13,6 +13,7 @@ namespace bonus.app.Core.Views.ContentViews
 		#region Fields
 		private View _footer;
 		private CityCollectionContentView _cityCollectionContentView;
+		private bool _firstViewModelSet = true;
 		#endregion
 		#endregion
 
@@ -27,6 +28,12 @@ namespace bonus.app.Core.Views.ContentViews
 		{
 			base.OnViewModelSet();
 
+			if (!_firstViewModelSet)
+			{
+				return;
+			}
+
+			_firstViewModelSet = false;
 			if (!ViewModel.CanPicCountryOrCity)
 			{
 				return;

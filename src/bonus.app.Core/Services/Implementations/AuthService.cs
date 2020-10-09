@@ -136,7 +136,7 @@ namespace bonus.app.Core.Services.Implementations
 				_userRepository.RemoveAll();
 				_userRepository.Add(userInfo);
 
-				UserIsAuthorized = true;
+				_userIsAuthorized = true;
 				TokenUpdated?.Invoke(this, EventArgs.Empty);
 
 				return userInfo;
@@ -227,7 +227,7 @@ namespace bonus.app.Core.Services.Implementations
 				Console.WriteLine(e);
 			}
 
-			UserIsAuthorized = false;
+			_userIsAuthorized = false;
 			TokenUpdated?.Invoke(this, EventArgs.Empty);
 			try
 			{
@@ -427,41 +427,38 @@ namespace bonus.app.Core.Services.Implementations
 			}
 		}
 
-		public bool UserIsAuthorized
+		public async Task<bool> UserIsAuthorized()
 		{
-			get
+			if (_userIsAuthorized != null)
 			{
-				if (_userIsAuthorized == null)
-				{
-					_userIsAuthorized = CheckUserIsAuthorized();
-				}
-
 				return _userIsAuthorized.Value;
 			}
-			private set => _userIsAuthorized = value;
-		}
 
-		private bool CheckUserIsAuthorized()
-		{
 			if (Token == null)
 			{
 				return false;
 			}
 
-			var profile = Mvx.IoCProvider.Resolve<IProfileService>().User();
-
-			if (profile.GetAwaiter()
-					   .GetResult() !=
-				null)
+			try
 			{
-				return true;
+				var profile = await Mvx.IoCProvider.Resolve<IProfileService>().User();
+
+				if (profile != null)
+				{
+					_userIsAuthorized = true;
+					return _userIsAuthorized.Value;
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
 			}
 
 			_userRepository.RemoveAll();
-
 			_userUuid = Guid.Empty;
 
-			return false;
+			_userIsAuthorized = false;
+			return _userIsAuthorized.Value;
 		}
 
 		public event EventHandler TokenUpdated;

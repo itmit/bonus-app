@@ -31,38 +31,10 @@ namespace bonus.app.Core
 				.RegisterAsLazySingleton();
 
 			Barrel.ApplicationId = "itmit.bonus.app";
-			RealmConfiguration.DefaultConfiguration.SchemaVersion = 3;
+			RealmConfiguration.DefaultConfiguration.SchemaVersion = 4;
 
-			var firstRun = Preferences.Get("FirstRun", "true");
-			if (firstRun.Equals("true"))
-			{
-				Preferences.Set("FirstRun", "false");
-				RegisterAppStart<BusinessmanAndCustomerViewModel>();
-				return;
-			}
-
-			var authService = Mvx.IoCProvider.Resolve<IAuthService>();
-
-			if (authService.UserIsAuthorized)
-			{
-				switch (authService.User.Role)
-				{
-					case UserRole.Businessman:
-						RegisterAppStart<MainBusinessmanViewModel>();
-						break;
-					case UserRole.Customer:
-						RegisterAppStart<MainCustomerViewModel>();
-						break;
-					case UserRole.Manager:
-						RegisterAppStart<MainManagerViewModel>();
-						break;
-					default:
-						throw new ArgumentOutOfRangeException();
-				}
-				return;
-			}
-
-			RegisterAppStart<AuthorizationViewModel>();
+			// register the appstart object
+			RegisterCustomAppStart<AppStart>();
 		}
 		#endregion
 	}

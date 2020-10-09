@@ -216,7 +216,7 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 						Password = Parameters.Password
 					});
 
-					if (AuthService.UserIsAuthorized)
+					if (await AuthService.UserIsAuthorized())
 					{
 						await loadingDialog.DismissAsync();
 						await _navigationService.Navigate<SuccessRegisterCustomerPopupViewModel>();

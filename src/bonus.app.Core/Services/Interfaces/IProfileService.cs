@@ -21,6 +21,8 @@ namespace bonus.app.Core.Services.Interfaces
 		}
 		#endregion
 
+		event EventHandler UserUpdated;
+
 		#region Overridable
 		Task<PortfolioImage> AddImageToPortfolio(string imageSource);
 

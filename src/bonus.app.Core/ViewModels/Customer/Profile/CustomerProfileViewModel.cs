@@ -32,6 +32,10 @@ namespace bonus.app.Core.ViewModels.Customer.Profile
 		{
 			_profileService = profileService;
 			_navigationService = navigationService;
+			_profileService.UserUpdated += (sender, args) =>
+			{
+				LoadProfileTask = MvxNotifyTask.Create(LoadProfile);
+			};
 		}
 		#endregion
 

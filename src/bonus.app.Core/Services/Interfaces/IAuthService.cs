@@ -30,15 +30,13 @@ namespace bonus.app.Core.Services.Interfaces
 			get;
 		}
 
-		bool UserIsAuthorized
-		{
-			get;
-		}
 		#endregion
 
 		event EventHandler TokenUpdated;
 
 		#region Overridable
+		Task<bool> UserIsAuthorized();
+
 		Task<User> Login(AuthDto authData);
 
 		Task<bool> Logout(User user);

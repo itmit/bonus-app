@@ -55,6 +55,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		private User _user;
 		private MvxCommand _openManagersCommand;
 		private bool _hasServiceInfo;
+		private MvxNotifyTask _loadProfileTask;
+		private string _photoSource;
 		#endregion
 		#endregion
 
@@ -73,7 +75,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			_authService = authService;
 			User = _authService.User;
 			_profileService.PortfolioChanged += ProfileServiceOnPortfolioChanged;
-			PhotoSource = string.IsNullOrEmpty(User.PhotoSource) ? "about:blank" : User.PhotoSource;
+			_profileService.UserUpdated += (sender, args) =>
+			{
+				LoadProfileTask = MvxNotifyTask.Create(LoadProfile);
+			};
 		}
 
 		private async void ProfileServiceOnPortfolioChanged(object sender, EventArgs e)
@@ -85,7 +90,8 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		#region Properties
 		public string PhotoSource
 		{
-			get;
+			get => _photoSource;
+			private set => SetProperty(ref _photoSource, value);
 		}
 
 		public bool IsRefreshing
@@ -135,12 +141,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 											  {
 												  var user = await NavigationService.Navigate<EditProfileBusinessmanViewModel, EditProfileViewModelArguments, User>(
 																 new EditProfileViewModelArguments(_authService.User.Uuid, true));
-												  if (user == null)
+												  if (user != null)
 												  {
-													  return;
+													  User = user;
 												  }
-
-												  User = user;
 											  });
 				return _openEditProfilePageCommand;
 			}
@@ -231,10 +235,10 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 			get
 			{
 				_refreshCommand = _refreshCommand ??
-								  new MvxCommand(async () =>
+								  new MvxCommand(() =>
 								  {
 									  IsRefreshing = true;
-									  await Initialize();
+									  LoadProfileTask = MvxNotifyTask.Create(LoadProfile);
 									  IsRefreshing = false;
 								  });
 				return _refreshCommand;
@@ -297,7 +301,19 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		public User User
 		{
 			get => _user;
-			private set => SetProperty(ref _user, value);
+			private set
+			{
+				SetProperty(ref _user, value);
+
+				if (string.IsNullOrEmpty(value.PhotoSource))
+				{
+					PhotoSource = "about:blank";
+				}
+				else if (!value.PhotoSource.Equals(PhotoSource))
+				{
+					PhotoSource = value.PhotoSource;
+				}
+			}
 		}
 		#endregion
 
@@ -351,9 +367,9 @@ namespace bonus.app.Core.ViewModels.Businessman.Profile
 		}
 
 		public MvxNotifyTask LoadProfileTask
-		{ 
-			get;
-			private set;
+		{
+			get => _loadProfileTask;
+			private set => SetProperty(ref _loadProfileTask, value);
 		}
 
 		#region Private

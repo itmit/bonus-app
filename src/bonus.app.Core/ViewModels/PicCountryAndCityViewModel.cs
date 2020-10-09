@@ -311,7 +311,7 @@ namespace bonus.app.Core.ViewModels
 				return;
 			}
 
-			if (!_authService.UserIsAuthorized)
+			if (!await _authService.UserIsAuthorized())
 			{
 				return;
 			}
