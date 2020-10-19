@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
@@ -6,15 +7,22 @@ using System.Threading.Tasks;
 using bonus.app.Core.Dtos;
 using bonus.app.Core.Models;
 using bonus.app.Core.Services.Interfaces;
+using MvvmCross.Logging;
 using Newtonsoft.Json;
+using Plugin.InAppBilling;
+using Plugin.InAppBilling.Abstractions;
+using Xamarin.Forms;
 
 namespace bonus.app.Core.Services.Implementations
 {
 	public class RateService : BaseService, IRateService
 	{
-		public RateService(IAuthService authService)
+		private IMvxLog _logger;
+
+		public RateService(IAuthService authService, IMvxLogProvider logProvider)
 			: base(authService)
 		{
+			_logger = logProvider.GetLogFor(GetType());
 		}
 
 		private const string RatesUri = "http://bonus.itmit-studio.ru/api/rates";
@@ -50,21 +58,64 @@ namespace bonus.app.Core.Services.Implementations
 			return data?.Data != null;
 		}
 
-		public async Task<string> GetHtmlPayment()
+		public async Task<bool> PurchaseAsync(Rate rate)
 		{
-			var response = await HttpClient.PostAsync(HtmlPaymentUri, new StringContent("{\"count_rates\":1}", Encoding.UTF8, ApplicationJson));
-			var json = await response.Content.ReadAsStringAsync();
-
-			Debug.WriteLine(json);
-
-			if (string.IsNullOrEmpty(json))
+			try
 			{
-				return "";
+				var productId = rate.Id.ToString();
+
+				var connected = await CrossInAppBilling.Current.ConnectAsync();
+
+				if (!connected)
+				{
+					// Не удалось подключиться к биллингу, устройство в автономном режиме, оповещаем пользователя
+					return false;
+				}
+
+				// Пробуем купить товар
+				var purchase = await CrossInAppBilling.Current.PurchaseAsync(productId, ItemType.InAppPurchase, "apppayload");
+				if (purchase == null)
+				{
+					// Купить не удалось, оповещаем пользователя
+
+					return false;
+				}
+				else
+				{
+					// Покупка совершена, сохраняем информацию
+					var id = purchase.Id;
+					var token = purchase.PurchaseToken;
+					var state = purchase.State;
+
+					// Вызываем после успешной покупки или позднее (необходимо вызвать ConnectAsync() раньше времени):
+					if (Device.RuntimePlatform == Device.Android)
+					{
+						var consumedItem = await CrossInAppBilling.Current.ConsumePurchaseAsync(purchase.ProductId, purchase.PurchaseToken);
+
+						if (consumedItem != null)
+						{
+							// Товар использован
+						}
+					}
+					else
+					{
+						//
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				// Произошла ошибка, оповещаем пользователя.
+				_logger.Log(MvxLogLevel.Debug, () => "Purchase Error", ex);
+				return false;
+			}
+			finally
+			{
+				// Отключаемся, это нормально если не удалось связаться.
+				await CrossInAppBilling.Current.DisconnectAsync();
 			}
 
-			var data = JsonConvert.DeserializeObject<ResponseDto<Dictionary<string, string>>>(json);
-
-			return data.Success ? data.Data?["url"] : null;
+			return true;
 		}
 	}
 }

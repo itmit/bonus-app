@@ -16,6 +16,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MvvmCross.Forms.Platforms.Android.Views;
 using Plugin.CurrentActivity;
+using Plugin.InAppBilling;
 using Plugin.Permissions;
 using Rg.Plugins.Popup;
 using VKontakte;
@@ -46,6 +47,9 @@ namespace bonus.app.Droid
 
 		protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
+			base.OnActivityResult(requestCode, resultCode, data);
+			InAppBillingImplementation.HandleActivityResult(requestCode, resultCode, data);
+
 			var task = VKSdk.OnActivityResultAsync(requestCode, resultCode, data, out var vkResult);
 
 			if (!vkResult)

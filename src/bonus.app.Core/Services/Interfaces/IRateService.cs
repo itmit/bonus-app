@@ -22,6 +22,6 @@ namespace bonus.app.Core.Services.Interfaces
 
 		Task<bool> ChangeRate(Rate rate);
 
-		Task<string> GetHtmlPayment();
+		Task<bool> PurchaseAsync(Rate rate);
 	}
 }

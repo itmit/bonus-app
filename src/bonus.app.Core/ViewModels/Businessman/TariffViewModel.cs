@@ -92,34 +92,7 @@ namespace bonus.app.Core.ViewModels.Businessman
 			{
 				_paymentCommand = _paymentCommand ?? new MvxCommand(async () =>
 				{
-					var webView = new WebView
-					{
-						Source = new UrlWebViewSource
-						{
-							Url = await _rateService.GetHtmlPayment()
-						}
-					};
-					webView.Navigated += async (sender, args) =>
-					{
-						if (args.Result == WebNavigationResult.Success && args.Url.StartsWith(_rateService.PaySuccessUrl))
-						{
-							await Application.Current.MainPage.Navigation.PopModalAsync();
-							await MaterialDialog.Instance.AlertAsync("Оплата прошла успешно", "Внимание", "Ок");
-							await Initialize();
-						}
-
-						if (args.Result != WebNavigationResult.Success || !args.Url.StartsWith(_rateService.PayErrorUrl))
-						{
-							return;
-						}
-
-						await Application.Current.MainPage.Navigation.PopModalAsync();
-						await MaterialDialog.Instance.AlertAsync("Платеж не прошел", "Внимание", "Ок");
-					};
-					await Application.Current.MainPage.Navigation.PushModalAsync(new ContentPage
-					{
-						Content = webView
-					});
+					
 				});
 				return _paymentCommand;
 			}
